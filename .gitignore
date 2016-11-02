@@ -1,0 +1,8 @@
+.fuse_hidden*
+Desarrollo/irrlicht-1.8.4/source/**/*.o
+Desarrollo/irrlicht-1.8.4/source/**/*.d
+Desarrollo/irrlicht-1.8.4/lib/Linux/
+Desarrollo/irrlicht-1.8.4/source/Irrlicht/libIrrlicht.a
+Desarrollo/irrlicht-1.8.4/bin/Linux/**
+!Desarrollo/irrlicht-1.8.4/bin/Linux/readme.txt
+
