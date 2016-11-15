@@ -5,4 +5,7 @@ Desarrollo/irrlicht-1.8.4/lib/Linux/
 Desarrollo/irrlicht-1.8.4/source/Irrlicht/libIrrlicht.a
 Desarrollo/irrlicht-1.8.4/bin/Linux/**
 !Desarrollo/irrlicht-1.8.4/bin/Linux/readme.txt
-
+Desarrollo/game/bin/**/*.exe
+Desarrollo/game/obj/
+Desarrollo/game/obj/**/*
+Desarrollo/game/game.layout
