@@ -991,3 +991,1347 @@
 	"matrix4.h"
 	"IVideoDriver.h"
 
+1479213550 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\character.cpp
+	"Character.h"
+
+1479213571 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\character.h
+	"Drawable.h"
+
+1479213791 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\drawable.h
+	"FachadeDireEngine.h"
+
+1479211451 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\fachadedireengine.h
+
+1479213808 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\drawable.cpp
+	"Drawable.h"
+
+1479210690 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\fachadedireengine.cpp
+	"FachadeDireEngine.h"
+
+1479209636 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\game.cpp
+	"Game.h"
+
+1479209636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\game.h
+
+1479222971 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\main.cpp
+	<iostream>
+	<irrlicht.h>
+	<Box2D/Box2D.h>
+
+1478629199 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\irrlicht.h
+	"IrrCompileConfig.h"
+	"aabbox3d.h"
+	"CDynamicMeshBuffer.h"
+	"CIndexBuffer.h"
+	"CMeshBuffer.h"
+	"coreutil.h"
+	"CVertexBuffer.h"
+	"dimension2d.h"
+	"ECullingTypes.h"
+	"EDebugSceneTypes.h"
+	"EDriverFeatures.h"
+	"EDriverTypes.h"
+	"EGUIAlignment.h"
+	"EGUIElementTypes.h"
+	"EHardwareBufferFlags.h"
+	"EMaterialFlags.h"
+	"EMaterialTypes.h"
+	"EMeshWriterEnums.h"
+	"EMessageBoxFlags.h"
+	"ESceneNodeAnimatorTypes.h"
+	"ESceneNodeTypes.h"
+	"ETerrainElements.h"
+	"fast_atof.h"
+	"heapsort.h"
+	"IAnimatedMesh.h"
+	"IAnimatedMeshMD2.h"
+	"IAnimatedMeshMD3.h"
+	"IAnimatedMeshSceneNode.h"
+	"IAttributeExchangingObject.h"
+	"IAttributes.h"
+	"IBillboardSceneNode.h"
+	"IBillboardTextSceneNode.h"
+	"IBoneSceneNode.h"
+	"ICameraSceneNode.h"
+	"ICursorControl.h"
+	"IDummyTransformationSceneNode.h"
+	"IDynamicMeshBuffer.h"
+	"IEventReceiver.h"
+	"IFileList.h"
+	"IFileSystem.h"
+	"IGeometryCreator.h"
+	"IGPUProgrammingServices.h"
+	"IGUIButton.h"
+	"IGUICheckBox.h"
+	"IGUIColorSelectDialog.h"
+	"IGUIComboBox.h"
+	"IGUIContextMenu.h"
+	"IGUIEditBox.h"
+	"IGUIElement.h"
+	"IGUIElementFactory.h"
+	"IGUIEnvironment.h"
+	"IGUIFileOpenDialog.h"
+	"IGUIFont.h"
+	"IGUIFontBitmap.h"
+	"IGUIImage.h"
+	"IGUIInOutFader.h"
+	"IGUIListBox.h"
+	"IGUIMeshViewer.h"
+	"IGUIScrollBar.h"
+	"IGUISkin.h"
+	"IGUISpinBox.h"
+	"IGUISpriteBank.h"
+	"IGUIStaticText.h"
+	"IGUITabControl.h"
+	"IGUITable.h"
+	"IGUIToolbar.h"
+	"IGUIWindow.h"
+	"IGUITreeView.h"
+	"IImage.h"
+	"IImageLoader.h"
+	"IImageWriter.h"
+	"IIndexBuffer.h"
+	"ILightSceneNode.h"
+	"ILogger.h"
+	"IMaterialRenderer.h"
+	"IMaterialRendererServices.h"
+	"IMesh.h"
+	"IMeshBuffer.h"
+	"IMeshCache.h"
+	"IMeshLoader.h"
+	"IMeshManipulator.h"
+	"IMeshSceneNode.h"
+	"IMeshWriter.h"
+	"IColladaMeshWriter.h"
+	"IMetaTriangleSelector.h"
+	"IOSOperator.h"
+	"IParticleSystemSceneNode.h"
+	"IQ3LevelMesh.h"
+	"IQ3Shader.h"
+	"IReadFile.h"
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"IRandomizer.h"
+	"IrrlichtDevice.h"
+	"irrList.h"
+	"irrMap.h"
+	"irrMath.h"
+	"irrString.h"
+	"irrTypes.h"
+	"path.h"
+	"irrXML.h"
+	"ISceneCollisionManager.h"
+	"ISceneLoader.h"
+	"ISceneManager.h"
+	"ISceneNode.h"
+	"ISceneNodeAnimator.h"
+	"ISceneNodeAnimatorCameraFPS.h"
+	"ISceneNodeAnimatorCameraMaya.h"
+	"ISceneNodeAnimatorCollisionResponse.h"
+	"ISceneNodeAnimatorFactory.h"
+	"ISceneNodeFactory.h"
+	"ISceneUserDataSerializer.h"
+	"IShaderConstantSetCallBack.h"
+	"IShadowVolumeSceneNode.h"
+	"ISkinnedMesh.h"
+	"ITerrainSceneNode.h"
+	"ITextSceneNode.h"
+	"ITexture.h"
+	"ITimer.h"
+	"ITriangleSelector.h"
+	"IVertexBuffer.h"
+	"IVideoDriver.h"
+	"IVideoModeList.h"
+	"IVolumeLightSceneNode.h"
+	"IWriteFile.h"
+	"IXMLReader.h"
+	"IXMLWriter.h"
+	"ILightManager.h"
+	"Keycodes.h"
+	"line2d.h"
+	"line3d.h"
+	"matrix4.h"
+	"plane3d.h"
+	"position2d.h"
+	"quaternion.h"
+	"rect.h"
+	"S3DVertex.h"
+	"SAnimatedMesh.h"
+	"SceneParameters.h"
+	"SColor.h"
+	"SExposedVideoData.h"
+	"SIrrCreationParameters.h"
+	"SKeyMap.h"
+	"SLight.h"
+	"SMaterial.h"
+	"SMesh.h"
+	"SMeshBuffer.h"
+	"SMeshBufferLightMap.h"
+	"SMeshBufferTangents.h"
+	"SParticle.h"
+	"SSharedMeshBuffer.h"
+	"SSkinMeshBuffer.h"
+	"SVertexIndex.h"
+	"SViewFrustum.h"
+	"triangle3d.h"
+	"vector2d.h"
+	"vector3d.h"
+	"SIrrCreationParameters.h"
+
+1478629199 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\irrcompileconfig.h
+	<stdio.h>
+	<xtl.h>
+	<tchar.h>
+
+1478629192 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\aabbox3d.h
+	"irrMath.h"
+	"plane3d.h"
+	"line3d.h"
+
+1478629200 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\irrmath.h
+	"IrrCompileConfig.h"
+	"irrTypes.h"
+	<math.h>
+	<float.h>
+	<stdlib.h>
+	<limits.h>
+
+1478629200 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\irrtypes.h
+	"IrrCompileConfig.h"
+	<wchar.h>
+	<crtdbg.h>
+	"assert.h"
+	<stdlib.h>
+	<crtdbg.h>
+
+1478629203 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\plane3d.h
+	"irrMath.h"
+	"vector3d.h"
+
+1478629205 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\vector3d.h
+	"irrMath.h"
+
+1478629203 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\line3d.h
+	"irrTypes.h"
+	"vector3d.h"
+
+1478629192 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\cdynamicmeshbuffer.h
+	"IDynamicMeshBuffer.h"
+	"CVertexBuffer.h"
+	"CIndexBuffer.h"
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\idynamicmeshbuffer.h
+	"IMeshBuffer.h"
+	"IVertexBuffer.h"
+	"IIndexBuffer.h"
+
+1478629197 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\imeshbuffer.h
+	"IReferenceCounted.h"
+	"SMaterial.h"
+	"aabbox3d.h"
+	"S3DVertex.h"
+	"SVertexIndex.h"
+	"EHardwareBufferFlags.h"
+	"EPrimitiveTypes.h"
+
+1478629199 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ireferencecounted.h
+	"irrTypes.h"
+
+1478629204 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\smaterial.h
+	"SColor.h"
+	"matrix4.h"
+	"irrArray.h"
+	"irrMath.h"
+	"EMaterialTypes.h"
+	"EMaterialFlags.h"
+	"SMaterialLayer.h"
+
+1478629204 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\scolor.h
+	"irrTypes.h"
+	"irrMath.h"
+
+1478629203 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\matrix4.h
+	"irrMath.h"
+	"vector3d.h"
+	"vector2d.h"
+	"plane3d.h"
+	"aabbox3d.h"
+	"rect.h"
+	"irrString.h"
+
+1478629205 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\vector2d.h
+	"irrMath.h"
+	"dimension2d.h"
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\dimension2d.h
+	"irrTypes.h"
+	"irrMath.h"
+
+1478629204 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\rect.h
+	"irrTypes.h"
+	"dimension2d.h"
+	"position2d.h"
+
+1478629203 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\position2d.h
+	"vector2d.h"
+
+1478629200 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\irrstring.h
+	"irrTypes.h"
+	"irrAllocator.h"
+	"irrMath.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
+1478629199 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\irrallocator.h
+	"irrTypes.h"
+	<new>
+	<memory.h>
+
+1478629199 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\irrarray.h
+	"irrTypes.h"
+	"heapsort.h"
+	"irrAllocator.h"
+	"irrMath.h"
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\heapsort.h
+	"irrTypes.h"
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ematerialtypes.h
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ematerialflags.h
+
+1478629204 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\smateriallayer.h
+	"matrix4.h"
+	"irrAllocator.h"
+
+1478629204 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\s3dvertex.h
+	"vector3d.h"
+	"vector2d.h"
+	"SColor.h"
+
+1478629205 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\svertexindex.h
+	"irrTypes.h"
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ehardwarebufferflags.h
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\eprimitivetypes.h
+
+1478629201 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ivertexbuffer.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"S3DVertex.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iindexbuffer.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"SVertexIndex.h"
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\cvertexbuffer.h
+	"IVertexBuffer.h"
+
+1478629192 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\cindexbuffer.h
+	"IIndexBuffer.h"
+
+1478629192 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\cmeshbuffer.h
+	"irrArray.h"
+	"IMeshBuffer.h"
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\coreutil.h
+	"irrString.h"
+	"path.h"
+
+1478629203 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\path.h
+	"irrString.h"
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ecullingtypes.h
+	"irrTypes.h"
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\edebugscenetypes.h
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\edriverfeatures.h
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\edrivertypes.h
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\eguialignment.h
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\eguielementtypes.h
+	"irrTypes.h"
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\emeshwriterenums.h
+	"irrTypes.h"
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\emessageboxflags.h
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\escenenodeanimatortypes.h
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\escenenodetypes.h
+	"irrTypes.h"
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\eterrainelements.h
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\fast_atof.h
+	"irrMath.h"
+	"irrString.h"
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ianimatedmesh.h
+	"aabbox3d.h"
+	"IMesh.h"
+
+1478629197 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\imesh.h
+	"IReferenceCounted.h"
+	"SMaterial.h"
+	"EHardwareBufferFlags.h"
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ianimatedmeshmd2.h
+	"IAnimatedMesh.h"
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ianimatedmeshmd3.h
+	"IAnimatedMesh.h"
+	"IQ3Shader.h"
+	"quaternion.h"
+	"irrpack.h"
+	"irrunpack.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iq3shader.h
+	"irrArray.h"
+	"fast_atof.h"
+	"IFileSystem.h"
+	"IVideoDriver.h"
+	"coreutil.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ifilesystem.h
+	"IReferenceCounted.h"
+	"IXMLReader.h"
+	"IFileArchive.h"
+
+1478629202 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ixmlreader.h
+	"IReferenceCounted.h"
+	"irrXML.h"
+
+1478629200 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\irrxml.h
+	<stdio.h>
+	"IrrCompileConfig.h"
+	<irrXML.h>
+	<string>
+	<irrXML.h>
+	<irrXML.h>
+	<irrXML.h>
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ifilearchive.h
+	"IReadFile.h"
+	"IFileList.h"
+
+1478629199 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ireadfile.h
+	"IReferenceCounted.h"
+	"coreutil.h"
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ifilelist.h
+	"IReferenceCounted.h"
+	"path.h"
+
+1478629202 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ivideodriver.h
+	"rect.h"
+	"SColor.h"
+	"ITexture.h"
+	"irrArray.h"
+	"matrix4.h"
+	"plane3d.h"
+	"dimension2d.h"
+	"position2d.h"
+	"SMaterial.h"
+	"IMeshBuffer.h"
+	"triangle3d.h"
+	"EDriverTypes.h"
+	"EDriverFeatures.h"
+	"SExposedVideoData.h"
+
+1478629201 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\itexture.h
+	"IReferenceCounted.h"
+	"IImage.h"
+	"dimension2d.h"
+	"EDriverTypes.h"
+	"path.h"
+	"matrix4.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iimage.h
+	"IReferenceCounted.h"
+	"position2d.h"
+	"rect.h"
+	"SColor.h"
+
+1478629205 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\triangle3d.h
+	"vector3d.h"
+	"line3d.h"
+	"plane3d.h"
+	"aabbox3d.h"
+
+1478629204 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\sexposedvideodata.h
+
+1478629203 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\quaternion.h
+	"irrTypes.h"
+	"irrMath.h"
+	"matrix4.h"
+	"vector3d.h"
+
+1478629200 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\irrpack.h
+
+1478629200 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\irrunpack.h
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ianimatedmeshscenenode.h
+	"ISceneNode.h"
+	"IBoneSceneNode.h"
+	"IAnimatedMeshMD2.h"
+	"IAnimatedMeshMD3.h"
+
+1478629200 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iscenenode.h
+	"IAttributeExchangingObject.h"
+	"ESceneNodeTypes.h"
+	"ECullingTypes.h"
+	"EDebugSceneTypes.h"
+	"ISceneNodeAnimator.h"
+	"ITriangleSelector.h"
+	"SMaterial.h"
+	"irrString.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"irrList.h"
+	"IAttributes.h"
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iattributeexchangingobject.h
+	"IReferenceCounted.h"
+
+1478629200 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iscenenodeanimator.h
+	"IReferenceCounted.h"
+	"vector3d.h"
+	"ESceneNodeAnimatorTypes.h"
+	"IAttributeExchangingObject.h"
+	"IEventReceiver.h"
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ieventreceiver.h
+	"ILogger.h"
+	"Keycodes.h"
+	"irrString.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ilogger.h
+	"IReferenceCounted.h"
+
+1478629202 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\keycodes.h
+
+1478629201 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\itriangleselector.h
+	"IReferenceCounted.h"
+	"triangle3d.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"line3d.h"
+
+1478629199 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\irrlist.h
+	"irrTypes.h"
+	"irrAllocator.h"
+	"irrMath.h"
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iattributes.h
+	"IReferenceCounted.h"
+	"SColor.h"
+	"vector3d.h"
+	"vector2d.h"
+	"line2d.h"
+	"line3d.h"
+	"triangle3d.h"
+	"position2d.h"
+	"rect.h"
+	"dimension2d.h"
+	"matrix4.h"
+	"quaternion.h"
+	"plane3d.h"
+	"triangle3d.h"
+	"line2d.h"
+	"line3d.h"
+	"irrString.h"
+	"irrArray.h"
+	"IXMLReader.h"
+	"EAttributes.h"
+	"path.h"
+
+1478629202 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\line2d.h
+	"irrTypes.h"
+	"vector2d.h"
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\eattributes.h
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ibonescenenode.h
+	"ISceneNode.h"
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ibillboardscenenode.h
+	"ISceneNode.h"
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ibillboardtextscenenode.h
+	"IBillboardSceneNode.h"
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\icamerascenenode.h
+	"ISceneNode.h"
+	"IEventReceiver.h"
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\icursorcontrol.h
+	"IReferenceCounted.h"
+	"position2d.h"
+	"rect.h"
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\idummytransformationscenenode.h
+	"ISceneNode.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\igeometrycreator.h
+	"IReferenceCounted.h"
+	"IMesh.h"
+	"IImage.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\igpuprogrammingservices.h
+	"EShaderTypes.h"
+	"EMaterialTypes.h"
+	"EPrimitiveTypes.h"
+	"path.h"
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\eshadertypes.h
+	"irrTypes.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguibutton.h
+	"IGUIElement.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguielement.h
+	"IAttributeExchangingObject.h"
+	"irrList.h"
+	"rect.h"
+	"irrString.h"
+	"IEventReceiver.h"
+	"EGUIElementTypes.h"
+	"EGUIAlignment.h"
+	"IAttributes.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguicheckbox.h
+	"IGUIElement.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguicolorselectdialog.h
+	"IGUIElement.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguicombobox.h
+	"IGUIElement.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguicontextmenu.h
+	"IGUIElement.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguieditbox.h
+	"IGUIElement.h"
+	"SColor.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguielementfactory.h
+	"IReferenceCounted.h"
+	"EGUIElementTypes.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguienvironment.h
+	"IReferenceCounted.h"
+	"IGUISkin.h"
+	"rect.h"
+	"EMessageBoxFlags.h"
+	"IEventReceiver.h"
+	"IXMLReader.h"
+	"path.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguiskin.h
+	"IAttributeExchangingObject.h"
+	"EGUIAlignment.h"
+	"SColor.h"
+	"rect.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguifileopendialog.h
+	"IGUIElement.h"
+	"path.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguifont.h
+	"IReferenceCounted.h"
+	"SColor.h"
+	"rect.h"
+	"irrString.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguifontbitmap.h
+	"IGUIFont.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguiimage.h
+	"IGUIElement.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguiinoutfader.h
+	"IGUIElement.h"
+	"SColor.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguilistbox.h
+	"IGUIElement.h"
+	"SColor.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguimeshviewer.h
+	"IGUIElement.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguiscrollbar.h
+	"IGUIElement.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguispinbox.h
+	"IGUIElement.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguispritebank.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"SColor.h"
+	"rect.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguistatictext.h
+	"IGUIElement.h"
+	"SColor.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguitabcontrol.h
+	"IGUIElement.h"
+	"SColor.h"
+	"IGUISkin.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguitable.h
+	"IGUIElement.h"
+	"irrTypes.h"
+	"SColor.h"
+	"IGUISkin.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguitoolbar.h
+	"IGUIElement.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguiwindow.h
+	"IGUIElement.h"
+	"EMessageBoxFlags.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguitreeview.h
+	"IGUIElement.h"
+	"IGUIImageList.h"
+	"irrTypes.h"
+
+1478629195 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iguiimagelist.h
+	"IGUIElement.h"
+	"rect.h"
+	"irrTypes.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iimageloader.h
+	"IReferenceCounted.h"
+	"IImage.h"
+	"path.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iimagewriter.h
+	"IReferenceCounted.h"
+	"irrString.h"
+	"coreutil.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ilightscenenode.h
+	"ISceneNode.h"
+	"SLight.h"
+
+1478629204 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\slight.h
+	"SColor.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\imaterialrenderer.h
+	"IReferenceCounted.h"
+	"SMaterial.h"
+	"S3DVertex.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\imaterialrendererservices.h
+	"SMaterial.h"
+	"S3DVertex.h"
+
+1478629197 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\imeshcache.h
+	"IReferenceCounted.h"
+	"path.h"
+
+1478629197 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\imeshloader.h
+	"IReferenceCounted.h"
+	"path.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\imeshmanipulator.h
+	"IReferenceCounted.h"
+	"vector3d.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"IAnimatedMesh.h"
+	"IMeshBuffer.h"
+	"SVertexManipulator.h"
+
+1478629205 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\svertexmanipulator.h
+	"S3DVertex.h"
+	"SColor.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\imeshscenenode.h
+	"ISceneNode.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\imeshwriter.h
+	"IReferenceCounted.h"
+	"EMeshWriterEnums.h"
+
+1478629194 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\icolladameshwriter.h
+	"IMeshWriter.h"
+	"ISceneNode.h"
+	"IAnimatedMesh.h"
+	"SMaterial.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\imetatriangleselector.h
+	"ITriangleSelector.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iosoperator.h
+	"IReferenceCounted.h"
+	"irrString.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iparticlesystemscenenode.h
+	"ISceneNode.h"
+	"IParticleAnimatedMeshSceneNodeEmitter.h"
+	"IParticleBoxEmitter.h"
+	"IParticleCylinderEmitter.h"
+	"IParticleMeshEmitter.h"
+	"IParticleRingEmitter.h"
+	"IParticleSphereEmitter.h"
+	"IParticleAttractionAffector.h"
+	"IParticleFadeOutAffector.h"
+	"IParticleGravityAffector.h"
+	"IParticleRotationAffector.h"
+	"dimension2d.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iparticleanimatedmeshscenenodeemitter.h
+	"IParticleEmitter.h"
+	"IAnimatedMeshSceneNode.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iparticleemitter.h
+	"IAttributeExchangingObject.h"
+	"SParticle.h"
+
+1478629204 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\sparticle.h
+	"vector3d.h"
+	"dimension2d.h"
+	"SColor.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iparticleboxemitter.h
+	"IParticleEmitter.h"
+	"aabbox3d.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iparticlecylinderemitter.h
+	"IParticleEmitter.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iparticlemeshemitter.h
+	"IParticleEmitter.h"
+	"IMesh.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iparticleringemitter.h
+	"IParticleEmitter.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iparticlesphereemitter.h
+	"IParticleEmitter.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iparticleattractionaffector.h
+	"IParticleAffector.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iparticleaffector.h
+	"IAttributeExchangingObject.h"
+	"SParticle.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iparticlefadeoutaffector.h
+	"IParticleAffector.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iparticlegravityaffector.h
+	"IParticleAffector.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iparticlerotationaffector.h
+	"IParticleAffector.h"
+
+1478629198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iq3levelmesh.h
+	"IAnimatedMesh.h"
+	"IQ3Shader.h"
+
+1478629199 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\irandomizer.h
+	"IReferenceCounted.h"
+
+1478629199 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\irrlichtdevice.h
+	"IReferenceCounted.h"
+	"dimension2d.h"
+	"IVideoDriver.h"
+	"EDriverTypes.h"
+	"EDeviceTypes.h"
+	"IEventReceiver.h"
+	"ICursorControl.h"
+	"IVideoModeList.h"
+	"ITimer.h"
+	"IOSOperator.h"
+
+1478629193 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\edevicetypes.h
+
+1478629202 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ivideomodelist.h
+	"IReferenceCounted.h"
+	"dimension2d.h"
+
+1478629201 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\itimer.h
+	"IReferenceCounted.h"
+
+1478629200 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\irrmap.h
+	"irrTypes.h"
+	"irrMath.h"
+
+1478629200 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iscenecollisionmanager.h
+	"IReferenceCounted.h"
+	"vector3d.h"
+	"triangle3d.h"
+	"position2d.h"
+	"line3d.h"
+
+1478629200 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\isceneloader.h
+	"IReferenceCounted.h"
+	"path.h"
+
+1478629200 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iscenemanager.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"irrString.h"
+	"path.h"
+	"vector3d.h"
+	"dimension2d.h"
+	"SColor.h"
+	"ETerrainElements.h"
+	"ESceneNodeTypes.h"
+	"ESceneNodeAnimatorTypes.h"
+	"EMeshWriterEnums.h"
+	"SceneParameters.h"
+	"IGeometryCreator.h"
+	"ISkinnedMesh.h"
+
+1478629204 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\sceneparameters.h
+
+1478629201 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iskinnedmesh.h
+	"irrArray.h"
+	"IBoneSceneNode.h"
+	"IAnimatedMesh.h"
+	"SSkinMeshBuffer.h"
+
+1478629205 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\sskinmeshbuffer.h
+	"IMeshBuffer.h"
+	"S3DVertex.h"
+
+1478629200 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iscenenodeanimatorcamerafps.h
+	"ISceneNodeAnimator.h"
+	"IEventReceiver.h"
+	"irrArray.h"
+
+1478629201 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iscenenodeanimatorcameramaya.h
+	"ISceneNodeAnimator.h"
+
+1478629201 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iscenenodeanimatorcollisionresponse.h
+	"ISceneNode.h"
+
+1478629201 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iscenenodeanimatorfactory.h
+	"IReferenceCounted.h"
+	"ESceneNodeAnimatorTypes.h"
+
+1478629201 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iscenenodefactory.h
+	"IReferenceCounted.h"
+	"ESceneNodeTypes.h"
+
+1478629201 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\isceneuserdataserializer.h
+	"IReferenceCounted.h"
+
+1478629201 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ishaderconstantsetcallback.h
+	"IReferenceCounted.h"
+
+1478629201 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ishadowvolumescenenode.h
+	"ISceneNode.h"
+
+1478629201 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iterrainscenenode.h
+	"ETerrainElements.h"
+	"ISceneNode.h"
+	"IDynamicMeshBuffer.h"
+	"irrArray.h"
+
+1478629201 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\itextscenenode.h
+	"ISceneNode.h"
+
+1478629202 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ivolumelightscenenode.h
+	"ISceneNode.h"
+
+1478629202 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\iwritefile.h
+	"IReferenceCounted.h"
+	"path.h"
+
+1478629202 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ixmlwriter.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"irrString.h"
+
+1478629196 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ilightmanager.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+
+1478629204 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\sanimatedmesh.h
+	"IAnimatedMesh.h"
+	"IMesh.h"
+	"aabbox3d.h"
+	"irrArray.h"
+
+1478629204 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\sirrcreationparameters.h
+	"EDriverTypes.h"
+	"EDeviceTypes.h"
+	"dimension2d.h"
+	"ILogger.h"
+
+1478629204 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\skeymap.h
+	"Keycodes.h"
+
+1478629204 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\smesh.h
+	"IMesh.h"
+	"IMeshBuffer.h"
+	"aabbox3d.h"
+	"irrArray.h"
+
+1478629204 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\smeshbuffer.h
+	"CMeshBuffer.h"
+
+1478629204 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\smeshbufferlightmap.h
+	"CMeshBuffer.h"
+
+1478629204 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\smeshbuffertangents.h
+	"CMeshBuffer.h"
+
+1478629204 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\ssharedmeshbuffer.h
+	"irrArray.h"
+	"IMeshBuffer.h"
+
+1478629205 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\sviewfrustum.h
+	"plane3d.h"
+	"vector3d.h"
+	"line3d.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"IVideoDriver.h"
+
+1478625997 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\box2d.h
+	<Box2D/Common/b2Settings.h>
+	<Box2D/Common/b2Draw.h>
+	<Box2D/Common/b2Timer.h>
+	<Box2D/Collision/Shapes/b2CircleShape.h>
+	<Box2D/Collision/Shapes/b2EdgeShape.h>
+	<Box2D/Collision/Shapes/b2ChainShape.h>
+	<Box2D/Collision/Shapes/b2PolygonShape.h>
+	<Box2D/Collision/b2BroadPhase.h>
+	<Box2D/Collision/b2Distance.h>
+	<Box2D/Collision/b2DynamicTree.h>
+	<Box2D/Collision/b2TimeOfImpact.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<Box2D/Dynamics/b2WorldCallbacks.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+	<Box2D/Dynamics/b2World.h>
+	<Box2D/Dynamics/Contacts/b2Contact.h>
+	<Box2D/Dynamics/Joints/b2DistanceJoint.h>
+	<Box2D/Dynamics/Joints/b2FrictionJoint.h>
+	<Box2D/Dynamics/Joints/b2GearJoint.h>
+	<Box2D/Dynamics/Joints/b2MotorJoint.h>
+	<Box2D/Dynamics/Joints/b2MouseJoint.h>
+	<Box2D/Dynamics/Joints/b2PrismaticJoint.h>
+	<Box2D/Dynamics/Joints/b2PulleyJoint.h>
+	<Box2D/Dynamics/Joints/b2RevoluteJoint.h>
+	<Box2D/Dynamics/Joints/b2RopeJoint.h>
+	<Box2D/Dynamics/Joints/b2WeldJoint.h>
+	<Box2D/Dynamics/Joints/b2WheelJoint.h>
+
+1478626002 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\common\b2settings.h
+	<stddef.h>
+	<assert.h>
+	<float.h>
+
+1478626002 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\common\b2draw.h
+	<Box2D/Common/b2Math.h>
+
+1478626002 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\common\b2math.h
+	<Box2D/Common/b2Settings.h>
+	<math.h>
+
+1478626003 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\common\b2timer.h
+	<Box2D/Common/b2Settings.h>
+
+1478626000 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\collision\shapes\b2circleshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1478626001 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\collision\shapes\b2shape.h
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/b2Collision.h>
+
+1478626001 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\common\b2blockallocator.h
+	<Box2D/Common/b2Settings.h>
+
+1478625999 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\collision\b2collision.h
+	<Box2D/Common/b2Math.h>
+	<limits.h>
+
+1478626001 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\collision\shapes\b2edgeshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1478626000 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\collision\shapes\b2chainshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1478626001 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\collision\shapes\b2polygonshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1478625998 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\collision\b2broadphase.h
+	<Box2D/Common/b2Settings.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/b2DynamicTree.h>
+	<algorithm>
+
+1478625999 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\collision\b2dynamictree.h
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Common/b2GrowableStack.h>
+
+1478626002 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\common\b2growablestack.h
+	<Box2D/Common/b2Settings.h>
+	<string.h>
+
+1478625999 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\collision\b2distance.h
+	<Box2D/Common/b2Math.h>
+
+1478625999 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\collision\b2timeofimpact.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/b2Distance.h>
+
+1478626003 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\b2body.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/Shapes/b2Shape.h>
+	<memory>
+
+1478626004 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\b2fixture.h
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1478626004 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\b2worldcallbacks.h
+	<Box2D/Common/b2Settings.h>
+
+1478626004 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\b2timestep.h
+	<Box2D/Common/b2Math.h>
+
+1478626004 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\b2world.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Common/b2StackAllocator.h>
+	<Box2D/Dynamics/b2ContactManager.h>
+	<Box2D/Dynamics/b2WorldCallbacks.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+
+1478626002 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\common\b2stackallocator.h
+	<Box2D/Common/b2Settings.h>
+
+1478626004 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\b2contactmanager.h
+	<Box2D/Collision/b2BroadPhase.h>
+
+1478626006 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\contacts\b2contact.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/Shapes/b2Shape.h>
+	<Box2D/Dynamics/b2Fixture.h>
+
+1478626007 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\joints\b2distancejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1478626007 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\joints\b2joint.h
+	<Box2D/Common/b2Math.h>
+
+1478626007 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\joints\b2frictionjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1478626007 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\joints\b2gearjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1478626007 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\joints\b2motorjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1478626007 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\joints\b2mousejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1478626007 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\joints\b2prismaticjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1478626008 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\joints\b2pulleyjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1478626008 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\joints\b2revolutejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1478626008 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\joints\b2ropejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1478626008 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\joints\b2weldjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1478626008 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\box2d\dynamics\joints\b2wheeljoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1479213317 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\npc.cpp
+	"NPC.h"
+
+1479213281 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\npc.h
+	<Character.h>
+
+1479214944 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\playermate.cpp
+	"PlayerMate.h"
+
+1479214687 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\playermate.h
+	<Drawable.h>
+	<FachadeDireEngine.h>
+
+1479224669 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\firearm.cpp
+	"Firearm.h"
+
+1479224543 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\firearm.h
+	<defines.h>
+	<Weapon.h>
+
+1479224726 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\defines.h
+
+1479223275 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\weapon.h
+	<Drawable.h>
+
+1479223640 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\weapon.cpp
+	"Weapon.h"
+
+1479225295 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\bat.cpp
+	"Bat.h"
+
+1479225295 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\bat.h
+	<Enemy.h>
+
+1479225096 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\enemy.h
+	<Character.h>
+
+1479225879 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\consumable.cpp
+	"Consumable.h"
+
+1479225899 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\consumable.h
+	<Drawable.h>
+
+1479226661 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\crifle.cpp
+	"CRifle.h"
+
+1479226613 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\crifle.h
+	<defines.h>
+	<Consumable.h>
+
+1479226814 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\cshotgun.cpp
+	"CShotgun.h"
+
+1479226850 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\cshotgun.h
+	<defines.h>
+	<Consumable.h>
+
+1479225136 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\dog.cpp
+	"Dog.h"
+
+1479225136 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\dog.h
+	<Enemy.h>
+
+1479225097 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\enemy.cpp
+	"Enemy.h"
+
+1479225211 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\fat.cpp
+	"Fat.h"
+
+1479225211 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\fat.h
+	<Enemy.h>
+
+1479225958 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\flashlight.cpp
+	"Flashlight.h"
+
+1479225938 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\flashlight.h
+	<Consumable.h>
+
+1479225462 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\grenade.cpp
+	"Grenade.h"
+
+1479225445 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\grenade.h
+	<Weapon.h>
+
+1479225824 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\gun.cpp
+	"Gun.h"
+
+1479225774 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\gun.h
+	<Firearm.h>
+
+1479225280 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\half.cpp
+	"Half.h"
+
+1479225280 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\half.h
+	<Enemy.h>
+
+1479226215 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\medkit.cpp
+	"Medkit.h"
+
+1479226198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\medkit.h
+	<Consumable.h>
+
+1479225155 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\mommy.cpp
+	"Mommy.h"
+
+1479225155 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\mommy.h
+	<Enemy.h>
+
+1479224929 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\player.cpp
+	"Player.h"
+
+1479224689 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\player.h
+	<defines.h>
+	<Character.h>
+	<Firearm.h>
+
+1479225812 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\rifle.cpp
+	"Rifle.h"
+
+1479225678 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\rifle.h
+	<Firearm.h>
+
+1479225595 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\shotgun.cpp
+	"Shotgun.h"
+
+1479225575 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\shotgun.h
+	<Firearm.h>
+
+1479225264 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\whole.cpp
+	"Whole.h"
+
+1479225264 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\whole.h
+	<Enemy.h>
+
+1479227302 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\ammo.cpp
+	"Ammo.h"
+
+1479227268 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\ammo.h
+	<Consumable.h>
+
+1479227792 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\ammogrenade.cpp
+	"AmmoGrenade.h"
+
+1479227779 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\ammogrenade.h
+	<Ammo.h>
+
+1479227533 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\ammogun.cpp
+	"AmmoGun.h"
+
+1479227479 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\ammogun.h
+	<defines.h>
+	<Ammo.h>
+
+1479227715 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\ammorifle.cpp
+	"AmmoRifle.h"
+
+1479227813 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\ammorifle.h
+	<defines.h>
+	<Ammo.h>
+
+1479227667 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\ammoshotgun.cpp
+	"AmmoShotgun.h"
+
+1479227829 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\ammoshotgun.h
+	<defines.h>
+	<Ammo.h>
+

@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -38,6 +40,65 @@
 			<Add library="Irrlicht" />
 			<Add directory="lib" />
 		</Linker>
+		<Unit filename="include/Ammo.h" />
+		<Unit filename="include/AmmoGrenade.h" />
+		<Unit filename="include/AmmoGun.h" />
+		<Unit filename="include/AmmoRifle.h" />
+		<Unit filename="include/AmmoShotgun.h" />
+		<Unit filename="include/Bat.h" />
+		<Unit filename="include/CRifle.h" />
+		<Unit filename="include/CShotgun.h" />
+		<Unit filename="include/Character.h" />
+		<Unit filename="include/Consumable.h" />
+		<Unit filename="include/Dog.h" />
+		<Unit filename="include/Drawable.h" />
+		<Unit filename="include/Enemy.h" />
+		<Unit filename="include/FachadeDireEngine.h" />
+		<Unit filename="include/Fat.h" />
+		<Unit filename="include/Firearm.h" />
+		<Unit filename="include/Flashlight.h" />
+		<Unit filename="include/Game.h" />
+		<Unit filename="include/Grenade.h" />
+		<Unit filename="include/Gun.h" />
+		<Unit filename="include/Half.h" />
+		<Unit filename="include/Medkit.h" />
+		<Unit filename="include/Mommy.h" />
+		<Unit filename="include/Player.h" />
+		<Unit filename="include/PlayerMate.h" />
+		<Unit filename="include/Rifle.h" />
+		<Unit filename="include/Shotgun.h" />
+		<Unit filename="include/Weapon.h" />
+		<Unit filename="include/Whole.h" />
+		<Unit filename="include/defines.h" />
+		<Unit filename="src/Ammo.cpp" />
+		<Unit filename="src/AmmoGrenade.cpp" />
+		<Unit filename="src/AmmoGun.cpp" />
+		<Unit filename="src/AmmoRifle.cpp" />
+		<Unit filename="src/AmmoShotgun.cpp" />
+		<Unit filename="src/Bat.cpp" />
+		<Unit filename="src/CRifle.cpp" />
+		<Unit filename="src/CShotgun.cpp" />
+		<Unit filename="src/Character.cpp" />
+		<Unit filename="src/Consumable.cpp" />
+		<Unit filename="src/Dog.cpp" />
+		<Unit filename="src/Drawable.cpp" />
+		<Unit filename="src/Enemy.cpp" />
+		<Unit filename="src/FachadeDireEngine.cpp" />
+		<Unit filename="src/Fat.cpp" />
+		<Unit filename="src/Firearm.cpp" />
+		<Unit filename="src/Flashlight.cpp" />
+		<Unit filename="src/Game.cpp" />
+		<Unit filename="src/Grenade.cpp" />
+		<Unit filename="src/Gun.cpp" />
+		<Unit filename="src/Half.cpp" />
+		<Unit filename="src/Medkit.cpp" />
+		<Unit filename="src/Mommy.cpp" />
+		<Unit filename="src/Player.cpp" />
+		<Unit filename="src/PlayerMate.cpp" />
+		<Unit filename="src/Rifle.cpp" />
+		<Unit filename="src/Shotgun.cpp" />
+		<Unit filename="src/Weapon.cpp" />
+		<Unit filename="src/Whole.cpp" />
 		<Unit filename="src/main.cpp" />
 		<Extensions>
 			<code_completion />
