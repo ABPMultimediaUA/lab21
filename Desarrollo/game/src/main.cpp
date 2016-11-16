@@ -18,6 +18,8 @@ int main()
 	graphics.init(appReceiver);
 
 	fde::Node* mono = graphics.createNode("mono");
+	fde::Node* suelo = graphics.createNode("suelo");
+	fde::Node* paredes = graphics.createNode("paredes");
 
 
 	while(graphics.isRunning())

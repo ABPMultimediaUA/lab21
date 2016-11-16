@@ -9,3 +9,5 @@ Desarrollo/game/bin/**/*.exe
 Desarrollo/game/obj/
 Desarrollo/game/obj/**/*
 Desarrollo/game/game.layout
+Desarrollo/irrlicht-1.8.4/**/*.layout
+Desarrollo/irrlicht-1.8.4/**/.objs/

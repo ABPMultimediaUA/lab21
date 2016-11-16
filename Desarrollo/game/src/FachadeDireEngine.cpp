@@ -66,7 +66,7 @@ void fde::Graphics::init(AppReceiver* ar)
 	(0, 30, -40). The camera looks from there to (0,5,0), which is
 	approximately the place where our md2 model is.
 	*/
-	m_smgr->addCameraSceneNode(0, vector3df(0,30,-40), vector3df(0,5,0));
+	m_smgr->addCameraSceneNode(0, vector3df(-5,2,5), vector3df(0,0,0));
 }
 
 ////////////////////
@@ -106,7 +106,7 @@ void fde::Graphics::draw()
     the GUI Environment draw their content. With the endScene()
     call everything is presented on the screen.
     */
-    m_driver->beginScene(true, true, SColor(255,100,101,140));
+    m_driver->beginScene(true, true, SColor(255,0,0,0));  // a,r,g,b
 
     m_smgr->drawAll();
     m_guienv->drawAll();
