@@ -1000,12 +1000,15 @@
 1479213791 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\drawable.h
 	"FachadeDireEngine.h"
 
-1479211451 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\fachadedireengine.h
+1479286034 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\fachadedireengine.h
+	<irrlicht.h>
+	<string>
+	<AppReceiver.h>
 
 1479213808 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\drawable.cpp
 	"Drawable.h"
 
-1479210690 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\fachadedireengine.cpp
+1479285975 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\fachadedireengine.cpp
 	"FachadeDireEngine.h"
 
 1479209636 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\game.cpp
@@ -1013,10 +1016,11 @@
 
 1479209636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\game.h
 
-1479222971 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\main.cpp
+1479286899 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\main.cpp
 	<iostream>
-	<irrlicht.h>
 	<Box2D/Box2D.h>
+	<FachadeDireEngine.h>
+	<AppReceiver.h>
 
 1478629199 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\irrlicht.h
 	"IrrCompileConfig.h"
@@ -2234,10 +2238,10 @@
 1479225097 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\enemy.cpp
 	"Enemy.h"
 
-1479225211 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\fat.cpp
+1479225190 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\fat.cpp
 	"Fat.h"
 
-1479225211 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\fat.h
+1479225190 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\fat.h
 	<Enemy.h>
 
 1479225958 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\flashlight.cpp
@@ -2334,4 +2338,7 @@
 1479227829 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\ammoshotgun.h
 	<defines.h>
 	<Ammo.h>
+
+1479286923 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\appreceiver.h
+	<irrlicht.h>
 

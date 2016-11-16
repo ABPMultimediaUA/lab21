@@ -45,6 +45,7 @@
 		<Unit filename="include/AmmoGun.h" />
 		<Unit filename="include/AmmoRifle.h" />
 		<Unit filename="include/AmmoShotgun.h" />
+		<Unit filename="include/AppReceiver.h" />
 		<Unit filename="include/Bat.h" />
 		<Unit filename="include/CRifle.h" />
 		<Unit filename="include/CShotgun.h" />
