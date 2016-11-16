@@ -26,7 +26,7 @@ int main()
 	{
 	    if (graphics.isWindowActive())
         {
-            fde::vec3f pos(0.0f);
+            fde::vec3f m(0.0f);
 
             if(appReceiver->isKeyDown(KEY_ESCAPE))
             {
@@ -36,16 +36,16 @@ int main()
             else
             {
                 if(appReceiver->isKeyDown(KEY_RIGHT))
-                    pos.x += 0.02;
+                    m.x += 0.02;
                 if(appReceiver->isKeyDown(KEY_LEFT))
-                    pos.x -= 0.02;
+                    m.x -= 0.02;
                 if(appReceiver->isKeyDown(KEY_UP))
-                    pos.y += 0.02;
+                    m.z += 0.02;
                 if(appReceiver->isKeyDown(KEY_DOWN))
-                    pos.y -= 0.02;
+                    m.z -= 0.02;
             }
 
-            mono->move(pos);
+            mono->move(m);
 
             graphics.draw();
         }
