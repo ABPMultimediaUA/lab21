@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="enet" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="enet" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add option="-DWIN32" />
+					<Add directory="../../examples/ThirdPartyLibs/enet" />
+					<Add directory="../../examples/ThirdPartyLibs/enet/include" />
+				</Compiler>
+			</Target>
+			<Target title="Debug x64">
+				<Option output="enet" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add option="-DWIN32" />
+					<Add directory="../../examples/ThirdPartyLibs/enet" />
+					<Add directory="../../examples/ThirdPartyLibs/enet/include" />
+				</Compiler>
+			</Target>
+			<Target title="Release x64">
+				<Option output="enet" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add directory="../../examples/ThirdPartyLibs/enet" />
+					<Add directory="../../examples/ThirdPartyLibs/enet/include" />
+				</Compiler>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="enet" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add directory="../../examples/ThirdPartyLibs/enet" />
+					<Add directory="../../examples/ThirdPartyLibs/enet/include" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Unit filename="../../examples/ThirdPartyLibs/enet/callbacks.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../examples/ThirdPartyLibs/enet/compress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../examples/ThirdPartyLibs/enet/host.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../examples/ThirdPartyLibs/enet/include/enet/callbacks.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/enet/include/enet/enet.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/enet/include/enet/list.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/enet/include/enet/protocol.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/enet/include/enet/time.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/enet/include/enet/types.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/enet/include/enet/unix.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/enet/include/enet/utility.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/enet/include/enet/win32.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/enet/list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../examples/ThirdPartyLibs/enet/packet.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../examples/ThirdPartyLibs/enet/peer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../examples/ThirdPartyLibs/enet/protocol.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../examples/ThirdPartyLibs/enet/win32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

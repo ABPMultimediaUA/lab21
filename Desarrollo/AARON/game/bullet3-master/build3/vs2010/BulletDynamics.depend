@@ -1,0 +1,768 @@
+# depslib dependency file v1.0
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\character\btkinematiccharactercontroller.cpp
+	<stdio.h>
+	"LinearMath/btIDebugDraw.h"
+	"BulletCollision/CollisionDispatch/btGhostObject.h"
+	"BulletCollision/CollisionShapes/btMultiSphereShape.h"
+	"BulletCollision/BroadphaseCollision/btOverlappingPairCache.h"
+	"BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h"
+	"BulletCollision/CollisionDispatch/btCollisionWorld.h"
+	"LinearMath/btDefaultMotionState.h"
+	"btKinematicCharacterController.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btidebugdraw.h
+	"btVector3.h"
+	"btTransform.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btvector3.h
+	"btScalar.h"
+	"btMinMax.h"
+	"btAlignedAllocator.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btscalar.h
+	<math.h>
+	<stdlib.h>
+	<float.h>
+	<ppcintrinsics.h>
+	<emmintrin.h>
+	<stdio.h>
+	<assert.h>
+	<assert.h>
+	<spu_printf.h>
+	<assert.h>
+	<smmintrin.h>
+	<tmmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+	<arm_neon.h>
+	<assert.h>
+	<stdio.h>
+	<assert.h>
+	<arm_neon.h>
+	<arm_neon.h>
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btminmax.h
+	"btScalar.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btalignedallocator.h
+	"btScalar.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\bttransform.h
+	"btMatrix3x3.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btmatrix3x3.h
+	"btVector3.h"
+	"btQuaternion.h"
+	<stdio.h>
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btquaternion.h
+	"btVector3.h"
+	"btQuadWord.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btquadword.h
+	"btScalar.h"
+	"btMinMax.h"
+	<altivec.h>
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\collisiondispatch\btghostobject.h
+	"btCollisionObject.h"
+	"BulletCollision/BroadphaseCollision/btOverlappingPairCallback.h"
+	"LinearMath/btAlignedAllocator.h"
+	"BulletCollision/BroadphaseCollision/btOverlappingPairCache.h"
+	"btCollisionWorld.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\collisiondispatch\btcollisionobject.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btMotionState.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btmotionstate.h
+	"btTransform.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btalignedobjectarray.h
+	"btScalar.h"
+	"btAlignedAllocator.h"
+	<memory.h>
+	<string.h>
+	<new>
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\broadphasecollision\btoverlappingpaircallback.h
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\broadphasecollision\btoverlappingpaircache.h
+	"btBroadphaseInterface.h"
+	"btBroadphaseProxy.h"
+	"btOverlappingPairCallback.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\broadphasecollision\btbroadphaseinterface.h
+	"btBroadphaseProxy.h"
+	"LinearMath/btVector3.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\broadphasecollision\btbroadphaseproxy.h
+	"LinearMath/btScalar.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\collisiondispatch\btcollisionworld.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"btCollisionObject.h"
+	"btCollisionDispatcher.h"
+	"BulletCollision/BroadphaseCollision/btOverlappingPairCache.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\collisiondispatch\btcollisiondispatcher.h
+	"BulletCollision/BroadphaseCollision/btDispatcher.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"BulletCollision/CollisionDispatch/btManifoldResult.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btCollisionCreateFunc.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\broadphasecollision\btdispatcher.h
+	"LinearMath/btScalar.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\narrowphasecollision\btpersistentmanifold.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"btManifoldPoint.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\narrowphasecollision\btmanifoldpoint.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransformUtil.h"
+	"physics_effects/base_level/solver/pfx_constraint_row.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\bttransformutil.h
+	"btTransform.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\collisiondispatch\btmanifoldresult.h
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"BulletCollision/NarrowPhaseCollision/btDiscreteCollisionDetectorInterface.h"
+	"LinearMath/btTransform.h"
+	"BulletCollision/CollisionDispatch/btCollisionObjectWrapper.h"
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\narrowphasecollision\btdiscretecollisiondetectorinterface.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btVector3.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\collisiondispatch\btcollisionobjectwrapper.h
+	"LinearMath/btScalar.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\collisiondispatch\btcollisioncreatefunc.h
+	"LinearMath/btAlignedObjectArray.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\collisionshapes\btmultisphereshape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btAabbUtil2.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\collisionshapes\btconvexinternalshape.h
+	"btConvexShape.h"
+	"LinearMath/btAabbUtil2.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\collisionshapes\btconvexshape.h
+	"btCollisionShape.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btMatrix3x3.h"
+	"btCollisionMargin.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\collisionshapes\btcollisionshape.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btMatrix3x3.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\collisionshapes\btcollisionmargin.h
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btaabbutil2.h
+	"btTransform.h"
+	"btVector3.h"
+	"btMinMax.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\broadphasecollision\btcollisionalgorithm.h
+	"LinearMath/btScalar.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btdefaultmotionstate.h
+	"btMotionState.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\character\btkinematiccharactercontroller.h
+	"LinearMath/btVector3.h"
+	"btCharacterControllerInterface.h"
+	"BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\character\btcharactercontrollerinterface.h
+	"LinearMath/btVector3.h"
+	"BulletDynamics/Dynamics/btActionInterface.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\dynamics\btactioninterface.h
+	"LinearMath/btScalar.h"
+	"btRigidBody.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\dynamics\btrigidbody.h
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btTransform.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btconetwistconstraint.cpp
+	"btConeTwistConstraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"LinearMath/btTransformUtil.h"
+	"LinearMath/btMinMax.h"
+	<new>
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btconetwistconstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btjacobianentry.h
+	"LinearMath/btMatrix3x3.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\bttypedconstraint.h
+	"LinearMath/btScalar.h"
+	"btSolverConstraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btsolverconstraint.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btMatrix3x3.h"
+	"btJacobianEntry.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btSolverBody.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btsolverbody.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btMatrix3x3.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btTransformUtil.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btcontactconstraint.cpp
+	"btContactConstraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btContactSolverInfo.h"
+	"LinearMath/btMinMax.h"
+	"BulletCollision/NarrowPhaseCollision/btManifoldPoint.h"
+	"btContactConstraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btContactSolverInfo.h"
+	"LinearMath/btMinMax.h"
+	"BulletCollision/NarrowPhaseCollision/btManifoldPoint.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btcontactconstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btcontactsolverinfo.h
+	"LinearMath/btScalar.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btfixedconstraint.cpp
+	"btFixedConstraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"LinearMath/btTransformUtil.h"
+	<new>
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btfixedconstraint.h
+	"btGeneric6DofSpring2Constraint.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btgeneric6dofspring2constraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btgearconstraint.cpp
+	"btGearConstraint.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btgearconstraint.h
+	"BulletDynamics/ConstraintSolver/btTypedConstraint.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btgeneric6dofconstraint.cpp
+	"btGeneric6DofConstraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"LinearMath/btTransformUtil.h"
+	"LinearMath/btTransformUtil.h"
+	<new>
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btgeneric6dofconstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btgeneric6dofspring2constraint.cpp
+	"btGeneric6DofSpring2Constraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"LinearMath/btTransformUtil.h"
+	<new>
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btgeneric6dofspringconstraint.cpp
+	"btGeneric6DofSpringConstraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"LinearMath/btTransformUtil.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btgeneric6dofspringconstraint.h
+	"LinearMath/btVector3.h"
+	"btTypedConstraint.h"
+	"btGeneric6DofConstraint.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\bthinge2constraint.cpp
+	"btHinge2Constraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"LinearMath/btTransformUtil.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\bthinge2constraint.h
+	"LinearMath/btVector3.h"
+	"btTypedConstraint.h"
+	"btGeneric6DofSpring2Constraint.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\bthingeconstraint.cpp
+	"btHingeConstraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"LinearMath/btTransformUtil.h"
+	"LinearMath/btMinMax.h"
+	<new>
+	"btSolverBody.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\bthingeconstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btnncgconstraintsolver.cpp
+	"btNNCGConstraintSolver.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btnncgconstraintsolver.h
+	"btSequentialImpulseConstraintSolver.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btsequentialimpulseconstraintsolver.h
+	"BulletDynamics/ConstraintSolver/btTypedConstraint.h"
+	"BulletDynamics/ConstraintSolver/btContactSolverInfo.h"
+	"BulletDynamics/ConstraintSolver/btSolverBody.h"
+	"BulletDynamics/ConstraintSolver/btSolverConstraint.h"
+	"BulletCollision/NarrowPhaseCollision/btManifoldPoint.h"
+	"BulletDynamics/ConstraintSolver/btConstraintSolver.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btconstraintsolver.h
+	"LinearMath/btScalar.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btpoint2pointconstraint.cpp
+	"btPoint2PointConstraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	<new>
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btpoint2pointconstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btsequentialimpulseconstraintsolver.cpp
+	"btSequentialImpulseConstraintSolver.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"LinearMath/btIDebugDraw.h"
+	"LinearMath/btCpuFeatureUtility.h"
+	"LinearMath/btMinMax.h"
+	"BulletDynamics/ConstraintSolver/btTypedConstraint.h"
+	<new>
+	"LinearMath/btStackAlloc.h"
+	"LinearMath/btQuickprof.h"
+	"LinearMath/btAlignedObjectArray.h"
+	<string.h>
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	<emmintrin.h>
+	<intrin.h>
+	<stdio.h>
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btcpufeatureutility.h
+	"LinearMath/btScalar.h"
+	<string.h>
+	<emmintrin.h>
+	<intrin.h>
+	<arm_neon.h>
+	<sys/types.h>
+	<sys/sysctl.h>
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btstackalloc.h
+	"btScalar.h"
+	"btAlignedAllocator.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btquickprof.h
+	"btScalar.h"
+	<stdio.h>
+	"btAlignedAllocator.h"
+	<new>
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btsliderconstraint.cpp
+	"btSliderConstraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"LinearMath/btTransformUtil.h"
+	<new>
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btsliderconstraint.h
+	"LinearMath/btScalar.h"
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btsolve2linearconstraint.cpp
+	"btSolve2LinearConstraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btsolve2linearconstraint.h
+	"LinearMath/btMatrix3x3.h"
+	"LinearMath/btVector3.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\bttypedconstraint.cpp
+	"btTypedConstraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"LinearMath/btSerializer.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btserializer.h
+	"btScalar.h"
+	"btHashMap.h"
+	<memory.h>
+	<string.h>
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\bthashmap.h
+	"btAlignedObjectArray.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btuniversalconstraint.cpp
+	"btUniversalConstraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"LinearMath/btTransformUtil.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\constraintsolver\btuniversalconstraint.h
+	"LinearMath/btVector3.h"
+	"btTypedConstraint.h"
+	"btGeneric6DofConstraint.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\dynamics\btdiscretedynamicsworld.cpp
+	"btDiscreteDynamicsWorld.h"
+	"BulletCollision/CollisionDispatch/btCollisionDispatcher.h"
+	"BulletCollision/BroadphaseCollision/btSimpleBroadphase.h"
+	"BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h"
+	"BulletCollision/CollisionShapes/btCollisionShape.h"
+	"BulletCollision/CollisionDispatch/btSimulationIslandManager.h"
+	"LinearMath/btTransformUtil.h"
+	"LinearMath/btQuickprof.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h"
+	"BulletDynamics/ConstraintSolver/btContactSolverInfo.h"
+	"BulletDynamics/ConstraintSolver/btTypedConstraint.h"
+	"BulletDynamics/ConstraintSolver/btPoint2PointConstraint.h"
+	"BulletDynamics/ConstraintSolver/btHingeConstraint.h"
+	"BulletDynamics/ConstraintSolver/btConeTwistConstraint.h"
+	"BulletDynamics/ConstraintSolver/btGeneric6DofConstraint.h"
+	"BulletDynamics/ConstraintSolver/btGeneric6DofSpring2Constraint.h"
+	"BulletDynamics/ConstraintSolver/btSliderConstraint.h"
+	"BulletDynamics/ConstraintSolver/btContactConstraint.h"
+	"LinearMath/btIDebugDraw.h"
+	"BulletCollision/CollisionShapes/btSphereShape.h"
+	"BulletDynamics/Dynamics/btActionInterface.h"
+	"LinearMath/btQuickprof.h"
+	"LinearMath/btMotionState.h"
+	"LinearMath/btSerializer.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\dynamics\btdiscretedynamicsworld.h
+	"btDynamicsWorld.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btThreads.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\dynamics\btdynamicsworld.h
+	"BulletCollision/CollisionDispatch/btCollisionWorld.h"
+	"BulletDynamics/ConstraintSolver/btContactSolverInfo.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btthreads.h
+	"btScalar.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\broadphasecollision\btsimplebroadphase.h
+	"btOverlappingPairCache.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\collisiondispatch\btsimulationislandmanager.h
+	"BulletCollision/CollisionDispatch/btUnionFind.h"
+	"btCollisionCreateFunc.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btCollisionObject.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\collisiondispatch\btunionfind.h
+	"LinearMath/btAlignedObjectArray.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletcollision\collisionshapes\btsphereshape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\dynamics\btdiscretedynamicsworldmt.cpp
+	"btDiscreteDynamicsWorldMt.h"
+	"BulletCollision/CollisionDispatch/btCollisionDispatcher.h"
+	"BulletCollision/BroadphaseCollision/btSimpleBroadphase.h"
+	"BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h"
+	"BulletCollision/CollisionShapes/btCollisionShape.h"
+	"btSimulationIslandManagerMt.h"
+	"LinearMath/btTransformUtil.h"
+	"LinearMath/btQuickprof.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h"
+	"BulletDynamics/ConstraintSolver/btContactSolverInfo.h"
+	"BulletDynamics/ConstraintSolver/btTypedConstraint.h"
+	"BulletDynamics/ConstraintSolver/btPoint2PointConstraint.h"
+	"BulletDynamics/ConstraintSolver/btHingeConstraint.h"
+	"BulletDynamics/ConstraintSolver/btConeTwistConstraint.h"
+	"BulletDynamics/ConstraintSolver/btGeneric6DofConstraint.h"
+	"BulletDynamics/ConstraintSolver/btGeneric6DofSpring2Constraint.h"
+	"BulletDynamics/ConstraintSolver/btSliderConstraint.h"
+	"BulletDynamics/ConstraintSolver/btContactConstraint.h"
+	"LinearMath/btIDebugDraw.h"
+	"BulletCollision/CollisionShapes/btSphereShape.h"
+	"BulletDynamics/Dynamics/btActionInterface.h"
+	"LinearMath/btQuickprof.h"
+	"LinearMath/btMotionState.h"
+	"LinearMath/btSerializer.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\dynamics\btdiscretedynamicsworldmt.h
+	"btDiscreteDynamicsWorld.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\dynamics\btsimulationislandmanagermt.h
+	"BulletCollision/CollisionDispatch/btSimulationIslandManager.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\dynamics\btrigidbody.cpp
+	"btRigidBody.h"
+	"BulletCollision/CollisionShapes/btConvexShape.h"
+	"LinearMath/btMinMax.h"
+	"LinearMath/btTransformUtil.h"
+	"LinearMath/btMotionState.h"
+	"BulletDynamics/ConstraintSolver/btTypedConstraint.h"
+	"LinearMath/btSerializer.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\dynamics\btsimpledynamicsworld.cpp
+	"btSimpleDynamicsWorld.h"
+	"BulletCollision/CollisionDispatch/btCollisionDispatcher.h"
+	"BulletCollision/BroadphaseCollision/btSimpleBroadphase.h"
+	"BulletCollision/CollisionShapes/btCollisionShape.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h"
+	"BulletDynamics/ConstraintSolver/btContactSolverInfo.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\dynamics\btsimpledynamicsworld.h
+	"btDynamicsWorld.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\dynamics\btsimulationislandmanagermt.cpp
+	"LinearMath/btScalar.h"
+	"btSimulationIslandManagerMt.h"
+	"BulletCollision/BroadphaseCollision/btDispatcher.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+	"BulletCollision/CollisionDispatch/btCollisionWorld.h"
+	"BulletDynamics/ConstraintSolver/btTypedConstraint.h"
+	"LinearMath/btQuickprof.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibody.cpp
+	"btMultiBody.h"
+	"btMultiBodyLink.h"
+	"btMultiBodyLinkCollider.h"
+	"btMultiBodyJointFeedback.h"
+	"LinearMath/btTransformUtil.h"
+	"LinearMath/btSerializer.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibody.h
+	"LinearMath/btScalar.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btQuaternion.h"
+	"LinearMath/btMatrix3x3.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btMultiBodyLink.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodylink.h
+	"LinearMath/btQuaternion.h"
+	"LinearMath/btVector3.h"
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+	"LinearMath/btSpatialAlgebra.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btspatialalgebra.h
+	"btMatrix3x3.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodylinkcollider.h
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+	"btMultiBody.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodyjointfeedback.h
+	"LinearMath/btSpatialAlgebra.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodyconstraint.cpp
+	"btMultiBodyConstraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"btMultiBodyPoint2Point.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodyconstraint.h
+	"LinearMath/btScalar.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btMultiBody.h"
+	"btMultiBodySolverConstraint.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodysolverconstraint.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"BulletDynamics/ConstraintSolver/btSolverBody.h"
+	"BulletDynamics/ConstraintSolver/btContactSolverInfo.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodypoint2point.h
+	"btMultiBodyConstraint.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodyconstraintsolver.cpp
+	"btMultiBodyConstraintSolver.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"btMultiBodyLinkCollider.h"
+	"BulletDynamics/ConstraintSolver/btSolverBody.h"
+	"btMultiBodyConstraint.h"
+	"BulletDynamics/ConstraintSolver/btContactSolverInfo.h"
+	"LinearMath/btQuickprof.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodyconstraintsolver.h
+	"BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h"
+	"btMultiBodySolverConstraint.h"
+	"btMultiBodyConstraint.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodydynamicsworld.cpp
+	"btMultiBodyDynamicsWorld.h"
+	"btMultiBodyConstraintSolver.h"
+	"btMultiBody.h"
+	"btMultiBodyLinkCollider.h"
+	"BulletCollision/CollisionDispatch/btSimulationIslandManager.h"
+	"LinearMath/btQuickprof.h"
+	"btMultiBodyConstraint.h"
+	"LinearMath/btIDebugDraw.h"
+	"LinearMath/btSerializer.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodydynamicsworld.h
+	"BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodyfixedconstraint.cpp
+	"btMultiBodyFixedConstraint.h"
+	"btMultiBodyLinkCollider.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"BulletDynamics/ConstraintSolver/btGeneric6DofSpring2Constraint.h"
+	"LinearMath/btIDebugDraw.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodyfixedconstraint.h
+	"btMultiBodyConstraint.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodyjointlimitconstraint.cpp
+	"btMultiBodyJointLimitConstraint.h"
+	"btMultiBody.h"
+	"btMultiBodyLinkCollider.h"
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodyjointlimitconstraint.h
+	"btMultiBodyConstraint.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodyjointmotor.cpp
+	"btMultiBodyJointMotor.h"
+	"btMultiBody.h"
+	"btMultiBodyLinkCollider.h"
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodyjointmotor.h
+	"btMultiBodyConstraint.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodypoint2point.cpp
+	"btMultiBodyPoint2Point.h"
+	"btMultiBodyLinkCollider.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"LinearMath/btIDebugDraw.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodysliderconstraint.cpp
+	"btMultiBodySliderConstraint.h"
+	"btMultiBodyLinkCollider.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"BulletDynamics/ConstraintSolver/btGeneric6DofSpring2Constraint.h"
+	"LinearMath/btIDebugDraw.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\featherstone\btmultibodysliderconstraint.h
+	"btMultiBodyConstraint.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\mlcpsolvers\btdantziglcp.cpp
+	"btDantzigLCP.h"
+	<string.h>
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\mlcpsolvers\btdantziglcp.h
+	<stdlib.h>
+	<stdio.h>
+	<assert.h>
+	"LinearMath/btScalar.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\mlcpsolvers\btlemkealgorithm.cpp
+	"btLemkeAlgorithm.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\mlcpsolvers\btlemkealgorithm.h
+	"LinearMath/btMatrixX.h"
+	<vector>
+
+1479452926 c:\proyectos\game\bullet3-master\src\linearmath\btmatrixx.h
+	"LinearMath/btQuickprof.h"
+	"LinearMath/btAlignedObjectArray.h"
+	<stdio.h>
+	<iostream>
+	<iomanip>
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\mlcpsolvers\btmlcpsolver.cpp
+	"btMLCPSolver.h"
+	"LinearMath/btMatrixX.h"
+	"LinearMath/btQuickprof.h"
+	"btSolveProjectedGaussSeidel.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\mlcpsolvers\btmlcpsolver.h
+	"BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h"
+	"LinearMath/btMatrixX.h"
+	"BulletDynamics/MLCPSolvers/btMLCPSolverInterface.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\mlcpsolvers\btmlcpsolverinterface.h
+	"LinearMath/btMatrixX.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\mlcpsolvers\btsolveprojectedgaussseidel.h
+	"btMLCPSolverInterface.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\vehicle\btraycastvehicle.cpp
+	"LinearMath/btVector3.h"
+	"btRaycastVehicle.h"
+	"BulletDynamics/ConstraintSolver/btSolve2LinearConstraint.h"
+	"BulletDynamics/ConstraintSolver/btJacobianEntry.h"
+	"LinearMath/btQuaternion.h"
+	"BulletDynamics/Dynamics/btDynamicsWorld.h"
+	"btVehicleRaycaster.h"
+	"btWheelInfo.h"
+	"LinearMath/btMinMax.h"
+	"LinearMath/btIDebugDraw.h"
+	"BulletDynamics/ConstraintSolver/btContactConstraint.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\vehicle\btraycastvehicle.h
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"BulletDynamics/ConstraintSolver/btTypedConstraint.h"
+	"btVehicleRaycaster.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btWheelInfo.h"
+	"BulletDynamics/Dynamics/btActionInterface.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\vehicle\btvehicleraycaster.h
+	"LinearMath/btVector3.h"
+
+1479452926 c:\proyectos\game\bullet3-master\src\bulletdynamics\vehicle\btwheelinfo.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+
+1479452926 source:c:\proyectos\game\bullet3-master\src\bulletdynamics\vehicle\btwheelinfo.cpp
+	"btWheelInfo.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Test_PhysicsServerDirect" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="Test_PhysicsServerDirect" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add option="-DPHYSICS_SERVER_DIRECT" />
+					<Add directory="../../src" />
+					<Add directory="../../examples" />
+					<Add directory="../../examples/ThirdPartyLibs" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/BulletInverseDynamicsUtils_vs2010_debug.lib" />
+					<Add library="../../bin/BulletInverseDynamics_vs2010_debug.lib" />
+					<Add library="../../bin/BulletFileLoader_vs2010_debug.lib" />
+					<Add library="../../bin/BulletWorldImporter_vs2010_debug.lib" />
+					<Add library="../../bin/Bullet3Common_vs2010_debug.lib" />
+					<Add library="../../bin/BulletDynamics_vs2010_debug.lib" />
+					<Add library="../../bin/BulletCollision_vs2010_debug.lib" />
+					<Add library="../../bin/BussIK_vs2010_debug.lib" />
+					<Add library="../../bin/LinearMath_vs2010_debug.lib" />
+				</Linker>
+			</Target>
+			<Target title="Debug x64">
+				<Option output="Test_PhysicsServerDirect" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add option="-DPHYSICS_SERVER_DIRECT" />
+					<Add directory="../../src" />
+					<Add directory="../../examples" />
+					<Add directory="../../examples/ThirdPartyLibs" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/BulletInverseDynamicsUtils_vs2010_x64_debug.lib" />
+					<Add library="../../bin/BulletInverseDynamics_vs2010_x64_debug.lib" />
+					<Add library="../../bin/BulletFileLoader_vs2010_x64_debug.lib" />
+					<Add library="../../bin/BulletWorldImporter_vs2010_x64_debug.lib" />
+					<Add library="../../bin/Bullet3Common_vs2010_x64_debug.lib" />
+					<Add library="../../bin/BulletDynamics_vs2010_x64_debug.lib" />
+					<Add library="../../bin/BulletCollision_vs2010_x64_debug.lib" />
+					<Add library="../../bin/BussIK_vs2010_x64_debug.lib" />
+					<Add library="../../bin/LinearMath_vs2010_x64_debug.lib" />
+				</Linker>
+			</Target>
+			<Target title="Release x64">
+				<Option output="Test_PhysicsServerDirect" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DPHYSICS_SERVER_DIRECT" />
+					<Add directory="../../src" />
+					<Add directory="../../examples" />
+					<Add directory="../../examples/ThirdPartyLibs" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/BulletInverseDynamicsUtils_vs2010_x64_release.lib" />
+					<Add library="../../bin/BulletInverseDynamics_vs2010_x64_release.lib" />
+					<Add library="../../bin/BulletFileLoader_vs2010_x64_release.lib" />
+					<Add library="../../bin/BulletWorldImporter_vs2010_x64_release.lib" />
+					<Add library="../../bin/Bullet3Common_vs2010_x64_release.lib" />
+					<Add library="../../bin/BulletDynamics_vs2010_x64_release.lib" />
+					<Add library="../../bin/BulletCollision_vs2010_x64_release.lib" />
+					<Add library="../../bin/BussIK_vs2010_x64_release.lib" />
+					<Add library="../../bin/LinearMath_vs2010_x64_release.lib" />
+				</Linker>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="Test_PhysicsServerDirect" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DPHYSICS_SERVER_DIRECT" />
+					<Add directory="../../src" />
+					<Add directory="../../examples" />
+					<Add directory="../../examples/ThirdPartyLibs" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/BulletInverseDynamicsUtils_vs2010.lib" />
+					<Add library="../../bin/BulletInverseDynamics_vs2010.lib" />
+					<Add library="../../bin/BulletFileLoader_vs2010.lib" />
+					<Add library="../../bin/BulletWorldImporter_vs2010.lib" />
+					<Add library="../../bin/Bullet3Common_vs2010.lib" />
+					<Add library="../../bin/BulletDynamics_vs2010.lib" />
+					<Add library="../../bin/BulletCollision_vs2010.lib" />
+					<Add library="../../bin/BussIK_vs2010.lib" />
+					<Add library="../../bin/LinearMath_vs2010.lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="../../examples/Importers/ImportColladaDemo/LoadMeshFromCollada.cpp" />
+		<Unit filename="../../examples/Importers/ImportMeshUtility/b3ImportMeshUtility.cpp" />
+		<Unit filename="../../examples/Importers/ImportObjDemo/LoadMeshFromObj.cpp" />
+		<Unit filename="../../examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.cpp" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/MyMultiBodyCreator.cpp" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/URDF2Bullet.cpp" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/UrdfParser.cpp" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/urdfStringSplit.cpp" />
+		<Unit filename="../../examples/OpenGLWindow/SimpleCamera.cpp" />
+		<Unit filename="../../examples/OpenGLWindow/SimpleCamera.h" />
+		<Unit filename="../../examples/SharedMemory/IKTrajectoryHelper.cpp" />
+		<Unit filename="../../examples/SharedMemory/IKTrajectoryHelper.h" />
+		<Unit filename="../../examples/SharedMemory/PhysicsClient.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsClient.h" />
+		<Unit filename="../../examples/SharedMemory/PhysicsClientC_API.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsClientC_API.h" />
+		<Unit filename="../../examples/SharedMemory/PhysicsClientSharedMemory.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsClientSharedMemory.h" />
+		<Unit filename="../../examples/SharedMemory/PhysicsDirect.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsDirect.h" />
+		<Unit filename="../../examples/SharedMemory/PhysicsDirectC_API.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsDirectC_API.h" />
+		<Unit filename="../../examples/SharedMemory/PhysicsServer.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsServer.h" />
+		<Unit filename="../../examples/SharedMemory/PhysicsServerCommandProcessor.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsServerCommandProcessor.h" />
+		<Unit filename="../../examples/SharedMemory/PhysicsServerSharedMemory.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsServerSharedMemory.h" />
+		<Unit filename="../../examples/SharedMemory/PosixSharedMemory.cpp" />
+		<Unit filename="../../examples/SharedMemory/PosixSharedMemory.h" />
+		<Unit filename="../../examples/SharedMemory/TinyRendererVisualShapeConverter.cpp" />
+		<Unit filename="../../examples/SharedMemory/TinyRendererVisualShapeConverter.h" />
+		<Unit filename="../../examples/SharedMemory/Win32SharedMemory.cpp" />
+		<Unit filename="../../examples/SharedMemory/Win32SharedMemory.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/stb_image/stb_image.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/tinyxml/tinystr.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/tinyxml/tinyxml.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/tinyxml/tinyxmlerror.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/tinyxml/tinyxmlparser.cpp" />
+		<Unit filename="../../examples/TinyRenderer/TinyRenderer.cpp" />
+		<Unit filename="../../examples/TinyRenderer/geometry.cpp" />
+		<Unit filename="../../examples/TinyRenderer/model.cpp" />
+		<Unit filename="../../examples/TinyRenderer/our_gl.cpp" />
+		<Unit filename="../../examples/TinyRenderer/tgaimage.cpp" />
+		<Unit filename="../../examples/Utils/b3ResourcePath.cpp" />
+		<Unit filename="../../examples/Utils/b3ResourcePath.h" />
+		<Unit filename="../../test/SharedMemory/test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

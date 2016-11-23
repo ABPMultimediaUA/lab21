@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="examples">
+      <UniqueIdentifier>{2526488C-7511-8240-9745-8A4E99B5D897}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="examples\ThirdPartyLibs">
+      <UniqueIdentifier>{D233ECA3-2D4C-B646-90A7-AC827C5E591E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="examples\ThirdPartyLibs\BussIK">
+      <UniqueIdentifier>{42B96857-4AF3-874D-8B19-F6C0B42C24B7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\examples\ThirdPartyLibs\BussIK\Jacobian.h">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\ThirdPartyLibs\BussIK\LinearR2.h">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\ThirdPartyLibs\BussIK\LinearR3.h">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\ThirdPartyLibs\BussIK\LinearR4.h">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\ThirdPartyLibs\BussIK\MathMisc.h">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\ThirdPartyLibs\BussIK\MatrixRmn.h">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\ThirdPartyLibs\BussIK\Node.h">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\ThirdPartyLibs\BussIK\Spherical.h">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\ThirdPartyLibs\BussIK\Tree.h">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\examples\ThirdPartyLibs\BussIK\VectorRn.h">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\examples\ThirdPartyLibs\BussIK\Jacobian.cpp">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\ThirdPartyLibs\BussIK\LinearR2.cpp">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\ThirdPartyLibs\BussIK\LinearR3.cpp">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\ThirdPartyLibs\BussIK\LinearR4.cpp">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\ThirdPartyLibs\BussIK\MatrixRmn.cpp">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\ThirdPartyLibs\BussIK\Misc.cpp">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\ThirdPartyLibs\BussIK\Node.cpp">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\ThirdPartyLibs\BussIK\Tree.cpp">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\examples\ThirdPartyLibs\BussIK\VectorRn.cpp">
+      <Filter>examples\ThirdPartyLibs\BussIK</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

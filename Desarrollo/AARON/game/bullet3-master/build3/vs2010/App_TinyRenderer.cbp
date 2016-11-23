@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="App_TinyRenderer" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="App_TinyRenderer" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add option="-DGLEW_STATIC" />
+					<Add directory="../../examples/TinyRenderer" />
+					<Add directory="../../src" />
+					<Add directory="../../examples" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/OpenGL_Window_vs2010_debug.lib" />
+					<Add library="../../bin/Bullet3Common_vs2010_debug.lib" />
+					<Add library="opengl32.lib" />
+					<Add library="glu32.lib" />
+				</Linker>
+			</Target>
+			<Target title="Debug x64">
+				<Option output="App_TinyRenderer" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add option="-DGLEW_STATIC" />
+					<Add directory="../../examples/TinyRenderer" />
+					<Add directory="../../src" />
+					<Add directory="../../examples" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/OpenGL_Window_vs2010_x64_debug.lib" />
+					<Add library="../../bin/Bullet3Common_vs2010_x64_debug.lib" />
+					<Add library="opengl32.lib" />
+					<Add library="glu32.lib" />
+				</Linker>
+			</Target>
+			<Target title="Release x64">
+				<Option output="App_TinyRenderer" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DGLEW_STATIC" />
+					<Add directory="../../examples/TinyRenderer" />
+					<Add directory="../../src" />
+					<Add directory="../../examples" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/OpenGL_Window_vs2010_x64_release.lib" />
+					<Add library="../../bin/Bullet3Common_vs2010_x64_release.lib" />
+					<Add library="opengl32.lib" />
+					<Add library="glu32.lib" />
+				</Linker>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="App_TinyRenderer" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DGLEW_STATIC" />
+					<Add directory="../../examples/TinyRenderer" />
+					<Add directory="../../src" />
+					<Add directory="../../examples" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/OpenGL_Window_vs2010.lib" />
+					<Add library="../../bin/Bullet3Common_vs2010.lib" />
+					<Add library="opengl32.lib" />
+					<Add library="glu32.lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="../../examples/ThirdPartyLibs/Glew/glew.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../examples/TinyRenderer/TinyRenderer.cpp" />
+		<Unit filename="../../examples/TinyRenderer/TinyRenderer.h" />
+		<Unit filename="../../examples/TinyRenderer/geometry.cpp" />
+		<Unit filename="../../examples/TinyRenderer/geometry.h" />
+		<Unit filename="../../examples/TinyRenderer/main.cpp" />
+		<Unit filename="../../examples/TinyRenderer/model.cpp" />
+		<Unit filename="../../examples/TinyRenderer/model.h" />
+		<Unit filename="../../examples/TinyRenderer/our_gl.cpp" />
+		<Unit filename="../../examples/TinyRenderer/our_gl.h" />
+		<Unit filename="../../examples/TinyRenderer/tgaimage.cpp" />
+		<Unit filename="../../examples/TinyRenderer/tgaimage.h" />
+		<Unit filename="../../examples/Utils/b3ResourcePath.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
