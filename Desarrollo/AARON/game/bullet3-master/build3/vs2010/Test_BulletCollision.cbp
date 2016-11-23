@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Test_BulletCollision" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="Test_BulletCollision" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add option="-D_VARIADIC_MAX=10" />
+					<Add directory="../../test/collision" />
+					<Add directory="../../src" />
+					<Add directory="../../test/gtest-1.7.0/include" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/LinearMath_vs2010_debug.lib" />
+					<Add library="../../bin/gtest_vs2010_debug.lib" />
+				</Linker>
+			</Target>
+			<Target title="Debug x64">
+				<Option output="Test_BulletCollision" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add option="-D_VARIADIC_MAX=10" />
+					<Add directory="../../test/collision" />
+					<Add directory="../../src" />
+					<Add directory="../../test/gtest-1.7.0/include" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/LinearMath_vs2010_x64_debug.lib" />
+					<Add library="../../bin/gtest_vs2010_x64_debug.lib" />
+				</Linker>
+			</Target>
+			<Target title="Release x64">
+				<Option output="Test_BulletCollision" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_VARIADIC_MAX=10" />
+					<Add directory="../../test/collision" />
+					<Add directory="../../src" />
+					<Add directory="../../test/gtest-1.7.0/include" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/LinearMath_vs2010_x64_release.lib" />
+					<Add library="../../bin/gtest_vs2010_x64_release.lib" />
+				</Linker>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="Test_BulletCollision" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_VARIADIC_MAX=10" />
+					<Add directory="../../test/collision" />
+					<Add directory="../../src" />
+					<Add directory="../../test/gtest-1.7.0/include" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/LinearMath_vs2010.lib" />
+					<Add library="../../bin/gtest_vs2010.lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="../../src/BulletCollision/CollisionShapes/btCollisionShape.cpp" />
+		<Unit filename="../../src/BulletCollision/CollisionShapes/btConvexInternalShape.cpp" />
+		<Unit filename="../../src/BulletCollision/CollisionShapes/btConvexPolyhedron.cpp" />
+		<Unit filename="../../src/BulletCollision/CollisionShapes/btConvexShape.cpp" />
+		<Unit filename="../../src/BulletCollision/CollisionShapes/btMultiSphereShape.cpp" />
+		<Unit filename="../../src/BulletCollision/CollisionShapes/btPolyhedralConvexShape.cpp" />
+		<Unit filename="../../src/BulletCollision/CollisionShapes/btSphereShape.cpp" />
+		<Unit filename="../../src/BulletCollision/NarrowPhaseCollision/btVoronoiSimplexSolver.cpp" />
+		<Unit filename="../../src/BulletCollision/NarrowPhaseCollision/btVoronoiSimplexSolver.h" />
+		<Unit filename="../../test/collision/SphereSphereCollision.h" />
+		<Unit filename="../../test/collision/btDistanceInfo.h" />
+		<Unit filename="../../test/collision/main.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

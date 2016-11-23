@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Bullet3Collision" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="Bullet3Collision" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add directory="../../src" />
+				</Compiler>
+			</Target>
+			<Target title="Debug x64">
+				<Option output="Bullet3Collision" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add directory="../../src" />
+				</Compiler>
+			</Target>
+			<Target title="Release x64">
+				<Option output="Bullet3Collision" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add directory="../../src" />
+				</Compiler>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="Bullet3Collision" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add directory="../../src" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Unit filename="../../src/Bullet3Collision/BroadPhaseCollision/b3BroadphaseCallback.h" />
+		<Unit filename="../../src/Bullet3Collision/BroadPhaseCollision/b3DynamicBvh.cpp" />
+		<Unit filename="../../src/Bullet3Collision/BroadPhaseCollision/b3DynamicBvh.h" />
+		<Unit filename="../../src/Bullet3Collision/BroadPhaseCollision/b3DynamicBvhBroadphase.cpp" />
+		<Unit filename="../../src/Bullet3Collision/BroadPhaseCollision/b3DynamicBvhBroadphase.h" />
+		<Unit filename="../../src/Bullet3Collision/BroadPhaseCollision/b3OverlappingPair.h" />
+		<Unit filename="../../src/Bullet3Collision/BroadPhaseCollision/b3OverlappingPairCache.cpp" />
+		<Unit filename="../../src/Bullet3Collision/BroadPhaseCollision/b3OverlappingPairCache.h" />
+		<Unit filename="../../src/Bullet3Collision/BroadPhaseCollision/shared/b3Aabb.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/b3Config.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/b3Contact4.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/b3ConvexUtility.cpp" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/b3ConvexUtility.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/b3CpuNarrowPhase.cpp" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/b3CpuNarrowPhase.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/b3RaycastInfo.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/b3RigidBodyCL.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/shared/b3BvhSubtreeInfoData.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/shared/b3BvhTraversal.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/shared/b3ClipFaces.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/shared/b3Collidable.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/shared/b3Contact4Data.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/shared/b3ContactConvexConvexSAT.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/shared/b3ContactSphereSphere.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/shared/b3ConvexPolyhedronData.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/shared/b3FindConcaveSatAxis.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/shared/b3FindSeparatingAxis.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/shared/b3MprPenetration.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/shared/b3NewContactReduction.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/shared/b3QuantizedBvhNodeData.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/shared/b3ReduceContacts.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/shared/b3RigidBodyData.h" />
+		<Unit filename="../../src/Bullet3Collision/NarrowPhaseCollision/shared/b3UpdateAabbs.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

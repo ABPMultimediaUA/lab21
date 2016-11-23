@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="BulletInverseDynamicsUtils" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="BulletInverseDynamicsUtils" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add directory="../../src" />
+				</Compiler>
+			</Target>
+			<Target title="Debug x64">
+				<Option output="BulletInverseDynamicsUtils" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add directory="../../src" />
+				</Compiler>
+			</Target>
+			<Target title="Release x64">
+				<Option output="BulletInverseDynamicsUtils" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add directory="../../src" />
+				</Compiler>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="BulletInverseDynamicsUtils" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add directory="../../src" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Unit filename="../../Extras/InverseDynamics/CloneTreeCreator.cpp" />
+		<Unit filename="../../Extras/InverseDynamics/CloneTreeCreator.hpp" />
+		<Unit filename="../../Extras/InverseDynamics/CoilCreator.cpp" />
+		<Unit filename="../../Extras/InverseDynamics/CoilCreator.hpp" />
+		<Unit filename="../../Extras/InverseDynamics/DillCreator.cpp" />
+		<Unit filename="../../Extras/InverseDynamics/DillCreator.hpp" />
+		<Unit filename="../../Extras/InverseDynamics/IDRandomUtil.cpp" />
+		<Unit filename="../../Extras/InverseDynamics/IDRandomUtil.hpp" />
+		<Unit filename="../../Extras/InverseDynamics/MultiBodyNameMap.cpp" />
+		<Unit filename="../../Extras/InverseDynamics/MultiBodyNameMap.hpp" />
+		<Unit filename="../../Extras/InverseDynamics/MultiBodyTreeCreator.cpp" />
+		<Unit filename="../../Extras/InverseDynamics/MultiBodyTreeCreator.hpp" />
+		<Unit filename="../../Extras/InverseDynamics/MultiBodyTreeDebugGraph.cpp" />
+		<Unit filename="../../Extras/InverseDynamics/MultiBodyTreeDebugGraph.hpp" />
+		<Unit filename="../../Extras/InverseDynamics/RandomTreeCreator.cpp" />
+		<Unit filename="../../Extras/InverseDynamics/RandomTreeCreator.hpp" />
+		<Unit filename="../../Extras/InverseDynamics/SimpleTreeCreator.cpp" />
+		<Unit filename="../../Extras/InverseDynamics/SimpleTreeCreator.hpp" />
+		<Unit filename="../../Extras/InverseDynamics/User2InternalIndex.cpp" />
+		<Unit filename="../../Extras/InverseDynamics/User2InternalIndex.hpp" />
+		<Unit filename="../../Extras/InverseDynamics/btMultiBodyFromURDF.hpp" />
+		<Unit filename="../../Extras/InverseDynamics/btMultiBodyTreeCreator.cpp" />
+		<Unit filename="../../Extras/InverseDynamics/btMultiBodyTreeCreator.hpp" />
+		<Unit filename="../../Extras/InverseDynamics/invdyn_bullet_comparison.cpp" />
+		<Unit filename="../../Extras/InverseDynamics/invdyn_bullet_comparison.hpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="BulletExampleBrowserLib" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="BulletExampleBrowserLib" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add option="-DB3_USE_CLEW" />
+					<Add option="-DGLEW_STATIC" />
+					<Add option="-DINCLUDE_CLOTH_DEMOS" />
+					<Add directory="../../src/clew" />
+					<Add directory="../../examples/ExampleBrowser" />
+					<Add directory="../../src" />
+					<Add directory="../../examples/ThirdPartyLibs" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+			</Target>
+			<Target title="Debug x64">
+				<Option output="BulletExampleBrowserLib" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add option="-DB3_USE_CLEW" />
+					<Add option="-DGLEW_STATIC" />
+					<Add option="-DINCLUDE_CLOTH_DEMOS" />
+					<Add directory="../../src/clew" />
+					<Add directory="../../examples/ExampleBrowser" />
+					<Add directory="../../src" />
+					<Add directory="../../examples/ThirdPartyLibs" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+			</Target>
+			<Target title="Release x64">
+				<Option output="BulletExampleBrowserLib" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-DB3_USE_CLEW" />
+					<Add option="-DGLEW_STATIC" />
+					<Add option="-DINCLUDE_CLOTH_DEMOS" />
+					<Add directory="../../src/clew" />
+					<Add directory="../../examples/ExampleBrowser" />
+					<Add directory="../../src" />
+					<Add directory="../../examples/ThirdPartyLibs" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="BulletExampleBrowserLib" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-DB3_USE_CLEW" />
+					<Add option="-DGLEW_STATIC" />
+					<Add option="-DINCLUDE_CLOTH_DEMOS" />
+					<Add directory="../../src/clew" />
+					<Add directory="../../examples/ExampleBrowser" />
+					<Add directory="../../src" />
+					<Add directory="../../examples/ThirdPartyLibs" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Unit filename="../../examples/ExampleBrowser/CollisionShape2TriangleMesh.cpp" />
+		<Unit filename="../../examples/ExampleBrowser/CollisionShape2TriangleMesh.h" />
+		<Unit filename="../../examples/ExampleBrowser/EmptyBrowser.h" />
+		<Unit filename="../../examples/ExampleBrowser/EmptyExample.h" />
+		<Unit filename="../../examples/ExampleBrowser/ExampleBrowserInterface.h" />
+		<Unit filename="../../examples/ExampleBrowser/ExampleEntries.h" />
+		<Unit filename="../../examples/ExampleBrowser/GL_ShapeDrawer.cpp" />
+		<Unit filename="../../examples/ExampleBrowser/GL_ShapeDrawer.h" />
+		<Unit filename="../../examples/ExampleBrowser/GwenGUISupport/GraphingTexture.cpp" />
+		<Unit filename="../../examples/ExampleBrowser/GwenGUISupport/GraphingTexture.h" />
+		<Unit filename="../../examples/ExampleBrowser/GwenGUISupport/GwenParameterInterface.cpp" />
+		<Unit filename="../../examples/ExampleBrowser/GwenGUISupport/GwenParameterInterface.h" />
+		<Unit filename="../../examples/ExampleBrowser/GwenGUISupport/GwenProfileWindow.cpp" />
+		<Unit filename="../../examples/ExampleBrowser/GwenGUISupport/GwenProfileWindow.h" />
+		<Unit filename="../../examples/ExampleBrowser/GwenGUISupport/GwenTextureWindow.cpp" />
+		<Unit filename="../../examples/ExampleBrowser/GwenGUISupport/GwenTextureWindow.h" />
+		<Unit filename="../../examples/ExampleBrowser/GwenGUISupport/gwenInternalData.h" />
+		<Unit filename="../../examples/ExampleBrowser/GwenGUISupport/gwenUserInterface.cpp" />
+		<Unit filename="../../examples/ExampleBrowser/GwenGUISupport/gwenUserInterface.h" />
+		<Unit filename="../../examples/ExampleBrowser/InProcessExampleBrowser.cpp" />
+		<Unit filename="../../examples/ExampleBrowser/InProcessExampleBrowser.h" />
+		<Unit filename="../../examples/ExampleBrowser/OpenGLExampleBrowser.cpp" />
+		<Unit filename="../../examples/ExampleBrowser/OpenGLExampleBrowser.h" />
+		<Unit filename="../../examples/ExampleBrowser/OpenGLGuiHelper.cpp" />
+		<Unit filename="../../examples/ExampleBrowser/OpenGLGuiHelper.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/Glew/glew.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../examples/Utils/b3Clock.cpp" />
+		<Unit filename="../../examples/Utils/b3ResourcePath.cpp" />
+		<Unit filename="../../examples/Utils/b3ResourcePath.h" />
+		<Unit filename="../../src/clew/clew.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/clew/clew.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

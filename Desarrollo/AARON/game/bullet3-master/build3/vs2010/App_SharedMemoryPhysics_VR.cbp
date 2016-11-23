@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="App_SharedMemoryPhysics_VR" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="App_SharedMemoryPhysics_VR" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add option="-DB3_USE_STANDALONE_EXAMPLE" />
+					<Add option="-DBT_ENABLE_VR" />
+					<Add option="-DGLEW_STATIC" />
+					<Add directory="../../examples/SharedMemory" />
+					<Add directory="../../src" />
+					<Add directory="../../examples/ThirdPartyLibs" />
+					<Add directory="../../examples/ThirdPartyLibs/openvr/headers" />
+					<Add directory="../../examples/ThirdPartyLibs/openvr/samples/shared" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/BulletInverseDynamicsUtils_vs2010_debug.lib" />
+					<Add library="../../bin/BulletInverseDynamics_vs2010_debug.lib" />
+					<Add library="../../bin/Bullet3Common_vs2010_debug.lib" />
+					<Add library="../../bin/BulletDynamics_vs2010_debug.lib" />
+					<Add library="../../bin/BulletCollision_vs2010_debug.lib" />
+					<Add library="../../bin/LinearMath_vs2010_debug.lib" />
+					<Add library="../../bin/OpenGL_Window_vs2010_debug.lib" />
+					<Add library="openvr_api.lib" />
+					<Add library="../../bin/BussIK_vs2010_debug.lib" />
+					<Add library="opengl32.lib" />
+					<Add library="glu32.lib" />
+					<Add directory="../../examples/ThirdPartyLibs/openvr/lib/win32" />
+				</Linker>
+			</Target>
+			<Target title="Debug x64">
+				<Option output="App_SharedMemoryPhysics_VR" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add option="-DB3_USE_STANDALONE_EXAMPLE" />
+					<Add option="-DBT_ENABLE_VR" />
+					<Add option="-DGLEW_STATIC" />
+					<Add directory="../../examples/SharedMemory" />
+					<Add directory="../../src" />
+					<Add directory="../../examples/ThirdPartyLibs" />
+					<Add directory="../../examples/ThirdPartyLibs/openvr/headers" />
+					<Add directory="../../examples/ThirdPartyLibs/openvr/samples/shared" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/BulletInverseDynamicsUtils_vs2010_x64_debug.lib" />
+					<Add library="../../bin/BulletInverseDynamics_vs2010_x64_debug.lib" />
+					<Add library="../../bin/Bullet3Common_vs2010_x64_debug.lib" />
+					<Add library="../../bin/BulletDynamics_vs2010_x64_debug.lib" />
+					<Add library="../../bin/BulletCollision_vs2010_x64_debug.lib" />
+					<Add library="../../bin/LinearMath_vs2010_x64_debug.lib" />
+					<Add library="../../bin/OpenGL_Window_vs2010_x64_debug.lib" />
+					<Add library="openvr_api.lib" />
+					<Add library="../../bin/BussIK_vs2010_x64_debug.lib" />
+					<Add library="opengl32.lib" />
+					<Add library="glu32.lib" />
+					<Add directory="../../examples/ThirdPartyLibs/openvr/lib/win32" />
+				</Linker>
+			</Target>
+			<Target title="Release x64">
+				<Option output="App_SharedMemoryPhysics_VR" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DB3_USE_STANDALONE_EXAMPLE" />
+					<Add option="-DBT_ENABLE_VR" />
+					<Add option="-DGLEW_STATIC" />
+					<Add directory="../../examples/SharedMemory" />
+					<Add directory="../../src" />
+					<Add directory="../../examples/ThirdPartyLibs" />
+					<Add directory="../../examples/ThirdPartyLibs/openvr/headers" />
+					<Add directory="../../examples/ThirdPartyLibs/openvr/samples/shared" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/BulletInverseDynamicsUtils_vs2010_x64_release.lib" />
+					<Add library="../../bin/BulletInverseDynamics_vs2010_x64_release.lib" />
+					<Add library="../../bin/Bullet3Common_vs2010_x64_release.lib" />
+					<Add library="../../bin/BulletDynamics_vs2010_x64_release.lib" />
+					<Add library="../../bin/BulletCollision_vs2010_x64_release.lib" />
+					<Add library="../../bin/LinearMath_vs2010_x64_release.lib" />
+					<Add library="../../bin/OpenGL_Window_vs2010_x64_release.lib" />
+					<Add library="openvr_api.lib" />
+					<Add library="../../bin/BussIK_vs2010_x64_release.lib" />
+					<Add library="opengl32.lib" />
+					<Add library="glu32.lib" />
+					<Add directory="../../examples/ThirdPartyLibs/openvr/lib/win32" />
+				</Linker>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="App_SharedMemoryPhysics_VR" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DB3_USE_STANDALONE_EXAMPLE" />
+					<Add option="-DBT_ENABLE_VR" />
+					<Add option="-DGLEW_STATIC" />
+					<Add directory="../../examples/SharedMemory" />
+					<Add directory="../../src" />
+					<Add directory="../../examples/ThirdPartyLibs" />
+					<Add directory="../../examples/ThirdPartyLibs/openvr/headers" />
+					<Add directory="../../examples/ThirdPartyLibs/openvr/samples/shared" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/BulletInverseDynamicsUtils_vs2010.lib" />
+					<Add library="../../bin/BulletInverseDynamics_vs2010.lib" />
+					<Add library="../../bin/Bullet3Common_vs2010.lib" />
+					<Add library="../../bin/BulletDynamics_vs2010.lib" />
+					<Add library="../../bin/BulletCollision_vs2010.lib" />
+					<Add library="../../bin/LinearMath_vs2010.lib" />
+					<Add library="../../bin/OpenGL_Window_vs2010.lib" />
+					<Add library="openvr_api.lib" />
+					<Add library="../../bin/BussIK_vs2010.lib" />
+					<Add library="opengl32.lib" />
+					<Add library="glu32.lib" />
+					<Add directory="../../examples/ThirdPartyLibs/openvr/lib/win32" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="../../Extras/Serialize/BulletFileLoader/CMakeLists.txt" />
+		<Unit filename="../../Extras/Serialize/BulletFileLoader/bChunk.cpp" />
+		<Unit filename="../../Extras/Serialize/BulletFileLoader/bChunk.h" />
+		<Unit filename="../../Extras/Serialize/BulletFileLoader/bCommon.h" />
+		<Unit filename="../../Extras/Serialize/BulletFileLoader/bDNA.cpp" />
+		<Unit filename="../../Extras/Serialize/BulletFileLoader/bDNA.h" />
+		<Unit filename="../../Extras/Serialize/BulletFileLoader/bDefines.h" />
+		<Unit filename="../../Extras/Serialize/BulletFileLoader/bFile.cpp" />
+		<Unit filename="../../Extras/Serialize/BulletFileLoader/bFile.h" />
+		<Unit filename="../../Extras/Serialize/BulletFileLoader/btBulletFile.cpp" />
+		<Unit filename="../../Extras/Serialize/BulletFileLoader/btBulletFile.h" />
+		<Unit filename="../../Extras/Serialize/BulletFileLoader/premake4.lua" />
+		<Unit filename="../../Extras/Serialize/BulletWorldImporter/CMakeLists.txt" />
+		<Unit filename="../../Extras/Serialize/BulletWorldImporter/btBulletWorldImporter.cpp" />
+		<Unit filename="../../Extras/Serialize/BulletWorldImporter/btBulletWorldImporter.h" />
+		<Unit filename="../../Extras/Serialize/BulletWorldImporter/btWorldImporter.cpp" />
+		<Unit filename="../../Extras/Serialize/BulletWorldImporter/btWorldImporter.h" />
+		<Unit filename="../../Extras/Serialize/BulletWorldImporter/premake4.lua" />
+		<Unit filename="../../examples/ExampleBrowser/CollisionShape2TriangleMesh.cpp" />
+		<Unit filename="../../examples/ExampleBrowser/GL_ShapeDrawer.cpp" />
+		<Unit filename="../../examples/ExampleBrowser/OpenGLGuiHelper.cpp" />
+		<Unit filename="../../examples/Importers/ImportColladaDemo/ColladaGraphicsInstance.h" />
+		<Unit filename="../../examples/Importers/ImportColladaDemo/LoadMeshFromCollada.cpp" />
+		<Unit filename="../../examples/Importers/ImportMeshUtility/b3ImportMeshUtility.cpp" />
+		<Unit filename="../../examples/Importers/ImportObjDemo/LoadMeshFromObj.cpp" />
+		<Unit filename="../../examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.cpp" />
+		<Unit filename="../../examples/Importers/ImportSTLDemo/ImportSTLSetup.h" />
+		<Unit filename="../../examples/Importers/ImportSTLDemo/LoadMeshFromSTL.h" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/BulletUrdfImporter.h" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/ConvertRigidBodies2MultiBody.h" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/MultiBodyCreationInterface.h" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/MyMultiBodyCreator.cpp" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/MyMultiBodyCreator.h" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/URDF2Bullet.cpp" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/URDF2Bullet.h" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/URDFImporterInterface.h" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/URDFJointTypes.h" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/UrdfParser.cpp" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/UrdfParser.h" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/urdfStringSplit.cpp" />
+		<Unit filename="../../examples/MultiThreading/b3ThreadSupportInterface.cpp" />
+		<Unit filename="../../examples/MultiThreading/b3ThreadSupportInterface.h" />
+		<Unit filename="../../examples/MultiThreading/b3Win32ThreadSupport.cpp" />
+		<Unit filename="../../examples/MultiThreading/b3Win32ThreadSupport.h" />
+		<Unit filename="../../examples/OpenGLWindow/SimpleCamera.cpp" />
+		<Unit filename="../../examples/OpenGLWindow/SimpleCamera.h" />
+		<Unit filename="../../examples/RenderingExamples/TimeSeriesCanvas.cpp" />
+		<Unit filename="../../examples/RenderingExamples/TimeSeriesFontData.cpp" />
+		<Unit filename="../../examples/RenderingExamples/TinyVRGui.cpp" />
+		<Unit filename="../../examples/SharedMemory/IKTrajectoryHelper.cpp" />
+		<Unit filename="../../examples/SharedMemory/IKTrajectoryHelper.h" />
+		<Unit filename="../../examples/SharedMemory/InProcessMemory.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsClient.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsClientC_API.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsClientExample.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsClientSharedMemory.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsClientSharedMemory2.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsClientSharedMemory2.h" />
+		<Unit filename="../../examples/SharedMemory/PhysicsClientSharedMemory2_C_API.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsClientSharedMemory2_C_API.h" />
+		<Unit filename="../../examples/SharedMemory/PhysicsClientSharedMemory_C_API.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsClientSharedMemory_C_API.h" />
+		<Unit filename="../../examples/SharedMemory/PhysicsDirect.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsDirect.h" />
+		<Unit filename="../../examples/SharedMemory/PhysicsDirectC_API.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsDirectC_API.h" />
+		<Unit filename="../../examples/SharedMemory/PhysicsLoopBack.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsLoopBack.h" />
+		<Unit filename="../../examples/SharedMemory/PhysicsLoopBackC_API.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsLoopBackC_API.h" />
+		<Unit filename="../../examples/SharedMemory/PhysicsServer.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsServer.h" />
+		<Unit filename="../../examples/SharedMemory/PhysicsServerCommandProcessor.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsServerCommandProcessor.h" />
+		<Unit filename="../../examples/SharedMemory/PhysicsServerExample.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsServerSharedMemory.cpp" />
+		<Unit filename="../../examples/SharedMemory/PhysicsServerSharedMemory.h" />
+		<Unit filename="../../examples/SharedMemory/PosixSharedMemory.cpp" />
+		<Unit filename="../../examples/SharedMemory/SharedMemoryCommandProcessor.cpp" />
+		<Unit filename="../../examples/SharedMemory/SharedMemoryCommandProcessor.h" />
+		<Unit filename="../../examples/SharedMemory/SharedMemoryCommands.h" />
+		<Unit filename="../../examples/SharedMemory/SharedMemoryPublic.h" />
+		<Unit filename="../../examples/SharedMemory/TinyRendererVisualShapeConverter.cpp" />
+		<Unit filename="../../examples/SharedMemory/TinyRendererVisualShapeConverter.h" />
+		<Unit filename="../../examples/SharedMemory/Win32SharedMemory.cpp" />
+		<Unit filename="../../examples/StandaloneMain/hellovr_opengl_main.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/Glew/glew.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/openvr/samples/shared/Matrices.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/openvr/samples/shared/Matrices.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/openvr/samples/shared/Vectors.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/openvr/samples/shared/lodepng.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/openvr/samples/shared/lodepng.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/openvr/samples/shared/pathtools.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/openvr/samples/shared/pathtools.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/stb_image/stb_image.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/tinyxml/tinystr.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/tinyxml/tinyxml.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/tinyxml/tinyxmlerror.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/tinyxml/tinyxmlparser.cpp" />
+		<Unit filename="../../examples/TinyRenderer/TinyRenderer.cpp" />
+		<Unit filename="../../examples/TinyRenderer/geometry.cpp" />
+		<Unit filename="../../examples/TinyRenderer/model.cpp" />
+		<Unit filename="../../examples/TinyRenderer/our_gl.cpp" />
+		<Unit filename="../../examples/TinyRenderer/tgaimage.cpp" />
+		<Unit filename="../../examples/Utils/b3Clock.cpp" />
+		<Unit filename="../../examples/Utils/b3ResourcePath.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

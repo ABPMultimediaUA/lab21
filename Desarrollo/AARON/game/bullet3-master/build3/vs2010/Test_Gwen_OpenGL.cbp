@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Test_Gwen_OpenGL" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="Test_Gwen_OpenGL" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add option="-DGWEN_COMPILE_STATIC" />
+					<Add option="-D_HAS_EXCEPTIONS=0" />
+					<Add option="-D_STATIC_CPPLIB" />
+					<Add option="-DDONT_USE_GLUT" />
+					<Add option="-DGLEW_STATIC" />
+					<Add directory="../../examples/ThirdPartyLibs" />
+					<Add directory="../../examples" />
+					<Add directory="../../test/GwenOpenGLTest" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+				<Linker>
+					<Add library="opengl32.lib" />
+					<Add library="glu32.lib" />
+					<Add library="../../bin/gwen_vs2010_debug.lib" />
+				</Linker>
+			</Target>
+			<Target title="Debug x64">
+				<Option output="Test_Gwen_OpenGL" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add option="-DGWEN_COMPILE_STATIC" />
+					<Add option="-D_HAS_EXCEPTIONS=0" />
+					<Add option="-D_STATIC_CPPLIB" />
+					<Add option="-DDONT_USE_GLUT" />
+					<Add option="-DGLEW_STATIC" />
+					<Add directory="../../examples/ThirdPartyLibs" />
+					<Add directory="../../examples" />
+					<Add directory="../../test/GwenOpenGLTest" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+				<Linker>
+					<Add library="opengl32.lib" />
+					<Add library="glu32.lib" />
+					<Add library="../../bin/gwen_vs2010_x64_debug.lib" />
+				</Linker>
+			</Target>
+			<Target title="Release x64">
+				<Option output="Test_Gwen_OpenGL" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DGWEN_COMPILE_STATIC" />
+					<Add option="-D_HAS_EXCEPTIONS=0" />
+					<Add option="-D_STATIC_CPPLIB" />
+					<Add option="-DDONT_USE_GLUT" />
+					<Add option="-DGLEW_STATIC" />
+					<Add directory="../../examples/ThirdPartyLibs" />
+					<Add directory="../../examples" />
+					<Add directory="../../test/GwenOpenGLTest" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+				<Linker>
+					<Add library="opengl32.lib" />
+					<Add library="glu32.lib" />
+					<Add library="../../bin/gwen_vs2010_x64_release.lib" />
+				</Linker>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="Test_Gwen_OpenGL" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DGWEN_COMPILE_STATIC" />
+					<Add option="-D_HAS_EXCEPTIONS=0" />
+					<Add option="-D_STATIC_CPPLIB" />
+					<Add option="-DDONT_USE_GLUT" />
+					<Add option="-DGLEW_STATIC" />
+					<Add directory="../../examples/ThirdPartyLibs" />
+					<Add directory="../../examples" />
+					<Add directory="../../test/GwenOpenGLTest" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+				<Linker>
+					<Add library="opengl32.lib" />
+					<Add library="glu32.lib" />
+					<Add library="../../bin/gwen_vs2010.lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="../../examples/OpenGLWindow/GLPrimitiveRenderer.cpp" />
+		<Unit filename="../../examples/OpenGLWindow/GLPrimitiveRenderer.h" />
+		<Unit filename="../../examples/OpenGLWindow/GwenOpenGL3CoreRenderer.h" />
+		<Unit filename="../../examples/OpenGLWindow/LoadShader.cpp" />
+		<Unit filename="../../examples/OpenGLWindow/LoadShader.h" />
+		<Unit filename="../../examples/OpenGLWindow/OpenSans.cpp" />
+		<Unit filename="../../examples/OpenGLWindow/TwFonts.cpp" />
+		<Unit filename="../../examples/OpenGLWindow/TwFonts.h" />
+		<Unit filename="../../examples/OpenGLWindow/Win32OpenGLWindow.cpp" />
+		<Unit filename="../../examples/OpenGLWindow/Win32OpenGLWindow.h" />
+		<Unit filename="../../examples/OpenGLWindow/Win32Window.cpp" />
+		<Unit filename="../../examples/OpenGLWindow/Win32Window.h" />
+		<Unit filename="../../examples/OpenGLWindow/fontstash.cpp" />
+		<Unit filename="../../examples/OpenGLWindow/fontstash.h" />
+		<Unit filename="../../examples/OpenGLWindow/opengl_fontstashcallbacks.cpp" />
+		<Unit filename="../../examples/OpenGLWindow/opengl_fontstashcallbacks.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/Glew/glew.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../examples/Utils/b3Clock.cpp" />
+		<Unit filename="../../examples/Utils/b3Clock.h" />
+		<Unit filename="../../test/GwenOpenGLTest/Button.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/Checkbox.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/ComboBox.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/CrossSplitter.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/GroupBox.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/ImagePanel.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/Label.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/ListBox.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/MenuStrip.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/Numeric.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/OpenGLSample.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/PanelListPanel.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/ProgressBar.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/Properties.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/RadioButton.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/ScrollControl.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/Slider.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/StatusBar.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/TabControl.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/TextBox.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/TreeControl.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/UnitTest.cpp" />
+		<Unit filename="../../test/GwenOpenGLTest/UnitTest.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

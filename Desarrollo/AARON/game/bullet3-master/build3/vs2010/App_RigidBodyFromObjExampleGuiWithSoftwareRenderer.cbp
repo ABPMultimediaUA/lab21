@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="App_RigidBodyFromObjExampleGuiWithSoftwareRenderer" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="App_RigidBodyFromObjExampleGuiWithSoftwareRenderer" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add option="-DB3_USE_STANDALONE_EXAMPLE" />
+					<Add option="-DGLEW_STATIC" />
+					<Add directory="../../src" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/BulletInverseDynamicsUtils_vs2010_debug.lib" />
+					<Add library="../../bin/BulletInverseDynamics_vs2010_debug.lib" />
+					<Add library="../../bin/BulletDynamics_vs2010_debug.lib" />
+					<Add library="../../bin/BulletCollision_vs2010_debug.lib" />
+					<Add library="../../bin/LinearMath_vs2010_debug.lib" />
+					<Add library="../../bin/OpenGL_Window_vs2010_debug.lib" />
+					<Add library="../../bin/Bullet3Common_vs2010_debug.lib" />
+					<Add library="opengl32.lib" />
+					<Add library="glu32.lib" />
+				</Linker>
+			</Target>
+			<Target title="Debug x64">
+				<Option output="App_RigidBodyFromObjExampleGuiWithSoftwareRenderer" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add option="-DB3_USE_STANDALONE_EXAMPLE" />
+					<Add option="-DGLEW_STATIC" />
+					<Add directory="../../src" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/BulletInverseDynamicsUtils_vs2010_x64_debug.lib" />
+					<Add library="../../bin/BulletInverseDynamics_vs2010_x64_debug.lib" />
+					<Add library="../../bin/BulletDynamics_vs2010_x64_debug.lib" />
+					<Add library="../../bin/BulletCollision_vs2010_x64_debug.lib" />
+					<Add library="../../bin/LinearMath_vs2010_x64_debug.lib" />
+					<Add library="../../bin/OpenGL_Window_vs2010_x64_debug.lib" />
+					<Add library="../../bin/Bullet3Common_vs2010_x64_debug.lib" />
+					<Add library="opengl32.lib" />
+					<Add library="glu32.lib" />
+				</Linker>
+			</Target>
+			<Target title="Release x64">
+				<Option output="App_RigidBodyFromObjExampleGuiWithSoftwareRenderer" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DB3_USE_STANDALONE_EXAMPLE" />
+					<Add option="-DGLEW_STATIC" />
+					<Add directory="../../src" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/BulletInverseDynamicsUtils_vs2010_x64_release.lib" />
+					<Add library="../../bin/BulletInverseDynamics_vs2010_x64_release.lib" />
+					<Add library="../../bin/BulletDynamics_vs2010_x64_release.lib" />
+					<Add library="../../bin/BulletCollision_vs2010_x64_release.lib" />
+					<Add library="../../bin/LinearMath_vs2010_x64_release.lib" />
+					<Add library="../../bin/OpenGL_Window_vs2010_x64_release.lib" />
+					<Add library="../../bin/Bullet3Common_vs2010_x64_release.lib" />
+					<Add library="opengl32.lib" />
+					<Add library="glu32.lib" />
+				</Linker>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="App_RigidBodyFromObjExampleGuiWithSoftwareRenderer" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DB3_USE_STANDALONE_EXAMPLE" />
+					<Add option="-DGLEW_STATIC" />
+					<Add directory="../../src" />
+					<Add directory="../../examples/ThirdPartyLibs/Glew" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/BulletInverseDynamicsUtils_vs2010.lib" />
+					<Add library="../../bin/BulletInverseDynamics_vs2010.lib" />
+					<Add library="../../bin/BulletDynamics_vs2010.lib" />
+					<Add library="../../bin/BulletCollision_vs2010.lib" />
+					<Add library="../../bin/LinearMath_vs2010.lib" />
+					<Add library="../../bin/OpenGL_Window_vs2010.lib" />
+					<Add library="../../bin/Bullet3Common_vs2010.lib" />
+					<Add library="opengl32.lib" />
+					<Add library="glu32.lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="../../examples/CommonInterfaces/Common2dCanvasInterface.h" />
+		<Unit filename="../../examples/CommonInterfaces/CommonCameraInterface.h" />
+		<Unit filename="../../examples/CommonInterfaces/CommonExampleInterface.h" />
+		<Unit filename="../../examples/CommonInterfaces/CommonGUIHelperInterface.h" />
+		<Unit filename="../../examples/CommonInterfaces/CommonGraphicsAppInterface.h" />
+		<Unit filename="../../examples/CommonInterfaces/CommonMultiBodyBase.h" />
+		<Unit filename="../../examples/CommonInterfaces/CommonParameterInterface.h" />
+		<Unit filename="../../examples/CommonInterfaces/CommonRenderInterface.h" />
+		<Unit filename="../../examples/CommonInterfaces/CommonRigidBodyBase.h" />
+		<Unit filename="../../examples/CommonInterfaces/CommonWindowInterface.h" />
+		<Unit filename="../../examples/ExampleBrowser/CollisionShape2TriangleMesh.cpp" />
+		<Unit filename="../../examples/ExampleBrowser/GL_ShapeDrawer.cpp" />
+		<Unit filename="../../examples/ExampleBrowser/OpenGLGuiHelper.cpp" />
+		<Unit filename="../../examples/ExtendedTutorials/Bridge.h" />
+		<Unit filename="../../examples/ExtendedTutorials/Chain.h" />
+		<Unit filename="../../examples/ExtendedTutorials/InclinedPlane.h" />
+		<Unit filename="../../examples/ExtendedTutorials/MultiPendulum.h" />
+		<Unit filename="../../examples/ExtendedTutorials/MultipleBoxes.h" />
+		<Unit filename="../../examples/ExtendedTutorials/NewtonsCradle.h" />
+		<Unit filename="../../examples/ExtendedTutorials/NewtonsRopeCradle.h" />
+		<Unit filename="../../examples/ExtendedTutorials/RigidBodyFromObj.cpp" />
+		<Unit filename="../../examples/ExtendedTutorials/RigidBodyFromObj.h" />
+		<Unit filename="../../examples/ExtendedTutorials/SimpleBox.h" />
+		<Unit filename="../../examples/ExtendedTutorials/SimpleCloth.h" />
+		<Unit filename="../../examples/ExtendedTutorials/SimpleJoint.h" />
+		<Unit filename="../../examples/Importers/ImportColladaDemo/LoadMeshFromCollada.cpp" />
+		<Unit filename="../../examples/Importers/ImportMeshUtility/b3ImportMeshUtility.cpp" />
+		<Unit filename="../../examples/Importers/ImportObjDemo/LoadMeshFromObj.cpp" />
+		<Unit filename="../../examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.cpp" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/MyMultiBodyCreator.cpp" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/URDF2Bullet.cpp" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/UrdfParser.cpp" />
+		<Unit filename="../../examples/Importers/ImportURDFDemo/urdfStringSplit.cpp" />
+		<Unit filename="../../examples/MultiBody/InvertedPendulumPDControl.cpp" />
+		<Unit filename="../../examples/RenderingExamples/TimeSeriesCanvas.cpp" />
+		<Unit filename="../../examples/RenderingExamples/TimeSeriesFontData.cpp" />
+		<Unit filename="../../examples/StandaloneMain/main_sw_tinyrenderer_single_example.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/Glew/glew.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.h" />
+		<Unit filename="../../examples/ThirdPartyLibs/stb_image/stb_image.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/tinyxml/tinystr.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/tinyxml/tinyxml.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/tinyxml/tinyxmlerror.cpp" />
+		<Unit filename="../../examples/ThirdPartyLibs/tinyxml/tinyxmlparser.cpp" />
+		<Unit filename="../../examples/TinyRenderer/TinyRenderer.cpp" />
+		<Unit filename="../../examples/TinyRenderer/geometry.cpp" />
+		<Unit filename="../../examples/TinyRenderer/model.cpp" />
+		<Unit filename="../../examples/TinyRenderer/our_gl.cpp" />
+		<Unit filename="../../examples/TinyRenderer/tgaimage.cpp" />
+		<Unit filename="../../examples/Utils/b3ResourcePath.cpp" />
+		<Unit filename="../../examples/Utils/b3ResourcePath.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="App_ThreadingTest" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="App_ThreadingTest" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add directory="../../examples/MultiThreading" />
+					<Add directory="../../src" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/Bullet3Common_vs2010_debug.lib" />
+				</Linker>
+			</Target>
+			<Target title="Debug x64">
+				<Option output="App_ThreadingTest" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_DEBUG=1" />
+					<Add directory="../../examples/MultiThreading" />
+					<Add directory="../../src" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/Bullet3Common_vs2010_x64_debug.lib" />
+				</Linker>
+			</Target>
+			<Target title="Release x64">
+				<Option output="App_ThreadingTest" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add directory="../../examples/MultiThreading" />
+					<Add directory="../../src" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/Bullet3Common_vs2010_x64_release.lib" />
+				</Linker>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="App_ThreadingTest" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add directory="../../examples/MultiThreading" />
+					<Add directory="../../src" />
+				</Compiler>
+				<Linker>
+					<Add library="../../bin/Bullet3Common_vs2010.lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="../../examples/MultiThreading/b3ThreadSupportInterface.cpp" />
+		<Unit filename="../../examples/MultiThreading/b3ThreadSupportInterface.h" />
+		<Unit filename="../../examples/MultiThreading/b3Win32ThreadSupport.cpp" />
+		<Unit filename="../../examples/MultiThreading/b3Win32ThreadSupport.h" />
+		<Unit filename="../../examples/MultiThreading/main.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
