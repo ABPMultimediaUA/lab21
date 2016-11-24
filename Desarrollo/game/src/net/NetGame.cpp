@@ -3,7 +3,6 @@
 #include "FachadeDireEngine.h"
 #include <iostream>
 
-#include "Mono.h"
 #include "DrawableReplica.h"
 #include "Player.h"
 
@@ -338,9 +337,9 @@ RakNet::Replica3* NetGame::Connection_RM3DireW::AllocReplica(RakNet::BitStream* 
 	//mono->netGame = netGame;
 	//return mono;
 
-	Player* obj = GEInstance->createMainPlayer();
-	obj->netGame = netGame;
-	return obj;
+	if (typeName == "Player") {	Player* obj = GEInstance->createMainPlayer(); obj->netGame = netGame; return obj; }
+
+	return 0;
 
 //	if (typeName=="PlayerReplica") {BaseIrrlichtReplica *r = new PlayerReplica; r->demo=demo; return r;}
 	//if (typeName=="PlayerReplica") {BaseIrrlichtReplica *r = new PlayerReplica; r->demo=demo; return r;}

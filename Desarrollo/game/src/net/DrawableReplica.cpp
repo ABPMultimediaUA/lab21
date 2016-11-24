@@ -1,5 +1,7 @@
 #include "DrawableReplica.h"
 #include "NetGame.h"
+#include "iostream"
+#include <typeinfo>
 
 
 dwn::DrawableReplica::DrawableReplica()
@@ -12,10 +14,14 @@ dwn::DrawableReplica::~DrawableReplica()
     //dtor
 }
 
+const char* dwn::DrawableReplica::getNetObjectID() const
+{
+    return (typeid(*this).name());
+}
 
 void dwn::DrawableReplica::WriteAllocationID(RakNet::Connection_RM3* destinationConnection, RakNet::BitStream* allocationIdBitstream) const
 {
-    allocationIdBitstream->Write(RakNet::RakString("Player"));  // TODO tiene que ir en player
+    allocationIdBitstream->Write(RakNet::RakString(getNetObjectID()));
 }
 
 void dwn::DrawableReplica::SerializeConstruction(RakNet::BitStream* constructionBitstream, RakNet::Connection_RM3* destinationConnection)

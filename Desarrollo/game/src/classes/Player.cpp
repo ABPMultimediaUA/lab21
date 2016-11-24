@@ -16,6 +16,12 @@ void Player::update()
     // TODO
 }
 
+////////////////////
+const char* Player::getNetObjectID() const
+{
+    return "Player";
+}
+
 /////////////
 void Player::render()
 {

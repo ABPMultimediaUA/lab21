@@ -25,6 +25,8 @@ class Player : public Character
         int getGrenades();
         void setGrenades(int n);
 
+        virtual const char* getNetObjectID() const;
+
 
     protected:
 

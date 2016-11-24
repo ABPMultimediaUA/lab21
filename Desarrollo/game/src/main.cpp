@@ -2,7 +2,6 @@
 #include <Box2D/Box2D.h>
 #include <FachadeDireEngine.h>
 #include "NetGame.h"
-#include "Mono.h"
 #include "Player.h"
 
 dwn::NetGame* netGame;
