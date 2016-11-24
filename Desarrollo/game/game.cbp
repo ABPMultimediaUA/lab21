@@ -41,6 +41,7 @@
 			<Add directory="include" />
 			<Add directory="include/RakNet" />
 			<Add directory="src/classes" />
+			<Add directory="src/graphics" />
 		</Compiler>
 		<Linker>
 			<Add library="Irrlicht" />
@@ -77,8 +78,6 @@
 		<Unit filename="src/classes/Drawable.h" />
 		<Unit filename="src/classes/Enemy.cpp" />
 		<Unit filename="src/classes/Enemy.h" />
-		<Unit filename="src/classes/FachadeDireEngine.cpp" />
-		<Unit filename="src/classes/FachadeDireEngine.h" />
 		<Unit filename="src/classes/Fat.cpp" />
 		<Unit filename="src/classes/Fat.h" />
 		<Unit filename="src/classes/Firearm.cpp" />
@@ -110,7 +109,11 @@
 		<Unit filename="src/classes/Whole.cpp" />
 		<Unit filename="src/classes/Whole.h" />
 		<Unit filename="src/classes/defines.h" />
+		<Unit filename="src/graphics/FachadeDireEngine.cpp" />
+		<Unit filename="src/graphics/FachadeDireEngine.h" />
 		<Unit filename="src/main.cpp" />
+		<Unit filename="src/net/DrawableReplica.cpp" />
+		<Unit filename="src/net/DrawableReplica.h" />
 		<Unit filename="src/net/NetGame.cpp" />
 		<Unit filename="src/net/NetGame.h" />
 		<Extensions>

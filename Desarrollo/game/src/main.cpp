@@ -3,6 +3,7 @@
 #include <FachadeDireEngine.h>
 #include "NetGame.h"
 #include "Mono.h"
+#include "Player.h"
 
 dwn::NetGame* netGame;
 
@@ -19,31 +20,34 @@ int main()
 
     // Illricht
     AppReceiver* appReceiver = new AppReceiver();
-	fde::Graphics graphics;
-	graphics.init(appReceiver);
+	GEInstance->init(appReceiver);
 
 	// Motor de red
     netGame = new dwn::NetGame();
-    netGame->open(&graphics);
+    netGame->open();
 
 
-	Mono* mono = graphics.createMono("mono");
-	mono->netGame = netGame;
-	netGame->addNetObject(mono);
+	//Mono* mono = GEInstance->createMono("mono");
+	//mono->netGame = netGame;
+	//netGame->addNetObject(mono);
+	Player* mainPlayer = GEInstance->createMainPlayer();
+	mainPlayer->netGame = netGame;
+	netGame->addNetObject(mainPlayer);
 
 	//fde::Node* bot = graphics.createNode("bot");
-	fde::Node* suelo = graphics.createNode("suelo");
-	fde::Node* paredes = graphics.createNode("paredes");
+	dwe::Node* suelo = GEInstance->createNode("suelo");
+	dwe::Node* paredes = GEInstance->createNode("paredes");
 
-	while(graphics.isRunning())
+	while(GEInstance->isRunning())
 	{
-	    //if (graphics.isWindowActive())
-        //{
-            fde::vec3f m(0.0f);
+//	    if (GEInstance->isWindowActive())
+//        {
+            dwe::vec3f m(0.0f);
+            m = mainPlayer->getPosition();
 
             if(appReceiver->isKeyDown(KEY_ESCAPE))
             {
-                graphics.close();
+                GEInstance->close();
                 return 0;
             }
             else
@@ -58,14 +62,14 @@ int main()
                     m.x -= 0.005;
             }
 
-            mono->move(m);
+            mainPlayer->setPosition(m);
 
-            graphics.draw();
-        //}
-        //else
-        {
-          //  graphics.yield();
-        }
+            GEInstance->draw();
+//        }
+//        else
+//        {
+//            GEInstance->yield();
+//        }
 
         netGame->update();
 	}

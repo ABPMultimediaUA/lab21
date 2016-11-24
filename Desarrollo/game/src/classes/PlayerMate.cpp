@@ -10,8 +10,8 @@ PlayerMate::~PlayerMate()
     //dtor
 }
 
-fde::vec3f PlayerMate::getShift() { return m_shift; }
-void PlayerMate::setShift(fde::vec3f s) { m_shift = s;}
+dwe::vec3f PlayerMate::getShift() { return m_shift; }
+void PlayerMate::setShift(dwe::vec3f s) { m_shift = s;}
 unsigned short int PlayerMate::getHealth() { return m_health; }
 void PlayerMate::setHealth(unsigned short int h) { m_health = h;}
 bool PlayerMate::getHasRifle() { return m_hasRifle; }

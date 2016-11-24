@@ -1,9 +1,9 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include "Drawable.h"
+#include "DrawableReplica.h"
 
-class Character : public Drawable
+class Character : public dwn::DrawableReplica
 {
     public:
         Character();

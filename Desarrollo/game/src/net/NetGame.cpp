@@ -4,6 +4,8 @@
 #include <iostream>
 
 #include "Mono.h"
+#include "DrawableReplica.h"
+#include "Player.h"
 
 using namespace dwn;
 
@@ -18,10 +20,8 @@ NetGame::~NetGame()
 }
 
 //////////////
-void NetGame::open(fde::Graphics* g)
+void NetGame::open()
 {
-    graphics = g;
-
     // RakPeerInterface es la base de RakNet para comunicaciones UDP
 	rakPeer=RakNet::RakPeerInterface::GetInstance();
 
@@ -49,7 +49,6 @@ void NetGame::open(fde::Graphics* g)
 	// ReplicaManager3 se encarga de la gestión de objetos replicados
 	// Automatically sends around new / deleted / changed game objects
 	replicaManager3 = new ReplicaManager3DireW;
-	replicaManager3->graphics = g;
 	replicaManager3->netGame = this;
 	replicaManager3->SetNetworkIDManager(networkIDManager);
 	rakPeer->AttachPlugin(replicaManager3);
@@ -311,7 +310,7 @@ void NetGame::update()
 	// Call the Update function for networked game objects added to BaseIrrlichtReplica once the game is ready
 	unsigned int idx;
 	for (idx=0; idx < replicaManager3->GetReplicaCount(); idx++)
-		((BaseDireWReplica*)(replicaManager3->GetReplicaAtIndex(idx)))->Update(curTime);;
+		((DrawableReplica*)(replicaManager3->GetReplicaAtIndex(idx)))->Update(curTime);;
 }
 
 //////////////
@@ -335,9 +334,14 @@ RakNet::Replica3* NetGame::Connection_RM3DireW::AllocReplica(RakNet::BitStream* 
 	RakNet::RakString typeName;
 	allocationId->Read(typeName);
 
-	Mono* mono = graphics->createMono("mono");
-	mono->netGame = netGame;
-	return mono;
+	//Mono* mono = dwe::GraphicsEngine::Instance()->createMono("mono");
+	//mono->netGame = netGame;
+	//return mono;
+
+	Player* obj = GEInstance->createMainPlayer();
+	obj->netGame = netGame;
+	return obj;
+
 //	if (typeName=="PlayerReplica") {BaseIrrlichtReplica *r = new PlayerReplica; r->demo=demo; return r;}
 	//if (typeName=="PlayerReplica") {BaseIrrlichtReplica *r = new PlayerReplica; r->demo=demo; return r;}
 	//if (typeName=="BallReplica") {BaseIrrlichtReplica *r = new BallReplica; r->demo=demo; return r;}

@@ -17,9 +17,9 @@ using namespace io;
 using namespace gui;
 
 class BaseDireWReplica;
-class Mono;
+class Player;
 
-namespace fde
+namespace dwe
 {
     ///////////////////////////////////////////////
     // vec3
@@ -59,7 +59,7 @@ namespace fde
         Node(ISceneNode* n);
         void move(vec3f v);
         vec3f getPosition();
-        void setPosicion(vec3f v);
+        void setPosition(vec3f v);
         void setNode(ISceneNode* n);
     private:
         irr::scene::ISceneNode* m_node;
@@ -68,20 +68,22 @@ namespace fde
 
 
     ///////////////////////////////////////////////
-    // Graphics
-    // ========
+    // GraphicsEngine
+    // ==============
     //
     ///////////////////////////////////////////////
-    class Graphics
+    class GraphicsEngine
     {
     public:
+        static GraphicsEngine* Instance();
+
         void init(AppReceiver* ar = 0);
         void release();
         void close();
         bool isRunning();
         void draw();
         Node* createNode(std::string meshName);
-        Mono* createMono(std::string meshName);
+        Player* createMainPlayer();
         bool isWindowActive();
         void yield();
 
@@ -90,7 +92,11 @@ namespace fde
         irr::video::IVideoDriver*       m_driver;
         irr::scene::ISceneManager*      m_smgr;
         irr::gui::IGUIEnvironment*      m_guienv;
+
+        GraphicsEngine() {};
     };
 }
+
+#define GEInstance dwe::GraphicsEngine::Instance()
 
 #endif // FACHADEDIREENGINE_H

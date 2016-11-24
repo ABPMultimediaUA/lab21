@@ -20,8 +20,6 @@
 #define DEFAULT_IP "127.0.0.1"
 #define DEFAULT_PT 61111
 
-namespace fde { class Graphics; };
-
 namespace dwn
 {
     class NetGame
@@ -30,7 +28,7 @@ namespace dwn
             NetGame();
             virtual ~NetGame();
 
-            void open(fde::Graphics* g);
+            void open();
             void close();
             void update();
             void addNetObject(RakNet::Replica3 *replica3);
@@ -49,12 +47,11 @@ namespace dwn
             class Connection_RM3DireW : public RakNet::Connection_RM3
             {
                 public:
-                    Connection_RM3DireW(const RakNet::SystemAddress &_systemAddress, RakNet::RakNetGUID _guid, fde::Graphics* g, NetGame* ng) : RakNet::Connection_RM3(_systemAddress, _guid) { graphics = g; netGame = ng; }
+                    Connection_RM3DireW(const RakNet::SystemAddress &_systemAddress, RakNet::RakNetGUID _guid, NetGame* ng) : RakNet::Connection_RM3(_systemAddress, _guid) { netGame = ng; }
                     virtual ~Connection_RM3DireW() {}
 
                     virtual RakNet::Replica3 *AllocReplica(RakNet::BitStream *allocationId, RakNet::ReplicaManager3 *replicaManager3);
                 protected:
-                    fde::Graphics* graphics;
                     NetGame* netGame;
             };
 
@@ -62,12 +59,11 @@ namespace dwn
             {
                 public:
                     virtual RakNet::Connection_RM3* AllocConnection(const RakNet::SystemAddress &systemAddress, RakNet::RakNetGUID rakNetGUID) const {
-                        return new Connection_RM3DireW(systemAddress,rakNetGUID, graphics, netGame);
+                        return new Connection_RM3DireW(systemAddress,rakNetGUID, netGame);
                     }
                     virtual void DeallocConnection(RakNet::Connection_RM3 *connection) const {
                         delete connection;
                     }
-                    fde::Graphics* graphics;
                     NetGame* netGame;
             };
 
@@ -79,8 +75,6 @@ namespace dwn
             RakNet::NatPunchthroughClient *natPunchthroughClient; // Conexión punto a punto entre routers
             RakNet::CloudClient *cloudClient; // Used to upload game instance to the cloud
             RakNet::FullyConnectedMesh2 *fullyConnectedMesh2; // Used to find out who is the session host
-
-            fde::Graphics* graphics;
 
             bool isConnectedToNATPunchthroughServer;
     };

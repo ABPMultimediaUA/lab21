@@ -12,8 +12,8 @@ class PlayerMate : public Drawable
         virtual ~PlayerMate();
 
         // Getters, Setters
-        fde::vec3f getShift();
-        void setShift(fde::vec3f s);
+        dwe::vec3f getShift();
+        void setShift(dwe::vec3f s);
         unsigned short int getHealth();
         void setHealth(unsigned short int h);
         bool getHasRifle();
@@ -28,7 +28,7 @@ class PlayerMate : public Drawable
     protected:
 
     private:
-        fde::vec3f          m_shift; // Desplazamiento respecto del movimiento anterior
+        dwe::vec3f          m_shift; // Desplazamiento respecto del movimiento anterior
         unsigned short int  m_health;
         bool                m_hasRifle;
         bool                m_hasShotgun;

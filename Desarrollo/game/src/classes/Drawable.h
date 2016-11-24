@@ -15,17 +15,18 @@ class Drawable
 
         float* getMesh();
         void setMesh(float* m);
-        fde::vec3f getPos();
-        void setPos(fde::vec3f p);
-        fde::vec3f getRot();
-        void setRot(fde::vec3f r);
+        dwe::vec3f getPosition();
+        void setPosition(dwe::vec3f p);
+        dwe::vec3f getRotation();
+        void setRotation(dwe::vec3f r);
+        void setNode(dwe::Node* n);
 
     protected:
 
     private:
-        float* m_mesh;
-        fde::vec3f m_pos;
-        fde::vec3f m_rot;
+        dwe::Node*  m_node;
+        float*      m_mesh;
+        dwe::vec3f  m_rotation;
 };
 
 #endif // DRAWABLE_H

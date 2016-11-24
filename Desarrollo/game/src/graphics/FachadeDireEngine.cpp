@@ -1,5 +1,5 @@
 #include "FachadeDireEngine.h"
-#include "Mono.h"
+#include "Player.h"
 
 // Necesita volver a poner este namespace
 // para que codeblocks autocomplete bien.
@@ -11,18 +11,18 @@
 ///////////////////////////////////////////////
 // class Node
 ///////////////////////////////////////////////
-fde::Node::Node() {};
-fde::Node::Node(ISceneNode* n)
+dwe::Node::Node() {};
+dwe::Node::Node(ISceneNode* n)
 {
     m_node = n;
 }
 
-void fde::Node::setNode(ISceneNode* n)
+void dwe::Node::setNode(ISceneNode* n)
 {
     m_node = n;
 }
 
-void fde::Node::move(vec3f v)
+void dwe::Node::move(vec3f v)
 {
     irr::core::vector3df _v = m_node->getPosition();
     _v.X += v.x;
@@ -31,7 +31,7 @@ void fde::Node::move(vec3f v)
     m_node->setPosition(_v);
 }
 
-fde::vec3f fde::Node::getPosition()
+dwe::vec3f dwe::Node::getPosition()
 {
     irr::core::vector3df _v = m_node->getPosition();
     vec3f v;
@@ -43,7 +43,7 @@ fde::vec3f fde::Node::getPosition()
     return v;
 }
 
-void fde::Node::setPosicion(vec3f v)
+void dwe::Node::setPosition(vec3f v)
 {
     irr::core::vector3df _v = m_node->getPosition();
     _v.X = v.x;
@@ -56,10 +56,16 @@ void fde::Node::setPosicion(vec3f v)
 
 
 ///////////////////////////////////////////////
-// class Graphics
+// class GraphicsEngine
 ///////////////////////////////////////////////
-////////////////////
-void fde::Graphics::init(AppReceiver* ar)
+dwe::GraphicsEngine* dwe::GraphicsEngine::Instance()
+{
+    static GraphicsEngine instance;
+    return &instance;
+}
+
+//////////////////////////
+void dwe::GraphicsEngine::init(AppReceiver* ar)
 {
 	m_device = createDevice( video::EDT_OPENGL, irr::core::dimension2d<u32>(640, 480), 16,
 			false, false, false, ar);
@@ -95,8 +101,8 @@ void fde::Graphics::init(AppReceiver* ar)
 	m_smgr->addCameraSceneNode(0, vector3df(-10,20,5), vector3df(0,0,0));
 }
 
-////////////////////
-void fde::Graphics::release()
+//////////////////////////
+void dwe::GraphicsEngine::release()
 {
 	/*
 	After we are done with the render loop, we have to delete the Irrlicht
@@ -109,8 +115,8 @@ void fde::Graphics::release()
 	m_device->drop();
 }
 
-////////////////////
-bool fde::Graphics::isRunning()
+//////////////////////////
+bool dwe::GraphicsEngine::isRunning()
 {
   	/*
 	Ok, now we have set up the scene, lets draw everything: We run the
@@ -122,8 +128,8 @@ bool fde::Graphics::isRunning()
     return m_device->run();
 }
 
-////////////////////
-void fde::Graphics::draw()
+//////////////////////////
+void dwe::GraphicsEngine::draw()
 {
     /*
     Anything can be drawn between a beginScene() and an endScene()
@@ -140,8 +146,8 @@ void fde::Graphics::draw()
     m_driver->endScene();
 }
 
-//////////////////////////
-fde::Node* fde::Graphics::createNode(std::string meshName)
+////////////////////////////////
+dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 {
 	scene::IMesh* mesh = m_smgr->getMesh((meshName+".obj").c_str());
 	if (!mesh)
@@ -161,10 +167,10 @@ fde::Node* fde::Graphics::createNode(std::string meshName)
 	return node;
 }
 
-//////////////////////////
-Mono* fde::Graphics::createMono(std::string meshName)
+/////////////////////////////
+Player* dwe::GraphicsEngine::createMainPlayer()
 {
-	scene::IMesh* mesh = m_smgr->getMesh((meshName+".obj").c_str());
+	scene::IMesh* mesh = m_smgr->getMesh("mono.obj");
 	if (!mesh)
 	{
 		m_device->drop();
@@ -174,30 +180,29 @@ Mono* fde::Graphics::createMono(std::string meshName)
 	if (irrnode)
 	{
 		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
-		irrnode->setMaterialTexture( 0, m_driver->getTexture((meshName+".png").c_str()) );
+		irrnode->setMaterialTexture( 0, m_driver->getTexture("mono.png") );
 	}
 
-	Mono* mono = new Mono();
-	mono->setNode(irrnode);
-
-	return mono;
+	Player* p = new Player();
+	p->setNode(new Node(irrnode));
+    return p;
 }
 
 
-////////////////////
-bool fde::Graphics::isWindowActive()
+//////////////////////////
+bool dwe::GraphicsEngine::isWindowActive()
 {
     return m_device->isWindowActive();
 }
 
-////////////////////
-void fde::Graphics::yield()
+//////////////////////////
+void dwe::GraphicsEngine::yield()
 {
     m_device->yield();
 }
 
-////////////////////
-void fde::Graphics::close()
+//////////////////////////
+void dwe::GraphicsEngine::close()
 {
     m_device->closeDevice();
 }
