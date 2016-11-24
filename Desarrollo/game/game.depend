@@ -1008,7 +1008,7 @@
 1479213808 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\drawable.cpp
 	"Drawable.h"
 
-1479301232 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\fachadedireengine.cpp
+1479457654 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\fachadedireengine.cpp
 	"FachadeDireEngine.h"
 
 1479209636 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\game.cpp
@@ -1016,11 +1016,12 @@
 
 1479209636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\game.h
 
-1479312283 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\main.cpp
+1479906271 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\main.cpp
 	<iostream>
 	<Box2D/Box2D.h>
 	<FachadeDireEngine.h>
-	<AppReceiver.h>
+	"NetGame.h"
+	"Mono.h"
 
 1478629199 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\illricht\irrlicht.h
 	"IrrCompileConfig.h"
@@ -2238,10 +2239,10 @@
 1479225097 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\enemy.cpp
 	"Enemy.h"
 
-1479225211 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\fat.cpp
+1479225190 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\fat.cpp
 	"Fat.h"
 
-1479225211 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\fat.h
+1479225190 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\fat.h
 	<Enemy.h>
 
 1479225958 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\flashlight.cpp
@@ -2341,4 +2342,502 @@
 
 1479287833 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\appreceiver.h
 	<irrlicht.h>
+
+1479227302 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\ammo.cpp
+	"Ammo.h"
+
+1479227268 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\ammo.h
+	<Consumable.h>
+
+1479225899 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\consumable.h
+	<Drawable.h>
+
+1479213791 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\drawable.h
+	"FachadeDireEngine.h"
+
+1479904739 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\fachadedireengine.h
+	<irrlicht.h>
+	<string>
+	<AppReceiver.h>
+
+1479287833 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\appreceiver.h
+	<irrlicht.h>
+
+1479227792 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\ammogrenade.cpp
+	"AmmoGrenade.h"
+
+1479227779 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\ammogrenade.h
+	<Ammo.h>
+
+1479227533 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\ammogun.cpp
+	"AmmoGun.h"
+
+1479227479 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\ammogun.h
+	<defines.h>
+	<Ammo.h>
+
+1479224726 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\defines.h
+
+1479227715 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\ammorifle.cpp
+	"AmmoRifle.h"
+
+1479227813 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\ammorifle.h
+	<defines.h>
+	<Ammo.h>
+
+1479227667 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\ammoshotgun.cpp
+	"AmmoShotgun.h"
+
+1479227829 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\ammoshotgun.h
+	<defines.h>
+	<Ammo.h>
+
+1479225295 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\bat.cpp
+	"Bat.h"
+
+1479225295 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\bat.h
+	<Enemy.h>
+
+1479225096 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\enemy.h
+	<Character.h>
+
+1479213571 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\character.h
+	"Drawable.h"
+
+1479213550 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\character.cpp
+	"Character.h"
+
+1479225879 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\consumable.cpp
+	"Consumable.h"
+
+1479226661 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\crifle.cpp
+	"CRifle.h"
+
+1479226613 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\crifle.h
+	<defines.h>
+	<Consumable.h>
+
+1479226814 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\cshotgun.cpp
+	"CShotgun.h"
+
+1479226850 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\cshotgun.h
+	<defines.h>
+	<Consumable.h>
+
+1479225136 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\dog.cpp
+	"Dog.h"
+
+1479225136 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\dog.h
+	<Enemy.h>
+
+1479213808 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\drawable.cpp
+	"Drawable.h"
+
+1479225097 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\enemy.cpp
+	"Enemy.h"
+
+1479904744 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\fachadedireengine.cpp
+	"FachadeDireEngine.h"
+	"Mono.h"
+
+1479225190 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\fat.cpp
+	"Fat.h"
+
+1479225190 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\fat.h
+	<Enemy.h>
+
+1479224669 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\firearm.cpp
+	"Firearm.h"
+
+1479224543 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\firearm.h
+	<defines.h>
+	<Weapon.h>
+
+1479223275 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\weapon.h
+	<Drawable.h>
+
+1479225958 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\flashlight.cpp
+	"Flashlight.h"
+
+1479225938 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\flashlight.h
+	<Consumable.h>
+
+1479209636 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\game.cpp
+	"Game.h"
+
+1479209636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\game.h
+
+1479225462 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\grenade.cpp
+	"Grenade.h"
+
+1479225445 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\grenade.h
+	<Weapon.h>
+
+1479225824 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\gun.cpp
+	"Gun.h"
+
+1479225774 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\gun.h
+	<Firearm.h>
+
+1479225280 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\half.cpp
+	"Half.h"
+
+1479225280 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\half.h
+	<Enemy.h>
+
+1479226215 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\medkit.cpp
+	"Medkit.h"
+
+1479226198 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\medkit.h
+	<Consumable.h>
+
+1479225155 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\mommy.cpp
+	"Mommy.h"
+
+1479225155 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\mommy.h
+	<Enemy.h>
+
+1479224929 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\player.cpp
+	"Player.h"
+
+1479224689 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\player.h
+	<defines.h>
+	<Character.h>
+	<Firearm.h>
+
+1479214944 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\playermate.cpp
+	"PlayerMate.h"
+
+1479214687 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\playermate.h
+	<Drawable.h>
+	<FachadeDireEngine.h>
+
+1479225812 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\rifle.cpp
+	"Rifle.h"
+
+1479225678 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\rifle.h
+	<Firearm.h>
+
+1479225595 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\shotgun.cpp
+	"Shotgun.h"
+
+1479225575 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\shotgun.h
+	<Firearm.h>
+
+1479223640 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\weapon.cpp
+	"Weapon.h"
+
+1479225264 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\whole.cpp
+	"Whole.h"
+
+1479225264 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\whole.h
+	<Enemy.h>
+
+1479906426 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\net\netgame.cpp
+	"NetGame.h"
+	"MessageIdentifiers.h"
+	"FachadeDireEngine.h"
+	<iostream>
+	"Mono.h"
+
+1479898739 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\net\netgame.h
+	"RakPeerInterface.h"
+	"ReplicaManager3.h"
+	"NatPunchthroughClient.h"
+	"CloudClient.h"
+	"FullyConnectedMesh2.h"
+	"RakNetTime.h"
+	"NetworkIDManager.h"
+	"GetTime.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\raknettime.h
+	"NativeTypes.h"
+	"RakNetDefines.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\nativetypes.h
+	<stdint.h>
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\raknetdefines.h
+	"RakNetDefinesOverrides.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\raknetdefinesoverrides.h
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\rakpeerinterface.h
+	"PacketPriority.h"
+	"RakNetTypes.h"
+	"RakMemoryOverride.h"
+	"Export.h"
+	"DS_List.h"
+	"RakNetSmartPtr.h"
+	"RakNetSocket2.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\packetpriority.h
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\raknettypes.h
+	"RakNetDefines.h"
+	"NativeTypes.h"
+	"RakNetTime.h"
+	"Export.h"
+	"WindowsIncludes.h"
+	"XBox360Includes.h"
+	"SocketIncludes.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\export.h
+	"RakNetDefines.h"
+
+1479458641 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\windowsincludes.h
+	<windows.h>
+	<winsock.h>
+	<WinSock2.h>
+	<windows.h>
+	<Ws2tcpip.h>
+
+1479458641 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\xbox360includes.h
+
+1479458640 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\socketincludes.h
+	<windows.h>
+	"WinRTSockAddr.h"
+	<winsock2.h>
+	<unistd.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<fcntl.h>
+	"ppapi/cpp/private/net_address_private.h"
+	"ppapi/c/pp_bool.h"
+	"ppapi/c/pp_errors.h"
+	"ppapi/cpp/completion_callback.h"
+	"ppapi/cpp/instance_handle.h"
+	"ppapi/cpp/module.h"
+	"ppapi/cpp/module_impl.h"
+	"ppapi/c/pp_errors.h"
+	"ppapi/c/pp_module.h"
+	"ppapi/c/pp_var.h"
+	"ppapi/c/pp_resource.h"
+	"ppapi/c/ppb.h"
+	"ppapi/c/ppb_instance.h"
+	"ppapi/c/ppb_messaging.h"
+	"ppapi/c/ppb_var.h"
+	"ppapi/c/ppp.h"
+	"ppapi/c/ppb_core.h"
+	"ppapi/c/ppp_instance.h"
+	"ppapi/c/ppp_messaging.h"
+	"ppapi/c/pp_input_event.h"
+	"ppapi/c/pp_completion_callback.h"
+	"ppapi/c/private/ppb_udp_socket_private.h"
+	"ppapi/cpp/private/net_address_private.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\rakmemoryoverride.h
+	"Export.h"
+	"RakNetDefines.h"
+	<new>
+	"RakAlloca.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\rakalloca.h
+	<stdlib.h>
+	<malloc/malloc.h>
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<alloca.h>
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\ds_list.h
+	"RakAssert.h"
+	<string.h>
+	"Export.h"
+	"RakMemoryOverride.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\rakassert.h
+	<assert.h>
+	"RakNetDefines.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\raknetsmartptr.h
+	"RakMemoryOverride.h"
+	"Export.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\raknetsocket2.h
+	"RakNetTypes.h"
+	"MTUSize.h"
+	"LocklessTypes.h"
+	"RakThread.h"
+	"DS_ThreadsafeAllocatingQueue.h"
+	"Export.h"
+	<sys/socket.h>
+	<netinet/in.h>
+	"DS_List.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\mtusize.h
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\locklesstypes.h
+	"Export.h"
+	"NativeTypes.h"
+	"WindowsIncludes.h"
+	"SimpleMutex.h"
+
+1479458640 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\simplemutex.h
+	"RakMemoryOverride.h"
+	"WindowsIncludes.h"
+	<pthread.h>
+	<sys/types.h>
+	"Export.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\rakthread.h
+	"WindowsIncludes.h"
+	"Export.h"
+	"../DependentExtensions/WinPhone8/ThreadEmulation.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\ds_threadsafeallocatingqueue.h
+	"DS_Queue.h"
+	"SimpleMutex.h"
+	"DS_MemoryPool.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\ds_queue.h
+	"RakAssert.h"
+	"Export.h"
+	"RakMemoryOverride.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\ds_memorypool.h
+	<stdlib.h>
+	"RakAssert.h"
+	"Export.h"
+	"RakMemoryOverride.h"
+	"DS_MemoryPool.h"
+	"DS_List.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\networkidmanager.h
+	"RakNetTypes.h"
+	"Export.h"
+	"RakMemoryOverride.h"
+	"NetworkIDObject.h"
+	"Rand.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\networkidobject.h
+	"RakNetTypes.h"
+	"RakMemoryOverride.h"
+	"Export.h"
+
+1479458640 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\rand.h
+	"Export.h"
+
+1479458640 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\replicamanager3.h
+	"NativeFeatureIncludes.h"
+	"RakNetTypes.h"
+	"RakNetTime.h"
+	"BitStream.h"
+	"PacketPriority.h"
+	"PluginInterface2.h"
+	"NetworkIDObject.h"
+	"DS_OrderedList.h"
+	"DS_Queue.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\nativefeatureincludes.h
+	"NativeFeatureIncludesOverrides.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\nativefeatureincludesoverrides.h
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\bitstream.h
+	"BitStream_NoTemplate.h"
+	"RakMemoryOverride.h"
+	"RakNetDefines.h"
+	"Export.h"
+	"RakNetTypes.h"
+	"RakString.h"
+	"RakWString.h"
+	"RakAssert.h"
+	<math.h>
+	<float.h>
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\rakstring.h
+	"Export.h"
+	"DS_List.h"
+	"RakNetTypes.h"
+	<stdio.h>
+	"stdarg.h"
+	"WindowsIncludes.h"
+
+1479458640 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\rakwstring.h
+	"Export.h"
+	"RakNetTypes.h"
+	"RakString.h"
+	"WindowsIncludes.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\plugininterface2.h
+	"NativeFeatureIncludes.h"
+	"RakNetTypes.h"
+	"Export.h"
+	"PacketPriority.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\ds_orderedlist.h
+	"DS_List.h"
+	"RakMemoryOverride.h"
+	"Export.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\natpunchthroughclient.h
+	"NativeFeatureIncludes.h"
+	"RakNetTypes.h"
+	"Export.h"
+	"PluginInterface2.h"
+	"PacketPriority.h"
+	"SocketIncludes.h"
+	"DS_List.h"
+	"RakString.h"
+	"DS_Queue.h"
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\cloudclient.h
+	"NativeFeatureIncludes.h"
+	"PluginInterface2.h"
+	"CloudCommon.h"
+	"RakMemoryOverride.h"
+	"DS_Hash.h"
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\cloudcommon.h
+	"NativeFeatureIncludes.h"
+	"RakNetTypes.h"
+	"RakString.h"
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\ds_hash.h
+	"RakAssert.h"
+	<string.h>
+	"Export.h"
+	"RakMemoryOverride.h"
+	"RakString.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\fullyconnectedmesh2.h
+	"NativeFeatureIncludes.h"
+	"PluginInterface2.h"
+	"RakMemoryOverride.h"
+	"NativeTypes.h"
+	"DS_List.h"
+	"RakString.h"
+	"BitStream.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\gettime.h
+	"Export.h"
+	"RakNetTime.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\raknet\messageidentifiers.h
+	"CustomPacketIdentifiers.h"
+
+1479898735 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\main.cpp
+	<iostream>
+	<Box2D/Box2D.h>
+	<FachadeDireEngine.h>
+
+1479906246 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\mono.h
+	"RakPeerInterface.h"
+	"ReplicaManager3.h"
+	"NatPunchthroughClient.h"
+	"CloudClient.h"
+	"FullyConnectedMesh2.h"
+	"RakNetTime.h"
+	"NetworkIDManager.h"
+	"GetTime.h"
+	"FachadeDireEngine.h"
+
+1479906214 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\mono.cpp
+	"Mono.h"
+	"NetGame.h"
+	<iostream>
 

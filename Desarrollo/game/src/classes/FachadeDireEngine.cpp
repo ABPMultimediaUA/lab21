@@ -1,5 +1,5 @@
 #include "FachadeDireEngine.h"
-
+#include "Mono.h"
 
 // Necesita volver a poner este namespace
 // para que codeblocks autocomplete bien.
@@ -11,7 +11,13 @@
 ///////////////////////////////////////////////
 // class Node
 ///////////////////////////////////////////////
+fde::Node::Node() {};
 fde::Node::Node(ISceneNode* n)
+{
+    m_node = n;
+}
+
+void fde::Node::setNode(ISceneNode* n)
 {
     m_node = n;
 }
@@ -25,6 +31,26 @@ void fde::Node::move(vec3f v)
     m_node->setPosition(_v);
 }
 
+fde::vec3f fde::Node::getPosition()
+{
+    irr::core::vector3df _v = m_node->getPosition();
+    vec3f v;
+
+    v.x = _v.X;
+    v.y = _v.Y;
+    v.z = _v.Z;
+
+    return v;
+}
+
+void fde::Node::setPosicion(vec3f v)
+{
+    irr::core::vector3df _v = m_node->getPosition();
+    _v.X = v.x;
+    _v.Y = v.y;
+    _v.Z = v.z;
+    m_node->setPosition(_v);
+}
 
 
 
@@ -66,7 +92,7 @@ void fde::Graphics::init(AppReceiver* ar)
 	(0, 30, -40). The camera looks from there to (0,5,0), which is
 	approximately the place where our md2 model is.
 	*/
-	m_smgr->addCameraSceneNode(0, vector3df(-5,2,5), vector3df(0,0,0));
+	m_smgr->addCameraSceneNode(0, vector3df(-10,20,5), vector3df(0,0,0));
 }
 
 ////////////////////
@@ -131,10 +157,32 @@ fde::Node* fde::Graphics::createNode(std::string meshName)
 	}
 
 	Node* node = new Node(irrnode);
-	//n->m_node = node;
 
 	return node;
 }
+
+//////////////////////////
+Mono* fde::Graphics::createMono(std::string meshName)
+{
+	scene::IMesh* mesh = m_smgr->getMesh((meshName+".obj").c_str());
+	if (!mesh)
+	{
+		m_device->drop();
+		exit(0);
+	}
+	scene::IMeshSceneNode* irrnode = m_smgr->addMeshSceneNode( mesh );
+	if (irrnode)
+	{
+		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
+		irrnode->setMaterialTexture( 0, m_driver->getTexture((meshName+".png").c_str()) );
+	}
+
+	Mono* mono = new Mono();
+	mono->setNode(irrnode);
+
+	return mono;
+}
+
 
 ////////////////////
 bool fde::Graphics::isWindowActive()

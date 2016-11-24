@@ -5,7 +5,6 @@
 #include <string>
 #include <AppReceiver.h>
 
-
 using namespace std;
 
 // Aun estando los namespace sigo definiendo las propiedades
@@ -16,6 +15,9 @@ using namespace scene;
 using namespace video;
 using namespace io;
 using namespace gui;
+
+class BaseDireWReplica;
+class Mono;
 
 namespace fde
 {
@@ -53,8 +55,12 @@ namespace fde
     class Node
     {
     public:
+        Node();
         Node(ISceneNode* n);
         void move(vec3f v);
+        vec3f getPosition();
+        void setPosicion(vec3f v);
+        void setNode(ISceneNode* n);
     private:
         irr::scene::ISceneNode* m_node;
     };
@@ -75,6 +81,7 @@ namespace fde
         bool isRunning();
         void draw();
         Node* createNode(std::string meshName);
+        Mono* createMono(std::string meshName);
         bool isWindowActive();
         void yield();
 

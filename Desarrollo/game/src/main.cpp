@@ -1,9 +1,14 @@
 #include <iostream>
 #include <Box2D/Box2D.h>
 #include <FachadeDireEngine.h>
-#include <AppReceiver.h>
+#include "NetGame.h"
+#include "Mono.h"
 
+dwn::NetGame* netGame;
 
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
     // Box2D
@@ -17,15 +22,23 @@ int main()
 	fde::Graphics graphics;
 	graphics.init(appReceiver);
 
-	fde::Node* mono = graphics.createNode("mono");
+	// Motor de red
+    netGame = new dwn::NetGame();
+    netGame->open(&graphics);
+
+
+	Mono* mono = graphics.createMono("mono");
+	mono->netGame = netGame;
+	netGame->addNetObject(mono);
+
+	//fde::Node* bot = graphics.createNode("bot");
 	fde::Node* suelo = graphics.createNode("suelo");
 	fde::Node* paredes = graphics.createNode("paredes");
 
-
 	while(graphics.isRunning())
 	{
-	    if (graphics.isWindowActive())
-        {
+	    //if (graphics.isWindowActive())
+        //{
             fde::vec3f m(0.0f);
 
             if(appReceiver->isKeyDown(KEY_ESCAPE))
@@ -36,25 +49,28 @@ int main()
             else
             {
                 if(appReceiver->isKeyDown(KEY_RIGHT))
-                    m.x += 0.02;
-                if(appReceiver->isKeyDown(KEY_LEFT))
-                    m.x -= 0.02;
-                if(appReceiver->isKeyDown(KEY_UP))
-                    m.z += 0.02;
-                if(appReceiver->isKeyDown(KEY_DOWN))
-                    m.z -= 0.02;
+                    m.z -= 0.005;
+                else if(appReceiver->isKeyDown(KEY_LEFT))
+                    m.z += 0.005;
+                else if(appReceiver->isKeyDown(KEY_UP))
+                    m.x += 0.005;
+                else if(appReceiver->isKeyDown(KEY_DOWN))
+                    m.x -= 0.005;
             }
 
             mono->move(m);
 
             graphics.draw();
-        }
-        else
+        //}
+        //else
         {
-            graphics.yield();
+          //  graphics.yield();
         }
+
+        netGame->update();
 	}
 
+	netGame->close();
 
 	return 0;
 }
