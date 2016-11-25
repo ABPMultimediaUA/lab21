@@ -1,29 +1,31 @@
 #ifndef PLAYERMATE_H
 #define PLAYERMATE_H
 
-#include <Drawable.h>
-#include <FachadeDireEngine.h>
+#include "DrawableReplica.h"
+#include "FachadeDireEngine.h"
 
-
-class PlayerMate : public Drawable
+class PlayerMate : public dwn::DrawableReplica
 {
     public:
         PlayerMate();
         virtual ~PlayerMate();
 
+        virtual void update();
+        virtual void render();
+
         // Getters, Setters
-        dwe::vec3f getShift();
-        void setShift(dwe::vec3f s);
-        unsigned short int getHealth();
-        void setHealth(unsigned short int h);
-        bool getHasRifle();
-        void setHasRifle(unsigned short int h);
-        bool getHasShotgun();
-        void setHasShotgun(unsigned short int h);
-        unsigned short int getNumGrenades();
-        void setNumGrenades(unsigned short int n);
-        unsigned short int getNumMedkits();
-        void setNumMedkits(unsigned short int n);
+        virtual dwe::vec3f getShift();
+        virtual void setShift(dwe::vec3f s);
+        virtual unsigned short int getHealth();
+        virtual void setHealth(unsigned short int h);
+        virtual bool getHasRifle();
+        virtual void setHasRifle(unsigned short int h);
+        virtual bool getHasShotgun();
+        virtual void setHasShotgun(unsigned short int h);
+        virtual unsigned short int getNumGrenades();
+        virtual void setNumGrenades(unsigned short int n);
+        virtual unsigned short int getNumMedkits();
+        virtual void setNumMedkits(unsigned short int n);
 
     protected:
 

@@ -1016,7 +1016,7 @@
 
 1479209636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\include\game.h
 
-1480020052 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\main.cpp
+1480023559 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\main.cpp
 	<iostream>
 	<Box2D/Box2D.h>
 	<FachadeDireEngine.h>
@@ -2497,20 +2497,20 @@
 1479225155 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\mommy.h
 	<Enemy.h>
 
-1480021971 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\player.cpp
+1480063344 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\player.cpp
 	"Player.h"
 
-1480022076 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\player.h
+1480063347 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\player.h
 	<defines.h>
 	<Character.h>
 	<Firearm.h>
 
-1480000232 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\playermate.cpp
+1480064170 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\playermate.cpp
 	"PlayerMate.h"
 
-1480000232 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\playermate.h
-	<Drawable.h>
-	<FachadeDireEngine.h>
+1480064328 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\playermate.h
+	"DrawableReplica.h"
+	"FachadeDireEngine.h"
 
 1479225812 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\rifle.cpp
 	"Rifle.h"
@@ -2533,15 +2533,16 @@
 1479225264 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\classes\whole.h
 	<Enemy.h>
 
-1480022038 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\net\netgame.cpp
+1480064099 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\net\netgame.cpp
 	"NetGame.h"
 	"MessageIdentifiers.h"
 	"FachadeDireEngine.h"
 	<iostream>
 	"DrawableReplica.h"
 	"Player.h"
+	"PlayerMate.h"
 
-1479999903 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\net\netgame.h
+1480023332 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\net\netgame.h
 	"RakPeerInterface.h"
 	"ReplicaManager3.h"
 	"NatPunchthroughClient.h"
@@ -2842,22 +2843,24 @@
 	"NetGame.h"
 	<iostream>
 
-1480019932 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\graphics\fachadedireengine.h
+1480024612 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\graphics\fachadedireengine.h
 	<irrlicht.h>
 	<string>
 	<AppReceiver.h>
 
-1480019904 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\graphics\fachadedireengine.cpp
+1480064282 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\graphics\fachadedireengine.cpp
 	"FachadeDireEngine.h"
 	"Player.h"
+	"PlayerMate.h"
+	"NetGame.h"
 
-1480021861 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\net\drawablereplica.cpp
+1480023399 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\net\drawablereplica.cpp
 	"DrawableReplica.h"
 	"NetGame.h"
 	"iostream"
 	<typeinfo>
 
-1480021811 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\net\drawablereplica.h
+1480023401 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\net\drawablereplica.h
 	<Drawable.h>
 	"RakPeerInterface.h"
 	"ReplicaManager3.h"

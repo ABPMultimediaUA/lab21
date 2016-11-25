@@ -12,8 +12,6 @@
 #include "NetworkIDManager.h"
 #include "GetTime.h"
 
-namespace dwn { class NetGame; };
-
 namespace dwn
 {
     class DrawableReplica : public Drawable, public RakNet::Replica3
@@ -33,8 +31,6 @@ namespace dwn
             virtual void PreDestruction(RakNet::Connection_RM3 *sourceConnection);
 
             virtual void Update(RakNet::TimeMS curTime);
-
-            dwn::NetGame* netGame;
 
             // Necesarias al ser virtuales puras
             virtual RakNet::RM3ConstructionState QueryConstruction(RakNet::Connection_RM3 *destinationConnection, RakNet::ReplicaManager3 *replicaManager3) {return QueryConstruction_PeerToPeer(destinationConnection);}

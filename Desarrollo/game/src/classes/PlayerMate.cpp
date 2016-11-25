@@ -9,6 +9,16 @@ PlayerMate::~PlayerMate()
 {
     //dtor
 }
+void PlayerMate::update()
+{
+
+}
+
+void PlayerMate::render()
+{
+
+}
+
 
 dwe::vec3f PlayerMate::getShift() { return m_shift; }
 void PlayerMate::setShift(dwe::vec3f s) { m_shift = s;}

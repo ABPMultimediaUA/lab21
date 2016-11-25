@@ -25,7 +25,7 @@ namespace dwn
     class NetGame
     {
         public:
-            NetGame();
+            static NetGame* Instance();
             virtual ~NetGame();
 
             void open();
@@ -34,9 +34,12 @@ namespace dwn
             void addNetObject(RakNet::Replica3 *replica3);
             bool isLocalObject(RakNet::RakNetGUID id);
 
+            static bool isConnectedToNATPunchthroughServer;
+
         protected:
 
         private:
+            NetGame();
             static const int                _max_players        = 32;
             static const unsigned short     _tcp_port           = 0;
             static const RakNet::TimeMS     _udp_sleep_timer    = 30;
@@ -47,24 +50,21 @@ namespace dwn
             class Connection_RM3DireW : public RakNet::Connection_RM3
             {
                 public:
-                    Connection_RM3DireW(const RakNet::SystemAddress &_systemAddress, RakNet::RakNetGUID _guid, NetGame* ng) : RakNet::Connection_RM3(_systemAddress, _guid) { netGame = ng; }
+                    Connection_RM3DireW(const RakNet::SystemAddress &_systemAddress, RakNet::RakNetGUID _guid) : RakNet::Connection_RM3(_systemAddress, _guid) {}
                     virtual ~Connection_RM3DireW() {}
 
                     virtual RakNet::Replica3 *AllocReplica(RakNet::BitStream *allocationId, RakNet::ReplicaManager3 *replicaManager3);
-                protected:
-                    NetGame* netGame;
             };
 
             class ReplicaManager3DireW : public RakNet::ReplicaManager3
             {
                 public:
                     virtual RakNet::Connection_RM3* AllocConnection(const RakNet::SystemAddress &systemAddress, RakNet::RakNetGUID rakNetGUID) const {
-                        return new Connection_RM3DireW(systemAddress,rakNetGUID, netGame);
+                        return new Connection_RM3DireW(systemAddress,rakNetGUID);
                     }
                     virtual void DeallocConnection(RakNet::Connection_RM3 *connection) const {
                         delete connection;
                     }
-                    NetGame* netGame;
             };
 
             ///////////////////////////////////////////
@@ -76,8 +76,8 @@ namespace dwn
             RakNet::CloudClient *cloudClient; // Used to upload game instance to the cloud
             RakNet::FullyConnectedMesh2 *fullyConnectedMesh2; // Used to find out who is the session host
 
-            bool isConnectedToNATPunchthroughServer;
     };
 }
+#define NetInstance dwn::NetGame::Instance()
 
 #endif // NETGAME_H

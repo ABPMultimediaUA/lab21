@@ -18,6 +18,7 @@ using namespace gui;
 
 class BaseDireWReplica;
 class Player;
+class PlayerMate;
 
 namespace dwe
 {
@@ -83,9 +84,12 @@ namespace dwe
         bool isRunning();
         void draw();
         Node* createNode(std::string meshName);
-        Player* createMainPlayer();
         bool isWindowActive();
         void yield();
+
+        // Creacion de personajes
+        Player* createMainPlayer();
+        PlayerMate* createPlayerMate();
 
     private:
         irr::IrrlichtDevice*            m_device;

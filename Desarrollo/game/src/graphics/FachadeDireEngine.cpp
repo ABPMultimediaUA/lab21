@@ -1,5 +1,7 @@
 #include "FachadeDireEngine.h"
 #include "Player.h"
+#include "PlayerMate.h"
+#include "NetGame.h"
 
 // Necesita volver a poner este namespace
 // para que codeblocks autocomplete bien.
@@ -185,9 +187,31 @@ Player* dwe::GraphicsEngine::createMainPlayer()
 
 	Player* p = new Player();
 	p->setNode(new Node(irrnode));
+	NetInstance->addNetObject(p);
     return p;
 }
 
+/////////////////////////////////
+PlayerMate* dwe::GraphicsEngine::createPlayerMate()
+{
+	scene::IMesh* mesh = m_smgr->getMesh("bot.obj");
+	if (!mesh)
+	{
+		m_device->drop();
+		exit(0);
+	}
+	scene::IMeshSceneNode* irrnode = m_smgr->addMeshSceneNode( mesh );
+	if (irrnode)
+	{
+		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
+		irrnode->setMaterialTexture( 0, m_driver->getTexture("bot.png") );
+	}
+
+	PlayerMate* p = new PlayerMate();
+	p->setNode(new Node(irrnode));
+	NetInstance->addNetObject(p);
+    return p;
+}
 
 //////////////////////////
 bool dwe::GraphicsEngine::isWindowActive()

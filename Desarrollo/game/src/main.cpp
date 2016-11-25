@@ -4,8 +4,6 @@
 #include "NetGame.h"
 #include "Player.h"
 
-dwn::NetGame* netGame;
-
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -22,18 +20,12 @@ int main()
 	GEInstance->init(appReceiver);
 
 	// Motor de red
-    netGame = new dwn::NetGame();
-    netGame->open();
+    NetInstance->open();
 
 
-	//Mono* mono = GEInstance->createMono("mono");
-	//mono->netGame = netGame;
-	//netGame->addNetObject(mono);
 	Player* mainPlayer = GEInstance->createMainPlayer();
-	mainPlayer->netGame = netGame;
-	netGame->addNetObject(mainPlayer);
 
-	//fde::Node* bot = graphics.createNode("bot");
+
 	dwe::Node* suelo = GEInstance->createNode("suelo");
 	dwe::Node* paredes = GEInstance->createNode("paredes");
 
@@ -70,10 +62,10 @@ int main()
 //            GEInstance->yield();
 //        }
 
-        netGame->update();
+        NetInstance->update();
 	}
 
-	netGame->close();
+	NetInstance->close();
 
 	return 0;
 }

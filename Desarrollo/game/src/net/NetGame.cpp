@@ -5,12 +5,23 @@
 
 #include "DrawableReplica.h"
 #include "Player.h"
+#include "PlayerMate.h"
 
 using namespace dwn;
 
+bool NetGame::isConnectedToNATPunchthroughServer = false;
+
 NetGame::NetGame()
 {
-    isConnectedToNATPunchthroughServer = false;
+
+}
+
+NetGame* NetGame::Instance()
+{
+    NetGame::isConnectedToNATPunchthroughServer = false;
+
+    static NetGame instance;
+    return &instance;
 }
 
 NetGame::~NetGame()
@@ -48,7 +59,6 @@ void NetGame::open()
 	// ReplicaManager3 se encarga de la gestión de objetos replicados
 	// Automatically sends around new / deleted / changed game objects
 	replicaManager3 = new ReplicaManager3DireW;
-	replicaManager3->netGame = this;
 	replicaManager3->SetNetworkIDManager(networkIDManager);
 	rakPeer->AttachPlugin(replicaManager3);
     // Automatically destroy connections, but don't create them so we have more control over when a system is considered ready to play
@@ -333,18 +343,8 @@ RakNet::Replica3* NetGame::Connection_RM3DireW::AllocReplica(RakNet::BitStream* 
 	RakNet::RakString typeName;
 	allocationId->Read(typeName);
 
-	//Mono* mono = dwe::GraphicsEngine::Instance()->createMono("mono");
-	//mono->netGame = netGame;
-	//return mono;
-
-	if (typeName == "Player") {	Player* obj = GEInstance->createMainPlayer(); obj->netGame = netGame; return obj; }
-
-	return 0;
-
-//	if (typeName=="PlayerReplica") {BaseIrrlichtReplica *r = new PlayerReplica; r->demo=demo; return r;}
-	//if (typeName=="PlayerReplica") {BaseIrrlichtReplica *r = new PlayerReplica; r->demo=demo; return r;}
-	//if (typeName=="BallReplica") {BaseIrrlichtReplica *r = new BallReplica; r->demo=demo; return r;}
-	//return 0;
+	if (typeName == "Player") { PlayerMate* obj = GEInstance->createPlayerMate(); return obj; }
+	else return 0;
 }
 
 
