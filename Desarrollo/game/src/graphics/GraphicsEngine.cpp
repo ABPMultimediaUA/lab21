@@ -1,4 +1,4 @@
-#include "FachadeDireEngine.h"
+#include "GraphicsEngine.h"
 #include "Player.h"
 #include "PlayerMate.h"
 #include "NetGame.h"
@@ -146,6 +146,10 @@ void dwe::GraphicsEngine::draw()
     m_guienv->drawAll();
 
     m_driver->endScene();
+
+    wchar_t tmp[255];
+    swprintf(tmp, L"Lab21 - fps:%d triangles:%d", m_driver->getFPS(), m_driver->getPrimitiveCountDrawn());
+  	m_device->setWindowCaption(tmp);
 }
 
 ////////////////////////////////

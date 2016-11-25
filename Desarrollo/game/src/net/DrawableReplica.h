@@ -20,8 +20,18 @@ namespace dwn
             DrawableReplica();
             virtual ~DrawableReplica();
 
+            // Esta función hay que sobrescribirla para obtener el
+            // nombre del objeto a crear en el sistema remoto.
             virtual const char* getNetObjectID() const;
 
+            virtual void update(RakNet::TimeMS curTime);
+
+        protected:
+
+        private:
+            dwe::vec3f m_remotePos;
+
+            // Puestas en private para no heredar
             virtual void SerializeConstruction(RakNet::BitStream *constructionBitstream, RakNet::Connection_RM3 *destinationConnection);
             virtual bool DeserializeConstruction(RakNet::BitStream *constructionBitstream, RakNet::Connection_RM3 *sourceConnection);
             virtual RakNet::RM3SerializationResult Serialize(RakNet::SerializeParameters *serializeParameters);
@@ -30,7 +40,7 @@ namespace dwn
             virtual void PostDeserializeConstruction(RakNet::BitStream *constructionBitstream, RakNet::Connection_RM3 *destinationConnection);
             virtual void PreDestruction(RakNet::Connection_RM3 *sourceConnection);
 
-            virtual void Update(RakNet::TimeMS curTime);
+            virtual void WriteAllocationID(RakNet::Connection_RM3 *destinationConnection, RakNet::BitStream *allocationIdBitstream) const;
 
             // Necesarias al ser virtuales puras
             virtual RakNet::RM3ConstructionState QueryConstruction(RakNet::Connection_RM3 *destinationConnection, RakNet::ReplicaManager3 *replicaManager3) {return QueryConstruction_PeerToPeer(destinationConnection);}
@@ -40,11 +50,6 @@ namespace dwn
             virtual RakNet::RM3ActionOnPopConnection QueryActionOnPopConnection(RakNet::Connection_RM3 *droppedConnection) const {return QueryActionOnPopConnection_PeerToPeer(droppedConnection);}
             virtual void DeallocReplica(RakNet::Connection_RM3 *sourceConnection) {delete this;}
             virtual RakNet::RM3QuerySerializationResult QuerySerialization(RakNet::Connection_RM3 *destinationConnection) {return QuerySerialization_PeerToPeer(destinationConnection);}
-        protected:
-
-        private:
-            dwe::vec3f m_remotePos;
-            virtual void WriteAllocationID(RakNet::Connection_RM3 *destinationConnection, RakNet::BitStream *allocationIdBitstream) const;
     };
 }
 

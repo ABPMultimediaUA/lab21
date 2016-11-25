@@ -17,6 +17,8 @@
 #include "NetworkIDManager.h"
 #include "GetTime.h"
 
+#include "DrawableReplica.h"
+
 #define DEFAULT_IP "127.0.0.1"
 #define DEFAULT_PT 61111
 
@@ -31,7 +33,7 @@ namespace dwn
             void open();
             void close();
             void update();
-            void addNetObject(RakNet::Replica3 *replica3);
+            void addNetObject(dwn::DrawableReplica *drawReplica);
             bool isLocalObject(RakNet::RakNetGUID id);
 
             static bool isConnectedToNATPunchthroughServer;

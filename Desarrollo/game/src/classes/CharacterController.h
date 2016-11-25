@@ -3,11 +3,11 @@
 
 #include "DrawableReplica.h"
 
-class Character : public dwn::DrawableReplica
+class CharacterController : public dwn::DrawableReplica
 {
     public:
-        Character();
-        virtual ~Character();
+        CharacterController();
+        virtual ~CharacterController();
 
 
         int getStrength();

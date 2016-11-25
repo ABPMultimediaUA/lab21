@@ -2,11 +2,11 @@
 #define GAME_H
 
 
-class Game
+class Scene
 {
     public:
-        Game();
-        virtual ~Game();
+        Scene();
+        virtual ~Scene();
 
     protected:
 

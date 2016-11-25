@@ -2,12 +2,12 @@
 #define PLAYER_H
 
 #include <defines.h>
-#include <Character.h>
+#include <CharacterController.h>
 #include <Firearm.h>
 
 
 
-class Player : public Character
+class Player : public CharacterController
 {
     public:
         Player();

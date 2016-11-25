@@ -66,7 +66,7 @@ void dwn::DrawableReplica::Deserialize(RakNet::DeserializeParameters* deserializ
 }
 
 ///////////////////////////
-void dwn::DrawableReplica::Update(RakNet::TimeMS curTime)
+void dwn::DrawableReplica::update(RakNet::TimeMS curTime)
 {
     // ¿Es objeto local?
 	if (NetInstance->isLocalObject(creatingSystemGUID))

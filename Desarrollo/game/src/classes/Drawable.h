@@ -1,7 +1,7 @@
 #ifndef DRAWABLE_H
 #define DRAWABLE_H
 
-#include "FachadeDireEngine.h"
+#include "GraphicsEngine.h"
 
 class Drawable
 {
@@ -15,10 +15,13 @@ class Drawable
 
         float* getMesh();
         void setMesh(float* m);
+
         dwe::vec3f getPosition();
         void setPosition(dwe::vec3f p);
+
         dwe::vec3f getRotation();
         void setRotation(dwe::vec3f r);
+
         void setNode(dwe::Node* n);
 
     protected:

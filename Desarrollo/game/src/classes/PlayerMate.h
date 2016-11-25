@@ -2,7 +2,7 @@
 #define PLAYERMATE_H
 
 #include "DrawableReplica.h"
-#include "FachadeDireEngine.h"
+#include "GraphicsEngine.h"
 
 class PlayerMate : public dwn::DrawableReplica
 {

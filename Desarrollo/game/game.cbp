@@ -66,8 +66,8 @@
 		<Unit filename="src/classes/CRifle.h" />
 		<Unit filename="src/classes/CShotgun.cpp" />
 		<Unit filename="src/classes/CShotgun.h" />
-		<Unit filename="src/classes/Character.cpp" />
-		<Unit filename="src/classes/Character.h" />
+		<Unit filename="src/classes/CharacterController.cpp" />
+		<Unit filename="src/classes/CharacterController.h" />
 		<Unit filename="src/classes/Consumable.cpp" />
 		<Unit filename="src/classes/Consumable.h" />
 		<Unit filename="src/classes/Dog.cpp" />
@@ -82,8 +82,6 @@
 		<Unit filename="src/classes/Firearm.h" />
 		<Unit filename="src/classes/Flashlight.cpp" />
 		<Unit filename="src/classes/Flashlight.h" />
-		<Unit filename="src/classes/Game.cpp" />
-		<Unit filename="src/classes/Game.h" />
 		<Unit filename="src/classes/Grenade.cpp" />
 		<Unit filename="src/classes/Grenade.h" />
 		<Unit filename="src/classes/Gun.cpp" />
@@ -100,6 +98,8 @@
 		<Unit filename="src/classes/PlayerMate.h" />
 		<Unit filename="src/classes/Rifle.cpp" />
 		<Unit filename="src/classes/Rifle.h" />
+		<Unit filename="src/classes/Scene.cpp" />
+		<Unit filename="src/classes/Scene.h" />
 		<Unit filename="src/classes/Shotgun.cpp" />
 		<Unit filename="src/classes/Shotgun.h" />
 		<Unit filename="src/classes/Weapon.cpp" />
@@ -107,8 +107,8 @@
 		<Unit filename="src/classes/Whole.cpp" />
 		<Unit filename="src/classes/Whole.h" />
 		<Unit filename="src/classes/defines.h" />
-		<Unit filename="src/graphics/FachadeDireEngine.cpp" />
-		<Unit filename="src/graphics/FachadeDireEngine.h" />
+		<Unit filename="src/graphics/GraphicsEngine.cpp" />
+		<Unit filename="src/graphics/GraphicsEngine.h" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/net/DrawableReplica.cpp" />
 		<Unit filename="src/net/DrawableReplica.h" />

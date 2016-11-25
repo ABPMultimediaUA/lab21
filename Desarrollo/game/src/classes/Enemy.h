@@ -1,10 +1,10 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-#include <Character.h>
+#include "DrawableReplica.h"
 
 
-class Enemy : public Character
+class Enemy : public dwn::DrawableReplica
 {
     public:
         Enemy();

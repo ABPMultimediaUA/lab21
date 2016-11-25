@@ -1,6 +1,6 @@
 #include "NetGame.h"
 #include "MessageIdentifiers.h"
-#include "FachadeDireEngine.h"
+#include "GraphicsEngine.h"
 #include <iostream>
 
 #include "DrawableReplica.h"
@@ -319,13 +319,13 @@ void NetGame::update()
 	// Call the Update function for networked game objects added to BaseIrrlichtReplica once the game is ready
 	unsigned int idx;
 	for (idx=0; idx < replicaManager3->GetReplicaCount(); idx++)
-		((DrawableReplica*)(replicaManager3->GetReplicaAtIndex(idx)))->Update(curTime);;
+		((DrawableReplica*)(replicaManager3->GetReplicaAtIndex(idx)))->update(curTime);;
 }
 
 //////////////
-void NetGame::addNetObject(RakNet::Replica3 *replica3)
+void NetGame::addNetObject(dwn::DrawableReplica *drawReplica)
 {
-    replicaManager3->Reference(replica3);
+    replicaManager3->Reference(drawReplica);
 }
 
 //////////////
