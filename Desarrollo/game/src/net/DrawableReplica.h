@@ -30,6 +30,7 @@ namespace dwn
 
         private:
             dwe::vec3f m_remotePos;
+            dwe::vec3f m_remoteRot;
 
             // Puestas en private para no heredar
             virtual void SerializeConstruction(RakNet::BitStream *constructionBitstream, RakNet::Connection_RM3 *destinationConnection);

@@ -23,12 +23,14 @@ void dwn::DrawableReplica::WriteAllocationID(RakNet::Connection_RM3* destination
 void dwn::DrawableReplica::SerializeConstruction(RakNet::BitStream* constructionBitstream, RakNet::Connection_RM3* destinationConnection)
 {
 	constructionBitstream->Write(getPosition());
+	constructionBitstream->Write(getRotation());
 }
 
 ///////////////////////////
 bool dwn::DrawableReplica::DeserializeConstruction(RakNet::BitStream* constructionBitstream, RakNet::Connection_RM3* sourceConnection)
 {
     constructionBitstream->Read(m_remotePos);
+    constructionBitstream->Read(m_remoteRot);
 	return true;
 }
 
@@ -41,6 +43,7 @@ void dwn::DrawableReplica::PostDeserializeConstruction(RakNet::BitStream* constr
 	// Por ejemplo se puede crear en el hud los datos del modelo remoto creado
 	// y la posicion inicial
 	setPosition(m_remotePos);
+	setRotation(m_remoteRot);
 }
 
 ///////////////////////////
@@ -54,6 +57,7 @@ RakNet::RM3SerializationResult dwn::DrawableReplica::Serialize(RakNet::Serialize
 {
     // TODO no deveria devolver algo de RakNet, por patrón fachada
 	serializeParameters->outputBitstream[0].Write(getPosition());
+	serializeParameters->outputBitstream[0].Write(getRotation());
 	return RakNet::RM3SR_BROADCAST_IDENTICALLY;
 }
 
@@ -61,6 +65,7 @@ RakNet::RM3SerializationResult dwn::DrawableReplica::Serialize(RakNet::Serialize
 void dwn::DrawableReplica::Deserialize(RakNet::DeserializeParameters* deserializeParameters)
 {
 	deserializeParameters->serializationBitstream[0].Read(m_remotePos);
+	deserializeParameters->serializationBitstream[0].Read(m_remoteRot);
 	// Aqui no podemos hacer setPosition, no va bien. Es solo para coger los parametros
 	// y en el update mover
 }
@@ -77,5 +82,6 @@ void dwn::DrawableReplica::update(RakNet::TimeMS curTime)
     {
         // Objeto creado por red
         setPosition(m_remotePos);
+        setRotation(m_remoteRot);
     }
 }

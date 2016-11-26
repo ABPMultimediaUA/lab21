@@ -36,6 +36,9 @@ int main()
             dwe::vec3f m(0.0f);
             m = mainPlayer->getPosition();
 
+            dwe::vec3f r(0.0f);
+            r = mainPlayer->getRotation();
+
             if(appReceiver->isKeyDown(KEY_ESCAPE))
             {
                 GEInstance->close();
@@ -44,16 +47,30 @@ int main()
             else
             {
                 if(appReceiver->isKeyDown(KEY_RIGHT))
+                {
                     m.z -= 0.005;
+                    r.y = 180.f;
+                }
                 else if(appReceiver->isKeyDown(KEY_LEFT))
+                {
                     m.z += 0.005;
+                    r.y = 0.f;
+                }
                 else if(appReceiver->isKeyDown(KEY_UP))
+                {
                     m.x += 0.005;
+                    r.y = 90.f;
+
+                }
                 else if(appReceiver->isKeyDown(KEY_DOWN))
+                {
                     m.x -= 0.005;
+                    r.y = 270.f;
+                }
             }
 
             mainPlayer->setPosition(m);
+            mainPlayer->setRotation(r);
 
             GEInstance->draw();
 //        }

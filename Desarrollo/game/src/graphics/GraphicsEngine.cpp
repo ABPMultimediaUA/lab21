@@ -35,23 +35,24 @@ void dwe::Node::move(vec3f v)
 
 dwe::vec3f dwe::Node::getPosition()
 {
-    irr::core::vector3df _v = m_node->getPosition();
-    vec3f v;
-
-    v.x = _v.X;
-    v.y = _v.Y;
-    v.z = _v.Z;
-
-    return v;
+    // Se obtiene la posición de Irrlicht del nodo y se pasa a vector de dwe
+    return dwe::irrVector2dwe<float>(m_node->getPosition());
 }
 
 void dwe::Node::setPosition(vec3f v)
 {
-    irr::core::vector3df _v = m_node->getPosition();
-    _v.X = v.x;
-    _v.Y = v.y;
-    _v.Z = v.z;
-    m_node->setPosition(_v);
+    // El vector pasado como vec3f se pasa al vector de tipo irrlicht
+    m_node->setPosition(dwe::dweVector2irr<float>(v));
+}
+
+dwe::vec3f dwe::Node::getRotation()
+{
+    return dwe::irrVector2dwe<float>(m_node->getRotation());
+}
+
+void dwe::Node::setRotation(dwe::vec3f v)
+{
+    m_node->setRotation(dwe::dweVector2irr<float>(v));
 }
 
 

@@ -29,7 +29,6 @@ class Drawable
     private:
         dwe::Node*  m_node;
         float*      m_mesh;
-        dwe::vec3f  m_rotation;
 };
 
 #endif // DRAWABLE_H

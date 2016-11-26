@@ -20,8 +20,8 @@ dwe::vec3f Drawable::getPosition() { return m_node->getPosition(); }
 void Drawable::setPosition(dwe::vec3f p) { m_node->setPosition(p); }
 
 /////////////////////
-dwe::vec3f Drawable::getRotation() { return m_rotation; }
-void Drawable::setRotation(dwe::vec3f r) { m_rotation = r; }
+dwe::vec3f Drawable::getRotation() { return m_node->getRotation(); }
+void Drawable::setRotation(dwe::vec3f r) { m_node->setRotation(r); }
 
 /////////////////////
 void Drawable::setNode(dwe::Node* n) { m_node = n; }
