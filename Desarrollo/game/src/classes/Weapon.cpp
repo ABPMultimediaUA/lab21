@@ -19,5 +19,4 @@ void Weapon::shoot()
 
 ////////////
 int Weapon::getDamage() { return m_damage; }
-int Weapon::getAmmo() { return m_ammo; }
 void Weapon::setDamage(int damage) { m_damage = damage; }

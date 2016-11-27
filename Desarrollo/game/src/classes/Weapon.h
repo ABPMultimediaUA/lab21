@@ -15,14 +15,12 @@ class Weapon : public Drawable
 
         // Getters & Setters
         int getDamage();
-        int getAmmo();
         void setDamage(int damage);
 
     protected:
 
     private:
         int m_damage;
-        int m_ammo;
 };
 
 #endif // WEAPON_H
