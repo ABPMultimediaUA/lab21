@@ -1,9 +1,12 @@
 #include <iostream>
 #include <Box2D/Box2D.h>
-#include <FachadeDireEngine.h>
-#include <AppReceiver.h>
+#include <GraphicsEngine.h>
+#include "NetGame.h"
+#include "Player.h"
 
-
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
     // Box2D
@@ -14,47 +17,72 @@ int main()
 
     // Illricht
     AppReceiver* appReceiver = new AppReceiver();
-	fde::Graphics graphics;
-	graphics.init(appReceiver);
+	GEInstance->init(appReceiver);
 
-	fde::Node* mono = graphics.createNode("mono");
-	fde::Node* suelo = graphics.createNode("suelo");
-	fde::Node* paredes = graphics.createNode("paredes");
+	// Motor de red
+    NetInstance->open();
 
 
-	while(graphics.isRunning())
+	Player* mainPlayer = GEInstance->createMainPlayer();
+
+
+	dwe::Node* suelo = GEInstance->createNode("suelo");
+	dwe::Node* paredes = GEInstance->createNode("paredes");
+
+	while(GEInstance->isRunning())
 	{
-	    if (graphics.isWindowActive())
-        {
-            fde::vec3f m(0.0f);
+//	    if (GEInstance->isWindowActive())
+//        {
+            dwe::vec3f m(0.0f);
+            m = mainPlayer->getPosition();
+
+            dwe::vec3f r(0.0f);
+            r = mainPlayer->getRotation();
 
             if(appReceiver->isKeyDown(KEY_ESCAPE))
             {
-                graphics.close();
+                GEInstance->close();
                 return 0;
             }
             else
             {
                 if(appReceiver->isKeyDown(KEY_RIGHT))
-                    m.x += 0.02;
-                if(appReceiver->isKeyDown(KEY_LEFT))
-                    m.x -= 0.02;
-                if(appReceiver->isKeyDown(KEY_UP))
-                    m.z += 0.02;
-                if(appReceiver->isKeyDown(KEY_DOWN))
-                    m.z -= 0.02;
+                {
+                    m.z -= 0.005;
+                    r.y = 180.f;
+                }
+                else if(appReceiver->isKeyDown(KEY_LEFT))
+                {
+                    m.z += 0.005;
+                    r.y = 0.f;
+                }
+                else if(appReceiver->isKeyDown(KEY_UP))
+                {
+                    m.x += 0.005;
+                    r.y = 90.f;
+
+                }
+                else if(appReceiver->isKeyDown(KEY_DOWN))
+                {
+                    m.x -= 0.005;
+                    r.y = 270.f;
+                }
             }
 
-            mono->move(m);
+            mainPlayer->setPosition(m);
+            mainPlayer->setRotation(r);
 
-            graphics.draw();
-        }
-        else
-        {
-            graphics.yield();
-        }
+            GEInstance->draw();
+//        }
+//        else
+//        {
+//            GEInstance->yield();
+//        }
+
+        NetInstance->update();
 	}
 
+	NetInstance->close();
 
 	return 0;
 }
