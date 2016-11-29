@@ -2894,3 +2894,1664 @@
 	"PlayerMate.h"
 	"NetGame.h"
 
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\ammo.cpp
+	"Ammo.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\ammo.h
+	<Consumable.h>
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\consumable.h
+	<Drawable.h>
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\drawable.h
+	"GraphicsEngine.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\graphics\graphicsengine.h
+	<irrlicht.h>
+	<string>
+	<AppReceiver.h>
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\irrlicht.h
+	"IrrCompileConfig.h"
+	"aabbox3d.h"
+	"CDynamicMeshBuffer.h"
+	"CIndexBuffer.h"
+	"CMeshBuffer.h"
+	"coreutil.h"
+	"CVertexBuffer.h"
+	"dimension2d.h"
+	"ECullingTypes.h"
+	"EDebugSceneTypes.h"
+	"EDriverFeatures.h"
+	"EDriverTypes.h"
+	"EGUIAlignment.h"
+	"EGUIElementTypes.h"
+	"EHardwareBufferFlags.h"
+	"EMaterialFlags.h"
+	"EMaterialTypes.h"
+	"EMeshWriterEnums.h"
+	"EMessageBoxFlags.h"
+	"ESceneNodeAnimatorTypes.h"
+	"ESceneNodeTypes.h"
+	"ETerrainElements.h"
+	"fast_atof.h"
+	"heapsort.h"
+	"IAnimatedMesh.h"
+	"IAnimatedMeshMD2.h"
+	"IAnimatedMeshMD3.h"
+	"IAnimatedMeshSceneNode.h"
+	"IAttributeExchangingObject.h"
+	"IAttributes.h"
+	"IBillboardSceneNode.h"
+	"IBillboardTextSceneNode.h"
+	"IBoneSceneNode.h"
+	"ICameraSceneNode.h"
+	"ICursorControl.h"
+	"IDummyTransformationSceneNode.h"
+	"IDynamicMeshBuffer.h"
+	"IEventReceiver.h"
+	"IFileList.h"
+	"IFileSystem.h"
+	"IGeometryCreator.h"
+	"IGPUProgrammingServices.h"
+	"IGUIButton.h"
+	"IGUICheckBox.h"
+	"IGUIColorSelectDialog.h"
+	"IGUIComboBox.h"
+	"IGUIContextMenu.h"
+	"IGUIEditBox.h"
+	"IGUIElement.h"
+	"IGUIElementFactory.h"
+	"IGUIEnvironment.h"
+	"IGUIFileOpenDialog.h"
+	"IGUIFont.h"
+	"IGUIFontBitmap.h"
+	"IGUIImage.h"
+	"IGUIInOutFader.h"
+	"IGUIListBox.h"
+	"IGUIMeshViewer.h"
+	"IGUIScrollBar.h"
+	"IGUISkin.h"
+	"IGUISpinBox.h"
+	"IGUISpriteBank.h"
+	"IGUIStaticText.h"
+	"IGUITabControl.h"
+	"IGUITable.h"
+	"IGUIToolbar.h"
+	"IGUIWindow.h"
+	"IGUITreeView.h"
+	"IImage.h"
+	"IImageLoader.h"
+	"IImageWriter.h"
+	"IIndexBuffer.h"
+	"ILightSceneNode.h"
+	"ILogger.h"
+	"IMaterialRenderer.h"
+	"IMaterialRendererServices.h"
+	"IMesh.h"
+	"IMeshBuffer.h"
+	"IMeshCache.h"
+	"IMeshLoader.h"
+	"IMeshManipulator.h"
+	"IMeshSceneNode.h"
+	"IMeshWriter.h"
+	"IColladaMeshWriter.h"
+	"IMetaTriangleSelector.h"
+	"IOSOperator.h"
+	"IParticleSystemSceneNode.h"
+	"IQ3LevelMesh.h"
+	"IQ3Shader.h"
+	"IReadFile.h"
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"IRandomizer.h"
+	"IrrlichtDevice.h"
+	"irrList.h"
+	"irrMap.h"
+	"irrMath.h"
+	"irrString.h"
+	"irrTypes.h"
+	"path.h"
+	"irrXML.h"
+	"ISceneCollisionManager.h"
+	"ISceneLoader.h"
+	"ISceneManager.h"
+	"ISceneNode.h"
+	"ISceneNodeAnimator.h"
+	"ISceneNodeAnimatorCameraFPS.h"
+	"ISceneNodeAnimatorCameraMaya.h"
+	"ISceneNodeAnimatorCollisionResponse.h"
+	"ISceneNodeAnimatorFactory.h"
+	"ISceneNodeFactory.h"
+	"ISceneUserDataSerializer.h"
+	"IShaderConstantSetCallBack.h"
+	"IShadowVolumeSceneNode.h"
+	"ISkinnedMesh.h"
+	"ITerrainSceneNode.h"
+	"ITextSceneNode.h"
+	"ITexture.h"
+	"ITimer.h"
+	"ITriangleSelector.h"
+	"IVertexBuffer.h"
+	"IVideoDriver.h"
+	"IVideoModeList.h"
+	"IVolumeLightSceneNode.h"
+	"IWriteFile.h"
+	"IXMLReader.h"
+	"IXMLWriter.h"
+	"ILightManager.h"
+	"Keycodes.h"
+	"line2d.h"
+	"line3d.h"
+	"matrix4.h"
+	"plane3d.h"
+	"position2d.h"
+	"quaternion.h"
+	"rect.h"
+	"S3DVertex.h"
+	"SAnimatedMesh.h"
+	"SceneParameters.h"
+	"SColor.h"
+	"SExposedVideoData.h"
+	"SIrrCreationParameters.h"
+	"SKeyMap.h"
+	"SLight.h"
+	"SMaterial.h"
+	"SMesh.h"
+	"SMeshBuffer.h"
+	"SMeshBufferLightMap.h"
+	"SMeshBufferTangents.h"
+	"SParticle.h"
+	"SSharedMeshBuffer.h"
+	"SSkinMeshBuffer.h"
+	"SVertexIndex.h"
+	"SViewFrustum.h"
+	"triangle3d.h"
+	"vector2d.h"
+	"vector3d.h"
+	"SIrrCreationParameters.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\irrcompileconfig.h
+	<stdio.h>
+	<xtl.h>
+	<tchar.h>
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\aabbox3d.h
+	"irrMath.h"
+	"plane3d.h"
+	"line3d.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\irrmath.h
+	"IrrCompileConfig.h"
+	"irrTypes.h"
+	<math.h>
+	<float.h>
+	<stdlib.h>
+	<limits.h>
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\irrtypes.h
+	"IrrCompileConfig.h"
+	<wchar.h>
+	<crtdbg.h>
+	"assert.h"
+	<stdlib.h>
+	<crtdbg.h>
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\plane3d.h
+	"irrMath.h"
+	"vector3d.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\vector3d.h
+	"irrMath.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\line3d.h
+	"irrTypes.h"
+	"vector3d.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\cdynamicmeshbuffer.h
+	"IDynamicMeshBuffer.h"
+	"CVertexBuffer.h"
+	"CIndexBuffer.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\idynamicmeshbuffer.h
+	"IMeshBuffer.h"
+	"IVertexBuffer.h"
+	"IIndexBuffer.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\imeshbuffer.h
+	"IReferenceCounted.h"
+	"SMaterial.h"
+	"aabbox3d.h"
+	"S3DVertex.h"
+	"SVertexIndex.h"
+	"EHardwareBufferFlags.h"
+	"EPrimitiveTypes.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\ireferencecounted.h
+	"irrTypes.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\smaterial.h
+	"SColor.h"
+	"matrix4.h"
+	"irrArray.h"
+	"irrMath.h"
+	"EMaterialTypes.h"
+	"EMaterialFlags.h"
+	"SMaterialLayer.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\scolor.h
+	"irrTypes.h"
+	"irrMath.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\matrix4.h
+	"irrMath.h"
+	"vector3d.h"
+	"vector2d.h"
+	"plane3d.h"
+	"aabbox3d.h"
+	"rect.h"
+	"irrString.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\vector2d.h
+	"irrMath.h"
+	"dimension2d.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\dimension2d.h
+	"irrTypes.h"
+	"irrMath.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\rect.h
+	"irrTypes.h"
+	"dimension2d.h"
+	"position2d.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\position2d.h
+	"vector2d.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\irrstring.h
+	"irrTypes.h"
+	"irrAllocator.h"
+	"irrMath.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\irrallocator.h
+	"irrTypes.h"
+	<new>
+	<memory.h>
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\irrarray.h
+	"irrTypes.h"
+	"heapsort.h"
+	"irrAllocator.h"
+	"irrMath.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\heapsort.h
+	"irrTypes.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\ematerialtypes.h
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\ematerialflags.h
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\smateriallayer.h
+	"matrix4.h"
+	"irrAllocator.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\s3dvertex.h
+	"vector3d.h"
+	"vector2d.h"
+	"SColor.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\svertexindex.h
+	"irrTypes.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\ehardwarebufferflags.h
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\eprimitivetypes.h
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\ivertexbuffer.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"S3DVertex.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iindexbuffer.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"SVertexIndex.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\cvertexbuffer.h
+	"IVertexBuffer.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\cindexbuffer.h
+	"IIndexBuffer.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\cmeshbuffer.h
+	"irrArray.h"
+	"IMeshBuffer.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\coreutil.h
+	"irrString.h"
+	"path.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\path.h
+	"irrString.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\ecullingtypes.h
+	"irrTypes.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\edebugscenetypes.h
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\edriverfeatures.h
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\edrivertypes.h
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\eguialignment.h
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\eguielementtypes.h
+	"irrTypes.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\emeshwriterenums.h
+	"irrTypes.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\emessageboxflags.h
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\escenenodeanimatortypes.h
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\escenenodetypes.h
+	"irrTypes.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\eterrainelements.h
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\fast_atof.h
+	"irrMath.h"
+	"irrString.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\ianimatedmesh.h
+	"aabbox3d.h"
+	"IMesh.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\imesh.h
+	"IReferenceCounted.h"
+	"SMaterial.h"
+	"EHardwareBufferFlags.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\ianimatedmeshmd2.h
+	"IAnimatedMesh.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\ianimatedmeshmd3.h
+	"IAnimatedMesh.h"
+	"IQ3Shader.h"
+	"quaternion.h"
+	"irrpack.h"
+	"irrunpack.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iq3shader.h
+	"irrArray.h"
+	"fast_atof.h"
+	"IFileSystem.h"
+	"IVideoDriver.h"
+	"coreutil.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\ifilesystem.h
+	"IReferenceCounted.h"
+	"IXMLReader.h"
+	"IFileArchive.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\ixmlreader.h
+	"IReferenceCounted.h"
+	"irrXML.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\irrxml.h
+	<stdio.h>
+	"IrrCompileConfig.h"
+	<irrXML.h>
+	<string>
+	<irrXML.h>
+	<irrXML.h>
+	<irrXML.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\ifilearchive.h
+	"IReadFile.h"
+	"IFileList.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\ireadfile.h
+	"IReferenceCounted.h"
+	"coreutil.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\ifilelist.h
+	"IReferenceCounted.h"
+	"path.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\ivideodriver.h
+	"rect.h"
+	"SColor.h"
+	"ITexture.h"
+	"irrArray.h"
+	"matrix4.h"
+	"plane3d.h"
+	"dimension2d.h"
+	"position2d.h"
+	"SMaterial.h"
+	"IMeshBuffer.h"
+	"triangle3d.h"
+	"EDriverTypes.h"
+	"EDriverFeatures.h"
+	"SExposedVideoData.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\itexture.h
+	"IReferenceCounted.h"
+	"IImage.h"
+	"dimension2d.h"
+	"EDriverTypes.h"
+	"path.h"
+	"matrix4.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iimage.h
+	"IReferenceCounted.h"
+	"position2d.h"
+	"rect.h"
+	"SColor.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\triangle3d.h
+	"vector3d.h"
+	"line3d.h"
+	"plane3d.h"
+	"aabbox3d.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\sexposedvideodata.h
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\quaternion.h
+	"irrTypes.h"
+	"irrMath.h"
+	"matrix4.h"
+	"vector3d.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\irrpack.h
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\irrunpack.h
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\ianimatedmeshscenenode.h
+	"ISceneNode.h"
+	"IBoneSceneNode.h"
+	"IAnimatedMeshMD2.h"
+	"IAnimatedMeshMD3.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iscenenode.h
+	"IAttributeExchangingObject.h"
+	"ESceneNodeTypes.h"
+	"ECullingTypes.h"
+	"EDebugSceneTypes.h"
+	"ISceneNodeAnimator.h"
+	"ITriangleSelector.h"
+	"SMaterial.h"
+	"irrString.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"irrList.h"
+	"IAttributes.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iattributeexchangingobject.h
+	"IReferenceCounted.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iscenenodeanimator.h
+	"IReferenceCounted.h"
+	"vector3d.h"
+	"ESceneNodeAnimatorTypes.h"
+	"IAttributeExchangingObject.h"
+	"IEventReceiver.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\ieventreceiver.h
+	"ILogger.h"
+	"Keycodes.h"
+	"irrString.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\ilogger.h
+	"IReferenceCounted.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\keycodes.h
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\itriangleselector.h
+	"IReferenceCounted.h"
+	"triangle3d.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"line3d.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\irrlist.h
+	"irrTypes.h"
+	"irrAllocator.h"
+	"irrMath.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iattributes.h
+	"IReferenceCounted.h"
+	"SColor.h"
+	"vector3d.h"
+	"vector2d.h"
+	"line2d.h"
+	"line3d.h"
+	"triangle3d.h"
+	"position2d.h"
+	"rect.h"
+	"dimension2d.h"
+	"matrix4.h"
+	"quaternion.h"
+	"plane3d.h"
+	"triangle3d.h"
+	"line2d.h"
+	"line3d.h"
+	"irrString.h"
+	"irrArray.h"
+	"IXMLReader.h"
+	"EAttributes.h"
+	"path.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\line2d.h
+	"irrTypes.h"
+	"vector2d.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\eattributes.h
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\ibonescenenode.h
+	"ISceneNode.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\ibillboardscenenode.h
+	"ISceneNode.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\ibillboardtextscenenode.h
+	"IBillboardSceneNode.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\icamerascenenode.h
+	"ISceneNode.h"
+	"IEventReceiver.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\icursorcontrol.h
+	"IReferenceCounted.h"
+	"position2d.h"
+	"rect.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\idummytransformationscenenode.h
+	"ISceneNode.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\igeometrycreator.h
+	"IReferenceCounted.h"
+	"IMesh.h"
+	"IImage.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\igpuprogrammingservices.h
+	"EShaderTypes.h"
+	"EMaterialTypes.h"
+	"EPrimitiveTypes.h"
+	"path.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\eshadertypes.h
+	"irrTypes.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguibutton.h
+	"IGUIElement.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguielement.h
+	"IAttributeExchangingObject.h"
+	"irrList.h"
+	"rect.h"
+	"irrString.h"
+	"IEventReceiver.h"
+	"EGUIElementTypes.h"
+	"EGUIAlignment.h"
+	"IAttributes.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguicheckbox.h
+	"IGUIElement.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguicolorselectdialog.h
+	"IGUIElement.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguicombobox.h
+	"IGUIElement.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguicontextmenu.h
+	"IGUIElement.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguieditbox.h
+	"IGUIElement.h"
+	"SColor.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguielementfactory.h
+	"IReferenceCounted.h"
+	"EGUIElementTypes.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguienvironment.h
+	"IReferenceCounted.h"
+	"IGUISkin.h"
+	"rect.h"
+	"EMessageBoxFlags.h"
+	"IEventReceiver.h"
+	"IXMLReader.h"
+	"path.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguiskin.h
+	"IAttributeExchangingObject.h"
+	"EGUIAlignment.h"
+	"SColor.h"
+	"rect.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguifileopendialog.h
+	"IGUIElement.h"
+	"path.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguifont.h
+	"IReferenceCounted.h"
+	"SColor.h"
+	"rect.h"
+	"irrString.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguifontbitmap.h
+	"IGUIFont.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguiimage.h
+	"IGUIElement.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguiinoutfader.h
+	"IGUIElement.h"
+	"SColor.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguilistbox.h
+	"IGUIElement.h"
+	"SColor.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguimeshviewer.h
+	"IGUIElement.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguiscrollbar.h
+	"IGUIElement.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguispinbox.h
+	"IGUIElement.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguispritebank.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"SColor.h"
+	"rect.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguistatictext.h
+	"IGUIElement.h"
+	"SColor.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguitabcontrol.h
+	"IGUIElement.h"
+	"SColor.h"
+	"IGUISkin.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguitable.h
+	"IGUIElement.h"
+	"irrTypes.h"
+	"SColor.h"
+	"IGUISkin.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguitoolbar.h
+	"IGUIElement.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguiwindow.h
+	"IGUIElement.h"
+	"EMessageBoxFlags.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguitreeview.h
+	"IGUIElement.h"
+	"IGUIImageList.h"
+	"irrTypes.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iguiimagelist.h
+	"IGUIElement.h"
+	"rect.h"
+	"irrTypes.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iimageloader.h
+	"IReferenceCounted.h"
+	"IImage.h"
+	"path.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\iimagewriter.h
+	"IReferenceCounted.h"
+	"irrString.h"
+	"coreutil.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\ilightscenenode.h
+	"ISceneNode.h"
+	"SLight.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\slight.h
+	"SColor.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\imaterialrenderer.h
+	"IReferenceCounted.h"
+	"SMaterial.h"
+	"S3DVertex.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\imaterialrendererservices.h
+	"SMaterial.h"
+	"S3DVertex.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\imeshcache.h
+	"IReferenceCounted.h"
+	"path.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\imeshloader.h
+	"IReferenceCounted.h"
+	"path.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\imeshmanipulator.h
+	"IReferenceCounted.h"
+	"vector3d.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"IAnimatedMesh.h"
+	"IMeshBuffer.h"
+	"SVertexManipulator.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\svertexmanipulator.h
+	"S3DVertex.h"
+	"SColor.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\imeshscenenode.h
+	"ISceneNode.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\imeshwriter.h
+	"IReferenceCounted.h"
+	"EMeshWriterEnums.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\icolladameshwriter.h
+	"IMeshWriter.h"
+	"ISceneNode.h"
+	"IAnimatedMesh.h"
+	"SMaterial.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\imetatriangleselector.h
+	"ITriangleSelector.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iosoperator.h
+	"IReferenceCounted.h"
+	"irrString.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iparticlesystemscenenode.h
+	"ISceneNode.h"
+	"IParticleAnimatedMeshSceneNodeEmitter.h"
+	"IParticleBoxEmitter.h"
+	"IParticleCylinderEmitter.h"
+	"IParticleMeshEmitter.h"
+	"IParticleRingEmitter.h"
+	"IParticleSphereEmitter.h"
+	"IParticleAttractionAffector.h"
+	"IParticleFadeOutAffector.h"
+	"IParticleGravityAffector.h"
+	"IParticleRotationAffector.h"
+	"dimension2d.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iparticleanimatedmeshscenenodeemitter.h
+	"IParticleEmitter.h"
+	"IAnimatedMeshSceneNode.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iparticleemitter.h
+	"IAttributeExchangingObject.h"
+	"SParticle.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\sparticle.h
+	"vector3d.h"
+	"dimension2d.h"
+	"SColor.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iparticleboxemitter.h
+	"IParticleEmitter.h"
+	"aabbox3d.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iparticlecylinderemitter.h
+	"IParticleEmitter.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iparticlemeshemitter.h
+	"IParticleEmitter.h"
+	"IMesh.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iparticleringemitter.h
+	"IParticleEmitter.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iparticlesphereemitter.h
+	"IParticleEmitter.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iparticleattractionaffector.h
+	"IParticleAffector.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iparticleaffector.h
+	"IAttributeExchangingObject.h"
+	"SParticle.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iparticlefadeoutaffector.h
+	"IParticleAffector.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iparticlegravityaffector.h
+	"IParticleAffector.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iparticlerotationaffector.h
+	"IParticleAffector.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iq3levelmesh.h
+	"IAnimatedMesh.h"
+	"IQ3Shader.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\irandomizer.h
+	"IReferenceCounted.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\irrlichtdevice.h
+	"IReferenceCounted.h"
+	"dimension2d.h"
+	"IVideoDriver.h"
+	"EDriverTypes.h"
+	"EDeviceTypes.h"
+	"IEventReceiver.h"
+	"ICursorControl.h"
+	"IVideoModeList.h"
+	"ITimer.h"
+	"IOSOperator.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\edevicetypes.h
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\ivideomodelist.h
+	"IReferenceCounted.h"
+	"dimension2d.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\itimer.h
+	"IReferenceCounted.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\irrmap.h
+	"irrTypes.h"
+	"irrMath.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iscenecollisionmanager.h
+	"IReferenceCounted.h"
+	"vector3d.h"
+	"triangle3d.h"
+	"position2d.h"
+	"line3d.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\isceneloader.h
+	"IReferenceCounted.h"
+	"path.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iscenemanager.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"irrString.h"
+	"path.h"
+	"vector3d.h"
+	"dimension2d.h"
+	"SColor.h"
+	"ETerrainElements.h"
+	"ESceneNodeTypes.h"
+	"ESceneNodeAnimatorTypes.h"
+	"EMeshWriterEnums.h"
+	"SceneParameters.h"
+	"IGeometryCreator.h"
+	"ISkinnedMesh.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\sceneparameters.h
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iskinnedmesh.h
+	"irrArray.h"
+	"IBoneSceneNode.h"
+	"IAnimatedMesh.h"
+	"SSkinMeshBuffer.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\sskinmeshbuffer.h
+	"IMeshBuffer.h"
+	"S3DVertex.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iscenenodeanimatorcamerafps.h
+	"ISceneNodeAnimator.h"
+	"IEventReceiver.h"
+	"irrArray.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iscenenodeanimatorcameramaya.h
+	"ISceneNodeAnimator.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iscenenodeanimatorcollisionresponse.h
+	"ISceneNode.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iscenenodeanimatorfactory.h
+	"IReferenceCounted.h"
+	"ESceneNodeAnimatorTypes.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iscenenodefactory.h
+	"IReferenceCounted.h"
+	"ESceneNodeTypes.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\isceneuserdataserializer.h
+	"IReferenceCounted.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\ishaderconstantsetcallback.h
+	"IReferenceCounted.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\ishadowvolumescenenode.h
+	"ISceneNode.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iterrainscenenode.h
+	"ETerrainElements.h"
+	"ISceneNode.h"
+	"IDynamicMeshBuffer.h"
+	"irrArray.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\itextscenenode.h
+	"ISceneNode.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\ivolumelightscenenode.h
+	"ISceneNode.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\iwritefile.h
+	"IReferenceCounted.h"
+	"path.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\ixmlwriter.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"irrString.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\illricht\ilightmanager.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\sanimatedmesh.h
+	"IAnimatedMesh.h"
+	"IMesh.h"
+	"aabbox3d.h"
+	"irrArray.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\sirrcreationparameters.h
+	"EDriverTypes.h"
+	"EDeviceTypes.h"
+	"dimension2d.h"
+	"ILogger.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\skeymap.h
+	"Keycodes.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\smesh.h
+	"IMesh.h"
+	"IMeshBuffer.h"
+	"aabbox3d.h"
+	"irrArray.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\smeshbuffer.h
+	"CMeshBuffer.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\smeshbufferlightmap.h
+	"CMeshBuffer.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\smeshbuffertangents.h
+	"CMeshBuffer.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\ssharedmeshbuffer.h
+	"irrArray.h"
+	"IMeshBuffer.h"
+
+1479898168 c:\proyectos\lab21\desarrollo\game\include\illricht\sviewfrustum.h
+	"plane3d.h"
+	"vector3d.h"
+	"line3d.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"IVideoDriver.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\appreceiver.h
+	<irrlicht.h>
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\ammogrenade.cpp
+	"AmmoGrenade.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\ammogrenade.h
+	<Ammo.h>
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\ammogun.cpp
+	"AmmoGun.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\ammogun.h
+	<defines.h>
+	<Ammo.h>
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\defines.h
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\ammorifle.cpp
+	"AmmoRifle.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\ammorifle.h
+	<defines.h>
+	<Ammo.h>
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\ammoshotgun.cpp
+	"AmmoShotgun.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\ammoshotgun.h
+	<defines.h>
+	<Ammo.h>
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\bat.cpp
+	"Bat.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\bat.h
+	<Enemy.h>
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\enemy.h
+	"DrawableReplica.h"
+
+1480430282 c:\proyectos\lab21\desarrollo\game\src\net\drawablereplica.h
+	<Drawable.h>
+	"RakPeerInterface.h"
+	"ReplicaManager3.h"
+	"NatPunchthroughClient.h"
+	"CloudClient.h"
+	"FullyConnectedMesh2.h"
+	"RakNetTime.h"
+	"NetworkIDManager.h"
+	"GetTime.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\rakpeerinterface.h
+	"PacketPriority.h"
+	"RakNetTypes.h"
+	"RakMemoryOverride.h"
+	"Export.h"
+	"DS_List.h"
+	"RakNetSmartPtr.h"
+	"RakNetSocket2.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\packetpriority.h
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\raknettypes.h
+	"RakNetDefines.h"
+	"NativeTypes.h"
+	"RakNetTime.h"
+	"Export.h"
+	"WindowsIncludes.h"
+	"XBox360Includes.h"
+	"SocketIncludes.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\raknetdefines.h
+	"RakNetDefinesOverrides.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\raknetdefinesoverrides.h
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\nativetypes.h
+	<stdint.h>
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\raknettime.h
+	"NativeTypes.h"
+	"RakNetDefines.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\export.h
+	"RakNetDefines.h"
+
+1480430282 c:\proyectos\lab21\desarrollo\game\include\raknet\windowsincludes.h
+	<windows.h>
+	<winsock.h>
+	<WinSock2.h>
+	<windows.h>
+	<Ws2tcpip.h>
+
+1480430282 c:\proyectos\lab21\desarrollo\game\include\raknet\xbox360includes.h
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\socketincludes.h
+	<windows.h>
+	"WinRTSockAddr.h"
+	<winsock2.h>
+	<unistd.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<fcntl.h>
+	"ppapi/cpp/private/net_address_private.h"
+	"ppapi/c/pp_bool.h"
+	"ppapi/c/pp_errors.h"
+	"ppapi/cpp/completion_callback.h"
+	"ppapi/cpp/instance_handle.h"
+	"ppapi/cpp/module.h"
+	"ppapi/cpp/module_impl.h"
+	"ppapi/c/pp_errors.h"
+	"ppapi/c/pp_module.h"
+	"ppapi/c/pp_var.h"
+	"ppapi/c/pp_resource.h"
+	"ppapi/c/ppb.h"
+	"ppapi/c/ppb_instance.h"
+	"ppapi/c/ppb_messaging.h"
+	"ppapi/c/ppb_var.h"
+	"ppapi/c/ppp.h"
+	"ppapi/c/ppb_core.h"
+	"ppapi/c/ppp_instance.h"
+	"ppapi/c/ppp_messaging.h"
+	"ppapi/c/pp_input_event.h"
+	"ppapi/c/pp_completion_callback.h"
+	"ppapi/c/private/ppb_udp_socket_private.h"
+	"ppapi/cpp/private/net_address_private.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\rakmemoryoverride.h
+	"Export.h"
+	"RakNetDefines.h"
+	<new>
+	"RakAlloca.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\rakalloca.h
+	<stdlib.h>
+	<malloc/malloc.h>
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<alloca.h>
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\ds_list.h
+	"RakAssert.h"
+	<string.h>
+	"Export.h"
+	"RakMemoryOverride.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\rakassert.h
+	<assert.h>
+	"RakNetDefines.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\raknetsmartptr.h
+	"RakMemoryOverride.h"
+	"Export.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\raknetsocket2.h
+	"RakNetTypes.h"
+	"MTUSize.h"
+	"LocklessTypes.h"
+	"RakThread.h"
+	"DS_ThreadsafeAllocatingQueue.h"
+	"Export.h"
+	<sys/socket.h>
+	<netinet/in.h>
+	"DS_List.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\mtusize.h
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\locklesstypes.h
+	"Export.h"
+	"NativeTypes.h"
+	"WindowsIncludes.h"
+	"SimpleMutex.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\simplemutex.h
+	"RakMemoryOverride.h"
+	"WindowsIncludes.h"
+	<pthread.h>
+	<sys/types.h>
+	"Export.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\rakthread.h
+	"WindowsIncludes.h"
+	"Export.h"
+	"../DependentExtensions/WinPhone8/ThreadEmulation.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\ds_threadsafeallocatingqueue.h
+	"DS_Queue.h"
+	"SimpleMutex.h"
+	"DS_MemoryPool.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\ds_queue.h
+	"RakAssert.h"
+	"Export.h"
+	"RakMemoryOverride.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\ds_memorypool.h
+	<stdlib.h>
+	"RakAssert.h"
+	"Export.h"
+	"RakMemoryOverride.h"
+	"DS_MemoryPool.h"
+	"DS_List.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\replicamanager3.h
+	"NativeFeatureIncludes.h"
+	"RakNetTypes.h"
+	"RakNetTime.h"
+	"BitStream.h"
+	"PacketPriority.h"
+	"PluginInterface2.h"
+	"NetworkIDObject.h"
+	"DS_OrderedList.h"
+	"DS_Queue.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\nativefeatureincludes.h
+	"NativeFeatureIncludesOverrides.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\nativefeatureincludesoverrides.h
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\bitstream.h
+	"BitStream_NoTemplate.h"
+	"RakMemoryOverride.h"
+	"RakNetDefines.h"
+	"Export.h"
+	"RakNetTypes.h"
+	"RakString.h"
+	"RakWString.h"
+	"RakAssert.h"
+	<math.h>
+	<float.h>
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\rakstring.h
+	"Export.h"
+	"DS_List.h"
+	"RakNetTypes.h"
+	<stdio.h>
+	"stdarg.h"
+	"WindowsIncludes.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\rakwstring.h
+	"Export.h"
+	"RakNetTypes.h"
+	"RakString.h"
+	"WindowsIncludes.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\plugininterface2.h
+	"NativeFeatureIncludes.h"
+	"RakNetTypes.h"
+	"Export.h"
+	"PacketPriority.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\networkidobject.h
+	"RakNetTypes.h"
+	"RakMemoryOverride.h"
+	"Export.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\ds_orderedlist.h
+	"DS_List.h"
+	"RakMemoryOverride.h"
+	"Export.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\natpunchthroughclient.h
+	"NativeFeatureIncludes.h"
+	"RakNetTypes.h"
+	"Export.h"
+	"PluginInterface2.h"
+	"PacketPriority.h"
+	"SocketIncludes.h"
+	"DS_List.h"
+	"RakString.h"
+	"DS_Queue.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\cloudclient.h
+	"NativeFeatureIncludes.h"
+	"PluginInterface2.h"
+	"CloudCommon.h"
+	"RakMemoryOverride.h"
+	"DS_Hash.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\cloudcommon.h
+	"NativeFeatureIncludes.h"
+	"RakNetTypes.h"
+	"RakString.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\ds_hash.h
+	"RakAssert.h"
+	<string.h>
+	"Export.h"
+	"RakMemoryOverride.h"
+	"RakString.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\fullyconnectedmesh2.h
+	"NativeFeatureIncludes.h"
+	"PluginInterface2.h"
+	"RakMemoryOverride.h"
+	"NativeTypes.h"
+	"DS_List.h"
+	"RakString.h"
+	"BitStream.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\networkidmanager.h
+	"RakNetTypes.h"
+	"Export.h"
+	"RakMemoryOverride.h"
+	"NetworkIDObject.h"
+	"Rand.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\rand.h
+	"Export.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\gettime.h
+	"Export.h"
+	"RakNetTime.h"
+
+1480430282 source:c:\proyectos\lab21\desarrollo\game\src\classes\charactercontroller.cpp
+	"CharacterController.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\charactercontroller.h
+	"DrawableReplica.h"
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\consumable.cpp
+	"Consumable.h"
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\crifle.cpp
+	"CRifle.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\crifle.h
+	<defines.h>
+	<Consumable.h>
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\cshotgun.cpp
+	"CShotgun.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\cshotgun.h
+	<defines.h>
+	<Consumable.h>
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\dog.cpp
+	"Dog.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\dog.h
+	<Enemy.h>
+
+1480430282 source:c:\proyectos\lab21\desarrollo\game\src\classes\drawable.cpp
+	"Drawable.h"
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\enemy.cpp
+	"Enemy.h"
+
+1480439722 source:c:\proyectos\lab21\desarrollo\game\src\classes\entityphysics.cpp
+	"EntityPhysics.h"
+
+1480439721 c:\proyectos\lab21\desarrollo\game\src\classes\entityphysics.h
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\fat.cpp
+	"Fat.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\fat.h
+	<Enemy.h>
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\firearm.cpp
+	"Firearm.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\firearm.h
+	<defines.h>
+	<Weapon.h>
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\weapon.h
+	<Drawable.h>
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\flashlight.cpp
+	"Flashlight.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\flashlight.h
+	<Consumable.h>
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\grenade.cpp
+	"Grenade.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\grenade.h
+	<Weapon.h>
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\gun.cpp
+	"Gun.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\gun.h
+	<Firearm.h>
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\half.cpp
+	"Half.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\half.h
+	<Enemy.h>
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\medkit.cpp
+	"Medkit.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\medkit.h
+	<Consumable.h>
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\mommy.cpp
+	"Mommy.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\mommy.h
+	<Enemy.h>
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\player.cpp
+	"Player.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\player.h
+	<defines.h>
+	<CharacterController.h>
+	<Firearm.h>
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\playermate.cpp
+	"PlayerMate.h"
+
+1480430282 c:\proyectos\lab21\desarrollo\game\src\classes\playermate.h
+	"DrawableReplica.h"
+	"GraphicsEngine.h"
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\rifle.cpp
+	"Rifle.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\rifle.h
+	<Firearm.h>
+
+1480430282 source:c:\proyectos\lab21\desarrollo\game\src\classes\scene.cpp
+	"Scene.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\scene.h
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\shotgun.cpp
+	"Shotgun.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\shotgun.h
+	<Firearm.h>
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\weapon.cpp
+	"Weapon.h"
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\classes\whole.cpp
+	"Whole.h"
+
+1480430283 c:\proyectos\lab21\desarrollo\game\src\classes\whole.h
+	<Enemy.h>
+
+1480430283 source:c:\proyectos\lab21\desarrollo\game\src\graphics\graphicsengine.cpp
+	"GraphicsEngine.h"
+	"Player.h"
+	"PlayerMate.h"
+	"NetGame.h"
+
+1480430282 c:\proyectos\lab21\desarrollo\game\src\net\netgame.h
+	"RakPeerInterface.h"
+	"ReplicaManager3.h"
+	"NatPunchthroughClient.h"
+	"CloudClient.h"
+	"FullyConnectedMesh2.h"
+	"RakNetTime.h"
+	"NetworkIDManager.h"
+	"GetTime.h"
+	"DrawableReplica.h"
+
+1480430282 source:c:\proyectos\lab21\desarrollo\game\src\main.cpp
+	<iostream>
+	<Box2D/Box2D.h>
+	<GraphicsEngine.h>
+	"NetGame.h"
+	"Player.h"
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\box2d.h
+	<Box2D/Common/b2Settings.h>
+	<Box2D/Common/b2Draw.h>
+	<Box2D/Common/b2Timer.h>
+	<Box2D/Collision/Shapes/b2CircleShape.h>
+	<Box2D/Collision/Shapes/b2EdgeShape.h>
+	<Box2D/Collision/Shapes/b2ChainShape.h>
+	<Box2D/Collision/Shapes/b2PolygonShape.h>
+	<Box2D/Collision/b2BroadPhase.h>
+	<Box2D/Collision/b2Distance.h>
+	<Box2D/Collision/b2DynamicTree.h>
+	<Box2D/Collision/b2TimeOfImpact.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<Box2D/Dynamics/b2WorldCallbacks.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+	<Box2D/Dynamics/b2World.h>
+	<Box2D/Dynamics/Contacts/b2Contact.h>
+	<Box2D/Dynamics/Joints/b2DistanceJoint.h>
+	<Box2D/Dynamics/Joints/b2FrictionJoint.h>
+	<Box2D/Dynamics/Joints/b2GearJoint.h>
+	<Box2D/Dynamics/Joints/b2MotorJoint.h>
+	<Box2D/Dynamics/Joints/b2MouseJoint.h>
+	<Box2D/Dynamics/Joints/b2PrismaticJoint.h>
+	<Box2D/Dynamics/Joints/b2PulleyJoint.h>
+	<Box2D/Dynamics/Joints/b2RevoluteJoint.h>
+	<Box2D/Dynamics/Joints/b2RopeJoint.h>
+	<Box2D/Dynamics/Joints/b2WeldJoint.h>
+	<Box2D/Dynamics/Joints/b2WheelJoint.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\common\b2settings.h
+	<stddef.h>
+	<assert.h>
+	<float.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\common\b2draw.h
+	<Box2D/Common/b2Math.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\common\b2math.h
+	<Box2D/Common/b2Settings.h>
+	<math.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\common\b2timer.h
+	<Box2D/Common/b2Settings.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\collision\shapes\b2circleshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\collision\shapes\b2shape.h
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/b2Collision.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\common\b2blockallocator.h
+	<Box2D/Common/b2Settings.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\collision\b2collision.h
+	<Box2D/Common/b2Math.h>
+	<limits.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\collision\shapes\b2edgeshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\collision\shapes\b2chainshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\collision\shapes\b2polygonshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\collision\b2broadphase.h
+	<Box2D/Common/b2Settings.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/b2DynamicTree.h>
+	<algorithm>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\collision\b2dynamictree.h
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Common/b2GrowableStack.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\common\b2growablestack.h
+	<Box2D/Common/b2Settings.h>
+	<string.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\collision\b2distance.h
+	<Box2D/Common/b2Math.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\collision\b2timeofimpact.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/b2Distance.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\b2body.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/Shapes/b2Shape.h>
+	<memory>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\b2fixture.h
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\b2worldcallbacks.h
+	<Box2D/Common/b2Settings.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\b2timestep.h
+	<Box2D/Common/b2Math.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\b2world.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Common/b2StackAllocator.h>
+	<Box2D/Dynamics/b2ContactManager.h>
+	<Box2D/Dynamics/b2WorldCallbacks.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\common\b2stackallocator.h
+	<Box2D/Common/b2Settings.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\b2contactmanager.h
+	<Box2D/Collision/b2BroadPhase.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\contacts\b2contact.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/Shapes/b2Shape.h>
+	<Box2D/Dynamics/b2Fixture.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\joints\b2distancejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\joints\b2joint.h
+	<Box2D/Common/b2Math.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\joints\b2frictionjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\joints\b2gearjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\joints\b2motorjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\joints\b2mousejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\joints\b2prismaticjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\joints\b2pulleyjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\joints\b2revolutejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\joints\b2ropejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\joints\b2weldjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1479898167 c:\proyectos\lab21\desarrollo\game\include\box2d\dynamics\joints\b2wheeljoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1480430282 source:c:\proyectos\lab21\desarrollo\game\src\net\drawablereplica.cpp
+	"DrawableReplica.h"
+	"NetGame.h"
+	"iostream"
+	<typeinfo>
+
+1480430282 source:c:\proyectos\lab21\desarrollo\game\src\net\netgame.cpp
+	"NetGame.h"
+	"MessageIdentifiers.h"
+	"GraphicsEngine.h"
+	<iostream>
+	"DrawableReplica.h"
+	"Player.h"
+	"PlayerMate.h"
+
+1480430281 c:\proyectos\lab21\desarrollo\game\include\raknet\messageidentifiers.h
+	"CustomPacketIdentifiers.h"
+
