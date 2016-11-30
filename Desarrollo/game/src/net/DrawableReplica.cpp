@@ -50,7 +50,8 @@ void dwn::DrawableReplica::PostDeserializeConstruction(RakNet::BitStream* constr
 ///////////////////////////
 void dwn::DrawableReplica::PreDestruction(RakNet::Connection_RM3* sourceConnection)
 {
-    // Borramos los datos del objeto remoto
+    // Borramos los datos del objeto remoto en local
+    removeNode();
 }
 
 /////////////////////////////////////////////////////

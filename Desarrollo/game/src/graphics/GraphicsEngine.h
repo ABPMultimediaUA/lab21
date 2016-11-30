@@ -85,6 +85,7 @@ namespace dwe
         void setRotation(vec3f v);
 
         void setNode(ISceneNode* n);
+        void remove();
     private:
         irr::scene::ISceneNode* m_node;
     };

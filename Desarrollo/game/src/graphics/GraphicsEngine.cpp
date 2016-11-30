@@ -24,6 +24,12 @@ void dwe::Node::setNode(ISceneNode* n)
     m_node = n;
 }
 
+////////////////
+void dwe::Node::remove()
+{
+    m_node->remove();
+}
+
 void dwe::Node::move(vec3f v)
 {
     irr::core::vector3df _v = m_node->getPosition();

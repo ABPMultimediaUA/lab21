@@ -21,6 +21,7 @@
 
 #define DEFAULT_IP "127.0.0.1"
 #define DEFAULT_PT 61111
+#define NET_CLOUD_KEY "Lab21Key"
 
 namespace dwn
 {
@@ -77,6 +78,8 @@ namespace dwn
             RakNet::NatPunchthroughClient *natPunchthroughClient; // Conexión punto a punto entre routers
             RakNet::CloudClient *cloudClient; // Used to upload game instance to the cloud
             RakNet::FullyConnectedMesh2 *fullyConnectedMesh2; // Used to find out who is the session host
+
+            RakNet::RakString getNATTargetName(RakNet::Packet *p);
 
     };
 }

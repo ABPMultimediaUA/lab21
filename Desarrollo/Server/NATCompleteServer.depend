@@ -1,0 +1,895 @@
+# depslib dependency file v1.0
+1479458621 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\cloudserverhelper.cpp
+	"CloudServerHelper.h"
+	"RakSleep.h"
+	"Gets.h"
+	"MessageIdentifiers.h"
+	"BitStream.h"
+	"FullyConnectedMesh2.h"
+	"TwoWayAuthentication.h"
+	"CloudClient.h"
+	"DynDNS.h"
+	"SocketLayer.h"
+	"RakPeerInterface.h"
+	"ConnectionGraph2.h"
+	<stdlib.h>
+
+1479458621 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\cloudserverhelper.h
+	"CloudServer.h"
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\cloudserver.h
+	"NativeFeatureIncludes.h"
+	"PluginInterface2.h"
+	"RakMemoryOverride.h"
+	"NativeTypes.h"
+	"RakString.h"
+	"DS_Hash.h"
+	"CloudCommon.h"
+	"DS_OrderedList.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\nativefeatureincludes.h
+	"NativeFeatureIncludesOverrides.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\nativefeatureincludesoverrides.h
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\plugininterface2.h
+	"NativeFeatureIncludes.h"
+	"RakNetTypes.h"
+	"Export.h"
+	"PacketPriority.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\raknettypes.h
+	"RakNetDefines.h"
+	"NativeTypes.h"
+	"RakNetTime.h"
+	"Export.h"
+	"WindowsIncludes.h"
+	"XBox360Includes.h"
+	"SocketIncludes.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\raknetdefines.h
+	"RakNetDefinesOverrides.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\raknetdefinesoverrides.h
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\nativetypes.h
+	<stdint.h>
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\raknettime.h
+	"NativeTypes.h"
+	"RakNetDefines.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\export.h
+	"RakNetDefines.h"
+
+1479458641 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\windowsincludes.h
+	<windows.h>
+	<winsock.h>
+	<WinSock2.h>
+	<windows.h>
+	<Ws2tcpip.h>
+
+1479458641 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\xbox360includes.h
+
+1479458640 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\socketincludes.h
+	<windows.h>
+	"WinRTSockAddr.h"
+	<winsock2.h>
+	<unistd.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<fcntl.h>
+	"ppapi/cpp/private/net_address_private.h"
+	"ppapi/c/pp_bool.h"
+	"ppapi/c/pp_errors.h"
+	"ppapi/cpp/completion_callback.h"
+	"ppapi/cpp/instance_handle.h"
+	"ppapi/cpp/module.h"
+	"ppapi/cpp/module_impl.h"
+	"ppapi/c/pp_errors.h"
+	"ppapi/c/pp_module.h"
+	"ppapi/c/pp_var.h"
+	"ppapi/c/pp_resource.h"
+	"ppapi/c/ppb.h"
+	"ppapi/c/ppb_instance.h"
+	"ppapi/c/ppb_messaging.h"
+	"ppapi/c/ppb_var.h"
+	"ppapi/c/ppp.h"
+	"ppapi/c/ppb_core.h"
+	"ppapi/c/ppp_instance.h"
+	"ppapi/c/ppp_messaging.h"
+	"ppapi/c/pp_input_event.h"
+	"ppapi/c/pp_completion_callback.h"
+	"ppapi/c/private/ppb_udp_socket_private.h"
+	"ppapi/cpp/private/net_address_private.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\packetpriority.h
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\rakmemoryoverride.h
+	"Export.h"
+	"RakNetDefines.h"
+	<new>
+	"RakAlloca.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\rakalloca.h
+	<stdlib.h>
+	<malloc/malloc.h>
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<alloca.h>
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\rakstring.h
+	"Export.h"
+	"DS_List.h"
+	"RakNetTypes.h"
+	<stdio.h>
+	"stdarg.h"
+	"WindowsIncludes.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\ds_list.h
+	"RakAssert.h"
+	<string.h>
+	"Export.h"
+	"RakMemoryOverride.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\rakassert.h
+	<assert.h>
+	"RakNetDefines.h"
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\ds_hash.h
+	"RakAssert.h"
+	<string.h>
+	"Export.h"
+	"RakMemoryOverride.h"
+	"RakString.h"
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\cloudcommon.h
+	"NativeFeatureIncludes.h"
+	"RakNetTypes.h"
+	"RakString.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\ds_orderedlist.h
+	"DS_List.h"
+	"RakMemoryOverride.h"
+	"Export.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\raksleep.h
+	"Export.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\gets.h
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\messageidentifiers.h
+	"CustomPacketIdentifiers.h"
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\bitstream.h
+	"BitStream_NoTemplate.h"
+	"RakMemoryOverride.h"
+	"RakNetDefines.h"
+	"Export.h"
+	"RakNetTypes.h"
+	"RakString.h"
+	"RakWString.h"
+	"RakAssert.h"
+	<math.h>
+	<float.h>
+
+1479458640 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\rakwstring.h
+	"Export.h"
+	"RakNetTypes.h"
+	"RakString.h"
+	"WindowsIncludes.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\fullyconnectedmesh2.h
+	"NativeFeatureIncludes.h"
+	"PluginInterface2.h"
+	"RakMemoryOverride.h"
+	"NativeTypes.h"
+	"DS_List.h"
+	"RakString.h"
+	"BitStream.h"
+
+1479458641 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\twowayauthentication.h
+	"NativeFeatureIncludes.h"
+	"DR_SHA1.h"
+	"PluginInterface2.h"
+	"RakMemoryOverride.h"
+	"NativeTypes.h"
+	"RakString.h"
+	"DS_Hash.h"
+	"DS_Queue.h"
+
+1479463173 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\dr_sha1.h
+	"RakMemoryOverride.h"
+	<stdio.h>
+	<memory.h>
+	<string.h>
+	"Export.h"
+	<memory.h>
+	<limits.h>
+	<stdio.h>
+	<string.h>
+	<string>
+	<stdlib.h>
+	<tchar.h>
+	<tchar.h>
+	<tchar.h>
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\ds_queue.h
+	"RakAssert.h"
+	"Export.h"
+	"RakMemoryOverride.h"
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\cloudclient.h
+	"NativeFeatureIncludes.h"
+	"PluginInterface2.h"
+	"CloudCommon.h"
+	"RakMemoryOverride.h"
+	"DS_Hash.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\dyndns.h
+	"NativeFeatureIncludes.h"
+	"RakString.h"
+
+1479458640 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\socketlayer.h
+	"RakMemoryOverride.h"
+	"RakNetTypes.h"
+	"RakNetSmartPtr.h"
+	"Export.h"
+	"MTUSize.h"
+	"RakString.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\raknetsmartptr.h
+	"RakMemoryOverride.h"
+	"Export.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\mtusize.h
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\rakpeerinterface.h
+	"PacketPriority.h"
+	"RakNetTypes.h"
+	"RakMemoryOverride.h"
+	"Export.h"
+	"DS_List.h"
+	"RakNetSmartPtr.h"
+	"RakNetSocket2.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\raknetsocket2.h
+	"RakNetTypes.h"
+	"MTUSize.h"
+	"LocklessTypes.h"
+	"RakThread.h"
+	"DS_ThreadsafeAllocatingQueue.h"
+	"Export.h"
+	<sys/socket.h>
+	<netinet/in.h>
+	"DS_List.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\locklesstypes.h
+	"Export.h"
+	"NativeTypes.h"
+	"WindowsIncludes.h"
+	"SimpleMutex.h"
+
+1479458640 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\simplemutex.h
+	"RakMemoryOverride.h"
+	"WindowsIncludes.h"
+	<pthread.h>
+	<sys/types.h>
+	"Export.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\rakthread.h
+	"WindowsIncludes.h"
+	"Export.h"
+	"../DependentExtensions/WinPhone8/ThreadEmulation.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\ds_threadsafeallocatingqueue.h
+	"DS_Queue.h"
+	"SimpleMutex.h"
+	"DS_MemoryPool.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\ds_memorypool.h
+	<stdlib.h>
+	"RakAssert.h"
+	"Export.h"
+	"RakMemoryOverride.h"
+	"DS_MemoryPool.h"
+	"DS_List.h"
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\connectiongraph2.h
+	"NativeFeatureIncludes.h"
+	"RakMemoryOverride.h"
+	"RakNetTypes.h"
+	"PluginInterface2.h"
+	"DS_List.h"
+	"DS_WeightedGraph.h"
+	"GetTime.h"
+	"Export.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\ds_weightedgraph.h
+	"DS_OrderedList.h"
+	"DS_Map.h"
+	"DS_Heap.h"
+	"DS_Queue.h"
+	"DS_Tree.h"
+	"RakAssert.h"
+	"RakMemoryOverride.h"
+	<stdio.h>
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\ds_map.h
+	"DS_OrderedList.h"
+	"Export.h"
+	"RakMemoryOverride.h"
+	"RakAssert.h"
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\ds_heap.h
+	"RakMemoryOverride.h"
+	"DS_List.h"
+	"Export.h"
+	"RakAssert.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\ds_tree.h
+	"Export.h"
+	"DS_List.h"
+	"DS_Queue.h"
+	"RakMemoryOverride.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\gettime.h
+	"Export.h"
+	"RakNetTime.h"
+
+1479458627 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\main.cpp
+	"RakPeerInterface.h"
+	"RakSleep.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Kbhit.h"
+	"MessageIdentifiers.h"
+	"BitStream.h"
+	"RakSleep.h"
+	"UDPProxyServer.h"
+	"UDPProxyCoordinator.h"
+	"NatPunchthroughServer.h"
+	"NatTypeDetectionServer.h"
+	"SocketLayer.h"
+	"Getche.h"
+	"Gets.h"
+	"CloudServerHelper.h"
+	"CloudClient.h"
+	"RakNetStatistics.h"
+	"RelayPlugin.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\kbhit.h
+	<conio.h>
+	<sys/time.h>
+	<termios.h>
+	<stdlib.h>
+	<unistd.h>
+	<stdio.h>
+	<string.h>
+
+1479458641 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\udpproxyserver.h
+	"NativeFeatureIncludes.h"
+	"Export.h"
+	"RakNetTypes.h"
+	"PluginInterface2.h"
+	"UDPForwarder.h"
+	"RakString.h"
+
+1479458641 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\udpforwarder.h
+	"NativeFeatureIncludes.h"
+	"Export.h"
+	"RakNetTypes.h"
+	"SocketIncludes.h"
+	"UDPProxyCommon.h"
+	"SimpleMutex.h"
+	"RakString.h"
+	"RakThread.h"
+	"DS_Queue.h"
+	"DS_OrderedList.h"
+	"LocklessTypes.h"
+	"DS_ThreadsafeAllocatingQueue.h"
+
+1479458641 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\udpproxycommon.h
+
+1479458641 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\udpproxycoordinator.h
+	"NativeFeatureIncludes.h"
+	"Export.h"
+	"RakNetTypes.h"
+	"PluginInterface2.h"
+	"RakString.h"
+	"BitStream.h"
+	"DS_Queue.h"
+	"DS_OrderedList.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\natpunchthroughserver.h
+	"NativeFeatureIncludes.h"
+	"RakNetTypes.h"
+	"Export.h"
+	"PluginInterface2.h"
+	"PacketPriority.h"
+	"SocketIncludes.h"
+	"DS_OrderedList.h"
+	"RakString.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\nattypedetectionserver.h
+	"NativeFeatureIncludes.h"
+	"RakNetTypes.h"
+	"Export.h"
+	"PluginInterface2.h"
+	"PacketPriority.h"
+	"SocketIncludes.h"
+	"DS_OrderedList.h"
+	"RakString.h"
+	"NatTypeDetectionCommon.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\nattypedetectioncommon.h
+	"NativeFeatureIncludes.h"
+	"SocketIncludes.h"
+	"RakNetTypes.h"
+	"RakNetSocket2.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\getche.h
+	<conio.h>
+	<termios.h>
+	<stdio.h>
+	<unistd.h>
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\raknetstatistics.h
+	"PacketPriority.h"
+	"Export.h"
+	"RakNetTypes.h"
+
+1479458640 c:\users\esrum\dropbox\ingenieria_multimedia\abp\raknet\natcompleteserver\source\relayplugin.h
+	"NativeFeatureIncludes.h"
+	"PluginInterface2.h"
+	"RakString.h"
+	"DS_Hash.h"
+
+1479458621 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\cloudserverhelper.cpp
+	"CloudServerHelper.h"
+	"RakSleep.h"
+	"Gets.h"
+	"MessageIdentifiers.h"
+	"BitStream.h"
+	"FullyConnectedMesh2.h"
+	"TwoWayAuthentication.h"
+	"CloudClient.h"
+	"DynDNS.h"
+	"SocketLayer.h"
+	"RakPeerInterface.h"
+	"ConnectionGraph2.h"
+	<stdlib.h>
+
+1479458621 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\cloudserverhelper.h
+	"CloudServer.h"
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\cloudserver.h
+	"NativeFeatureIncludes.h"
+	"PluginInterface2.h"
+	"RakMemoryOverride.h"
+	"NativeTypes.h"
+	"RakString.h"
+	"DS_Hash.h"
+	"CloudCommon.h"
+	"DS_OrderedList.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\nativefeatureincludes.h
+	"NativeFeatureIncludesOverrides.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\nativefeatureincludesoverrides.h
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\plugininterface2.h
+	"NativeFeatureIncludes.h"
+	"RakNetTypes.h"
+	"Export.h"
+	"PacketPriority.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\raknettypes.h
+	"RakNetDefines.h"
+	"NativeTypes.h"
+	"RakNetTime.h"
+	"Export.h"
+	"WindowsIncludes.h"
+	"XBox360Includes.h"
+	"SocketIncludes.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\raknetdefines.h
+	"RakNetDefinesOverrides.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\raknetdefinesoverrides.h
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\nativetypes.h
+	<stdint.h>
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\raknettime.h
+	"NativeTypes.h"
+	"RakNetDefines.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\export.h
+	"RakNetDefines.h"
+
+1479458641 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\windowsincludes.h
+	<windows.h>
+	<winsock.h>
+	<WinSock2.h>
+	<windows.h>
+	<Ws2tcpip.h>
+
+1479458641 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\xbox360includes.h
+
+1479458640 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\socketincludes.h
+	<windows.h>
+	"WinRTSockAddr.h"
+	<winsock2.h>
+	<unistd.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<fcntl.h>
+	"ppapi/cpp/private/net_address_private.h"
+	"ppapi/c/pp_bool.h"
+	"ppapi/c/pp_errors.h"
+	"ppapi/cpp/completion_callback.h"
+	"ppapi/cpp/instance_handle.h"
+	"ppapi/cpp/module.h"
+	"ppapi/cpp/module_impl.h"
+	"ppapi/c/pp_errors.h"
+	"ppapi/c/pp_module.h"
+	"ppapi/c/pp_var.h"
+	"ppapi/c/pp_resource.h"
+	"ppapi/c/ppb.h"
+	"ppapi/c/ppb_instance.h"
+	"ppapi/c/ppb_messaging.h"
+	"ppapi/c/ppb_var.h"
+	"ppapi/c/ppp.h"
+	"ppapi/c/ppb_core.h"
+	"ppapi/c/ppp_instance.h"
+	"ppapi/c/ppp_messaging.h"
+	"ppapi/c/pp_input_event.h"
+	"ppapi/c/pp_completion_callback.h"
+	"ppapi/c/private/ppb_udp_socket_private.h"
+	"ppapi/cpp/private/net_address_private.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\packetpriority.h
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\rakmemoryoverride.h
+	"Export.h"
+	"RakNetDefines.h"
+	<new>
+	"RakAlloca.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\rakalloca.h
+	<stdlib.h>
+	<malloc/malloc.h>
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<alloca.h>
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\rakstring.h
+	"Export.h"
+	"DS_List.h"
+	"RakNetTypes.h"
+	<stdio.h>
+	"stdarg.h"
+	"WindowsIncludes.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\ds_list.h
+	"RakAssert.h"
+	<string.h>
+	"Export.h"
+	"RakMemoryOverride.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\rakassert.h
+	<assert.h>
+	"RakNetDefines.h"
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\ds_hash.h
+	"RakAssert.h"
+	<string.h>
+	"Export.h"
+	"RakMemoryOverride.h"
+	"RakString.h"
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\cloudcommon.h
+	"NativeFeatureIncludes.h"
+	"RakNetTypes.h"
+	"RakString.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\ds_orderedlist.h
+	"DS_List.h"
+	"RakMemoryOverride.h"
+	"Export.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\raksleep.h
+	"Export.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\gets.h
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\messageidentifiers.h
+	"CustomPacketIdentifiers.h"
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\bitstream.h
+	"BitStream_NoTemplate.h"
+	"RakMemoryOverride.h"
+	"RakNetDefines.h"
+	"Export.h"
+	"RakNetTypes.h"
+	"RakString.h"
+	"RakWString.h"
+	"RakAssert.h"
+	<math.h>
+	<float.h>
+
+1479458640 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\rakwstring.h
+	"Export.h"
+	"RakNetTypes.h"
+	"RakString.h"
+	"WindowsIncludes.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\fullyconnectedmesh2.h
+	"NativeFeatureIncludes.h"
+	"PluginInterface2.h"
+	"RakMemoryOverride.h"
+	"NativeTypes.h"
+	"DS_List.h"
+	"RakString.h"
+	"BitStream.h"
+
+1479458641 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\twowayauthentication.h
+	"NativeFeatureIncludes.h"
+	"DR_SHA1.h"
+	"PluginInterface2.h"
+	"RakMemoryOverride.h"
+	"NativeTypes.h"
+	"RakString.h"
+	"DS_Hash.h"
+	"DS_Queue.h"
+
+1479463173 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\dr_sha1.h
+	"RakMemoryOverride.h"
+	<stdio.h>
+	<memory.h>
+	<string.h>
+	"Export.h"
+	<memory.h>
+	<limits.h>
+	<stdio.h>
+	<string.h>
+	<string>
+	<stdlib.h>
+	<tchar.h>
+	<tchar.h>
+	<tchar.h>
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\ds_queue.h
+	"RakAssert.h"
+	"Export.h"
+	"RakMemoryOverride.h"
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\cloudclient.h
+	"NativeFeatureIncludes.h"
+	"PluginInterface2.h"
+	"CloudCommon.h"
+	"RakMemoryOverride.h"
+	"DS_Hash.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\dyndns.h
+	"NativeFeatureIncludes.h"
+	"RakString.h"
+
+1479458640 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\socketlayer.h
+	"RakMemoryOverride.h"
+	"RakNetTypes.h"
+	"RakNetSmartPtr.h"
+	"Export.h"
+	"MTUSize.h"
+	"RakString.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\raknetsmartptr.h
+	"RakMemoryOverride.h"
+	"Export.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\mtusize.h
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\rakpeerinterface.h
+	"PacketPriority.h"
+	"RakNetTypes.h"
+	"RakMemoryOverride.h"
+	"Export.h"
+	"DS_List.h"
+	"RakNetSmartPtr.h"
+	"RakNetSocket2.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\raknetsocket2.h
+	"RakNetTypes.h"
+	"MTUSize.h"
+	"LocklessTypes.h"
+	"RakThread.h"
+	"DS_ThreadsafeAllocatingQueue.h"
+	"Export.h"
+	<sys/socket.h>
+	<netinet/in.h>
+	"DS_List.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\locklesstypes.h
+	"Export.h"
+	"NativeTypes.h"
+	"WindowsIncludes.h"
+	"SimpleMutex.h"
+
+1479458640 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\simplemutex.h
+	"RakMemoryOverride.h"
+	"WindowsIncludes.h"
+	<pthread.h>
+	<sys/types.h>
+	"Export.h"
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\rakthread.h
+	"WindowsIncludes.h"
+	"Export.h"
+	"../DependentExtensions/WinPhone8/ThreadEmulation.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\ds_threadsafeallocatingqueue.h
+	"DS_Queue.h"
+	"SimpleMutex.h"
+	"DS_MemoryPool.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\ds_memorypool.h
+	<stdlib.h>
+	"RakAssert.h"
+	"Export.h"
+	"RakMemoryOverride.h"
+	"DS_MemoryPool.h"
+	"DS_List.h"
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\connectiongraph2.h
+	"NativeFeatureIncludes.h"
+	"RakMemoryOverride.h"
+	"RakNetTypes.h"
+	"PluginInterface2.h"
+	"DS_List.h"
+	"DS_WeightedGraph.h"
+	"GetTime.h"
+	"Export.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\ds_weightedgraph.h
+	"DS_OrderedList.h"
+	"DS_Map.h"
+	"DS_Heap.h"
+	"DS_Queue.h"
+	"DS_Tree.h"
+	"RakAssert.h"
+	"RakMemoryOverride.h"
+	<stdio.h>
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\ds_map.h
+	"DS_OrderedList.h"
+	"Export.h"
+	"RakMemoryOverride.h"
+	"RakAssert.h"
+
+1479458635 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\ds_heap.h
+	"RakMemoryOverride.h"
+	"DS_List.h"
+	"Export.h"
+	"RakAssert.h"
+
+1479458636 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\ds_tree.h
+	"Export.h"
+	"DS_List.h"
+	"DS_Queue.h"
+	"RakMemoryOverride.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\gettime.h
+	"Export.h"
+	"RakNetTime.h"
+
+1480534670 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"RakPeerInterface.h"
+	"RakSleep.h"
+	"Kbhit.h"
+	"MessageIdentifiers.h"
+	"NatPunchthroughServer.h"
+	"CloudServerHelper.h"
+	"CloudClient.h"
+	"RakNetStatistics.h"
+	"RelayPlugin.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\kbhit.h
+	<conio.h>
+	<sys/time.h>
+	<termios.h>
+	<stdlib.h>
+	<unistd.h>
+	<stdio.h>
+	<string.h>
+
+1479458641 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\udpproxyserver.h
+	"NativeFeatureIncludes.h"
+	"Export.h"
+	"RakNetTypes.h"
+	"PluginInterface2.h"
+	"UDPForwarder.h"
+	"RakString.h"
+
+1479458641 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\udpforwarder.h
+	"NativeFeatureIncludes.h"
+	"Export.h"
+	"RakNetTypes.h"
+	"SocketIncludes.h"
+	"UDPProxyCommon.h"
+	"SimpleMutex.h"
+	"RakString.h"
+	"RakThread.h"
+	"DS_Queue.h"
+	"DS_OrderedList.h"
+	"LocklessTypes.h"
+	"DS_ThreadsafeAllocatingQueue.h"
+
+1479458641 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\udpproxycommon.h
+
+1479458641 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\udpproxycoordinator.h
+	"NativeFeatureIncludes.h"
+	"Export.h"
+	"RakNetTypes.h"
+	"PluginInterface2.h"
+	"RakString.h"
+	"BitStream.h"
+	"DS_Queue.h"
+	"DS_OrderedList.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\natpunchthroughserver.h
+	"NativeFeatureIncludes.h"
+	"RakNetTypes.h"
+	"Export.h"
+	"PluginInterface2.h"
+	"PacketPriority.h"
+	"SocketIncludes.h"
+	"DS_OrderedList.h"
+	"RakString.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\nattypedetectionserver.h
+	"NativeFeatureIncludes.h"
+	"RakNetTypes.h"
+	"Export.h"
+	"PluginInterface2.h"
+	"PacketPriority.h"
+	"SocketIncludes.h"
+	"DS_OrderedList.h"
+	"RakString.h"
+	"NatTypeDetectionCommon.h"
+
+1479458638 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\nattypedetectioncommon.h
+	"NativeFeatureIncludes.h"
+	"SocketIncludes.h"
+	"RakNetTypes.h"
+	"RakNetSocket2.h"
+
+1479458637 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\getche.h
+	<conio.h>
+	<termios.h>
+	<stdio.h>
+	<unistd.h>
+
+1479458639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\raknetstatistics.h
+	"PacketPriority.h"
+	"Export.h"
+	"RakNetTypes.h"
+
+1479458640 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\relayplugin.h
+	"NativeFeatureIncludes.h"
+	"PluginInterface2.h"
+	"RakString.h"
+	"DS_Hash.h"
+
