@@ -293,7 +293,7 @@ int main() {
    //for(int i=0; i < 2; i++){
      //   for(int j=0; j < 4; j++){
             //createRigidBox(world,vector2d<s32>(0+(i*45), 0-(j*20)), device);
-            createStaticBox(world,vector2d<s32>(87,100), 1, 10,device);
+            createStaticBox(world,vector2d<s32>(87,100), 10, 2,device);
   //      }
    //}
 
@@ -360,11 +360,11 @@ int main() {
 
             if(appReceiver.isKeyDown(KEY_UP)) {
                 //nodePos.Z += MOVEMENT_SPEED * dt;
-                bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(0.0,10.0));
+                bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(0.0,-10.0));
                 apretado = true;
             } else if(appReceiver.isKeyDown(KEY_DOWN)) {
                 //nodePos.Z -= MOVEMENT_SPEED * dt;
-                bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(0.0,-10.0));
+                bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(0.0,10.0));
                 apretado = true;
             }
 
@@ -401,7 +401,7 @@ int main() {
             }
             bwPlayer->update(); //UPDATE de mi player BOX2D
             //Posición actualizada de Irrlicht Player
-            node->setPosition(vector3df(bwPlayer->getBwBody()->GetPosition().x - bwInitPosX,0,bwPlayer->getBwBody()->GetPosition().y - bwInitPosY));
+            node->setPosition(vector3df(bwPlayer->getBwBody()->GetPosition().x - bwInitPosX,0,-bwPlayer->getBwBody()->GetPosition().y - bwInitPosY));
 
 ////        bww->update();
             driver->endScene();
