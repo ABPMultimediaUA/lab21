@@ -1,0 +1,1377 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Irrlicht" />
+		<Option execution_dir="C:/Users/esrum/Dropbox/ingenieria_multimedia/ABP/lab21/Desarrollo/irrlicht-1.8.4/source/Irrlicht/" />
+		<Option pch_mode="0" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Compilar Este (win-accurate-static)">
+				<Option platforms="Windows;" />
+				<Option output="../game/lib/Irrlicht" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/win32-gcc-release-static" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-Os" />
+					<Add option="-O3" />
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-W" />
+					<Add option="-Wno-unused-parameter" />
+					<Add option="-U__STRICT_ANSI__" />
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-D_IRR_STATIC_LIB_" />
+					<Add option="-D_CRT_SECURE_NO_DEPRECATE" />
+					<Add option="-D__GNUWIN32__" />
+					<Add directory="include" />
+					<Add directory="source/Irrlicht/zlib" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="winspool" />
+					<Add library="comdlg32" />
+					<Add library="advapi32" />
+					<Add library="shell32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="opengl32" />
+					<Add library="winmm" />
+				</Linker>
+			</Target>
+			<Target title="Win32 - Debug - dll">
+				<Option platforms="Windows;" />
+				<Option output="../../lib/Win32-gcc/Irrlicht" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../obj/win32-gcc-debug-dll" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-W" />
+					<Add option="-O0" />
+					<Add option="-Wno-unused-parameter" />
+					<Add option="-U__STRICT_ANSI__" />
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-D_USRDLL" />
+					<Add option="-DIRRLICHT_EXPORTS" />
+					<Add option="-D_CRT_SECURE_NO_DEPRECATE" />
+					<Add option="-D__GNUWIN32__" />
+					<Add directory="../../include" />
+					<Add directory="zlib" />
+				</Compiler>
+				<Linker>
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="winspool" />
+					<Add library="comdlg32" />
+					<Add library="advapi32" />
+					<Add library="shell32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="opengl32" />
+					<Add library="winmm" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="cmd /c del ..\..\bin\Win32-gcc\Irrlicht.dll" />
+					<Add after="cmd /c move ..\..\lib\Win32-gcc\Irrlicht.dll ..\..\bin\Win32-gcc\Irrlicht.dll" />
+				</ExtraCommands>
+			</Target>
+			<Target title="Win32 - Release - accurate math - dll">
+				<Option platforms="Windows;" />
+				<Option output="../../lib/Win32-gcc/Irrlicht" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../obj/win32-gcc-release-dll" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-W" />
+					<Add option="-Wno-unused-parameter" />
+					<Add option="-U__STRICT_ANSI__" />
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-D_USRDLL" />
+					<Add option="-DIRRLICHT_EXPORTS" />
+					<Add option="-D_CRT_SECURE_NO_DEPRECATE" />
+					<Add option="-D__GNUWIN32__" />
+					<Add directory="../../include" />
+					<Add directory="zlib" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="winspool" />
+					<Add library="comdlg32" />
+					<Add library="advapi32" />
+					<Add library="shell32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="opengl32" />
+					<Add library="winmm" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="cmd /c del ..\..\bin\Win32-gcc\Irrlicht.dll" />
+					<Add after="cmd /c move ..\..\lib\Win32-gcc\Irrlicht.dll ..\..\bin\Win32-gcc\Irrlicht.dll" />
+				</ExtraCommands>
+			</Target>
+			<Target title="Win32 - Release - fast math - dll">
+				<Option platforms="Windows;" />
+				<Option output="../../lib/Win32-gcc/Irrlicht" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../obj/win32-gcc-release-fast-dll" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-Wall" />
+					<Add option="-W" />
+					<Add option="-ffast-math" />
+					<Add option="-Wno-unused-parameter" />
+					<Add option="-U__STRICT_ANSI__" />
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-D_USRDLL" />
+					<Add option="-DIRRLICHT_EXPORTS" />
+					<Add option="-D_CRT_SECURE_NO_DEPRECATE" />
+					<Add option="-D__GNUWIN32__" />
+					<Add directory="../../include" />
+					<Add directory="zlib" />
+				</Compiler>
+				<Linker>
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="winspool" />
+					<Add library="comdlg32" />
+					<Add library="advapi32" />
+					<Add library="shell32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="opengl32" />
+					<Add library="winmm" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="cmd /c del ..\..\bin\Win32-gcc\Irrlicht.dll" />
+					<Add after="cmd /c move ..\..\lib\Win32-gcc\Irrlicht.dll ..\..\bin\Win32-gcc\Irrlicht.dll" />
+				</ExtraCommands>
+			</Target>
+			<Target title="Win32 - Debug - static">
+				<Option platforms="Windows;" />
+				<Option output="../../lib/Win32-gcc/Irrlicht" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../obj/win32-gcc-debug-static" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-W" />
+					<Add option="-O0" />
+					<Add option="-Wno-unused-parameter" />
+					<Add option="-U__STRICT_ANSI__" />
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-D_IRR_STATIC_LIB_" />
+					<Add option="-D_CRT_SECURE_NO_DEPRECATE" />
+					<Add option="-D__GNUWIN32__" />
+					<Add directory="../../include" />
+					<Add directory="zlib" />
+				</Compiler>
+				<Linker>
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="winspool" />
+					<Add library="comdlg32" />
+					<Add library="advapi32" />
+					<Add library="shell32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="opengl32" />
+					<Add library="winmm" />
+				</Linker>
+			</Target>
+			<Target title="Win32 - Release - accurate math - static">
+				<Option platforms="Windows;" />
+				<Option output="../../lib/Win32-gcc/Irrlicht" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../obj/win32-gcc-release-static" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-Os" />
+					<Add option="-O3" />
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-W" />
+					<Add option="-Wno-unused-parameter" />
+					<Add option="-U__STRICT_ANSI__" />
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-D_IRR_STATIC_LIB_" />
+					<Add option="-D_CRT_SECURE_NO_DEPRECATE" />
+					<Add option="-D__GNUWIN32__" />
+					<Add directory="../../include" />
+					<Add directory="zlib" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="winspool" />
+					<Add library="comdlg32" />
+					<Add library="advapi32" />
+					<Add library="shell32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="opengl32" />
+					<Add library="winmm" />
+				</Linker>
+			</Target>
+			<Target title="Win32 - Release - fast math - static">
+				<Option platforms="Windows;" />
+				<Option output="../../lib/Win32-gcc/Irrlicht" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../obj/win32-gcc-release-fast-static" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-Os" />
+					<Add option="-O3" />
+					<Add option="-Wall" />
+					<Add option="-W" />
+					<Add option="-ffast-math" />
+					<Add option="-Wno-unused-parameter" />
+					<Add option="-U__STRICT_ANSI__" />
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-D_IRR_STATIC_LIB_" />
+					<Add option="-D_CRT_SECURE_NO_DEPRECATE" />
+					<Add option="-D__GNUWIN32__" />
+					<Add directory="../../include" />
+					<Add directory="zlib" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="winspool" />
+					<Add library="comdlg32" />
+					<Add library="advapi32" />
+					<Add library="shell32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="opengl32" />
+					<Add library="winmm" />
+				</Linker>
+			</Target>
+			<Target title="Linux - Debug - shared">
+				<Option platforms="Unix;" />
+				<Option output="../../lib/Linux/libIrrlicht" prefix_auto="0" extension_auto="1" />
+				<Option object_output="../obj/linux-gcc-debug-shared" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-fPIC" />
+					<Add option="-g" />
+					<Add option="-O0" />
+					<Add option="-Wno-unused-parameter" />
+					<Add option="-fno-exceptions" />
+					<Add option="-U__STRICT_ANSI__" />
+					<Add option="-D_DEBUG" />
+					<Add directory="../../include" />
+					<Add directory="zlib" />
+					<Add directory="libpng" />
+					<Add directory="jpeglib" />
+				</Compiler>
+				<Linker>
+					<Add library="GL" />
+					<Add library="Xxf86vm" />
+					<Add directory="/usr/X11R6/lib" />
+					<Add directory="/usr/local/lib" />
+				</Linker>
+			</Target>
+			<Target title="Linux - Release - accurate math - shared">
+				<Option platforms="Unix;" />
+				<Option output="../../lib/Linux/libIrrlicht" prefix_auto="0" extension_auto="1" />
+				<Option object_output="../obj/linux-gcc-release-shared" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-Wextra" />
+					<Add option="-fPIC" />
+					<Add option="-Wno-unused-parameter" />
+					<Add option="-fno-exceptions" />
+					<Add option="-U__STRICT_ANSI__" />
+					<Add directory="../../include" />
+					<Add directory="zlib" />
+					<Add directory="libpng" />
+					<Add directory="jpeglib" />
+				</Compiler>
+				<Linker>
+					<Add library="GL" />
+					<Add library="Xxf86vm" />
+					<Add directory="/usr/X11R6/lib" />
+					<Add directory="/usr/local/lib" />
+				</Linker>
+			</Target>
+			<Target title="Linux - Release - fast math - shared">
+				<Option platforms="Unix;" />
+				<Option output="../../lib/Linux/libIrrlicht" prefix_auto="0" extension_auto="1" />
+				<Option object_output="../obj/linux-gcc-release-fast-shared" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-Wextra" />
+					<Add option="-fPIC" />
+					<Add option="-Wno-unused-parameter" />
+					<Add option="-ffast-math" />
+					<Add option="-fno-exceptions" />
+					<Add option="-U__STRICT_ANSI__" />
+					<Add directory="../../include" />
+					<Add directory="zlib" />
+					<Add directory="libpng" />
+					<Add directory="jpeglib" />
+				</Compiler>
+				<Linker>
+					<Add library="GL" />
+					<Add library="Xxf86vm" />
+					<Add directory="/usr/X11R6/lib" />
+					<Add directory="/usr/local/lib" />
+				</Linker>
+			</Target>
+			<Target title="Linux - Debug - static">
+				<Option platforms="Unix;" />
+				<Option output="../../lib/Linux/libIrrlicht" prefix_auto="0" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../obj/linux-gcc-debug-static" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-O0" />
+					<Add option="-Wno-unused-parameter" />
+					<Add option="-fno-exceptions" />
+					<Add option="-U__STRICT_ANSI__" />
+					<Add option="-D_IRR_STATIC_LIB_" />
+					<Add option="-D_DEBUG" />
+					<Add directory="../../include" />
+					<Add directory="zlib" />
+					<Add directory="libpng" />
+				</Compiler>
+				<Linker>
+					<Add library="GL" />
+					<Add library="Xxf86vm" />
+					<Add directory="/usr/X11R6/lib" />
+					<Add directory="/usr/local/lib" />
+				</Linker>
+			</Target>
+			<Target title="Linux - Release - accurate math - static">
+				<Option platforms="Unix;" />
+				<Option output="../../lib/Linux/libIrrlicht" prefix_auto="0" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../obj/linux-gcc-release-static" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-Wextra" />
+					<Add option="-Wno-unused-parameter" />
+					<Add option="-fno-exceptions" />
+					<Add option="-U__STRICT_ANSI__" />
+					<Add option="-D_IRR_STATIC_LIB_" />
+					<Add directory="../../include" />
+					<Add directory="zlib" />
+					<Add directory="libpng" />
+				</Compiler>
+				<Linker>
+					<Add library="GL" />
+					<Add library="Xxf86vm" />
+					<Add directory="/usr/X11R6/lib" />
+					<Add directory="/usr/local/lib" />
+				</Linker>
+			</Target>
+			<Target title="Linux - Release - fast math - static">
+				<Option platforms="Unix;" />
+				<Option output="../../lib/Linux/libIrrlicht" prefix_auto="0" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../obj/linux-gcc-release-fast-static" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-Wextra" />
+					<Add option="-Wno-unused-parameter" />
+					<Add option="-ffast-math" />
+					<Add option="-fno-exceptions" />
+					<Add option="-U__STRICT_ANSI__" />
+					<Add option="-D_IRR_STATIC_LIB_" />
+					<Add directory="../../include" />
+					<Add directory="zlib" />
+					<Add directory="libpng" />
+				</Compiler>
+				<Linker>
+					<Add library="GL" />
+					<Add library="Xxf86vm" />
+					<Add directory="/usr/X11R6/lib" />
+					<Add directory="/usr/local/lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="All" targets="Win32 - Debug - dll;Win32 - Release - fast math - dll;Win32 - Release - accurate math - dll;" />
+		</VirtualTargets>
+		<Unit filename="changes.txt" />
+		<Unit filename="include/CDynamicMeshBuffer.h" />
+		<Unit filename="include/CIndexBuffer.h" />
+		<Unit filename="include/CMeshBuffer.h" />
+		<Unit filename="include/CVertexBuffer.h" />
+		<Unit filename="include/EAttributes.h" />
+		<Unit filename="include/ECullingTypes.h" />
+		<Unit filename="include/EDebugSceneTypes.h" />
+		<Unit filename="include/EDeviceTypes.h" />
+		<Unit filename="include/EDriverFeatures.h" />
+		<Unit filename="include/EDriverTypes.h" />
+		<Unit filename="include/EGUIAlignment.h" />
+		<Unit filename="include/EGUIElementTypes.h" />
+		<Unit filename="include/EHardwareBufferFlags.h" />
+		<Unit filename="include/EMaterialFlags.h" />
+		<Unit filename="include/EMaterialTypes.h" />
+		<Unit filename="include/EMeshWriterEnums.h" />
+		<Unit filename="include/EMessageBoxFlags.h" />
+		<Unit filename="include/EPrimitiveTypes.h" />
+		<Unit filename="include/ESceneNodeAnimatorTypes.h" />
+		<Unit filename="include/ESceneNodeTypes.h" />
+		<Unit filename="include/EShaderTypes.h" />
+		<Unit filename="include/ETerrainElements.h" />
+		<Unit filename="include/IAnimatedMesh.h" />
+		<Unit filename="include/IAnimatedMeshMD2.h" />
+		<Unit filename="include/IAnimatedMeshMD3.h" />
+		<Unit filename="include/IAnimatedMeshSceneNode.h" />
+		<Unit filename="include/IAttributeExchangingObject.h" />
+		<Unit filename="include/IAttributes.h" />
+		<Unit filename="include/IBillboardSceneNode.h" />
+		<Unit filename="include/IBillboardTextSceneNode.h" />
+		<Unit filename="include/IBoneSceneNode.h" />
+		<Unit filename="include/ICameraSceneNode.h" />
+		<Unit filename="include/IColladaMeshWriter.h" />
+		<Unit filename="include/ICursorControl.h" />
+		<Unit filename="include/IDummyTransformationSceneNode.h" />
+		<Unit filename="include/IDynamicMeshBuffer.h" />
+		<Unit filename="include/IEventReceiver.h" />
+		<Unit filename="include/IFileArchive.h" />
+		<Unit filename="include/IFileList.h" />
+		<Unit filename="include/IFileSystem.h" />
+		<Unit filename="include/IGPUProgrammingServices.h" />
+		<Unit filename="include/IGUIButton.h" />
+		<Unit filename="include/IGUICheckBox.h" />
+		<Unit filename="include/IGUIColorSelectDialog.h" />
+		<Unit filename="include/IGUIComboBox.h" />
+		<Unit filename="include/IGUIContextMenu.h" />
+		<Unit filename="include/IGUIEditBox.h" />
+		<Unit filename="include/IGUIElement.h" />
+		<Unit filename="include/IGUIElementFactory.h" />
+		<Unit filename="include/IGUIEnvironment.h" />
+		<Unit filename="include/IGUIFileOpenDialog.h" />
+		<Unit filename="include/IGUIFont.h" />
+		<Unit filename="include/IGUIFontBitmap.h" />
+		<Unit filename="include/IGUIImage.h" />
+		<Unit filename="include/IGUIImageList.h" />
+		<Unit filename="include/IGUIInOutFader.h" />
+		<Unit filename="include/IGUIListBox.h" />
+		<Unit filename="include/IGUIMeshViewer.h" />
+		<Unit filename="include/IGUIScrollBar.h" />
+		<Unit filename="include/IGUISkin.h" />
+		<Unit filename="include/IGUISpinBox.h" />
+		<Unit filename="include/IGUISpriteBank.h" />
+		<Unit filename="include/IGUIStaticText.h" />
+		<Unit filename="include/IGUITabControl.h" />
+		<Unit filename="include/IGUITable.h" />
+		<Unit filename="include/IGUIToolbar.h" />
+		<Unit filename="include/IGUITreeView.h" />
+		<Unit filename="include/IGUIWindow.h" />
+		<Unit filename="include/IGeometryCreator.h" />
+		<Unit filename="include/IImage.h" />
+		<Unit filename="include/IImageLoader.h" />
+		<Unit filename="include/IImageWriter.h" />
+		<Unit filename="include/IIndexBuffer.h" />
+		<Unit filename="include/ILightManager.h" />
+		<Unit filename="include/ILightSceneNode.h" />
+		<Unit filename="include/ILogger.h" />
+		<Unit filename="include/IMaterialRenderer.h" />
+		<Unit filename="include/IMaterialRendererServices.h" />
+		<Unit filename="include/IMesh.h" />
+		<Unit filename="include/IMeshBuffer.h" />
+		<Unit filename="include/IMeshCache.h" />
+		<Unit filename="include/IMeshLoader.h" />
+		<Unit filename="include/IMeshManipulator.h" />
+		<Unit filename="include/IMeshSceneNode.h" />
+		<Unit filename="include/IMeshWriter.h" />
+		<Unit filename="include/IMetaTriangleSelector.h" />
+		<Unit filename="include/IOSOperator.h" />
+		<Unit filename="include/IParticleAffector.h" />
+		<Unit filename="include/IParticleAnimatedMeshSceneNodeEmitter.h" />
+		<Unit filename="include/IParticleAttractionAffector.h" />
+		<Unit filename="include/IParticleBoxEmitter.h" />
+		<Unit filename="include/IParticleCylinderEmitter.h" />
+		<Unit filename="include/IParticleEmitter.h" />
+		<Unit filename="include/IParticleFadeOutAffector.h" />
+		<Unit filename="include/IParticleGravityAffector.h" />
+		<Unit filename="include/IParticleMeshEmitter.h" />
+		<Unit filename="include/IParticleRingEmitter.h" />
+		<Unit filename="include/IParticleRotationAffector.h" />
+		<Unit filename="include/IParticleSphereEmitter.h" />
+		<Unit filename="include/IParticleSystemSceneNode.h" />
+		<Unit filename="include/IQ3LevelMesh.h" />
+		<Unit filename="include/IQ3Shader.h" />
+		<Unit filename="include/IReadFile.h" />
+		<Unit filename="include/IReferenceCounted.h" />
+		<Unit filename="include/ISceneCollisionManager.h" />
+		<Unit filename="include/ISceneLoader.h" />
+		<Unit filename="include/ISceneManager.h" />
+		<Unit filename="include/ISceneNode.h" />
+		<Unit filename="include/ISceneNodeAnimator.h" />
+		<Unit filename="include/ISceneNodeAnimatorCameraFPS.h" />
+		<Unit filename="include/ISceneNodeAnimatorCameraMaya.h" />
+		<Unit filename="include/ISceneNodeAnimatorCollisionResponse.h" />
+		<Unit filename="include/ISceneNodeAnimatorFactory.h" />
+		<Unit filename="include/ISceneNodeFactory.h" />
+		<Unit filename="include/ISceneUserDataSerializer.h" />
+		<Unit filename="include/IShaderConstantSetCallBack.h" />
+		<Unit filename="include/IShadowVolumeSceneNode.h" />
+		<Unit filename="include/ISkinnedMesh.h" />
+		<Unit filename="include/ITerrainSceneNode.h" />
+		<Unit filename="include/ITextSceneNode.h" />
+		<Unit filename="include/ITexture.h" />
+		<Unit filename="include/ITimer.h" />
+		<Unit filename="include/ITriangleSelector.h" />
+		<Unit filename="include/IVertexBuffer.h" />
+		<Unit filename="include/IVideoDriver.h" />
+		<Unit filename="include/IVideoModeList.h" />
+		<Unit filename="include/IVolumeLightSceneNode.h" />
+		<Unit filename="include/IWriteFile.h" />
+		<Unit filename="include/IXMLReader.h" />
+		<Unit filename="include/IXMLWriter.h" />
+		<Unit filename="include/IrrCompileConfig.h" />
+		<Unit filename="include/IrrlichtDevice.h" />
+		<Unit filename="include/Keycodes.h" />
+		<Unit filename="include/S3DVertex.h" />
+		<Unit filename="include/SAnimatedMesh.h" />
+		<Unit filename="include/SColor.h" />
+		<Unit filename="include/SExposedVideoData.h" />
+		<Unit filename="include/SIrrCreationParameters.h" />
+		<Unit filename="include/SKeyMap.h" />
+		<Unit filename="include/SLight.h" />
+		<Unit filename="include/SMaterial.h" />
+		<Unit filename="include/SMaterialLayer.h" />
+		<Unit filename="include/SMesh.h" />
+		<Unit filename="include/SMeshBuffer.h" />
+		<Unit filename="include/SMeshBufferLightMap.h" />
+		<Unit filename="include/SMeshBufferTangents.h" />
+		<Unit filename="include/SParticle.h" />
+		<Unit filename="include/SSharedMeshBuffer.h" />
+		<Unit filename="include/SSkinMeshBuffer.h" />
+		<Unit filename="include/SVertexIndex.h" />
+		<Unit filename="include/SVertexManipulator.h" />
+		<Unit filename="include/SViewFrustum.h" />
+		<Unit filename="include/SceneParameters.h" />
+		<Unit filename="include/aabbox3d.h" />
+		<Unit filename="include/coreutil.h" />
+		<Unit filename="include/dimension2d.h" />
+		<Unit filename="include/fast_atof.h" />
+		<Unit filename="include/heapsort.h" />
+		<Unit filename="include/irrAllocator.h" />
+		<Unit filename="include/irrArray.h" />
+		<Unit filename="include/irrList.h" />
+		<Unit filename="include/irrMap.h" />
+		<Unit filename="include/irrMath.h" />
+		<Unit filename="include/irrString.h" />
+		<Unit filename="include/irrTypes.h" />
+		<Unit filename="include/irrXML.h" />
+		<Unit filename="include/irrlicht.h" />
+		<Unit filename="include/irrpack.h" />
+		<Unit filename="include/irrunpack.h" />
+		<Unit filename="include/line2d.h" />
+		<Unit filename="include/line3d.h" />
+		<Unit filename="include/matrix4.h" />
+		<Unit filename="include/path.h" />
+		<Unit filename="include/plane3d.h" />
+		<Unit filename="include/position2d.h" />
+		<Unit filename="include/quaternion.h" />
+		<Unit filename="include/rect.h" />
+		<Unit filename="include/triangle3d.h" />
+		<Unit filename="include/vector2d.h" />
+		<Unit filename="include/vector3d.h" />
+		<Unit filename="readme.txt" />
+		<Unit filename="source/Irrlicht/BuiltInFont.h" />
+		<Unit filename="source/Irrlicht/C3DSMeshFileLoader.cpp" />
+		<Unit filename="source/Irrlicht/C3DSMeshFileLoader.h" />
+		<Unit filename="source/Irrlicht/CAnimatedMeshHalfLife.cpp" />
+		<Unit filename="source/Irrlicht/CAnimatedMeshHalfLife.h" />
+		<Unit filename="source/Irrlicht/CAnimatedMeshMD2.cpp" />
+		<Unit filename="source/Irrlicht/CAnimatedMeshMD2.h" />
+		<Unit filename="source/Irrlicht/CAnimatedMeshMD3.cpp" />
+		<Unit filename="source/Irrlicht/CAnimatedMeshMD3.h" />
+		<Unit filename="source/Irrlicht/CAnimatedMeshSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CAnimatedMeshSceneNode.h" />
+		<Unit filename="source/Irrlicht/CAttributeImpl.h" />
+		<Unit filename="source/Irrlicht/CAttributes.cpp" />
+		<Unit filename="source/Irrlicht/CAttributes.h" />
+		<Unit filename="source/Irrlicht/CB3DMeshFileLoader.cpp" />
+		<Unit filename="source/Irrlicht/CB3DMeshFileLoader.h" />
+		<Unit filename="source/Irrlicht/CBSPMeshFileLoader.cpp" />
+		<Unit filename="source/Irrlicht/CBSPMeshFileLoader.h" />
+		<Unit filename="source/Irrlicht/CBillboardSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CBillboardSceneNode.h" />
+		<Unit filename="source/Irrlicht/CBlit.h" />
+		<Unit filename="source/Irrlicht/CBoneSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CBoneSceneNode.h" />
+		<Unit filename="source/Irrlicht/CBurningShader_Raster_Reference.cpp" />
+		<Unit filename="source/Irrlicht/CCSMLoader.cpp" />
+		<Unit filename="source/Irrlicht/CCSMLoader.h" />
+		<Unit filename="source/Irrlicht/CCameraSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CCameraSceneNode.h" />
+		<Unit filename="source/Irrlicht/CCgMaterialRenderer.cpp" />
+		<Unit filename="source/Irrlicht/CCgMaterialRenderer.h" />
+		<Unit filename="source/Irrlicht/CColladaFileLoader.cpp" />
+		<Unit filename="source/Irrlicht/CColladaFileLoader.h" />
+		<Unit filename="source/Irrlicht/CColladaMeshWriter.cpp" />
+		<Unit filename="source/Irrlicht/CColladaMeshWriter.h" />
+		<Unit filename="source/Irrlicht/CColorConverter.cpp" />
+		<Unit filename="source/Irrlicht/CColorConverter.h" />
+		<Unit filename="source/Irrlicht/CCubeSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CCubeSceneNode.h" />
+		<Unit filename="source/Irrlicht/CD3D8Driver.cpp" />
+		<Unit filename="source/Irrlicht/CD3D8Driver.h" />
+		<Unit filename="source/Irrlicht/CD3D8MaterialRenderer.h" />
+		<Unit filename="source/Irrlicht/CD3D8NormalMapRenderer.cpp" />
+		<Unit filename="source/Irrlicht/CD3D8NormalMapRenderer.h" />
+		<Unit filename="source/Irrlicht/CD3D8ParallaxMapRenderer.cpp" />
+		<Unit filename="source/Irrlicht/CD3D8ParallaxMapRenderer.h" />
+		<Unit filename="source/Irrlicht/CD3D8ShaderMaterialRenderer.cpp" />
+		<Unit filename="source/Irrlicht/CD3D8ShaderMaterialRenderer.h" />
+		<Unit filename="source/Irrlicht/CD3D8Texture.cpp" />
+		<Unit filename="source/Irrlicht/CD3D8Texture.h" />
+		<Unit filename="source/Irrlicht/CD3D9CgMaterialRenderer.cpp" />
+		<Unit filename="source/Irrlicht/CD3D9CgMaterialRenderer.h" />
+		<Unit filename="source/Irrlicht/CD3D9Driver.cpp" />
+		<Unit filename="source/Irrlicht/CD3D9Driver.h" />
+		<Unit filename="source/Irrlicht/CD3D9HLSLMaterialRenderer.cpp" />
+		<Unit filename="source/Irrlicht/CD3D9HLSLMaterialRenderer.h" />
+		<Unit filename="source/Irrlicht/CD3D9MaterialRenderer.h" />
+		<Unit filename="source/Irrlicht/CD3D9NormalMapRenderer.cpp" />
+		<Unit filename="source/Irrlicht/CD3D9NormalMapRenderer.h" />
+		<Unit filename="source/Irrlicht/CD3D9ParallaxMapRenderer.cpp" />
+		<Unit filename="source/Irrlicht/CD3D9ParallaxMapRenderer.h" />
+		<Unit filename="source/Irrlicht/CD3D9ShaderMaterialRenderer.cpp" />
+		<Unit filename="source/Irrlicht/CD3D9ShaderMaterialRenderer.h" />
+		<Unit filename="source/Irrlicht/CD3D9Texture.cpp" />
+		<Unit filename="source/Irrlicht/CD3D9Texture.h" />
+		<Unit filename="source/Irrlicht/CDMFLoader.cpp" />
+		<Unit filename="source/Irrlicht/CDMFLoader.h" />
+		<Unit filename="source/Irrlicht/CDefaultGUIElementFactory.cpp" />
+		<Unit filename="source/Irrlicht/CDefaultGUIElementFactory.h" />
+		<Unit filename="source/Irrlicht/CDefaultSceneNodeAnimatorFactory.cpp" />
+		<Unit filename="source/Irrlicht/CDefaultSceneNodeAnimatorFactory.h" />
+		<Unit filename="source/Irrlicht/CDefaultSceneNodeFactory.cpp" />
+		<Unit filename="source/Irrlicht/CDefaultSceneNodeFactory.h" />
+		<Unit filename="source/Irrlicht/CDepthBuffer.cpp" />
+		<Unit filename="source/Irrlicht/CDepthBuffer.h" />
+		<Unit filename="source/Irrlicht/CDummyTransformationSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CDummyTransformationSceneNode.h" />
+		<Unit filename="source/Irrlicht/CEmptySceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CEmptySceneNode.h" />
+		<Unit filename="source/Irrlicht/CFPSCounter.cpp" />
+		<Unit filename="source/Irrlicht/CFPSCounter.h" />
+		<Unit filename="source/Irrlicht/CFileList.cpp" />
+		<Unit filename="source/Irrlicht/CFileList.h" />
+		<Unit filename="source/Irrlicht/CFileSystem.cpp" />
+		<Unit filename="source/Irrlicht/CFileSystem.h" />
+		<Unit filename="source/Irrlicht/CGUIButton.cpp" />
+		<Unit filename="source/Irrlicht/CGUIButton.h" />
+		<Unit filename="source/Irrlicht/CGUICheckBox.cpp" />
+		<Unit filename="source/Irrlicht/CGUICheckbox.h" />
+		<Unit filename="source/Irrlicht/CGUIColorSelectDialog.cpp" />
+		<Unit filename="source/Irrlicht/CGUIColorSelectDialog.h" />
+		<Unit filename="source/Irrlicht/CGUIComboBox.cpp" />
+		<Unit filename="source/Irrlicht/CGUIComboBox.h" />
+		<Unit filename="source/Irrlicht/CGUIContextMenu.cpp" />
+		<Unit filename="source/Irrlicht/CGUIContextMenu.h" />
+		<Unit filename="source/Irrlicht/CGUIEditBox.cpp" />
+		<Unit filename="source/Irrlicht/CGUIEditBox.h" />
+		<Unit filename="source/Irrlicht/CGUIEnvironment.cpp" />
+		<Unit filename="source/Irrlicht/CGUIEnvironment.h" />
+		<Unit filename="source/Irrlicht/CGUIFileOpenDialog.cpp" />
+		<Unit filename="source/Irrlicht/CGUIFileOpenDialog.h" />
+		<Unit filename="source/Irrlicht/CGUIFont.cpp" />
+		<Unit filename="source/Irrlicht/CGUIFont.h" />
+		<Unit filename="source/Irrlicht/CGUIImage.cpp" />
+		<Unit filename="source/Irrlicht/CGUIImage.h" />
+		<Unit filename="source/Irrlicht/CGUIImageList.cpp" />
+		<Unit filename="source/Irrlicht/CGUIImageList.h" />
+		<Unit filename="source/Irrlicht/CGUIInOutFader.cpp" />
+		<Unit filename="source/Irrlicht/CGUIInOutFader.h" />
+		<Unit filename="source/Irrlicht/CGUIListBox.cpp" />
+		<Unit filename="source/Irrlicht/CGUIListBox.h" />
+		<Unit filename="source/Irrlicht/CGUIMenu.cpp" />
+		<Unit filename="source/Irrlicht/CGUIMenu.h" />
+		<Unit filename="source/Irrlicht/CGUIMeshViewer.cpp" />
+		<Unit filename="source/Irrlicht/CGUIMeshViewer.h" />
+		<Unit filename="source/Irrlicht/CGUIMessageBox.cpp" />
+		<Unit filename="source/Irrlicht/CGUIMessageBox.h" />
+		<Unit filename="source/Irrlicht/CGUIModalScreen.cpp" />
+		<Unit filename="source/Irrlicht/CGUIModalScreen.h" />
+		<Unit filename="source/Irrlicht/CGUIScrollBar.cpp" />
+		<Unit filename="source/Irrlicht/CGUIScrollBar.h" />
+		<Unit filename="source/Irrlicht/CGUISkin.cpp" />
+		<Unit filename="source/Irrlicht/CGUISkin.h" />
+		<Unit filename="source/Irrlicht/CGUISpinBox.cpp" />
+		<Unit filename="source/Irrlicht/CGUISpinBox.h" />
+		<Unit filename="source/Irrlicht/CGUISpriteBank.cpp" />
+		<Unit filename="source/Irrlicht/CGUISpriteBank.h" />
+		<Unit filename="source/Irrlicht/CGUIStaticText.cpp" />
+		<Unit filename="source/Irrlicht/CGUIStaticText.h" />
+		<Unit filename="source/Irrlicht/CGUITabControl.cpp" />
+		<Unit filename="source/Irrlicht/CGUITabControl.h" />
+		<Unit filename="source/Irrlicht/CGUITable.cpp" />
+		<Unit filename="source/Irrlicht/CGUITable.h" />
+		<Unit filename="source/Irrlicht/CGUIToolBar.cpp" />
+		<Unit filename="source/Irrlicht/CGUIToolBar.h" />
+		<Unit filename="source/Irrlicht/CGUITreeView.cpp" />
+		<Unit filename="source/Irrlicht/CGUITreeView.h" />
+		<Unit filename="source/Irrlicht/CGUIWindow.cpp" />
+		<Unit filename="source/Irrlicht/CGUIWindow.h" />
+		<Unit filename="source/Irrlicht/CGeometryCreator.cpp" />
+		<Unit filename="source/Irrlicht/CGeometryCreator.h" />
+		<Unit filename="source/Irrlicht/CImage.cpp" />
+		<Unit filename="source/Irrlicht/CImage.h" />
+		<Unit filename="source/Irrlicht/CImageLoaderBMP.cpp" />
+		<Unit filename="source/Irrlicht/CImageLoaderBMP.h" />
+		<Unit filename="source/Irrlicht/CImageLoaderDDS.cpp" />
+		<Unit filename="source/Irrlicht/CImageLoaderDDS.h" />
+		<Unit filename="source/Irrlicht/CImageLoaderJPG.cpp" />
+		<Unit filename="source/Irrlicht/CImageLoaderJPG.h" />
+		<Unit filename="source/Irrlicht/CImageLoaderPCX.cpp" />
+		<Unit filename="source/Irrlicht/CImageLoaderPCX.h" />
+		<Unit filename="source/Irrlicht/CImageLoaderPNG.cpp" />
+		<Unit filename="source/Irrlicht/CImageLoaderPNG.h" />
+		<Unit filename="source/Irrlicht/CImageLoaderPPM.cpp" />
+		<Unit filename="source/Irrlicht/CImageLoaderPPM.h" />
+		<Unit filename="source/Irrlicht/CImageLoaderPSD.cpp" />
+		<Unit filename="source/Irrlicht/CImageLoaderPSD.h" />
+		<Unit filename="source/Irrlicht/CImageLoaderRGB.cpp" />
+		<Unit filename="source/Irrlicht/CImageLoaderRGB.h" />
+		<Unit filename="source/Irrlicht/CImageLoaderTGA.cpp" />
+		<Unit filename="source/Irrlicht/CImageLoaderTGA.h" />
+		<Unit filename="source/Irrlicht/CImageLoaderWAL.cpp" />
+		<Unit filename="source/Irrlicht/CImageLoaderWAL.h" />
+		<Unit filename="source/Irrlicht/CImageWriterBMP.cpp" />
+		<Unit filename="source/Irrlicht/CImageWriterBMP.h" />
+		<Unit filename="source/Irrlicht/CImageWriterJPG.cpp" />
+		<Unit filename="source/Irrlicht/CImageWriterJPG.h" />
+		<Unit filename="source/Irrlicht/CImageWriterPCX.cpp" />
+		<Unit filename="source/Irrlicht/CImageWriterPCX.h" />
+		<Unit filename="source/Irrlicht/CImageWriterPNG.cpp" />
+		<Unit filename="source/Irrlicht/CImageWriterPNG.h" />
+		<Unit filename="source/Irrlicht/CImageWriterPPM.cpp" />
+		<Unit filename="source/Irrlicht/CImageWriterPPM.h" />
+		<Unit filename="source/Irrlicht/CImageWriterPSD.cpp" />
+		<Unit filename="source/Irrlicht/CImageWriterPSD.h" />
+		<Unit filename="source/Irrlicht/CImageWriterTGA.cpp" />
+		<Unit filename="source/Irrlicht/CImageWriterTGA.h" />
+		<Unit filename="source/Irrlicht/CIrrDeviceConsole.cpp" />
+		<Unit filename="source/Irrlicht/CIrrDeviceConsole.h" />
+		<Unit filename="source/Irrlicht/CIrrDeviceLinux.cpp" />
+		<Unit filename="source/Irrlicht/CIrrDeviceLinux.h" />
+		<Unit filename="source/Irrlicht/CIrrDeviceSDL.cpp" />
+		<Unit filename="source/Irrlicht/CIrrDeviceSDL.h" />
+		<Unit filename="source/Irrlicht/CIrrDeviceStub.cpp" />
+		<Unit filename="source/Irrlicht/CIrrDeviceStub.h" />
+		<Unit filename="source/Irrlicht/CIrrDeviceWin32.cpp" />
+		<Unit filename="source/Irrlicht/CIrrDeviceWin32.h" />
+		<Unit filename="source/Irrlicht/CIrrDeviceWinCE.cpp" />
+		<Unit filename="source/Irrlicht/CIrrDeviceWinCE.h" />
+		<Unit filename="source/Irrlicht/CIrrMeshFileLoader.cpp" />
+		<Unit filename="source/Irrlicht/CIrrMeshFileLoader.h" />
+		<Unit filename="source/Irrlicht/CIrrMeshWriter.cpp" />
+		<Unit filename="source/Irrlicht/CIrrMeshWriter.h" />
+		<Unit filename="source/Irrlicht/CLMTSMeshFileLoader.cpp" />
+		<Unit filename="source/Irrlicht/CLMTSMeshFileLoader.h" />
+		<Unit filename="source/Irrlicht/CLWOMeshFileLoader.cpp" />
+		<Unit filename="source/Irrlicht/CLWOMeshFileLoader.h" />
+		<Unit filename="source/Irrlicht/CLightSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CLightSceneNode.h" />
+		<Unit filename="source/Irrlicht/CLimitReadFile.cpp" />
+		<Unit filename="source/Irrlicht/CLimitReadFile.h" />
+		<Unit filename="source/Irrlicht/CLogger.cpp" />
+		<Unit filename="source/Irrlicht/CLogger.h" />
+		<Unit filename="source/Irrlicht/CMD2MeshFileLoader.cpp" />
+		<Unit filename="source/Irrlicht/CMD2MeshFileLoader.h" />
+		<Unit filename="source/Irrlicht/CMD3MeshFileLoader.cpp" />
+		<Unit filename="source/Irrlicht/CMD3MeshFileLoader.h" />
+		<Unit filename="source/Irrlicht/CMS3DMeshFileLoader.cpp" />
+		<Unit filename="source/Irrlicht/CMS3DMeshFileLoader.h" />
+		<Unit filename="source/Irrlicht/CMY3DHelper.h" />
+		<Unit filename="source/Irrlicht/CMY3DMeshFileLoader.cpp" />
+		<Unit filename="source/Irrlicht/CMY3DMeshFileLoader.h" />
+		<Unit filename="source/Irrlicht/CMemoryFile.cpp" />
+		<Unit filename="source/Irrlicht/CMemoryFile.h" />
+		<Unit filename="source/Irrlicht/CMeshCache.cpp" />
+		<Unit filename="source/Irrlicht/CMeshCache.h" />
+		<Unit filename="source/Irrlicht/CMeshManipulator.cpp" />
+		<Unit filename="source/Irrlicht/CMeshManipulator.h" />
+		<Unit filename="source/Irrlicht/CMeshSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CMeshSceneNode.h" />
+		<Unit filename="source/Irrlicht/CMetaTriangleSelector.cpp" />
+		<Unit filename="source/Irrlicht/CMetaTriangleSelector.h" />
+		<Unit filename="source/Irrlicht/CMountPointReader.cpp" />
+		<Unit filename="source/Irrlicht/CMountPointReader.h" />
+		<Unit filename="source/Irrlicht/CNPKReader.cpp" />
+		<Unit filename="source/Irrlicht/CNPKReader.h" />
+		<Unit filename="source/Irrlicht/CNullDriver.cpp" />
+		<Unit filename="source/Irrlicht/CNullDriver.h" />
+		<Unit filename="source/Irrlicht/COBJMeshFileLoader.cpp" />
+		<Unit filename="source/Irrlicht/COBJMeshFileLoader.h" />
+		<Unit filename="source/Irrlicht/COBJMeshWriter.cpp" />
+		<Unit filename="source/Irrlicht/COBJMeshWriter.h" />
+		<Unit filename="source/Irrlicht/COCTLoader.cpp" />
+		<Unit filename="source/Irrlicht/COCTLoader.h" />
+		<Unit filename="source/Irrlicht/COSOperator.cpp" />
+		<Unit filename="source/Irrlicht/COSOperator.h" />
+		<Unit filename="source/Irrlicht/COctreeSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/COctreeSceneNode.h" />
+		<Unit filename="source/Irrlicht/COctreeTriangleSelector.cpp" />
+		<Unit filename="source/Irrlicht/COctreeTriangleSelector.h" />
+		<Unit filename="source/Irrlicht/COgreMeshFileLoader.cpp" />
+		<Unit filename="source/Irrlicht/COgreMeshFileLoader.h" />
+		<Unit filename="source/Irrlicht/COpenGLCgMaterialRenderer.cpp" />
+		<Unit filename="source/Irrlicht/COpenGLCgMaterialRenderer.h" />
+		<Unit filename="source/Irrlicht/COpenGLDriver.cpp" />
+		<Unit filename="source/Irrlicht/COpenGLDriver.h" />
+		<Unit filename="source/Irrlicht/COpenGLExtensionHandler.cpp" />
+		<Unit filename="source/Irrlicht/COpenGLExtensionHandler.h" />
+		<Unit filename="source/Irrlicht/COpenGLMaterialRenderer.h" />
+		<Unit filename="source/Irrlicht/COpenGLNormalMapRenderer.cpp" />
+		<Unit filename="source/Irrlicht/COpenGLNormalMapRenderer.h" />
+		<Unit filename="source/Irrlicht/COpenGLParallaxMapRenderer.cpp" />
+		<Unit filename="source/Irrlicht/COpenGLParallaxMapRenderer.h" />
+		<Unit filename="source/Irrlicht/COpenGLSLMaterialRenderer.cpp" />
+		<Unit filename="source/Irrlicht/COpenGLSLMaterialRenderer.h" />
+		<Unit filename="source/Irrlicht/COpenGLShaderMaterialRenderer.cpp" />
+		<Unit filename="source/Irrlicht/COpenGLShaderMaterialRenderer.h" />
+		<Unit filename="source/Irrlicht/COpenGLTexture.cpp" />
+		<Unit filename="source/Irrlicht/COpenGLTexture.h" />
+		<Unit filename="source/Irrlicht/CPLYMeshFileLoader.cpp" />
+		<Unit filename="source/Irrlicht/CPLYMeshFileLoader.h" />
+		<Unit filename="source/Irrlicht/CPLYMeshWriter.cpp" />
+		<Unit filename="source/Irrlicht/CPLYMeshWriter.h" />
+		<Unit filename="source/Irrlicht/CPakReader.cpp" />
+		<Unit filename="source/Irrlicht/CPakReader.h" />
+		<Unit filename="source/Irrlicht/CParticleAnimatedMeshSceneNodeEmitter.cpp" />
+		<Unit filename="source/Irrlicht/CParticleAnimatedMeshSceneNodeEmitter.h" />
+		<Unit filename="source/Irrlicht/CParticleAttractionAffector.cpp" />
+		<Unit filename="source/Irrlicht/CParticleAttractionAffector.h" />
+		<Unit filename="source/Irrlicht/CParticleBoxEmitter.cpp" />
+		<Unit filename="source/Irrlicht/CParticleBoxEmitter.h" />
+		<Unit filename="source/Irrlicht/CParticleCylinderEmitter.cpp" />
+		<Unit filename="source/Irrlicht/CParticleCylinderEmitter.h" />
+		<Unit filename="source/Irrlicht/CParticleFadeOutAffector.cpp" />
+		<Unit filename="source/Irrlicht/CParticleFadeOutAffector.h" />
+		<Unit filename="source/Irrlicht/CParticleGravityAffector.cpp" />
+		<Unit filename="source/Irrlicht/CParticleGravityAffector.h" />
+		<Unit filename="source/Irrlicht/CParticleMeshEmitter.cpp" />
+		<Unit filename="source/Irrlicht/CParticleMeshEmitter.h" />
+		<Unit filename="source/Irrlicht/CParticlePointEmitter.cpp" />
+		<Unit filename="source/Irrlicht/CParticlePointEmitter.h" />
+		<Unit filename="source/Irrlicht/CParticleRingEmitter.cpp" />
+		<Unit filename="source/Irrlicht/CParticleRingEmitter.h" />
+		<Unit filename="source/Irrlicht/CParticleRotationAffector.cpp" />
+		<Unit filename="source/Irrlicht/CParticleRotationAffector.h" />
+		<Unit filename="source/Irrlicht/CParticleScaleAffector.cpp" />
+		<Unit filename="source/Irrlicht/CParticleScaleAffector.h" />
+		<Unit filename="source/Irrlicht/CParticleSphereEmitter.cpp" />
+		<Unit filename="source/Irrlicht/CParticleSphereEmitter.h" />
+		<Unit filename="source/Irrlicht/CParticleSystemSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CParticleSystemSceneNode.h" />
+		<Unit filename="source/Irrlicht/CQ3LevelMesh.cpp" />
+		<Unit filename="source/Irrlicht/CQ3LevelMesh.h" />
+		<Unit filename="source/Irrlicht/CQuake3ShaderSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CQuake3ShaderSceneNode.h" />
+		<Unit filename="source/Irrlicht/CReadFile.cpp" />
+		<Unit filename="source/Irrlicht/CReadFile.h" />
+		<Unit filename="source/Irrlicht/CSMFMeshFileLoader.cpp" />
+		<Unit filename="source/Irrlicht/CSMFMeshFileLoader.h" />
+		<Unit filename="source/Irrlicht/CSTLMeshFileLoader.cpp" />
+		<Unit filename="source/Irrlicht/CSTLMeshFileLoader.h" />
+		<Unit filename="source/Irrlicht/CSTLMeshWriter.cpp" />
+		<Unit filename="source/Irrlicht/CSTLMeshWriter.h" />
+		<Unit filename="source/Irrlicht/CSceneCollisionManager.cpp" />
+		<Unit filename="source/Irrlicht/CSceneCollisionManager.h" />
+		<Unit filename="source/Irrlicht/CSceneLoaderIrr.cpp" />
+		<Unit filename="source/Irrlicht/CSceneLoaderIrr.h" />
+		<Unit filename="source/Irrlicht/CSceneManager.cpp" />
+		<Unit filename="source/Irrlicht/CSceneManager.h" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorCameraFPS.cpp" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorCameraFPS.h" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorCameraMaya.cpp" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorCameraMaya.h" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorCollisionResponse.cpp" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorCollisionResponse.h" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorDelete.cpp" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorDelete.h" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorFlyCircle.cpp" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorFlyCircle.h" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorFlyStraight.cpp" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorFlyStraight.h" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorFollowSpline.cpp" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorFollowSpline.h" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorRotation.cpp" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorRotation.h" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorTexture.cpp" />
+		<Unit filename="source/Irrlicht/CSceneNodeAnimatorTexture.h" />
+		<Unit filename="source/Irrlicht/CShadowVolumeSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CShadowVolumeSceneNode.h" />
+		<Unit filename="source/Irrlicht/CSkinnedMesh.cpp" />
+		<Unit filename="source/Irrlicht/CSkinnedMesh.h" />
+		<Unit filename="source/Irrlicht/CSkyBoxSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CSkyBoxSceneNode.h" />
+		<Unit filename="source/Irrlicht/CSkyDomeSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CSkyDomeSceneNode.h" />
+		<Unit filename="source/Irrlicht/CSoftware2MaterialRenderer.h" />
+		<Unit filename="source/Irrlicht/CSoftwareDriver.cpp" />
+		<Unit filename="source/Irrlicht/CSoftwareDriver.h" />
+		<Unit filename="source/Irrlicht/CSoftwareDriver2.cpp" />
+		<Unit filename="source/Irrlicht/CSoftwareDriver2.h" />
+		<Unit filename="source/Irrlicht/CSoftwareTexture.cpp" />
+		<Unit filename="source/Irrlicht/CSoftwareTexture.h" />
+		<Unit filename="source/Irrlicht/CSoftwareTexture2.cpp" />
+		<Unit filename="source/Irrlicht/CSoftwareTexture2.h" />
+		<Unit filename="source/Irrlicht/CSphereSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CSphereSceneNode.h" />
+		<Unit filename="source/Irrlicht/CTRFlat.cpp" />
+		<Unit filename="source/Irrlicht/CTRFlatWire.cpp" />
+		<Unit filename="source/Irrlicht/CTRGouraud.cpp" />
+		<Unit filename="source/Irrlicht/CTRGouraud2.cpp" />
+		<Unit filename="source/Irrlicht/CTRGouraudAlpha2.cpp" />
+		<Unit filename="source/Irrlicht/CTRGouraudAlphaNoZ2.cpp" />
+		<Unit filename="source/Irrlicht/CTRGouraudWire.cpp" />
+		<Unit filename="source/Irrlicht/CTRNormalMap.cpp" />
+		<Unit filename="source/Irrlicht/CTRStencilShadow.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureBlend.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureDetailMap2.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureFlat.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureFlatWire.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureGouraud.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureGouraud.h" />
+		<Unit filename="source/Irrlicht/CTRTextureGouraud2.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureGouraudAdd.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureGouraudAdd2.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureGouraudAddNoZ2.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureGouraudAlpha.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureGouraudAlphaNoZ.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureGouraudNoZ.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureGouraudNoZ2.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureGouraudVertexAlpha2.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureGouraudWire.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureLightMap2_Add.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureLightMap2_M1.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureLightMap2_M2.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureLightMap2_M4.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureLightMapGouraud2_M4.cpp" />
+		<Unit filename="source/Irrlicht/CTRTextureWire2.cpp" />
+		<Unit filename="source/Irrlicht/CTarReader.cpp" />
+		<Unit filename="source/Irrlicht/CTarReader.h" />
+		<Unit filename="source/Irrlicht/CTerrainSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CTerrainSceneNode.h" />
+		<Unit filename="source/Irrlicht/CTerrainTriangleSelector.cpp" />
+		<Unit filename="source/Irrlicht/CTerrainTriangleSelector.h" />
+		<Unit filename="source/Irrlicht/CTextSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CTextSceneNode.h" />
+		<Unit filename="source/Irrlicht/CTimer.h" />
+		<Unit filename="source/Irrlicht/CTriangleBBSelector.cpp" />
+		<Unit filename="source/Irrlicht/CTriangleBBSelector.h" />
+		<Unit filename="source/Irrlicht/CTriangleSelector.cpp" />
+		<Unit filename="source/Irrlicht/CTriangleSelector.h" />
+		<Unit filename="source/Irrlicht/CVideoModeList.cpp" />
+		<Unit filename="source/Irrlicht/CVideoModeList.h" />
+		<Unit filename="source/Irrlicht/CVolumeLightSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CVolumeLightSceneNode.h" />
+		<Unit filename="source/Irrlicht/CWADReader.cpp" />
+		<Unit filename="source/Irrlicht/CWADReader.h" />
+		<Unit filename="source/Irrlicht/CWaterSurfaceSceneNode.cpp" />
+		<Unit filename="source/Irrlicht/CWaterSurfaceSceneNode.h" />
+		<Unit filename="source/Irrlicht/CWriteFile.cpp" />
+		<Unit filename="source/Irrlicht/CWriteFile.h" />
+		<Unit filename="source/Irrlicht/CXMLReader.cpp" />
+		<Unit filename="source/Irrlicht/CXMLReader.h" />
+		<Unit filename="source/Irrlicht/CXMLReaderImpl.h" />
+		<Unit filename="source/Irrlicht/CXMLWriter.cpp" />
+		<Unit filename="source/Irrlicht/CXMLWriter.h" />
+		<Unit filename="source/Irrlicht/CXMeshFileLoader.cpp" />
+		<Unit filename="source/Irrlicht/CXMeshFileLoader.h" />
+		<Unit filename="source/Irrlicht/CZBuffer.cpp" />
+		<Unit filename="source/Irrlicht/CZBuffer.h" />
+		<Unit filename="source/Irrlicht/CZipReader.cpp" />
+		<Unit filename="source/Irrlicht/CZipReader.h" />
+		<Unit filename="source/Irrlicht/IAttribute.h" />
+		<Unit filename="source/Irrlicht/IBurningShader.cpp" />
+		<Unit filename="source/Irrlicht/IBurningShader.h" />
+		<Unit filename="source/Irrlicht/IDepthBuffer.h" />
+		<Unit filename="source/Irrlicht/IImagePresenter.h" />
+		<Unit filename="source/Irrlicht/ITriangleRenderer.h" />
+		<Unit filename="source/Irrlicht/IZBuffer.h" />
+		<Unit filename="source/Irrlicht/Irrlicht.cpp" />
+		<Unit filename="source/Irrlicht/MacOSX/CIrrDeviceMacOSX.h" />
+		<Unit filename="source/Irrlicht/MacOSX/CIrrDeviceMacOSX.mm" />
+		<Unit filename="source/Irrlicht/Octree.h" />
+		<Unit filename="source/Irrlicht/S2DVertex.h" />
+		<Unit filename="source/Irrlicht/S4DVertex.h" />
+		<Unit filename="source/Irrlicht/SoftwareDriver2_compile_config.h" />
+		<Unit filename="source/Irrlicht/SoftwareDriver2_helper.h" />
+		<Unit filename="source/Irrlicht/aesGladman/aes.h" />
+		<Unit filename="source/Irrlicht/aesGladman/aescrypt.cpp" />
+		<Unit filename="source/Irrlicht/aesGladman/aeskey.cpp" />
+		<Unit filename="source/Irrlicht/aesGladman/aesopt.h" />
+		<Unit filename="source/Irrlicht/aesGladman/aestab.cpp" />
+		<Unit filename="source/Irrlicht/aesGladman/fileenc.cpp" />
+		<Unit filename="source/Irrlicht/aesGladman/fileenc.h" />
+		<Unit filename="source/Irrlicht/aesGladman/hmac.cpp" />
+		<Unit filename="source/Irrlicht/aesGladman/hmac.h" />
+		<Unit filename="source/Irrlicht/aesGladman/prng.cpp" />
+		<Unit filename="source/Irrlicht/aesGladman/prng.h" />
+		<Unit filename="source/Irrlicht/aesGladman/pwd2key.cpp" />
+		<Unit filename="source/Irrlicht/aesGladman/pwd2key.h" />
+		<Unit filename="source/Irrlicht/aesGladman/sha1.cpp" />
+		<Unit filename="source/Irrlicht/aesGladman/sha1.h" />
+		<Unit filename="source/Irrlicht/aesGladman/sha2.cpp" />
+		<Unit filename="source/Irrlicht/aesGladman/sha2.h" />
+		<Unit filename="source/Irrlicht/bzip2/blocksort.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/bzip2/bzcompress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/bzip2/bzlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/bzip2/bzlib.h" />
+		<Unit filename="source/Irrlicht/bzip2/bzlib_private.h" />
+		<Unit filename="source/Irrlicht/bzip2/crctable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/bzip2/decompress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/bzip2/huffman.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/bzip2/randtable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/dmfsupport.h" />
+		<Unit filename="source/Irrlicht/glext.h" />
+		<Unit filename="source/Irrlicht/irrXML.cpp" />
+		<Unit filename="source/Irrlicht/jpeglib/cderror.h" />
+		<Unit filename="source/Irrlicht/jpeglib/jaricom.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jcapimin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jcapistd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jcarith.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jccoefct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jccolor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jcdctmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jchuff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jchuff.h" />
+		<Unit filename="source/Irrlicht/jpeglib/jcinit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jcmainct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jcmarker.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jcmaster.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jcomapi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jconfig.h" />
+		<Unit filename="source/Irrlicht/jpeglib/jcparam.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jcprepct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jcsample.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jctrans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jdapimin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jdapistd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jdarith.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jdatadst.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jdatasrc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jdcoefct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jdcolor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jdct.h" />
+		<Unit filename="source/Irrlicht/jpeglib/jddctmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jdhuff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jdhuff.h" />
+		<Unit filename="source/Irrlicht/jpeglib/jdinput.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jdmainct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jdmarker.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jdmaster.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jdmerge.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jdpostct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jdsample.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jdtrans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jerror.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jerror.h" />
+		<Unit filename="source/Irrlicht/jpeglib/jfdctflt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jfdctfst.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jfdctint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jidctflt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jidctfst.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jidctint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jinclude.h" />
+		<Unit filename="source/Irrlicht/jpeglib/jmemmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jmemnobs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jmemsys.h" />
+		<Unit filename="source/Irrlicht/jpeglib/jmorecfg.h" />
+		<Unit filename="source/Irrlicht/jpeglib/jpegint.h" />
+		<Unit filename="source/Irrlicht/jpeglib/jpeglib.h" />
+		<Unit filename="source/Irrlicht/jpeglib/jquant1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jquant2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jutils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/jpeglib/jversion.h" />
+		<Unit filename="source/Irrlicht/libpng/png.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/libpng/png.h" />
+		<Unit filename="source/Irrlicht/libpng/pngconf.h" />
+		<Unit filename="source/Irrlicht/libpng/pngerror.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/libpng/pngget.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/libpng/pngmem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/libpng/pngpread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/libpng/pngread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/libpng/pngrio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/libpng/pngrtran.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/libpng/pngrutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/libpng/pngset.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/libpng/pngtrans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/libpng/pngwio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/libpng/pngwrite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/libpng/pngwtran.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/libpng/pngwutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/lzma/LzmaDec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/lzma/LzmaDec.h" />
+		<Unit filename="source/Irrlicht/lzma/Types.h" />
+		<Unit filename="source/Irrlicht/os.cpp" />
+		<Unit filename="source/Irrlicht/os.h" />
+		<Unit filename="source/Irrlicht/zlib/adler32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/zlib/compress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/zlib/crc32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/zlib/crc32.h" />
+		<Unit filename="source/Irrlicht/zlib/deflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/zlib/deflate.h" />
+		<Unit filename="source/Irrlicht/zlib/inffast.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/zlib/inffast.h" />
+		<Unit filename="source/Irrlicht/zlib/inffixed.h" />
+		<Unit filename="source/Irrlicht/zlib/inflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/zlib/inftrees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/zlib/inftrees.h" />
+		<Unit filename="source/Irrlicht/zlib/trees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/zlib/trees.h" />
+		<Unit filename="source/Irrlicht/zlib/uncompr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/zlib/zconf.h" />
+		<Unit filename="source/Irrlicht/zlib/zlib.h" />
+		<Unit filename="source/Irrlicht/zlib/zutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/Irrlicht/zlib/zutil.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

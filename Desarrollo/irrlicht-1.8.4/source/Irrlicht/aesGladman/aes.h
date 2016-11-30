@@ -37,7 +37,7 @@
 #ifndef _AES_H
 #define _AES_H
 
-#include "irrMath.h"
+#include nes"irrMath.h"
 
 #define AES_128     /* define if AES with 128 bit keys is needed    */
 #define AES_192     /* define if AES with 192 bit keys is needed    */
@@ -83,7 +83,7 @@ void gen_tabs(void);
 
 #ifdef  AES_ENCRYPT
 
-typedef struct  
+typedef struct
 {
 	aes_32t ks[KS_LENGTH];
 } aes_encrypt_ctx;
@@ -109,7 +109,7 @@ aes_rval aes_encrypt(const void *in_blk, void *out_blk, const aes_encrypt_ctx cx
 
 #ifdef AES_DECRYPT
 
-typedef struct  
+typedef struct
 {
 	aes_32t ks[KS_LENGTH];
 } aes_decrypt_ctx;
