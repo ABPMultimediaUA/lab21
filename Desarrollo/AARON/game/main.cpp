@@ -17,6 +17,11 @@ using namespace gui;
 #endif
 
 
+#define bwInitPosX 100
+#define bwInitPosY 100
+
+#define bwBow_W 1.0f
+#define bwBow_H 1.0f
 
 ///////// EL MUNDO DE BOX2D /////////
 class bwBody{
@@ -63,7 +68,7 @@ void createPlayer(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* cons
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicBox;
-    dynamicBox.SetAsBox(10.0f, 10.0f);
+    dynamicBox.SetAsBox(bwBow_W, bwBow_H);
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
@@ -111,7 +116,7 @@ void createRigidBox(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* co
     bodies.push_back(bww);
 }
 
-void createStaticBox(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device){
+void createStaticBox(b2World& world, const vector2d<s32>& pos, const int tamX, const int tamY, IrrlichtDevice* const device){
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
     //bodyDef.type = b2_dynamicBody;
@@ -120,7 +125,7 @@ void createStaticBox(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* c
 
     // Define another box shape for our dynamic body.
     b2PolygonShape staticBox;
-    staticBox.SetAsBox(10.0f, 10.0f);
+    staticBox.SetAsBox(tamX, tamY);
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
@@ -138,9 +143,7 @@ void createStaticBox(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* c
 IrrlichtDevice *device = 0;
 
 b2Vec2 gravity(0.0f, 0.0f);
-bool doSleep = true;
-//b2World world(gravity, doSleep);
-b2World world(gravity); //CAMBIADO POR AARON... quitado el bool "doSleep"
+b2World world(gravity);
 ///////// EL MUNDO DE BOX2D (END) /////////
 
 //PARA TECLADO Y RATON
@@ -201,14 +204,6 @@ class CAppReceiver : public IEventReceiver {
 
 };
 
-class GameEntity {
-private:
-
-public:
-
-};
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////// MAIN //////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -237,7 +232,7 @@ int main() {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //CAMERA (nodo padre, posición, directión)
-	ICameraSceneNode* camera1 = smgr->addCameraSceneNode(0, vector3df(0,10,-10), vector3df(0,5,0));
+	ICameraSceneNode* camera1 = smgr->addCameraSceneNode(0, vector3df(0,10,-20), vector3df(0,5,0));
 	ICameraSceneNode* camera2 = smgr->addCameraSceneNode(0, vector3df(0,30,-40), vector3df(0,5,0));
 	ICameraSceneNode* camera3 = smgr->addCameraSceneNode(0, vector3df(10,50,-20), vector3df(0,5,0));
 	smgr->setActiveCamera(camera1); //Activar cámara
@@ -293,14 +288,16 @@ int main() {
 
    bwBody* bww = new bwBody(groundBox, groundBody, device);
 */
-   for(int i=0; i < 2; i++){
-        for(int j=0; j < 4; j++){
-            //createRigidBox(world,vector2d<s32>(0+(i*45), 0-(j*20)), device);
-            createStaticBox(world,vector2d<s32>(0+(i*45), 0-(j*20)), device);
-        }
-   }
 
-    createPlayer(world,vector2d<s32>(0,0), device);
+//////// CREACION MANUAL DE LAS COLISIONES COINCIDENTES CON EL ESCENARIO
+   //for(int i=0; i < 2; i++){
+     //   for(int j=0; j < 4; j++){
+            //createRigidBox(world,vector2d<s32>(0+(i*45), 0-(j*20)), device);
+            createStaticBox(world,vector2d<s32>(87,100), 1, 10,device);
+  //      }
+   //}
+
+    createPlayer(world,vector2d<s32>(bwInitPosX,bwInitPosY), device);
 
 
 
@@ -318,6 +315,9 @@ int main() {
 /////////////////////////////////////////////////////////////////////////////////////////////
     //TIEMPO
     u32 then = device->getTimer()->getTime();
+
+    /////booleano
+    bool apretado;
 
     //DEVICE RUN ----------------- BUCLE
 	while(device->run()){
@@ -341,6 +341,7 @@ int main() {
 
             //MOVER CUBO
             //vector3df nodePos = node->getPosition(); //Get Position
+            apretado = false;
 
             if(appReceiver.isKeyDown(KEY_ESCAPE)) {
                  device->closeDevice(); //CERRAR VENTANA
@@ -348,9 +349,11 @@ int main() {
             } else if(appReceiver.isKeyDown(KEY_RIGHT)) {
                 //nodePos.X += MOVEMENT_SPEED * dt;
                 bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(10.0,0.0));
+                apretado = true;
             } else if(appReceiver.isKeyDown(KEY_LEFT)) {
                 //nodePos.X -= MOVEMENT_SPEED * dt;
                 bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(-10.0,0.0));
+                apretado = true;
             }else{
                 bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(0.0,0.0));
             }
@@ -358,9 +361,16 @@ int main() {
             if(appReceiver.isKeyDown(KEY_UP)) {
                 //nodePos.Z += MOVEMENT_SPEED * dt;
                 bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(0.0,10.0));
+                apretado = true;
             } else if(appReceiver.isKeyDown(KEY_DOWN)) {
                 //nodePos.Z -= MOVEMENT_SPEED * dt;
                 bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(0.0,-10.0));
+                apretado = true;
+            }
+
+            if(apretado) {
+                cout    << "Estoy en la posicion: X = " << bwPlayer->getBwBody()->GetPosition().x
+                        << " ; Y = " << bwPlayer->getBwBody()->GetPosition().y <<endl;
             }
 
             //node->setPosition(nodePos); //Cambio de posición
@@ -391,7 +401,7 @@ int main() {
             }
             bwPlayer->update(); //UPDATE de mi player BOX2D
             //Posición actualizada de Irrlicht Player
-            node->setPosition(vector3df(bwPlayer->getBwBody()->GetPosition().x,0,bwPlayer->getBwBody()->GetPosition().y));
+            node->setPosition(vector3df(bwPlayer->getBwBody()->GetPosition().x - bwInitPosX,0,bwPlayer->getBwBody()->GetPosition().y - bwInitPosY));
 
 ////        bww->update();
             driver->endScene();

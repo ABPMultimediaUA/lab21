@@ -76,6 +76,8 @@
 		<Unit filename="src/classes/Drawable.h" />
 		<Unit filename="src/classes/Enemy.cpp" />
 		<Unit filename="src/classes/Enemy.h" />
+		<Unit filename="src/classes/EntityPhysics.cpp" />
+		<Unit filename="src/classes/EntityPhysics.h" />
 		<Unit filename="src/classes/Fat.cpp" />
 		<Unit filename="src/classes/Fat.h" />
 		<Unit filename="src/classes/Firearm.cpp" />
