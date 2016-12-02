@@ -3,6 +3,7 @@
 Drawable::Drawable()
 {
     //ctor
+    m_animation = dwe::eAnimNone;
 }
 
 Drawable::~Drawable()
@@ -33,3 +34,7 @@ void Drawable::removeNode()
     delete m_node;
     m_node = 0;
 }
+
+///////////////
+void Drawable::setAnimation(dwe::AnimationType a) { m_node->setAnimation(a); m_animation = a; }
+dwe::AnimationType Drawable::getAnimation() { return m_animation; }

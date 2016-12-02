@@ -10,6 +10,9 @@ class Whole : public Enemy
         Whole();
         virtual ~Whole();
 
+        virtual void update() {};
+        virtual void render() {};
+
     protected:
 
     private:

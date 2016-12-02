@@ -1,67 +1,12 @@
 #include "GraphicsEngine.h"
 #include "Player.h"
 #include "PlayerMate.h"
+#include "Whole.h"
 #include "NetGame.h"
 
 // Necesita volver a poner este namespace
 // para que codeblocks autocomplete bien.
 // Los demás no, sino tampoco autocompleta.
-
-
-
-
-///////////////////////////////////////////////
-// class Node
-///////////////////////////////////////////////
-dwe::Node::Node() {};
-dwe::Node::Node(ISceneNode* n)
-{
-    m_node = n;
-}
-
-void dwe::Node::setNode(ISceneNode* n)
-{
-    m_node = n;
-}
-
-////////////////
-void dwe::Node::remove()
-{
-    m_node->remove();
-}
-
-void dwe::Node::move(vec3f v)
-{
-    irr::core::vector3df _v = m_node->getPosition();
-    _v.X += v.x;
-    _v.Y += v.y;
-    _v.Z += v.z;
-    m_node->setPosition(_v);
-}
-
-dwe::vec3f dwe::Node::getPosition()
-{
-    // Se obtiene la posición de Irrlicht del nodo y se pasa a vector de dwe
-    return dwe::irrVector2dwe<float>(m_node->getPosition());
-}
-
-void dwe::Node::setPosition(vec3f v)
-{
-    // El vector pasado como vec3f se pasa al vector de tipo irrlicht
-    m_node->setPosition(dwe::dweVector2irr<float>(v));
-}
-
-dwe::vec3f dwe::Node::getRotation()
-{
-    return dwe::irrVector2dwe<float>(m_node->getRotation());
-}
-
-void dwe::Node::setRotation(dwe::vec3f v)
-{
-    m_node->setRotation(dwe::dweVector2irr<float>(v));
-}
-
-
 
 
 ///////////////////////////////////////////////
@@ -107,7 +52,8 @@ void dwe::GraphicsEngine::init(AppReceiver* ar)
 	(0, 30, -40). The camera looks from there to (0,5,0), which is
 	approximately the place where our md2 model is.
 	*/
-	m_smgr->addCameraSceneNode(0, vector3df(-10,20,5), vector3df(0,0,0));
+	//m_smgr->addCameraSceneNode(0, vector3df(150,180,-200), vector3df(0,0,0));
+	m_smgr->addCameraSceneNode(0, vector3df(-150,120,190), vector3df(0,0,0));
 }
 
 //////////////////////////
@@ -162,13 +108,13 @@ void dwe::GraphicsEngine::draw()
 ////////////////////////////////
 dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 {
-	scene::IMesh* mesh = m_smgr->getMesh((meshName+".obj").c_str());
+	scene::IAnimatedMesh* mesh = m_smgr->getMesh((meshName+".obj").c_str());
 	if (!mesh)
 	{
 		m_device->drop();
 		exit(0);
 	}
-	scene::IMeshSceneNode* irrnode = m_smgr->addMeshSceneNode( mesh );
+	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
 	if (irrnode)
 	{
 		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
@@ -183,17 +129,18 @@ dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 /////////////////////////////
 Player* dwe::GraphicsEngine::createMainPlayer()
 {
-	scene::IMesh* mesh = m_smgr->getMesh("mono.obj");
+	scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/sydney.md2");
 	if (!mesh)
 	{
 		m_device->drop();
 		exit(0);
 	}
-	scene::IMeshSceneNode* irrnode = m_smgr->addMeshSceneNode( mesh );
+	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
 	if (irrnode)
 	{
 		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
-		irrnode->setMaterialTexture( 0, m_driver->getTexture("mono.png") );
+		irrnode->setMD2Animation(scene::EMAT_STAND);
+		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/sydney.bmp") );
 	}
 
 	Player* p = new Player();
@@ -205,22 +152,45 @@ Player* dwe::GraphicsEngine::createMainPlayer()
 /////////////////////////////////
 PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 {
-	scene::IMesh* mesh = m_smgr->getMesh("bot.obj");
+	scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/playermate.md2");
 	if (!mesh)
 	{
 		m_device->drop();
 		exit(0);
 	}
-	scene::IMeshSceneNode* irrnode = m_smgr->addMeshSceneNode( mesh );
+	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
 	if (irrnode)
 	{
 		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
-		irrnode->setMaterialTexture( 0, m_driver->getTexture("bot.png") );
+		irrnode->setMD2Animation(scene::EMAT_STAND);
+		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/playermate.bmp") );
 	}
 
 	PlayerMate* p = new PlayerMate();
 	p->setNode(new Node(irrnode));
 	NetInstance->addNetObject(p);
+    return p;
+}
+
+////////////////////////////
+Whole* dwe::GraphicsEngine::createEnemyWhole()
+{
+    scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/faerie.md2");
+	if (!mesh)
+	{
+		m_device->drop();
+		exit(0);
+	}
+	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
+	if (irrnode)
+	{
+		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
+		irrnode->setMD2Animation(scene::EMAT_STAND);
+		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/faerie.bmp") );
+	}
+
+	Whole* p = new Whole();
+	p->setNode(new Node(irrnode));
     return p;
 }
 
