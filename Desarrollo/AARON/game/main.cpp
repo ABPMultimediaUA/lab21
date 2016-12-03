@@ -2,6 +2,7 @@
 #include <irrlicht.h>
 #include <Box2D/Box2D.h>
 #include <Box2D/Common/b2Math.h>
+#include <conio.h>
 
 using namespace std;
 using namespace irr;
@@ -20,8 +21,8 @@ using namespace gui;
 #define bwInitPosX 100
 #define bwInitPosY 100
 
-#define bwBow_W 1.0f
-#define bwBow_H 1.0f
+#define bwBow_W 3.0f
+#define bwBow_H 3.0f
 
 ///////// EL MUNDO DE BOX2D /////////
 class bwBody{
@@ -40,7 +41,13 @@ class bwBody{
             for(int i=0; i < shape.GetVertexCount(); i++){
                 //const b2Vec2 vec = body->GetWorldPoint(shape.GetVertex(i));
                 const b2Vec2 vec = body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i)));
-
+/*
+                device->getVideoDriver()->draw2DLine(position2d<s32>(vec.x,vec.y),
+                    (i+1 != shape.GetVertexCount()) ?
+                    position2d<s32>(body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i+1))).x, body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i+1))).y):
+                    position2d<s32>(body->GetWorldPoint(b2Mul(mat,shape.GetVertex(0))).x,body->GetWorldPoint(b2Mul(mat,shape.GetVertex(0))).y),
+                    SColor(255, 255, 255, 255));
+                    */
                 device->getVideoDriver()->draw2DLine(position2d<s32>(vec.x,vec.y),
                     (i+1 != shape.GetVertexCount()) ?
                     position2d<s32>(body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i+1))).x, body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i+1))).y):
@@ -238,7 +245,7 @@ int main() {
 	smgr->setActiveCamera(camera1); //Activar cámara
 
 	//Player
-	IMesh *player = smgr->getMesh("mayas/bluebox.obj");
+	IMesh *player = smgr->getMesh("../../mayas/bluebox.obj");
 	if (!player){
 		device->drop();
 		return 1;
@@ -251,7 +258,7 @@ int main() {
 	}
 
 	//Escenario
-	IMesh *escenario = smgr->getMesh("mayas/redfloor.obj");
+	IMesh *escenario = smgr->getMesh("../../mayas/redfloor.obj");
 	if (!escenario){
 		device->drop();
 		return 1;
@@ -263,7 +270,6 @@ int main() {
 		node2->setMaterialFlag(EMF_LIGHTING, false);
         node2->setRotation(vector3df(0.f,180.f,0.f));
 	}
-
     /////////////////
    // Box2D Stuff //
    /////////////////
@@ -293,7 +299,11 @@ int main() {
    //for(int i=0; i < 2; i++){
      //   for(int j=0; j < 4; j++){
             //createRigidBox(world,vector2d<s32>(0+(i*45), 0-(j*20)), device);
-            createStaticBox(world,vector2d<s32>(87,100), 10, 2,device);
+            createStaticBox(world,vector2d<s32>(81.5,96), 3, 8,device); //izq
+            createStaticBox(world,vector2d<s32>(75,100), 3, 8,device); //muro izq
+            createStaticBox(world,vector2d<s32>(100,86.5), 20, 1,device); //muro fondo
+            createStaticBox(world,vector2d<s32>(118.5,96), 3, 8,device); //der
+            createStaticBox(world,vector2d<s32>(124,100), 3, 8,device); //muro der
   //      }
    //}
 
@@ -401,7 +411,7 @@ int main() {
             }
             bwPlayer->update(); //UPDATE de mi player BOX2D
             //Posición actualizada de Irrlicht Player
-            node->setPosition(vector3df(bwPlayer->getBwBody()->GetPosition().x - bwInitPosX,0,-bwPlayer->getBwBody()->GetPosition().y - bwInitPosY));
+            node->setPosition(vector3df(bwPlayer->getBwBody()->GetPosition().x - bwInitPosX,0,-(bwPlayer->getBwBody()->GetPosition().y - bwInitPosY) ));
 
 ////        bww->update();
             driver->endScene();
@@ -412,7 +422,7 @@ int main() {
 	}
 
 
-{ /////ELIMINANDO TODO////////////parentesis puesto solo para poder minimizar/////////////////////////////////////////////////////////
+ /////ELIMINANDO TODO////////////parentesis puesto solo para poder minimizar/////////////////////////////////////////////////////////
 	for(int i=0; i < bodies.size(); i++){
         delete bodies[i];
     }
@@ -423,6 +433,11 @@ int main() {
 
 	//Delete the Irrlicht Device created before with createDevice().
 	device->drop();
+
+	cout << "Press any key to continue \n";
+    getch();
 	return 0;
 }
-}
+
+
+
