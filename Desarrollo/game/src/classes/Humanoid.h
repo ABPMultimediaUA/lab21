@@ -16,11 +16,7 @@ class Humanoid : public Enemy
 
         StateMachine<Humanoid>* GetFSM()const;
 
-<<<<<<< HEAD
-        void Update();
-=======
         void Update(); // Update de la maquina de estados
->>>>>>> master
 
         int getSteps();
 
