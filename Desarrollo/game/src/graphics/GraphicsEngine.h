@@ -19,7 +19,7 @@ using namespace gui;
 class BaseDireWReplica;
 class Player;
 class PlayerMate;
-class Whole;
+class Humanoid;
 
 namespace dwe
 {
@@ -141,7 +141,7 @@ namespace dwe
         // Creacion de personajes
         Player* createMainPlayer();
         PlayerMate* createPlayerMate();
-        Whole* createEnemyWhole();
+        Humanoid* createEnemyHumanoid();
 
     private:
         irr::IrrlichtDevice*            m_device;

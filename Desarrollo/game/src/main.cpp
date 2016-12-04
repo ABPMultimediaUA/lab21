@@ -3,7 +3,7 @@
 #include <GraphicsEngine.h>
 #include "NetGame.h"
 #include "Player.h"
-#include "Whole.h"
+#include "Humanoid.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -32,8 +32,8 @@ int main()
 	dwe::Node* paredes = GEInstance->createNode("media/paredes");
 	paredes->setPosition(dwe::vec3f(0,35,0));
 
-	Whole* enemyWhole = GEInstance->createEnemyWhole();
-	enemyWhole->setPosition(dwe::vec3f(0,24,-70));
+	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
+	enemyHumanoid->setPosition(dwe::vec3f(0,24,-70));
 
 	while(GEInstance->isRunning())
 	{

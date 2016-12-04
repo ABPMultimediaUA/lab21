@@ -1,7 +1,7 @@
 #include "GraphicsEngine.h"
 #include "Player.h"
 #include "PlayerMate.h"
-#include "Whole.h"
+#include "Humanoid.h"
 #include "NetGame.h"
 
 // Necesita volver a poner este namespace
@@ -173,7 +173,7 @@ PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 }
 
 ////////////////////////////
-Whole* dwe::GraphicsEngine::createEnemyWhole()
+Humanoid* dwe::GraphicsEngine::createEnemyHumanoid()
 {
     scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/faerie.md2");
 	if (!mesh)
@@ -189,7 +189,7 @@ Whole* dwe::GraphicsEngine::createEnemyWhole()
 		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/faerie.bmp") );
 	}
 
-	Whole* p = new Whole();
+	Humanoid* p = new Humanoid();
 	p->setNode(new Node(irrnode));
     return p;
 }
