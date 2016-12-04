@@ -19,9 +19,26 @@ using namespace gui;
 class BaseDireWReplica;
 class Player;
 class PlayerMate;
+class Humanoid;
 
 namespace dwe
 {
+
+    ///////////////////////////////////////////////
+    // AnimationType
+    // =============
+    //
+    ///////////////////////////////////////////////
+    enum AnimationType {
+        eAnimNone,
+        eAnimStand,
+        eAnimWalk,
+        eAnimRun,
+        eAnimAttack
+    };
+
+
+
     ///////////////////////////////////////////////
     // vec3
     // ====
@@ -71,11 +88,12 @@ namespace dwe
     // ====
     //
     ///////////////////////////////////////////////
-    class Node
+    template <class T>
+    class NodeTemplate
     {
     public:
-        Node();
-        Node(ISceneNode* n);
+        NodeTemplate();
+        NodeTemplate(T* n);
         void move(vec3f v);
 
         vec3f getPosition();
@@ -84,10 +102,20 @@ namespace dwe
         vec3f getRotation();
         void setRotation(vec3f v);
 
-        void setNode(ISceneNode* n);
+        void setNode(T* n);
+        void remove();
+
+        void setAnimation(AnimationType a);
+
     private:
-        irr::scene::ISceneNode* m_node;
+        T* m_node;
     };
+
+    //typedef NodeTemplate<ISceneNode> Node;
+    typedef NodeTemplate<IAnimatedMeshSceneNode> Node;
+
+    #include "GraphicsEngineTemplates.cpp"  // La implementación de templates se tiene que incluir siempre en el h
+
 
 
 
@@ -113,6 +141,7 @@ namespace dwe
         // Creacion de personajes
         Player* createMainPlayer();
         PlayerMate* createPlayerMate();
+        Humanoid* createEnemyHumanoid();
 
     private:
         irr::IrrlichtDevice*            m_device;

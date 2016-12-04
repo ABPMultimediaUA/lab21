@@ -29,8 +29,10 @@ namespace dwn
         protected:
 
         private:
-            dwe::vec3f m_remotePos;
-            dwe::vec3f m_remoteRot;
+            dwe::vec3f          m_remotePos;
+            dwe::vec3f          m_remoteRot;
+            dwe::AnimationType  m_remoteAnim;
+
 
             // Puestas en private para no heredar
             virtual void SerializeConstruction(RakNet::BitStream *constructionBitstream, RakNet::Connection_RM3 *destinationConnection);

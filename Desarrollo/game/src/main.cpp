@@ -1,8 +1,15 @@
 #include <iostream>
 #include <Box2D/Box2D.h>
 #include <GraphicsEngine.h>
+
 #include "NetGame.h"
 #include "Player.h"
+#include "Bat.h"
+#include "Mother.h"
+#include "Guardian.h"
+#include "Legless.h"
+#include "Dog.h"
+#include "Humanoid.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -14,7 +21,6 @@ int main()
     groundBodyDef.position.Set(0.0f, -1.0f);
 
 
-
     // Illricht
     AppReceiver* appReceiver = new AppReceiver();
 	GEInstance->init(appReceiver);
@@ -22,12 +28,22 @@ int main()
 	// Motor de red
     NetInstance->open();
 
-
+    // Creación de jugador
 	Player* mainPlayer = GEInstance->createMainPlayer();
+	mainPlayer->setPosition(dwe::vec3f(0,24,90));
+
+    // Creación de escenario
+	dwe::Node* suelo = GEInstance->createNode("media/suelo");
+	dwe::Node* paredes = GEInstance->createNode("media/paredes");
+	suelo->setPosition(dwe::vec3f(0,0,0));
+	paredes->setPosition(dwe::vec3f(0,35,0));
 
 
-	dwe::Node* suelo = GEInstance->createNode("suelo");
-	dwe::Node* paredes = GEInstance->createNode("paredes");
+    // Creación de enemigo Humanoide
+	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
+	enemyHumanoid->setPosition(dwe::vec3f(0,24,-70));
+
+
 
 	while(GEInstance->isRunning())
 	{
@@ -48,24 +64,32 @@ int main()
             {
                 if(appReceiver->isKeyDown(KEY_RIGHT))
                 {
-                    m.z -= 0.005;
-                    r.y = 180.f;
+                    m.z -= 0.02;
+                    r.y = 90.f;
+                    mainPlayer->setAnimation(dwe::eAnimRun);
                 }
                 else if(appReceiver->isKeyDown(KEY_LEFT))
                 {
-                    m.z += 0.005;
-                    r.y = 0.f;
+                    m.z += 0.02;
+                    r.y = -90.f;
+                    mainPlayer->setAnimation(dwe::eAnimRun);
                 }
                 else if(appReceiver->isKeyDown(KEY_UP))
                 {
-                    m.x += 0.005;
-                    r.y = 90.f;
+                    m.x += 0.02;
+                    r.y = 0.f;
 
+                    mainPlayer->setAnimation(dwe::eAnimRun);
                 }
                 else if(appReceiver->isKeyDown(KEY_DOWN))
                 {
-                    m.x -= 0.005;
-                    r.y = 270.f;
+                    m.x -= 0.02;
+                    r.y = 180.f;
+                    mainPlayer->setAnimation(dwe::eAnimRun);
+                }
+                else
+                {
+                    mainPlayer->setAnimation(dwe::eAnimStand);
                 }
             }
 

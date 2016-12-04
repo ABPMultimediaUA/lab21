@@ -23,12 +23,17 @@ class Drawable
         void setRotation(dwe::vec3f r);
 
         void setNode(dwe::Node* n);
+        void removeNode();
+
+        void setAnimation(dwe::AnimationType a);
+        dwe::AnimationType getAnimation();
 
     protected:
 
     private:
-        dwe::Node*  m_node;
-        float*      m_mesh;
+        dwe::Node*          m_node;
+        float*              m_mesh;
+        dwe::AnimationType  m_animation;
 };
 
 #endif // DRAWABLE_H

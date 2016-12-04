@@ -14,3 +14,6 @@ Desarrollo/irrlicht-1.8.4/**/.objs/
 Desarrollo/irrlicht-1.8.4/obj/**/*
 Desarrollo/RakNetLib/obj/**/*
 Desarrollo/Box2D/box2DEngine/obj/**/*
+Desarrollo/Server/Release Win32/**/*
+Desarrollo/Server/Debug Win32/**/*
+Desarrollo/Server/*.exe

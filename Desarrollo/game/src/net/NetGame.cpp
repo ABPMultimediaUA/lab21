@@ -9,28 +9,24 @@
 
 using namespace dwn;
 
-bool NetGame::isConnectedToNATPunchthroughServer = false;
-
-NetGame::NetGame()
+dwn::NetGame::NetGame()
 {
 
 }
 
-NetGame* NetGame::Instance()
+dwn::NetGame* NetGame::Instance()
 {
-    NetGame::isConnectedToNATPunchthroughServer = false;
-
     static NetGame instance;
     return &instance;
 }
 
-NetGame::~NetGame()
+dwn::NetGame::~NetGame()
 {
     //dtor
 }
 
 //////////////
-void NetGame::open()
+void dwn::NetGame::open()
 {
     // RakPeerInterface es la base de RakNet para comunicaciones UDP
 	rakPeer=RakNet::RakPeerInterface::GetInstance();
@@ -97,13 +93,25 @@ void NetGame::close()
 	delete fullyConnectedMesh2;
 }
 
+
 void PushMessage(RakNet::RakString rs)
 {
     std::cout << rs << "\n";
 }
 
+///////////////////////
+RakNet::RakString dwn::NetGame::getNATTargetName(RakNet::Packet* p)
+{
+    RakNet::RakNetGUID recipientGuid;
+    RakNet::BitStream bs(p->data, p->length, false);
+    bs.IgnoreBytes(sizeof(RakNet::MessageID));
+    bs.Read(recipientGuid);
+
+    return recipientGuid.ToString();
+}
+
 //////////////
-void NetGame::update()
+void dwn::NetGame::update()
 {
 	RakNet::SystemAddress facilitatorSystemAddress(DEFAULT_IP, DEFAULT_PT);
 	RakNet::Packet *packet;
@@ -112,196 +120,150 @@ void NetGame::update()
 	for (packet=rakPeer->Receive(); packet; rakPeer->DeallocatePacket(packet), packet=rakPeer->Receive())
 	{
 		if (strcmp(packet->systemAddress.ToString(false),DEFAULT_IP)==0)
-		{
 			targetName="NATPunchthroughServer";
-		}
 		else
-		{
 			targetName=packet->systemAddress.ToString(true);
-		}
 
 		switch (packet->data[0])
 		{
 		case ID_IP_RECENTLY_CONNECTED:
-			{
-				PushMessage(RakNet::RakString("This IP address recently connected from ") + targetName + RakNet::RakString("."));
-				if (packet->systemAddress==facilitatorSystemAddress)
-					PushMessage("Multiplayer will not work without the NAT punchthrough server!");
-			}
-			break;
 		case ID_INCOMPATIBLE_PROTOCOL_VERSION:
-			{
-				PushMessage(RakNet::RakString("Incompatible protocol version from ") + targetName + RakNet::RakString("."));
-				if (packet->systemAddress==facilitatorSystemAddress)
-					PushMessage("Multiplayer will not work without the NAT punchthrough server!");
-			}
+            PushMessage(RakNet::RakString("Incompatible protocol version from ") + targetName + RakNet::RakString("."));
+            if (packet->systemAddress==facilitatorSystemAddress)
+                PushMessage("Multiplayer will not work without the NAT punchthrough server!");
 			break;
+
 		case ID_DISCONNECTION_NOTIFICATION:
-			{
-				PushMessage(RakNet::RakString("Disconnected from ") + targetName + RakNet::RakString("."));
-				if (packet->systemAddress==facilitatorSystemAddress)
-					isConnectedToNATPunchthroughServer=false;
-			}
+			PushMessage(RakNet::RakString("Disconnected from ") + targetName + RakNet::RakString("."));
 			break;
+
 		case ID_CONNECTION_LOST:
-			{
-				PushMessage(RakNet::RakString("Connection to ") + targetName + RakNet::RakString(" lost."));
-				if (packet->systemAddress==facilitatorSystemAddress)
-					isConnectedToNATPunchthroughServer=false;
-			}
+			PushMessage(RakNet::RakString("Connection to ") + targetName + RakNet::RakString(" lost."));
 			break;
+
 		case ID_NO_FREE_INCOMING_CONNECTIONS:
-			{
-				PushMessage(RakNet::RakString("No free incoming connections to ") + targetName + RakNet::RakString("."));
-				if (packet->systemAddress==facilitatorSystemAddress)
-					PushMessage("Multiplayer will not work without the NAT punchthrough server!");
-			}
+            PushMessage(RakNet::RakString("No free incoming connections to ") + targetName + RakNet::RakString("."));
+            if (packet->systemAddress==facilitatorSystemAddress)
+                PushMessage("Multiplayer will not work without the NAT punchthrough server!");
 			break;
+
 		case ID_NEW_INCOMING_CONNECTION:
-			{
-				if (fullyConnectedMesh2->IsHostSystem())
-				{
-					PushMessage(RakNet::RakString("Sending player list to new connection"));
-					fullyConnectedMesh2->StartVerifiedJoin(packet->guid);
-				}
-			}
+            if (fullyConnectedMesh2->IsHostSystem())
+            {
+                PushMessage(RakNet::RakString("Sending player list to new connection"));
+                fullyConnectedMesh2->StartVerifiedJoin(packet->guid);
+            }
 			break;
+
 		case ID_FCM2_VERIFIED_JOIN_START:
-			{
-				DataStructures::List<RakNet::SystemAddress> addresses;
-				DataStructures::List<RakNet::RakNetGUID> guids;
-				DataStructures::List<RakNet::BitStream*> userData;
-				fullyConnectedMesh2->GetVerifiedJoinRequiredProcessingList(packet->guid, addresses, guids, userData);
-				for (unsigned int i=0; i < guids.Size(); i++)
-					natPunchthroughClient->OpenNAT(guids[i], facilitatorSystemAddress);
-			}
+		    {
+                DataStructures::List<RakNet::SystemAddress> addresses;
+                DataStructures::List<RakNet::RakNetGUID> guids;
+                DataStructures::List<RakNet::BitStream*> userData;
+                fullyConnectedMesh2->GetVerifiedJoinRequiredProcessingList(packet->guid, addresses, guids, userData);
+                for (unsigned int i=0; i < guids.Size(); i++)
+                    natPunchthroughClient->OpenNAT(guids[i], facilitatorSystemAddress);
+		    }
 			break;
+
 		case ID_FCM2_VERIFIED_JOIN_FAILED:
-			{
-				PushMessage(RakNet::RakString("Failed to join game session"));
-			}
+			PushMessage(RakNet::RakString("Failed to join game session"));
 			break;
+
 		case ID_FCM2_VERIFIED_JOIN_CAPABLE:
-			{
-				fullyConnectedMesh2->RespondOnVerifiedJoinCapable(packet, true, 0);
-			}
+			fullyConnectedMesh2->RespondOnVerifiedJoinCapable(packet, true, 0);
 			break;
+
 		case ID_FCM2_VERIFIED_JOIN_ACCEPTED:
-			{
-				DataStructures::List<RakNet::RakNetGUID> systemsAccepted;
-				bool thisSystemAccepted;
-				fullyConnectedMesh2->GetVerifiedJoinAcceptedAdditionalData(packet, &thisSystemAccepted, systemsAccepted, 0);
-				if (thisSystemAccepted)
-					PushMessage("Game join request accepted\n");
-				else
-					PushMessage(RakNet::RakString("System %s joined the mesh\n", systemsAccepted[0].ToString()));
+		    {
+                DataStructures::List<RakNet::RakNetGUID> systemsAccepted;
+                bool thisSystemAccepted;
+                fullyConnectedMesh2->GetVerifiedJoinAcceptedAdditionalData(packet, &thisSystemAccepted, systemsAccepted, 0);
+                if (thisSystemAccepted)
+                    PushMessage("Game join request accepted\n");
+                else
+                    PushMessage(RakNet::RakString("System %s joined the mesh\n", systemsAccepted[0].ToString()));
 
-				for (unsigned int i=0; i < systemsAccepted.Size(); i++)
-					replicaManager3->PushConnection(replicaManager3->AllocConnection(rakPeer->GetSystemAddressFromGuid(systemsAccepted[i]), systemsAccepted[i]));
-			}
+                for (unsigned int i=0; i < systemsAccepted.Size(); i++)
+                    replicaManager3->PushConnection(replicaManager3->AllocConnection(rakPeer->GetSystemAddressFromGuid(systemsAccepted[i]), systemsAccepted[i]));
+		    }
 			break;
+
 		case ID_CONNECTION_REQUEST_ACCEPTED:
-			{
-				PushMessage(RakNet::RakString("Connection request to ") + targetName + RakNet::RakString(" accepted."));
-				if (packet->systemAddress==facilitatorSystemAddress)
-				{
-					isConnectedToNATPunchthroughServer=true;
-
-					// Query cloud for other running game instances
-					RakNet::CloudQuery cloudQuery;
-					cloudQuery.keys.Push(RakNet::CloudKey("IrrlichtDemo",0),_FILE_AND_LINE_);
-					cloudClient->Get(&cloudQuery, packet->guid);
-				}
-			}
+            PushMessage(RakNet::RakString("Connection request to ") + targetName + RakNet::RakString(" accepted."));
+            if (packet->systemAddress==facilitatorSystemAddress)
+            {
+                // Query cloud for other running game instances
+                RakNet::CloudQuery cloudQuery;
+                cloudQuery.keys.Push(RakNet::CloudKey(NET_CLOUD_KEY,0),_FILE_AND_LINE_);
+                cloudClient->Get(&cloudQuery, packet->guid);
+            }
 			break;
+
 		case ID_FCM2_NEW_HOST:
-			{
-				if (packet->guid==rakPeer->GetMyGUID())
-				{
-					// Original host dropped. I am the new session host. Upload to the cloud so new players join this system.
-					RakNet::CloudKey cloudKey("IrrlichtDemo",0);
-					cloudClient->Post(&cloudKey, 0, 0, rakPeer->GetGuidFromSystemAddress(facilitatorSystemAddress));
-				}
-			}
+            if (packet->guid==rakPeer->GetMyGUID())
+            {
+                // Original host dropped. I am the new session host. Upload to the cloud so new players join this system.
+                RakNet::CloudKey cloudKey(NET_CLOUD_KEY,0);
+                cloudClient->Post(&cloudKey, 0, 0, rakPeer->GetGuidFromSystemAddress(facilitatorSystemAddress));
+            }
 			break;
+
 		case ID_CLOUD_GET_RESPONSE:
-			{
-				RakNet::CloudQueryResult cloudQueryResult;
-				cloudClient->OnGetReponse(&cloudQueryResult, packet);
-				if (cloudQueryResult.rowsReturned.Size()>0)
-				{
-					PushMessage(RakNet::RakString("NAT punch to existing game instance"));
-					natPunchthroughClient->OpenNAT(cloudQueryResult.rowsReturned[0]->clientGUID, facilitatorSystemAddress);
-				}
-				else
-				{
-					PushMessage(RakNet::RakString("Publishing new game instance"));
+		    {
+                RakNet::CloudQueryResult cloudQueryResult;
+                cloudClient->OnGetReponse(&cloudQueryResult, packet);
+                if (cloudQueryResult.rowsReturned.Size()>0)
+                {
+                    PushMessage(RakNet::RakString("NAT punch to existing game instance"));
+                    natPunchthroughClient->OpenNAT(cloudQueryResult.rowsReturned[0]->clientGUID, facilitatorSystemAddress);
+                }
+                else
+                {
+                    PushMessage(RakNet::RakString("Publishing new game instance"));
 
-					// Start as a new game instance because no other games are running
-					RakNet::CloudKey cloudKey("IrrlichtDemo",0);
-					cloudClient->Post(&cloudKey, 0, 0, packet->guid);
-				}
+                    // Start as a new game instance because no other games are running
+                    RakNet::CloudKey cloudKey(NET_CLOUD_KEY,0);
+                    cloudClient->Post(&cloudKey, 0, 0, packet->guid);
+                }
 
-				cloudClient->DeallocateWithDefaultAllocator(&cloudQueryResult);
-			}
+                cloudClient->DeallocateWithDefaultAllocator(&cloudQueryResult);
+		    }
 			break;
+
 		case ID_CONNECTION_ATTEMPT_FAILED:
-			{
-				PushMessage(RakNet::RakString("Connection attempt to ") + targetName + RakNet::RakString(" failed."));
-				if (packet->systemAddress==facilitatorSystemAddress)
-					PushMessage("Multiplayer will not work without the NAT punchthrough server!");
-			}
+            PushMessage(RakNet::RakString("Connection attempt to ") + targetName + RakNet::RakString(" failed."));
+            if (packet->systemAddress==facilitatorSystemAddress)
+                PushMessage("Multiplayer will not work without the NAT punchthrough server!");
 			break;
+
 		case ID_NAT_TARGET_NOT_CONNECTED:
-			{
-				RakNet::RakNetGUID recipientGuid;
-				RakNet::BitStream bs(packet->data,packet->length,false);
-				bs.IgnoreBytes(sizeof(RakNet::MessageID));
-				bs.Read(recipientGuid);
-				targetName=recipientGuid.ToString();
-				PushMessage(RakNet::RakString("NAT target ") + targetName + RakNet::RakString(" not connected."));
-			}
+            targetName=getNATTargetName(packet);
+            PushMessage(RakNet::RakString("NAT target ") + targetName + RakNet::RakString(" not connected."));
 			break;
+
 		case ID_NAT_TARGET_UNRESPONSIVE:
-			{
-				RakNet::RakNetGUID recipientGuid;
-				RakNet::BitStream bs(packet->data,packet->length,false);
-				bs.IgnoreBytes(sizeof(RakNet::MessageID));
-				bs.Read(recipientGuid);
-				targetName=recipientGuid.ToString();
-				PushMessage(RakNet::RakString("NAT target ") + targetName + RakNet::RakString(" unresponsive."));
-			}
+            targetName=getNATTargetName(packet);
+            PushMessage(RakNet::RakString("NAT target ") + targetName + RakNet::RakString(" unresponsive."));
 			break;
+
 		case ID_NAT_CONNECTION_TO_TARGET_LOST:
-			{
-				RakNet::RakNetGUID recipientGuid;
-				RakNet::BitStream bs(packet->data,packet->length,false);
-				bs.IgnoreBytes(sizeof(RakNet::MessageID));
-				bs.Read(recipientGuid);
-				targetName=recipientGuid.ToString();
-				PushMessage(RakNet::RakString("NAT target connection to ") + targetName + RakNet::RakString(" lost."));
-			}
+            targetName=getNATTargetName(packet);
+            PushMessage(RakNet::RakString("NAT target ") + targetName + RakNet::RakString(" connection to lost."));
 			break;
+
 		case ID_NAT_ALREADY_IN_PROGRESS:
-			{
-				RakNet::RakNetGUID recipientGuid;
-				RakNet::BitStream bs(packet->data,packet->length,false);
-				bs.IgnoreBytes(sizeof(RakNet::MessageID));
-				bs.Read(recipientGuid);
-				targetName=recipientGuid.ToString();
-				PushMessage(RakNet::RakString("NAT punchthrough to ") + targetName + RakNet::RakString(" in progress (skipping)."));
-			}
+            targetName=getNATTargetName(packet);
+            PushMessage(RakNet::RakString("NAT punchthrough to ") + targetName + RakNet::RakString(" in progress (skipping)."));
 			break;
 
 		case ID_NAT_PUNCHTHROUGH_SUCCEEDED:
-			{
-				if (packet->data[1]==1)
-				{
-					PushMessage(RakNet::RakString("Connecting to existing game instance"));
-					RakNet::ConnectionAttemptResult car = rakPeer->Connect(packet->systemAddress.ToString(false), packet->systemAddress.GetPort(), 0, 0);
-					RakAssert(car==RakNet::CONNECTION_ATTEMPT_STARTED);
-				}
-			}
+            if (packet->data[1]==1)
+            {
+                PushMessage(RakNet::RakString("Connecting to existing game instance"));
+                RakNet::ConnectionAttemptResult car = rakPeer->Connect(packet->systemAddress.ToString(false), packet->systemAddress.GetPort(), 0, 0);
+                RakAssert(car==RakNet::CONNECTION_ATTEMPT_STARTED);
+            }
 			break;
 
 		case ID_ADVERTISE_SYSTEM:
@@ -323,20 +285,20 @@ void NetGame::update()
 }
 
 //////////////
-void NetGame::addNetObject(dwn::DrawableReplica *drawReplica)
+void dwn::NetGame::addNetObject(dwn::DrawableReplica *drawReplica)
 {
     replicaManager3->Reference(drawReplica);
 }
 
 //////////////
-bool NetGame::isLocalObject(RakNet::RakNetGUID id)
+bool dwn::NetGame::isLocalObject(RakNet::RakNetGUID id)
 {
     return (id == rakPeer->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS));
 }
 
 
 ////////////////////////////////////////////////
-RakNet::Replica3* NetGame::Connection_RM3DireW::AllocReplica(RakNet::BitStream* allocationId, RakNet::ReplicaManager3* replicaManager3)
+RakNet::Replica3* dwn::NetGame::Connection_RM3DireW::AllocReplica(RakNet::BitStream* allocationId, RakNet::ReplicaManager3* replicaManager3)
 {
     // Obtiene el mensaje desde Replica3::WriteAllocationID
     // Según este mensaje crearemos un objeto u otro.
