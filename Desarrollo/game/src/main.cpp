@@ -1,8 +1,14 @@
 #include <iostream>
 #include <Box2D/Box2D.h>
 #include <GraphicsEngine.h>
+
 #include "NetGame.h"
 #include "Player.h"
+#include "Bat.h"
+#include "Mother.h"
+#include "Guardian.h"
+#include "Legless.h"
+#include "Dog.h"
 #include "Humanoid.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -15,7 +21,6 @@ int main()
     groundBodyDef.position.Set(0.0f, -1.0f);
 
 
-
     // Illricht
     AppReceiver* appReceiver = new AppReceiver();
 	GEInstance->init(appReceiver);
@@ -23,17 +28,22 @@ int main()
 	// Motor de red
     NetInstance->open();
 
-
+    // Creación de jugador
 	Player* mainPlayer = GEInstance->createMainPlayer();
 	mainPlayer->setPosition(dwe::vec3f(0,24,90));
 
-
+    // Creación de escenario
 	dwe::Node* suelo = GEInstance->createNode("media/suelo");
 	dwe::Node* paredes = GEInstance->createNode("media/paredes");
+	suelo->setPosition(dwe::vec3f(0,0,0));
 	paredes->setPosition(dwe::vec3f(0,35,0));
 
+
+    // Creación de enemigo Humanoide
 	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
 	enemyHumanoid->setPosition(dwe::vec3f(0,24,-70));
+
+
 
 	while(GEInstance->isRunning())
 	{
