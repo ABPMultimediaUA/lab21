@@ -5,6 +5,9 @@
 #include <string>
 #include <AppReceiver.h>
 
+#include <Box2D/Box2D.h>
+#include <Box2D/Common/b2Math.h>
+
 using namespace std;
 
 // Aun estando los namespace sigo definiendo las propiedades
@@ -137,6 +140,9 @@ namespace dwe
         Node* createNode(std::string meshName);
         bool isWindowActive();
         void yield();
+
+        void createDynPhyEntity(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device);
+
 
         // Creacion de personajes
         Player* createMainPlayer();
