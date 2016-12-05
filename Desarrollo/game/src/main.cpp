@@ -11,6 +11,8 @@
 #include "Dog.h"
 #include "Humanoid.h"
 
+#define speed 0.1f
+
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -64,26 +66,26 @@ int main()
             {
                 if(appReceiver->isKeyDown(KEY_RIGHT))
                 {
-                    m.z -= 0.02;
+                    m.z -= speed;
                     r.y = 90.f;
                     mainPlayer->setAnimation(dwe::eAnimRun);
                 }
                 else if(appReceiver->isKeyDown(KEY_LEFT))
                 {
-                    m.z += 0.02;
+                    m.z += speed;
                     r.y = -90.f;
                     mainPlayer->setAnimation(dwe::eAnimRun);
                 }
                 else if(appReceiver->isKeyDown(KEY_UP))
                 {
-                    m.x += 0.02;
+                    m.x += speed;
                     r.y = 0.f;
 
                     mainPlayer->setAnimation(dwe::eAnimRun);
                 }
                 else if(appReceiver->isKeyDown(KEY_DOWN))
                 {
-                    m.x -= 0.02;
+                    m.x -= speed;
                     r.y = 180.f;
                     mainPlayer->setAnimation(dwe::eAnimRun);
                 }
