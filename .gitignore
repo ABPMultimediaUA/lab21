@@ -19,3 +19,4 @@ Desarrollo/Server/Debug Win32/**/*
 Desarrollo/Server/*.exe
 Desarrollo/game/lib/**/*
 Desarrollo/assimp-3.2/build/**/*
+**/*.layout
