@@ -12,133 +12,14 @@
 #include "Dog.h"
 #include "Humanoid.h"
 
+#include "EntityPhysics.h"
+
 #define speed 0.1f
 
-
 ///////// EL MUNDO DE BOX2D /////////
-class bwBody{
-    public:
-        bwBody(const b2PolygonShape& bShape, b2Body* const bBody, IrrlichtDevice* const bDevice){
-            shape = bShape;
-            body = bBody;
-            device = bDevice;
-        }
-
-        void update(){
-            b2Vec2 position = body->GetPosition();
-            float32 angle = body->GetAngle();
-
-            const b2Mat22 mat(0,1,1,0); //CAMBIADO POR AARON... añadido los "0"
-            for(int i=0; i < shape.GetVertexCount(); i++){
-                //const b2Vec2 vec = body->GetWorldPoint(shape.GetVertex(i));
-                const b2Vec2 vec = body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i)));
-
-                device->getVideoDriver()->draw2DLine(position2d<s32>(vec.x,vec.y),
-                    (i+1 != shape.GetVertexCount()) ?
-                    position2d<s32>(body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i+1))).x, body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i+1))).y):
-                    position2d<s32>(body->GetWorldPoint(b2Mul(mat,shape.GetVertex(0))).x,body->GetWorldPoint(b2Mul(mat,shape.GetVertex(0))).y),
-                    SColor(255, 255, 255, 255));
-            }
-        }
-
-        b2Body* getBwBody(){return body;};
-    private:
-        b2PolygonShape shape;
-        b2Body* body;
-        IrrlichtDevice* device;
-};
-
-irr::core::array<bwBody*> bodies; //ARRAY "BODIES"
-bwBody* bwPlayer; //BOX2DPLAYER
-
-void createPlayer(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device){
-    // Define the dynamic body. We set its position and call the body factory.
-    b2BodyDef bodyDef;
-    bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(pos.X, pos.Y);
-    b2Body* body = world.CreateBody(&bodyDef);
-
-    // Define another box shape for our dynamic body.
-    b2PolygonShape dynamicBox;
-    dynamicBox.SetAsBox(10.0f, 10.0f);
-
-    // Define the dynamic body fixture.
-    b2FixtureDef fixtureDef;
-    fixtureDef.shape = &dynamicBox;
-
-    // Set the box density to be non-zero, so it will be dynamic.
-    fixtureDef.density = 1.0f;
-
-    // Override the default friction.
-    fixtureDef.friction = 0.3f;
-
-    // Add the shape to the body.
-    body->CreateFixture(&fixtureDef);
-
-    bwPlayer = new bwBody(dynamicBox, body, device);
-}
-
-void createRigidBox(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device){
-    // Define the dynamic body. We set its position and call the body factory.
-    b2BodyDef bodyDef;
-    bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(pos.X, pos.Y);
-    b2Body* body = world.CreateBody(&bodyDef);
-
-    // Define another box shape for our dynamic body.
-    b2PolygonShape dynamicBox;
-    dynamicBox.SetAsBox(10.0f, 10.0f);
-
-    // Define the dynamic body fixture.
-    b2FixtureDef fixtureDef;
-    fixtureDef.shape = &dynamicBox;
-
-    // Set the box density to be non-zero, so it will be dynamic.
-    fixtureDef.density = 1.0f;
-
-    fixtureDef.restitution = 0.0f;
-    // Override the default friction.
-    fixtureDef.friction = 0.3f;
-
-    // Add the shape to the body.
-    body->CreateFixture(&fixtureDef);
-
-    bwBody* bww = new bwBody(dynamicBox, body, device);
-
-    bodies.push_back(bww);
-}
-
-void createStaticBox(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device){
-    // Define the dynamic body. We set its position and call the body factory.
-    b2BodyDef bodyDef;
-    //bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(pos.X, pos.Y);
-    b2Body* body = world.CreateBody(&bodyDef);
-
-    // Define another box shape for our dynamic body.
-    b2PolygonShape staticBox;
-    staticBox.SetAsBox(10.0f, 10.0f);
-
-    // Define the dynamic body fixture.
-    b2FixtureDef fixtureDef;
-    fixtureDef.shape = &staticBox;
-
-    // Add the shape to the body.
-    body->CreateFixture(&fixtureDef);
-
-    bwBody* bww = new bwBody(staticBox, body, device);
-
-    bodies.push_back(bww);
-}
-
-
-IrrlichtDevice *device = 0;
-
-//initPhysicsWorld();
 b2Vec2 gravity(0.0f, 0.0f);
 b2World world(gravity);
 ///////// EL MUNDO DE BOX2D (END) /////////
-
 
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -162,6 +43,16 @@ int main()
 	mainPlayer->setPosition(dwe::vec3f(0,24,90));
     dwe::vec3f pos= mainPlayer->getPosition();
     cout << "POS: X = " << pos.x << " ... Y = " << pos.y << " ... Z = " << pos.z << endl;
+    //vector3df extent= mainPlayer->getTransformedBoundingBox();
+    //now extent.X is the X size of the box, .Y is Y etc.
+    //cout << "SIZE: X = " << extent.X << " ... Y = " << extent.Y << " ... Z = " << extent.Z << endl;
+
+    //BOX2D
+	cout << "YES ";
+    //EntityPhysics::createDynPhyEntity(world,vector2d<s32>(0,0), GEInstance->getDevice());
+	cout << "YES \n";
+
+	//
 
     // Creación de escenario
 	dwe::Node* suelo = GEInstance->createNode("media/suelo");
@@ -174,14 +65,6 @@ int main()
 	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
 	enemyHumanoid->setPosition(dwe::vec3f(0,24,-70));
 
-
-
-	//BOX2D
-	cout << "YES ";
-    createPlayer(world,vector2d<s32>(0,0), device);
-	cout << "YES \n";
-
-	//
 
 	while(GEInstance->isRunning())
 	{

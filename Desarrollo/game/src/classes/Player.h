@@ -27,6 +27,8 @@ class Player : public CharacterController
 
         virtual const char* getNetObjectID() const;
 
+        //vector3df getTransformedBoundingBox(scene::IAnimatedMeshSceneNode* player);
+
 
     protected:
 

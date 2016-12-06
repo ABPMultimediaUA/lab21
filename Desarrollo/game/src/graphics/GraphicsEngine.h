@@ -140,9 +140,8 @@ namespace dwe
         Node* createNode(std::string meshName);
         bool isWindowActive();
         void yield();
-
-        void createDynPhyEntity(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device);
-
+        vector3df getTransformedBoundingBox(scene::IAnimatedMeshSceneNode* player);
+        irr::IrrlichtDevice* getDevice();
 
         // Creacion de personajes
         Player* createMainPlayer();

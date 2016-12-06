@@ -129,32 +129,8 @@ dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 	return node;
 }
 
-
-void createDynPhyEntity(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device){
-    // Define the dynamic body. We set its position and call the body factory.
-    b2BodyDef bodyDef;
-    bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(pos.X, pos.Y);
-    b2Body* body = world.CreateBody(&bodyDef);
-
-    // Define another box shape for our dynamic body.
-    b2PolygonShape dynamicBox;
-    dynamicBox.SetAsBox(10.0f, 10.0f);
-
-    // Define the dynamic body fixture.
-    b2FixtureDef fixtureDef;
-    fixtureDef.shape = &dynamicBox;
-
-    // Set the box density to be non-zero, so it will be dynamic.
-    fixtureDef.density = 1.0f;
-
-    // Override the default friction.
-    fixtureDef.friction = 0.3f;
-
-    // Add the shape to the body.
-    body->CreateFixture(&fixtureDef);
-
-    //bwPlayer = new bwBody(dynamicBox, body, device);
+vector3df dwe::GraphicsEngine::getTransformedBoundingBox(scene::IAnimatedMeshSceneNode* player){
+    return(player->getTransformedBoundingBox().getExtent());
 }
 
 
@@ -184,7 +160,7 @@ Player* dwe::GraphicsEngine::createMainPlayer()
     vector3df pos= irrnode->getPosition();
     cout << "POS: X = " << pos.X << " ... Y = " << pos.Y << " ... Z = " << pos.Z << endl;
 
-    createDynPhyEntity(world,vector2d<s32>(0,0), device);
+    //createDynPhyEntity(world,vector2d<s32>(0,0), device);
 
 	Player* p = new Player();
 	p->setNode(new Node(irrnode));
@@ -256,3 +232,6 @@ void dwe::GraphicsEngine::close()
 {
     m_device->closeDevice();
 }
+
+
+irr::IrrlichtDevice* dwe::GraphicsEngine::getDevice(){return(m_device);}
