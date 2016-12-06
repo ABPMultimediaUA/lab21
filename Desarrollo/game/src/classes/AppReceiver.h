@@ -11,13 +11,13 @@ class AppReceiver : public IEventReceiver
         bool KeyDown[KEY_KEY_CODES_COUNT];
 
     public:
-    CAppReceiver()
+    AppReceiver()
     {
         for(int i=0; i<KEY_KEY_CODES_COUNT; i++)
         {
             KeyDown[i] = false;
         }
-        return 0;
+        //return 0;
     }
 
     virtual bool OnEvent(const SEvent &event)

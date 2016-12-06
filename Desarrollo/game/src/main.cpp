@@ -11,6 +11,8 @@
 #include "Dog.h"
 #include "Humanoid.h"
 
+#include "Pathplanning.h"
+
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -43,7 +45,9 @@ int main()
 	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
 	enemyHumanoid->setPosition(dwe::vec3f(0,24,-70));
 
-
+    //Creación de objeto pathplanning
+    Pathplanning* pathp = new Pathplanning();
+     float num=10.0;//para cambiar de sigilo a rapido
 
 	while(GEInstance->isRunning())
 	{
@@ -55,6 +59,7 @@ int main()
             dwe::vec3f r(0.0f);
             r = mainPlayer->getRotation();
 
+
             if(appReceiver->isKeyDown(KEY_ESCAPE))
             {
                 GEInstance->close();
@@ -64,26 +69,26 @@ int main()
             {
                 if(appReceiver->isKeyDown(KEY_RIGHT))
                 {
-                    m.z -= 0.02;
+                    m.z -= 0.2;
                     r.y = 90.f;
                     mainPlayer->setAnimation(dwe::eAnimRun);
                 }
                 else if(appReceiver->isKeyDown(KEY_LEFT))
                 {
-                    m.z += 0.02;
+                    m.z += 0.2;
                     r.y = -90.f;
                     mainPlayer->setAnimation(dwe::eAnimRun);
                 }
                 else if(appReceiver->isKeyDown(KEY_UP))
                 {
-                    m.x += 0.02;
+                    m.x += 0.2;
                     r.y = 0.f;
 
                     mainPlayer->setAnimation(dwe::eAnimRun);
                 }
                 else if(appReceiver->isKeyDown(KEY_DOWN))
                 {
-                    m.x -= 0.02;
+                    m.x -= 0.2;
                     r.y = 180.f;
                     mainPlayer->setAnimation(dwe::eAnimRun);
                 }
@@ -104,6 +109,11 @@ int main()
 //        }
 
         NetInstance->update();
+        ///////PARTE DE PATHPLANNING
+        pathp->behaviour(mainPlayer, enemyHumanoid, num);
+
+        //////////////////////////////////////
+
 	}
 
 	NetInstance->close();
