@@ -113,6 +113,8 @@
 		<Unit filename="src/classes/Mother.h" />
 		<Unit filename="src/classes/MotherStates.cpp" />
 		<Unit filename="src/classes/MotherStates.h" />
+		<Unit filename="src/classes/Pathplanning.cpp" />
+		<Unit filename="src/classes/Pathplanning.h" />
 		<Unit filename="src/classes/Player.cpp" />
 		<Unit filename="src/classes/Player.h" />
 		<Unit filename="src/classes/PlayerMate.cpp" />
