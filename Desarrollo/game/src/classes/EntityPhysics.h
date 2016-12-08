@@ -12,10 +12,13 @@ class EntityPhysics
         virtual ~EntityPhysics();
 
         EntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody, IrrlichtDevice* const bDevice);
+        void setEntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody, IrrlichtDevice* const bDevice);
         void updatePhysics();
         b2Body* getBwBody();
 
         void createDynPhyEntity(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device);
+
+
 
         //tryout
         void createRigidBox(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device);

@@ -4,6 +4,7 @@
 #include "Humanoid.h"
 #include "NetGame.h"
 #include "EntityPhysics.h"
+#include "World.h"
 
 #include "iostream"
 using namespace std;
@@ -160,7 +161,7 @@ Player* dwe::GraphicsEngine::createMainPlayer()
     vector3df pos= irrnode->getPosition();
     cout << "POS: X = " << pos.X << " ... Y = " << pos.Y << " ... Z = " << pos.Z << endl;
 
-    //createDynPhyEntity(world,vector2d<s32>(0,0), device);
+    //createDynPhyEntity(m_world,vector2d<s32>(0,0), m_device);
 
 	Player* p = new Player();
 	p->setNode(new Node(irrnode));
@@ -235,3 +236,5 @@ void dwe::GraphicsEngine::close()
 
 
 irr::IrrlichtDevice* dwe::GraphicsEngine::getDevice(){return(m_device);}
+irr::scene::ISceneManager*  dwe::GraphicsEngine::getSMGR(){return(m_smgr);}
+

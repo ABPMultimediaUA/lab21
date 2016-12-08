@@ -1,8 +1,11 @@
 #include "EntityPhysics.h"
-
+#include <iostream>
+using namespace std;
 
 EntityPhysics::EntityPhysics()
 {
+    body = NULL;
+    device = NULL;
     //ctor
 }
 
@@ -19,6 +22,14 @@ EntityPhysics::EntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody, 
     device = bDevice;
 }
 
+
+void EntityPhysics::setEntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody, IrrlichtDevice* const bDevice){
+    shape = bShape;
+    body = bBody;
+    device = bDevice;
+}
+
+
 void EntityPhysics::updatePhysics(){
     b2Vec2 position = body->GetPosition();
     float32 angle = body->GetAngle();
@@ -27,19 +38,19 @@ void EntityPhysics::updatePhysics(){
     for(int i=0; i < shape.GetVertexCount(); i++){
         //const b2Vec2 vec = body->GetWorldPoint(shape.GetVertex(i));
         const b2Vec2 vec = body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i)));
-        /*
+
         device->getVideoDriver()->draw2DLine(position2d<s32>(vec.x,vec.y),
         (i+1 != shape.GetVertexCount()) ?
         position2d<s32>(body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i+1))).x, body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i+1))).y):
         position2d<s32>(body->GetWorldPoint(b2Mul(mat,shape.GetVertex(0))).x,body->GetWorldPoint(b2Mul(mat,shape.GetVertex(0))).y),
         SColor(255, 255, 255, 255));
-        */
+
     }
 }
 
 b2Body* EntityPhysics::getBwBody(){return body;};
 
-
+///////////////////////
 void EntityPhysics::createDynPhyEntity(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device){
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
@@ -64,14 +75,11 @@ void EntityPhysics::createDynPhyEntity(b2World& world, const vector2d<s32>& pos,
     // Add the shape to the body.
     body->CreateFixture(&fixtureDef);
 
-    bwPlayer = new EntityPhysics(dynamicBox, body, device);
+    setEntityPhysics(dynamicBox, body, device);
+    //bwPlayer = new EntityPhysics(dynamicBox, body, device);
 }
 
-
-
-
-
-
+////////////////////////
 void EntityPhysics::createRigidBox(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device){
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
@@ -102,6 +110,7 @@ void EntityPhysics::createRigidBox(b2World& world, const vector2d<s32>& pos, Irr
     bodies.push_back(bww);
 }
 
+//////////////////////
 void EntityPhysics::createStaticBox(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device){
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;

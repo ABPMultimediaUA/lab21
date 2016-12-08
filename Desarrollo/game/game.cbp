@@ -86,6 +86,7 @@
 		<Unit filename="src/classes/Drawable.h" />
 		<Unit filename="src/classes/Enemy.cpp" />
 		<Unit filename="src/classes/Enemy.h" />
+		<Unit filename="src/classes/EntityPhysics.cpp" />
 		<Unit filename="src/classes/EntityPhysics.h" />
 		<Unit filename="src/classes/Firearm.cpp" />
 		<Unit filename="src/classes/Firearm.h" />
@@ -127,6 +128,8 @@
 		<Unit filename="src/classes/StateMachine.h" />
 		<Unit filename="src/classes/Weapon.cpp" />
 		<Unit filename="src/classes/Weapon.h" />
+		<Unit filename="src/classes/World.cpp" />
+		<Unit filename="src/classes/World.h" />
 		<Unit filename="src/classes/defines.h" />
 		<Unit filename="src/graphics/GraphicsEngine.cpp" />
 		<Unit filename="src/graphics/GraphicsEngine.h" />

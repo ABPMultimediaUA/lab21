@@ -13,13 +13,9 @@
 #include "Humanoid.h"
 
 #include "EntityPhysics.h"
+#include "World.h"
 
 #define speed 0.1f
-
-///////// EL MUNDO DE BOX2D /////////
-b2Vec2 gravity(0.0f, 0.0f);
-b2World world(gravity);
-///////// EL MUNDO DE BOX2D (END) /////////
 
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -27,9 +23,8 @@ b2World world(gravity);
 int main()
 {
     // Box2D
-    b2BodyDef groundBodyDef;
-    groundBodyDef.position.Set(0.0f, -1.0f);
-
+    b2Vec2 gravity(0.0f, 0.0f);
+    b2World world(gravity);
 
     // Illricht
     AppReceiver* appReceiver = new AppReceiver();
@@ -43,16 +38,13 @@ int main()
 	mainPlayer->setPosition(dwe::vec3f(0,24,90));
     dwe::vec3f pos= mainPlayer->getPosition();
     cout << "POS: X = " << pos.x << " ... Y = " << pos.y << " ... Z = " << pos.z << endl;
-    //vector3df extent= mainPlayer->getTransformedBoundingBox();
-    //now extent.X is the X size of the box, .Y is Y etc.
-    //cout << "SIZE: X = " << extent.X << " ... Y = " << extent.Y << " ... Z = " << extent.Z << endl;
-
     //BOX2D
-	cout << "YES ";
-    //EntityPhysics::createDynPhyEntity(world,vector2d<s32>(0,0), GEInstance->getDevice());
+    EntityPhysics* bwPlayer = new EntityPhysics();
+    //bwPlayer->createDynPhyEntity(world,vector2d<s32>(0,90), GEInstance->getDevice());
+    bwPlayer->createDynPhyEntity(world,vector2d<s32>(0,90), GEInstance->getDevice());
 	cout << "YES \n";
 
-	//
+	////////////////////
 
     // Creación de escenario
 	dwe::Node* suelo = GEInstance->createNode("media/suelo");
@@ -60,16 +52,63 @@ int main()
 	suelo->setPosition(dwe::vec3f(0,0,0));
 	paredes->setPosition(dwe::vec3f(0,35,0));
 
-
     // Creación de enemigo Humanoide
 	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
 	enemyHumanoid->setPosition(dwe::vec3f(0,24,-70));
+    //BOX2D
+	EntityPhysics* bwBox = new EntityPhysics();
+    bwBox->createStaticBox(world,vector2d<s32>(0,-70), GEInstance->getDevice());
+	cout << "YES2 \n";
+
+	 //CAMERA (nodo padre, posición, directión)
+	ICameraSceneNode* camera1 = GEInstance->getSMGR()->addCameraSceneNode(0, vector3df(0,100,-100), vector3df(0,5,0));
+	ICameraSceneNode* camera2 = GEInstance->getSMGR()->addCameraSceneNode(0, vector3df(0,30,-40), vector3df(0,5,0));
+	ICameraSceneNode* camera3 = GEInstance->getSMGR()->addCameraSceneNode(0, vector3df(10,50,-20), vector3df(0,5,0));
+	GEInstance->getSMGR()->setActiveCamera(camera1); //Activar cámara
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+    ITimer* timer = GEInstance->getDevice()->getTimer(); //METIDO DEL DEBUG DRAW DE BOX2D...
+
+    // Prepare for simulation. Typically we use a time step of 1/60 of a
+    // second (60Hz) and 10 iterations. This provides a high quality simulation
+    // in most game scenarios.
+    float32 timeStep = 1.0f / 250.0f;
+    int32 velocityIterations = 6;
+    int32 positionIterations = 2;
+
+    f32 TimeStamp = timer->getTime();
+    f32 DeltaTime = timer->getTime() - TimeStamp;
+    //TIEMPO
+    u32 then = GEInstance->getDevice()->getTimer()->getTime();
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////  BUCLE
 	while(GEInstance->isRunning())
 	{
 //	    if (GEInstance->isWindowActive())
 //        {
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+            //Calcular DELTA TIME ( dt )
+            const u32 now = GEInstance->getDevice()->getTimer()->getTime();
+            //const f32 dt = (f32) (now - then) / 1000.f;
+            const f32 MOVEMENT_SPEED = 10.0f;
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+            //CAMBIO DE CAMARA
+            if (appReceiver->isKeyDown(KEY_KEY_1)){
+                printf("- Camara 1 \n");
+                GEInstance->getSMGR()->setActiveCamera(camera1);
+            }else if(appReceiver->isKeyDown(KEY_KEY_2)){
+                printf("- Camara 2 \n");
+                GEInstance->getSMGR()->setActiveCamera(camera2);
+            }else if(appReceiver->isKeyDown(KEY_KEY_3)){
+                printf("- Camara 3 \n");
+                GEInstance->getSMGR()->setActiveCamera(camera3);
+            }
+
             dwe::vec3f m(0.0f);
             m = mainPlayer->getPosition();
 
@@ -85,37 +124,70 @@ int main()
             {
                 if(appReceiver->isKeyDown(KEY_RIGHT))
                 {
-                    m.z -= speed;
+                    bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(10.0,0.0));
+                    //m.z -= speed;
                     r.y = 90.f;
                     mainPlayer->setAnimation(dwe::eAnimRun);
                 }
                 else if(appReceiver->isKeyDown(KEY_LEFT))
                 {
-                    m.z += speed;
+                    bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(-10.0,0.0));
+                    //m.z += speed;
                     r.y = -90.f;
                     mainPlayer->setAnimation(dwe::eAnimRun);
                 }
                 else if(appReceiver->isKeyDown(KEY_UP))
                 {
-                    m.x += speed;
+                    bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(0.0,10.0));
+                    //m.x += speed;
                     r.y = 0.f;
 
                     mainPlayer->setAnimation(dwe::eAnimRun);
                 }
                 else if(appReceiver->isKeyDown(KEY_DOWN))
                 {
-                    m.x -= speed;
+                    bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(0.0,-10.0));
+                    //m.x -= speed;
                     r.y = 180.f;
                     mainPlayer->setAnimation(dwe::eAnimRun);
                 }
                 else
                 {
+                    bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(0.0,0.0));
                     mainPlayer->setAnimation(dwe::eAnimStand);
                 }
             }
 
-            mainPlayer->setPosition(m);
+            //node->setPosition(nodePos); //Cambio de posición
+            then = now; //Actualizar TIMEPO
+
+            DeltaTime = timer->getTime() - TimeStamp;
+            TimeStamp = timer->getTime();
+            // Instruct the world to perform a single step of simulation.
+            // It is generally best to keep the time step and iterations fixed.
+            world.Step(DeltaTime*timeStep, velocityIterations, positionIterations);
+            // Clear applied body forces. We didn't apply any forces, but you
+            // should know about this function.
+            world.ClearForces();
+
+            bwPlayer->updatePhysics(); //UPDATE de mi player BOX2D
+            cout << "PLAYER POS: X=" << bwPlayer->getBwBody()->GetPosition().x << "... Y=" << bwPlayer->getBwBody()->GetPosition().y << endl;
+            //Posición actualizada de Irrlicht Player
+            //mainPlayer->setPosition(dwe::vec3f(0,24,90));
+            mainPlayer->setPosition(dwe::vec3f(bwPlayer->getBwBody()->GetPosition().x,24,bwPlayer->getBwBody()->GetPosition().y));
+
+
+            //mainPlayer->setPosition(m);
             mainPlayer->setRotation(r);
+
+
+/*
+            camera1->setTarget(mainPlayer->getNode()->getPosition()); //Camara1 mira al nodo del jugador
+            camera2->setTarget(mainPlayer->getPosition()); //Camara2mira al nodo del jugador
+            camera3->setTarget(mainPlayer->getPosition()); //Camara3 mira al nodo del jugador
+*/
+
+
 
             GEInstance->draw();
 //        }

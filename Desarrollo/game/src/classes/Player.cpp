@@ -47,10 +47,3 @@ void Player::setAmmo(int numWeapon, int ammount) { m_ammo[numWeapon] = ammount; 
 ////////////
 int Player::getGrenades() { return m_grenades; }
 void Player::setGrenades(int n) { m_grenades = n; }
-
-////////////
-/*
-vector3df Player::getTransformedBoundingBox(scene::IAnimatedMeshSceneNode* player){
-    return(player->getTransformedBoundingBox().getExtent());
-}
-*/

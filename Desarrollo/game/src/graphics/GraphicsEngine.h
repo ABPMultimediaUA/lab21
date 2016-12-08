@@ -110,6 +110,9 @@ namespace dwe
 
         void setAnimation(AnimationType a);
 
+        vec3f getTransformedBoundingBox();
+        void setTransformedBoundingBox(vec3f v);
+
     private:
         T* m_node;
     };
@@ -142,6 +145,7 @@ namespace dwe
         void yield();
         vector3df getTransformedBoundingBox(scene::IAnimatedMeshSceneNode* player);
         irr::IrrlichtDevice* getDevice();
+        irr::scene::ISceneManager*  getSMGR();
 
         // Creacion de personajes
         Player* createMainPlayer();
