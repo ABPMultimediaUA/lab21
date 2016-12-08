@@ -12,12 +12,13 @@ class Pathplanning
     public:
         Pathplanning();
         virtual ~Pathplanning();
-        void behaviour(Player* mainPlayer, Humanoid* enemyHumanoid, float num);//para comportamiento cuando se acerque player
+        void behaviour(Player* mainPlayer, Humanoid* enemyHumanoid, float num, bool danyo);//para comportamiento cuando se acerque player
 
     protected:
 
     private:
         bool following;
+        bool danyo;//para recibir danyo
 };
 
 

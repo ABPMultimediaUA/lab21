@@ -47,7 +47,8 @@ int main()
 
     //Creación de objeto pathplanning
     Pathplanning* pathp = new Pathplanning();
-     float num=10.0;//para cambiar de sigilo a rapido
+    float num=10.0;//para cambiar de sigilo a rapido
+    bool danyo=false;
 
 	while(GEInstance->isRunning())
 	{
@@ -92,6 +93,10 @@ int main()
                     r.y = 180.f;
                     mainPlayer->setAnimation(dwe::eAnimRun);
                 }
+                else if(appReceiver->isKeyDown(KEY_KEY_A))//prototipo de disparo
+                {
+                    danyo=true;//ponemos el bool de danyo en el npc a true
+                }
                 else
                 {
                     mainPlayer->setAnimation(dwe::eAnimStand);
@@ -110,7 +115,7 @@ int main()
 
         NetInstance->update();
         ///////PARTE DE PATHPLANNING
-        pathp->behaviour(mainPlayer, enemyHumanoid, num);
+        pathp->behaviour(mainPlayer, enemyHumanoid, num, danyo);
 
         //////////////////////////////////////
 
