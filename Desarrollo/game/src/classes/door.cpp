@@ -32,6 +32,7 @@ void door::setActive(){active=true;}
 
 void door::openDoor()
 {
+    // Utilizar el get position de drawable
     // Desplazar la puerta hacia un lado
     switch (facing)
     {

@@ -1,11 +1,12 @@
 #ifndef ENTITY_H
 #define ENTITY_H
+#include "Drawable.h"
 
 /******************************************************************************
 Clase base para todas las entidades del juego.
 *******************************************************************************/
 
-class entity
+class entity: public Drawable
 {
     public:
         entity();
