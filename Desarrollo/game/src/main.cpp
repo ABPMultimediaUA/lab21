@@ -11,6 +11,8 @@
 #include "Dog.h"
 #include "Humanoid.h"
 
+#include "door.h"
+
 #include "Pathplanning.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -39,6 +41,7 @@ int main()
 	dwe::Node* paredes = GEInstance->createNode("media/paredes");
 	suelo->setPosition(dwe::vec3f(0,0,0));
 	paredes->setPosition(dwe::vec3f(0,35,0));
+    //door *puerta=new door(0,0,0,false);
 
 
     // Creación de enemigo Humanoide
@@ -47,7 +50,8 @@ int main()
 
     //Creación de objeto pathplanning
     Pathplanning* pathp = new Pathplanning();
-     float num=10.0;//para cambiar de sigilo a rapido
+    float num=10.0;//para cambiar de sigilo a rapido
+    bool danyo=false;
 
 	while(GEInstance->isRunning())
 	{
@@ -92,6 +96,10 @@ int main()
                     r.y = 180.f;
                     mainPlayer->setAnimation(dwe::eAnimRun);
                 }
+                else if(appReceiver->isKeyDown(KEY_KEY_A))//prototipo de disparo
+                {
+                    danyo=true;//ponemos el bool de danyo en el npc a true
+                }
                 else
                 {
                     mainPlayer->setAnimation(dwe::eAnimStand);
@@ -110,7 +118,7 @@ int main()
 
         NetInstance->update();
         ///////PARTE DE PATHPLANNING
-        pathp->behaviour(mainPlayer, enemyHumanoid, num);
+        pathp->behaviour(mainPlayer, enemyHumanoid, num, danyo);
 
         //////////////////////////////////////
 
