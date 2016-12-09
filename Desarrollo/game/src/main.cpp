@@ -41,7 +41,7 @@ int main()
 	dwe::Node* paredes = GEInstance->createNode("media/paredes");
 	suelo->setPosition(dwe::vec3f(0,0,0));
 	paredes->setPosition(dwe::vec3f(0,35,0));
-    door *puerta=new door(0,0,0,false);
+    //door *puerta=new door(0,0,0,false);
 
 
     // Creación de enemigo Humanoide
