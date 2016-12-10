@@ -72,17 +72,13 @@ bool Door::getIsOpening(){return isOpening;}
 
 void Door::update()
 {
-    cout<<"Hola1"<<endl;
     if(active)
     {
-        cout<<"Hola2"<<endl;
         if(isOpening && !isOpened){
-            cout<<"Hola3"<<endl;
             openDoor();
-        }else if(isOpened){
-            cout<<"Hola4"<<endl;
-            //delete this;
-        }
+        }/*else if(isOpened){
+            delete this;
+        }*/
     }
 }
 
