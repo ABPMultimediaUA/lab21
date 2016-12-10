@@ -1,21 +1,21 @@
-#include "entity.h"
+#include "Entity.h"
 
-entity::entity()
+Entity::Entity()
 {
     //ctor
 }
 
-entity::~entity()
+Entity::~Entity()
 {
     //dtor
 }
 
-void entity::render()
+void Entity::render()
 {
 
 }
 
-void entity::update()
+void Entity::update()
 {
 
 }

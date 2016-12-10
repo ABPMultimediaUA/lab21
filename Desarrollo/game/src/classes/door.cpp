@@ -1,11 +1,10 @@
-#include "door.h"
+#include <iostream>
+#include "Door.h"
 
-door::door(int i, int u, int f, bool a)
+using namespace std;
+
+Door::Door(int i, int u, int f, bool a)
 {
-    AppReceiver* aappReceiver = new AppReceiver();
-	GEInstance->init(aappReceiver);
-    _door=GEInstance->createNode("media/puerta");
-    _door->setPosition(dwe::vec3f(i,0,u));
     x=i;
     z=u;
     facing=f;
@@ -23,14 +22,14 @@ door::door(int i, int u, int f, bool a)
     isOpened=false;
 }
 
-door::~door()
+Door::~Door()
 {
     //dtor
 }
 
-void door::setActive(){active=true;}
+void Door::setActive(){active=true;}
 
-void door::openDoor()
+void Door::openDoor()
 {
     // Utilizar el get position de drawable
     // Desplazar la puerta hacia un lado
@@ -39,6 +38,7 @@ void door::openDoor()
         case 0:
             if(x<op)
                 x++;
+            setPosition(dwe::vec3f(0,0,x));
             isOpened=(x>=op);
             break;
 
@@ -62,26 +62,31 @@ void door::openDoor()
     }
 }
 
-void door::setIsOpening()
+void Door::setIsOpening()
 {
     if(active)
         isOpening=true;
 }
 
-bool door::getIsOpening(){return isOpening;}
+bool Door::getIsOpening(){return isOpening;}
 
-void door::update()
+void Door::update()
 {
+    cout<<"Hola1"<<endl;
     if(active)
     {
+        cout<<"Hola2"<<endl;
         if(isOpening && !isOpened){
+            cout<<"Hola3"<<endl;
             openDoor();
-        }else if(isOpened)
-            delete this;
+        }else if(isOpened){
+            cout<<"Hola4"<<endl;
+            //delete this;
+        }
     }
 }
 
-void door::render()
+void Door::render()
 {
     // dibujar nodo
 }

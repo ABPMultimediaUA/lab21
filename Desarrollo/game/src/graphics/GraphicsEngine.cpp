@@ -3,6 +3,7 @@
 #include "PlayerMate.h"
 #include "Humanoid.h"
 #include "NetGame.h"
+#include "Door.h"
 
 // Necesita volver a poner este namespace
 // para que codeblocks autocomplete bien.
@@ -192,6 +193,14 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid()
 	Humanoid* p = new Humanoid();
 	p->setNode(new Node(irrnode));
     return p;
+}
+
+Door* dwe::GraphicsEngine::createDoor()
+{
+    Node* node=createNode("media/puerta");
+	Door* d = new Door(0,0,0,false);
+	d->setNode(node);
+    return d;
 }
 
 //////////////////////////
