@@ -15,6 +15,15 @@
 
 #include "Pathplanning.h"
 
+#include "Selector.h"
+#include "Sequence.h"
+
+#include "CheckIfDoorIsOpenTask.h"
+#include "ApproachDoorTask.h"
+#include "OpenDoorTask.h"
+#include "WalkThroughDoorTask.h"
+#include "CloseDoorTask.h"
+
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -44,20 +53,66 @@ int main()
     Door *puerta=GEInstance->createDoor();
     puerta->setPosition(dwe::vec3f(0,0,0));
     puerta->setActive();
-    puerta->setIsOpening();
+//    puerta->setIsOpening();
 
 
     // Creación de enemigo Humanoide
 	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
-	enemyHumanoid->setPosition(dwe::vec3f(0,24,-70));
+	enemyHumanoid->setPosition(dwe::vec3f(-70,24,0));
 
     //Creación de objeto pathplanning
-    Pathplanning* pathp = new Pathplanning();
+    //Pathplanning* pathp = new Pathplanning();
     float num=10.0;//para cambiar de sigilo a rapido
     bool danyo=false;
 
+
+    /*************************** BEHAVIOR TREE **********************************/
+
+
+    /**** Special nodes ****/
+
+	Selector* selector1 = new Selector;
+
+	Sequence *sequence1 = new Sequence;
+    Sequence *sequence2 = new Sequence;
+
+
+    /**** Tasks ****/
+
+    CheckIfDoorIsOpenTask* checkOpen = new CheckIfDoorIsOpenTask (puerta);
+    ApproachDoorTask* approach = new ApproachDoorTask (enemyHumanoid, puerta);
+	OpenDoorTask* open = new OpenDoorTask (puerta);
+	WalkThroughDoorTask* through = new WalkThroughDoorTask (enemyHumanoid, puerta);
+	CloseDoorTask* close = new CloseDoorTask (puerta);
+
+
+    /**** Creating the tree ****/
+
+    selector1->addChild(sequence1);
+    selector1->addChild(sequence2);
+
+    sequence1->addChild(checkOpen);
+    sequence1->addChild(approach);
+    sequence1->addChild(through);
+    sequence1->addChild(close);
+
+    sequence2->addChild(approach);
+    sequence2->addChild(open);
+    sequence2->addChild(through);
+    sequence2->addChild(close);
+
+
+
+    /****************************************************************************/
+
+
+
 	while(GEInstance->isRunning())
 	{
+
+            selector1->run();
+
+
 //	    if (GEInstance->isWindowActive())
 //        {
             dwe::vec3f m(0.0f);
@@ -122,7 +177,7 @@ int main()
 
         NetInstance->update();
         ///////PARTE DE PATHPLANNING
-        pathp->behaviour(mainPlayer, enemyHumanoid, num, danyo);
+        //pathp->behaviour(mainPlayer, enemyHumanoid, num, danyo);
 
         //////////////////////////////////////
 

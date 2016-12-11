@@ -8,29 +8,30 @@ Door::Door( float i,  float u, int f, bool a)
     x = i;
     z = u;
     facing = f;
+    speed = 0.1;
 
     // Los valores de la variable op deben ser modificados
     if(facing == 0)
     {
-        op = x + 100;
+        op = x + 50;
         cl = x;
     }
 
     else if(facing == 1)
     {
-        op=z+100;
+        op=z+50;
         cl = z;
     }
 
     else if(facing == 2)
     {
-        op=x-100;
+        op=x-50;
         cl = x;
     }
 
     else if(facing == 3)
     {
-        op=z+100;
+        op=z+50;
         cl = z;
     }
 
@@ -60,26 +61,26 @@ void Door::openDoor()
     {
         case 0:
             if(x<op)
-                x+=0.05;
+                x += speed;
             setPosition(dwe::vec3f(0,0,x));
             isOpened = (x>=op);
             break;
 
         case 1:
             if(z<op)
-                z+=0.05;
+                z+= speed;
             isOpened = (z>=op);
             break;
 
         case 2:
             if(x>op)
-                x-=0.05;
+                x-= speed;
             isOpened =(x<=op);
             break;
 
         case 3:
             if(z>op)
-                z-=0.05;
+                z-=speed;
             isOpened =(z<=op);
             break;
     }
@@ -95,26 +96,26 @@ void Door::closeDoor()
     {
         case 0:
             if(x>cl)
-                x-=0.05;
+                x-=speed;
             setPosition(dwe::vec3f(0,0,x));
             isOpened=(x>=cl);
             break;
 
         case 1:
             if(z>cl)
-                z-=0.05;
+                z-=speed;
             isOpened=(z>=cl);
             break;
 
         case 2:
             if(x<cl)
-                x+=0.05;
+                x+=speed;
             isOpened=(x<=cl);
             break;
 
         case 3:
             if(z<cl)
-                z+=0.05;
+                z+=speed;
             isOpened=(z<=cl);
             break;
     }

@@ -37,6 +37,7 @@ class Door: public Entity
         bool isOpening;
         bool isClosing;
         bool isOpened;
+        float speed; // Velocidad de apertura y cierre
 
 };
 
