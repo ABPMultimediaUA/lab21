@@ -11,7 +11,7 @@
 #include "Dog.h"
 #include "Humanoid.h"
 
-#include "door.h"
+#include "Door.h"
 
 #include "Pathplanning.h"
 
@@ -41,8 +41,10 @@ int main()
 	dwe::Node* paredes = GEInstance->createNode("media/paredes");
 	suelo->setPosition(dwe::vec3f(0,0,0));
 	paredes->setPosition(dwe::vec3f(0,35,0));
-    //door *puerta=new door(0,0,0,false);
-
+    Door *puerta=GEInstance->createDoor();
+    puerta->setPosition(dwe::vec3f(0,0,0));
+    puerta->setActive();
+    puerta->setIsOpening();
 
     // Creación de enemigo Humanoide
 	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
@@ -108,6 +110,7 @@ int main()
 
             mainPlayer->setPosition(m);
             mainPlayer->setRotation(r);
+            puerta->update();
 
             GEInstance->draw();
 //        }

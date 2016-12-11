@@ -20,6 +20,7 @@ class BaseDireWReplica;
 class Player;
 class PlayerMate;
 class Humanoid;
+class Door;
 
 namespace dwe
 {
@@ -142,6 +143,7 @@ namespace dwe
         Player* createMainPlayer();
         PlayerMate* createPlayerMate();
         Humanoid* createEnemyHumanoid();
+        Door* createDoor();
 
     private:
         irr::IrrlichtDevice*            m_device;
