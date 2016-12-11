@@ -46,6 +46,7 @@ int main()
     puerta->setActive();
     puerta->setIsOpening();
 
+
     // Creación de enemigo Humanoide
 	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
 	enemyHumanoid->setPosition(dwe::vec3f(0,24,-70));

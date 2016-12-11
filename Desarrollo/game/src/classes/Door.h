@@ -13,24 +13,31 @@ memoria y que el juego sea mas eficiente.
 class Door: public Entity
 {
     public:
-        Door(int i, int u, int f, bool a);
+        Door(float i, float u, int f, bool a);
         virtual ~Door();
         virtual void setActive();
         void openDoor(); // Llamado desde sector
+        void closeDoor();
+        bool getIfOpened();
         void setIsOpening();
         bool getIsOpening(); // La puerta se esta abriendo
+        void setIsClosing();
+        bool getIsClosing();
         virtual void render();
         virtual void update();
 
     protected:
 
     private:
-        int x, z;
+        float x, z;
         int op; //Posicion puerta abierta
+        int cl; // Posición puerta cerrada
         int facing; // 0 1 2 3
         bool active;
         bool isOpening;
+        bool isClosing;
         bool isOpened;
+
 };
 
 #endif // DOOR_H

@@ -3,23 +3,41 @@
 
 using namespace std;
 
-Door::Door(int i, int u, int f, bool a)
+Door::Door( float i,  float u, int f, bool a)
 {
-    x=i;
-    z=u;
-    facing=f;
+    x = i;
+    z = u;
+    facing = f;
+
     // Los valores de la variable op deben ser modificados
-    if(facing==0)
-        op=x+100;
-    else if(facing==1)
+    if(facing == 0)
+    {
+        op = x + 100;
+        cl = x;
+    }
+
+    else if(facing == 1)
+    {
         op=z+100;
-    else if(facing==2)
+        cl = z;
+    }
+
+    else if(facing == 2)
+    {
         op=x-100;
-    else if(facing==3)
+        cl = x;
+    }
+
+    else if(facing == 3)
+    {
         op=z+100;
-    active=a;
-    isOpening=false;
-    isOpened=false;
+        cl = z;
+    }
+
+    active = a;
+    isOpening = false;
+    isOpened = false;
+    isClosing = false;
 }
 
 Door::~Door()
@@ -29,6 +47,11 @@ Door::~Door()
 
 void Door::setActive(){active=true;}
 
+bool Door::getIfOpened()
+{
+    return isOpened;
+}
+
 void Door::openDoor()
 {
     // Utilizar el get position de drawable
@@ -37,48 +60,107 @@ void Door::openDoor()
     {
         case 0:
             if(x<op)
-                x++;
+                x+=0.05;
             setPosition(dwe::vec3f(0,0,x));
-            isOpened=(x>=op);
+            isOpened = (x>=op);
             break;
 
         case 1:
             if(z<op)
-                z++;
-            isOpened=(z>=op);
+                z+=0.05;
+            isOpened = (z>=op);
             break;
 
         case 2:
             if(x>op)
-                x--;
-            isOpened=(x<=op);
+                x-=0.05;
+            isOpened =(x<=op);
             break;
 
         case 3:
             if(z>op)
-                z--;
-            isOpened=(z<=op);
+                z-=0.05;
+            isOpened =(z<=op);
             break;
     }
+
+    if (isOpened)
+        isOpening = false;
+}
+
+void Door::closeDoor()
+{
+
+    switch (facing)
+    {
+        case 0:
+            if(x>cl)
+                x-=0.05;
+            setPosition(dwe::vec3f(0,0,x));
+            isOpened=(x>=cl);
+            break;
+
+        case 1:
+            if(z>cl)
+                z-=0.05;
+            isOpened=(z>=cl);
+            break;
+
+        case 2:
+            if(x<cl)
+                x+=0.05;
+            isOpened=(x<=cl);
+            break;
+
+        case 3:
+            if(z<cl)
+                z+=0.05;
+            isOpened=(z<=cl);
+            break;
+    }
+
+    if (!isOpened)
+        isClosing = false;
 }
 
 void Door::setIsOpening()
 {
-    if(active)
-        isOpening=true;
+    if(active && !isOpened)
+        isOpening = true;
 }
 
-bool Door::getIsOpening(){return isOpening;}
+bool Door::getIsOpening()
+{
+    return isOpening;
+}
+
+void Door::setIsClosing()
+{
+    if(active && isOpened)
+        isClosing = true;
+}
+
+bool Door::getIsClosing()
+{
+    return isClosing;
+}
+
 
 void Door::update()
 {
     if(active)
     {
-        if(isOpening && !isOpened){
+        if(isOpening && !isOpened)
+        {
             openDoor();
         }/*else if(isOpened){
             delete this;
         }*/
+        else if (isClosing && isOpened)
+        {
+            closeDoor();
+        }
+
     }
 }
 
