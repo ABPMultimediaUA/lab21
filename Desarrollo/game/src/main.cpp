@@ -61,7 +61,7 @@ int main()
 	enemyHumanoid->setPosition(dwe::vec3f(-70,24,0));
 
     //Creación de objeto pathplanning
-    //Pathplanning* pathp = new Pathplanning();
+    Pathplanning* pathp = new Pathplanning();
     float num=10.0;//para cambiar de sigilo a rapido
     bool danyo=false;
 
