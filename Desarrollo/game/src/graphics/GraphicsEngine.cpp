@@ -25,7 +25,7 @@ dwe::GraphicsEngine* dwe::GraphicsEngine::Instance()
 //////////////////////////
 void dwe::GraphicsEngine::init(AppReceiver* ar)
 {
-	m_device = createDevice( video::EDT_OPENGL, irr::core::dimension2d<u32>(640, 480), 16,
+	m_device = createDevice( video::EDT_OPENGL, irr::core::dimension2d<u32>(800, 600), 16,
 			false, false, false, ar);
 
 	m_device->setWindowCaption(L"Lab21");

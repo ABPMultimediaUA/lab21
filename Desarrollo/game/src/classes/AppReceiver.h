@@ -12,8 +12,8 @@ class AppReceiver : public IEventReceiver
 {
     private:
         bool KeyDown[KEY_KEY_CODES_COUNT];
-        //vec3 cursor
-
+        float cursorX;
+        float cursorY;
     public:
     AppReceiver()
     {
@@ -34,8 +34,9 @@ class AppReceiver : public IEventReceiver
         }
         case irr::EET_MOUSE_INPUT_EVENT:
         {
-            core::position2d<s32> cursor = core::position2d<s32>(event.MouseInput.X, event.MouseInput.Y);
-            cout << "Mouse at 2D coordinates: " << cursor.X << "," << cursor.Y << endl;
+            cursorX = event.MouseInput.X;
+            cursorY = event.MouseInput.Y;
+            //cout << "Mouse at 2D coordinates: " << cursor.X << "," << cursor.Y << endl;
         }
         default:
             break;
@@ -48,6 +49,9 @@ class AppReceiver : public IEventReceiver
     virtual bool isKeyUp(EKEY_CODE keyCode) const {
         return !KeyDown[keyCode];
     }
+
+    virtual float getCursorX(){return(cursorX);}
+    virtual float getCursorY(){return(cursorY);}
 };
 
 #endif // APPRECEIVER_H

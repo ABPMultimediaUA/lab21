@@ -50,12 +50,13 @@ void EntityPhysics::updatePhysics(){
     for(int i=0; i < shape.GetVertexCount(); i++){
         //const b2Vec2 vec = body->GetWorldPoint(shape.GetVertex(i));
         const b2Vec2 vec = body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i)));
-
+        /*
         device->getVideoDriver()->draw2DLine(position2d<s32>(vec.x,vec.y),
         (i+1 != shape.GetVertexCount()) ?
         position2d<s32>(body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i+1))).x, body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i+1))).y):
         position2d<s32>(body->GetWorldPoint(b2Mul(mat,shape.GetVertex(0))).x,body->GetWorldPoint(b2Mul(mat,shape.GetVertex(0))).y),
         SColor(255, 255, 255, 255));
+        */
 
     }
 }
