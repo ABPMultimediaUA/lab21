@@ -27,7 +27,6 @@ class Player : public CharacterController
 
         virtual const char* getNetObjectID() const;
 
-
     protected:
 
     private:

@@ -1,9 +1,9 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include "DrawableReplica.h"
+#include "EntityPhysics.h"
 
-class CharacterController : public dwn::DrawableReplica
+class CharacterController : public EntityPhysics
 {
     public:
         CharacterController();

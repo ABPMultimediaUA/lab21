@@ -5,6 +5,9 @@
 #include <string>
 #include <AppReceiver.h>
 
+#include <Box2D/Box2D.h>
+#include <Box2D/Common/b2Math.h>
+
 using namespace std;
 
 // Aun estando los namespace sigo definiendo las propiedades
@@ -109,6 +112,9 @@ namespace dwe
 
         void setAnimation(AnimationType a);
 
+        vec3f getTransformedBoundingBox();
+        void setTransformedBoundingBox(vec3f v);
+
     private:
         T* m_node;
     };
@@ -139,6 +145,9 @@ namespace dwe
         Node* createNode(std::string meshName);
         bool isWindowActive();
         void yield();
+        vector3df getTransformedBoundingBox(scene::IAnimatedMeshSceneNode* player);
+        irr::IrrlichtDevice* getDevice();
+        irr::scene::ISceneManager*  getSMGR();
 
         // Creacion de personajes
         Player* createMainPlayer();
