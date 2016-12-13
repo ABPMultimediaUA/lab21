@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "PlayerMate.h"
 #include "Humanoid.h"
+#include "Dog.h"
 #include "NetGame.h"
 #include "Door.h"
 
@@ -195,6 +196,29 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid()
     return p;
 }
 
+Dog* dwe::GraphicsEngine::createEnemyDog()
+{
+    scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/dog.obj");
+	if (!mesh)
+	{
+		m_device->drop();
+		exit(0);
+	}
+	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
+	if (irrnode)
+	{
+		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
+		irrnode->setMD2Animation(scene::EMAT_STAND);
+		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/dogC1.jpg") );
+		irrnode->setMaterialTexture( 1, m_driver->getTexture("media/dogEyeC1.jpg") );
+
+	}
+
+
+	Dog* p = new Dog();
+	p->setNode(new Node(irrnode));
+    return p;
+}
 Door* dwe::GraphicsEngine::createDoor()
 {
     Node* node=createNode("media/puerta");

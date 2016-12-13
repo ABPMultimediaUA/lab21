@@ -26,6 +26,16 @@ int Dog::getSteps ()
     return steps;
 }
 
+void Dog::update()
+{
+
+}
+
+void Dog::render()
+{
+
+}
+
 Dog::~Dog()
 {
     delete d_pStateMachine;

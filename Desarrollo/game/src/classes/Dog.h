@@ -20,11 +20,17 @@ class Dog : public Enemy
 
         int getSteps();
 
+        virtual void update();
+
+        virtual void render();
+
 
     protected:
 
     private:
+
         int steps;
+
         StateMachine<Dog>*  d_pStateMachine;
 };
 

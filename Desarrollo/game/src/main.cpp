@@ -60,6 +60,11 @@ int main()
 	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
 	enemyHumanoid->setPosition(dwe::vec3f(-70,24,0));
 
+	// Creación de enemigo Dog
+	Dog* enemyDog = GEInstance->createEnemyDog();
+	enemyDog->setPosition(dwe::vec3f(-100,-120,100));
+	//enemyDog->setPosition(dwe::vec3f(0,-300,-40));
+
     //Creación de objeto pathplanning
     Pathplanning* pathp = new Pathplanning();
     float num=10.0;//para cambiar de sigilo a rapido

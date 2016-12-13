@@ -20,6 +20,7 @@ class BaseDireWReplica;
 class Player;
 class PlayerMate;
 class Humanoid;
+class Dog;
 class Door;
 
 namespace dwe
@@ -143,6 +144,7 @@ namespace dwe
         Player* createMainPlayer();
         PlayerMate* createPlayerMate();
         Humanoid* createEnemyHumanoid();
+        Dog* createEnemyDog();
         Door* createDoor();
 
     private:
