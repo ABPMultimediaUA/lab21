@@ -137,6 +137,8 @@
 		<Unit filename="src/classes/Player.h" />
 		<Unit filename="src/classes/PlayerMate.cpp" />
 		<Unit filename="src/classes/PlayerMate.h" />
+		<Unit filename="src/classes/Projectile.cpp" />
+		<Unit filename="src/classes/Projectile.h" />
 		<Unit filename="src/classes/Rifle.cpp" />
 		<Unit filename="src/classes/Rifle.h" />
 		<Unit filename="src/classes/Scene.cpp" />
