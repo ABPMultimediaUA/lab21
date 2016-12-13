@@ -14,6 +14,18 @@ EntityPhysics::~EntityPhysics()
     //dtor
 }
 
+/////////////
+void EntityPhysics::update()
+{
+    // TODO
+}
+
+/////////////
+void EntityPhysics::render()
+{
+    // TODO
+}
+
 
 
 EntityPhysics::EntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody, IrrlichtDevice* const bDevice){
@@ -105,9 +117,11 @@ void EntityPhysics::createRigidBox(b2World& world, const vector2d<s32>& pos, Irr
     // Add the shape to the body.
     body->CreateFixture(&fixtureDef);
 
+    /*
     EntityPhysics* bww = new EntityPhysics(dynamicBox, body, device);
 
     bodies.push_back(bww);
+    */
 }
 
 //////////////////////
@@ -129,7 +143,9 @@ void EntityPhysics::createStaticBox(b2World& world, const vector2d<s32>& pos, Ir
     // Add the shape to the body.
     body->CreateFixture(&fixtureDef);
 
+    /*
     EntityPhysics* bww = new EntityPhysics(staticBox, body, device);
 
     bodies.push_back(bww);
+    */
 }

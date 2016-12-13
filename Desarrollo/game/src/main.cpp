@@ -12,10 +12,15 @@
 #include "Dog.h"
 #include "Humanoid.h"
 
+#include "door.h"
+#include "Pathplanning.h"
+
 #include "EntityPhysics.h"
 #include "World.h"
 
-#define speed 0.1f
+#define speed 20.0f
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -40,7 +45,6 @@ int main()
     cout << "POS: X = " << pos.x << " ... Y = " << pos.y << " ... Z = " << pos.z << endl;
     //BOX2D
     EntityPhysics* bwPlayer = new EntityPhysics();
-    //bwPlayer->createDynPhyEntity(world,vector2d<s32>(0,90), GEInstance->getDevice());
     bwPlayer->createDynPhyEntity(world,vector2d<s32>(0,90), GEInstance->getDevice());
 	cout << "YES \n";
 
@@ -51,19 +55,21 @@ int main()
 	dwe::Node* paredes = GEInstance->createNode("media/paredes");
 	suelo->setPosition(dwe::vec3f(0,0,0));
 	paredes->setPosition(dwe::vec3f(0,35,0));
+    //door *puerta=new door(0,0,0,false);
 
     // Creación de enemigo Humanoide
 	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
 	enemyHumanoid->setPosition(dwe::vec3f(0,24,-70));
+
     //BOX2D
 	EntityPhysics* bwBox = new EntityPhysics();
     bwBox->createStaticBox(world,vector2d<s32>(0,-70), GEInstance->getDevice());
 	cout << "YES2 \n";
 
 	 //CAMERA (nodo padre, posición, directión)
-	ICameraSceneNode* camera1 = GEInstance->getSMGR()->addCameraSceneNode(0, vector3df(0,100,-100), vector3df(0,5,0));
-	ICameraSceneNode* camera2 = GEInstance->getSMGR()->addCameraSceneNode(0, vector3df(0,30,-40), vector3df(0,5,0));
-	ICameraSceneNode* camera3 = GEInstance->getSMGR()->addCameraSceneNode(0, vector3df(10,50,-20), vector3df(0,5,0));
+	ICameraSceneNode* camera1 = GEInstance->getSMGR()->addCameraSceneNode(0, vector3df(0,200,-100), vector3df(0,5,0));
+	ICameraSceneNode* camera2 = GEInstance->getSMGR()->addCameraSceneNode(0, vector3df(0,100,-200), vector3df(0,5,0));
+	ICameraSceneNode* camera3 = GEInstance->getSMGR()->addCameraSceneNode(0, vector3df(-50,150,-100), vector3df(0,5,0));
 	GEInstance->getSMGR()->setActiveCamera(camera1); //Activar cámara
 
 
@@ -83,12 +89,21 @@ int main()
     u32 then = GEInstance->getDevice()->getTimer()->getTime();
 /////////////////////////////////////////////////////////////////////////////////////////////
 
+    //Creación de objeto pathplanning
+    Pathplanning* pathp = new Pathplanning();
+    float num=10.0;//para cambiar de sigilo a rapido
+    bool danyo=false;
+
     ///////////////////////////////////  BUCLE
 	while(GEInstance->isRunning())
 	{
 //	    if (GEInstance->isWindowActive())
 //        {
 
+           // position2d<s32> coord = position2d<s32>(0,0);
+            //core::position2di cursor = core::position2di(appReceiver->OnEvent(const SEvent& rotating),0);
+                                                         //event.MouseInput.X, event.MouseInput.Y);
+            //cout << "Mouse at 2D coordinates: " << cursor.X << "," << cursor.Y << endl;
 /////////////////////////////////////////////////////////////////////////////////////////////
             //Calcular DELTA TIME ( dt )
             const u32 now = GEInstance->getDevice()->getTimer()->getTime();
@@ -115,6 +130,7 @@ int main()
             dwe::vec3f r(0.0f);
             r = mainPlayer->getRotation();
 
+
             if(appReceiver->isKeyDown(KEY_ESCAPE))
             {
                 GEInstance->close();
@@ -124,32 +140,32 @@ int main()
             {
                 if(appReceiver->isKeyDown(KEY_RIGHT))
                 {
-                    bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(10.0,0.0));
-                    //m.z -= speed;
-                    r.y = 90.f;
+                    bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(speed,0.0));
+                    r.y = 0.f;
                     mainPlayer->setAnimation(dwe::eAnimRun);
                 }
                 else if(appReceiver->isKeyDown(KEY_LEFT))
                 {
-                    bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(-10.0,0.0));
-                    //m.z += speed;
-                    r.y = -90.f;
+                    bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(-speed,0.0));
+                    r.y = 180.f;
                     mainPlayer->setAnimation(dwe::eAnimRun);
                 }
                 else if(appReceiver->isKeyDown(KEY_UP))
                 {
-                    bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(0.0,10.0));
-                    //m.x += speed;
-                    r.y = 0.f;
+                    bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(0.0,speed));
+                    r.y = -90.f;
 
                     mainPlayer->setAnimation(dwe::eAnimRun);
                 }
                 else if(appReceiver->isKeyDown(KEY_DOWN))
                 {
-                    bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(0.0,-10.0));
-                    //m.x -= speed;
-                    r.y = 180.f;
+                    bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(0.0,-speed));
+                    r.y = 90.f;
                     mainPlayer->setAnimation(dwe::eAnimRun);
+                }
+                else if(appReceiver->isKeyDown(KEY_KEY_A))//prototipo de disparo
+                {
+                    danyo=true;//ponemos el bool de danyo en el npc a true
                 }
                 else
                 {
@@ -171,7 +187,7 @@ int main()
             world.ClearForces();
 
             bwPlayer->updatePhysics(); //UPDATE de mi player BOX2D
-            cout << "PLAYER POS: X=" << bwPlayer->getBwBody()->GetPosition().x << "... Y=" << bwPlayer->getBwBody()->GetPosition().y << endl;
+            //cout << "PLAYER POS: X=" << bwPlayer->getBwBody()->GetPosition().x << "... Y=" << bwPlayer->getBwBody()->GetPosition().y << endl;
             //Posición actualizada de Irrlicht Player
             //mainPlayer->setPosition(dwe::vec3f(0,24,90));
             mainPlayer->setPosition(dwe::vec3f(bwPlayer->getBwBody()->GetPosition().x,24,bwPlayer->getBwBody()->GetPosition().y));
@@ -179,14 +195,6 @@ int main()
 
             //mainPlayer->setPosition(m);
             mainPlayer->setRotation(r);
-
-
-/*
-            camera1->setTarget(mainPlayer->getNode()->getPosition()); //Camara1 mira al nodo del jugador
-            camera2->setTarget(mainPlayer->getPosition()); //Camara2mira al nodo del jugador
-            camera3->setTarget(mainPlayer->getPosition()); //Camara3 mira al nodo del jugador
-*/
-
 
 
             GEInstance->draw();
@@ -197,6 +205,11 @@ int main()
 //        }
 
         NetInstance->update();
+        ///////PARTE DE PATHPLANNING
+        pathp->behaviour(mainPlayer, enemyHumanoid, num, danyo);
+
+        //////////////////////////////////////
+
 	}
 
 	NetInstance->close();

@@ -1,6 +1,7 @@
 #ifndef WORLD_H
 #define WORLD_H
 
+#include "Scene.h"
 #include <Box2D/Box2D.h>
 #include <Box2D/Common/b2Math.h>
 

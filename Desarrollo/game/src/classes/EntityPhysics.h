@@ -1,15 +1,19 @@
 #ifndef ENTITYPHYSICS_H
 #define ENTITYPHYSICS_H
 
-#include "GraphicsEngine.h"
+
+#include "DrawableReplica.h"
 #include <Box2D/Box2D.h>
 #include <Box2D/Common/b2Math.h>
 
-class EntityPhysics
+class EntityPhysics : public dwn::DrawableReplica
 {
     public:
         EntityPhysics();
         virtual ~EntityPhysics();
+
+        void update();
+        void render();
 
         EntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody, IrrlichtDevice* const bDevice);
         void setEntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody, IrrlichtDevice* const bDevice);

@@ -114,6 +114,8 @@
 		<Unit filename="src/classes/Mother.h" />
 		<Unit filename="src/classes/MotherStates.cpp" />
 		<Unit filename="src/classes/MotherStates.h" />
+		<Unit filename="src/classes/Pathplanning.cpp" />
+		<Unit filename="src/classes/Pathplanning.h" />
 		<Unit filename="src/classes/Player.cpp" />
 		<Unit filename="src/classes/Player.h" />
 		<Unit filename="src/classes/PlayerMate.cpp" />
@@ -131,6 +133,10 @@
 		<Unit filename="src/classes/World.cpp" />
 		<Unit filename="src/classes/World.h" />
 		<Unit filename="src/classes/defines.h" />
+		<Unit filename="src/classes/door.cpp" />
+		<Unit filename="src/classes/door.h" />
+		<Unit filename="src/classes/entity.cpp" />
+		<Unit filename="src/classes/entity.h" />
 		<Unit filename="src/graphics/GraphicsEngine.cpp" />
 		<Unit filename="src/graphics/GraphicsEngine.h" />
 		<Unit filename="src/graphics/GraphicsEngineTemplates.cpp" />
