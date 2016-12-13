@@ -3,8 +3,14 @@
 #include "PlayerMate.h"
 #include "Humanoid.h"
 #include "NetGame.h"
+
+#include "EntityPhysics.h"
+#include "World.h"
+
 #include "Door.h"
 
+#include "iostream"
+using namespace std;
 // Necesita volver a poner este namespace
 // para que codeblocks autocomplete bien.
 // Los demás no, sino tampoco autocompleta.
@@ -22,7 +28,7 @@ dwe::GraphicsEngine* dwe::GraphicsEngine::Instance()
 //////////////////////////
 void dwe::GraphicsEngine::init(AppReceiver* ar)
 {
-	m_device = createDevice( video::EDT_OPENGL, irr::core::dimension2d<u32>(640, 480), 16,
+	m_device = createDevice( video::EDT_OPENGL, irr::core::dimension2d<u32>(800, 600), 16,
 			false, false, false, ar);
 
 	m_device->setWindowCaption(L"Lab21");
@@ -127,6 +133,11 @@ dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 	return node;
 }
 
+vector3df dwe::GraphicsEngine::getTransformedBoundingBox(scene::IAnimatedMeshSceneNode* player){
+    return(player->getTransformedBoundingBox().getExtent());
+}
+
+
 /////////////////////////////
 Player* dwe::GraphicsEngine::createMainPlayer()
 {
@@ -144,11 +155,24 @@ Player* dwe::GraphicsEngine::createMainPlayer()
 		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/sydney.bmp") );
 	}
 
+	irrnode->setPosition(vector3df(0,24,10));
+
+	vector3df extent= irrnode->getTransformedBoundingBox().getExtent();
+    //now extent.X is the X size of the box, .Y is Y etc.
+    cout << "SIZE: X = " << extent.X << " ... Y = " << extent.Y << " ... Z = " << extent.Z << endl;
+
+    vector3df pos= irrnode->getPosition();
+    cout << "POS: X = " << pos.X << " ... Y = " << pos.Y << " ... Z = " << pos.Z << endl;
+
+    //createDynPhyEntity(m_world,vector2d<s32>(0,0), m_device);
+
 	Player* p = new Player();
 	p->setNode(new Node(irrnode));
 	NetInstance->addNetObject(p);
     return p;
 }
+
+
 
 /////////////////////////////////
 PlayerMate* dwe::GraphicsEngine::createPlayerMate()
@@ -220,3 +244,8 @@ void dwe::GraphicsEngine::close()
 {
     m_device->closeDevice();
 }
+
+
+irr::IrrlichtDevice* dwe::GraphicsEngine::getDevice(){return(m_device);}
+irr::scene::ISceneManager*  dwe::GraphicsEngine::getSMGR(){return(m_smgr);}
+

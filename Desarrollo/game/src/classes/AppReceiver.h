@@ -2,6 +2,9 @@
 #define APPRECEIVER_H
 
 #include <irrlicht.h>
+#include <GraphicsEngine.h>
+#include <iostream>
+using namespace std;
 
 using namespace irr;
 
@@ -9,7 +12,8 @@ class AppReceiver : public IEventReceiver
 {
     private:
         bool KeyDown[KEY_KEY_CODES_COUNT];
-
+        float cursorX;
+        float cursorY;
     public:
     AppReceiver()
     {
@@ -28,6 +32,12 @@ class AppReceiver : public IEventReceiver
         {
             KeyDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
         }
+        case irr::EET_MOUSE_INPUT_EVENT:
+        {
+            cursorX = event.MouseInput.X;
+            cursorY = event.MouseInput.Y;
+            //cout << "Mouse at 2D coordinates: " << cursor.X << "," << cursor.Y << endl;
+        }
         default:
             break;
         }
@@ -39,6 +49,9 @@ class AppReceiver : public IEventReceiver
     virtual bool isKeyUp(EKEY_CODE keyCode) const {
         return !KeyDown[keyCode];
     }
+
+    virtual float getCursorX(){return(cursorX);}
+    virtual float getCursorY(){return(cursorY);}
 };
 
 #endif // APPRECEIVER_H
