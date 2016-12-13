@@ -70,6 +70,7 @@ class LAttackState : public State<Legless>
         LAttackState(const LAttackState&);
         LAttackState& operator=(const LAttackState&);
 
+
     public:
 
         //this is a singleton

@@ -6,11 +6,11 @@
 Clase base para todas las entidades del juego.
 *******************************************************************************/
 
-class entity: public Drawable
+class Entity: public Drawable
 {
     public:
-        entity();
-        virtual ~entity();
+        Entity();
+        virtual ~Entity();
         virtual void render();
         virtual void update();
 

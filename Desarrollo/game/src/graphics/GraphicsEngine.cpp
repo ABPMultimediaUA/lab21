@@ -3,8 +3,11 @@
 #include "PlayerMate.h"
 #include "Humanoid.h"
 #include "NetGame.h"
+
 #include "EntityPhysics.h"
 #include "World.h"
+
+#include "Door.h"
 
 #include "iostream"
 using namespace std;
@@ -214,6 +217,14 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid()
 	Humanoid* p = new Humanoid();
 	p->setNode(new Node(irrnode));
     return p;
+}
+
+Door* dwe::GraphicsEngine::createDoor()
+{
+    Node* node=createNode("media/puerta");
+	Door* d = new Door(0,0,0,false);
+	d->setNode(node);
+    return d;
 }
 
 //////////////////////////
