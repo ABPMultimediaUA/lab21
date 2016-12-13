@@ -24,6 +24,7 @@ void DPatrolState::Execute(Dog* pDog)
 
     cout << "\n" << "Dog" << ": " << "Walking";
 
+
     if(pDog->getSteps() == 13)
         pDog->GetFSM()->ChangeState(DLookingForPlayerState::Instance());
 }

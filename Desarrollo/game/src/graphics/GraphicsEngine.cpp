@@ -243,6 +243,7 @@ Dog* dwe::GraphicsEngine::createEnemyDog()
 	p->setNode(new Node(irrnode));
     return p;
 }
+
 Door* dwe::GraphicsEngine::createDoor()
 {
     Node* node=createNode("media/puerta");
