@@ -96,12 +96,9 @@
 		<Unit filename="src/classes/Drawable.h" />
 		<Unit filename="src/classes/Enemy.cpp" />
 		<Unit filename="src/classes/Enemy.h" />
-<<<<<<< HEAD
-		<Unit filename="src/classes/EntityPhysics.cpp" />
-=======
 		<Unit filename="src/classes/Entity.cpp" />
 		<Unit filename="src/classes/Entity.h" />
->>>>>>> master
+		<Unit filename="src/classes/EntityPhysics.cpp" />
 		<Unit filename="src/classes/EntityPhysics.h" />
 		<Unit filename="src/classes/Firearm.cpp" />
 		<Unit filename="src/classes/Firearm.h" />
