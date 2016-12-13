@@ -9,6 +9,7 @@
 #include "World.h"
 
 #include "Door.h"
+#include "Projectile.h"
 
 #include "iostream"
 using namespace std;
@@ -249,7 +250,17 @@ Door* dwe::GraphicsEngine::createDoor()
     Node* node=createNode("media/puerta");
 	Door* d = new Door(0,0,0,false);
 	d->setNode(node);
+	d->setPosition(dwe::vec3f(0,0,0));
     return d;
+}
+
+Projectile* dwe::GraphicsEngine::createProjectile(int* origin, float angle)
+{
+    Node* node=createNode("media/proyectil");
+	Projectile* p = new Projectile(origin, angle);
+	p->setNode(node);
+	p->setPosition(dwe::vec3f(origin[0],0,origin[1]));
+    return p;
 }
 
 //////////////////////////

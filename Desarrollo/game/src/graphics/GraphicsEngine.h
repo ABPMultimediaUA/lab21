@@ -25,6 +25,7 @@ class PlayerMate;
 class Humanoid;
 class Dog;
 class Door;
+class Projectile;
 
 namespace dwe
 {
@@ -155,6 +156,7 @@ namespace dwe
         Humanoid* createEnemyHumanoid();
         Dog* createEnemyDog();
         Door* createDoor();
+        Projectile* createProjectile(int* origin, float angle);
 
     private:
         irr::IrrlichtDevice*            m_device;

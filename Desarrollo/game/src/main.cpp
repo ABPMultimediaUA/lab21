@@ -13,6 +13,7 @@
 #include "Humanoid.h"
 
 #include "Door.h"
+#include "Projectile.h"
 #include "Pathplanning.h"
 
 #include "Selector.h"
@@ -31,6 +32,8 @@
 #define speed 20.0f
 #define M_PI 3.14159265358979323846
 
+float angulo;
+
 
 dwe::vec3f de2Da3D(float x2d, float y2d, dwe::vec3f r){
 	//cout << "X:" <<  x2d << "  ...  Y:" <<  y2d << endl;
@@ -41,12 +44,13 @@ dwe::vec3f de2Da3D(float x2d, float y2d, dwe::vec3f r){
 
 	float numerador     = (u.x*v.x) + (u.y*v.y);
 	float denominador   = sqrt( pow(u.x,2) + pow(u.y,2) ) * sqrt( pow(v.x,2) + pow(v.y,2) );
-	float angulo = acos(numerador/denominador) * (180/M_PI);
+	angulo = acos(numerador/denominador) * (180/M_PI);
 
 	if(y2d<centerScreenY){
         r.y = -angulo;
 	}else{
         r.y = angulo;
+        angulo=-angulo;
     }
 
     return(r);
@@ -89,7 +93,6 @@ int main()
 	paredes->setPosition(dwe::vec3f(0,35,0));
 
     Door *puerta=GEInstance->createDoor();
-    puerta->setPosition(dwe::vec3f(0,0,0));
     puerta->setActive();
 //    puerta->setIsOpening();
 
@@ -97,6 +100,10 @@ int main()
 	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
 	enemyHumanoid->setPosition(dwe::vec3f(-70,24,0));
 
+
+	// Creacion objeto Proyectil
+	Projectile *p;
+	bool disparado=false; // Control
 
 	// Creación de enemigo Dog
 	Dog* enemyDog = GEInstance->createEnemyDog();
@@ -244,6 +251,16 @@ int main()
 
                 bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(speedX,speedZ)); //MOVIMIENTO DEL BOX2D PLAYER
 
+                // DISPARO
+                //cout<<angulo<<endl;
+                if(appReceiver->isKeyDown(KEY_SPACE)){
+                    int origen[2];
+                    origen[0]=m.x;
+                    origen[1]=m.z;
+                    p=GEInstance->createProjectile(origen, angulo);
+                    disparado=true;
+                }
+
             }
 
             //Calcular rotacion player - con MOUSE
@@ -266,6 +283,8 @@ int main()
             mainPlayer->setPosition(dwe::vec3f(bwPlayer->getBwBody()->GetPosition().x,24,bwPlayer->getBwBody()->GetPosition().y)); //MOVIMIENTO DE IRRLICHT PLAYER
             mainPlayer->setRotation(r);
             puerta->update();
+            if(disparado)
+                p->update();
 
             //update camera target
             GEInstance->getSMGR()->getActiveCamera()->setTarget(vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
