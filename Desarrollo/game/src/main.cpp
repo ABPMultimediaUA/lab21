@@ -62,7 +62,7 @@ int main()
 
 	// Creación de enemigo Dog
 	Dog* enemyDog = GEInstance->createEnemyDog();
-	enemyDog->setPosition(dwe::vec3f(-100,-120,100));
+	enemyDog->setPosition(dwe::vec3f(-100,-120,100)); /** No está centrado :( **/
 	//enemyDog->setPosition(dwe::vec3f(0,-300,-40));
 
     //Creación de objeto pathplanning
