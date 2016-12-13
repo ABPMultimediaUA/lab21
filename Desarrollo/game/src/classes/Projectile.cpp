@@ -46,6 +46,7 @@ void Projectile::moveProjectile()
         position[0]=position[0]+(speed*cos(angle));
         position[1]=position[1]+(speed*sin(angle));
         setPosition(dwe::vec3f(position[0],0,position[1]));
+        //cout<<"Posicion("<<position[0]<<","<<position[1]<<")"<<endl;
     }
 }
 

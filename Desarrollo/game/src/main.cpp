@@ -50,6 +50,7 @@ dwe::vec3f de2Da3D(float x2d, float y2d, dwe::vec3f r){
         r.y = -angulo;
 	}else{
         r.y = angulo;
+        angulo=-angulo;
     }
 
     return(r);
@@ -251,6 +252,7 @@ int main()
                 bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(speedX,speedZ)); //MOVIMIENTO DEL BOX2D PLAYER
 
                 // DISPARO
+                //cout<<angulo<<endl;
                 if(appReceiver->isKeyDown(KEY_SPACE)){
                     int origen[2];
                     origen[0]=m.x;
