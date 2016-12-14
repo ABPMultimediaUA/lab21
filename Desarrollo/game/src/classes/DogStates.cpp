@@ -84,6 +84,7 @@ void DAsleepState::Execute(Dog* pDog)
 
     GEInstance->changeEnemyDogTexture(pDog);
 
+
     if(pDog->getSteps() == 16)
         pDog->GetFSM()->ChangeState(DPatrolState::Instance());
 }

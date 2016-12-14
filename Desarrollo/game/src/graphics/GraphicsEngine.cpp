@@ -240,8 +240,8 @@ Dog* dwe::GraphicsEngine::createEnemyDog()
 
 	}
 
-
 	Dog* p = new Dog();
+	p->setIAnimNode(irrnode);
 	p->setNode(new Node(irrnode));
     return p;
 }
@@ -257,14 +257,14 @@ void dwe::GraphicsEngine::changeEnemyDogTexture(Dog* dog)
 	//scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
     //scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
 
-    /**scene::IAnimatedMeshSceneNode* irrnode = dog->getNode();**/
-/*if (irrnode)
+    scene::IAnimatedMeshSceneNode* irrnode = dog->getIAnimNode();
+    if (irrnode)
 	{
-		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/faerie.bmp") );
+		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/dogC2.jpg") );
 		irrnode->setMaterialTexture( 1, m_driver->getTexture("media/faerie.bmp") );
 
 	}
-*/
+
 }
 
 Door* dwe::GraphicsEngine::createDoor()

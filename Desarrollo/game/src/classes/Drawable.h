@@ -29,12 +29,18 @@ class Drawable
         void setAnimation(dwe::AnimationType a);
         dwe::AnimationType getAnimation();
 
+        void setIAnimNode (scene::IAnimatedMeshSceneNode* n);
+        scene::IAnimatedMeshSceneNode* getIAnimNode();
+
+
+
     protected:
 
     private:
         dwe::Node*          m_node;
         float*              m_mesh;
         dwe::AnimationType  m_animation;
+        scene::IAnimatedMeshSceneNode* ianim_node;
 };
 
 #endif // DRAWABLE_H
