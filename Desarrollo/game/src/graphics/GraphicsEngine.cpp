@@ -15,7 +15,7 @@
 using namespace std;
 // Necesita volver a poner este namespace
 // para que codeblocks autocomplete bien.
-// Los demás no, sino tampoco autocompleta.
+// Los demás no, si no tampoco autocompleta.
 
 
 ///////////////////////////////////////////////
@@ -138,18 +138,7 @@ dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 vector3df dwe::GraphicsEngine::getTransformedBoundingBox(scene::IAnimatedMeshSceneNode* player){
     return(player->getTransformedBoundingBox().getExtent());
 }
-/***/
-void dwe::GraphicsEngine::setIAnimNode (scene::IAnimatedMeshSceneNode* n)
-{
-    ianim_node = n;
-}
 
-scene::IAnimatedMeshSceneNode* dwe::GraphicsEngine::getIAnimatedMeshSceneNode();
-{
-    return ianim_node;
-}
-
-/***/
 
 /////////////////////////////
 Player* dwe::GraphicsEngine::createMainPlayer()
@@ -232,6 +221,7 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid()
     return p;
 }
 
+////////////////////////////
 Dog* dwe::GraphicsEngine::createEnemyDog()
 {
     scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/dog.obj");

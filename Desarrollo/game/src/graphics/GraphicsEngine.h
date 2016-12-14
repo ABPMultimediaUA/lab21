@@ -97,34 +97,34 @@ namespace dwe
     template <class T>
     class NodeTemplate
     {
-    public:
-        NodeTemplate();
-        NodeTemplate(T* n);
-        void move(vec3f v);
+        public:
+            NodeTemplate();
+            NodeTemplate(T* n);
+            void move(vec3f v);
 
-        vec3f getPosition();
-        void setPosition(vec3f v);
+            vec3f getPosition();
+            void setPosition(vec3f v);
 
-        vec3f getRotation();
-        void setRotation(vec3f v);
+            vec3f getRotation();
+            void setRotation(vec3f v);
 
-        void setNode(T* n);
-        T* getNode();
-        void remove();
+            void setNode(T* n);
+            /**T* getNode();**/
+            void remove();
 
-        void setAnimation(AnimationType a);
+            void setAnimation(AnimationType a);
 
-        vec3f getTransformedBoundingBox();
-        void setTransformedBoundingBox(vec3f v);
+            vec3f getTransformedBoundingBox();
+            void setTransformedBoundingBox(vec3f v);
 
-        /***/
-        void setIAnimNode (scene::IAnimatedMeshSceneNode* n);
-        scene::IAnimatedMeshSceneNode* getIAnimNode();
-        /**/
+            /***/
+            void setIAnimNode (scene::IAnimatedMeshSceneNode* n);
+            scene::IAnimatedMeshSceneNode* getIAnimNode();
+            /**/
 
-    private:
-        T* m_node;
-        scene::IAnimatedMeshSceneNode* ianim_node;  /**/
+        private:
+            T* m_node;
+            scene::IAnimatedMeshSceneNode* ianim_node;  /**/
     };
 
     //typedef NodeTemplate<ISceneNode> Node;

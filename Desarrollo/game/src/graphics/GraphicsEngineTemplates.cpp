@@ -23,6 +23,19 @@ template<class T>T* dwe::NodeTemplate<T>::getNode()
     return m_node;
 }***/
 
+/***/
+template<class T>void dwe::NodeTemplate<T>::setIAnimNode (scene::IAnimatedMeshSceneNode* n)
+{
+    ianim_node = n;
+}
+
+template<class T>scene::IAnimatedMeshSceneNode* dwe::NodeTemplate<T>::getIAnimNode()
+{
+    return ianim_node;
+}
+
+/***/
+
 ////////////////
 template<class T>void dwe::NodeTemplate<T>::remove()
 {
