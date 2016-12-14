@@ -138,7 +138,18 @@ dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 vector3df dwe::GraphicsEngine::getTransformedBoundingBox(scene::IAnimatedMeshSceneNode* player){
     return(player->getTransformedBoundingBox().getExtent());
 }
+/***/
+void dwe::GraphicsEngine::setIAnimNode (scene::IAnimatedMeshSceneNode* n)
+{
+    ianim_node = n;
+}
 
+scene::IAnimatedMeshSceneNode* dwe::GraphicsEngine::getIAnimatedMeshSceneNode();
+{
+    return ianim_node;
+}
+
+/***/
 
 /////////////////////////////
 Player* dwe::GraphicsEngine::createMainPlayer()
@@ -243,6 +254,27 @@ Dog* dwe::GraphicsEngine::createEnemyDog()
 	Dog* p = new Dog();
 	p->setNode(new Node(irrnode));
     return p;
+}
+
+void dwe::GraphicsEngine::changeEnemyDogTexture(Dog* dog)
+{
+   /* scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/dog.obj");
+	if (!mesh)
+	{
+		m_device->drop();
+		exit(0);
+	}*/
+	//scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
+    //scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
+
+    /**scene::IAnimatedMeshSceneNode* irrnode = dog->getNode();**/
+/*if (irrnode)
+	{
+		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/faerie.bmp") );
+		irrnode->setMaterialTexture( 1, m_driver->getTexture("media/faerie.bmp") );
+
+	}
+*/
 }
 
 Door* dwe::GraphicsEngine::createDoor()

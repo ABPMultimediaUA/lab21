@@ -109,6 +109,7 @@ namespace dwe
         void setRotation(vec3f v);
 
         void setNode(T* n);
+        T* getNode();
         void remove();
 
         void setAnimation(AnimationType a);
@@ -116,12 +117,19 @@ namespace dwe
         vec3f getTransformedBoundingBox();
         void setTransformedBoundingBox(vec3f v);
 
+        /***/
+        void setIAnimNode (scene::IAnimatedMeshSceneNode* n);
+        scene::IAnimatedMeshSceneNode* getIAnimNode();
+        /**/
+
     private:
         T* m_node;
+        scene::IAnimatedMeshSceneNode* ianim_node;  /**/
     };
 
     //typedef NodeTemplate<ISceneNode> Node;
     typedef NodeTemplate<IAnimatedMeshSceneNode> Node;
+    /**typedef NodeTemplate<Node> IAnimatedMeshSceneNode;**/
 
     #include "GraphicsEngineTemplates.cpp"  // La implementación de templates se tiene que incluir siempre en el h
 
@@ -155,6 +163,7 @@ namespace dwe
         PlayerMate* createPlayerMate();
         Humanoid* createEnemyHumanoid();
         Dog* createEnemyDog();
+        void changeEnemyDogTexture(Dog* dog);
         Door* createDoor();
         Projectile* createProjectile(int* origin, float angle);
 

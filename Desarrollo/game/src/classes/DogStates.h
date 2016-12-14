@@ -1,7 +1,7 @@
 #ifndef DOGSTATES_H
 #define DOGSTATES_H
 
-
+#include <GraphicsEngine.h>
 #include <State.h>
 
 

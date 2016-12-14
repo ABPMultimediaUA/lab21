@@ -82,6 +82,8 @@ void DAsleepState::Execute(Dog* pDog)
 {
     cout << "\n" << "Dog" << ": " << "Dreaming with food";
 
+    GEInstance->changeEnemyDogTexture(pDog);
+
     if(pDog->getSteps() == 16)
         pDog->GetFSM()->ChangeState(DPatrolState::Instance());
 }

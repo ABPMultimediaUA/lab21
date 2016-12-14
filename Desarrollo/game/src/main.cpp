@@ -107,8 +107,10 @@ int main()
 
 	// Creación de enemigo Dog
 	Dog* enemyDog = GEInstance->createEnemyDog();
-	enemyDog->setPosition(dwe::vec3f(-100,-120,100)); /** No está centrado :( **/
+	enemyDog->setPosition(dwe::vec3f(-100,-170,100)); /** No está centrado :( **/
 	//enemyDog->setPosition(dwe::vec3f(0,-300,-40));
+	enemyDog->Update();
+
     //BOX2D
 	EntityPhysics* bwBox = new EntityPhysics();
     bwBox->createStaticBox(world,vector2d<s32>(0,-70), GEInstance->getDevice());

@@ -17,6 +17,12 @@ template<class T>void dwe::NodeTemplate<T>::setNode(T* n)
     m_node = n;
 }
 
+/***
+template<class T>T* dwe::NodeTemplate<T>::getNode()
+{
+    return m_node;
+}***/
+
 ////////////////
 template<class T>void dwe::NodeTemplate<T>::remove()
 {

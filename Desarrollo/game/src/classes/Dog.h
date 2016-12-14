@@ -7,6 +7,7 @@
 #include <iostream>
 
 
+
 class Dog : public Enemy
 {
     public:
