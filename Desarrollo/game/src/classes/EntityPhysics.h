@@ -26,7 +26,7 @@ class EntityPhysics : public dwn::DrawableReplica
 
         //tryout
         void createRigidBox(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device);
-        void createStaticBox(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device);
+        void createStaticBox(b2World& world, const vector2d<s32>& pos, float wX, float wY, IrrlichtDevice* const device);
 
     protected:
 

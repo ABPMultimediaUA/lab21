@@ -29,8 +29,9 @@
 #include "EntityPhysics.h"
 #include "World.h"
 
-#define speed 20.0f
+#define speed 50.0f
 #define M_PI 3.14159265358979323846
+#define posError 100 //Creado para el ajuste de coordenadas de los muros de blender/irrlicht a box2d
 
 float angulo;
 
@@ -89,8 +90,50 @@ int main()
     // Creación de escenario
 	dwe::Node* suelo = GEInstance->createNode("media/suelo");
 	dwe::Node* paredes = GEInstance->createNode("media/paredes");
+	//dwe::Node* the111box = GEInstance->createNode("media/the111box");
+	dwe::Node* the101010box = GEInstance->createNode("media/the101010box");
+	dwe::Node* the10010100box = GEInstance->createNode("media/the10010100box");
+	dwe::Node* map = GEInstance->createNode("media/map");
 	suelo->setPosition(dwe::vec3f(0,0,0));
 	paredes->setPosition(dwe::vec3f(0,35,0));
+	//the111box->setPosition(dwe::vec3f(0,0,0));
+	the101010box->setPosition(dwe::vec3f(0,0,100));
+	the10010100box->setPosition(dwe::vec3f(0,0,-100));
+	map->setPosition(dwe::vec3f(0,0,-100));
+
+    //BOX2D
+	//EntityPhysics* bwthe111box = new EntityPhysics();
+    //bwthe111box->createStaticBox(world,vector2d<s32>(0,0), 1.0f, 1.0f, GEInstance->getDevice());
+    EntityPhysics* bwthe101010box = new EntityPhysics();
+    bwthe101010box->createStaticBox(world,vector2d<s32>(0,100), 10.0f, 10.0f, GEInstance->getDevice());
+    EntityPhysics* bwthe10010100box = new EntityPhysics();
+    bwthe10010100box->createStaticBox(world,vector2d<s32>(0,-100), 100.0f, 10.0f, GEInstance->getDevice());
+
+    //EL MAPA - box2d
+    EntityPhysics* bwWU = new EntityPhysics();
+    bwWU->createStaticBox(world,vector2d<s32>(0,250-posError), 500.0f, 1.0f, GEInstance->getDevice());
+    EntityPhysics* bwWD = new EntityPhysics();
+    bwWD->createStaticBox(world,vector2d<s32>(0,-250-posError), 500.0f, 1.0f, GEInstance->getDevice());
+    EntityPhysics* bwWR = new EntityPhysics();
+    bwWR->createStaticBox(world,vector2d<s32>(-500,0-posError), 1.0f, 250.0f,  GEInstance->getDevice());
+    EntityPhysics* bwWL = new EntityPhysics();
+    bwWL->createStaticBox(world,vector2d<s32>(500,0-posError), 1.0f, 250.0f,  GEInstance->getDevice());
+	cout << "YES2 \n";
+    EntityPhysics* bw_001 = new EntityPhysics();
+    bw_001->createStaticBox(world,vector2d<s32>(150,100-posError), 100.0f, 10.0f, GEInstance->getDevice());
+    EntityPhysics* bw_002 = new EntityPhysics();
+    bw_002->createStaticBox(world,vector2d<s32>(-150,100-posError), 100.0f, 10.0f, GEInstance->getDevice());
+	cout << "YES3 \n";
+	EntityPhysics* bw_003 = new EntityPhysics();
+    bw_003->createStaticBox(world,vector2d<s32>(400,0-posError), 100.0f, 10.0f, GEInstance->getDevice());
+    EntityPhysics* bw_004 = new EntityPhysics();
+    bw_004->createStaticBox(world,vector2d<s32>(-400,0-posError), 100.0f, 10.0f, GEInstance->getDevice());
+	cout << "YES4 \n";
+	EntityPhysics* bw_005 = new EntityPhysics();
+    bw_005->createStaticBox(world,vector2d<s32>(360,-100-posError), 100.0f, 10.0f, GEInstance->getDevice());
+    EntityPhysics* bw_006 = new EntityPhysics();
+    bw_006->createStaticBox(world,vector2d<s32>(-360,-100-posError), 100.0f, 10.0f, GEInstance->getDevice());
+	cout << "YES5 \n";
 
     Door *puerta=GEInstance->createDoor();
     puerta->setActive();
@@ -111,10 +154,7 @@ int main()
 	//enemyDog->setPosition(dwe::vec3f(0,-300,-40));
 	enemyDog->Update();
 
-    //BOX2D
-	EntityPhysics* bwBox = new EntityPhysics();
-    bwBox->createStaticBox(world,vector2d<s32>(0,-70), GEInstance->getDevice());
-	cout << "YES2 \n";
+
 
 	 //CAMERA (nodo padre, posición, directión)
 	ICameraSceneNode* camera1 = GEInstance->getSMGR()->addCameraSceneNode(0,  vector3df(0,200,-100), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
@@ -288,10 +328,33 @@ int main()
             if(disparado)
                 p->update();
 
+
             //update camera target
             GEInstance->getSMGR()->getActiveCamera()->setTarget(vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
             //update camera position
-            GEInstance->getSMGR()->getActiveCamera()->setPosition(vector3df(mainPlayer->getPosition().x,200,-100));
+            float getCamPosZ = GEInstance->getSMGR()->getActiveCamera()->getPosition().Z;
+            float setCamPosZ;
+
+            float cameraDist = getCamPosZ - mainPlayer->getPosition().z;
+            cameraDist = fabsf(cameraDist);
+            cout << "cameraDist: " << cameraDist << endl;
+            if(getCamPosZ>-300.0f){
+                if(cameraDist<100.f){
+                    setCamPosZ = mainPlayer->getPosition().z-100;
+                }else if(cameraDist>200.0f){
+                    setCamPosZ = mainPlayer->getPosition().z-200;
+                }
+            }else{
+                if(cameraDist>200.0f){
+                    setCamPosZ = mainPlayer->getPosition().z-200;
+                }
+
+                //reajuste... cuando estoy cerca de una pared final encima de la camara
+                if(cameraDist<10.0f){
+                    setCamPosZ = mainPlayer->getPosition().z-10;
+                }
+            }
+            GEInstance->getSMGR()->getActiveCamera()->setPosition(vector3df(mainPlayer->getPosition().x,200,setCamPosZ));
 
 
             GEInstance->draw();

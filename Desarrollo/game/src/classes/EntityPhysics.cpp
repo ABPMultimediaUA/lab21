@@ -126,7 +126,7 @@ void EntityPhysics::createRigidBox(b2World& world, const vector2d<s32>& pos, Irr
 }
 
 //////////////////////
-void EntityPhysics::createStaticBox(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device){
+void EntityPhysics::createStaticBox(b2World& world, const vector2d<s32>& pos, float wX, float wY, IrrlichtDevice* const device){
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
     //bodyDef.type = b2_dynamicBody;
@@ -135,7 +135,7 @@ void EntityPhysics::createStaticBox(b2World& world, const vector2d<s32>& pos, Ir
 
     // Define another box shape for our dynamic body.
     b2PolygonShape staticBox;
-    staticBox.SetAsBox(10.0f, 10.0f);
+    staticBox.SetAsBox(wX, wY);
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
