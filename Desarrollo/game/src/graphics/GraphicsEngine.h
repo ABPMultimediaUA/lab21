@@ -1,6 +1,8 @@
 #ifndef FACHADEDIREENGINE_H
 #define FACHADEDIREENGINE_H
 
+
+
 #include <irrlicht.h>
 #include <string>
 #include <AppReceiver.h>
@@ -163,7 +165,7 @@ namespace dwe
         PlayerMate* createPlayerMate();
         Humanoid* createEnemyHumanoid();
         Dog* createEnemyDog();
-        void changeEnemyDogTexture(Dog* dog);
+        void changeEnemyDogTexture(Dog* dog, const io::path& str);
         Door* createDoor();
         Projectile* createProjectile(int* origin, float angle);
 

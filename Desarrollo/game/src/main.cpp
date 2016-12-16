@@ -109,7 +109,7 @@ int main()
 	Dog* enemyDog = GEInstance->createEnemyDog();
 	enemyDog->setPosition(dwe::vec3f(-100,-170,100)); /** No está centrado :( **/
 	//enemyDog->setPosition(dwe::vec3f(0,-300,-40));
-	enemyDog->Update();
+
 
     //BOX2D
 	EntityPhysics* bwBox = new EntityPhysics();
@@ -186,7 +186,11 @@ int main()
 	while(GEInstance->isRunning())
 	{
 
+            /* Run Behavior Tree */
             selector1->run();
+
+            /* Run State Machine */
+            enemyDog->Update();
 
 
 //	    if (GEInstance->isWindowActive())

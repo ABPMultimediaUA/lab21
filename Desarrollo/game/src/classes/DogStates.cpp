@@ -24,6 +24,8 @@ void DPatrolState::Execute(Dog* pDog)
 
     cout << "\n" << "Dog" << ": " << "Walking";
 
+    io::path str = "media/dogC1.jpg";
+    GEInstance->changeEnemyDogTexture(pDog, str);
 
     if(pDog->getSteps() == 13)
         pDog->GetFSM()->ChangeState(DLookingForPlayerState::Instance());
@@ -54,6 +56,9 @@ void DLookingForPlayerState::Execute(Dog* pDog)
 {
     cout << "\n" << "Dog" << ": " << "Trying to locate something strange";
 
+    io::path str = "media/dogC3.jpg";
+    GEInstance->changeEnemyDogTexture(pDog, str);
+
     if(pDog->getSteps() == 10)
         pDog->GetFSM()->ChangeState(DKnockDownState::Instance());
 }
@@ -82,11 +87,18 @@ void DAsleepState::Execute(Dog* pDog)
 {
     cout << "\n" << "Dog" << ": " << "Dreaming with food";
 
-    GEInstance->changeEnemyDogTexture(pDog);
+    io::path str = "media/dogC2.jpg";
+    GEInstance->changeEnemyDogTexture(pDog, str);
 
 
     if(pDog->getSteps() == 16)
         pDog->GetFSM()->ChangeState(DPatrolState::Instance());
+
+    if (pDog->getSteps() == 0)
+    {
+        pDog->setSteps(19);
+        pDog->GetFSM()->ChangeState(DPatrolState::Instance());
+    }
 }
 
 void DAsleepState::Exit(Dog* pDog)
@@ -112,6 +124,9 @@ void DKnockDownState::Enter(Dog* pDog)
 void DKnockDownState::Execute(Dog* pDog)
 {
     cout << "\n" << "Dog" << ": " << "Knocked down!";
+
+    io::path str = "media/dogC4.jpg";
+    GEInstance->changeEnemyDogTexture(pDog, str);
 
     if(pDog->getSteps() == 7)
         pDog->GetFSM()->ChangeState(DAttackState::Instance());
@@ -141,6 +156,9 @@ void DAttackState::Execute(Dog* pDog)
 {
     cout << "\n" << "Dog" << ": " << "Biting";
 
+    io::path str = "media/dogC5.jpg";
+    GEInstance->changeEnemyDogTexture(pDog, str);
+
     if(pDog->getSteps() == 4)
         pDog->GetFSM()->ChangeState(DRunAwayState::Instance());
 }
@@ -168,6 +186,9 @@ void DRunAwayState::Enter(Dog* pDog)
 void DRunAwayState::Execute(Dog* pDog)
 {
     cout << "\n" << "Dog" << ": " << "Running away";
+
+    io::path str = "media/dogC6.jpg";
+    GEInstance->changeEnemyDogTexture(pDog, str);
 
     if(pDog->getSteps() == 1)
         pDog->GetFSM()->ChangeState(DAsleepState::Instance());

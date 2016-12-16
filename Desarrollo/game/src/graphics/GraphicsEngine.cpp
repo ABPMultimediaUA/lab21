@@ -246,22 +246,18 @@ Dog* dwe::GraphicsEngine::createEnemyDog()
     return p;
 }
 
-void dwe::GraphicsEngine::changeEnemyDogTexture(Dog* dog)
+void dwe::GraphicsEngine::changeEnemyDogTexture(Dog* dog,const io::path& text)
 {
-   /* scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/dog.obj");
-	if (!mesh)
-	{
-		m_device->drop();
-		exit(0);
-	}*/
-	//scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
-    //scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
+
+    //text = "media/" + text;
+    //cout << text << endl;
 
     scene::IAnimatedMeshSceneNode* irrnode = dog->getIAnimNode();
     if (irrnode)
 	{
-		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/dogC2.jpg") );
-		irrnode->setMaterialTexture( 1, m_driver->getTexture("media/faerie.bmp") );
+		irrnode->setMaterialTexture( 0, m_driver->getTexture(text) );
+
+		irrnode->setMaterialTexture( 1, m_driver->getTexture(text) );
 
 	}
 
