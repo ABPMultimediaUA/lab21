@@ -21,6 +21,8 @@ class Dog : public Enemy
 
         int getSteps();
 
+        void setSteps(int s);
+
         virtual void update();
 
         virtual void render();

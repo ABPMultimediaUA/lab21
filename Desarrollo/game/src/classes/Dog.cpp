@@ -26,6 +26,11 @@ int Dog::getSteps ()
     return steps;
 }
 
+void Dog::setSteps (int s)
+{
+    steps = s;
+}
+
 void Dog::update()
 {
 
