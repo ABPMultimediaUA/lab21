@@ -212,21 +212,21 @@ int main()
                 float speedZ = 0.0f;
 
                 //Derecha o izquierda
-                if(appReceiver->isKeyDown(KEY_RIGHT)){
+                if(appReceiver->isKeyDown(KEY_KEY_D)){
                     speedX = speed;
-                }else if(appReceiver->isKeyDown(KEY_LEFT)){
+                }else if(appReceiver->isKeyDown(KEY_KEY_A)){
                     speedX = -speed;
                 }
 
                 //Hacia delante o hacia detras
-                if(appReceiver->isKeyDown(KEY_UP)){
+                if(appReceiver->isKeyDown(KEY_KEY_W)){
                     speedZ = speed;
-                }else if(appReceiver->isKeyDown(KEY_DOWN)){
+                }else if(appReceiver->isKeyDown(KEY_KEY_S)){
                     speedZ = -speed;
                 }
 
                 //prototipo de disparo
-                if(appReceiver->isKeyDown(KEY_KEY_A)){danyo=true;}//ponemos el bool de danyo en el npc a true
+                if(appReceiver->isKeyDown(KEY_KEY_F)){danyo=true;}//ponemos el bool de danyo en el npc a true
 
                 //Animacion del player
                 if(speedX!=0 || speedZ!=0){

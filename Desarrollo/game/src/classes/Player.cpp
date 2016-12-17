@@ -3,7 +3,6 @@
 Player::Player()
 {
     //ctor
-    createDynPhyEntity(dwe::vec3f(0,0,0));
 }
 
 Player::~Player()
@@ -14,8 +13,7 @@ Player::~Player()
 /////////////
 void Player::update()
 {
-    // TODO
-    Drawable::setPosition(dwe::vec3f(getBwBody()->GetPosition().x, getPosition().y, getBwBody()->GetPosition().y));
+    Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
 }
 
 ////////////////////
@@ -53,14 +51,8 @@ void Player::setGrenades(int n) { m_grenades = n; }
 /////////////
 void Player::setPosition(dwe::vec3f p)
 {
-    getBwBody()->SetTransform(b2Vec2(p.x, p.z), getRotation().y);
+    setPosEntity(p, getRotation().y);
     Drawable::setPosition(p);
-}
-
-/////////////
-void Player::setVelocity(dwe::vec3f p)
-{
-    getBwBody()->SetLinearVelocity(b2Vec2(p.x, p.z));
 }
 
 

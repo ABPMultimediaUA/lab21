@@ -28,7 +28,6 @@ class Player : public CharacterController, public EntityPhysics
 
         virtual const char* getNetObjectID() const;
         void setPosition(dwe::vec3f p);
-        void setVelocity(dwe::vec3f p);
 
     protected:
 

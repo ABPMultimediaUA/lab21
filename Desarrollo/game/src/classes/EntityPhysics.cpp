@@ -9,6 +9,7 @@ EntityPhysics::EntityPhysics()
     m_body = NULL;
     //device = NULL;
     //ctor
+    createDynPhyEntity(dwe::vec3f(0,0,0));
 }
 
 EntityPhysics::~EntityPhysics()
@@ -16,6 +17,24 @@ EntityPhysics::~EntityPhysics()
     //dtor
 }
 
+//////////////////////////
+dwe::vec3f EntityPhysics::getPosEntity()
+{
+    b2Vec2 v = m_body->GetPosition();
+    return dwe::vec3f(v.x, 0, v.y);
+}
+
+////////////////////
+void EntityPhysics::setPosEntity(dwe::vec3f position, float rotation)
+{
+    m_body->SetTransform(b2Vec2(position.x, position.z), rotation);
+}
+
+////////////////////
+void EntityPhysics::setVelocity(dwe::vec3f v)
+{
+    m_body->SetLinearVelocity(b2Vec2(v.x, v.z));
+}
 
 EntityPhysics::EntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody){
     m_shape = bShape;
@@ -29,7 +48,10 @@ void EntityPhysics::setEntityPhysics(const b2PolygonShape& bShape, b2Body* const
 }
 
 
-void EntityPhysics::updatePhysics(){
+void EntityPhysics::updatePhysics()
+{
+//    Drawable::setPosition(dwe::vec3f(getBwBody()->GetPosition().x, getPosition().y, getBwBody()->GetPosition().y));
+    /*
     b2Vec2 position = m_body->GetPosition();
     float32 angle = m_body->GetAngle();
 
@@ -37,15 +59,13 @@ void EntityPhysics::updatePhysics(){
     for(int i=0; i < m_shape.GetVertexCount(); i++){
         //const b2Vec2 vec = body->GetWorldPoint(shape.GetVertex(i));
         const b2Vec2 vec = m_body->GetWorldPoint(b2Mul(mat,m_shape.GetVertex(i)));
-        /*
         device->getVideoDriver()->draw2DLine(position2d<s32>(vec.x,vec.y),
         (i+1 != shape.GetVertexCount()) ?
         position2d<s32>(body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i+1))).x, body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i+1))).y):
         position2d<s32>(body->GetWorldPoint(b2Mul(mat,shape.GetVertex(0))).x,body->GetWorldPoint(b2Mul(mat,shape.GetVertex(0))).y),
         SColor(255, 255, 255, 255));
-        */
 
-    }
+    }*/
 }
 
 b2Body* EntityPhysics::getBwBody(){return m_body;};

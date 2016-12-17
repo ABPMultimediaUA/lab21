@@ -17,6 +17,10 @@ class EntityPhysics
 
         void createDynPhyEntity(const dwe::vec3f& pos);
 
+        dwe::vec3f getPosEntity();
+        void setPosEntity(dwe::vec3f position, float rotation);
+
+        void setVelocity(dwe::vec3f v);
 
 
         //tryout
@@ -26,7 +30,7 @@ class EntityPhysics
     protected:
 
     private:
-        void updatePhysics();  // Por ahora no sirve de nada
+        void updatePhysics();
         b2PolygonShape      m_shape;
         b2Body*             m_body;
         IrrlichtDevice*     m_device;
