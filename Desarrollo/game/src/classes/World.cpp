@@ -1,23 +1,42 @@
 #include "World.h"
-/*
-World::World()
+
+b2Vec2  World::m_gravity(0.f, 0.f);
+b2World World::m_world(World::m_gravity);
+
+const float   World::m_timeStep             = 1.0f / 250.0f;;
+const int     World::m_velocityIterations   = 6;
+const int     World::m_positionIterations   = 2;
+
+
+//////////////
+World* World::Instance()
 {
-    //ctor
+    // Devuelvo singleton
+
+    static World instance;
+    return &instance;
 }
 
-World::~World()
+//////////////
+b2Body* World::createBody(b2BodyDef *bodyDef)
 {
-    //dtor
+    return m_world.CreateBody(bodyDef);
 }
-*/
 
-void World::initializePhysicsWorld()
+////////////
+void World::step(float deltaTime)
 {
-    b2Vec2 m_gravity(0.0f, 0.0f);
-    b2World m_world(m_gravity);
-//    setGravity(0.0f, 0.0f);
-//    setWorld(m_gravity);
+    m_world.Step(deltaTime * m_timeStep, m_velocityIterations, m_positionIterations);
 }
+
+////////////
+void World::clearForces()
+{
+    m_world.ClearForces();
+}
+
+
+
 
 ////////////
 b2Vec2 World::getGravity(){return(m_gravity);}

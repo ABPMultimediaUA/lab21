@@ -8,20 +8,25 @@
 class World
 {
     public:
-        //World();
-        //virtual ~World();
+        static World* Instance();
 
-        void initializePhysicsWorld();
+        b2Body* createBody(b2BodyDef *bodyDef);
+        void step(float deltaTime);
+        void clearForces();
+
         b2Vec2 getGravity();
-        void setGravity(float32 a, float32 b);
         b2World getWorld();
-        void setWorld(b2Vec2 v);
-
     protected:
 
     private:
-        b2Vec2 m_gravity;
-        b2World m_world;
+        static const float  m_timeStep;
+        static const int    m_velocityIterations;
+        static const int    m_positionIterations;
+
+        static b2Vec2       m_gravity;
+        static b2World      m_world;
 };
+
+#define WInstance World::Instance()
 
 #endif // WORLD_H

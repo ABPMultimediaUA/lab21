@@ -1,42 +1,38 @@
 #ifndef ENTITYPHYSICS_H
 #define ENTITYPHYSICS_H
 
-
-#include "DrawableReplica.h"
+#include "GraphicsEngine.h"
 #include <Box2D/Box2D.h>
 #include <Box2D/Common/b2Math.h>
 
-class EntityPhysics : public dwn::DrawableReplica
+class EntityPhysics
 {
     public:
         EntityPhysics();
         virtual ~EntityPhysics();
 
-        void update();
-        void render();
-
-        EntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody, IrrlichtDevice* const bDevice);
-        void setEntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody, IrrlichtDevice* const bDevice);
-        void updatePhysics();
+        EntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody);
+        void setEntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody);
         b2Body* getBwBody();
 
-        void createDynPhyEntity(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device);
+        void createDynPhyEntity(const dwe::vec3f& pos);
 
 
 
         //tryout
-        void createRigidBox(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device);
-        void createStaticBox(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device);
+        void createRigidBox(const vector2d<s32>& pos);
+        void createStaticBox(const vector2d<s32>& pos);
 
     protected:
 
     private:
-        b2PolygonShape shape;
-        b2Body* body;
-        IrrlichtDevice* device;
+        void updatePhysics();  // Por ahora no sirve de nada
+        b2PolygonShape      m_shape;
+        b2Body*             m_body;
+        IrrlichtDevice*     m_device;
 
-        irr::core::array<EntityPhysics*> bodies; //ARRAY "BODIES"
-        EntityPhysics* bwPlayer; //BOX2DPLAYER
+        irr::core::array<EntityPhysics*>    m_bodies; //ARRAY "BODIES"
+        EntityPhysics*                      m_bwPlayer; //BOX2DPLAYER
 
 };
 

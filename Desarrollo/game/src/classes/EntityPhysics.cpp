@@ -1,11 +1,13 @@
 #include "EntityPhysics.h"
+#include "World.h"
 #include <iostream>
+
 using namespace std;
 
 EntityPhysics::EntityPhysics()
 {
-    body = NULL;
-    device = NULL;
+    m_body = NULL;
+    //device = NULL;
     //ctor
 }
 
@@ -14,42 +16,27 @@ EntityPhysics::~EntityPhysics()
     //dtor
 }
 
-/////////////
-void EntityPhysics::update()
-{
-    // TODO
-}
 
-/////////////
-void EntityPhysics::render()
-{
-    // TODO
+EntityPhysics::EntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody){
+    m_shape = bShape;
+    m_body = bBody;
 }
 
 
-
-EntityPhysics::EntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody, IrrlichtDevice* const bDevice){
-    shape = bShape;
-    body = bBody;
-    device = bDevice;
-}
-
-
-void EntityPhysics::setEntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody, IrrlichtDevice* const bDevice){
-    shape = bShape;
-    body = bBody;
-    device = bDevice;
+void EntityPhysics::setEntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody){
+    m_shape = bShape;
+    m_body = bBody;
 }
 
 
 void EntityPhysics::updatePhysics(){
-    b2Vec2 position = body->GetPosition();
-    float32 angle = body->GetAngle();
+    b2Vec2 position = m_body->GetPosition();
+    float32 angle = m_body->GetAngle();
 
     const b2Mat22 mat(0,1,1,0);
-    for(int i=0; i < shape.GetVertexCount(); i++){
+    for(int i=0; i < m_shape.GetVertexCount(); i++){
         //const b2Vec2 vec = body->GetWorldPoint(shape.GetVertex(i));
-        const b2Vec2 vec = body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i)));
+        const b2Vec2 vec = m_body->GetWorldPoint(b2Mul(mat,m_shape.GetVertex(i)));
         /*
         device->getVideoDriver()->draw2DLine(position2d<s32>(vec.x,vec.y),
         (i+1 != shape.GetVertexCount()) ?
@@ -61,15 +48,15 @@ void EntityPhysics::updatePhysics(){
     }
 }
 
-b2Body* EntityPhysics::getBwBody(){return body;};
+b2Body* EntityPhysics::getBwBody(){return m_body;};
 
 ///////////////////////
-void EntityPhysics::createDynPhyEntity(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device){
+void EntityPhysics::createDynPhyEntity(const dwe::vec3f& pos){
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(pos.X, pos.Y);
-    b2Body* body = world.CreateBody(&bodyDef);
+    bodyDef.position.Set(pos.x, pos.z);
+    b2Body* body = WInstance->createBody(&bodyDef);
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicBox;
@@ -88,17 +75,17 @@ void EntityPhysics::createDynPhyEntity(b2World& world, const vector2d<s32>& pos,
     // Add the shape to the body.
     body->CreateFixture(&fixtureDef);
 
-    setEntityPhysics(dynamicBox, body, device);
+    setEntityPhysics(dynamicBox, body);
     //bwPlayer = new EntityPhysics(dynamicBox, body, device);
 }
 
 ////////////////////////
-void EntityPhysics::createRigidBox(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device){
+void EntityPhysics::createRigidBox(const vector2d<s32>& pos){
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(pos.X, pos.Y);
-    b2Body* body = world.CreateBody(&bodyDef);
+    b2Body* body = WInstance->createBody(&bodyDef);
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicBox;
@@ -126,12 +113,12 @@ void EntityPhysics::createRigidBox(b2World& world, const vector2d<s32>& pos, Irr
 }
 
 //////////////////////
-void EntityPhysics::createStaticBox(b2World& world, const vector2d<s32>& pos, IrrlichtDevice* const device){
+void EntityPhysics::createStaticBox(const vector2d<s32>& pos){
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
     //bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(pos.X, pos.Y);
-    b2Body* body = world.CreateBody(&bodyDef);
+    b2Body* body = WInstance->createBody(&bodyDef);
 
     // Define another box shape for our dynamic body.
     b2PolygonShape staticBox;

@@ -63,28 +63,19 @@ dwe::vec3f de2Da3D(float x2d, float y2d, dwe::vec3f r){
 ///////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
-    // Box2D
-    b2Vec2 gravity(0.0f, 0.0f);
-    b2World world(gravity);
-
     // Illricht
     AppReceiver* appReceiver = new AppReceiver();
 	GEInstance->init(appReceiver);
 
+
 	// Motor de red
     NetInstance->open();
+
 
     // Creación de jugador
 	Player* mainPlayer = GEInstance->createMainPlayer();
 	mainPlayer->setPosition(dwe::vec3f(0,24,0));
-    dwe::vec3f pos= mainPlayer->getPosition();
-    cout << "POS: X = " << pos.x << " ... Y = " << pos.y << " ... Z = " << pos.z << endl;
-    //BOX2D
-    EntityPhysics* bwPlayer = new EntityPhysics();
-    bwPlayer->createDynPhyEntity(world,vector2d<s32>(0,0), GEInstance->getDevice());
-	cout << "YES \n";
 
-	////////////////////
 
     // Creación de escenario
 	dwe::Node* suelo = GEInstance->createNode("media/suelo");
@@ -94,7 +85,7 @@ int main()
 
     Door *puerta=GEInstance->createDoor();
     puerta->setActive();
-//    puerta->setIsOpening();
+    //puerta->setIsOpening();
 
     // Creación de enemigo Humanoide
 	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
@@ -113,7 +104,7 @@ int main()
 
     //BOX2D
 	EntityPhysics* bwBox = new EntityPhysics();
-    bwBox->createStaticBox(world,vector2d<s32>(0,-70), GEInstance->getDevice());
+    bwBox->createStaticBox(vector2d<s32>(0,-70));
 	cout << "YES2 \n";
 
 	 //CAMERA (nodo padre, posición, directión)
@@ -124,13 +115,6 @@ int main()
 
 /////////////////////////////////////////////////////////////////////////////////////////////
     ITimer* timer = GEInstance->getDevice()->getTimer(); //METIDO DEL DEBUG DRAW DE BOX2D...
-
-    // Prepare for simulation. Typically we use a time step of 1/60 of a
-    // second (60Hz) and 10 iterations. This provides a high quality simulation
-    // in most game scenarios.
-    float32 timeStep = 1.0f / 250.0f;
-    int32 velocityIterations = 6;
-    int32 positionIterations = 2;
 
     f32 TimeStamp = timer->getTime();
     f32 DeltaTime = timer->getTime() - TimeStamp;
@@ -251,7 +235,7 @@ int main()
                     mainPlayer->setAnimation(dwe::eAnimStand);
                 }
 
-                bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(speedX,speedZ)); //MOVIMIENTO DEL BOX2D PLAYER
+                mainPlayer->setVelocity(dwe::vec3f(speedX, 0, speedZ));
 
                 // DISPARO
                 //cout<<angulo<<endl;
@@ -274,15 +258,13 @@ int main()
             TimeStamp = timer->getTime();
             // Instruct the world to perform a single step of simulation.
             // It is generally best to keep the time step and iterations fixed.
-            world.Step(DeltaTime*timeStep, velocityIterations, positionIterations);
+            WInstance->step(DeltaTime);
             // Clear applied body forces. We didn't apply any forces, but you
             // should know about this function.
-            world.ClearForces();
-
-            bwPlayer->updatePhysics(); //UPDATE de mi player BOX2D
+            WInstance->clearForces();
 
             //Posición actualizada de Irrlicht Player
-            mainPlayer->setPosition(dwe::vec3f(bwPlayer->getBwBody()->GetPosition().x,24,bwPlayer->getBwBody()->GetPosition().y)); //MOVIMIENTO DE IRRLICHT PLAYER
+            mainPlayer->update();
             mainPlayer->setRotation(r);
             puerta->update();
             if(disparado)
