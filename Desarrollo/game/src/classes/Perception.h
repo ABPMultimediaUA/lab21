@@ -1,7 +1,7 @@
 #ifndef PERCEPTION_H
 #define PERCEPTION_H
-#include "Humanoid.h"
 #include "Player.h"
+#include "Humanoid.h"
 
 class Perception
 {

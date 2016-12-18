@@ -14,22 +14,23 @@
 
 #include "Door.h"
 #include "Projectile.h"
-#include "Pathplanning.h"
 
 #include "Selector.h"
 #include "Sequence.h"
+
+#include "Pathplanning.h"
+#include "Perception.h"
 
 #include "CheckIfDoorIsOpenTask.h"
 #include "ApproachDoorTask.h"
 #include "OpenDoorTask.h"
 #include "WalkThroughDoorTask.h"
 #include "CloseDoorTask.h"
-#include "Pathplanning.h"
 
 #include "EntityPhysics.h"
 #include "World.h"
 
-#define speed 20.0f
+//#define speed 20.0f
 #define M_PI 3.14159265358979323846
 
 float angulo;
@@ -74,7 +75,7 @@ int main()
 
     // Creación de jugador
 	Player* mainPlayer = GEInstance->createMainPlayer();
-	mainPlayer->setPosition(dwe::vec3f(0,24,0));
+	mainPlayer->setPosition(dwe::vec3f(50,24,50));
 
 
     // Creación de escenario
@@ -90,6 +91,10 @@ int main()
     // Creación de enemigo Humanoide
 	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
 	enemyHumanoid->setPosition(dwe::vec3f(-70,24,0));
+
+    //Creación fov
+    dwe::Node* fovnode = GEInstance->createNode("media/fov");
+    fovnode->setPosition(enemyHumanoid->getPosition());
 
 
 	// Creacion objeto Proyectil
@@ -122,11 +127,11 @@ int main()
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    //Creación de objeto pathplanning
-    Pathplanning* pathp = new Pathplanning();
-    float num=10.0;//para cambiar de sigilo a rapido
+    //Creación de objeto perception
+    Perception* percep = new Perception();
+    float num;//para cambiar de sigilo a rapido
     bool danyo=false;
-
+    float speed=20.0f;
     /*************************** BEHAVIOR TREE **********************************/
 
 
@@ -171,10 +176,10 @@ int main()
 	{
 
             /* Run Behavior Tree */
-            selector1->run();
+            //selector1->run();
 
             /* Run State Machine */
-            enemyDog->Update();
+          //  enemyDog->Update();
 
 
 //	    if (GEInstance->isWindowActive())
@@ -232,6 +237,16 @@ int main()
                 //prototipo de disparo
                 if(appReceiver->isKeyDown(KEY_KEY_F)){danyo=true;}//ponemos el bool de danyo en el npc a true
 
+                if(appReceiver->isKeyDown(KEY_LSHIFT)) {
+                        speed=5.0f;
+                        num=speed;
+                }
+                else{
+                        speed=20.0f;
+                        num=speed;
+                }
+
+
                 //Animacion del player
                 if(speedX!=0 || speedZ!=0){
                     mainPlayer->setAnimation(dwe::eAnimRun);
@@ -286,12 +301,11 @@ int main()
 //        {
 //            GEInstance->yield();
 //        }
+        //llamamos a percepcion
+        percep->senses(mainPlayer,enemyHumanoid,fovnode,num);
 
         NetInstance->update();
-        ///////PARTE DE PATHPLANNING
-        //pathp->behaviour(mainPlayer, enemyHumanoid, num, danyo);
 
-        //////////////////////////////////////
 
 	}
 
