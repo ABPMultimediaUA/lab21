@@ -94,6 +94,7 @@ int main()
 
     //Creación fov
     dwe::Node* fovnode = GEInstance->createNode("media/fov");
+    //fovnode->setMaterialFlag(EMF_WIREFRAME, true);
     fovnode->setPosition(enemyHumanoid->getPosition());
 
 
