@@ -135,6 +135,8 @@
 		<Unit filename="src/classes/OpenDoorTask.h" />
 		<Unit filename="src/classes/Pathplanning.cpp" />
 		<Unit filename="src/classes/Pathplanning.h" />
+		<Unit filename="src/classes/Perception.cpp" />
+		<Unit filename="src/classes/Perception.h" />
 		<Unit filename="src/classes/Player.cpp" />
 		<Unit filename="src/classes/Player.h" />
 		<Unit filename="src/classes/PlayerMate.cpp" />

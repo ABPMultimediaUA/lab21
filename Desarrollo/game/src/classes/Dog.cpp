@@ -2,7 +2,7 @@
 
 Dog::Dog()
 {
-    steps = 19;
+    steps = 2000;
     //set up state machine
     d_pStateMachine = new StateMachine<Dog>(this);
 

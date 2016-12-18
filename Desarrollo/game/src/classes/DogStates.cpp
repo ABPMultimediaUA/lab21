@@ -27,7 +27,7 @@ void DPatrolState::Execute(Dog* pDog)
     io::path str = "media/dogC1.jpg";
     GEInstance->changeEnemyDogTexture(pDog, str);
 
-    if(pDog->getSteps() == 13)
+    if(pDog->getSteps() == 1300)
         pDog->GetFSM()->ChangeState(DLookingForPlayerState::Instance());
 }
 
@@ -59,7 +59,7 @@ void DLookingForPlayerState::Execute(Dog* pDog)
     io::path str = "media/dogC3.jpg";
     GEInstance->changeEnemyDogTexture(pDog, str);
 
-    if(pDog->getSteps() == 10)
+    if(pDog->getSteps() == 1000)
         pDog->GetFSM()->ChangeState(DKnockDownState::Instance());
 }
 
@@ -91,12 +91,12 @@ void DAsleepState::Execute(Dog* pDog)
     GEInstance->changeEnemyDogTexture(pDog, str);
 
 
-    if(pDog->getSteps() == 16)
+    if(pDog->getSteps() == 1600)
         pDog->GetFSM()->ChangeState(DPatrolState::Instance());
 
     if (pDog->getSteps() == 0)
     {
-        pDog->setSteps(19);
+        pDog->setSteps(2000);
         pDog->GetFSM()->ChangeState(DPatrolState::Instance());
     }
 }
@@ -128,7 +128,7 @@ void DKnockDownState::Execute(Dog* pDog)
     io::path str = "media/dogC4.jpg";
     GEInstance->changeEnemyDogTexture(pDog, str);
 
-    if(pDog->getSteps() == 7)
+    if(pDog->getSteps() == 700)
         pDog->GetFSM()->ChangeState(DAttackState::Instance());
 }
 
@@ -159,7 +159,7 @@ void DAttackState::Execute(Dog* pDog)
     io::path str = "media/dogC5.jpg";
     GEInstance->changeEnemyDogTexture(pDog, str);
 
-    if(pDog->getSteps() == 4)
+    if(pDog->getSteps() == 400)
         pDog->GetFSM()->ChangeState(DRunAwayState::Instance());
 }
 
@@ -190,7 +190,7 @@ void DRunAwayState::Execute(Dog* pDog)
     io::path str = "media/dogC6.jpg";
     GEInstance->changeEnemyDogTexture(pDog, str);
 
-    if(pDog->getSteps() == 1)
+    if(pDog->getSteps() == 200)
         pDog->GetFSM()->ChangeState(DAsleepState::Instance());
 }
 
