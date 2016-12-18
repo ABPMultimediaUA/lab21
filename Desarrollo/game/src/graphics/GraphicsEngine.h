@@ -28,6 +28,7 @@ class Humanoid;
 class Dog;
 class Door;
 class Projectile;
+class ScenaryElement;
 
 namespace dwe
 {
@@ -45,6 +46,30 @@ namespace dwe
         eAnimAttack
     };
 
+
+    ///////////////////////////////////////////////
+    // vec2
+    // ====
+    //
+    ///////////////////////////////////////////////
+    template <class T>
+    class vec2
+    {
+    public:
+        T x;
+        T y;
+
+        // Constructor con xyz a cero
+        vec2() : x(0), y(0) {};
+        // Constructor con el mismo valor para xyz
+        vec2(T _p) : x(_p), y(_p) {};
+        // Constructor con valores xyz
+        vec2(T _x, T _y) : x(_x), y(_y) {};
+        // Constructor con los valores de otro vec2
+        vec2(const vec2<T>& v) : x(v.x), y(v.y) {};
+    };
+    typedef vec2<f32> vec2f;
+    typedef vec2<int> vec2i;
 
 
     ///////////////////////////////////////////////
@@ -114,19 +139,21 @@ namespace dwe
             /**T* getNode();**/
             void remove();
 
+            vec3f getBoundingBox();
+
             void setAnimation(AnimationType a);
 
             vec3f getTransformedBoundingBox();
             void setTransformedBoundingBox(vec3f v);
 
-            /***/
+            /***/ // TODO: ¿se puede quitar? No se puede poner algo así en la fachada
             void setIAnimNode (scene::IAnimatedMeshSceneNode* n);
             scene::IAnimatedMeshSceneNode* getIAnimNode();
             /**/
 
         private:
             T* m_node;
-            scene::IAnimatedMeshSceneNode* ianim_node;  /**/
+            scene::IAnimatedMeshSceneNode* ianim_node;  /**/ // TODO: ¿se puede quitar? No se puede poner algo así en la fachada
     };
 
     //typedef NodeTemplate<ISceneNode> Node;
@@ -165,6 +192,10 @@ namespace dwe
         PlayerMate* createPlayerMate();
         Humanoid* createEnemyHumanoid();
         Dog* createEnemyDog();
+
+        ScenaryElement* createWall(std::string meshName);
+
+
         void changeEnemyDogTexture(Dog* dog, const io::path& str);
         Door* createDoor();
         Projectile* createProjectile(int* origin, float angle);
@@ -174,6 +205,8 @@ namespace dwe
         irr::video::IVideoDriver*       m_driver;
         irr::scene::ISceneManager*      m_smgr;
         irr::gui::IGUIEnvironment*      m_guienv;
+
+        scene::IAnimatedMeshSceneNode* createIrrAnimatedMeshSceneNode(std::string meshName);
 
         GraphicsEngine() {};
     };

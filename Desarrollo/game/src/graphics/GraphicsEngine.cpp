@@ -11,6 +11,8 @@
 #include "Door.h"
 #include "Projectile.h"
 
+#include "ScenaryElement.h"
+
 #include "iostream"
 using namespace std;
 // Necesita volver a poner este namespace
@@ -114,6 +116,37 @@ void dwe::GraphicsEngine::draw()
   	m_device->setWindowCaption(tmp);
 }
 
+
+////////////////////////////////////////////////////
+scene::IAnimatedMeshSceneNode* dwe::GraphicsEngine::createIrrAnimatedMeshSceneNode(std::string meshName)
+{
+	scene::IAnimatedMesh* mesh = m_smgr->getMesh((meshName+".obj").c_str());
+	if (!mesh)
+	{
+		m_device->drop();
+		exit(0);
+	}
+	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
+	if (irrnode)
+	{
+		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
+		irrnode->setMaterialTexture( 0, m_driver->getTexture((meshName+".png").c_str()) );
+	}
+
+	return irrnode;
+}
+
+/////////////////////////////////////
+ScenaryElement* dwe::GraphicsEngine::createWall(std::string meshName)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode(meshName);
+
+    ScenaryElement* s = new ScenaryElement();
+    s->setNode(new Node(irrnode));
+    return s;
+}
+
+
 ////////////////////////////////
 dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 {
@@ -159,6 +192,9 @@ Player* dwe::GraphicsEngine::createMainPlayer()
 
 	irrnode->setPosition(vector3df(0,24,10));
 
+
+
+	// TODO ¿esto es para quitar????
 	vector3df extent= irrnode->getTransformedBoundingBox().getExtent();
     //now extent.X is the X size of the box, .Y is Y etc.
     cout << "SIZE: X = " << extent.X << " ... Y = " << extent.Y << " ... Z = " << extent.Z << endl;
@@ -167,6 +203,9 @@ Player* dwe::GraphicsEngine::createMainPlayer()
     cout << "POS: X = " << pos.X << " ... Y = " << pos.Y << " ... Z = " << pos.Z << endl;
 
     //createDynPhyEntity(m_world,vector2d<s32>(0,0), m_device);
+    // TODO .................... hasta aqui
+
+
 
 	Player* p = new Player();
 	p->setNode(new Node(irrnode));

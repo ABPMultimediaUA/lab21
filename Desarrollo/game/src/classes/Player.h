@@ -21,13 +21,14 @@ class Player : public CharacterController, public EntityPhysics
 
 
         // Getters & Setters
+        virtual void setNode(dwe::Node* n);
         int getAmmo(int numWeapon);
         void setAmmo(int numWeapon, int ammount);
         int getGrenades();
         void setGrenades(int n);
 
         virtual const char* getNetObjectID() const;
-        void setPosition(dwe::vec3f p);
+        virtual void setPosition(dwe::vec3f p);
 
     protected:
 

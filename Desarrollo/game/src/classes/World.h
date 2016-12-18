@@ -5,6 +5,12 @@
 #include <Box2D/Box2D.h>
 #include <Box2D/Common/b2Math.h>
 
+
+#define PLAYER_SPEED 50.0f
+#define M_PI 3.14159265358979323846
+#define POS_ERROR 100 // Creado para el ajuste de coordenadas de los muros de blender/irrlicht a box2d
+
+
 class World
 {
     public:

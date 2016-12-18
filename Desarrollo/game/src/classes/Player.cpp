@@ -16,6 +16,20 @@ void Player::update()
     Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
 }
 
+/////////////
+void Player::setNode(dwe::Node* n)
+{
+    Drawable::setNode(n);
+    createDynPhyEntity(getPosition());
+}
+
+/////////////
+void Player::setPosition(dwe::vec3f p)
+{
+    setPosEntity(p, getRotation().y);
+    Drawable::setPosition(p);
+}
+
 ////////////////////
 const char* Player::getNetObjectID() const
 {
@@ -48,11 +62,5 @@ void Player::setAmmo(int numWeapon, int ammount) { m_ammo[numWeapon] = ammount; 
 int Player::getGrenades() { return m_grenades; }
 void Player::setGrenades(int n) { m_grenades = n; }
 
-/////////////
-void Player::setPosition(dwe::vec3f p)
-{
-    setPosEntity(p, getRotation().y);
-    Drawable::setPosition(p);
-}
 
 

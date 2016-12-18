@@ -7,9 +7,20 @@ using namespace std;
 EntityPhysics::EntityPhysics()
 {
     m_body = NULL;
-    //device = NULL;
-    //ctor
-    createDynPhyEntity(dwe::vec3f(0,0,0));
+/*
+    switch(k)
+    {
+    case eDynPhy:
+        createDynPhyEntity(pos);
+        break;
+    case eRigidBox:
+        createRigidBox(pos);
+        break;
+    case eStaticBox:
+        createStaticBox(pos, halfWidth, halfHeight);
+        break;
+    }
+    */
 }
 
 EntityPhysics::~EntityPhysics()
@@ -70,21 +81,21 @@ void EntityPhysics::updatePhysics()
 
 b2Body* EntityPhysics::getBwBody(){return m_body;};
 
-///////////////////////
+////////////////////
 void EntityPhysics::createDynPhyEntity(const dwe::vec3f& pos){
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(pos.x, pos.z);
-    b2Body* body = WInstance->createBody(&bodyDef);
+
+    m_body = WInstance->createBody(&bodyDef);
 
     // Define another box shape for our dynamic body.
-    b2PolygonShape dynamicBox;
-    dynamicBox.SetAsBox(10.0f, 10.0f);
+    m_shape.SetAsBox(10.0f, 10.0f);
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
-    fixtureDef.shape = &dynamicBox;
+    fixtureDef.shape = &m_shape;
 
     // Set the box density to be non-zero, so it will be dynamic.
     fixtureDef.density = 1.0f;
@@ -93,27 +104,26 @@ void EntityPhysics::createDynPhyEntity(const dwe::vec3f& pos){
     fixtureDef.friction = 0.3f;
 
     // Add the shape to the body.
-    body->CreateFixture(&fixtureDef);
+    m_body->CreateFixture(&fixtureDef);
 
-    setEntityPhysics(dynamicBox, body);
+    //setEntityPhysics(dynamicBox, body);
     //bwPlayer = new EntityPhysics(dynamicBox, body, device);
 }
 
-////////////////////////
-void EntityPhysics::createRigidBox(const vector2d<s32>& pos){
+////////////////////
+void EntityPhysics::createRigidBox(const dwe::vec3f& pos){
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(pos.X, pos.Y);
-    b2Body* body = WInstance->createBody(&bodyDef);
+    bodyDef.position.Set(pos.x, pos.z);
+    m_body = WInstance->createBody(&bodyDef);
 
     // Define another box shape for our dynamic body.
-    b2PolygonShape dynamicBox;
-    dynamicBox.SetAsBox(10.0f, 10.0f);
+    m_shape.SetAsBox(10.0f, 10.0f);  // TODO: ¿por qué tiene 2 valores fijos?
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
-    fixtureDef.shape = &dynamicBox;
+    fixtureDef.shape = &m_shape;
 
     // Set the box density to be non-zero, so it will be dynamic.
     fixtureDef.density = 1.0f;
@@ -123,7 +133,7 @@ void EntityPhysics::createRigidBox(const vector2d<s32>& pos){
     fixtureDef.friction = 0.3f;
 
     // Add the shape to the body.
-    body->CreateFixture(&fixtureDef);
+    m_body->CreateFixture(&fixtureDef);
 
     /*
     EntityPhysics* bww = new EntityPhysics(dynamicBox, body, device);
@@ -133,23 +143,22 @@ void EntityPhysics::createRigidBox(const vector2d<s32>& pos){
 }
 
 //////////////////////
-void EntityPhysics::createStaticBox(const vector2d<s32>& pos){
+void EntityPhysics::createStaticBox(const dwe::vec3f& pos, float width, float height){
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
     //bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(pos.X, pos.Y);
-    b2Body* body = WInstance->createBody(&bodyDef);
+    bodyDef.position.Set(pos.x, pos.z);
+    m_body = WInstance->createBody(&bodyDef);
 
     // Define another box shape for our dynamic body.
-    b2PolygonShape staticBox;
-    staticBox.SetAsBox(10.0f, 10.0f);
+    m_shape.SetAsBox(width/2.f, height/2.f);
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
-    fixtureDef.shape = &staticBox;
+    fixtureDef.shape = &m_shape;
 
     // Add the shape to the body.
-    body->CreateFixture(&fixtureDef);
+    m_body->CreateFixture(&fixtureDef);
 
     /*
     EntityPhysics* bww = new EntityPhysics(staticBox, body, device);

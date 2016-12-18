@@ -17,6 +17,7 @@
 					<Add directory="include" />
 					<Add directory="src/net" />
 					<Add directory="src" />
+					<Add directory="src/classes" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -29,6 +30,7 @@
 					<Add directory="include" />
 					<Add directory="src/net" />
 					<Add directory="src" />
+					<Add directory="src/classes" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -141,6 +143,8 @@
 		<Unit filename="src/classes/Projectile.h" />
 		<Unit filename="src/classes/Rifle.cpp" />
 		<Unit filename="src/classes/Rifle.h" />
+		<Unit filename="src/classes/ScenaryElement.cpp" />
+		<Unit filename="src/classes/ScenaryElement.h" />
 		<Unit filename="src/classes/Scene.cpp" />
 		<Unit filename="src/classes/Scene.h" />
 		<Unit filename="src/classes/Selector.cpp" />

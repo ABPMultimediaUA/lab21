@@ -3,6 +3,8 @@
 #include <Box2D/Common/b2Math.h>
 #include <GraphicsEngine.h>
 
+#include "World.h"
+
 #include "NetGame.h"
 #include "Player.h"
 #include "Bat.h"
@@ -27,10 +29,9 @@
 #include "Pathplanning.h"
 
 #include "EntityPhysics.h"
-#include "World.h"
 
-#define speed 20.0f
-#define M_PI 3.14159265358979323846
+#include "ScenaryElement.h"
+
 
 float angulo;
 
@@ -83,6 +84,12 @@ int main()
 	suelo->setPosition(dwe::vec3f(0,0,0));
 	paredes->setPosition(dwe::vec3f(0,35,0));
 
+	ScenaryElement* wall1 = GEInstance->createWall("media/the101010box");
+	wall1->setPosition(dwe::vec3f(0,0,100));
+	ScenaryElement* wall2 = GEInstance->createWall("media/the10010100box");
+	wall2->setPosition(dwe::vec3f(0,0,-100));
+
+
     Door *puerta=GEInstance->createDoor();
     puerta->setActive();
     //puerta->setIsOpening();
@@ -102,12 +109,7 @@ int main()
 	//enemyDog->setPosition(dwe::vec3f(0,-300,-40));
 
 
-    //BOX2D
-	EntityPhysics* bwBox = new EntityPhysics();
-    bwBox->createStaticBox(vector2d<s32>(0,-70));
-	cout << "YES2 \n";
-
-	 //CAMERA (nodo padre, posición, directión)
+    //CAMERA (nodo padre, posición, directión)
 	ICameraSceneNode* camera1 = GEInstance->getSMGR()->addCameraSceneNode(0,  vector3df(0,200,-100), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
 	ICameraSceneNode* camera2 = GEInstance->getSMGR()->addCameraSceneNode(0, vector3df(0,100,-200), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
 	ICameraSceneNode* camera3 = GEInstance->getSMGR()->addCameraSceneNode(0, vector3df(-50,150,-100), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
@@ -217,16 +219,16 @@ int main()
 
                 //Derecha o izquierda
                 if(appReceiver->isKeyDown(KEY_KEY_D)){
-                    speedX = speed;
+                    speedX = PLAYER_SPEED;
                 }else if(appReceiver->isKeyDown(KEY_KEY_A)){
-                    speedX = -speed;
+                    speedX = -PLAYER_SPEED;
                 }
 
                 //Hacia delante o hacia detras
                 if(appReceiver->isKeyDown(KEY_KEY_W)){
-                    speedZ = speed;
+                    speedZ = PLAYER_SPEED;
                 }else if(appReceiver->isKeyDown(KEY_KEY_S)){
-                    speedZ = -speed;
+                    speedZ = -PLAYER_SPEED;
                 }
 
                 //prototipo de disparo
@@ -277,8 +279,29 @@ int main()
             //update camera target
             GEInstance->getSMGR()->getActiveCamera()->setTarget(vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
             //update camera position
-            GEInstance->getSMGR()->getActiveCamera()->setPosition(vector3df(mainPlayer->getPosition().x,200,-100));
+            float getCamPosZ = GEInstance->getSMGR()->getActiveCamera()->getPosition().Z;
+            float setCamPosZ;
 
+            float cameraDist = getCamPosZ - mainPlayer->getPosition().z;
+            cameraDist = fabsf(cameraDist);
+            cout << "cameraDist: " << cameraDist << endl;
+            if(getCamPosZ>-300.0f){
+                if(cameraDist<100.f){
+                    setCamPosZ = mainPlayer->getPosition().z-100;
+                }else if(cameraDist>200.0f){
+                    setCamPosZ = mainPlayer->getPosition().z-200;
+                }
+            }else{
+                if(cameraDist>200.0f){
+                    setCamPosZ = mainPlayer->getPosition().z-200;
+                }
+
+                //reajuste... cuando estoy cerca de una pared final encima de la camara
+                if(cameraDist<10.0f){
+                    setCamPosZ = mainPlayer->getPosition().z-10;
+                }
+            }
+            GEInstance->getSMGR()->getActiveCamera()->setPosition(vector3df(mainPlayer->getPosition().x,200,setCamPosZ));
 
             GEInstance->draw();
 //        }
