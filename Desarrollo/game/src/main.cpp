@@ -3,7 +3,7 @@
 #include <Box2D/Common/b2Math.h>
 #include <GraphicsEngine.h>
 
-#include "World.h"
+#include "WorldInstance.h"
 
 #include "NetGame.h"
 #include "Player.h"
@@ -30,7 +30,6 @@
 #include "CloseDoorTask.h"
 
 #include "EntityPhysics.h"
-#include "World.h"
 
 #include "ScenaryElement.h"
 
@@ -38,8 +37,7 @@
 float angulo;
 
 
-dwe::vec3f de2Da3D(float x2d, float y2d, dwe::vec3f r){
-	//cout << "X:" <<  x2d << "  ...  Y:" <<  y2d << endl;
+dwe::vec3f de2Da3D(int x2d, int y2d, dwe::vec3f r){
 	float centerScreenX = 400;
 	float centerScreenY = 300;
 	dwe::vec3f v(x2d - centerScreenX,y2d - centerScreenY,0);
@@ -66,12 +64,10 @@ dwe::vec3f de2Da3D(float x2d, float y2d, dwe::vec3f r){
 ///////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
-    // Illricht
-    AppReceiver* appReceiver = new AppReceiver();
-	GEInstance->init(appReceiver);
+    // Inicializar motor gráfico
+	GEInstance->init();
 
-
-	// Motor de red
+	// Inicializar motor de red
     NetInstance->open();
 
 
@@ -96,9 +92,23 @@ int main()
     puerta->setActive();
     //puerta->setIsOpening();
 
+
+
+
+    ////////////////////////////////
+    // Enemigos
+    ////////////////////////////////
     // Creación de enemigo Humanoide
 	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
 	enemyHumanoid->setPosition(dwe::vec3f(-70,24,0));
+
+	// Creación de enemigo Dog
+	Dog* enemyDog = GEInstance->createEnemyDog();
+	enemyDog->setPosition(dwe::vec3f(-100,-170,100)); // No está centrado :(
+	//enemyDog->setPosition(dwe::vec3f(0,-300,-40));
+
+
+
 
     //Creación fov
     dwe::Node* fovnode = GEInstance->createNode("media/fov");
@@ -110,12 +120,9 @@ int main()
 	Projectile *p;
 	bool disparado=false; // Control
 
-	// Creación de enemigo Dog
-	Dog* enemyDog = GEInstance->createEnemyDog();
-	enemyDog->setPosition(dwe::vec3f(-100,-170,100)); /** No está centrado :( **/
-	//enemyDog->setPosition(dwe::vec3f(0,-300,-40));
 
 
+	//////////////////////////////////////////
     //CAMERA (nodo padre, posición, directión)
 	ICameraSceneNode* camera1 = GEInstance->getSMGR()->addCameraSceneNode(0,  vector3df(0,200,-100), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
 	ICameraSceneNode* camera2 = GEInstance->getSMGR()->addCameraSceneNode(0, vector3df(0,100,-200), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
@@ -135,7 +142,6 @@ int main()
     Perception* percep = new Perception();
     float num;//para cambiar de sigilo a rapido
     bool danyo=false;
-    float speed=20.0f;
     /*************************** BEHAVIOR TREE **********************************/
 
 
@@ -196,13 +202,13 @@ int main()
 /////////////////////////////////////////////////////////////////////////////////////////////
 
             //CAMBIO DE CAMARA
-            if (appReceiver->isKeyDown(KEY_KEY_1)){
+            if (GEInstance->receiver.isKeyDown(KEY_KEY_1)){
                 printf("- Camara 1 \n");
                 GEInstance->getSMGR()->setActiveCamera(camera1);
-            }else if(appReceiver->isKeyDown(KEY_KEY_2)){
+            }else if(GEInstance->receiver.isKeyDown(KEY_KEY_2)){
                 printf("- Camara 2 \n");
                 GEInstance->getSMGR()->setActiveCamera(camera2);
-            }else if(appReceiver->isKeyDown(KEY_KEY_3)){
+            }else if(GEInstance->receiver.isKeyDown(KEY_KEY_3)){
                 printf("- Camara 3 \n");
                 GEInstance->getSMGR()->setActiveCamera(camera3);
             }
@@ -214,55 +220,22 @@ int main()
             r = mainPlayer->getRotation();
 
 
-            if(appReceiver->isKeyDown(KEY_ESCAPE))
+            if(GEInstance->receiver.isKeyDown(KEY_ESCAPE))
             {
                 GEInstance->close();
                 return 0;
             }
             else
             {
-                float speedX = 0.0f;
-                float speedZ = 0.0f;
-
-                //Derecha o izquierda
-                if(appReceiver->isKeyDown(KEY_KEY_D)){
-                    speedX = speed;
-                }else if(appReceiver->isKeyDown(KEY_KEY_A)){
-                    speedX = -speed;
-                }
-
-                //Hacia delante o hacia detras
-                if(appReceiver->isKeyDown(KEY_KEY_W)){
-                    speedZ = speed;
-                }else if(appReceiver->isKeyDown(KEY_KEY_S)){
-                    speedZ = -speed;
-                }
-
                 //prototipo de disparo
-                if(appReceiver->isKeyDown(KEY_KEY_F)){danyo=true;}//ponemos el bool de danyo en el npc a true
+                if(GEInstance->receiver.isKeyDown(KEY_KEY_F)){danyo=true;}//ponemos el bool de danyo en el npc a true
 
-                if(appReceiver->isKeyDown(KEY_LSHIFT)) {
-                        speed=5.0f;
-                        num=speed;
-                }
-                else{
-                        speed=20.0f;
-                        num=speed;
-                }
+                mainPlayer->readEvents();
 
-
-                //Animacion del player
-                if(speedX!=0 || speedZ!=0){
-                    mainPlayer->setAnimation(dwe::eAnimRun);
-                }else{
-                    mainPlayer->setAnimation(dwe::eAnimStand);
-                }
-
-                mainPlayer->setVelocity(dwe::vec3f(speedX, 0, speedZ));
 
                 // DISPARO
                 //cout<<angulo<<endl;
-                if(appReceiver->isKeyDown(KEY_SPACE)){
+                if(GEInstance->receiver.isKeyDown(KEY_SPACE)){
                     int origen[2];
                     origen[0]=m.x;
                     origen[1]=m.z;
@@ -273,18 +246,18 @@ int main()
             }
 
             //Calcular rotacion player - con MOUSE
-            if(appReceiver->getCursorX()>=0 && appReceiver->getCursorY()>=0){
-                r = de2Da3D(appReceiver->getCursorX(),appReceiver->getCursorY(), r);
+            if(GEInstance->receiver.getCursorX()>=0 && GEInstance->receiver.getCursorY()>=0){
+                r = de2Da3D(GEInstance->receiver.getCursorX(),GEInstance->receiver.getCursorY(), r);
             }
 
             DeltaTime = timer->getTime() - TimeStamp;
             TimeStamp = timer->getTime();
             // Instruct the world to perform a single step of simulation.
             // It is generally best to keep the time step and iterations fixed.
-            WInstance->step(DeltaTime);
+            World->step(DeltaTime);
             // Clear applied body forces. We didn't apply any forces, but you
             // should know about this function.
-            WInstance->clearForces();
+            World->clearForces();
 
             //Posición actualizada de Irrlicht Player
             mainPlayer->update();
@@ -301,7 +274,7 @@ int main()
 
             float cameraDist = getCamPosZ - mainPlayer->getPosition().z;
             cameraDist = fabsf(cameraDist);
-            cout << "cameraDist: " << cameraDist << endl;
+            //cout << "cameraDist: " << cameraDist << endl;
             if(getCamPosZ>-300.0f){
                 if(cameraDist<100.f){
                     setCamPosZ = mainPlayer->getPosition().z-100;

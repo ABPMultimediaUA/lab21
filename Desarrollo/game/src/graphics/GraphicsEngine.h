@@ -29,6 +29,7 @@ class Dog;
 class Door;
 class Projectile;
 class ScenaryElement;
+class AppReceiver;
 
 namespace dwe
 {
@@ -175,7 +176,7 @@ namespace dwe
     public:
         static GraphicsEngine* Instance();
 
-        void init(AppReceiver* ar = 0);
+        void init();
         void release();
         void close();
         bool isRunning();
@@ -195,6 +196,10 @@ namespace dwe
         Dog* createEnemyDog();
 
         ScenaryElement* createWall(std::string meshName);
+
+        //////////////////////////////
+        // Eventos de teclado y ratón
+        AppReceiver receiver;
 
 
         void changeEnemyDogTexture(Dog* dog, const io::path& str);

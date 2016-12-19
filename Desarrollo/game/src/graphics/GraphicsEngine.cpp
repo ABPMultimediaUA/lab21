@@ -4,9 +4,10 @@
 #include "Humanoid.h"
 #include "Dog.h"
 #include "NetGame.h"
+#include "AppReceiver.h"
 
 #include "EntityPhysics.h"
-#include "World.h"
+#include "WorldInstance.h"
 
 #include "Door.h"
 #include "Projectile.h"
@@ -14,6 +15,8 @@
 #include "ScenaryElement.h"
 
 #include "iostream"
+
+
 using namespace std;
 // Necesita volver a poner este namespace
 // para que codeblocks autocomplete bien.
@@ -30,10 +33,10 @@ dwe::GraphicsEngine* dwe::GraphicsEngine::Instance()
 }
 
 //////////////////////////
-void dwe::GraphicsEngine::init(AppReceiver* ar)
+void dwe::GraphicsEngine::init()
 {
 	m_device = createDevice( video::EDT_OPENGL, irr::core::dimension2d<u32>(800, 600), 16,
-			false, false, false, ar);
+			false, false, false, &receiver);
 
 	m_device->setWindowCaption(L"Lab21");
 

@@ -12,8 +12,8 @@ class AppReceiver : public IEventReceiver
 {
     private:
         bool KeyDown[KEY_KEY_CODES_COUNT];
-        float cursorX;
-        float cursorY;
+        int cursorX;
+        int cursorY;
 
     public:
     AppReceiver()
@@ -32,6 +32,7 @@ class AppReceiver : public IEventReceiver
         case irr::EET_KEY_INPUT_EVENT:
         {
             KeyDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
+            break;
         }
         case irr::EET_MOUSE_INPUT_EVENT:
         {
@@ -40,7 +41,7 @@ class AppReceiver : public IEventReceiver
                 cursorX = event.MouseInput.X;
                 cursorY = event.MouseInput.Y;
             }
-            //cout << "Mouse at 2D coordinates: " << cursor.X << "," << cursor.Y << endl;
+            break;
         }
         default:
             break;

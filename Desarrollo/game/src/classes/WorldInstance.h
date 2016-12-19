@@ -11,10 +11,10 @@
 #define POS_ERROR 100 // Creado para el ajuste de coordenadas de los muros de blender/irrlicht a box2d
 
 
-class World
+class WorldInstance
 {
     public:
-        static World* Instance();
+        static WorldInstance* Instance();
 
         b2Body* createBody(b2BodyDef *bodyDef);
         void step(float deltaTime);
@@ -33,6 +33,6 @@ class World
         static b2World      m_world;
 };
 
-#define WInstance World::Instance()
+#define World WorldInstance::Instance()
 
 #endif // WORLD_H

@@ -1,5 +1,5 @@
 #include "EntityPhysics.h"
-#include "World.h"
+#include "WorldInstance.h"
 #include <iostream>
 
 using namespace std;
@@ -88,7 +88,7 @@ void EntityPhysics::createDynPhyEntity(const dwe::vec3f& pos){
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(pos.x, pos.z);
 
-    m_body = WInstance->createBody(&bodyDef);
+    m_body = World->createBody(&bodyDef);
 
     // Define another box shape for our dynamic body.
     m_shape.SetAsBox(10.0f, 10.0f);
@@ -116,7 +116,7 @@ void EntityPhysics::createRigidBox(const dwe::vec3f& pos){
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(pos.x, pos.z);
-    m_body = WInstance->createBody(&bodyDef);
+    m_body = World->createBody(&bodyDef);
 
     // Define another box shape for our dynamic body.
     m_shape.SetAsBox(10.0f, 10.0f);  // TODO: ¿por qué tiene 2 valores fijos?
@@ -148,7 +148,7 @@ void EntityPhysics::createStaticBox(const dwe::vec3f& pos, float width, float he
     b2BodyDef bodyDef;
     //bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(pos.x, pos.z);
-    m_body = WInstance->createBody(&bodyDef);
+    m_body = World->createBody(&bodyDef);
 
     // Define another box shape for our dynamic body.
     m_shape.SetAsBox(width/2.f, height/2.f);

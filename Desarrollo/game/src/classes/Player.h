@@ -19,6 +19,8 @@ class Player : public CharacterController, public EntityPhysics
         void shoot();
         void throwGrenade();
 
+        virtual void readEvents();
+
 
         // Getters & Setters
         virtual void setNode(dwe::Node* n);

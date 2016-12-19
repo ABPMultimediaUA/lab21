@@ -54,6 +54,28 @@ void Player::throwGrenade()
     // TODO
 }
 
+/////////////
+void Player::readEvents()
+{
+    CharacterController::readEvents();
+
+    //Animacion del player
+    if(getSpeedX()!=0 || getSpeedZ()!=0)
+    {
+        if(GEInstance->receiver.isKeyDown(KEY_LSHIFT))
+            setAnimation(dwe::eAnimWalk);
+        else
+            setAnimation(dwe::eAnimRun);
+    }
+    else
+    {
+        setAnimation(dwe::eAnimStand);
+    }
+
+    setVelocity(dwe::vec3f(getSpeedX(), 0, getSpeedZ()));
+}
+
+
 ////////////
 int Player::getAmmo(int numWeapon) { return m_ammo[numWeapon]; }
 void Player::setAmmo(int numWeapon, int ammount) { m_ammo[numWeapon] = ammount; }

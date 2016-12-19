@@ -67,8 +67,6 @@
 		<Unit filename="src/classes/AmmoRifle.h" />
 		<Unit filename="src/classes/AmmoShotgun.cpp" />
 		<Unit filename="src/classes/AmmoShotgun.h" />
-		<Unit filename="src/classes/AppReceiver.cpp" />
-		<Unit filename="src/classes/AppReceiver.h" />
 		<Unit filename="src/classes/ApproachDoorTask.cpp" />
 		<Unit filename="src/classes/ApproachDoorTask.h" />
 		<Unit filename="src/classes/Bat.cpp" />
@@ -162,9 +160,11 @@
 		<Unit filename="src/classes/WalkThroughDoorTask.h" />
 		<Unit filename="src/classes/Weapon.cpp" />
 		<Unit filename="src/classes/Weapon.h" />
-		<Unit filename="src/classes/World.cpp" />
-		<Unit filename="src/classes/World.h" />
+		<Unit filename="src/classes/WorldInstance.cpp" />
+		<Unit filename="src/classes/WorldInstance.h" />
 		<Unit filename="src/classes/defines.h" />
+		<Unit filename="src/graphics/AppReceiver.cpp" />
+		<Unit filename="src/graphics/AppReceiver.h" />
 		<Unit filename="src/graphics/GraphicsEngine.cpp" />
 		<Unit filename="src/graphics/GraphicsEngine.h" />
 		<Unit filename="src/graphics/GraphicsEngineTemplates.cpp" />
