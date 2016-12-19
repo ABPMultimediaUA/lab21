@@ -20,3 +20,4 @@ Desarrollo/Server/*.exe
 Desarrollo/game/lib/**/*
 Desarrollo/assimp-3.2/build/**/*
 **/*.layout
+**/Thumbs.db
