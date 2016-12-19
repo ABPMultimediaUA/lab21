@@ -67,6 +67,7 @@
 		<Unit filename="src/classes/AmmoRifle.h" />
 		<Unit filename="src/classes/AmmoShotgun.cpp" />
 		<Unit filename="src/classes/AmmoShotgun.h" />
+		<Unit filename="src/classes/AppReceiver.cpp" />
 		<Unit filename="src/classes/AppReceiver.h" />
 		<Unit filename="src/classes/ApproachDoorTask.cpp" />
 		<Unit filename="src/classes/ApproachDoorTask.h" />
