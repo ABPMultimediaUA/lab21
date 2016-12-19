@@ -78,15 +78,20 @@ int main()
 
     // Creación de escenario
 	dwe::Node* suelo = GEInstance->createNode("media/suelo");
-	dwe::Node* paredes = GEInstance->createNode("media/paredes");
 	suelo->setPosition(dwe::vec3f(0,0,0));
-	paredes->setPosition(dwe::vec3f(0,35,0));
 
-	ScenaryElement* wall1 = GEInstance->createWall("media/the101010box");
-	wall1->setPosition(dwe::vec3f(0,0,100));
-	ScenaryElement* wall2 = GEInstance->createWall("media/the10010100box");
-	wall2->setPosition(dwe::vec3f(0,0,-100));
-
+    ScenaryElement* wall01 = GEInstance->createWall("media/pared01");wall01->setPosition(dwe::vec3f(-35,   36.3, 135.9));
+    ScenaryElement* wall02 = GEInstance->createWall("media/pared02");wall02->setPosition(dwe::vec3f(120.4, 36.3, 135.9));
+    ScenaryElement* wall03 = GEInstance->createWall("media/pared03");wall03->setPosition(dwe::vec3f(42.7,  36.3, -132.2));
+    ScenaryElement* wall04 = GEInstance->createWall("media/pared04");wall04->setPosition(dwe::vec3f(-84.9, 36.3, 2.2));
+    ScenaryElement* wall05 = GEInstance->createWall("media/pared05");wall05->setPosition(dwe::vec3f(170.5, 36.3, 82.6));
+    ScenaryElement* wall06 = GEInstance->createWall("media/pared06");wall06->setPosition(dwe::vec3f(170.5, 36.3, -76.7));
+    ScenaryElement* wall07 = GEInstance->createWall("media/pared07");wall07->setPosition(dwe::vec3f(304.8, 36.3, -132.2));
+    ScenaryElement* wall08 = GEInstance->createWall("media/pared08");wall08->setPosition(dwe::vec3f(304.8, 36.3, 133.8));
+    ScenaryElement* wall09 = GEInstance->createWall("media/pared09");wall09->setPosition(dwe::vec3f(432.7, 36.3, 2.2));
+    ScenaryElement* wall10 = GEInstance->createWall("media/pared10");wall10->setPosition(dwe::vec3f(-84.4, 36.3, 269.9));
+    ScenaryElement* wall11 = GEInstance->createWall("media/pared11");wall11->setPosition(dwe::vec3f(170.8, 36.3, 269.6));
+    ScenaryElement* wall12 = GEInstance->createWall("media/pared12");wall12->setPosition(dwe::vec3f(43.1,  36.3, 399.8));
 
     Door *puerta=GEInstance->createDoor();
     puerta->setActive();
@@ -104,7 +109,7 @@ int main()
 
 	// Creación de enemigo Dog
 	Dog* enemyDog = GEInstance->createEnemyDog();
-	enemyDog->setPosition(dwe::vec3f(-100,-170,100)); // No está centrado :(
+	enemyDog->setPosition(dwe::vec3f(-50,-170,100)); // No está centrado :(
 	//enemyDog->setPosition(dwe::vec3f(0,-300,-40));
 
 

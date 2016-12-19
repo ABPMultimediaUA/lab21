@@ -313,7 +313,7 @@ Door* dwe::GraphicsEngine::createDoor()
     Node* node=createNode("media/puerta");
 	Door* d = new Door(0,0,0,false);
 	d->setNode(node);
-	d->setPosition(dwe::vec3f(0,0,0));
+	d->setPosition(dwe::vec3f(43.5, 36.3, 135.9));
     return d;
 }
 
