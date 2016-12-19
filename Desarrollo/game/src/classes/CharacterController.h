@@ -23,8 +23,8 @@ class CharacterController : public dwn::DrawableReplica
     protected:
 
     private:
-        const float _speedRun = 20.f;
-        const float _speedWalk = 5.f;
+        static const float _speedRun = 20.f;
+        static const float _speedWalk = 5.f;
 
         int m_strength;
         int m_health;
