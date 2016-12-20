@@ -8,7 +8,7 @@ Drawable::Drawable()
 
 Drawable::~Drawable()
 {
-    //dtor
+    m_node->remove();
 }
 
 
