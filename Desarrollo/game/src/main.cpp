@@ -203,7 +203,7 @@ int main()
 
         // Run Behavior Tree
         selector1->run();
-        fovnode->setPosition(enemyHumanoid->getPosition());
+        //fovnode->setPosition(enemyHumanoid->getPosition());
 
 
         //prototipo de disparo

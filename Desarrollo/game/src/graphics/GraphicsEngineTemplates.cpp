@@ -22,6 +22,15 @@ template<class T>T* dwe::NodeTemplate<T>::getNode()
 {
     return m_node;
 }***/
+template<class T>T* dwe::NodeTemplate<T>::getNode()
+{
+    return m_node;
+}
+
+template<class T>bool dwe::NodeTemplate<T>::intersects(scene::IAnimatedMeshSceneNode* n)
+{
+    return m_node->getTransformedBoundingBox().intersectsWithBox(n->getTransformedBoundingBox());
+}
 
 /***/
 template<class T>void dwe::NodeTemplate<T>::setIAnimNode (scene::IAnimatedMeshSceneNode* n)

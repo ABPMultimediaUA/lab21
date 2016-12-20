@@ -216,9 +216,6 @@ Player* dwe::GraphicsEngine::createMainPlayer()
     return p;
 }
 
-/*bool dwe::GraphicsEngine::intersectsWithBox(vec3f v, vec3f w){
-    return (v.intersectsWithBox(w));
-}*/
 
 
 /////////////////////////////////
