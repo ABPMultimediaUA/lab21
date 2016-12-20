@@ -13,7 +13,7 @@ memoria y que el juego sea mas eficiente.
 class Door: public Entity
 {
     public:
-        Door(float i, float u, int f, bool a);
+        Door(float i, float j, float u, int f, bool a);
         virtual ~Door();
         virtual void setActive();
         void openDoor(); // Llamado desde sector
@@ -25,11 +25,12 @@ class Door: public Entity
         bool getIsClosing();
         virtual void render();
         virtual void update();
+        void setPositionClosed(dwe::vec3f p);
 
     protected:
 
     private:
-        float x, z;
+        float x,y,z;
         int op; //Posicion puerta abierta
         int cl; // Posición puerta cerrada
         int facing; // 0 1 2 3

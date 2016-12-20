@@ -73,7 +73,7 @@ int main()
 
     // Creación de jugador
 	Player* mainPlayer = GEInstance->createMainPlayer();
-	mainPlayer->setPosition(dwe::vec3f(50,24,50));
+	mainPlayer->setPosition(dwe::vec3f(120,24,0));
 
 
     // Creación de escenario
@@ -105,7 +105,10 @@ int main()
     ////////////////////////////////
     // Creación de enemigo Humanoide
 	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
-	enemyHumanoid->setPosition(dwe::vec3f(-70,24,0));
+	//enemyHumanoid->setPosition(dwe::vec3f(-70,24,0));
+	enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
+	enemyHumanoid->setRotation(dwe::vec3f(0, 270.f, 0));
+
 
 	// Creación de enemigo Dog
 	Dog* enemyDog = GEInstance->createEnemyDog();
@@ -119,6 +122,7 @@ int main()
     dwe::Node* fovnode = GEInstance->createNode("media/fov");
     //fovnode->setMaterialFlag(EMF_WIREFRAME, true);
     fovnode->setPosition(enemyHumanoid->getPosition());
+    fovnode->setRotation(enemyHumanoid->getRotation());
 
 
 	// Creacion objeto Proyectil
@@ -190,7 +194,9 @@ int main()
 	{
 
             /* Run Behavior Tree */
-            //selector1->run();
+            selector1->run();
+            fovnode->setPosition(enemyHumanoid->getPosition());
+
 
             /* Run State Machine */
           //  enemyDog->Update();
@@ -325,7 +331,7 @@ int main()
 //            GEInstance->yield();
 //        }
         //llamamos a percepcion
-        percep->senses(mainPlayer,enemyHumanoid,fovnode,num);
+        //percep->senses(mainPlayer,enemyHumanoid,fovnode,num);
 
         NetInstance->update();
 
