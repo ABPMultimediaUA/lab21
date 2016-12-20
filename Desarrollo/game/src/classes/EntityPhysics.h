@@ -18,15 +18,20 @@ class EntityPhysics
 
 
         // Se crea el tipo de sólido
-        void createDynPhyEntity(const dwe::vec3f& pos);
-        void createRigidBox(const dwe::vec3f& pos);
-        void createStaticBox(const dwe::vec3f& pos, float width, float height);
+        void createDynamicBody(const dwe::vec3f& pos);
+        void createStaticBody(const dwe::vec3f& pos, float width, float height);
 
 
         dwe::vec3f getPosEntity();
         void setPosEntity(dwe::vec3f position, float rotation);
 
         void setVelocity(dwe::vec3f v);
+
+        virtual void onBeginContact(EntityPhysics* otherObject);
+        virtual void onEndContact();
+
+        void setClassID(int i);
+        int getClassID();
 
     protected:
 
@@ -35,6 +40,7 @@ class EntityPhysics
         b2PolygonShape      m_shape;
         b2Body*             m_body;
         IrrlichtDevice*     m_device;
+        int                 m_classID;
 
         irr::core::array<EntityPhysics*>    m_bodies; //ARRAY "BODIES"
         EntityPhysics*                      m_bwPlayer; //BOX2DPLAYER

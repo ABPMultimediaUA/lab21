@@ -23,7 +23,7 @@ class Player : public CharacterController, public EntityPhysics
 
 
         // Getters & Setters
-        virtual void setNode(dwe::Node* n);
+        virtual void setNode(dwe::Node* n);   // Necesario para EntityPhysics
         int getAmmo(int numWeapon);
         void setAmmo(int numWeapon, int ammount);
         int getGrenades();
@@ -31,6 +31,8 @@ class Player : public CharacterController, public EntityPhysics
 
         virtual const char* getNetObjectID() const;
         virtual void setPosition(dwe::vec3f p);
+
+        virtual void onBeginContact(EntityPhysics* otherObject);
 
     protected:
 

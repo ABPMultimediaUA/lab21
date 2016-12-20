@@ -1,5 +1,6 @@
 #include "EntityPhysics.h"
 #include "WorldInstance.h"
+#include "ScenaryElement.h"
 #include <iostream>
 
 using namespace std;
@@ -7,6 +8,7 @@ using namespace std;
 EntityPhysics::EntityPhysics()
 {
     m_body = NULL;
+    m_classID = CLASS_NO_ID;
 /*
     switch(k)
     {
@@ -26,6 +28,7 @@ EntityPhysics::EntityPhysics()
 EntityPhysics::~EntityPhysics()
 {
     //dtor
+    World->destroyBody(m_body);
 }
 
 //////////////////////////
@@ -44,7 +47,10 @@ void EntityPhysics::setPosEntity(dwe::vec3f position, float rotation)
 ////////////////////
 void EntityPhysics::setVelocity(dwe::vec3f v)
 {
-    m_body->SetLinearVelocity(b2Vec2(v.x, v.z));
+    if (m_body)
+        m_body->SetLinearVelocity(b2Vec2(v.x, v.z));
+    else
+        cout << "//////////////////////////////////////\nERROR: No se ha creado m_body con createDynPhyEntity o similar.\n//////////////////////////////////////\n";
 }
 
 EntityPhysics::EntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody){
@@ -82,13 +88,14 @@ void EntityPhysics::updatePhysics()
 b2Body* EntityPhysics::getBwBody(){return m_body;};
 
 ////////////////////
-void EntityPhysics::createDynPhyEntity(const dwe::vec3f& pos){
+void EntityPhysics::createDynamicBody(const dwe::vec3f& pos){
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(pos.x, pos.z);
 
     m_body = World->createBody(&bodyDef);
+    m_body->SetUserData(this);  // Sin esta linea no funcionan los callbacks
 
     // Define another box shape for our dynamic body.
     m_shape.SetAsBox(10.0f, 10.0f);
@@ -105,50 +112,18 @@ void EntityPhysics::createDynPhyEntity(const dwe::vec3f& pos){
 
     // Add the shape to the body.
     m_body->CreateFixture(&fixtureDef);
-
-    //setEntityPhysics(dynamicBox, body);
-    //bwPlayer = new EntityPhysics(dynamicBox, body, device);
 }
 
-////////////////////
-void EntityPhysics::createRigidBox(const dwe::vec3f& pos){
-    // Define the dynamic body. We set its position and call the body factory.
-    b2BodyDef bodyDef;
-    bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(pos.x, pos.z);
-    m_body = World->createBody(&bodyDef);
-
-    // Define another box shape for our dynamic body.
-    m_shape.SetAsBox(10.0f, 10.0f);  // TODO: ¿por qué tiene 2 valores fijos?
-
-    // Define the dynamic body fixture.
-    b2FixtureDef fixtureDef;
-    fixtureDef.shape = &m_shape;
-
-    // Set the box density to be non-zero, so it will be dynamic.
-    fixtureDef.density = 1.0f;
-
-    fixtureDef.restitution = 0.0f;
-    // Override the default friction.
-    fixtureDef.friction = 0.3f;
-
-    // Add the shape to the body.
-    m_body->CreateFixture(&fixtureDef);
-
-    /*
-    EntityPhysics* bww = new EntityPhysics(dynamicBox, body, device);
-
-    bodies.push_back(bww);
-    */
-}
 
 //////////////////////
-void EntityPhysics::createStaticBox(const dwe::vec3f& pos, float width, float height){
+void EntityPhysics::createStaticBody(const dwe::vec3f& pos, float width, float height){
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
-    //bodyDef.type = b2_dynamicBody;
+    bodyDef.type = b2_staticBody;
     bodyDef.position.Set(pos.x, pos.z);
+
     m_body = World->createBody(&bodyDef);
+    m_body->SetUserData(this);  // Sin esta linea no funcionan los callbacks
 
     // Define another box shape for our dynamic body.
     m_shape.SetAsBox(width/2.f, height/2.f);
@@ -159,10 +134,21 @@ void EntityPhysics::createStaticBox(const dwe::vec3f& pos, float width, float he
 
     // Add the shape to the body.
     m_body->CreateFixture(&fixtureDef);
-
-    /*
-    EntityPhysics* bww = new EntityPhysics(staticBox, body, device);
-
-    bodies.push_back(bww);
-    */
 }
+
+////////////////////
+void EntityPhysics::onBeginContact(EntityPhysics* otherObject)
+{
+   // if (otherObject && otherObject->getClassID()==CLASS_PLAYER_ID) ...
+}
+
+////////////////////
+void EntityPhysics::onEndContact()
+{
+
+}
+
+////////////////////
+void EntityPhysics::setClassID(int i) { m_classID = i; }
+int EntityPhysics::getClassID() { return m_classID; }
+

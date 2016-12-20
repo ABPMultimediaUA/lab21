@@ -1,21 +1,28 @@
 #include "Projectile.h"
+
 #include <cmath>
 #include <iostream>
+
+#include "WorldInstance.h"
 
 using namespace std;
 
 Projectile::Projectile()
 {
-
+     setClassID(CLASS_PROJECTILE_ID);//rmm
 }
 
 Projectile::Projectile(int *o, float a)
 {
+    setClassID(CLASS_PROJECTILE_ID);//rmm
+
     position[0]=o[0];
     position[1]=o[1];
-    speed=5;
+    speed=3.f;//25.f;
     angle=a*M_PI/180;
     collides=false;
+
+    contador = 0;
 }
 
 Projectile::Projectile(int *o, int *d)
@@ -39,7 +46,9 @@ Projectile::~Projectile()
 
 void Projectile::moveProjectile()
 {
-    if(position[0]<-10000000 || position[0]>10000000 || position[1]<-10000000 || position[1]>10000000)
+    contador++;
+    //if(position[0]<-1000 || position[0]>100 || position[1]<-100 || position[1]>100)
+    if(contador>100)
         collides=true;
     if(!collides)
     {
@@ -61,10 +70,35 @@ void Projectile::render()
 
 void Projectile::update()
 {
+    //Drawable::setPosition(dwe::vec3f(getPosEntity().x, Drawable::getPosition().y, getPosEntity().z));//rmm
+    /*rmm*/
     if(!collides){
         moveProjectile();
     }
+    /**/
     /*if(collides){
         delete this;
     }*/
 }
+
+//rmm////////////
+void Projectile::setNode(dwe::Node* n)
+{
+    Drawable::setNode(n);
+    createDynamicBody(Drawable::getPosition());
+
+    /*setPosition(dwe::vec3f(position[0]+cos(angle)*25.f,0,position[1]+sin(angle)*25.f));//rmm
+    setPosEntity(Drawable::getPosition(), angle);//rmm
+    update();//rmm
+    setVelocity(dwe::vec3f(speed*cos(angle), 0, speed*sin(angle)));//rmm
+    cout << "Velocidad x: " << speed*cos(angle) << " - Velocidad z: " << speed*sin(angle) << "\n";*/
+}
+
+//rmm////////////
+void Projectile::onBeginContact(EntityPhysics* otherObject)
+{
+    collides = (otherObject && otherObject->getClassID()!=CLASS_PLAYER_ID);
+    cout << "begincontact projectile\n";
+}
+
+
