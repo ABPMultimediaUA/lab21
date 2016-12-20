@@ -4,7 +4,7 @@
 
 Perception::Perception()
 {
-    following=false;//al principio no te ha detectado y no te sigue
+    following = false;//al principio no te ha detectado y no te sigue
 }
 
 Perception::~Perception()
