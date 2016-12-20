@@ -311,7 +311,7 @@ int main()
 //            GEInstance->yield();
 //        }
         //llamamos a percepcion
-        //percep->senses(mainPlayer,enemyHumanoid,fovnode,num);
+        percep->senses(mainPlayer,enemyHumanoid,fovnode,num);
 
         NetInstance->update();
 
