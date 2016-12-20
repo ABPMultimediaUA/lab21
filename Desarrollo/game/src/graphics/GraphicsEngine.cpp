@@ -311,9 +311,12 @@ void dwe::GraphicsEngine::changeEnemyDogTexture(Dog* dog,const io::path& text)
 Door* dwe::GraphicsEngine::createDoor()
 {
     Node* node=createNode("media/puerta");
-	Door* d = new Door(0,0,0,false);
+	//Door* d = new Door(43.5,36.3,135.9,2,false);
+    Door* d = new Door(0,0,0,2,false);
+
 	d->setNode(node);
 	d->setPosition(dwe::vec3f(43.5, 36.3, 135.9));
+	d->setPositionClosed(dwe::vec3f(43.5, 36.3, 135.9));
     return d;
 }
 

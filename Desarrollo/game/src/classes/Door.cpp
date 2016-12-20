@@ -3,35 +3,37 @@
 
 using namespace std;
 
-Door::Door( float i,  float u, int f, bool a)
+Door::Door( float i, float j,  float u, int f, bool a)
 {
     x = i;
+    y = j;
     z = u;
     facing = f;
     speed = 0.1;
 
+
     // Los valores de la variable op deben ser modificados
     if(facing == 0)
     {
-        op = x + 50;
+        op = x + 7;
         cl = x;
     }
 
     else if(facing == 1)
     {
-        op=z+50;
+        op=z+7;
         cl = z;
     }
 
     else if(facing == 2)
     {
-        op=x-50;
-        cl = x;
+        op=x-7;
+        cl = x+7;
     }
 
     else if(facing == 3)
     {
-        op=z+50;
+        op=z+7;
         cl = z;
     }
 
@@ -53,35 +55,67 @@ bool Door::getIfOpened()
     return isOpened;
 }
 
+
+void Door::setPositionClosed(dwe::vec3f p)
+{
+
+     if (facing == 0 || facing == 2)
+        cl = p.x;
+     else
+        cl = p.z;
+}
+
 void Door::openDoor()
 {
     // Utilizar el get position de drawable
     // Desplazar la puerta hacia un lado
+
+    x = getPosition().x;
+    y = getPosition().y;
+    z = getPosition().z;
+
+
+
     switch (facing)
     {
         case 0:
+
             if(x<op)
                 x += speed;
-            setPosition(dwe::vec3f(0,0,x));
+
+            setPosition(dwe::vec3f(x,y,z));
             isOpened = (x>=op);
+
             break;
 
         case 1:
+
             if(z<op)
                 z+= speed;
+
+            setPosition(dwe::vec3f(x,y,z));
             isOpened = (z>=op);
+
             break;
 
         case 2:
+
             if(x>op)
                 x-= speed;
+
+            setPosition(dwe::vec3f(x,y,z));
             isOpened =(x<=op);
+
             break;
 
         case 3:
+
             if(z>op)
                 z-=speed;
+
+            setPosition(dwe::vec3f(x,y,z));
             isOpened =(z<=op);
+
             break;
     }
 
@@ -92,31 +126,51 @@ void Door::openDoor()
 void Door::closeDoor()
 {
 
+    x = getPosition().x;
+    y = getPosition().y;
+    z = getPosition().z;
+
+
     switch (facing)
     {
         case 0:
+
             if(x>cl)
                 x-=speed;
-            setPosition(dwe::vec3f(0,0,x));
+
+            setPosition(dwe::vec3f(x,y,z));
             isOpened=(x>=cl);
+
             break;
 
         case 1:
+
             if(z>cl)
                 z-=speed;
+
+            setPosition(dwe::vec3f(x,y,z));
             isOpened=(z>=cl);
+
             break;
 
         case 2:
+
             if(x<cl)
                 x+=speed;
+
+            setPosition(dwe::vec3f(x,y,z));
             isOpened=(x<=cl);
+
             break;
 
         case 3:
+
             if(z<cl)
                 z+=speed;
+
+            setPosition(dwe::vec3f(x,y,z));
             isOpened=(z<=cl);
+
             break;
     }
 
