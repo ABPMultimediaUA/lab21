@@ -195,7 +195,6 @@ int main()
 
             /* Run Behavior Tree */
             selector1->run();
-            fovnode->setPosition(enemyHumanoid->getPosition());
 
 
             /* Run State Machine */

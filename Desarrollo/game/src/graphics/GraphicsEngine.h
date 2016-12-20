@@ -147,6 +147,9 @@ namespace dwe
             vec3f getTransformedBoundingBox();
             void setTransformedBoundingBox(vec3f v);
 
+            bool intersects(scene::IAnimatedMeshSceneNode* n);
+            T* getNode();
+
             /***/ // TODO: ¿se puede quitar? No se puede poner algo así en la fachada
             void setIAnimNode (scene::IAnimatedMeshSceneNode* n);
             scene::IAnimatedMeshSceneNode* getIAnimNode();
