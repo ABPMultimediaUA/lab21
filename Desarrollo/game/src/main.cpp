@@ -126,8 +126,7 @@ int main()
 
 
 	// Creacion objeto Proyectil
-	Projectile *p;
-	bool disparado=false; // Control
+	Projectile *projectile = 0;
 
 
 
@@ -141,8 +140,8 @@ int main()
 /////////////////////////////////////////////////////////////////////////////////////////////
     ITimer* timer = GEInstance->getDevice()->getTimer(); //METIDO DEL DEBUG DRAW DE BOX2D...
 
-    f32 TimeStamp = timer->getTime();
-    f32 DeltaTime = timer->getTime() - TimeStamp;
+    f32 timeStamp = timer->getTime();
+    f32 deltaTime = timer->getTime() - timeStamp;
     //TIEMPO
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -245,13 +244,18 @@ int main()
 
 
                 // DISPARO
-                //cout<<angulo<<endl;
-                if(GEInstance->receiver.isKeyDown(KEY_SPACE)){
-                    int origen[2];
-                    origen[0]=m.x;
-                    origen[1]=m.z;
-                    p=GEInstance->createProjectile(origen, angulo);
-                    disparado=true;
+                if(projectile!=0)
+                {   // Si ya existe, actualizamos posiciones box2d
+
+                }
+                else
+                {   // comprobamos si dispara
+                    if(GEInstance->receiver.isKeyDown(KEY_SPACE)){
+                        int origen[2];
+                        origen[0]=m.x;
+                        origen[1]=m.z;
+                        projectile=GEInstance->createProjectile(origen, angulo);
+                    }
                 }
 
             }
@@ -261,21 +265,37 @@ int main()
                 r = de2Da3D(GEInstance->receiver.getCursorX(),GEInstance->receiver.getCursorY(), r);
             }
 
-            DeltaTime = timer->getTime() - TimeStamp;
-            TimeStamp = timer->getTime();
+
+            ///////////////////////////////
+            // Actualizamos físicas box2d
+            ///////////////////////////////
+            deltaTime = timer->getTime()-timeStamp; timeStamp=timer->getTime();
             // Instruct the world to perform a single step of simulation.
             // It is generally best to keep the time step and iterations fixed.
-            World->step(DeltaTime);
+            World->step(deltaTime);
             // Clear applied body forces. We didn't apply any forces, but you
             // should know about this function.
             World->clearForces();
 
+
+
             //Posición actualizada de Irrlicht Player
             mainPlayer->update();
             mainPlayer->setRotation(r);
+
+
             puerta->update();
-            if(disparado)
-                p->update();
+
+            if(projectile!=0)
+            {
+                projectile->update();
+                if (projectile->getCollides())
+                {
+                    delete projectile;
+                    projectile = 0;
+                    // TODO quitar nodo illricht
+                }
+            }
 
             //update camera target
             GEInstance->getSMGR()->getActiveCamera()->setTarget(vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
@@ -311,7 +331,7 @@ int main()
 //            GEInstance->yield();
 //        }
         //llamamos a percepcion
-        //percep->senses(mainPlayer,enemyHumanoid,fovnode,num);
+        percep->senses(mainPlayer,enemyHumanoid,fovnode,num);
 
         NetInstance->update();
 

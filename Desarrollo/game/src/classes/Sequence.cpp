@@ -5,7 +5,6 @@ Sequence::Sequence()
 {
     numChildren = 0;
     brunning = false;
-    children = new Node*;
 }
 
 Sequence::~Sequence()

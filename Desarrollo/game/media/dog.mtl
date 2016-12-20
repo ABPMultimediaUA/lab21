@@ -12,10 +12,7 @@ newmtl Pelt
 	Kd 0.9451 0.9451 0.9451
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka C:\Users\marin\Desktop\Universidad\lab21\Desarrollo\game\media\DogC1.jpg
-	map_Kd C:\Users\marin\Desktop\Universidad\lab21\Desarrollo\game\media\DogC1.jpgDogC1.jpg
-	map_bump C:\Users\marin\Desktop\Universidad\lab21\Desarrollo\game\media\DogC1.jpgDogC1.jpg
-	bump C:\Users\marin\Desktop\Universidad\lab21\Desarrollo\game\media\DogC1.jpgDogC1.jpg
+
 
 newmtl Nose
 	Ns 100.0000
@@ -28,10 +25,7 @@ newmtl Nose
 	Kd 0.9451 0.9451 0.9451
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka C:\Users\marin\Desktop\Universidad\lab21\Desarrollo\game\media\DogC1.jpgDogC1.jpg
-	map_Kd C:\Users\marin\Desktop\Universidad\lab21\Desarrollo\game\media\DogC1.jpgDogC1.jpg
-	map_bump C:\Users\marin\Desktop\Universidad\lab21\Desarrollo\game\media\DogC1.jpgDogC1.jpg
-	bump C:\Users\marin\Desktop\Universidad\lab21\Desarrollo\game\media\DogC1.jpgDogC1.jpg
+
 
 newmtl InnerMouth
 	Ns 100.0000
@@ -44,8 +38,7 @@ newmtl InnerMouth
 	Kd 0.9451 0.9451 0.9451
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka C:\Users\marin\Desktop\Universidad\lab21\Desarrollo\game\media\DogC1.jpgDogC1.jpg
-	map_Kd C:\Users\marin\Desktop\Universidad\lab21\Desarrollo\game\media\DogC1.jpgDogC1.jpg
+
 
 newmtl Teeth
 	Ns 100.0000
@@ -58,8 +51,7 @@ newmtl Teeth
 	Kd 0.9451 0.9451 0.9451
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka C:\Users\marin\Desktop\Universidad\lab21\Desarrollo\game\media\DogC1.jpgDogC1.jpg
-	map_Kd C:\Users\marin\Desktop\Universidad\lab21\Desarrollo\game\media\DogC1.jpgDogC1.jpg
+
 
 newmtl Eyeball
 	Ns 76.0000
@@ -72,8 +64,7 @@ newmtl Eyeball
 	Kd 0.9451 0.9451 0.9451
 	Ks 0.6871 0.6871 0.6871
 	Ke 0.0000 0.0000 0.0000
-	C:\Users\marin\Desktop\Universidad\lab21\Desarrollo\game\media\DogC1.jpgmap_Ka DogEyeC1.jpg
-	C:\Users\marin\Desktop\Universidad\lab21\Desarrollo\game\media\DogC1.jpgmap_Kd DogEyeC1.jpg
+
 
 newmtl Pupil
 	Ns 100.0000
