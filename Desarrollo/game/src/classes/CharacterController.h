@@ -1,9 +1,9 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include "EntityPhysics.h"
+#include "DrawableReplica.h"
 
-class CharacterController : public EntityPhysics
+class CharacterController : public dwn::DrawableReplica
 {
     public:
         CharacterController();
@@ -15,11 +15,22 @@ class CharacterController : public EntityPhysics
         int getHealth();
         void setHealth(int h);
 
+        virtual void readEvents();
+
+        float getSpeedX();
+        float getSpeedZ();
+
     protected:
 
     private:
+        static const float _speedRun = 20.f;
+        static const float _speedWalk = 5.f;
+
         int m_strength;
         int m_health;
+
+        float m_speedX;
+        float m_speedZ;
 };
 
 #endif // CHARACTER_H

@@ -2,7 +2,7 @@
 
 Dog::Dog()
 {
-    steps = 19;
+    steps = 2000;
     //set up state machine
     d_pStateMachine = new StateMachine<Dog>(this);
 
@@ -24,6 +24,11 @@ StateMachine<Dog>* Dog::GetFSM()const
 int Dog::getSteps ()
 {
     return steps;
+}
+
+void Dog::setSteps (int s)
+{
+    steps = s;
 }
 
 void Dog::update()

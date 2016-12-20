@@ -22,8 +22,8 @@ class Drawable
         dwe::vec3f getRotation();
         void setRotation(dwe::vec3f r);
 
-        void setNode(dwe::Node* n);
-        /**dwe::Node* getNode();**/
+        virtual void setNode(dwe::Node* n);
+        dwe::Node* getNode();
         void removeNode();
 
         void setAnimation(dwe::AnimationType a);

@@ -26,7 +26,7 @@ void Drawable::setRotation(dwe::vec3f r) { m_node->setRotation(r); }
 
 ///////////////
 void Drawable::setNode(dwe::Node* n) { m_node = n; }
-/**dwe::Node* Drawable::getNode() { return m_node; }**/
+dwe::Node* Drawable::getNode() { return m_node; }
 
 /**/
 void Drawable::setIAnimNode (scene::IAnimatedMeshSceneNode* n)
@@ -48,5 +48,12 @@ void Drawable::removeNode()
 }
 
 ///////////////
-void Drawable::setAnimation(dwe::AnimationType a) { m_node->setAnimation(a); m_animation = a; }
+void Drawable::setAnimation(dwe::AnimationType a)
+{
+    if(m_animation != a)
+    {
+        m_node->setAnimation(a);
+        m_animation = a;
+    }
+}
 dwe::AnimationType Drawable::getAnimation() { return m_animation; }

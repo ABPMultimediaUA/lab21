@@ -4,10 +4,11 @@
 #include <defines.h>
 #include <CharacterController.h>
 #include <Firearm.h>
+#include "EntityPhysics.h"
 
 
 
-class Player : public CharacterController
+class Player : public CharacterController, public EntityPhysics
 {
     public:
         Player();
@@ -18,21 +19,25 @@ class Player : public CharacterController
         void shoot();
         void throwGrenade();
 
+        virtual void readEvents();
+
 
         // Getters & Setters
+        virtual void setNode(dwe::Node* n);
         int getAmmo(int numWeapon);
         void setAmmo(int numWeapon, int ammount);
         int getGrenades();
         void setGrenades(int n);
 
         virtual const char* getNetObjectID() const;
+        virtual void setPosition(dwe::vec3f p);
 
     protected:
 
     private:
-        int m_ammo[NUM_WEAPONS];
-        Firearm* m_weapons[NUM_WEAPONS];
-        int m_grenades;
+        int         m_ammo[NUM_WEAPONS];
+        Firearm*    m_weapons[NUM_WEAPONS];
+        int         m_grenades;
 };
 
 #endif // PLAYER_H

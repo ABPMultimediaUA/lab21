@@ -17,6 +17,7 @@
 					<Add directory="include" />
 					<Add directory="src/net" />
 					<Add directory="src" />
+					<Add directory="src/classes" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -29,6 +30,7 @@
 					<Add directory="include" />
 					<Add directory="src/net" />
 					<Add directory="src" />
+					<Add directory="src/classes" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -46,9 +48,9 @@
 			<Add directory="src/graphics" />
 		</Compiler>
 		<Linker>
-			<Add library="lib/libIrrlicht.a" />
-			<Add library="lib/libRakNet.a" />
-			<Add library="lib/libbox2DEngine.a" />
+			<Add library="lib\libIrrlicht.a" />
+			<Add library="lib\libRakNet.a" />
+			<Add library="lib\libbox2DEngine.a" />
 			<Add library="ws2_32" />
 			<Add library="opengl32" />
 			<Add library="gdi32" />
@@ -65,7 +67,6 @@
 		<Unit filename="src/classes/AmmoRifle.h" />
 		<Unit filename="src/classes/AmmoShotgun.cpp" />
 		<Unit filename="src/classes/AmmoShotgun.h" />
-		<Unit filename="src/classes/AppReceiver.h" />
 		<Unit filename="src/classes/ApproachDoorTask.cpp" />
 		<Unit filename="src/classes/ApproachDoorTask.h" />
 		<Unit filename="src/classes/Bat.cpp" />
@@ -133,6 +134,8 @@
 		<Unit filename="src/classes/OpenDoorTask.h" />
 		<Unit filename="src/classes/Pathplanning.cpp" />
 		<Unit filename="src/classes/Pathplanning.h" />
+		<Unit filename="src/classes/Perception.cpp" />
+		<Unit filename="src/classes/Perception.h" />
 		<Unit filename="src/classes/Player.cpp" />
 		<Unit filename="src/classes/Player.h" />
 		<Unit filename="src/classes/PlayerMate.cpp" />
@@ -141,6 +144,8 @@
 		<Unit filename="src/classes/Projectile.h" />
 		<Unit filename="src/classes/Rifle.cpp" />
 		<Unit filename="src/classes/Rifle.h" />
+		<Unit filename="src/classes/ScenaryElement.cpp" />
+		<Unit filename="src/classes/ScenaryElement.h" />
 		<Unit filename="src/classes/Scene.cpp" />
 		<Unit filename="src/classes/Scene.h" />
 		<Unit filename="src/classes/Selector.cpp" />
@@ -155,9 +160,11 @@
 		<Unit filename="src/classes/WalkThroughDoorTask.h" />
 		<Unit filename="src/classes/Weapon.cpp" />
 		<Unit filename="src/classes/Weapon.h" />
-		<Unit filename="src/classes/World.cpp" />
-		<Unit filename="src/classes/World.h" />
+		<Unit filename="src/classes/WorldInstance.cpp" />
+		<Unit filename="src/classes/WorldInstance.h" />
 		<Unit filename="src/classes/defines.h" />
+		<Unit filename="src/graphics/AppReceiver.cpp" />
+		<Unit filename="src/graphics/AppReceiver.h" />
 		<Unit filename="src/graphics/GraphicsEngine.cpp" />
 		<Unit filename="src/graphics/GraphicsEngine.h" />
 		<Unit filename="src/graphics/GraphicsEngineTemplates.cpp" />

@@ -73,6 +73,10 @@ template<class T>void dwe::NodeTemplate<T>::setRotation(dwe::vec3f v)
     m_node->setRotation(dwe::dweVector2irr<float>(v));
 }
 
+template<class T>dwe::vec3f dwe::NodeTemplate<T>::getBoundingBox()
+{
+    return dwe::irrVector2dwe<float>(m_node->getTransformedBoundingBox().getExtent());
+}
 
 template<class T>void dwe::NodeTemplate<T>::setAnimation(AnimationType a)
 {

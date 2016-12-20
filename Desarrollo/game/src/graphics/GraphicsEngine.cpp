@@ -4,14 +4,19 @@
 #include "Humanoid.h"
 #include "Dog.h"
 #include "NetGame.h"
+#include "AppReceiver.h"
 
 #include "EntityPhysics.h"
-#include "World.h"
+#include "WorldInstance.h"
 
 #include "Door.h"
 #include "Projectile.h"
 
+#include "ScenaryElement.h"
+
 #include "iostream"
+
+
 using namespace std;
 // Necesita volver a poner este namespace
 // para que codeblocks autocomplete bien.
@@ -28,10 +33,10 @@ dwe::GraphicsEngine* dwe::GraphicsEngine::Instance()
 }
 
 //////////////////////////
-void dwe::GraphicsEngine::init(AppReceiver* ar)
+void dwe::GraphicsEngine::init()
 {
 	m_device = createDevice( video::EDT_OPENGL, irr::core::dimension2d<u32>(800, 600), 16,
-			false, false, false, ar);
+			false, false, false, &receiver);
 
 	m_device->setWindowCaption(L"Lab21");
 
@@ -114,6 +119,37 @@ void dwe::GraphicsEngine::draw()
   	m_device->setWindowCaption(tmp);
 }
 
+
+////////////////////////////////////////////////////
+scene::IAnimatedMeshSceneNode* dwe::GraphicsEngine::createIrrAnimatedMeshSceneNode(std::string meshName)
+{
+	scene::IAnimatedMesh* mesh = m_smgr->getMesh((meshName+".obj").c_str());
+	if (!mesh)
+	{
+		m_device->drop();
+		exit(0);
+	}
+	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
+	if (irrnode)
+	{
+		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
+		irrnode->setMaterialTexture( 0, m_driver->getTexture((meshName+".png").c_str()) );
+	}
+
+	return irrnode;
+}
+
+/////////////////////////////////////
+ScenaryElement* dwe::GraphicsEngine::createWall(std::string meshName)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode(meshName);
+
+    ScenaryElement* s = new ScenaryElement();
+    s->setNode(new Node(irrnode));
+    return s;
+}
+
+
 ////////////////////////////////
 dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 {
@@ -159,6 +195,9 @@ Player* dwe::GraphicsEngine::createMainPlayer()
 
 	irrnode->setPosition(vector3df(0,24,10));
 
+
+
+	// TODO ¿esto es para quitar????
 	vector3df extent= irrnode->getTransformedBoundingBox().getExtent();
     //now extent.X is the X size of the box, .Y is Y etc.
     cout << "SIZE: X = " << extent.X << " ... Y = " << extent.Y << " ... Z = " << extent.Z << endl;
@@ -167,6 +206,9 @@ Player* dwe::GraphicsEngine::createMainPlayer()
     cout << "POS: X = " << pos.X << " ... Y = " << pos.Y << " ... Z = " << pos.Z << endl;
 
     //createDynPhyEntity(m_world,vector2d<s32>(0,0), m_device);
+    // TODO .................... hasta aqui
+
+
 
 	Player* p = new Player();
 	p->setNode(new Node(irrnode));
@@ -174,6 +216,9 @@ Player* dwe::GraphicsEngine::createMainPlayer()
     return p;
 }
 
+/*bool dwe::GraphicsEngine::intersectsWithBox(vec3f v, vec3f w){
+    return (v.intersectsWithBox(w));
+}*/
 
 
 /////////////////////////////////
@@ -246,22 +291,18 @@ Dog* dwe::GraphicsEngine::createEnemyDog()
     return p;
 }
 
-void dwe::GraphicsEngine::changeEnemyDogTexture(Dog* dog)
+void dwe::GraphicsEngine::changeEnemyDogTexture(Dog* dog,const io::path& text)
 {
-   /* scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/dog.obj");
-	if (!mesh)
-	{
-		m_device->drop();
-		exit(0);
-	}*/
-	//scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
-    //scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
+
+    //text = "media/" + text;
+    //cout << text << endl;
 
     scene::IAnimatedMeshSceneNode* irrnode = dog->getIAnimNode();
     if (irrnode)
 	{
-		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/dogC2.jpg") );
-		irrnode->setMaterialTexture( 1, m_driver->getTexture("media/faerie.bmp") );
+		irrnode->setMaterialTexture( 0, m_driver->getTexture(text) );
+
+		irrnode->setMaterialTexture( 1, m_driver->getTexture(text) );
 
 	}
 
@@ -270,9 +311,12 @@ void dwe::GraphicsEngine::changeEnemyDogTexture(Dog* dog)
 Door* dwe::GraphicsEngine::createDoor()
 {
     Node* node=createNode("media/puerta");
-	Door* d = new Door(0,0,0,false);
+	//Door* d = new Door(43.5,36.3,135.9,2,false);
+    Door* d = new Door(0,0,0,2,false);
+
 	d->setNode(node);
-	d->setPosition(dwe::vec3f(0,0,0));
+	d->setPosition(dwe::vec3f(43.5, 36.3, 135.9));
+	d->setPositionClosed(dwe::vec3f(43.5, 36.3, 135.9));
     return d;
 }
 

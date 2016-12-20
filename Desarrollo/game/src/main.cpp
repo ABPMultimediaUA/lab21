@@ -3,6 +3,8 @@
 #include <Box2D/Common/b2Math.h>
 #include <GraphicsEngine.h>
 
+#include "WorldInstance.h"
+
 #include "NetGame.h"
 #include "Player.h"
 #include "Bat.h"
@@ -14,30 +16,26 @@
 
 #include "Door.h"
 #include "Projectile.h"
-#include "Pathplanning.h"
 
 #include "Selector.h"
 #include "Sequence.h"
+
+#include "Pathplanning.h"
+#include "Perception.h"
 
 #include "CheckIfDoorIsOpenTask.h"
 #include "ApproachDoorTask.h"
 #include "OpenDoorTask.h"
 #include "WalkThroughDoorTask.h"
 #include "CloseDoorTask.h"
-#include "Pathplanning.h"
 
 #include "EntityPhysics.h"
-#include "World.h"
-
-#define speed 50.0f
-#define M_PI 3.14159265358979323846
-#define posError 100 //Creado para el ajuste de coordenadas de los muros de blender/irrlicht a box2d
+#include "ScenaryElement.h"
 
 float angulo;
 
 
-dwe::vec3f de2Da3D(float x2d, float y2d, dwe::vec3f r){
-	//cout << "X:" <<  x2d << "  ...  Y:" <<  y2d << endl;
+dwe::vec3f de2Da3D(int x2d, int y2d, dwe::vec3f r){
 	float centerScreenX = 400;
 	float centerScreenY = 300;
 	dwe::vec3f v(x2d - centerScreenX,y2d - centerScreenY,0);
@@ -64,99 +62,74 @@ dwe::vec3f de2Da3D(float x2d, float y2d, dwe::vec3f r){
 ///////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
-    // Box2D
-    b2Vec2 gravity(0.0f, 0.0f);
-    b2World world(gravity);
+    // Inicializar motor gráfico
+	GEInstance->init();
 
-    // Illricht
-    AppReceiver* appReceiver = new AppReceiver();
-	GEInstance->init(appReceiver);
-
-	// Motor de red
+	// Inicializar motor de red
     NetInstance->open();
+
 
     // Creación de jugador
 	Player* mainPlayer = GEInstance->createMainPlayer();
-	mainPlayer->setPosition(dwe::vec3f(0,24,0));
-    dwe::vec3f pos= mainPlayer->getPosition();
-    cout << "POS: X = " << pos.x << " ... Y = " << pos.y << " ... Z = " << pos.z << endl;
-    //BOX2D
-    EntityPhysics* bwPlayer = new EntityPhysics();
-    bwPlayer->createDynPhyEntity(world,vector2d<s32>(0,0), GEInstance->getDevice());
-	cout << "YES \n";
+	mainPlayer->setPosition(dwe::vec3f(120,24,0));
 
-	////////////////////
 
     // Creación de escenario
 	dwe::Node* suelo = GEInstance->createNode("media/suelo");
-	dwe::Node* paredes = GEInstance->createNode("media/paredes");
-	//dwe::Node* the111box = GEInstance->createNode("media/the111box");
-	dwe::Node* the101010box = GEInstance->createNode("media/the101010box");
-	dwe::Node* the10010100box = GEInstance->createNode("media/the10010100box");
-	dwe::Node* map = GEInstance->createNode("media/map");
 	suelo->setPosition(dwe::vec3f(0,0,0));
-	paredes->setPosition(dwe::vec3f(0,35,0));
-	//the111box->setPosition(dwe::vec3f(0,0,0));
-	the101010box->setPosition(dwe::vec3f(0,0,100));
-	the10010100box->setPosition(dwe::vec3f(0,0,-100));
-	map->setPosition(dwe::vec3f(0,0,-100));
 
-    //BOX2D
-	//EntityPhysics* bwthe111box = new EntityPhysics();
-    //bwthe111box->createStaticBox(world,vector2d<s32>(0,0), 1.0f, 1.0f, GEInstance->getDevice());
-    EntityPhysics* bwthe101010box = new EntityPhysics();
-    bwthe101010box->createStaticBox(world,vector2d<s32>(0,100), 10.0f, 10.0f, GEInstance->getDevice());
-    EntityPhysics* bwthe10010100box = new EntityPhysics();
-    bwthe10010100box->createStaticBox(world,vector2d<s32>(0,-100), 100.0f, 10.0f, GEInstance->getDevice());
-
-    //EL MAPA - box2d
-    EntityPhysics* bwWU = new EntityPhysics();
-    bwWU->createStaticBox(world,vector2d<s32>(0,250-posError), 500.0f, 1.0f, GEInstance->getDevice());
-    EntityPhysics* bwWD = new EntityPhysics();
-    bwWD->createStaticBox(world,vector2d<s32>(0,-250-posError), 500.0f, 1.0f, GEInstance->getDevice());
-    EntityPhysics* bwWR = new EntityPhysics();
-    bwWR->createStaticBox(world,vector2d<s32>(-500,0-posError), 1.0f, 250.0f,  GEInstance->getDevice());
-    EntityPhysics* bwWL = new EntityPhysics();
-    bwWL->createStaticBox(world,vector2d<s32>(500,0-posError), 1.0f, 250.0f,  GEInstance->getDevice());
-	cout << "YES2 \n";
-    EntityPhysics* bw_001 = new EntityPhysics();
-    bw_001->createStaticBox(world,vector2d<s32>(150,100-posError), 100.0f, 10.0f, GEInstance->getDevice());
-    EntityPhysics* bw_002 = new EntityPhysics();
-    bw_002->createStaticBox(world,vector2d<s32>(-150,100-posError), 100.0f, 10.0f, GEInstance->getDevice());
-	cout << "YES3 \n";
-	EntityPhysics* bw_003 = new EntityPhysics();
-    bw_003->createStaticBox(world,vector2d<s32>(400,0-posError), 100.0f, 10.0f, GEInstance->getDevice());
-    EntityPhysics* bw_004 = new EntityPhysics();
-    bw_004->createStaticBox(world,vector2d<s32>(-400,0-posError), 100.0f, 10.0f, GEInstance->getDevice());
-	cout << "YES4 \n";
-	EntityPhysics* bw_005 = new EntityPhysics();
-    bw_005->createStaticBox(world,vector2d<s32>(360,-100-posError), 100.0f, 10.0f, GEInstance->getDevice());
-    EntityPhysics* bw_006 = new EntityPhysics();
-    bw_006->createStaticBox(world,vector2d<s32>(-360,-100-posError), 100.0f, 10.0f, GEInstance->getDevice());
-	cout << "YES5 \n";
+    ScenaryElement* wall01 = GEInstance->createWall("media/pared01");wall01->setPosition(dwe::vec3f(-35,   36.3, 135.9));
+    ScenaryElement* wall02 = GEInstance->createWall("media/pared02");wall02->setPosition(dwe::vec3f(120.4, 36.3, 135.9));
+    ScenaryElement* wall03 = GEInstance->createWall("media/pared03");wall03->setPosition(dwe::vec3f(42.7,  36.3, -132.2));
+    ScenaryElement* wall04 = GEInstance->createWall("media/pared04");wall04->setPosition(dwe::vec3f(-84.9, 36.3, 2.2));
+    ScenaryElement* wall05 = GEInstance->createWall("media/pared05");wall05->setPosition(dwe::vec3f(170.5, 36.3, 82.6));
+    ScenaryElement* wall06 = GEInstance->createWall("media/pared06");wall06->setPosition(dwe::vec3f(170.5, 36.3, -76.7));
+    ScenaryElement* wall07 = GEInstance->createWall("media/pared07");wall07->setPosition(dwe::vec3f(304.8, 36.3, -132.2));
+    ScenaryElement* wall08 = GEInstance->createWall("media/pared08");wall08->setPosition(dwe::vec3f(304.8, 36.3, 133.8));
+    ScenaryElement* wall09 = GEInstance->createWall("media/pared09");wall09->setPosition(dwe::vec3f(432.7, 36.3, 2.2));
+    ScenaryElement* wall10 = GEInstance->createWall("media/pared10");wall10->setPosition(dwe::vec3f(-84.4, 36.3, 269.9));
+    ScenaryElement* wall11 = GEInstance->createWall("media/pared11");wall11->setPosition(dwe::vec3f(170.8, 36.3, 269.6));
+    ScenaryElement* wall12 = GEInstance->createWall("media/pared12");wall12->setPosition(dwe::vec3f(43.1,  36.3, 399.8));
 
     Door *puerta=GEInstance->createDoor();
     puerta->setActive();
-//    puerta->setIsOpening();
+    //puerta->setIsOpening();
 
+
+
+
+    ////////////////////////////////
+    // Enemigos
+    ////////////////////////////////
     // Creación de enemigo Humanoide
 	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
-	enemyHumanoid->setPosition(dwe::vec3f(-70,24,0));
+	//enemyHumanoid->setPosition(dwe::vec3f(-70,24,0));
+	enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
+	enemyHumanoid->setRotation(dwe::vec3f(0, 270.f, 0));
+
+
+	// Creación de enemigo Dog
+	Dog* enemyDog = GEInstance->createEnemyDog();
+	enemyDog->setPosition(dwe::vec3f(-50,-170,100)); // No está centrado :(
+	//enemyDog->setPosition(dwe::vec3f(0,-300,-40));
+
+
+
+
+    //Creación fov
+    dwe::Node* fovnode = GEInstance->createNode("media/fov");
+    //fovnode->setMaterialFlag(EMF_WIREFRAME, true);
+    fovnode->setPosition(enemyHumanoid->getPosition());
+    fovnode->setRotation(enemyHumanoid->getRotation());
 
 
 	// Creacion objeto Proyectil
 	Projectile *p;
 	bool disparado=false; // Control
 
-	// Creación de enemigo Dog
-	Dog* enemyDog = GEInstance->createEnemyDog();
-	enemyDog->setPosition(dwe::vec3f(-100,-170,100)); /** No está centrado :( **/
-	//enemyDog->setPosition(dwe::vec3f(0,-300,-40));
-	enemyDog->Update();
 
-
-
-	 //CAMERA (nodo padre, posición, directión)
+	//////////////////////////////////////////
+    //CAMERA (nodo padre, posición, directión)
 	ICameraSceneNode* camera1 = GEInstance->getSMGR()->addCameraSceneNode(0,  vector3df(0,200,-100), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
 	ICameraSceneNode* camera2 = GEInstance->getSMGR()->addCameraSceneNode(0, vector3df(0,100,-200), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
 	ICameraSceneNode* camera3 = GEInstance->getSMGR()->addCameraSceneNode(0, vector3df(-50,150,-100), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
@@ -165,24 +138,16 @@ int main()
 /////////////////////////////////////////////////////////////////////////////////////////////
     ITimer* timer = GEInstance->getDevice()->getTimer(); //METIDO DEL DEBUG DRAW DE BOX2D...
 
-    // Prepare for simulation. Typically we use a time step of 1/60 of a
-    // second (60Hz) and 10 iterations. This provides a high quality simulation
-    // in most game scenarios.
-    float32 timeStep = 1.0f / 250.0f;
-    int32 velocityIterations = 6;
-    int32 positionIterations = 2;
-
     f32 TimeStamp = timer->getTime();
     f32 DeltaTime = timer->getTime() - TimeStamp;
     //TIEMPO
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    //Creación de objeto pathplanning
-    Pathplanning* pathp = new Pathplanning();
-    float num=10.0;//para cambiar de sigilo a rapido
+    //Creación de objeto perception
+    Perception* percep = new Perception();
+    float num;//para cambiar de sigilo a rapido
     bool danyo=false;
-
     /*************************** BEHAVIOR TREE **********************************/
 
 
@@ -226,7 +191,13 @@ int main()
 	while(GEInstance->isRunning())
 	{
 
+            /* Run Behavior Tree */
             selector1->run();
+            fovnode->setPosition(enemyHumanoid->getPosition());
+
+
+            /* Run State Machine */
+          //  enemyDog->Update();
 
 
 //	    if (GEInstance->isWindowActive())
@@ -239,13 +210,13 @@ int main()
 /////////////////////////////////////////////////////////////////////////////////////////////
 
             //CAMBIO DE CAMARA
-            if (appReceiver->isKeyDown(KEY_KEY_1)){
+            if (GEInstance->receiver.isKeyDown(KEY_KEY_1)){
                 printf("- Camara 1 \n");
                 GEInstance->getSMGR()->setActiveCamera(camera1);
-            }else if(appReceiver->isKeyDown(KEY_KEY_2)){
+            }else if(GEInstance->receiver.isKeyDown(KEY_KEY_2)){
                 printf("- Camara 2 \n");
                 GEInstance->getSMGR()->setActiveCamera(camera2);
-            }else if(appReceiver->isKeyDown(KEY_KEY_3)){
+            }else if(GEInstance->receiver.isKeyDown(KEY_KEY_3)){
                 printf("- Camara 3 \n");
                 GEInstance->getSMGR()->setActiveCamera(camera3);
             }
@@ -257,45 +228,22 @@ int main()
             r = mainPlayer->getRotation();
 
 
-            if(appReceiver->isKeyDown(KEY_ESCAPE))
+            if(GEInstance->receiver.isKeyDown(KEY_ESCAPE))
             {
                 GEInstance->close();
                 return 0;
             }
             else
             {
-                float speedX = 0.0f;
-                float speedZ = 0.0f;
-
-                //Derecha o izquierda
-                if(appReceiver->isKeyDown(KEY_RIGHT)){
-                    speedX = speed;
-                }else if(appReceiver->isKeyDown(KEY_LEFT)){
-                    speedX = -speed;
-                }
-
-                //Hacia delante o hacia detras
-                if(appReceiver->isKeyDown(KEY_UP)){
-                    speedZ = speed;
-                }else if(appReceiver->isKeyDown(KEY_DOWN)){
-                    speedZ = -speed;
-                }
-
                 //prototipo de disparo
-                if(appReceiver->isKeyDown(KEY_KEY_A)){danyo=true;}//ponemos el bool de danyo en el npc a true
+                if(GEInstance->receiver.isKeyDown(KEY_KEY_F)){danyo=true;}//ponemos el bool de danyo en el npc a true
 
-                //Animacion del player
-                if(speedX!=0 || speedZ!=0){
-                    mainPlayer->setAnimation(dwe::eAnimRun);
-                }else{
-                    mainPlayer->setAnimation(dwe::eAnimStand);
-                }
+                mainPlayer->readEvents();
 
-                bwPlayer->getBwBody()->SetLinearVelocity(b2Vec2(speedX,speedZ)); //MOVIMIENTO DEL BOX2D PLAYER
 
                 // DISPARO
                 //cout<<angulo<<endl;
-                if(appReceiver->isKeyDown(KEY_SPACE)){
+                if(GEInstance->receiver.isKeyDown(KEY_SPACE)){
                     int origen[2];
                     origen[0]=m.x;
                     origen[1]=m.z;
@@ -306,23 +254,21 @@ int main()
             }
 
             //Calcular rotacion player - con MOUSE
-            if(appReceiver->getCursorX()>=0 && appReceiver->getCursorY()>=0){
-                r = de2Da3D(appReceiver->getCursorX(),appReceiver->getCursorY(), r);
+            if(GEInstance->receiver.getCursorX()>=0 && GEInstance->receiver.getCursorY()>=0){
+                r = de2Da3D(GEInstance->receiver.getCursorX(),GEInstance->receiver.getCursorY(), r);
             }
 
             DeltaTime = timer->getTime() - TimeStamp;
             TimeStamp = timer->getTime();
             // Instruct the world to perform a single step of simulation.
             // It is generally best to keep the time step and iterations fixed.
-            world.Step(DeltaTime*timeStep, velocityIterations, positionIterations);
+            World->step(DeltaTime);
             // Clear applied body forces. We didn't apply any forces, but you
             // should know about this function.
-            world.ClearForces();
-
-            bwPlayer->updatePhysics(); //UPDATE de mi player BOX2D
+            World->clearForces();
 
             //Posición actualizada de Irrlicht Player
-            mainPlayer->setPosition(dwe::vec3f(bwPlayer->getBwBody()->GetPosition().x,24,bwPlayer->getBwBody()->GetPosition().y)); //MOVIMIENTO DE IRRLICHT PLAYER
+            mainPlayer->update();
             mainPlayer->setRotation(r);
             puerta->update();
             if(disparado)
@@ -337,7 +283,8 @@ int main()
 
             float cameraDist = getCamPosZ - mainPlayer->getPosition().z;
             cameraDist = fabsf(cameraDist);
-            cout << "cameraDist: " << cameraDist << endl;
+
+            //cout << "cameraDist: " << cameraDist << endl;
             if(getCamPosZ>-300.0f){
                 if(cameraDist<100.f){
                     setCamPosZ = mainPlayer->getPosition().z-100;
@@ -356,19 +303,17 @@ int main()
             }
             GEInstance->getSMGR()->getActiveCamera()->setPosition(vector3df(mainPlayer->getPosition().x,200,setCamPosZ));
 
-
             GEInstance->draw();
 //        }
 //        else
 //        {
 //            GEInstance->yield();
 //        }
+        //llamamos a percepcion
+        //percep->senses(mainPlayer,enemyHumanoid,fovnode,num);
 
         NetInstance->update();
-        ///////PARTE DE PATHPLANNING
-        //pathp->behaviour(mainPlayer, enemyHumanoid, num, danyo);
 
-        //////////////////////////////////////
 
 	}
 

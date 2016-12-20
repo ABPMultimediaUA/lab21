@@ -26,9 +26,9 @@ States WalkThroughDoorTask::run()
         return running;
     }
 
-    else if (posNpc.x < posDoor.x + 40)
+    else if (posNpc.z < posDoor.z + 40)
     {
-        npc->setPosition(dwe::vec3f(posNpc.x + 0.1, posNpc.y, posNpc.z));
+        npc->setPosition(dwe::vec3f(posNpc.x , posNpc.y, posNpc.z + 0.1));
 
         brunning = true;
         return running;
