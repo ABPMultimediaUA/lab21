@@ -311,12 +311,13 @@ void dwe::GraphicsEngine::changeEnemyDogTexture(Dog* dog,const io::path& text)
 Door* dwe::GraphicsEngine::createDoor()
 {
     Node* node=createNode("media/puerta");
-	//Door* d = new Door(43.5,36.3,135.9,2,false);
-    Door* d = new Door(0,0,0,2,false);
+
+    Door* d = new Door(0,0,0,2,true, false);// ultimo bool: abierta true, cerrada false
 
 	d->setNode(node);
-	d->setPosition(dwe::vec3f(43.5, 36.3, 135.9));
-	d->setPositionClosed(dwe::vec3f(43.5, 36.3, 135.9));
+    d->setPosition(dwe::vec3f(43.5, 36.3, 135.9)); // Cerrada
+	//d->setPosition(dwe::vec3f(43.5-70, 36.3, 135.9)); // Abierta
+	d->setPositionClosed(dwe::vec3f(43.5, 36.3, 135.9)); // Localización de la puerta CERRADA
     return d;
 }
 
