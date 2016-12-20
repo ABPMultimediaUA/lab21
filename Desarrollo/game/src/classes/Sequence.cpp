@@ -9,7 +9,7 @@ Sequence::Sequence()
 
 Sequence::~Sequence()
 {
-    delete children;
+    //delete children;
 }
 
 States Sequence::run()

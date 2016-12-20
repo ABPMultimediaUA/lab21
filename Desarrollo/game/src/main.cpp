@@ -147,7 +147,6 @@ int main()
     //Creación de objeto perception
     Perception* percep = new Perception();
     float num;//para cambiar de sigilo a rapido
-    bool danyo=false;
     /*************************** BEHAVIOR TREE **********************************/
 
 
@@ -229,7 +228,7 @@ int main()
         World->clearForces();
 
         // comprobamos si dispara
-        if(projectile==0 && GEInstance->receiver.isKeyDown(KEY_SPACE)){
+        if(projectile==0 && GEInstance->receiver.isLeftButtonPressed()){
             projectile=GEInstance->createProjectile(mainPlayer->getPosition(), angulo);
         }
 
