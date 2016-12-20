@@ -204,7 +204,7 @@ namespace dwe
 
         void changeEnemyDogTexture(Dog* dog, const io::path& str);
         Door* createDoor();
-        Projectile* createProjectile(int* origin, float angle);
+        Projectile* createProjectile(vec3f origin, float angle);
 
     private:
         irr::IrrlichtDevice*            m_device;

@@ -133,17 +133,15 @@ int main()
 	//////////////////////////////////////////
     //CAMERA (nodo padre, posición, directión)
 	ICameraSceneNode* camera1 = GEInstance->getSMGR()->addCameraSceneNode(0,  vector3df(0,200,-100), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
-	ICameraSceneNode* camera2 = GEInstance->getSMGR()->addCameraSceneNode(0, vector3df(0,100,-200), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
-	ICameraSceneNode* camera3 = GEInstance->getSMGR()->addCameraSceneNode(0, vector3df(-50,150,-100), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
 	GEInstance->getSMGR()->setActiveCamera(camera1); //Activar cámara
 
-/////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
     ITimer* timer = GEInstance->getDevice()->getTimer(); //METIDO DEL DEBUG DRAW DE BOX2D...
 
     f32 timeStamp = timer->getTime();
     f32 deltaTime = timer->getTime() - timeStamp;
     //TIEMPO
-/////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
 
 
     //Creación de objeto perception
@@ -187,155 +185,102 @@ int main()
 
 
 
-    /****************************************************************************/
 
-    ///////////////////////////////////  BUCLE
+    //////////////////////////////////////////////////////////////////
+
+    //rmm Cheat: la primera vez que creo el projectile va muy lento
+    projectile=GEInstance->createProjectile(mainPlayer->getPosition(), angulo);
+    delete projectile;
+    projectile = 0;
+    //rmmEnd
+
 	while(GEInstance->isRunning())
 	{
+        if(GEInstance->receiver.isKeyDown(KEY_ESCAPE))
+        {
+            GEInstance->close();
+            return 0;
+        }
 
-            /* Run Behavior Tree */
-            selector1->run();
-            fovnode->setPosition(enemyHumanoid->getPosition());
-
-
-            /* Run State Machine */
-          //  enemyDog->Update();
-
-
-//	    if (GEInstance->isWindowActive())
-//        {
-
-           // position2d<s32> coord = position2d<s32>(0,0);
-            //core::position2di cursor = core::position2di(appReceiver->OnEvent(const SEvent& rotating),0);
-                                                         //event.MouseInput.X, event.MouseInput.Y);
-            //cout << "Mouse at 2D coordinates: " << cursor.X << "," << cursor.Y << endl;
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-            //CAMBIO DE CAMARA
-            if (GEInstance->receiver.isKeyDown(KEY_KEY_1)){
-                printf("- Camara 1 \n");
-                GEInstance->getSMGR()->setActiveCamera(camera1);
-            }else if(GEInstance->receiver.isKeyDown(KEY_KEY_2)){
-                printf("- Camara 2 \n");
-                GEInstance->getSMGR()->setActiveCamera(camera2);
-            }else if(GEInstance->receiver.isKeyDown(KEY_KEY_3)){
-                printf("- Camara 3 \n");
-                GEInstance->getSMGR()->setActiveCamera(camera3);
-            }
-
-            dwe::vec3f m(0.0f);
-            m = mainPlayer->getPosition();
-
-            dwe::vec3f r(0.0f);
-            r = mainPlayer->getRotation();
+        // Run Behavior Tree
+        selector1->run();
+        fovnode->setPosition(enemyHumanoid->getPosition());
 
 
-            if(GEInstance->receiver.isKeyDown(KEY_ESCAPE))
+        //prototipo de disparo
+        if(GEInstance->receiver.isKeyDown(KEY_KEY_F)){danyo=true;}//ponemos el bool de danyo en el npc a true
+
+
+        mainPlayer->readEvents();
+
+
+        //Calcular rotacion player - con MOUSE
+        if(GEInstance->receiver.getCursorX()>=0 && GEInstance->receiver.getCursorY()>=0){
+            mainPlayer->setRotation(
+                de2Da3D(GEInstance->receiver.getCursorX(),
+                        GEInstance->receiver.getCursorY(),
+                        mainPlayer->getRotation()));
+        }
+
+
+        // Actualizamos físicas box2d
+        deltaTime = timer->getTime()-timeStamp; timeStamp=timer->getTime();
+        World->step(deltaTime);
+        World->clearForces();
+
+        // comprobamos si dispara
+        if(projectile==0 && GEInstance->receiver.isKeyDown(KEY_SPACE)){
+            projectile=GEInstance->createProjectile(mainPlayer->getPosition(), angulo);
+        }
+
+        //Posición actualizada de Irrlicht Player
+        mainPlayer->update();
+
+        puerta->update();
+
+        if(projectile!=0)
+        {
+            projectile->update();
+            if (projectile->getCollides())
             {
-                GEInstance->close();
-                return 0;
+                delete projectile;
+                projectile = 0;
             }
-            else
-            {
-                //prototipo de disparo
-                if(GEInstance->receiver.isKeyDown(KEY_KEY_F)){danyo=true;}//ponemos el bool de danyo en el npc a true
+        }
 
-                mainPlayer->readEvents();
+        //update camera target
+        GEInstance->getSMGR()->getActiveCamera()->setTarget(vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
+        //update camera position
+        float getCamPosZ = GEInstance->getSMGR()->getActiveCamera()->getPosition().Z;
+        float setCamPosZ;
 
-
-                // DISPARO
-                if(projectile!=0)
-                {   // Si ya existe, actualizamos posiciones box2d
-
-                }
-                else
-                {   // comprobamos si dispara
-                    if(GEInstance->receiver.isKeyDown(KEY_SPACE)){
-                        int origen[2];
-                        origen[0]=m.x;
-                        origen[1]=m.z;
-                        projectile=GEInstance->createProjectile(origen, angulo);
-                    }
-                }
-
+        float cameraDist = getCamPosZ - mainPlayer->getPosition().z;
+        cameraDist = fabsf(cameraDist);
+        //cout << "cameraDist: " << cameraDist << endl;
+        if(getCamPosZ>-300.0f){
+            if(cameraDist<100.f){
+                setCamPosZ = mainPlayer->getPosition().z-100;
+            }else if(cameraDist>200.0f){
+                setCamPosZ = mainPlayer->getPosition().z-200;
+            }
+        }else{
+            if(cameraDist>200.0f){
+                setCamPosZ = mainPlayer->getPosition().z-200;
             }
 
-            //Calcular rotacion player - con MOUSE
-            if(GEInstance->receiver.getCursorX()>=0 && GEInstance->receiver.getCursorY()>=0){
-                r = de2Da3D(GEInstance->receiver.getCursorX(),GEInstance->receiver.getCursorY(), r);
+            //reajuste... cuando estoy cerca de una pared final encima de la camara
+            if(cameraDist<10.0f){
+                setCamPosZ = mainPlayer->getPosition().z-10;
             }
+        }
+        GEInstance->getSMGR()->getActiveCamera()->setPosition(vector3df(mainPlayer->getPosition().x,200,setCamPosZ));
 
+        GEInstance->draw();
 
-            ///////////////////////////////
-            // Actualizamos físicas box2d
-            ///////////////////////////////
-            deltaTime = timer->getTime()-timeStamp; timeStamp=timer->getTime();
-            // Instruct the world to perform a single step of simulation.
-            // It is generally best to keep the time step and iterations fixed.
-            World->step(deltaTime);
-            // Clear applied body forces. We didn't apply any forces, but you
-            // should know about this function.
-            World->clearForces();
-
-
-
-            //Posición actualizada de Irrlicht Player
-            mainPlayer->update();
-            mainPlayer->setRotation(r);
-
-
-            puerta->update();
-
-            if(projectile!=0)
-            {
-                projectile->update();
-                if (projectile->getCollides())
-                {
-                    delete projectile;
-                    projectile = 0;
-                    // TODO quitar nodo illricht
-                }
-            }
-
-            //update camera target
-            GEInstance->getSMGR()->getActiveCamera()->setTarget(vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
-            //update camera position
-            float getCamPosZ = GEInstance->getSMGR()->getActiveCamera()->getPosition().Z;
-            float setCamPosZ;
-
-            float cameraDist = getCamPosZ - mainPlayer->getPosition().z;
-            cameraDist = fabsf(cameraDist);
-            //cout << "cameraDist: " << cameraDist << endl;
-            if(getCamPosZ>-300.0f){
-                if(cameraDist<100.f){
-                    setCamPosZ = mainPlayer->getPosition().z-100;
-                }else if(cameraDist>200.0f){
-                    setCamPosZ = mainPlayer->getPosition().z-200;
-                }
-            }else{
-                if(cameraDist>200.0f){
-                    setCamPosZ = mainPlayer->getPosition().z-200;
-                }
-
-                //reajuste... cuando estoy cerca de una pared final encima de la camara
-                if(cameraDist<10.0f){
-                    setCamPosZ = mainPlayer->getPosition().z-10;
-                }
-            }
-            GEInstance->getSMGR()->getActiveCamera()->setPosition(vector3df(mainPlayer->getPosition().x,200,setCamPosZ));
-
-            GEInstance->draw();
-//        }
-//        else
-//        {
-//            GEInstance->yield();
-//        }
         //llamamos a percepcion
         //percep->senses(mainPlayer,enemyHumanoid,fovnode,num);
 
         NetInstance->update();
-
-
 	}
 
 	NetInstance->close();

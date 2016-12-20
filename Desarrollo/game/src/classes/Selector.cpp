@@ -9,7 +9,7 @@ Selector::Selector()
 
 Selector::~Selector()
 {
-    delete children;
+    //delete children;
 }
 
 States Selector::run()
