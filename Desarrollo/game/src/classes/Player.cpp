@@ -1,8 +1,9 @@
 #include "Player.h"
+#include "WorldInstance.h"
 
 Player::Player()
 {
-    //ctor
+    setClassID(CLASS_PLAYER_ID);
 }
 
 Player::~Player()
@@ -20,7 +21,7 @@ void Player::update()
 void Player::setNode(dwe::Node* n)
 {
     Drawable::setNode(n);
-    createDynPhyEntity(getPosition());
+    createDynamicBody(getPosition());
 }
 
 /////////////
@@ -83,6 +84,13 @@ void Player::setAmmo(int numWeapon, int ammount) { m_ammo[numWeapon] = ammount; 
 ////////////
 int Player::getGrenades() { return m_grenades; }
 void Player::setGrenades(int n) { m_grenades = n; }
+
+
+/////////////
+void Player::onBeginContact(EntityPhysics* otherObject)
+{
+    cout << "playerrrrrrrrrrrrrrrrrrrrrrr\n";
+}
 
 
 

@@ -12,7 +12,7 @@ class CompositeNode : public Node
 
 
     protected:
-        Node** children;
+        Node* children[10];
         int numChildren;
 
 };

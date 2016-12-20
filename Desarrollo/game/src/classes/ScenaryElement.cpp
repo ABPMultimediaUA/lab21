@@ -16,7 +16,7 @@ void ScenaryElement::setNode(dwe::Node* n)
     Drawable::setNode(n);
 
     dwe::vec3f s = n->getBoundingBox();
-    createStaticBox(getPosition(), s.x, s.z);
+    createStaticBody(getPosition(), s.x, s.z);
 }
 
 /////////////////////
