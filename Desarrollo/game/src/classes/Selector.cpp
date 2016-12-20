@@ -5,7 +5,6 @@ Selector::Selector()
 {
     numChildren = 0;
     brunning = false;
-    children = new Node*;
 }
 
 Selector::~Selector()
