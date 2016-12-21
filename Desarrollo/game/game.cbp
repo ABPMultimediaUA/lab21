@@ -105,6 +105,8 @@
 		<Unit filename="src/classes/Firearm.h" />
 		<Unit filename="src/classes/Flashlight.cpp" />
 		<Unit filename="src/classes/Flashlight.h" />
+		<Unit filename="src/classes/Generator.cpp" />
+		<Unit filename="src/classes/Generator.h" />
 		<Unit filename="src/classes/Grenade.cpp" />
 		<Unit filename="src/classes/Grenade.h" />
 		<Unit filename="src/classes/Guardian.cpp" />

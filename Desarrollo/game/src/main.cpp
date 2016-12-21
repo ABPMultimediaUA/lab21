@@ -16,6 +16,7 @@
 
 #include "Door.h"
 #include "Projectile.h"
+#include "Generator.h"
 
 #include "Selector.h"
 #include "Sequence.h"
@@ -93,12 +94,11 @@ int main()
     ScenaryElement* wall11 = GEInstance->createWall("media/pared11");wall11->setPosition(dwe::vec3f(170.8, 36.3, 269.6));
     ScenaryElement* wall12 = GEInstance->createWall("media/pared12");wall12->setPosition(dwe::vec3f(43.1,  36.3, 399.8));
 
-    Door *puerta=GEInstance->createDoor();
-    puerta->setActive();
+    Door *puerta=GEInstance->createDoor(2, true, 43.5, 36.3, 135.9);
+    //puerta->setActive();
     //puerta->setIsOpening();
 
-
-
+    Generator *generador=GEInstance->createGenerator(0, false);
 
     ////////////////////////////////
     // Enemigos
