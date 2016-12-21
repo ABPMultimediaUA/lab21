@@ -3,16 +3,15 @@
 
 using namespace std;
 
-Door::Door( float i, float j,  float u, int f, bool a, bool o)
+Door::Door(int f, bool a)
 {
-    x = i;
-    y = j;
-    z = u;
+    x = 0;
+    y = 0;
+    z = 0;
     facing = f;
     speed = 0.1;
-    isOpened = o;
     active = a;
-
+    isOpened = false;
 
     if (!isOpened) // Puerta inicialmente cerrada
     {

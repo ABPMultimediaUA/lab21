@@ -11,6 +11,7 @@
 
 #include "Door.h"
 #include "Projectile.h"
+#include "Generator.h"
 
 #include "ScenaryElement.h"
 
@@ -305,16 +306,16 @@ void dwe::GraphicsEngine::changeEnemyDogTexture(Dog* dog,const io::path& text)
 
 }
 
-Door* dwe::GraphicsEngine::createDoor()
+Door* dwe::GraphicsEngine::createDoor(int f, bool b, float px, float py, float pz)
 {
-    Node* node=createNode("media/puerta");
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/puerta");
 
-    Door* d = new Door(0,0,0,2,true, false);// ultimo bool: abierta true, cerrada false
+    Door* d = new Door(f, b);// ultimo bool: abierta true, cerrada false
 
-	d->setNode(node);
-    d->setPosition(dwe::vec3f(43.5, 36.3, 135.9)); // Cerrada
+	d->setNode(new Node(irrnode));
+    d->setPosition(dwe::vec3f(px, py, pz)); // Cerrada
 	//d->setPosition(dwe::vec3f(43.5-70, 36.3, 135.9)); // Abierta
-	d->setPositionClosed(dwe::vec3f(43.5, 36.3, 135.9)); // Localización de la puerta CERRADA
+	d->setPositionClosed(dwe::vec3f(px, py, pz)); // Localización de la puerta CERRADA
     return d;
 }
 
@@ -332,6 +333,16 @@ Projectile* dwe::GraphicsEngine::createProjectile(int* origin, float angle)
     p->setNode(new Node(irrnode));
     p->setPosition(dwe::vec3f(origin[0],0,origin[1]));
     return p;
+}
+
+Generator* dwe::GraphicsEngine::createGenerator(int i, bool b)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/generador");
+
+    Generator* g = new Generator(i, b);
+    g->setNode(new Node(irrnode));
+    g->setPosition(dwe::vec3f(-50, 0, -50));
+    return g;
 }
 
 //////////////////////////
