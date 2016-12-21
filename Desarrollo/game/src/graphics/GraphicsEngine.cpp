@@ -319,7 +319,7 @@ Door* dwe::GraphicsEngine::createDoor(int f, bool b, float px, float py, float p
     return d;
 }
 
-Projectile* dwe::GraphicsEngine::createProjectile(int* origin, float angle)
+Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle)
 {
     /*Node* node=createNode("media/proyectil");
 	Projectile* p = new Projectile(origin, angle);
@@ -331,7 +331,7 @@ Projectile* dwe::GraphicsEngine::createProjectile(int* origin, float angle)
 
     Projectile* p = new Projectile(origin, angle);
     p->setNode(new Node(irrnode));
-    p->setPosition(dwe::vec3f(origin[0],0,origin[1]));
+    p->setPosition(origin);
     return p;
 }
 

@@ -207,7 +207,7 @@ int main()
 
 
         //prototipo de disparo
-        if(GEInstance->receiver.isKeyDown(KEY_KEY_F)){danyo=true;}//ponemos el bool de danyo en el npc a true
+        //if(GEInstance->receiver.isKeyDown(KEY_KEY_F)){danyo=true;}//ponemos el bool de danyo en el npc a true
 
 
         mainPlayer->readEvents();
