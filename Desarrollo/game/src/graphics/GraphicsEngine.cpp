@@ -306,16 +306,17 @@ void dwe::GraphicsEngine::changeEnemyDogTexture(Dog* dog,const io::path& text)
 
 }
 
-Door* dwe::GraphicsEngine::createDoor(int f, bool b, float px, float py, float pz)
+Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float pz)
 {
     scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/puerta");
-
-    Door* d = new Door(f, b);// ultimo bool: abierta true, cerrada false
-
+    Door* d = new Door(f, a);
 	d->setNode(new Node(irrnode));
     d->setPosition(dwe::vec3f(px, py, pz)); // Cerrada
 	//d->setPosition(dwe::vec3f(43.5-70, 36.3, 135.9)); // Abierta
 	d->setPositionClosed(dwe::vec3f(px, py, pz)); // Localización de la puerta CERRADA
+	d->setPositionOpened(dwe::vec3f(px, py, pz));
+	if(f==1 || f==3)
+        d->setRotation(90);
     return d;
 }
 

@@ -26,6 +26,7 @@ class Door: public Entity
         virtual void render();
         virtual void update();
         void setPositionClosed(dwe::vec3f p);
+        void setPositionOpened(dwe::vec3f p);
 
     protected:
 

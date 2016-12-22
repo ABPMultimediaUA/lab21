@@ -207,7 +207,7 @@ namespace dwe
 
 
         void changeEnemyDogTexture(Dog* dog, const io::path& str);
-        Door* createDoor(int f, bool b, float px, float py, float pz);
+        Door* createDoor(int f, bool a, float px, float py, float pz);
         Projectile* createProjectile(vec3f origin, float angle);
         Generator* createGenerator(int i, bool b);
 

@@ -34,6 +34,8 @@
 
 #include "ScenaryElement.h"
 
+#define nEntities 3
+
 
 float angulo;
 
@@ -94,11 +96,18 @@ int main()
     ScenaryElement* wall11 = GEInstance->createWall("media/pared11");wall11->setPosition(dwe::vec3f(170.8, 36.3, 269.6));
     ScenaryElement* wall12 = GEInstance->createWall("media/pared12");wall12->setPosition(dwe::vec3f(43.1,  36.3, 399.8));
 
-    Door *puerta=GEInstance->createDoor(2, true, 43.5, 36.3, 135.9);
-    //puerta->setActive();
-    //puerta->setIsOpening();
+    Entity **entities; // Array de entidades
+    Entity **sector; // Sector no funcional que se le asigna a un generador
+    entities=new Entity*[nEntities];
+    sector=new Entity*[1];
 
-    Generator *generador=GEInstance->createGenerator(0, false);
+    // Puertas
+    entities[0]=GEInstance->createDoor(0, true, 43.5, 36.3, 135.9);
+    entities[1]=GEInstance->createDoor(3, false, 170, 36.3, 0);
+    sector[0]=entities[1];
+    // Generadores
+    entities[2]=GEInstance->createGenerator(0, false);
+    ((Generator*)entities[2])->setSector(sector, 1);
 
     ////////////////////////////////
     // Enemigos
@@ -157,14 +166,14 @@ int main()
 	Sequence *sequence1 = new Sequence;
     Sequence *sequence2 = new Sequence;
 
-
     /**** Tasks ****/
 
-    CheckIfDoorIsOpenTask* checkOpen = new CheckIfDoorIsOpenTask (puerta);
-    ApproachDoorTask* approach = new ApproachDoorTask (enemyHumanoid, puerta);
-	OpenDoorTask* open = new OpenDoorTask (puerta);
-	WalkThroughDoorTask* through = new WalkThroughDoorTask (enemyHumanoid, puerta);
-	CloseDoorTask* close = new CloseDoorTask (puerta);
+    CheckIfDoorIsOpenTask* checkOpen = new CheckIfDoorIsOpenTask ((Door*)entities[0]);
+    ApproachDoorTask* approach = new ApproachDoorTask (enemyHumanoid, (Door*)entities[0]);
+	OpenDoorTask* open = new OpenDoorTask ((Door*)entities[0]);
+	WalkThroughDoorTask* through = new WalkThroughDoorTask (enemyHumanoid, (Door*)entities[0]);
+	CloseDoorTask* close = new CloseDoorTask ((Door*)entities[0]);
+
 
 
     /**** Creating the tree ****/
@@ -235,7 +244,10 @@ int main()
         //Posición actualizada de Irrlicht Player
         mainPlayer->update();
 
-        puerta->update();
+        for(int cont=0; cont<nEntities; cont++)
+        {
+            entities[cont]->update();
+        }
 
         if(projectile!=0)
         {
