@@ -92,6 +92,7 @@ void Player::setAmmo(int numWeapon, int ammount) { m_ammo[numWeapon] = ammount; 
 ////////////
 int Player::getGrenades() { return m_grenades; }
 void Player::setGrenades(int n) { m_grenades = n; }
+int Player::setMKeys(int id){  m_mKeys[0]=id; }
 
 ////////////
 int Player::getLife() { return m_life; }

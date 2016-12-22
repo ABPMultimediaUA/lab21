@@ -213,3 +213,20 @@ void Door::render()
 {
     // dibujar nodo
 }
+
+void Door::setNode(dwe::Node* n)
+{
+    Drawable::setNode(n);
+
+    dwe::vec3f s = n->getBoundingBox();
+    createStaticBody(getPosition(), s.x, s.z);
+}
+
+void Door::setPosition(dwe::vec3f p)
+{
+    int rotation=0;
+    if(facing==1 ||facing ==3)
+        rotation=90;
+    setPosEntity(p, rotation);
+    Drawable::setPosition(p);
+}

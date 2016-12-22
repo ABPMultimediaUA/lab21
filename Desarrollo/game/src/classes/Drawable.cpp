@@ -8,7 +8,11 @@ Drawable::Drawable()
 
 Drawable::~Drawable()
 {
-    m_node->remove();
+    if (m_node)
+    {
+        m_node->remove();
+        m_node = 0;
+    }
 }
 
 
@@ -42,15 +46,18 @@ scene::IAnimatedMeshSceneNode* Drawable::getIAnimNode()
 ///////////////
 void Drawable::removeNode()
 {
-    m_node->remove();
-    delete m_node;
-    m_node = 0;
+    if (m_node)
+    {
+        m_node->remove();
+        delete m_node;
+        m_node = 0;
+    }
 }
 
 ///////////////
 void Drawable::setAnimation(dwe::AnimationType a)
 {
-    if(m_animation != a)
+    if(m_node && m_animation != a)
     {
         m_node->setAnimation(a);
         m_animation = a;

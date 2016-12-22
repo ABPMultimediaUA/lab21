@@ -12,6 +12,7 @@
 #include "Door.h"
 #include "Projectile.h"
 #include "Generator.h"
+#include "MagnetKey.h"
 
 #include "ScenaryElement.h"
 
@@ -336,14 +337,24 @@ Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle)
     return p;
 }
 
-Generator* dwe::GraphicsEngine::createGenerator(int i, bool b)
+Generator* dwe::GraphicsEngine::createGenerator(int i, bool b, float px, float py, float pz)
 {
     scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/generador");
 
     Generator* g = new Generator(i, b);
     g->setNode(new Node(irrnode));
-    g->setPosition(dwe::vec3f(-50, 0, -50));
+    g->setPosition(dwe::vec3f(px, py, pz));
     return g;
+}
+
+MagnetKey* dwe::GraphicsEngine::createMagnetKey(int i, float px, float py, float pz)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/llave");
+
+    MagnetKey* m = new  MagnetKey(i);
+    m->setNode(new Node(irrnode));
+    m->setPosition(dwe::vec3f(px, py, pz));
+    return m;
 }
 
 //////////////////////////

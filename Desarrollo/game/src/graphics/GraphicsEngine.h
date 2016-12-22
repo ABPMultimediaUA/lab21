@@ -29,6 +29,7 @@ class Dog;
 class Door;
 class Projectile;
 class Generator;
+class MagnetKey;
 class ScenaryElement;
 class AppReceiver;
 
@@ -209,7 +210,8 @@ namespace dwe
         void changeEnemyDogTexture(Dog* dog, const io::path& str);
         Door* createDoor(int f, bool a, float px, float py, float pz);
         Projectile* createProjectile(vec3f origin, float angle);
-        Generator* createGenerator(int i, bool b);
+        Generator* createGenerator(int i, bool b, float px, float py, float pz);
+        MagnetKey* createMagnetKey(int i, float px, float py, float pz);
 
     private:
         irr::IrrlichtDevice*            m_device;

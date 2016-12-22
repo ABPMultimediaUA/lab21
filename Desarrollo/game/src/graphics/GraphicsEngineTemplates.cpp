@@ -48,7 +48,11 @@ template<class T>scene::IAnimatedMeshSceneNode* dwe::NodeTemplate<T>::getIAnimNo
 ////////////////
 template<class T>void dwe::NodeTemplate<T>::remove()
 {
-    m_node->remove();
+    if (m_node)
+    {
+        m_node->remove();
+        m_node = 0;
+    }
 }
 
 template<class T>void dwe::NodeTemplate<T>::move(vec3f v)
@@ -57,7 +61,8 @@ template<class T>void dwe::NodeTemplate<T>::move(vec3f v)
     _v.X += v.x;
     _v.Y += v.y;
     _v.Z += v.z;
-    m_node->setPosition(_v);
+    if (m_node)
+        m_node->setPosition(_v);
 }
 
 template<class T>dwe::vec3f dwe::NodeTemplate<T>::getPosition()
@@ -69,41 +74,50 @@ template<class T>dwe::vec3f dwe::NodeTemplate<T>::getPosition()
 template<class T>void dwe::NodeTemplate<T>::setPosition(vec3f v)
 {
     // El vector pasado como vec3f se pasa al vector de tipo irrlicht
-    m_node->setPosition(dwe::dweVector2irr<float>(v));
+    if (m_node)
+        m_node->setPosition(dwe::dweVector2irr<float>(v));
 }
 
 template<class T>dwe::vec3f dwe::NodeTemplate<T>::getRotation()
 {
-    return dwe::irrVector2dwe<float>(m_node->getRotation());
+    if (m_node)
+        return dwe::irrVector2dwe<float>(m_node->getRotation());
+    else
+        return dwe::vec3f(0,0,0);
 }
 
 template<class T>void dwe::NodeTemplate<T>::setRotation(dwe::vec3f v)
 {
-    m_node->setRotation(dwe::dweVector2irr<float>(v));
+    if (m_node)
+        m_node->setRotation(dwe::dweVector2irr<float>(v));
 }
 
 template<class T>dwe::vec3f dwe::NodeTemplate<T>::getBoundingBox()
 {
-    return dwe::irrVector2dwe<float>(m_node->getTransformedBoundingBox().getExtent());
+    if (m_node)
+        return dwe::irrVector2dwe<float>(m_node->getTransformedBoundingBox().getExtent());
+    else
+        return dwe::vec3f(0,0,0);
 }
 
 template<class T>void dwe::NodeTemplate<T>::setAnimation(AnimationType a)
 {
-    switch(a)
-    {
-    case eAnimStand:
-        m_node->setMD2Animation(scene::EMAT_STAND);
-        break;
-    case eAnimRun:
-        m_node->setMD2Animation(scene::EMAT_RUN);
-        break;
-    case eAnimWalk:
-        m_node->setMD2Animation(scene::EMAT_CROUCH_WALK);
-        break;
-    case eAnimAttack:
-        m_node->setMD2Animation(scene::EMAT_ATTACK);
-        break;
-    }
+    if (m_node)
+        switch(a)
+        {
+        case eAnimStand:
+            m_node->setMD2Animation(scene::EMAT_STAND);
+            break;
+        case eAnimRun:
+            m_node->setMD2Animation(scene::EMAT_RUN);
+            break;
+        case eAnimWalk:
+            m_node->setMD2Animation(scene::EMAT_CROUCH_WALK);
+            break;
+        case eAnimAttack:
+            m_node->setMD2Animation(scene::EMAT_ATTACK);
+            break;
+        }
 }
 
 #endif // FACHADEDIREENGINETEMPLATES_H
