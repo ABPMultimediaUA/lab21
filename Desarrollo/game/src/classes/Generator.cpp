@@ -57,3 +57,17 @@ void Generator::update()
         //Hacer ruidos y cosas
     }
 }
+
+void Generator::setNode(dwe::Node* n)
+{
+    Drawable::setNode(n);
+
+    dwe::vec3f s = n->getBoundingBox();
+    createStaticBody(getPosition(), s.x, s.z);
+}
+
+void Generator::setPosition(dwe::vec3f p)
+{
+    setPosEntity(p, getRotation().y);
+    Drawable::setPosition(p);
+}
