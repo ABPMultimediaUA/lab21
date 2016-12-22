@@ -30,6 +30,9 @@ void CharacterController::readEvents()
     else
         speed = _speedRun;
 
+    // insulina
+    if(GEInstance->receiver.isKeyDown(KEY_KEY_9))
+        speed = speed*2;
 
     //Derecha o izquierda
     if(GEInstance->receiver.isKeyDown(KEY_KEY_D))

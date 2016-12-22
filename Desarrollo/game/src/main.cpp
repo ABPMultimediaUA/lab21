@@ -35,12 +35,15 @@
 
 #define nEntities 3
 
+#define camDesvio 50
+#define progresion 1.5f
+
+#define centerScreenX 400
+#define centerScreenY 300
+
 float angulo;
 
-
 dwe::vec3f de2Da3D(int x2d, int y2d, dwe::vec3f r){
-	float centerScreenX = 400;
-	float centerScreenY = 300;
 	dwe::vec3f v(x2d - centerScreenX,y2d - centerScreenY,0);
     dwe::vec3f u(1,0,0);
 
@@ -75,6 +78,12 @@ int main()
     // Creación de jugador
 	Player* mainPlayer = GEInstance->createMainPlayer();
 	mainPlayer->setPosition(dwe::vec3f(120,24,0));
+	mainPlayer->setLife(100);
+	cout << "Barra de vida: " << mainPlayer->getLife() << endl;
+
+    //para la camara, movimiento de descentrar
+    float tarLR = 0;
+    float tarUD = 0;
 
 
     // Creación de escenario
@@ -135,10 +144,21 @@ int main()
 	// Creacion objeto Proyectil
 	Projectile *projectile = 0;
 
+    //Salud
+	dwe::Node* first_aid = GEInstance->createNode("media/First_Aid_Med_Kit/FirstAidMedKit");
+	first_aid->setPosition(dwe::vec3f(400,0,0));
+
+	 //Pistola 1
+	dwe::Node* gun_1 = GEInstance->createNode("media/Gun/Gun"); //ESTAS SON LAS BUENAS
+	gun_1->setPosition(dwe::vec3f(400,10,100));
+
+    //Pistola 2
+	dwe::Node* gun_2 = GEInstance->createNode("media/Gun/Gun");   //ESTAS SON LAS BUENAS
+	gun_2->setPosition(dwe::vec3f(220,10,100));
 
 	//////////////////////////////////////////
     //CAMERA (nodo padre, posición, directión)
-	ICameraSceneNode* camera1 = GEInstance->getSMGR()->addCameraSceneNode(0,  vector3df(0,200,-100), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
+	ICameraSceneNode* camera1 = GEInstance->getSMGR()->addCameraSceneNode(0,  vector3df(0,0,0), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
 	GEInstance->getSMGR()->setActiveCamera(camera1); //Activar cámara
 
     /////////////////////////////////////////////////////////////////////////////////////////////
@@ -236,6 +256,10 @@ int main()
         // comprobamos si dispara
         if(projectile==0 && GEInstance->receiver.isLeftButtonPressed()){
             projectile=GEInstance->createProjectile(mainPlayer->getPosition(), angulo);
+
+            //para probar --- cuando disparo pierdo vida
+            mainPlayer->setLife(mainPlayer->getLife()-10);
+            cout << "CUIDADO!! si disparo pierdo vida. \n Vida actual: " << mainPlayer->getLife() << endl;
         }
 
         //Posición actualizada de Irrlicht Player
@@ -257,32 +281,47 @@ int main()
         }
 
         //update camera target
-        GEInstance->getSMGR()->getActiveCamera()->setTarget(vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
-        //update camera position
-        float getCamPosZ = GEInstance->getSMGR()->getActiveCamera()->getPosition().Z;
-        float setCamPosZ;
-
-        float cameraDist = getCamPosZ - mainPlayer->getPosition().z;
-        cameraDist = fabsf(cameraDist);
-        //cout << "cameraDist: " << cameraDist << endl;
-        if(getCamPosZ>-300.0f){
-            if(cameraDist<100.f){
-                setCamPosZ = mainPlayer->getPosition().z-100;
-            }else if(cameraDist>200.0f){
-                setCamPosZ = mainPlayer->getPosition().z-200;
-            }
+        //Desencuadre horizontal
+        if(GEInstance->receiver.getCursorX()<50){
+            if(tarLR>-camDesvio)
+                tarLR-=progresion;
+        }else if(GEInstance->receiver.getCursorX()>750){
+            if(tarLR<camDesvio)
+                tarLR+=progresion;
         }else{
-            if(cameraDist>200.0f){
-                setCamPosZ = mainPlayer->getPosition().z-200;
-            }
-
-
-            //reajuste... cuando estoy cerca de una pared final encima de la camara
-            if(cameraDist<10.0f){
-                setCamPosZ = mainPlayer->getPosition().z-10;
-            }
+            //Volver a centrar
+            if(tarLR!=0)
+                if(tarLR<0)
+                    tarLR+=progresion;
+                else
+                    tarLR-=progresion;
+            else
+                tarLR = 0;
         }
-        GEInstance->getSMGR()->getActiveCamera()->setPosition(vector3df(mainPlayer->getPosition().x,200,setCamPosZ));
+
+        //Desencuadre vertical
+        if(GEInstance->receiver.getCursorY()<50){
+            if(tarUD<camDesvio)
+                tarUD+=progresion;
+        }else if(GEInstance->receiver.getCursorY()>550){
+            if(tarUD>-camDesvio)
+                tarUD-=progresion;
+        }else{
+            //Volver a centrar
+            if(tarUD!=0)
+                if(tarUD<0)
+                    tarUD+=progresion;
+                else
+                    tarUD-=progresion;
+            else
+                tarUD = 0;
+        }
+
+        GEInstance->getSMGR()->getActiveCamera()->setTarget(vector3df(mainPlayer->getPosition().x+tarLR,mainPlayer->getPosition().y,mainPlayer->getPosition().z+tarUD));
+
+        //update camera position
+        float setCamPosZ = mainPlayer->getPosition().z-100; //editar la posición de la camara en ejeZ
+        GEInstance->getSMGR()->getActiveCamera()->setPosition(vector3df(mainPlayer->getPosition().x+tarLR,250,setCamPosZ+tarUD));
 
         GEInstance->draw();
 

@@ -19,9 +19,9 @@ void Player::update()
     //RECUPERAR VIDA
     int posX = Drawable::getPosition().x;
     int posZ = Drawable::getPosition().z;
-    if( posX > 392 && posX < 408 && posZ > -8 && posZ < 8){
+    if( posX > 390 && posX < 410 && posZ < 10 && posZ > -10 ){
         setLife(100);
-        cout << "Vida recuperada: " << getLife() << endl;
+        cout << "Vida recuperada" << endl;
     }
 }
 
