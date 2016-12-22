@@ -4,7 +4,7 @@
 
 Perception::Perception()
 {
-    following=false;//al principio no te ha detectado y no te sigue
+    following = false;//al principio no te ha detectado y no te sigue
 }
 
 Perception::~Perception()
@@ -24,9 +24,10 @@ void Perception::senses(Player* mainPlayer, Humanoid* enemyHumanoid, dwe::Node* 
                     if((sqrt (pow(enemyHumanoid->getPosition().x-mainPlayer->getPosition().x, 2) + pow(enemyHumanoid->getPosition().z-mainPlayer->getPosition().z, 2)))<=50)//ponemos 20 como distancia de percepcion
                         following=true;//si esta dentro entonces seguimos al prota
                 }
-                /*if(fovnode->getTransformedBoundingBox().intersectsWithBox(dwe::GraphicsEngine::getTransformedBoundingBox(mainPlayer*))){
+                if(fovnode->intersects(mainPlayer->getNode()->getNode())){
+                    cout<<"colision"<<endl;
                     following=true;//aunq vayas en sigilo, si te ve, te persigue
-                }*/
+                }
 
             }
 

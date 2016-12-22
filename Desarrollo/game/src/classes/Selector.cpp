@@ -5,12 +5,11 @@ Selector::Selector()
 {
     numChildren = 0;
     brunning = false;
-    children = new Node*;
 }
 
 Selector::~Selector()
 {
-    delete children;
+    //delete children;
 }
 
 States Selector::run()

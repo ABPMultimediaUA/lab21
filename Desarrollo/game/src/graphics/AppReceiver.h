@@ -14,6 +14,7 @@ class AppReceiver : public IEventReceiver
         bool KeyDown[KEY_KEY_CODES_COUNT];
         int cursorX;
         int cursorY;
+        bool leftButton;
 
     public:
     AppReceiver()
@@ -22,6 +23,7 @@ class AppReceiver : public IEventReceiver
         {
             KeyDown[i] = false;
         }
+        leftButton = false;
         //return 0;
     }
 
@@ -29,22 +31,28 @@ class AppReceiver : public IEventReceiver
     {
         switch(event.EventType)
         {
-        case irr::EET_KEY_INPUT_EVENT:
-        {
-            KeyDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
-            break;
-        }
-        case irr::EET_MOUSE_INPUT_EVENT:
-        {
-            if (event.MouseInput.Event == EMIE_MOUSE_MOVED )
-            {
-                cursorX = event.MouseInput.X;
-                cursorY = event.MouseInput.Y;
-            }
-            break;
-        }
-        default:
-            break;
+            case irr::EET_KEY_INPUT_EVENT:
+                KeyDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
+                break;
+            case irr::EET_MOUSE_INPUT_EVENT:
+                switch(event.MouseInput.Event)
+                {
+                    case EMIE_MOUSE_MOVED:
+                        cursorX = event.MouseInput.X;
+                        cursorY = event.MouseInput.Y;
+                        break;
+                    case EMIE_LMOUSE_PRESSED_DOWN:
+                        leftButton = true;
+                        break;
+                    case EMIE_LMOUSE_LEFT_UP:
+                        leftButton = false;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
         }
         return false;
     }
@@ -57,6 +65,7 @@ class AppReceiver : public IEventReceiver
 
     virtual float getCursorX(){return(cursorX);}
     virtual float getCursorY(){return(cursorY);}
+    virtual bool isLeftButtonPressed(){return leftButton;}
 };
 
 #endif // APPRECEIVER_H

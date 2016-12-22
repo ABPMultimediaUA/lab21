@@ -3,43 +3,74 @@
 
 using namespace std;
 
-Door::Door( float i, float j,  float u, int f, bool a)
+Door::Door(int f, bool a)
 {
-    x = i;
-    y = j;
-    z = u;
+    x = 0;
+    y = 0;
+    z = 0;
     facing = f;
     speed = 0.1;
-
-
-    // Los valores de la variable op deben ser modificados
-    if(facing == 0)
-    {
-        op = x + 7;
-        cl = x;
-    }
-
-    else if(facing == 1)
-    {
-        op=z+7;
-        cl = z;
-    }
-
-    else if(facing == 2)
-    {
-        op=x-7;
-        cl = x+7;
-    }
-
-    else if(facing == 3)
-    {
-        op=z+7;
-        cl = z;
-    }
-
     active = a;
-    isOpening = false;
     isOpened = false;
+
+    if (!isOpened) // Puerta inicialmente cerrada
+    {
+        // Los valores de la variable op deben ser modificados
+        if(facing == 0)
+        {
+            op = x + 7;
+            cl = x;
+        }
+
+        else if(facing == 1)
+        {
+            op=z+7;
+            cl = z;
+        }
+
+        else if(facing == 2)
+        {
+            op = x - 7;
+            cl = x;
+        }
+
+        else if(facing == 3)
+        {
+            op= z - 7;
+            cl = z;
+        }
+    }
+    else // Puerta inicialmente abierta
+    {
+        // Los valores de la variable op deben ser modificados
+        if(facing == 0)
+        {
+            op = x ;
+            cl = x - 7;
+        }
+
+        else if(facing == 1)
+        {
+            op = z;
+            cl = z - 7;
+        }
+
+        else if(facing == 2)
+        {
+            op = x;
+            cl = x + 7;
+        }
+
+        else if(facing == 3)
+        {
+            op = z;
+            cl = z + 7;
+        }
+    }
+
+
+
+    isOpening = false;
     isClosing = false;
 }
 

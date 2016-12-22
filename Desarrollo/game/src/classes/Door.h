@@ -13,7 +13,7 @@ memoria y que el juego sea mas eficiente.
 class Door: public Entity
 {
     public:
-        Door(float i, float j, float u, int f, bool a);
+        Door(int f, bool a);
         virtual ~Door();
         virtual void setActive();
         void openDoor(); // Llamado desde sector

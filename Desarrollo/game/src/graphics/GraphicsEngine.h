@@ -28,6 +28,7 @@ class Humanoid;
 class Dog;
 class Door;
 class Projectile;
+class Generator;
 class ScenaryElement;
 class AppReceiver;
 
@@ -147,6 +148,9 @@ namespace dwe
             vec3f getTransformedBoundingBox();
             void setTransformedBoundingBox(vec3f v);
 
+            bool intersects(scene::IAnimatedMeshSceneNode* n);
+            T* getNode();
+
             /***/ // TODO: ¿se puede quitar? No se puede poner algo así en la fachada
             void setIAnimNode (scene::IAnimatedMeshSceneNode* n);
             scene::IAnimatedMeshSceneNode* getIAnimNode();
@@ -203,8 +207,9 @@ namespace dwe
 
 
         void changeEnemyDogTexture(Dog* dog, const io::path& str);
-        Door* createDoor();
-        Projectile* createProjectile(int* origin, float angle);
+        Door* createDoor(int f, bool b, float px, float py, float pz);
+        Projectile* createProjectile(vec3f origin, float angle);
+        Generator* createGenerator(int i, bool b);
 
     private:
         irr::IrrlichtDevice*            m_device;

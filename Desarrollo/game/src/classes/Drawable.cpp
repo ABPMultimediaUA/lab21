@@ -8,7 +8,7 @@ Drawable::Drawable()
 
 Drawable::~Drawable()
 {
-    //dtor
+    m_node->remove();
 }
 
 
@@ -28,7 +28,7 @@ void Drawable::setRotation(dwe::vec3f r) { m_node->setRotation(r); }
 void Drawable::setNode(dwe::Node* n) { m_node = n; }
 dwe::Node* Drawable::getNode() { return m_node; }
 
-/**/
+//////////////
 void Drawable::setIAnimNode (scene::IAnimatedMeshSceneNode* n)
 {
     ianim_node = n;
@@ -38,7 +38,7 @@ scene::IAnimatedMeshSceneNode* Drawable::getIAnimNode()
 {
     return ianim_node;
 }
-/**/
+
 ///////////////
 void Drawable::removeNode()
 {

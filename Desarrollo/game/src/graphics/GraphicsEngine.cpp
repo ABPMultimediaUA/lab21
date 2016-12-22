@@ -11,6 +11,7 @@
 
 #include "Door.h"
 #include "Projectile.h"
+#include "Generator.h"
 
 #include "ScenaryElement.h"
 
@@ -216,9 +217,6 @@ Player* dwe::GraphicsEngine::createMainPlayer()
     return p;
 }
 
-/*bool dwe::GraphicsEngine::intersectsWithBox(vec3f v, vec3f w){
-    return (v.intersectsWithBox(w));
-}*/
 
 
 /////////////////////////////////
@@ -308,25 +306,43 @@ void dwe::GraphicsEngine::changeEnemyDogTexture(Dog* dog,const io::path& text)
 
 }
 
-Door* dwe::GraphicsEngine::createDoor()
+Door* dwe::GraphicsEngine::createDoor(int f, bool b, float px, float py, float pz)
 {
-    Node* node=createNode("media/puerta");
-	//Door* d = new Door(43.5,36.3,135.9,2,false);
-    Door* d = new Door(0,0,0,2,false);
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/puerta");
 
-	d->setNode(node);
-	d->setPosition(dwe::vec3f(43.5, 36.3, 135.9));
-	d->setPositionClosed(dwe::vec3f(43.5, 36.3, 135.9));
+    Door* d = new Door(f, b);// ultimo bool: abierta true, cerrada false
+
+	d->setNode(new Node(irrnode));
+    d->setPosition(dwe::vec3f(px, py, pz)); // Cerrada
+	//d->setPosition(dwe::vec3f(43.5-70, 36.3, 135.9)); // Abierta
+	d->setPositionClosed(dwe::vec3f(px, py, pz)); // Localización de la puerta CERRADA
     return d;
 }
 
-Projectile* dwe::GraphicsEngine::createProjectile(int* origin, float angle)
+Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle)
 {
-    Node* node=createNode("media/proyectil");
+    /*Node* node=createNode("media/proyectil");
 	Projectile* p = new Projectile(origin, angle);
 	p->setNode(node);
 	p->setPosition(dwe::vec3f(origin[0],0,origin[1]));
+    return p;*/
+
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/proyectil");
+
+    Projectile* p = new Projectile(origin, angle);
+    p->setNode(new Node(irrnode));
+    p->setPosition(origin);
     return p;
+}
+
+Generator* dwe::GraphicsEngine::createGenerator(int i, bool b)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/generador");
+
+    Generator* g = new Generator(i, b);
+    g->setNode(new Node(irrnode));
+    g->setPosition(dwe::vec3f(-50, 0, -50));
+    return g;
 }
 
 //////////////////////////
