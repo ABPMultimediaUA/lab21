@@ -12,64 +12,8 @@ Door::Door(int f, bool a)
     speed = 0.1;
     active = a;
     isOpened = false;
-
-    if (!isOpened) // Puerta inicialmente cerrada
-    {
-        // Los valores de la variable op deben ser modificados
-        if(facing == 0)
-        {
-            op = x + 7;
-            cl = x;
-        }
-
-        else if(facing == 1)
-        {
-            op=z+7;
-            cl = z;
-        }
-
-        else if(facing == 2)
-        {
-            op = x - 7;
-            cl = x;
-        }
-
-        else if(facing == 3)
-        {
-            op= z - 7;
-            cl = z;
-        }
-    }
-    else // Puerta inicialmente abierta
-    {
-        // Los valores de la variable op deben ser modificados
-        if(facing == 0)
-        {
-            op = x ;
-            cl = x - 7;
-        }
-
-        else if(facing == 1)
-        {
-            op = z;
-            cl = z - 7;
-        }
-
-        else if(facing == 2)
-        {
-            op = x;
-            cl = x + 7;
-        }
-
-        else if(facing == 3)
-        {
-            op = z;
-            cl = z + 7;
-        }
-    }
-
-
-
+    op=0;
+    cl=0;
     isOpening = false;
     isClosing = false;
 }
@@ -91,11 +35,26 @@ void Door::setPositionClosed(dwe::vec3f p)
 {
 
      if (facing == 0 || facing == 2)
-        cl = p.x;
+     {
+         cl = p.x;
+     }
      else
-        cl = p.z;
+     {
+         cl = p.z;
+     }
 }
 
+void Door::setPositionOpened(dwe::vec3f p)
+{
+    if(facing==0)
+        op=p.x+50.5;
+    else if(facing==1)
+        op=p.z+50.5;
+    else if(facing==2)
+        op=p.x-50.5;
+    else if(facing==3)
+        op=p.z-50.5;
+}
 void Door::openDoor()
 {
     // Utilizar el get position de drawable
@@ -253,4 +212,21 @@ void Door::update()
 void Door::render()
 {
     // dibujar nodo
+}
+
+void Door::setNode(dwe::Node* n)
+{
+    Drawable::setNode(n);
+
+    dwe::vec3f s = n->getBoundingBox();
+    createStaticBody(getPosition(), s.x, s.z);
+}
+
+void Door::setPosition(dwe::vec3f p)
+{
+    int rotation=0;
+    if(facing==1 ||facing ==3)
+        rotation=90;
+    setPosEntity(p, rotation);
+    Drawable::setPosition(p);
 }
