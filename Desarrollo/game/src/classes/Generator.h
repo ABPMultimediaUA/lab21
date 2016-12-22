@@ -2,13 +2,14 @@
 #define GENERATOR_H
 #include "Entity.h"
 #include "Door.h"
+#include "EntityPhysics.h"
 
 /******************************************************************************
 Los generadores se encargan de suministrar energia a las luces y puertas de
 una zona que se encuentre desactivada.
 *******************************************************************************/
 
-class Generator: public Entity
+class Generator: public Entity, public EntityPhysics
 {
     public:
         Generator(int n, bool b);
@@ -17,6 +18,9 @@ class Generator: public Entity
         void activateGenerator(); // Activa generador
         virtual void render();
         virtual void update();
+
+        virtual void setNode(dwe::Node* n);
+        virtual void setPosition(dwe::vec3f p);
 
     protected:
 

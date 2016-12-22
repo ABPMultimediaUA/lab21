@@ -17,6 +17,7 @@
 #include "Door.h"
 #include "Projectile.h"
 #include "Generator.h"
+#include "MagnetKey.h"
 
 #include "Selector.h"
 #include "Sequence.h"
@@ -105,9 +106,13 @@ int main()
     entities[0]=GEInstance->createDoor(0, true, 43.5, 36.3, 135.9);
     entities[1]=GEInstance->createDoor(3, false, 170, 36.3, 0);
     sector[0]=entities[1];
+
     // Generadores
-    entities[2]=GEInstance->createGenerator(0, false);
+    entities[2]=GEInstance->createGenerator(0, false, -50, 0, -50);
     ((Generator*)entities[2])->setSector(sector, 1);
+
+    //Llaves
+    MagnetKey *llave=GEInstance->createMagnetKey(0, 50, 0, 350);
 
     ////////////////////////////////
     // Enemigos
