@@ -107,12 +107,15 @@ int main()
     entities[1]=GEInstance->createDoor(3, false, 170, 36.3, 0);
     sector[0]=entities[1];
 
+    //((Door*)entities[0])->setIsOpening();
+
     // Generadores
     entities[2]=GEInstance->createGenerator(0, false, -50, 0, -50);
     ((Generator*)entities[2])->setSector(sector, 1);
 
     //Llaves
     MagnetKey *llave=GEInstance->createMagnetKey(0, 50, 0, 350);
+    bool llaveCogida=false;
 
     ////////////////////////////////
     // Enemigos
@@ -180,7 +183,6 @@ int main()
 	CloseDoorTask* close = new CloseDoorTask ((Door*)entities[0]);
 
 
-
     /**** Creating the tree ****/
 
     selector1->addChild(sequence1);
@@ -223,9 +225,7 @@ int main()
         //prototipo de disparo
         //if(GEInstance->receiver.isKeyDown(KEY_KEY_F)){danyo=true;}//ponemos el bool de danyo en el npc a true
 
-
         mainPlayer->readEvents();
-
 
         //Calcular rotacion player - con MOUSE
         if(GEInstance->receiver.getCursorX()>=0 && GEInstance->receiver.getCursorY()>=0){
@@ -292,6 +292,18 @@ int main()
         GEInstance->getSMGR()->getActiveCamera()->setPosition(vector3df(mainPlayer->getPosition().x,200,setCamPosZ));
 
         GEInstance->draw();
+
+
+        // Coger la llave
+        if(!llaveCogida)
+        {
+            if(mainPlayer->getNode()->intersects(llave->getNode()->getNode()))
+            {
+                llaveCogida=true;
+                mainPlayer->setMKeys(llave->getId());
+                delete llave;
+            }
+        }
 
         //llamamos a percepcion
         percep->senses(mainPlayer,enemyHumanoid,fovnode,num);

@@ -17,7 +17,6 @@ class MagnetKey: public Entity
 
     private:
         int id;
-        bool onPlayer;
 };
 
 #endif // MAGNETKEY_H

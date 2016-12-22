@@ -3,7 +3,6 @@
 MagnetKey::MagnetKey(int i)
 {
     id=i;
-    onPlayer=false;
 }
 
 MagnetKey::~MagnetKey()

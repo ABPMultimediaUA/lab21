@@ -28,6 +28,7 @@ class Player : public CharacterController, public EntityPhysics
         void setAmmo(int numWeapon, int ammount);
         int getGrenades();
         void setGrenades(int n);
+        int setMKeys(int id);
 
         virtual const char* getNetObjectID() const;
         virtual void setPosition(dwe::vec3f p);
@@ -40,6 +41,7 @@ class Player : public CharacterController, public EntityPhysics
         int         m_ammo[NUM_WEAPONS];
         Firearm*    m_weapons[NUM_WEAPONS];
         int         m_grenades;
+        int         m_mKeys[1];
 };
 
 #endif // PLAYER_H
