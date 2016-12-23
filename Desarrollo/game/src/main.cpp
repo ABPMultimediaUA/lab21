@@ -37,33 +37,10 @@
 #include "EntityPhysics.h"
 #include "ScenaryElement.h"
 
-#define nEntities 3
+#define NUM_ENTITIES 3
 
-#define camDesvio 50
-#define progresion 1.5f
-
-#define centerScreenX 400
-#define centerScreenY 300
-
-float angulo;
-
-dwe::vec3f de2Da3D(int x2d, int y2d, dwe::vec3f r){
-	dwe::vec3f v(x2d - centerScreenX,y2d - centerScreenY,0);
-    dwe::vec3f u(1,0,0);
-
-	float numerador     = (u.x*v.x) + (u.y*v.y);
-	float denominador   = sqrt( pow(u.x,2) + pow(u.y,2) ) * sqrt( pow(v.x,2) + pow(v.y,2) );
-	angulo = acos(numerador/denominador) * (180/M_PI);
-
-	if(y2d<centerScreenY){
-        r.y = -angulo;
-	}else{
-        r.y = angulo;
-        angulo=-angulo;
-    }
-
-    return(r);
-}
+#define CAMERA_DESVIATION   50
+#define CAMERA_PROGRESSION  0.5f
 
 
 
@@ -72,16 +49,14 @@ dwe::vec3f de2Da3D(int x2d, int y2d, dwe::vec3f r){
 ///////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
-    // Inicializar motor gráfico
-	GEInstance->init();
+    NetInstance->open();  // Inicializar motor de red
 
-	// Inicializar motor de red
-    NetInstance->open();
+	GEInstance->init();  // Inicializar motor gráfico
 
 
     // Creación de jugador
 	Player* mainPlayer = GEInstance->createMainPlayer();
-	mainPlayer->setPosition(dwe::vec3f(120,24,0));
+	mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,-80));
 	mainPlayer->setLife(100);
 	cout << "Barra de vida: " << mainPlayer->getLife() << endl;
 
@@ -110,7 +85,7 @@ int main()
     Entity **entities; // Array de entidades
     Entity **sector; // Sector no funcional que se le asigna a un generador
     Trigger **triggers; // Triggers
-    entities=new Entity*[nEntities];
+    entities=new Entity*[NUM_ENTITIES];
     sector=new Entity*[1];
     triggers=new Trigger*[3];
 
@@ -119,7 +94,6 @@ int main()
     entities[1]=GEInstance->createDoor(3, false, 170, 0, 0); // false
     sector[0]=entities[1];
 
-    //((Door*)entities[0])->setIsOpening();
 
     // Generadores
     entities[2]=GEInstance->createGenerator(0, false, -50, 0, -50); // false
@@ -134,20 +108,19 @@ int main()
     triggers[1]=GEInstance->createTrigger(0, 170, 0, 0);
     triggers[2]=GEInstance->createTrigger(1, -50, 0, -50);
 
+
     ////////////////////////////////
     // Enemigos
     ////////////////////////////////
+
     // Creación de enemigo Humanoide
 	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
-	//enemyHumanoid->setPosition(dwe::vec3f(-70,24,0));
 	enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
 	enemyHumanoid->setRotation(dwe::vec3f(0, 270.f, 0));
-
 
 	// Creación de enemigo Dog
 	Dog* enemyDog = GEInstance->createEnemyDog();
 	enemyDog->setPosition(dwe::vec3f(-50,-170,100)); // No está centrado :(
-	//enemyDog->setPosition(dwe::vec3f(0,-300,-40));
 
 
 
@@ -187,14 +160,6 @@ int main()
     //CAMERA (nodo padre, posición, directión)
 	ICameraSceneNode* camera1 = GEInstance->getSMGR()->addCameraSceneNode(0,  vector3df(0,0,0), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
 	GEInstance->getSMGR()->setActiveCamera(camera1); //Activar cámara
-
-    /////////////////////////////////////////////////////////////////////////////////////////////
-    ITimer* timer = GEInstance->getDevice()->getTimer(); //METIDO DEL DEBUG DRAW DE BOX2D...
-
-    f32 timeStamp = timer->getTime();
-    f32 deltaTime = timer->getTime() - timeStamp;
-    //TIEMPO
-    /////////////////////////////////////////////////////////////////////////////////////////////
 
 
     //Creación de objeto perception
@@ -239,11 +204,32 @@ int main()
 
     //////////////////////////////////////////////////////////////////
 
-    //rmm Cheat: la primera vez que creo el projectile va muy lento
-    projectile=GEInstance->createProjectile(mainPlayer->getPosition(), angulo);
+    //rmm Cheat: la primera vez que creo el projectile va muy lento, no se pq
+    projectile=GEInstance->createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().x);
     delete projectile;
     projectile = 0;
     //rmmEnd
+
+
+
+    // Esperamos conexion de los demas jugadores
+    if (NetInstance->isMultiplayer())
+    {
+        GEInstance->getSMGR()->getActiveCamera()->setTarget(vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
+        GEInstance->getSMGR()->getActiveCamera()->setPosition(vector3df(mainPlayer->getPosition().x,250,mainPlayer->getPosition().z-100));
+
+        while (GEInstance->isRunning() && !GEInstance->receiver.isKeyDown(KEY_RETURN))
+        {
+            GEInstance->draw();
+            NetInstance->update();
+        }
+    }
+
+
+
+    ITimer* timer = GEInstance->getDevice()->getTimer();
+    float timeStamp = timer->getTime();
+    float deltaTime = timer->getTime() - timeStamp;
 
 	while(GEInstance->isRunning())
 	{
@@ -253,23 +239,11 @@ int main()
             return 0;
         }
 
-        // Run Behavior Tree
-        selector1->run();
-        //fovnode->setPosition(enemyHumanoid->getPosition());
+        deltaTime = timer->getTime()-timeStamp; timeStamp=timer->getTime();
 
+        selector1->run();  // Run Behavior Tree
 
-        //prototipo de disparo
-        //if(GEInstance->receiver.isKeyDown(KEY_KEY_F)){danyo=true;}//ponemos el bool de danyo en el npc a true
-
-        mainPlayer->readEvents();
-
-        //Calcular rotacion player - con MOUSE
-        if(GEInstance->receiver.getCursorX()>=0 && GEInstance->receiver.getCursorY()>=0){
-            mainPlayer->setRotation(
-                de2Da3D(GEInstance->receiver.getCursorX(),
-                        GEInstance->receiver.getCursorY(),
-                        mainPlayer->getRotation()));
-        }
+        mainPlayer->readEvents();  // Read keyboard and mouse inputs for de player
 
         //GET GUN 1
         if(!haveGun1){
@@ -292,28 +266,26 @@ int main()
         }
 
         // Actualizamos físicas box2d
-        deltaTime = timer->getTime()-timeStamp; timeStamp=timer->getTime();
         World->step(deltaTime);
         World->clearForces();
 
+
         // comprobamos si dispara
         if(projectile==0 && GEInstance->receiver.isLeftButtonPressed()){
-            projectile=GEInstance->createProjectile(mainPlayer->getPosition(), angulo);
+            projectile=GEInstance->createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().y);
 
             //para probar --- cuando disparo pierdo vida
             mainPlayer->setLife(mainPlayer->getLife()-10);
             cout << "CUIDADO!! si disparo pierdo vida. \n Vida actual: " << mainPlayer->getLife() << endl;
         }
 
-        //Posición actualizada de Irrlicht Player
-        mainPlayer->update();
+
+        mainPlayer->update(); //Posición actualizada de Irrlicht Player
 
 
-        // Entities update
-        for(int cont=0; cont<nEntities; cont++)
-        {
+        for(int cont=0; cont<NUM_ENTITIES; cont++)
             entities[cont]->update();
-        }
+
 
         if(projectile!=0)
         {
@@ -328,36 +300,36 @@ int main()
         //update camera target
         //Desencuadre horizontal
         if(GEInstance->receiver.getCursorX()<50){
-            if(tarLR>-camDesvio)
-                tarLR-=progresion;
+            if(tarLR>-CAMERA_DESVIATION)
+                tarLR-=CAMERA_PROGRESSION;
         }else if(GEInstance->receiver.getCursorX()>750){
-            if(tarLR<camDesvio)
-                tarLR+=progresion;
+            if(tarLR<CAMERA_DESVIATION)
+                tarLR+=CAMERA_PROGRESSION;
         }else{
             //Volver a centrar
             if(tarLR!=0)
                 if(tarLR<0)
-                    tarLR+=progresion;
+                    tarLR+=CAMERA_PROGRESSION;
                 else
-                    tarLR-=progresion;
+                    tarLR-=CAMERA_PROGRESSION;
             else
                 tarLR = 0;
         }
 
         //Desencuadre vertical
         if(GEInstance->receiver.getCursorY()<50){
-            if(tarUD<camDesvio)
-                tarUD+=progresion;
+            if(tarUD<CAMERA_DESVIATION)
+                tarUD+=CAMERA_PROGRESSION;
         }else if(GEInstance->receiver.getCursorY()>550){
-            if(tarUD>-camDesvio)
-                tarUD-=progresion;
+            if(tarUD>-CAMERA_DESVIATION)
+                tarUD-=CAMERA_PROGRESSION;
         }else{
             //Volver a centrar
             if(tarUD!=0)
                 if(tarUD<0)
-                    tarUD+=progresion;
+                    tarUD+=CAMERA_PROGRESSION;
                 else
-                    tarUD-=progresion;
+                    tarUD-=CAMERA_PROGRESSION;
             else
                 tarUD = 0;
         }
@@ -419,8 +391,7 @@ int main()
             }
         }
 
-        //llamamos a percepcion
-        percep->senses(mainPlayer,enemyHumanoid,fovnode,num);
+        percep->senses(mainPlayer,enemyHumanoid,fovnode,num);  //llamamos a percepcion
 
         NetInstance->update();
 	}

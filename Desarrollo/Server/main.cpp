@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "BitStream.h"
 #include "RakPeerInterface.h"
 #include "RakSleep.h"
 #include "Kbhit.h"
@@ -21,12 +22,17 @@
 #include "RakNetStatistics.h"
 #include "RelayPlugin.h"
 
+
 //#define VERBOSE_LOGGING
 
 using namespace RakNet;
 
 static int DEFAULT_RAKPEER_PORT=61111;
 
+enum GameMessages
+{
+    ID_GAME_PARTICIPANT_ORDER = ID_USER_PACKET_ENUM+1
+};
 
 ///////////////////////////
 ///////////////////////////
@@ -86,8 +92,19 @@ int main(int argc, char **argv)
             switch (packet->data[0])
             {
             case ID_NEW_INCOMING_CONNECTION:
-                cloudServerHelper.OnConnectionCountChange(rakPeer, cloudClient);
-                break;
+                {
+                    cloudServerHelper.OnConnectionCountChange(rakPeer, cloudClient);
+
+                    unsigned short num;
+                    rakPeer->GetConnectionList(0, &num);
+
+                    // Envio el num de participante
+                    RakNet::BitStream bsOut;
+                    bsOut.Write((RakNet::MessageID)ID_GAME_PARTICIPANT_ORDER);
+                    bsOut.Write(num);
+                    rakPeer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, false);
+                    break;
+                }
             case ID_CONNECTION_LOST:
             case ID_DISCONNECTION_NOTIFICATION:
                 cloudServerHelper.OnConnectionCountChange(rakPeer, cloudClient);

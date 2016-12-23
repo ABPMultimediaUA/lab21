@@ -1,13 +1,20 @@
 #include "NetGame.h"
 #include "MessageIdentifiers.h"
 #include "GraphicsEngine.h"
+
 #include <iostream>
+#include <unistd.h>  //para sleep
 
 #include "DrawableReplica.h"
 #include "Player.h"
 #include "PlayerMate.h"
 
 using namespace dwn;
+
+enum GameMessages
+{
+    ID_GAME_PARTICIPANT_ORDER = ID_USER_PACKET_ENUM+1
+};
 
 dwn::NetGame::NetGame()
 {
@@ -28,6 +35,31 @@ dwn::NetGame::~NetGame()
 //////////////
 void dwn::NetGame::open()
 {
+    m_connected = false;
+    m_connectionFailed = false;
+    m_participantOrder = 0;
+
+    // Preguntamos por los parametros de la red
+    cout << "//////////////////////////////////////////////\n";
+    cout << "// Lab21\n";
+    cout << "//////////////////////////////////////////////\n";
+    cout << "// Selecciona tipo de partida y pulsa intro:\n";
+    std::string type;
+    cout << "// un solo jugador(1) o multijugador (2) [2 por defecto]: ";
+    getline(cin, type);
+    if (type!="1") type="2";
+
+    m_multiplayer = (type=="2");
+    std::string dirIP;
+
+    if (m_multiplayer)
+    {
+        cout << "// Escribe la dirección IP del servidor [127.0.0.1 por defecto]: ";
+        getline(cin, dirIP);
+        if (dirIP =="") dirIP = "127.0.0.1";
+    }
+
+
     // RakPeerInterface es la base de RakNet para comunicaciones UDP
 	rakPeer=RakNet::RakPeerInterface::GetInstance();
 
@@ -38,8 +70,11 @@ void dwn::NetGame::open()
 		sd.port++;
 
 	// StartupResult solo sirve para hacer el assert y comprobar que ha ido bien
-	RakNet::StartupResult sr = rakPeer->Startup(_max_players+1,&sd,1);// +1 is for the connection to the NAT punchthrough server
-	RakAssert(sr==RakNet::RAKNET_STARTED);
+	if (m_multiplayer)
+    {
+        RakNet::StartupResult sr = rakPeer->Startup(_max_players+1,&sd,1);// +1 is for the connection to the NAT punchthrough server
+        RakAssert(sr==RakNet::RAKNET_STARTED);
+    }
 
 	// Configuraciones de RakPeerInterface
 	rakPeer->SetMaximumIncomingConnections(_max_players);
@@ -77,8 +112,31 @@ void dwn::NetGame::open()
 
 
 	// Connect to the NAT punchthrough server
-	RakNet::ConnectionAttemptResult car = rakPeer->Connect(DEFAULT_IP, DEFAULT_PT,0,0);
-	RakAssert(car==RakNet::CONNECTION_ATTEMPT_STARTED);
+	if (m_multiplayer)
+    {
+        //RakNet::ConnectionAttemptResult car = rakPeer->Connect(DEFAULT_IP, DEFAULT_PT,0,0);
+        RakNet::ConnectionAttemptResult car = rakPeer->Connect(dirIP.c_str(), DEFAULT_PT,0,0);
+        RakAssert(car==RakNet::CONNECTION_ATTEMPT_STARTED);
+    }
+
+
+    // Esperamos a conectar
+    if (m_multiplayer)
+    {
+        cout << "\nConectando.";
+        while (!m_connected && !m_connectionFailed)
+        {
+            usleep(40000);
+            cout << ".";
+            update();
+        }
+    }
+    if (m_connectionFailed)
+    {
+        cout << "No se encuentra el servidor " << dirIP << ", se inicia el juego en modo 1 jugador.\n";
+        cout << "Presione intro para continuar. ";
+        getchar();
+    }
 }
 
 //////////////
@@ -86,6 +144,7 @@ void NetGame::close()
 {
     rakPeer->Shutdown(100,0);
 	RakNet::RakPeerInterface::DestroyInstance(rakPeer);
+	m_connected = false;
 	delete networkIDManager;
 	delete replicaManager3;
 	delete natPunchthroughClient;
@@ -179,9 +238,10 @@ void dwn::NetGame::update()
                 DataStructures::List<RakNet::RakNetGUID> systemsAccepted;
                 bool thisSystemAccepted;
                 fullyConnectedMesh2->GetVerifiedJoinAcceptedAdditionalData(packet, &thisSystemAccepted, systemsAccepted, 0);
-                if (thisSystemAccepted)
+                if (thisSystemAccepted){
                     PushMessage("Game join request accepted\n");
-                else
+                    m_connected = true;
+                }else
                     PushMessage(RakNet::RakString("System %s joined the mesh\n", systemsAccepted[0].ToString()));
 
                 for (unsigned int i=0; i < systemsAccepted.Size(); i++)
@@ -232,7 +292,8 @@ void dwn::NetGame::update()
 			break;
 
 		case ID_CONNECTION_ATTEMPT_FAILED:
-            PushMessage(RakNet::RakString("Connection attempt to ") + targetName + RakNet::RakString(" failed."));
+            PushMessage(RakNet::RakString("\nConnection attempt to ") + targetName + RakNet::RakString(" failed."));
+            m_connectionFailed = true;
             if (packet->systemAddress==facilitatorSystemAddress)
                 PushMessage("Multiplayer will not work without the NAT punchthrough server!");
 			break;
@@ -275,6 +336,17 @@ void dwn::NetGame::update()
 				RakAssert(car==RakNet::CONNECTION_ATTEMPT_STARTED);
 			}
 			break;
+
+        case ID_GAME_PARTICIPANT_ORDER:
+            {
+				RakNet::BitStream bsIn(packet->data,packet->length,false);
+				bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+
+				bsIn.Read(m_participantOrder);
+                m_connected = true;
+                break;
+            }
+
 		}
 	}
 
@@ -282,6 +354,30 @@ void dwn::NetGame::update()
 	unsigned int idx;
 	for (idx=0; idx < replicaManager3->GetReplicaCount(); idx++)
 		((DrawableReplica*)(replicaManager3->GetReplicaAtIndex(idx)))->update(curTime);;
+}
+
+//////////////
+bool NetGame::isMultiplayer()
+{
+    return m_multiplayer;
+}
+
+//////////////
+bool NetGame::isConnected()
+{
+    return m_connected;
+}
+
+//////////////
+bool NetGame::connectionFailed()
+{
+    return m_connectionFailed;
+}
+
+////////////////////////
+unsigned short NetGame::getParticipantOrder()
+{
+    return m_participantOrder;
 }
 
 //////////////

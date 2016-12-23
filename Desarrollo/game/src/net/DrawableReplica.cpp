@@ -22,7 +22,6 @@ void dwn::DrawableReplica::WriteAllocationID(RakNet::Connection_RM3* destination
 ///////////////////////////
 void dwn::DrawableReplica::SerializeConstruction(RakNet::BitStream* constructionBitstream, RakNet::Connection_RM3* destinationConnection)
 {
-    std::cout << "Envio " << getPosition().x << " " << getPosition().y << "\n";
 	constructionBitstream->Write(getPosition());
 	constructionBitstream->Write(getRotation());
 }
