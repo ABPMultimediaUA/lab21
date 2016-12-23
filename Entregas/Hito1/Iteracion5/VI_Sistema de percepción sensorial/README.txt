@@ -12,6 +12,8 @@ Once the enemy has detected you, he will follow you every way with a pathplannin
 
 To exemplify there is a video in the same repository.
 
+You can see the system better in the prototype: ..\GitHub\lab21/Entregas/Hito1/Iteracion4/Perception_.zip
+
 
 ------------
 Sergio Huertas
