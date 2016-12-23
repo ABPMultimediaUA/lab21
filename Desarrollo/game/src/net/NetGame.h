@@ -39,6 +39,11 @@ namespace dwn
 
             static bool isConnectedToNATPunchthroughServer;
 
+            bool isMultiplayer();
+            bool isConnected();
+            bool connectionFailed();
+            unsigned short getParticipantOrder();
+
         protected:
 
         private:
@@ -46,6 +51,11 @@ namespace dwn
             static const int                _max_players        = 32;
             static const unsigned short     _tcp_port           = 0;
             static const RakNet::TimeMS     _udp_sleep_timer    = 30;
+
+            bool m_multiplayer;
+            bool m_connected;
+            bool m_connectionFailed;
+            unsigned short m_participantOrder;
 
 
             ///////////////////////////////////////////

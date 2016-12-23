@@ -18,7 +18,7 @@ Projectile::Projectile(dwe::vec3f origin, float a)
 
     position = origin;
     speed=55.f;
-    angle=a*M_PI/180;
+    angle = -a*M_PI/180;
     collides=false;
     //contador = 0;
 }
@@ -76,7 +76,7 @@ void Projectile::setNode(dwe::Node* n)
     setPosEntity(dwe::vec3f(position.x+cos(angle)*25.f,0,position.z+sin(angle)*25.f), angle);
     setVelocity(dwe::vec3f(speed*cos(angle), 0, speed*sin(angle)));
     update();
-    cout << "Velocidad x: " << speed*cos(angle) << " - Velocidad z: " << speed*sin(angle) << "\n";
+    //cout << "Velocidad x: " << speed*cos(angle) << " - Velocidad z: " << speed*sin(angle) << "\n";
 }
 
 //rmm////////////
