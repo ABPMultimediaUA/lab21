@@ -1,6 +1,9 @@
 #include "EntityPhysics.h"
 #include "WorldInstance.h"
 #include "ScenaryElement.h"
+
+#include "GraphicsEngine.h"
+
 #include <iostream>
 
 using namespace std;
@@ -68,7 +71,7 @@ void EntityPhysics::setEntityPhysics(const b2PolygonShape& bShape, b2Body* const
 void EntityPhysics::updatePhysics()
 {
 //    Drawable::setPosition(dwe::vec3f(getBwBody()->GetPosition().x, getPosition().y, getBwBody()->GetPosition().y));
-    /*
+
     b2Vec2 position = m_body->GetPosition();
     float32 angle = m_body->GetAngle();
 
@@ -76,13 +79,15 @@ void EntityPhysics::updatePhysics()
     for(int i=0; i < m_shape.GetVertexCount(); i++){
         //const b2Vec2 vec = body->GetWorldPoint(shape.GetVertex(i));
         const b2Vec2 vec = m_body->GetWorldPoint(b2Mul(mat,m_shape.GetVertex(i)));
-        device->getVideoDriver()->draw2DLine(position2d<s32>(vec.x,vec.y),
-        (i+1 != shape.GetVertexCount()) ?
-        position2d<s32>(body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i+1))).x, body->GetWorldPoint(b2Mul(mat,shape.GetVertex(i+1))).y):
-        position2d<s32>(body->GetWorldPoint(b2Mul(mat,shape.GetVertex(0))).x,body->GetWorldPoint(b2Mul(mat,shape.GetVertex(0))).y),
-        SColor(255, 255, 255, 255));
 
-    }*/
+        cout << "X = " << vec.x << " : Y = " << vec.y << endl;
+
+        m_device->getVideoDriver()->draw2DLine(position2d<s32>(vec.x,vec.y),
+        (i+1 != m_shape.GetVertexCount()) ?
+        position2d<s32>(m_body->GetWorldPoint(b2Mul(mat,m_shape.GetVertex(i+1))).x, m_body->GetWorldPoint(b2Mul(mat,m_shape.GetVertex(i+1))).y):
+        position2d<s32>(m_body->GetWorldPoint(b2Mul(mat,m_shape.GetVertex(0))).x,m_body->GetWorldPoint(b2Mul(mat,m_shape.GetVertex(0))).y),
+        SColor(255, 255, 255, 255));
+    }
 }
 
 b2Body* EntityPhysics::getBwBody(){return m_body;};
