@@ -14,6 +14,10 @@
 #include "Generator.h"
 #include "MagnetKey.h"
 
+#include "Trigger.h"
+#include "TriggerDoor.h"
+#include "TriggerGenerator.h"
+
 #include "ScenaryElement.h"
 
 #include "iostream"
@@ -355,6 +359,27 @@ MagnetKey* dwe::GraphicsEngine::createMagnetKey(int i, float px, float py, float
     m->setNode(new Node(irrnode));
     m->setPosition(dwe::vec3f(px, py, pz));
     return m;
+}
+
+Trigger* dwe::GraphicsEngine::createTrigger(int type, float px, float py, float pz)
+{
+    Trigger *t;
+    scene::IAnimatedMeshSceneNode* irrnode;
+
+    if(type==0)
+    {
+        irrnode = createIrrAnimatedMeshSceneNode("media/triggerDoor");
+        t = new TriggerDoor();
+    }
+    else if(type==1)
+    {
+        irrnode = createIrrAnimatedMeshSceneNode("media/triggerGenerator");
+        t = new TriggerGenerator();
+    }
+
+    t->setNode(new Node(irrnode));
+    t->setPosition(dwe::vec3f(px, py, pz));
+    return t;
 }
 
 //////////////////////////

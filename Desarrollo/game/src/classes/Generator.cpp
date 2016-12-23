@@ -34,8 +34,11 @@ void Generator::activateGenerator()
             d->setActive();
         }
     }
-    delete d;
 }
+
+int Generator::getNum(){ return num; }
+
+bool Generator::getIsActive(){ return active; }
 
 void Generator::render()
 {

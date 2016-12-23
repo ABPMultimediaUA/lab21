@@ -1,7 +1,4 @@
-#include <iostream>
 #include "Door.h"
-
-using namespace std;
 
 Door::Door(int f, bool a)
 {
@@ -23,7 +20,9 @@ Door::~Door()
     //dtor
 }
 
-void Door::setActive(){active=true;}
+void Door::setActive(){ active=true; }
+
+bool Door::getActive(){ return active; }
 
 bool Door::getIfOpened()
 {
@@ -193,6 +192,7 @@ bool Door::getIsClosing()
 
 void Door::update()
 {
+    //cout<<"Updateando"<<endl;
     if(active)
     {
         if(isOpening && !isOpened)

@@ -19,6 +19,9 @@
 #include "Generator.h"
 #include "MagnetKey.h"
 
+#include "TriggerDoor.h"
+#include "TriggerGenerator.h"
+
 #include "Selector.h"
 #include "Sequence.h"
 
@@ -106,23 +109,30 @@ int main()
 
     Entity **entities; // Array de entidades
     Entity **sector; // Sector no funcional que se le asigna a un generador
+    Trigger **triggers; // Triggers
     entities=new Entity*[nEntities];
     sector=new Entity*[1];
+    triggers=new Trigger*[3];
 
     // Puertas
-    entities[0]=GEInstance->createDoor(0, true, 43.5, 36.3, 135.9);
-    entities[1]=GEInstance->createDoor(3, false, 170, 36.3, 0);
+    entities[0]=GEInstance->createDoor(0, true, 43.5, 0, 135.9);
+    entities[1]=GEInstance->createDoor(3, false, 170, 0, 0); // false
     sector[0]=entities[1];
 
     //((Door*)entities[0])->setIsOpening();
 
     // Generadores
-    entities[2]=GEInstance->createGenerator(0, false, -50, 0, -50);
+    entities[2]=GEInstance->createGenerator(0, false, -50, 0, -50); // false
     ((Generator*)entities[2])->setSector(sector, 1);
 
-    //Llaves
+    // Llaves
     MagnetKey *llave=GEInstance->createMagnetKey(0, 50, 0, 350);
     bool llaveCogida=false;
+
+    // Triggers -> 0 Door, 1 Generator
+    triggers[0]=GEInstance->createTrigger(0, 43.5, 0, 135.9);
+    triggers[1]=GEInstance->createTrigger(0, 170, 0, 0);
+    triggers[2]=GEInstance->createTrigger(1, -50, 0, -50);
 
     ////////////////////////////////
     // Enemigos
@@ -270,6 +280,8 @@ int main()
         //Posición actualizada de Irrlicht Player
         mainPlayer->update();
 
+
+        // Entities update
         for(int cont=0; cont<nEntities; cont++)
         {
             entities[cont]->update();
@@ -339,6 +351,31 @@ int main()
                 llaveCogida=true;
                 mainPlayer->setMKeys(llave->getId());
                 delete llave;
+            }
+        }
+        // TriggerSystem
+        for(int i=0; i<3; i++)
+        {
+            if(mainPlayer->getNode()->intersects(triggers[i]->getNode()->getNode()))
+            {
+                if(GEInstance->receiver.isKeyDown(KEY_SPACE))
+                {
+                    //cout<<"TRI";
+                    if(i==2){
+                        if(mainPlayer->getMKey(((Generator*)entities[i])->getNum()))
+                        {
+                            //cout<<"GENE";
+                            triggers[i]->triggered(entities[i]);
+                        }
+
+                    }
+                    else if(i==0 || i==1)
+                    {
+                        //cout<<"DOOR";
+                        triggers[i]->triggered(entities[i]);
+                    }
+                    //cout<<"GGERED"<<endl;
+                }
             }
         }
 

@@ -16,7 +16,8 @@ class Door: public Entity, public EntityPhysics
     public:
         Door(int f, bool a);
         virtual ~Door();
-        virtual void setActive();
+        void setActive();
+        bool getActive();
         void openDoor(); // Llamado desde sector
         void closeDoor();
         bool getIfOpened();

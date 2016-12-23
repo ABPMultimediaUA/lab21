@@ -160,6 +160,12 @@
 		<Unit filename="src/classes/Shotgun.h" />
 		<Unit filename="src/classes/State.h" />
 		<Unit filename="src/classes/StateMachine.h" />
+		<Unit filename="src/classes/Trigger.cpp" />
+		<Unit filename="src/classes/Trigger.h" />
+		<Unit filename="src/classes/TriggerDoor.cpp" />
+		<Unit filename="src/classes/TriggerDoor.h" />
+		<Unit filename="src/classes/TriggerGenerator.cpp" />
+		<Unit filename="src/classes/TriggerGenerator.h" />
 		<Unit filename="src/classes/WalkThroughDoorTask.cpp" />
 		<Unit filename="src/classes/WalkThroughDoorTask.h" />
 		<Unit filename="src/classes/Weapon.cpp" />

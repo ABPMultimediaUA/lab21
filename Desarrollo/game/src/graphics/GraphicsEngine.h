@@ -32,6 +32,7 @@ class Generator;
 class MagnetKey;
 class ScenaryElement;
 class AppReceiver;
+class Trigger;
 
 namespace dwe
 {
@@ -212,6 +213,7 @@ namespace dwe
         Projectile* createProjectile(vec3f origin, float angle);
         Generator* createGenerator(int i, bool b, float px, float py, float pz);
         MagnetKey* createMagnetKey(int i, float px, float py, float pz);
+        Trigger* createTrigger(int type, float px, float py, float pz);
 
     private:
         irr::IrrlichtDevice*            m_device;

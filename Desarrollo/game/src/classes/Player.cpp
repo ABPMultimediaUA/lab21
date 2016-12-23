@@ -4,6 +4,7 @@
 Player::Player()
 {
     setClassID(CLASS_PLAYER_ID);
+    m_mKeys[0]=false;
 }
 
 Player::~Player()
@@ -92,7 +93,8 @@ void Player::setAmmo(int numWeapon, int ammount) { m_ammo[numWeapon] = ammount; 
 ////////////
 int Player::getGrenades() { return m_grenades; }
 void Player::setGrenades(int n) { m_grenades = n; }
-int Player::setMKeys(int id){  m_mKeys[0]=id; }
+void Player::setMKeys(int id){  m_mKeys[id]=true; }
+bool Player::getMKey(int n){ return m_mKeys[n]; }
 
 ////////////
 int Player::getLife() { return m_life; }

@@ -16,6 +16,8 @@ class Generator: public Entity, public EntityPhysics
         virtual ~Generator();
         void setSector(Entity **s, int e);
         void activateGenerator(); // Activa generador
+        int getNum();
+        bool getIsActive();
         virtual void render();
         virtual void update();
 

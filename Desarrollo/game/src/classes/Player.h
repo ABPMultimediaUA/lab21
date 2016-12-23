@@ -30,7 +30,8 @@ class Player : public CharacterController, public EntityPhysics
         void setGrenades(int n);
         int getLife();
         void setLife(int n);
-        int setMKeys(int id);
+        void setMKeys(int id);
+        bool getMKey(int n);
 
         virtual const char* getNetObjectID() const;
         virtual void setPosition(dwe::vec3f p);
@@ -44,7 +45,7 @@ class Player : public CharacterController, public EntityPhysics
         Firearm*    m_weapons[NUM_WEAPONS];
         int         m_grenades;
         int         m_life;
-        int         m_mKeys[1];
+        bool        m_mKeys[1];
 };
 
 #endif // PLAYER_H
