@@ -54,6 +54,23 @@ void WorldInstance::clearForces()
 }
 
 
+//////////////////////////
+dwe::vec3f WorldInstance::from2Dto3D(int x2d, int y2d, dwe::vec3f rotation)
+{
+	dwe::vec3f v(x2d - SCREEN_CENTER_X, y2d - SCREEN_CENTER_Y,0);
+    dwe::vec3f u(1,0,0);
+
+	float numerador     = (u.x*v.x) + (u.y*v.y);
+	float denominador   = sqrt( pow(u.x,2) + pow(u.y,2) ) * sqrt( pow(v.x,2) + pow(v.y,2) );
+	float angulo        = acos(numerador/denominador) * (180/M_PI);
+
+	if(y2d<SCREEN_CENTER_Y)
+        rotation.y = -angulo;
+	else
+        rotation.y = angulo;
+
+    return(rotation);
+}
 
 
 //////////////////////

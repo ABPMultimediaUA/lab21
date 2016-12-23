@@ -83,6 +83,15 @@ void Player::readEvents()
     }
 
     setVelocity(dwe::vec3f(getSpeedX(), 0, getSpeedZ()));
+
+
+    //Calcular rotacion player - con MOUSE
+    if(GEInstance->receiver.getCursorX()>=0 && GEInstance->receiver.getCursorY()>=0){
+        setRotation(
+            World->from2Dto3D(GEInstance->receiver.getCursorX(),
+                              GEInstance->receiver.getCursorY(),
+                              getRotation()));
+    }
 }
 
 
@@ -104,7 +113,6 @@ void Player::setLife(int n) { m_life = n; }
 /////////////
 void Player::onBeginContact(EntityPhysics* otherObject)
 {
-    cout << "playerrrrrrrrrrrrrrrrrrrrrrr\n";
 }
 
 

@@ -16,6 +16,8 @@
 #define CLASS_PROJECTILE_ID     2
 #define CLASS_WALL_ID           3
 
+#define SCREEN_CENTER_X 400
+#define SCREEN_CENTER_Y 300
 
 /////////////////////////////////////////////////////////
 // Clase que se encarga de obtener los eventos de las
@@ -67,6 +69,8 @@ class WorldInstance
 
         b2Vec2 getGravity();
         b2World getWorld();
+
+        dwe::vec3f from2Dto3D(int x2d, int y2d, dwe::vec3f rotation);
 
     protected:
 
