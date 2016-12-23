@@ -39,10 +39,6 @@
 
 #define NUM_ENTITIES 3
 
-#define CAMERA_DESVIATION   50
-#define CAMERA_PROGRESSION  0.5f
-
-
 
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -297,48 +293,8 @@ int main()
             }
         }
 
-        //update camera target
-        //Desencuadre horizontal
-        if(GEInstance->receiver.getCursorX()<50){
-            if(tarLR>-CAMERA_DESVIATION)
-                tarLR-=CAMERA_PROGRESSION;
-        }else if(GEInstance->receiver.getCursorX()>750){
-            if(tarLR<CAMERA_DESVIATION)
-                tarLR+=CAMERA_PROGRESSION;
-        }else{
-            //Volver a centrar
-            if(tarLR!=0)
-                if(tarLR<0)
-                    tarLR+=CAMERA_PROGRESSION;
-                else
-                    tarLR-=CAMERA_PROGRESSION;
-            else
-                tarLR = 0;
-        }
 
-        //Desencuadre vertical
-        if(GEInstance->receiver.getCursorY()<50){
-            if(tarUD<CAMERA_DESVIATION)
-                tarUD+=CAMERA_PROGRESSION;
-        }else if(GEInstance->receiver.getCursorY()>550){
-            if(tarUD>-CAMERA_DESVIATION)
-                tarUD-=CAMERA_PROGRESSION;
-        }else{
-            //Volver a centrar
-            if(tarUD!=0)
-                if(tarUD<0)
-                    tarUD+=CAMERA_PROGRESSION;
-                else
-                    tarUD-=CAMERA_PROGRESSION;
-            else
-                tarUD = 0;
-        }
-
-        GEInstance->getSMGR()->getActiveCamera()->setTarget(vector3df(mainPlayer->getPosition().x+tarLR,mainPlayer->getPosition().y,mainPlayer->getPosition().z+tarUD));
-
-        //update camera position
-        float setCamPosZ = mainPlayer->getPosition().z-100; //editar la posición de la camara en ejeZ
-        GEInstance->getSMGR()->getActiveCamera()->setPosition(vector3df(mainPlayer->getPosition().x+tarLR,250,setCamPosZ+tarUD));
+        GEInstance->updateCamera(mainPlayer->getPosition());
 
 
         //update box of box2d
@@ -365,31 +321,17 @@ int main()
                 delete llave;
             }
         }
+
         // TriggerSystem
         for(int i=0; i<3; i++)
-        {
             if(mainPlayer->getNode()->intersects(triggers[i]->getNode()->getNode()))
-            {
                 if(GEInstance->receiver.isKeyDown(KEY_SPACE))
-                {
-                    //cout<<"TRI";
                     if(i==2){
                         if(mainPlayer->getMKey(((Generator*)entities[i])->getNum()))
-                        {
-                            //cout<<"GENE";
                             triggers[i]->triggered(entities[i]);
-                        }
-
                     }
                     else if(i==0 || i==1)
-                    {
-                        //cout<<"DOOR";
                         triggers[i]->triggered(entities[i]);
-                    }
-                    //cout<<"GGERED"<<endl;
-                }
-            }
-        }
 
         percep->senses(mainPlayer,enemyHumanoid,fovnode,num);  //llamamos a percepcion
 

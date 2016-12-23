@@ -400,6 +400,49 @@ void dwe::GraphicsEngine::close()
     m_device->closeDevice();
 }
 
+//////////////////////////
+void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition)
+{
+    //update camera target
+    //Desencuadre horizontal
+    if(GEInstance->receiver.getCursorX()<50){
+        if(tarLR > -_camera_desviation)
+            tarLR -= _camera_progression;
+    }else if(GEInstance->receiver.getCursorX()>750){
+        if(tarLR<_camera_desviation)
+            tarLR+=_camera_progression;
+    }else{
+        //Volver a centrar
+        if(tarLR!=0)
+            if(tarLR<0)
+                tarLR+=_camera_progression;
+            else
+                tarLR-=_camera_progression;
+        else
+            tarLR = 0;
+    }
+
+    //Desencuadre vertical
+    if(GEInstance->receiver.getCursorY()<50){
+        if(tarUD<_camera_desviation)
+            tarUD+=_camera_progression;
+    }else if(GEInstance->receiver.getCursorY()>550){
+        if(tarUD>-_camera_desviation)
+            tarUD-=_camera_progression;
+    }else{
+        //Volver a centrar
+        if(tarUD!=0)
+            if(tarUD<0)
+                tarUD+=_camera_progression;
+            else
+                tarUD-=_camera_progression;
+        else
+            tarUD = 0;
+    }
+
+    m_smgr->getActiveCamera()->setTarget(vector3df(playerPosition.x+tarLR, playerPosition.y, playerPosition.z+tarUD));
+    m_smgr->getActiveCamera()->setPosition(vector3df(playerPosition.x+tarLR, _camera_y, playerPosition.z + _camera_z_offset + tarUD));
+}
 
 irr::IrrlichtDevice* dwe::GraphicsEngine::getDevice(){return(m_device);}
 irr::scene::ISceneManager*  dwe::GraphicsEngine::getSMGR(){return(m_smgr);}

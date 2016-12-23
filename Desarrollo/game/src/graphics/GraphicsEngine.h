@@ -207,6 +207,8 @@ namespace dwe
         // Eventos de teclado y ratón
         AppReceiver receiver;
 
+        void updateCamera(const vec3f playerPosition);
+
 
         void changeEnemyDogTexture(Dog* dog, const io::path& str);
         Door* createDoor(int f, bool a, float px, float py, float pz);
@@ -222,6 +224,18 @@ namespace dwe
         irr::gui::IGUIEnvironment*      m_guienv;
 
         scene::IAnimatedMeshSceneNode* createIrrAnimatedMeshSceneNode(std::string meshName);
+
+        // Camara
+        float tarUD;
+        float tarLR;
+        static const unsigned short _camera_desviation  = 50;
+        static const float          _camera_progression = 0.5f;
+        static const int            _camera_y           = 250;
+        static const int            _camera_z_offset    = -100;
+
+
+
+
 
         GraphicsEngine() {};
     };
