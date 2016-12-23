@@ -99,6 +99,8 @@ void EntityPhysics::createDynamicBody(const dwe::vec3f& pos){
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(pos.x, pos.z);
 
+    bodyDef.fixedRotation = true;
+
     m_body = World->createBody(&bodyDef);
     m_body->SetUserData(this);  // Sin esta linea no funcionan los callbacks
 
@@ -136,6 +138,36 @@ void EntityPhysics::createStaticBody(const dwe::vec3f& pos, float width, float h
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &m_shape;
+
+    // Add the shape to the body.
+    m_body->CreateFixture(&fixtureDef);
+}
+
+
+////////////////////
+void EntityPhysics::createJointBody(const dwe::vec3f& pos){
+    // Define the dynamic body. We set its position and call the body factory.
+    b2BodyDef bodyDef;
+    bodyDef.type = b2_dynamicBody;
+    bodyDef.position.Set(pos.x, pos.z);
+
+    bodyDef.fixedRotation = true;
+
+    m_body = World->createBody(&bodyDef);
+    m_body->SetUserData(this);  // Sin esta linea no funcionan los callbacks
+
+    // Define another box shape for our dynamic body.
+    m_shape.SetAsBox(10.0f, 10.0f);
+
+    // Define the dynamic body fixture.
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &m_shape;
+
+    // Set the box density to be non-zero, so it will be dynamic.
+    fixtureDef.density = 1.0f;
+
+    // Override the default friction.
+    fixtureDef.friction = 0.3f;
 
     // Add the shape to the body.
     m_body->CreateFixture(&fixtureDef);

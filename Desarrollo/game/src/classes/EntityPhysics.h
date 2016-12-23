@@ -20,6 +20,8 @@ class EntityPhysics
         // Se crea el tipo de sólido
         void createDynamicBody(const dwe::vec3f& pos);
         void createStaticBody(const dwe::vec3f& pos, float width, float height);
+        void createJointBody(const dwe::vec3f& pos);
+
 
         dwe::vec3f getPosEntity();
         void setPosEntity(dwe::vec3f position, float rotation);

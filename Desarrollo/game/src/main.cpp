@@ -169,10 +169,19 @@ int main()
 	 //Pistola 1
 	dwe::Node* gun_1 = GEInstance->createNode("media/Gun/Gun"); //ESTAS SON LAS BUENAS
 	gun_1->setPosition(dwe::vec3f(400,10,100));
+	bool haveGun1 = false;
 
     //Pistola 2
 	dwe::Node* gun_2 = GEInstance->createNode("media/Gun/Gun");   //ESTAS SON LAS BUENAS
 	gun_2->setPosition(dwe::vec3f(220,10,100));
+	bool haveGun2 = false;
+
+    //Joint try
+	dwe::Node* joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
+	joint_try->setPosition(dwe::vec3f(0,10,120));
+    EntityPhysics* bjoint = new EntityPhysics();
+    bjoint->createJointBody(dwe::vec3f(0,10,120)); // createJointBody(dwe::vec3f(0,10,120));
+
 
 	//////////////////////////////////////////
     //CAMERA (nodo padre, posición, directión)
@@ -262,6 +271,25 @@ int main()
                         mainPlayer->getRotation()));
         }
 
+        //GET GUN 1
+        if(!haveGun1){
+            if(mainPlayer->getPosition().x > 390 && mainPlayer->getPosition().x < 410){
+                if(mainPlayer->getPosition().z > 90 && mainPlayer->getPosition().z < 110){
+                    cout << "Pistola 1 cogida" << endl;
+                    haveGun1 = true;
+                }
+            }
+        }
+
+         //GET GUN 2
+        if(!haveGun2){
+            if(mainPlayer->getPosition().x > 210 && mainPlayer->getPosition().x < 230){
+                if(mainPlayer->getPosition().z > 90 && mainPlayer->getPosition().z < 110){
+                    cout << "Pistola 2 cogida" << endl;
+                    haveGun2 = true;
+                }
+            }
+        }
 
         // Actualizamos físicas box2d
         deltaTime = timer->getTime()-timeStamp; timeStamp=timer->getTime();
@@ -340,6 +368,18 @@ int main()
         float setCamPosZ = mainPlayer->getPosition().z-100; //editar la posición de la camara en ejeZ
         GEInstance->getSMGR()->getActiveCamera()->setPosition(vector3df(mainPlayer->getPosition().x+tarLR,250,setCamPosZ+tarUD));
 
+
+        //update box of box2d
+        joint_try->setPosition(dwe::vec3f(bjoint->getPosEntity().x,bjoint->getPosEntity().y,bjoint->getPosEntity().z));
+
+        // update GUNS
+        if(haveGun1)
+            gun_1->setPosition(dwe::vec3f(mainPlayer->getPosition().x-20,20,mainPlayer->getPosition().z+10));
+
+        if(haveGun2)
+            gun_2->setPosition(dwe::vec3f(mainPlayer->getPosition().x-20,20,mainPlayer->getPosition().z-10));
+
+
         GEInstance->draw();
 
 
@@ -384,6 +424,7 @@ int main()
 
         NetInstance->update();
 	}
+	delete bjoint;
 
 	NetInstance->close();
 

@@ -34,6 +34,10 @@ void CharacterController::readEvents()
     if(GEInstance->receiver.isKeyDown(KEY_KEY_9))
         speed = speed*2;
 
+    // agachado
+    if(GEInstance->receiver.isKeyDown(KEY_KEY_8))
+        speed = speed/2;
+
     //Derecha o izquierda
     if(GEInstance->receiver.isKeyDown(KEY_KEY_D))
         m_speedX = speed;
