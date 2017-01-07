@@ -19,9 +19,12 @@
 
 #include "DrawableReplica.h"
 
-#define DEFAULT_IP "127.0.0.1"
-#define DEFAULT_PT 61111
-#define NET_CLOUD_KEY "Lab21Key"
+
+#define DEFAULT_IP      "127.0.0.1"
+#define DEFAULT_PT      61111
+#define NET_CLOUD_KEY   "Lab21Key"
+#define MAX_CONNECTIONS 4
+
 
 namespace dwn
 {
@@ -44,6 +47,10 @@ namespace dwn
             bool connectionFailed();
             unsigned short getParticipantOrder();
 
+            void addPlayerMate(PlayerMate* pm);
+            PlayerMate* getPlayerMate(int i);
+            int getNumPlayerMates();
+
         protected:
 
         private:
@@ -56,6 +63,8 @@ namespace dwn
             bool m_connected;
             bool m_connectionFailed;
             unsigned short m_participantOrder;
+            PlayerMate* m_playerMates[MAX_CONNECTIONS-1];
+            int m_numPlayerMates;
 
 
             ///////////////////////////////////////////

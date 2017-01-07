@@ -22,6 +22,7 @@
 #include "RakNetStatistics.h"
 #include "RelayPlugin.h"
 
+#define MAX_CONNECTIONS 4
 
 //#define VERBOSE_LOGGING
 
@@ -55,7 +56,7 @@ int main(int argc, char **argv)
 		return 1;
 	}
 	rakPeer->SetTimeoutTime(5000, UNASSIGNED_SYSTEM_ADDRESS);
-	rakPeer->SetMaximumIncomingConnections(4);
+	rakPeer->SetMaximumIncomingConnections(MAX_CONNECTIONS);
 
 
     // NatPunchthroughServer /////////////////////////////

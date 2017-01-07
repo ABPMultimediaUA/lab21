@@ -1,6 +1,8 @@
 #include "Perception.h"
 #include "Pathplanning.h"
 #include <GraphicsEngine.h>
+#include "NetGame.h"
+#include "PlayerMate.h"
 
 Perception::Perception()
 {
@@ -13,27 +15,53 @@ Perception::~Perception()
 }
 Pathplanning* pathp = new Pathplanning();//creo el pathplanning para usar luego
 
-void Perception::senses(Player* mainPlayer, Humanoid* enemyHumanoid, dwe::Node* fovnode, float num){
-            fovnode->setPosition(enemyHumanoid->getPosition());
-            if(following==false){//si no estamos siguiendo calculamos la distancia de percepcion
-                if(mainPlayer->getAnimation() == dwe::eAnimRun){//en caso de estar en velocidad normal, la percepcion del npc sera mayor
-                    if((sqrt (pow(enemyHumanoid->getPosition().x-mainPlayer->getPosition().x, 2) + pow(enemyHumanoid->getPosition().z-mainPlayer->getPosition().z, 2)))<=100)//ponemos 50 como distancia de percepcion
-                        following=true;//si esta dentro entonces seguimos al prota
-                }
-                else if(mainPlayer->getAnimation() == dwe::eAnimWalk){//si estamos en sigilo, el radio sera menor
-                    if((sqrt (pow(enemyHumanoid->getPosition().x-mainPlayer->getPosition().x, 2) + pow(enemyHumanoid->getPosition().z-mainPlayer->getPosition().z, 2)))<=50)//ponemos 20 como distancia de percepcion
-                        following=true;//si esta dentro entonces seguimos al prota
-                }
-                if(fovnode->intersects(mainPlayer->getNode()->getNode())){
-                    cout<<"colision"<<endl;
-                    following=true;//aunq vayas en sigilo, si te ve, te persigue
-                }
+void Perception::senses(Player* mainPlayer, Humanoid* enemyHumanoid, dwe::Node* fovnode, float num)
+{
+    // Buscamos que player o playermate está más cerca para trabajar con él
+    Drawable* player;
 
-            }
+    float enemyX = enemyHumanoid->getPosition().x;
+    float enemyZ = enemyHumanoid->getPosition().z;
+    float distance = fabs(enemyX - mainPlayer->getPosition().x) + fabs(enemyZ - mainPlayer->getPosition().z);
+    player = mainPlayer;
 
-            if (following==true){
-                pathp->behaviour(mainPlayer, enemyHumanoid, fovnode, false);
+    float distanceAux;
+    for(int i=0; i<NetInstance->getNumPlayerMates(); i++)
+    {
+        distanceAux = fabs(enemyX - NetInstance->getPlayerMate(i)->getPosition().x) + fabs(enemyZ - NetInstance->getPlayerMate(i)->getPosition().z);
+        if (distanceAux < distance)
+        {
+            player = NetInstance->getPlayerMate(i);
+            distance = distanceAux;
+        }
+    }
 
-            }
+
+
+
+    fovnode->setPosition(enemyHumanoid->getPosition());
+
+    if(!following)  //si no estamos siguiendo calculamos la distancia de percepcion
+    {
+        if(player->getAnimation() == dwe::eAnimRun)//en caso de estar en velocidad normal, la percepcion del npc sera mayor
+        {
+            if((sqrt (pow(enemyHumanoid->getPosition().x-player->getPosition().x, 2) + pow(enemyHumanoid->getPosition().z-player->getPosition().z, 2)))<=100)//ponemos 50 como distancia de percepcion
+                following=true;//si esta dentro entonces seguimos al prota
+        }
+        else if(player->getAnimation() == dwe::eAnimWalk)//si estamos en sigilo, el radio sera menor
+        {
+            if((sqrt (pow(enemyHumanoid->getPosition().x-player->getPosition().x, 2) + pow(enemyHumanoid->getPosition().z-player->getPosition().z, 2)))<=50)//ponemos 20 como distancia de percepcion
+                following=true;//si esta dentro entonces seguimos al prota
+        }
+
+        if(fovnode->intersects(player->getNode()->getNode()))
+        {
+            //cout<<"colision"<<endl;
+            following=true;//aunq vayas en sigilo, si te ve, te persigue
+        }
+    }
+
+    if (following)
+        pathp->behaviour(player, enemyHumanoid, fovnode, false);
 }
 

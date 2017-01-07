@@ -10,7 +10,7 @@ Pathplanning::~Pathplanning()
     //dtor
 }
 
-void Pathplanning::behaviour(Player* mainPlayer, Humanoid* enemyHumanoid, dwe::Node* fovnode, bool danyo){
+void Pathplanning::behaviour(Drawable* mainPlayer, Humanoid* enemyHumanoid, dwe::Node* fovnode, bool danyo){
             if(danyo==false){//seguimos y no hay danyo
                 if(enemyHumanoid->getPosition().x<mainPlayer->getPosition().x || enemyHumanoid->getPosition().z<mainPlayer->getPosition().z || enemyHumanoid->getPosition().x>mainPlayer->getPosition().x || enemyHumanoid->getPosition().z>mainPlayer->getPosition().z){ //mientras sean menores de que las de destino y no haya danyo avanzamos sumamos
                     if(enemyHumanoid->getPosition().x<mainPlayer->getPosition().x){

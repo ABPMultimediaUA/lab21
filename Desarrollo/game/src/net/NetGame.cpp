@@ -38,6 +38,7 @@ void dwn::NetGame::open()
     m_connected = false;
     m_connectionFailed = false;
     m_participantOrder = 0;
+    m_numPlayerMates = 0;
 
     // Preguntamos por los parametros de la red
     cout << "//////////////////////////////////////////////\n";
@@ -201,7 +202,7 @@ void dwn::NetGame::update()
 			break;
 
 		case ID_NO_FREE_INCOMING_CONNECTIONS:
-            PushMessage(RakNet::RakString("No free incoming connections to ") + targetName + RakNet::RakString("."));
+            PushMessage(RakNet::RakString("La partida en el servidor está completa ") + targetName + RakNet::RakString("."));
             if (packet->systemAddress==facilitatorSystemAddress)
                 PushMessage("Multiplayer will not work without the NAT punchthrough server!");
 			break;
@@ -380,17 +381,36 @@ unsigned short NetGame::getParticipantOrder()
     return m_participantOrder;
 }
 
-//////////////
+///////////////////
 void dwn::NetGame::addNetObject(dwn::DrawableReplica *drawReplica)
 {
     replicaManager3->Reference(drawReplica);
 }
 
-//////////////
+///////////////////
 bool dwn::NetGame::isLocalObject(RakNet::RakNetGUID id)
 {
     return (id == rakPeer->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS));
 }
+
+///////////////////
+void dwn::NetGame::addPlayerMate(PlayerMate* pm)
+{
+    m_playerMates[m_numPlayerMates] = pm;
+    m_numPlayerMates++;
+}
+
+//////////////////////////
+PlayerMate* dwn::NetGame::getPlayerMate(int i)
+{
+    if (i<m_numPlayerMates)
+        return m_playerMates[i];
+    else
+        return NULL;
+}
+
+//////////////////
+int dwn::NetGame::getNumPlayerMates() { return m_numPlayerMates; }
 
 
 ////////////////////////////////////////////////
@@ -401,8 +421,14 @@ RakNet::Replica3* dwn::NetGame::Connection_RM3DireW::AllocReplica(RakNet::BitStr
 	RakNet::RakString typeName;
 	allocationId->Read(typeName);
 
-	if (typeName == "Player") { PlayerMate* obj = GEInstance->createPlayerMate(); return obj; }
-	else return 0;
+	if (typeName == "Player")
+    {
+        PlayerMate* obj = GEInstance->createPlayerMate();
+        NetInstance->addPlayerMate(obj);
+        return obj;
+    }
+    else
+        return 0;
 }
 
 
