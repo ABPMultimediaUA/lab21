@@ -57,6 +57,7 @@
 			<Add library="winmm" />
 			<Add directory="lib" />
 		</Linker>
+		<Unit filename="include/PerceptionTask.h" />
 		<Unit filename="src/classes/Ammo.cpp" />
 		<Unit filename="src/classes/Ammo.h" />
 		<Unit filename="src/classes/AmmoGrenade.cpp" />
@@ -138,8 +139,14 @@
 		<Unit filename="src/classes/OpenDoorTask.h" />
 		<Unit filename="src/classes/Pathplanning.cpp" />
 		<Unit filename="src/classes/Pathplanning.h" />
+		<Unit filename="src/classes/PathplanningTask.cpp" />
+		<Unit filename="src/classes/PathplanningTask.h" />
+		<Unit filename="src/classes/PatrolTask.cpp" />
+		<Unit filename="src/classes/PatrolTask.h" />
 		<Unit filename="src/classes/Perception.cpp" />
 		<Unit filename="src/classes/Perception.h" />
+		<Unit filename="src/classes/PerceptionTask.cpp" />
+		<Unit filename="src/classes/PerceptionTask.h" />
 		<Unit filename="src/classes/Player.cpp" />
 		<Unit filename="src/classes/Player.h" />
 		<Unit filename="src/classes/PlayerMate.cpp" />
