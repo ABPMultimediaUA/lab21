@@ -32,6 +32,7 @@ namespace dwn
             dwe::vec3f          m_remotePos;
             dwe::vec3f          m_remoteRot;
             dwe::AnimationType  m_remoteAnim;
+            int i  = 0;
 
 
             // Puestas en private para no heredar

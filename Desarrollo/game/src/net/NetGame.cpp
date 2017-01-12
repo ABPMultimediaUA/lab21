@@ -51,13 +51,12 @@ void dwn::NetGame::open()
     if (type!="1") type="2";
 
     m_multiplayer = (type=="2");
-    std::string dirIP;
 
     if (m_multiplayer)
     {
-        cout << "// Escribe la dirección IP del servidor [127.0.0.1 por defecto]: ";
-        getline(cin, dirIP);
-        if (dirIP =="") dirIP = "127.0.0.1";
+        cout << "// Escribe la dirección IP del servidor [" << DEFAULT_IP << " por defecto]: ";
+        getline(cin, m_IP);
+        if (m_IP =="") m_IP = DEFAULT_IP;
     }
 
 
@@ -116,7 +115,7 @@ void dwn::NetGame::open()
 	if (m_multiplayer)
     {
         //RakNet::ConnectionAttemptResult car = rakPeer->Connect(DEFAULT_IP, DEFAULT_PT,0,0);
-        RakNet::ConnectionAttemptResult car = rakPeer->Connect(dirIP.c_str(), DEFAULT_PT,0,0);
+        RakNet::ConnectionAttemptResult car = rakPeer->Connect(m_IP.c_str(), DEFAULT_PT,0,0);
         RakAssert(car==RakNet::CONNECTION_ATTEMPT_STARTED);
     }
 
@@ -134,7 +133,7 @@ void dwn::NetGame::open()
     }
     if (m_connectionFailed)
     {
-        cout << "No se encuentra el servidor " << dirIP << ", se inicia el juego en modo 1 jugador.\n";
+        cout << "No se encuentra el servidor " << m_IP << ", se inicia el juego en modo 1 jugador.\n";
         cout << "Presione intro para continuar. ";
         getchar();
     }
@@ -173,13 +172,13 @@ RakNet::RakString dwn::NetGame::getNATTargetName(RakNet::Packet* p)
 //////////////
 void dwn::NetGame::update()
 {
-	RakNet::SystemAddress facilitatorSystemAddress(DEFAULT_IP, DEFAULT_PT);
+	RakNet::SystemAddress facilitatorSystemAddress(m_IP.c_str(), DEFAULT_PT);
 	RakNet::Packet *packet;
 	RakNet::TimeMS curTime = RakNet::GetTimeMS();
 	RakNet::RakString targetName;
 	for (packet=rakPeer->Receive(); packet; rakPeer->DeallocatePacket(packet), packet=rakPeer->Receive())
 	{
-		if (strcmp(packet->systemAddress.ToString(false),DEFAULT_IP)==0)
+		if (strcmp(packet->systemAddress.ToString(false),m_IP.c_str())==0)
 			targetName="NATPunchthroughServer";
 		else
 			targetName=packet->systemAddress.ToString(true);

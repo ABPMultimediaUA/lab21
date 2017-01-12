@@ -44,9 +44,9 @@ int main(int argc, char **argv)
 
 	RakNet::SocketDescriptor sd;
 	sd.port = DEFAULT_RAKPEER_PORT;
-	strcpy(sd.hostAddress,"127.0.0.1");  // Forzamos a red local
+	//strcpy(sd.hostAddress,"127.0.0.1");  // Forzamos a red local
 
-	printf("Using IP: %s port: %i\n", sd.hostAddress, sd.port);
+//	printf("Using IP: %s port: %i\n", sd.hostAddress, sd.port);
 
 
 	if (rakPeer->Startup(8096,&sd,1)!=RakNet::RAKNET_STARTED)
@@ -57,6 +57,8 @@ int main(int argc, char **argv)
 	}
 	rakPeer->SetTimeoutTime(5000, UNASSIGNED_SYSTEM_ADDRESS);
 	rakPeer->SetMaximumIncomingConnections(MAX_CONNECTIONS);
+
+	printf("Using IP: %s port: %i\n", rakPeer->GetLocalIP(0), sd.port);
 
 
     // NatPunchthroughServer /////////////////////////////

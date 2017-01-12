@@ -65,6 +65,7 @@ namespace dwn
             unsigned short m_participantOrder;
             PlayerMate* m_playerMates[MAX_CONNECTIONS-1];
             int m_numPlayerMates;
+            std::string m_IP;
 
 
             ///////////////////////////////////////////
