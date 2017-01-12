@@ -2,13 +2,14 @@
 #define PERCEPTION_H
 #include "Player.h"
 #include "Humanoid.h"
+#include "PathplanningTask.h"
 
 class Perception
 {
     public:
         Perception();
         virtual ~Perception();
-        void senses(Player* mainPlayer, Humanoid* enemyHumanoid, dwe::Node* fovnode, float num);
+        bool senses(Player* mainPlayer, Humanoid* enemyHumanoid, dwe::Node* fovnode, PathplanningTask* p);
 
     protected:
 

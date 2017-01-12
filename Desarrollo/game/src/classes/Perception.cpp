@@ -13,9 +13,9 @@ Perception::~Perception()
 {
     //dtor
 }
-Pathplanning* pathp = new Pathplanning();//creo el pathplanning para usar luego
+//Pathplanning* pathp = new Pathplanning();//creo el pathplanning para usar luego
 
-void Perception::senses(Player* mainPlayer, Humanoid* enemyHumanoid, dwe::Node* fovnode, float num)
+bool Perception::senses(Player* mainPlayer, Humanoid* enemyHumanoid, dwe::Node* fovnode, PathplanningTask* p)
 {
     // Buscamos que player o playermate está más cerca para trabajar con él
     Drawable* player;
@@ -45,23 +45,24 @@ void Perception::senses(Player* mainPlayer, Humanoid* enemyHumanoid, dwe::Node* 
     {
         if(player->getAnimation() == dwe::eAnimRun)//en caso de estar en velocidad normal, la percepcion del npc sera mayor
         {
-            if((sqrt (pow(enemyHumanoid->getPosition().x-player->getPosition().x, 2) + pow(enemyHumanoid->getPosition().z-player->getPosition().z, 2)))<=100)//ponemos 50 como distancia de percepcion
+            if((sqrt (pow(enemyHumanoid->getPosition().x-player->getPosition().x, 2) + pow(enemyHumanoid->getPosition().z-player->getPosition().z, 2)))<=200)//ponemos 50 como distancia de percepcion
                 following=true;//si esta dentro entonces seguimos al prota
         }
         else if(player->getAnimation() == dwe::eAnimWalk)//si estamos en sigilo, el radio sera menor
         {
-            if((sqrt (pow(enemyHumanoid->getPosition().x-player->getPosition().x, 2) + pow(enemyHumanoid->getPosition().z-player->getPosition().z, 2)))<=50)//ponemos 20 como distancia de percepcion
+            if((sqrt (pow(enemyHumanoid->getPosition().x-player->getPosition().x, 2) + pow(enemyHumanoid->getPosition().z-player->getPosition().z, 2)))<=100)//ponemos 20 como distancia de percepcion
                 following=true;//si esta dentro entonces seguimos al prota
         }
 
-        if(fovnode->intersects(player->getNode()->getNode()))
+        /*if(fovnode->intersects(player->getNode()->getNode()))
         {
             //cout<<"colision"<<endl;
             following=true;//aunq vayas en sigilo, si te ve, te persigue
-        }
+        }*/
     }
+    p->setPlayer(player);
 
-    if (following)
-        pathp->behaviour(player, enemyHumanoid, fovnode, false);
+    return (following);
+        //pathp->behaviour(player, enemyHumanoid, fovnode, false);
 }
 

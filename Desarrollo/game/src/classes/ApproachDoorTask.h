@@ -24,7 +24,6 @@ class ApproachDoorTask : public Node
 
     private:
 
-
         Humanoid* npc;
         Door* door;
 

@@ -33,6 +33,9 @@
 #include "OpenDoorTask.h"
 #include "WalkThroughDoorTask.h"
 #include "CloseDoorTask.h"
+#include "PathplanningTask.h"
+#include "PerceptionTask.h"
+#include "PatrolTask.h"
 
 #include "EntityPhysics.h"
 #include "ScenaryElement.h"
@@ -111,13 +114,13 @@ int main()
 
     // Creación de enemigo Humanoide
 	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
-	enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
-	enemyHumanoid->setRotation(dwe::vec3f(0, 270.f, 0));
+	//enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
+	enemyHumanoid->setPosition(dwe::vec3f(400,24,100));
+	enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
 
 	// Creación de enemigo Dog
 	Dog* enemyDog = GEInstance->createEnemyDog();
 	enemyDog->setPosition(dwe::vec3f(-50,-170,100)); // No está centrado :(
-
 
 
 
@@ -160,6 +163,7 @@ int main()
 
     //Creación de objeto perception
     Perception* percep = new Perception();
+    Pathplanning* pathp = new Pathplanning();
     float num;//para cambiar de sigilo a rapido
     /*************************** BEHAVIOR TREE **********************************/
 
@@ -169,23 +173,31 @@ int main()
 	Selector* selector1 = new Selector;
 
 	Sequence *sequence1 = new Sequence;
-    Sequence *sequence2 = new Sequence;
+    //Sequence *sequence2 = new Sequence;
 
     /**** Tasks ****/
 
-    CheckIfDoorIsOpenTask* checkOpen = new CheckIfDoorIsOpenTask ((Door*)entities[0]);
+    /*CheckIfDoorIsOpenTask* checkOpen = new CheckIfDoorIsOpenTask ((Door*)entities[0]);
     ApproachDoorTask* approach = new ApproachDoorTask (enemyHumanoid, (Door*)entities[0]);
 	OpenDoorTask* open = new OpenDoorTask ((Door*)entities[0]);
 	WalkThroughDoorTask* through = new WalkThroughDoorTask (enemyHumanoid, (Door*)entities[0]);
-	CloseDoorTask* close = new CloseDoorTask ((Door*)entities[0]);
+	CloseDoorTask* close = new CloseDoorTask ((Door*)entities[0]);*/
+
+
+    PathplanningTask* path = new PathplanningTask(pathp, mainPlayer, enemyHumanoid, fovnode);
+    PerceptionTask* perc = new PerceptionTask(percep, mainPlayer, enemyHumanoid, fovnode, path);
+	PatrolTask* patrol = new PatrolTask(enemyHumanoid, fovnode);
 
 
     /**** Creating the tree ****/
 
     selector1->addChild(sequence1);
-    selector1->addChild(sequence2);
+    selector1->addChild(patrol);
 
-    sequence1->addChild(checkOpen);
+    sequence1->addChild(perc);
+    sequence1->addChild(path);
+
+    /*sequence1->addChild(checkOpen);
     sequence1->addChild(approach);
     sequence1->addChild(through);
     sequence1->addChild(close);
@@ -193,7 +205,7 @@ int main()
     sequence2->addChild(approach);
     sequence2->addChild(open);
     sequence2->addChild(through);
-    sequence2->addChild(close);
+    sequence2->addChild(close);*/
 
 
 
@@ -333,7 +345,7 @@ int main()
                     else if(i==0 || i==1)
                         triggers[i]->triggered(entities[i]);
 
-        percep->senses(mainPlayer,enemyHumanoid,fovnode,num);  //llamamos a percepcion
+        //percep->senses(mainPlayer,enemyHumanoid,fovnode,num);  //llamamos a percepcion
 
         NetInstance->update();
 	}
