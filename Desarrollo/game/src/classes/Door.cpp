@@ -6,7 +6,7 @@ Door::Door(int f, bool a)
     y = 0;
     z = 0;
     facing = f;
-    speed = 0.1;
+    speed = 0.5;
     active = a;
     isOpened = false;
     op=0;
