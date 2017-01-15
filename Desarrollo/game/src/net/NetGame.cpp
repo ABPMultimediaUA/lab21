@@ -1,13 +1,16 @@
 #include "NetGame.h"
 #include "MessageIdentifiers.h"
 #include "GraphicsEngine.h"
+#include "RakSleep.h"
 
 #include <iostream>
 #include <unistd.h>  //para sleep
+#include <vector>
 
 #include "DrawableReplica.h"
 #include "Player.h"
 #include "PlayerMate.h"
+
 
 using namespace dwn;
 
@@ -51,14 +54,6 @@ void dwn::NetGame::open()
     if (type!="1") type="2";
 
     m_multiplayer = (type=="2");
-
-    if (m_multiplayer)
-    {
-        cout << "// Escribe la dirección IP del servidor [" << DEFAULT_IP << " por defecto]: ";
-        getline(cin, m_IP);
-        if (m_IP =="") m_IP = DEFAULT_IP;
-    }
-
 
     // RakPeerInterface es la base de RakNet para comunicaciones UDP
 	rakPeer=RakNet::RakPeerInterface::GetInstance();
@@ -109,6 +104,54 @@ void dwn::NetGame::open()
 	fullyConnectedMesh2->SetAutoparticipateConnections(false);
 	fullyConnectedMesh2->SetConnectOnNewRemoteConnection(false, "");
 	rakPeer->AttachPlugin(fullyConnectedMesh2);
+
+    rakPeer->Ping("255.255.255.255", DEFAULT_PT, false);
+
+
+    // Buscar servidores disponibles
+    if (m_multiplayer)
+    {
+        RakNet::TimeMS quitTime;
+        RakNet::Packet* p;
+        std::vector<std::string> dirs;
+
+        quitTime = RakNet::GetTimeMS() + _time_search_server;  // milisegundos de espera
+        cout << "//\n// Buscando servidores ";
+        while (RakNet::GetTimeMS() < quitTime)
+        {
+            cout << ".";
+            p = rakPeer->Receive();
+
+            if (p==0)
+            {
+                RakSleep(60);
+                continue;
+            }
+
+            if (p->data[0]==ID_UNCONNECTED_PONG)
+            {
+                RakNet::TimeMS time;
+                RakNet::BitStream bsIn(p->data,p->length,false);
+                bsIn.IgnoreBytes(1);
+                bsIn.Read(time);
+                dirs.push_back(p->systemAddress.ToString());
+                //printf("Got pong from %s with time %i\n", p->systemAddress.ToString(), RakNet::GetTimeMS() - time);
+            }
+            rakPeer->DeallocatePacket(p);
+
+            RakSleep(60);
+        }
+        cout << "\n//\n//Servidores disponibles:\n";
+
+        for(int i=0; i<dirs.size(); i++)
+        //for (std::vector<std::string>::iterator it = dirs.begin(); it != dirs.end(); ++it)
+            cout << "//  ("<<i<<") " << dirs[i] << "\n";
+
+        cout << "// Seleccione el numero de servidor [0] por defecto]: ";
+
+        getline(cin, m_IP);
+        m_IP = dirs[atoi(m_IP.c_str())];  // Si no es valido, o es "", atoi devuelve 0
+    }
 
 
 	// Connect to the NAT punchthrough server

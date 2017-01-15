@@ -58,6 +58,7 @@ namespace dwn
             static const int                _max_players        = 32;
             static const unsigned short     _tcp_port           = 0;
             static const RakNet::TimeMS     _udp_sleep_timer    = 30;
+            static const unsigned int       _time_search_server = 3000;   // Milisegundos de espera buscando servidores
 
             bool m_multiplayer;
             bool m_connected;
