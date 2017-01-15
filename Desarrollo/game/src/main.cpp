@@ -90,7 +90,7 @@ int main()
 
     // Puertas
     entities[0]=GEInstance->createDoor(0, true, 43.5, 0, 135.9);
-    entities[1]=GEInstance->createDoor(3, false, 170, 0, 0); // false
+    entities[1]=GEInstance->createDoor(3, false, 0, 0, 0); // false ///170,0,0
     sector[0]=entities[1];
 
 
@@ -148,6 +148,10 @@ int main()
 	gun_2->setPosition(dwe::vec3f(220,10,100));
 	bool haveGun2 = false;
 
+	//Speed
+	dwe::Node* speed = GEInstance->createNode("media/Speed/Speed");
+	speed->setPosition(dwe::vec3f(220,10,10));
+
     //Joint try
 	dwe::Node* joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
 	joint_try->setPosition(dwe::vec3f(0,10,120));
@@ -181,8 +185,8 @@ int main()
     ApproachDoorTask* approach = new ApproachDoorTask (enemyHumanoid, (Door*)entities[0]);
 	OpenDoorTask* open = new OpenDoorTask ((Door*)entities[0]);
 	WalkThroughDoorTask* through = new WalkThroughDoorTask (enemyHumanoid, (Door*)entities[0]);
-	CloseDoorTask* close = new CloseDoorTask ((Door*)entities[0]);*/
-
+	CloseDoorTask* close = new CloseDoorTask ((Door*)entities[0]);
+    */
 
     PathplanningTask* path = new PathplanningTask(pathp, mainPlayer, enemyHumanoid, fovnode);
     PerceptionTask* perc = new PerceptionTask(percep, mainPlayer, enemyHumanoid, fovnode, path);
