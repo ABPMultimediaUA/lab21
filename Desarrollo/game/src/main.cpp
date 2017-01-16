@@ -149,8 +149,9 @@ int main()
 	bool haveGun2 = false;
 
 	//Speed
-	dwe::Node* speed = GEInstance->createNode("media/Speed/Speed");
-	speed->setPosition(dwe::vec3f(220,10,10));
+	/*dwe::Node* nspeed = GEInstance->createNode("media/Speed/Speed");
+	nspeed->setPosition(dwe::vec3f(220,10,10));
+	bool speedCogido = false;*/
 
     //Joint try
 	dwe::Node* joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
@@ -277,6 +278,8 @@ int main()
             }
         }
 
+
+
         // Actualizamos físicas box2d
         World->step(deltaTime);
         World->clearForces();
@@ -323,9 +326,11 @@ int main()
         if(haveGun2)
             gun_2->setPosition(dwe::vec3f(mainPlayer->getPosition().x-20,20,mainPlayer->getPosition().z-10));
 
-
-        GEInstance->draw();
-
+    /**********************************/
+        /*if (speedCogido)
+            speed->setPosition(dwe::vec3f(mainPlayer->getPosition().x-20,20,mainPlayer->getPosition().z-20));
+        GEInstance->draw();*/
+/************************************/
 
         // Coger la llave
         if(!llaveCogida)
@@ -337,6 +342,35 @@ int main()
                 delete llave;
             }
         }
+/*****************************/
+        // Coger speed
+       /* if(!speedCogido)
+        {
+
+            if(mainPlayer->getPosition().x > 210 && mainPlayer->getPosition().x < 230){
+                if(mainPlayer->getPosition().z > 0 && mainPlayer->getPosition().z < 20){
+                    speedCogido=true;
+                    //mainPlayer->setMKeys(llave->getId());
+                    //delete nspeed;
+                }
+            }
+        }
+
+
+ //cout << "pos x" << mainPlayer->getPosition().x << endl;
+          //      cout << "pos z" << mainPlayer->getPosition().z << endl;
+
+        // Get speed
+       /* if(!speedCogido){
+            if(mainPlayer->getPosition().x > 200 && mainPlayer->getPosition().x < 230){
+                if(mainPlayer->getPosition().z > 0 && mainPlayer->getPosition().z < 15){
+                    cout << "Speed cogida" << endl;
+                    speedCogido = true;
+                }
+            }
+        }
+        */
+        /***********************************/
 
         // TriggerSystem
         for(int i=0; i<3; i++)
