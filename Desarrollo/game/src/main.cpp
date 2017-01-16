@@ -2,6 +2,7 @@
 #include <Box2D/Box2D.h>
 #include <Box2D/Common/b2Math.h>
 #include <GraphicsEngine.h>
+#include <time.h>
 
 #include "WorldInstance.h"
 
@@ -53,6 +54,9 @@ int main()
 
 	GEInstance->init();  // Inicializar motor gráfico
 
+    clock_t t1;          // Creo reloj
+    clock_t t2;
+    clock_t  t;
 
     // Creación de jugador
 	Player* mainPlayer = GEInstance->createMainPlayer();
@@ -103,10 +107,10 @@ int main()
     MagnetKey *llave=GEInstance->createMagnetKey(0, 50, 0, 350);
     bool llaveCogida=false;
 
-    /**********************************************************************************************************/
     // SpeedBoost
     SpeedBoost *speedboost = GEInstance->createSpeedBoost(0, 210, 10, 10);
     bool hasSpeedBoost = false;
+    int t_speed = 0;
 
     // Triggers -> 0 Door, 1 Generator
     triggers[0]=GEInstance->createTrigger(0, 43.5, 0, 135.9);
@@ -172,6 +176,8 @@ int main()
     Perception* percep = new Perception();
     Pathplanning* pathp = new Pathplanning();
     float num;//para cambiar de sigilo a rapido
+
+
     /*************************** BEHAVIOR TREE **********************************/
 
 
@@ -246,6 +252,13 @@ int main()
     float timeStamp = timer->getTime();
     float deltaTime = timer->getTime() - timeStamp;
 
+
+
+    /*********************************************************************/
+    /**                                                                 **/
+    /**                           GAME RUNNING                          **/
+    /**                                                                 **/
+    /*********************************************************************/
 	while(GEInstance->isRunning())
 	{
         if(GEInstance->receiver.isKeyDown(KEY_ESCAPE))
@@ -348,8 +361,31 @@ int main()
             if(mainPlayer->getNode()->intersects(speedboost->getNode()->getNode()))
             {
                 hasSpeedBoost=true;
-                for (int tspeed = 0; tspeed < 100; tspeed++)
+                t2 = clock();
+                t = t2 - t2;
+                //cout << "a lo primero" <<  (float)t2/CLOCKS_PER_SEC << endl;
+                //t1 = t2;
+                do
+                {
+
+                    //t2 = clock() - t2;
                     mainPlayer->increaseSpeed();
+                    t1 = clock();
+
+                    //cout << "segundiness:" << (float)t2/CLOCKS_PER_SEC << endl;
+                    //cout << "segundos:" << (float)t1/CLOCKS_PER_SEC << endl;
+                   // cout << "dentro" << endl;
+                   t += t1-t2;
+                   cout << "tiempo" << (float)t/CLOCKS_PER_SEC << endl;
+                } while (((float)t)/CLOCKS_PER_SEC <= 15.0);
+                //cout << "fuera" << endl;
+
+                if((float)t/CLOCKS_PER_SEC >= 5.0)
+                {
+                    mainPlayer->decreaseSpeed();
+                    cout << "LENTIS" << endl;
+
+                }
                 delete speedboost;
             }
         }
@@ -369,6 +405,7 @@ int main()
 
         NetInstance->update();
 	}
+
 	delete bjoint;
 
 	NetInstance->close();

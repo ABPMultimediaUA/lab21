@@ -4,6 +4,7 @@ CharacterController::CharacterController()
 {
     m_speedX = 0;
     m_speedZ = 0;
+    speedb = false;
 }
 
 CharacterController::~CharacterController()
@@ -22,7 +23,7 @@ void CharacterController::setHealth(int h) { m_health = h; }
 //////////////////////////
 void CharacterController::readEvents()
 {
-    float speed;
+    //float speed;
 
     // si camina sigilosamente
     if(GEInstance->receiver.isKeyDown(KEY_LSHIFT))
@@ -31,8 +32,8 @@ void CharacterController::readEvents()
         speed = _speedRun;
 
     // insulina
-    if(GEInstance->receiver.isKeyDown(KEY_KEY_8))
-    //if (CharacterController::increaseSpeed() == true)
+    //if(GEInstance->receiver.isKeyDown(KEY_KEY_9))
+    if (CharacterController::getSpeedBoost())
         speed = speed*2;
 
     // agachado
@@ -60,5 +61,26 @@ float CharacterController::getSpeedZ() { return m_speedZ; }
 
 void CharacterController::increaseSpeed()
 {
+
     //speed = speed*2;
+    speedb = true;
+    cout << "CORRO RAPIDO" << endl;
+
+
 }
+
+void CharacterController::decreaseSpeed()
+{
+
+    //speed = speed*2;
+    speedb = false;
+    cout << "CORRO LENTO" << endl;
+
+
+}
+
+bool CharacterController::getSpeedBoost()
+{
+    return speedb;
+}
+
