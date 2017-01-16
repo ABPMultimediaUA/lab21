@@ -31,7 +31,8 @@ void CharacterController::readEvents()
         speed = _speedRun;
 
     // insulina
-    if(GEInstance->receiver.isKeyDown(KEY_KEY_9))
+    if(GEInstance->receiver.isKeyDown(KEY_KEY_8))
+    //if (CharacterController::increaseSpeed() == true)
         speed = speed*2;
 
     // agachado
@@ -59,16 +60,5 @@ float CharacterController::getSpeedZ() { return m_speedZ; }
 
 void CharacterController::increaseSpeed()
 {
-    float speed;
-
-    // si camina sigilosamente
-    if(GEInstance->receiver.isKeyDown(KEY_LSHIFT))
-        speed = _speedWalk;
-    else
-        speed = _speedRun;
-
-
-    speed = speed*2;
-
-    cout << "ADNO RAPIDOASAAAAAAAAAAAAAAAAA"<< endl;
+    //speed = speed*2;
 }

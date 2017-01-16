@@ -33,6 +33,8 @@ class CharacterController : public dwn::DrawableReplica
 
         float m_speedX;
         float m_speedZ;
+
+        //float speed;
 };
 
 #endif // CHARACTER_H

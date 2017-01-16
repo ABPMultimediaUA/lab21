@@ -3,7 +3,7 @@
 
 #include "Entity.h"
 
-class SpeedBoost
+class SpeedBoost : public Entity
 {
     public:
         SpeedBoost(int i);

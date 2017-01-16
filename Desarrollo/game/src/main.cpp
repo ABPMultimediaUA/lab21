@@ -18,6 +18,7 @@
 #include "Projectile.h"
 #include "Generator.h"
 #include "MagnetKey.h"
+#include "SpeedBoost.h"
 
 #include "TriggerDoor.h"
 #include "TriggerGenerator.h"
@@ -102,6 +103,11 @@ int main()
     MagnetKey *llave=GEInstance->createMagnetKey(0, 50, 0, 350);
     bool llaveCogida=false;
 
+    /**********************************************************************************************************/
+    // SpeedBoost
+    SpeedBoost *speedboost = GEInstance->createSpeedBoost(0, 210, 10, 10);
+    bool hasSpeedBoost = false;
+
     // Triggers -> 0 Door, 1 Generator
     triggers[0]=GEInstance->createTrigger(0, 43.5, 0, 135.9);
     triggers[1]=GEInstance->createTrigger(0, 170, 0, 0);
@@ -148,10 +154,6 @@ int main()
 	gun_2->setPosition(dwe::vec3f(220,10,100));
 	bool haveGun2 = false;
 
-    //Speed
-	dwe::Node* nspeed = GEInstance->createNode("media/Speed/Speed");
-	nspeed->setPosition(dwe::vec3f(220,10,10));
-	bool speedCogido = false;
 
     //Joint try
 	dwe::Node* joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
@@ -278,25 +280,6 @@ int main()
             }
         }
 
-        if(!speedCogido){
-            if(mainPlayer->getPosition().x > 200 && mainPlayer->getPosition().x < 220){
-                if(mainPlayer->getPosition().z > 0 && mainPlayer->getPosition().z < 20){
-                    cout << "SPEEEEEEEEEEEEEEEEEEEEEEEEEEEEED" << endl;
-                    speedCogido = true;
-                }
-            }
-        }
-        else
-            for (int i = 0; i < 10; i++)
-            {
-                mainPlayer->increaseSpeed();
-                /*_speedWalk = _speedWalk*2;
-                _speedRun = _speedRun*2;*/
-
-            }
-            cout << "ANDO LENTOOO" << endl;
-
-
 
         // Actualizamos físicas box2d
         World->step(deltaTime);
@@ -356,6 +339,18 @@ int main()
                 llaveCogida=true;
                 mainPlayer->setMKeys(llave->getId());
                 delete llave;
+            }
+        }
+
+        // Coger el boost de velocidad
+        if(!hasSpeedBoost)
+        {
+            if(mainPlayer->getNode()->intersects(speedboost->getNode()->getNode()))
+            {
+                hasSpeedBoost=true;
+                for (int tspeed = 0; tspeed < 100; tspeed++)
+                    mainPlayer->increaseSpeed();
+                delete speedboost;
             }
         }
 

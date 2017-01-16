@@ -13,6 +13,7 @@
 #include "Projectile.h"
 #include "Generator.h"
 #include "MagnetKey.h"
+#include "SpeedBoost.h"
 
 #include "Trigger.h"
 #include "TriggerDoor.h"
@@ -359,6 +360,16 @@ MagnetKey* dwe::GraphicsEngine::createMagnetKey(int i, float px, float py, float
     m->setNode(new Node(irrnode));
     m->setPosition(dwe::vec3f(px, py, pz));
     return m;
+}
+
+SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(int i, float px, float py, float pz)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/speed/speed");
+
+    SpeedBoost* s = new  SpeedBoost(i);
+    s->setNode(new Node(irrnode));
+    s->setPosition(dwe::vec3f(px, py, pz));
+    return s;
 }
 
 Trigger* dwe::GraphicsEngine::createTrigger(int type, float px, float py, float pz)
