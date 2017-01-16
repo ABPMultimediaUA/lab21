@@ -20,6 +20,8 @@ class CharacterController : public dwn::DrawableReplica
         float getSpeedX();
         float getSpeedZ();
 
+        void increaseSpeed();
+
     protected:
 
     private:

@@ -286,6 +286,17 @@ int main()
                 }
             }
         }
+        else
+            for (int i = 0; i < 10; i++)
+            {
+                mainPlayer->increaseSpeed();
+                /*_speedWalk = _speedWalk*2;
+                _speedRun = _speedRun*2;*/
+
+            }
+            cout << "ANDO LENTOOO" << endl;
+
+
 
         // Actualizamos físicas box2d
         World->step(deltaTime);

@@ -56,3 +56,19 @@ void CharacterController::readEvents()
 }
 float CharacterController::getSpeedX() { return m_speedX; }
 float CharacterController::getSpeedZ() { return m_speedZ; }
+
+void CharacterController::increaseSpeed()
+{
+    float speed;
+
+    // si camina sigilosamente
+    if(GEInstance->receiver.isKeyDown(KEY_LSHIFT))
+        speed = _speedWalk;
+    else
+        speed = _speedRun;
+
+
+    speed = speed*2;
+
+    cout << "ADNO RAPIDOASAAAAAAAAAAAAAAAAA"<< endl;
+}
