@@ -6,7 +6,7 @@ Door::Door(int f, bool a)
     y = 0;
     z = 0;
     facing = f;
-    speed = 0.5;
+    speed = 0.6;  // RMM no se puede poner a 0.5, sino la puerta no vuelve a abrirse ¿?
     active = a;
     isOpened = false;
     op=0;

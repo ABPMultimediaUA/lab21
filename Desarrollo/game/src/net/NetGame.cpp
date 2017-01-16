@@ -105,8 +105,6 @@ void dwn::NetGame::open()
 	fullyConnectedMesh2->SetConnectOnNewRemoteConnection(false, "");
 	rakPeer->AttachPlugin(fullyConnectedMesh2);
 
-    rakPeer->Ping("255.255.255.255", DEFAULT_PT, false);
-
 
     // Buscar servidores disponibles
     if (m_multiplayer)
@@ -117,6 +115,8 @@ void dwn::NetGame::open()
 
         quitTime = RakNet::GetTimeMS() + _time_search_server;  // milisegundos de espera
         cout << "//\n// Buscando servidores ";
+
+        rakPeer->Ping("255.255.255.255", DEFAULT_PT, false);
         while (RakNet::GetTimeMS() < quitTime)
         {
             cout << ".";
@@ -198,7 +198,7 @@ void NetGame::close()
 
 void PushMessage(RakNet::RakString rs)
 {
-    std::cout << rs << "\n";
+    std::cout << " <><><>NETENGINE<><><> "<< rs << "\n";
 }
 
 ///////////////////////
@@ -252,13 +252,17 @@ void dwn::NetGame::update()
 		case ID_NEW_INCOMING_CONNECTION:
             if (fullyConnectedMesh2->IsHostSystem())
             {
+                // Cuando es el primer juego que se ha creado y accede un nuevo jugador
                 PushMessage(RakNet::RakString("Sending player list to new connection"));
                 fullyConnectedMesh2->StartVerifiedJoin(packet->guid);
+                PushMessage(RakNet::RakString("llamo a startverifiedjoin"));
+                //PushMessage(RakNet::RakString(""));
             }
 			break;
 
 		case ID_FCM2_VERIFIED_JOIN_START:
 		    {
+		        PushMessage(RakNet::RakString("recibo fcm2_verified_join_start"));
                 DataStructures::List<RakNet::SystemAddress> addresses;
                 DataStructures::List<RakNet::RakNetGUID> guids;
                 DataStructures::List<RakNet::BitStream*> userData;
@@ -273,11 +277,14 @@ void dwn::NetGame::update()
 			break;
 
 		case ID_FCM2_VERIFIED_JOIN_CAPABLE:
+		    PushMessage(RakNet::RakString("capable"));
 			fullyConnectedMesh2->RespondOnVerifiedJoinCapable(packet, true, 0);
+			// enviar false para rechazar (en servidor)
 			break;
 
 		case ID_FCM2_VERIFIED_JOIN_ACCEPTED:
 		    {
+		        PushMessage(RakNet::RakString("accepted"));
                 DataStructures::List<RakNet::RakNetGUID> systemsAccepted;
                 bool thisSystemAccepted;
                 fullyConnectedMesh2->GetVerifiedJoinAcceptedAdditionalData(packet, &thisSystemAccepted, systemsAccepted, 0);
@@ -289,6 +296,13 @@ void dwn::NetGame::update()
 
                 for (unsigned int i=0; i < systemsAccepted.Size(); i++)
                     replicaManager3->PushConnection(replicaManager3->AllocConnection(rakPeer->GetSystemAddressFromGuid(systemsAccepted[i]), systemsAccepted[i]));
+		    }
+			break;
+
+		case ID_FCM2_VERIFIED_JOIN_REJECTED:
+		    {
+		        PushMessage(RakNet::RakString("rejected"));
+		        // desconectar y marcar como no conectado
 		    }
 			break;
 
