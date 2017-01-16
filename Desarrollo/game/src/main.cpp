@@ -90,7 +90,7 @@ int main()
 
     // Puertas
     entities[0]=GEInstance->createDoor(0, true, 43.5, 0, 135.9);
-    entities[1]=GEInstance->createDoor(3, false, 0, 0, 0); // false ///170,0,0
+    entities[1]=GEInstance->createDoor(3, false, 0, 0, 0); // false //170,0,0
     sector[0]=entities[1];
 
 
@@ -148,10 +148,10 @@ int main()
 	gun_2->setPosition(dwe::vec3f(220,10,100));
 	bool haveGun2 = false;
 
-	//Speed
-	/*dwe::Node* nspeed = GEInstance->createNode("media/Speed/Speed");
+    //Speed
+	dwe::Node* nspeed = GEInstance->createNode("media/Speed/Speed");
 	nspeed->setPosition(dwe::vec3f(220,10,10));
-	bool speedCogido = false;*/
+	bool speedCogido = false;
 
     //Joint try
 	dwe::Node* joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
@@ -186,8 +186,8 @@ int main()
     ApproachDoorTask* approach = new ApproachDoorTask (enemyHumanoid, (Door*)entities[0]);
 	OpenDoorTask* open = new OpenDoorTask ((Door*)entities[0]);
 	WalkThroughDoorTask* through = new WalkThroughDoorTask (enemyHumanoid, (Door*)entities[0]);
-	CloseDoorTask* close = new CloseDoorTask ((Door*)entities[0]);
-    */
+	CloseDoorTask* close = new CloseDoorTask ((Door*)entities[0]);*/
+
 
     PathplanningTask* path = new PathplanningTask(pathp, mainPlayer, enemyHumanoid, fovnode);
     PerceptionTask* perc = new PerceptionTask(percep, mainPlayer, enemyHumanoid, fovnode, path);
@@ -278,7 +278,14 @@ int main()
             }
         }
 
-
+        if(!speedCogido){
+            if(mainPlayer->getPosition().x > 200 && mainPlayer->getPosition().x < 220){
+                if(mainPlayer->getPosition().z > 0 && mainPlayer->getPosition().z < 20){
+                    cout << "SPEEEEEEEEEEEEEEEEEEEEEEEEEEEEED" << endl;
+                    speedCogido = true;
+                }
+            }
+        }
 
         // Actualizamos físicas box2d
         World->step(deltaTime);
@@ -326,11 +333,9 @@ int main()
         if(haveGun2)
             gun_2->setPosition(dwe::vec3f(mainPlayer->getPosition().x-20,20,mainPlayer->getPosition().z-10));
 
-    /**********************************/
-        /*if (speedCogido)
-            speed->setPosition(dwe::vec3f(mainPlayer->getPosition().x-20,20,mainPlayer->getPosition().z-20));
-        GEInstance->draw();*/
-/************************************/
+
+        GEInstance->draw();
+
 
         // Coger la llave
         if(!llaveCogida)
@@ -342,35 +347,6 @@ int main()
                 delete llave;
             }
         }
-/*****************************/
-        // Coger speed
-       /* if(!speedCogido)
-        {
-
-            if(mainPlayer->getPosition().x > 210 && mainPlayer->getPosition().x < 230){
-                if(mainPlayer->getPosition().z > 0 && mainPlayer->getPosition().z < 20){
-                    speedCogido=true;
-                    //mainPlayer->setMKeys(llave->getId());
-                    //delete nspeed;
-                }
-            }
-        }
-
-
- //cout << "pos x" << mainPlayer->getPosition().x << endl;
-          //      cout << "pos z" << mainPlayer->getPosition().z << endl;
-
-        // Get speed
-       /* if(!speedCogido){
-            if(mainPlayer->getPosition().x > 200 && mainPlayer->getPosition().x < 230){
-                if(mainPlayer->getPosition().z > 0 && mainPlayer->getPosition().z < 15){
-                    cout << "Speed cogida" << endl;
-                    speedCogido = true;
-                }
-            }
-        }
-        */
-        /***********************************/
 
         // TriggerSystem
         for(int i=0; i<3; i++)
