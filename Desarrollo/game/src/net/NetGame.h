@@ -29,6 +29,7 @@
 #define MAX_NET_ENTITIES    100
 
 class Entity;
+class Scene;
 
 namespace dwn
 {
@@ -38,7 +39,7 @@ namespace dwn
             static NetGame* Instance();
             virtual ~NetGame();
 
-            void open();
+            void open(Scene *scene);
             void close();
             void update();
             void addNetObject(dwn::DrawableReplica *drawReplica);
@@ -59,6 +60,7 @@ namespace dwn
             bool getGameStarted();
 
             void sendBroadcast(unsigned int messageID, unsigned int value);
+            void sendBroadcast(unsigned int messageID, dwe::vec3f origin, float angle);
 
         protected:
 
@@ -77,6 +79,7 @@ namespace dwn
             bool m_gameStarted;
             unsigned short m_participantOrder;
             std::string m_IP;
+            Scene* m_scene;
 
             Entity* m_netEntities[MAX_NET_ENTITIES];
             unsigned int m_numNetEntities;

@@ -11,6 +11,7 @@ enum GameMessages
     ID_DOOR_OPEN,
     ID_DOOR_CLOSE,
     ID_GENERATOR_ACTIVE,
+    ID_PROJECTILE_CREATE,
 };
 
 #endif // NETCOMMON_H

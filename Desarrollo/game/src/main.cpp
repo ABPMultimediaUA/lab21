@@ -17,7 +17,6 @@
 #include "Humanoid.h"
 
 #include "Door.h"
-#include "Projectile.h"
 #include "Generator.h"
 #include "MagnetKey.h"
 #include "SpeedBoost.h"
@@ -49,32 +48,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
-void updateProjectiles(std::vector<Projectile*> *projectiles)
-{
-    unsigned int i=0;
-    while(i<projectiles->size())
-    {
-        projectiles->at(i)->update();
-        if (projectiles->at(i)->getCollides())
-        {
-            delete projectiles->at(i);
-            projectiles->erase(projectiles->begin()+i);
-        }
-        else
-            i++;
-    }
-}
-
-
 int main()
 {
-    NetInstance->open();  // Inicializar motor de red
+    Scene scene;
+
+    NetInstance->open(&scene);  // Inicializar motor de red
 
 	GEInstance->init();  // Inicializar motor gráfico
-
-    clock_t t1;          // Creo reloj
-    clock_t t2;
-    clock_t  t;
 
     // Creación de jugador
 	Player* mainPlayer = GEInstance->createMainPlayer();
@@ -124,7 +104,6 @@ int main()
     // SpeedBoost
     SpeedBoost *speedboost = GEInstance->createSpeedBoost(0, 210, 10, 10);
     bool hasSpeedBoost = false;
-    int t_speed = 0;
 
     // Triggers -> 0 Door, 1 Generator
     triggers[0]=GEInstance->createTrigger(0, 43.5, 0, 135.9);
@@ -154,9 +133,6 @@ int main()
     fovnode->setPosition(enemyHumanoid->getPosition());
     fovnode->setRotation(enemyHumanoid->getRotation());
 
-
-	// Creacion objeto Proyectil
-	std::vector<Projectile*> projectiles;
 
     //Salud
 	dwe::Node* first_aid = GEInstance->createNode("media/First_Aid_Med_Kit/FirstAidMedKit");
@@ -237,9 +213,8 @@ int main()
     //////////////////////////////////////////////////////////////////
 
     //rmm Cheat: la primera vez que creo el projectile va muy lento, no se pq
-    projectiles.push_back(GEInstance->createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().x));
-    delete projectiles[0];
-    projectiles.erase(projectiles.begin());
+    scene.createProjectile(dwe::vec3f(1.0, 1.0, 1.0), 0.5);
+    scene.deleteProjectile(0);
     //rmmEnd
 
 
@@ -313,13 +288,15 @@ int main()
 
         // comprobamos si dispara
         if((timer->getTime() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
-            projectiles.push_back(GEInstance->createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().y));
+            NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
+
+            scene.createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().y);
             timeLastProjectil = timer->getTime();
         }
 
 
         mainPlayer->update(); //Posición actualizada de Irrlicht Player
-        updateProjectiles(&projectiles);
+        scene.updateProjectiles();
 
 
         for(int cont=0; cont<NUM_ENTITIES; cont++)
@@ -355,8 +332,6 @@ int main()
 
 
         //////
-
-        float timeStamp2 = timer->getTime();
         // Coger el boost de velocidad
         bool speedBoostTaken = false;
         if(!hasSpeedBoost)
@@ -366,7 +341,7 @@ int main()
                 if(mainPlayer->getNode()->intersects(speedboost->getNode()->getNode()))
                 {
 
-                    timeStamp2 = timer->getTime();
+                    // timeStamp2 = timer->getTime();  RMM no se usa
 
                     hasSpeedBoost = true;
 
@@ -387,7 +362,6 @@ int main()
         mainPlayer->setSpeed(speedBoostTaken, hasSpeedBoost);
 
         /////
-
         // TriggerSystem
         for(int i=0; i<3; i++)
             if(mainPlayer->getNode()->intersects(triggers[i]->getNode()->getNode()))
