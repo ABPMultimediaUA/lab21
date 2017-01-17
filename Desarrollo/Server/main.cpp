@@ -10,30 +10,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <iostream>
 
 #include "BitStream.h"
 #include "RakPeerInterface.h"
 #include "RakSleep.h"
 #include "Kbhit.h"
-#include "MessageIdentifiers.h"
 #include "NatPunchthroughServer.h"
 #include "CloudServerHelper.h"
 #include "CloudClient.h"
 #include "RakNetStatistics.h"
 #include "RelayPlugin.h"
 
-#define MAX_CONNECTIONS 4
+#include "NetCommon.h"
+
+#define MAX_CONNECTIONS 32
 
 //#define VERBOSE_LOGGING
 
 using namespace RakNet;
+using namespace std;
 
 static int DEFAULT_RAKPEER_PORT=61111;
-
-enum GameMessages
-{
-    ID_GAME_PARTICIPANT_ORDER = ID_USER_PACKET_ENUM+1
-};
 
 ///////////////////////////
 ///////////////////////////
@@ -147,6 +145,12 @@ int main(int argc, char **argv)
 				rakPeer->GetSystemList(addresses, guids);
 				printf("%i systems connected\n", addresses.Size());
 			}
+			else if (ch=='d')
+            {
+                cout << "\n\nDebug\n=====\n";
+
+                cout << "\n=====\n";
+            }
 		}
 		RakSleep(30);
 	}

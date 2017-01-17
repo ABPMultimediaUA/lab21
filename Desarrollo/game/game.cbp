@@ -189,6 +189,7 @@
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/net/DrawableReplica.cpp" />
 		<Unit filename="src/net/DrawableReplica.h" />
+		<Unit filename="src/net/NetCommon.h" />
 		<Unit filename="src/net/NetGame.cpp" />
 		<Unit filename="src/net/NetGame.h" />
 		<Extensions>

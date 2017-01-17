@@ -21,6 +21,7 @@
 					<Add option="-D_CONSOLE" />
 					<Add directory="Source" />
 					<Add directory="../NATCompleteServer" />
+					<Add directory="../game/src/net" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="Source" />
@@ -56,6 +57,7 @@
 				</Linker>
 			</Target>
 		</Build>
+		<Unit filename="../game/src/net/NetCommon.h" />
 		<Unit filename="CloudServerHelper.cpp" />
 		<Unit filename="CloudServerHelper.h" />
 		<Unit filename="main.cpp" />

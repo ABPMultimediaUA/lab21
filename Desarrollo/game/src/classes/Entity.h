@@ -14,7 +14,10 @@ class Entity: public Drawable
         virtual void render();
         virtual void update();
 
+        void setNetID(unsigned int netID);
+
     protected:
+        unsigned int m_netID;     // Un ID que debe coincidir con el índice array de entidades que se cree. Se envia junto con cualquier mensaje de red
 
     private:
 };

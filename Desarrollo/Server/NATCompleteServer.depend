@@ -792,19 +792,21 @@
 	"Export.h"
 	"RakNetTime.h"
 
-1482394777 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\main.cpp
+1484649480 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\main.cpp
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<iostream>
+	"BitStream.h"
 	"RakPeerInterface.h"
 	"RakSleep.h"
 	"Kbhit.h"
-	"MessageIdentifiers.h"
 	"NatPunchthroughServer.h"
 	"CloudServerHelper.h"
 	"CloudClient.h"
 	"RakNetStatistics.h"
 	"RelayPlugin.h"
+	"NetCommon.h"
 
 1482307252 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\server\source\kbhit.h
 	<conio.h>
@@ -892,4 +894,7 @@
 	"PluginInterface2.h"
 	"RakString.h"
 	"DS_Hash.h"
+
+1484646307 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\game\src\net\netcommon.h
+	"MessageIdentifiers.h"
 

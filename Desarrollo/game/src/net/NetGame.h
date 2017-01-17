@@ -18,13 +18,17 @@
 #include "GetTime.h"
 
 #include "DrawableReplica.h"
+#include "NetCommon.h"
 
 
-#define DEFAULT_IP      "127.0.0.1"
-#define DEFAULT_PT      61111
-#define NET_CLOUD_KEY   "Lab21Key"
-#define MAX_CONNECTIONS 4
 
+#define DEFAULT_IP          "127.0.0.1"
+#define DEFAULT_PT          61111
+#define NET_CLOUD_KEY       "Lab21Key"
+#define MAX_PLAYERS         4
+#define MAX_NET_ENTITIES    100
+
+class Entity;
 
 namespace dwn
 {
@@ -38,6 +42,7 @@ namespace dwn
             void close();
             void update();
             void addNetObject(dwn::DrawableReplica *drawReplica);
+            void addNetEntity(Entity* entity);
             bool isLocalObject(RakNet::RakNetGUID id);
 
             static bool isConnectedToNATPunchthroughServer;
@@ -47,9 +52,13 @@ namespace dwn
             bool connectionFailed();
             unsigned short getParticipantOrder();
 
-            void addPlayerMate(PlayerMate* pm);
             PlayerMate* getPlayerMate(int i);
             int getNumPlayerMates();
+
+            void startGame();   // Enviamos a los demas que empezamos
+            bool getGameStarted();
+
+            void sendBroadcast(unsigned int messageID, unsigned int value);
 
         protected:
 
@@ -58,14 +67,22 @@ namespace dwn
             static const int                _max_players        = 32;
             static const unsigned short     _tcp_port           = 0;
             static const RakNet::TimeMS     _udp_sleep_timer    = 30;
+            static const unsigned int       _time_search_server = 1500;   // Milisegundos de espera buscando servidores
 
             bool m_multiplayer;
             bool m_connected;
             bool m_connectionFailed;
+            bool m_connectionRejected;
+            bool m_isServer;
+            bool m_gameStarted;
             unsigned short m_participantOrder;
-            PlayerMate* m_playerMates[MAX_CONNECTIONS-1];
-            int m_numPlayerMates;
             std::string m_IP;
+
+            Entity* m_netEntities[MAX_NET_ENTITIES];
+            int m_numNetEntities;
+
+
+            unsigned int getBitStreamEntityID(Packet *packet);
 
 
             ///////////////////////////////////////////

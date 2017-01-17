@@ -27,6 +27,7 @@ bool Perception::senses(Player* mainPlayer, Humanoid* enemyHumanoid, dwe::Node* 
 
     float distanceAux;
     for(int i=0; i<NetInstance->getNumPlayerMates(); i++)
+        if (NetInstance->getPlayerMate(i) != 0)
     {
         distanceAux = fabs(enemyX - NetInstance->getPlayerMate(i)->getPosition().x) + fabs(enemyZ - NetInstance->getPlayerMate(i)->getPosition().z);
         if (distanceAux < distance)
