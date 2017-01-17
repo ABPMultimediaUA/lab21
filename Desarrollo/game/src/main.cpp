@@ -108,9 +108,9 @@ int main()
     bool llaveCogida=false;
 
     // SpeedBoost
-    SpeedBoost *speedboost = GEInstance->createSpeedBoost(0, 210, 10, 10);
-    bool hasSpeedBoost = false;
-    int t_speed = 0;
+    SpeedBoost *speedboost = GEInstance->createSpeedBoost(0, mainPlayer, 210, 10, 10);
+
+
 
     // Triggers -> 0 Door, 1 Generator
     triggers[0]=GEInstance->createTrigger(0, 43.5, 0, 135.9);
@@ -313,6 +313,8 @@ int main()
 
         mainPlayer->update(); //Posición actualizada de Irrlicht Player
 
+        speedboost->update(); // Miramos si el player coge un boost de velocidad, para cambiarla
+
 
         for(int cont=0; cont<NUM_ENTITIES; cont++)
             entities[cont]->update();
@@ -357,40 +359,6 @@ int main()
             }
         }
 
-
-        //////
-
-        float timeStamp2 = timer->getTime();
-        // Coger el boost de velocidad
-        bool speedBoostTaken = false;
-        if(!hasSpeedBoost)
-        {
-            if (speedboost != 0)
-            {
-                if(mainPlayer->getNode()->intersects(speedboost->getNode()->getNode()))
-                {
-
-                    timeStamp2 = timer->getTime();
-
-                    hasSpeedBoost = true;
-
-                    speedBoostTaken = true;
-
-                    mainPlayer->setSpeed(speedBoostTaken, hasSpeedBoost);
-
-                    speedBoostTaken = false;
-
-                    delete speedboost;
-
-                    speedboost = 0;
-                }
-            }
-
-        }
-
-        mainPlayer->setSpeed(speedBoostTaken, hasSpeedBoost);
-
-        /////
 
         // TriggerSystem
         for(int i=0; i<3; i++)

@@ -5,6 +5,7 @@ Player::Player()
 {
     setClassID(CLASS_PLAYER_ID);
     m_mKeys[0]=false;
+    m_hasSpeedBoost = false;
 }
 
 Player::~Player()
@@ -115,5 +116,12 @@ void Player::onBeginContact(EntityPhysics* otherObject)
 {
 }
 
+bool Player::getHasSpeedBoost()
+{
+    return m_hasSpeedBoost;
+}
 
-
+void Player::setHasSpeedBoost(bool s)
+{
+    m_hasSpeedBoost = s;
+}
