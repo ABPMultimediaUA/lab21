@@ -68,10 +68,7 @@ void dwn::NetGame::open()
 
 	// StartupResult solo sirve para hacer el assert y comprobar que ha ido bien
 	if (m_multiplayer)
-    {
-        RakNet::StartupResult sr = rakPeer->Startup(_max_players+1,&sd,1);// +1 is for the connection to the NAT punchthrough server
-        RakAssert(sr==RakNet::RAKNET_STARTED);
-    }
+        RakAssert(RakNet::RAKNET_STARTED == rakPeer->Startup(_max_players+1,&sd,1));  // +1 is for the connection to the NAT punchthrough server
 
 	// Configuraciones de RakPeerInterface
 	rakPeer->SetMaximumIncomingConnections(_max_players);
@@ -148,7 +145,7 @@ void dwn::NetGame::open()
         {
             cout << "\n//\n//Servidores de partidas disponibles:\n";
 
-            for(int i=0; i<dirs.size(); i++)
+            for(unsigned int i=0; i<dirs.size(); i++)
                 cout << "//  ("<<i<<") " << dirs[i] << "\n";
 
             cout << "// Seleccione el numero de servidor de partidas [0] por defecto]: ";
@@ -167,10 +164,7 @@ void dwn::NetGame::open()
 
 	// Connect to the NAT punchthrough server
 	if (m_multiplayer)
-    {
-        RakNet::ConnectionAttemptResult car = rakPeer->Connect(m_IP.c_str(), DEFAULT_PT,0,0);
-        RakAssert(car==RakNet::CONNECTION_ATTEMPT_STARTED);
-    }
+        RakAssert(RakNet::CONNECTION_ATTEMPT_STARTED == rakPeer->Connect(m_IP.c_str(), DEFAULT_PT,0,0));
 
     // Esperamos a conectar
     if (m_multiplayer)
@@ -410,8 +404,7 @@ void dwn::NetGame::update()
             if (packet->data[1]==1)
             {
                 PushMessage(RakNet::RakString("Connecting to existing game instance"));
-                RakNet::ConnectionAttemptResult car = rakPeer->Connect(packet->systemAddress.ToString(false), packet->systemAddress.GetPort(), 0, 0);
-                RakAssert(car==RakNet::CONNECTION_ATTEMPT_STARTED);
+                RakAssert(RakNet::CONNECTION_ATTEMPT_STARTED == rakPeer->Connect(packet->systemAddress.ToString(false), packet->systemAddress.GetPort(), 0, 0));
             }
 			break;
 
@@ -420,8 +413,7 @@ void dwn::NetGame::update()
 			{
 				char hostIP[32];
 				packet->systemAddress.ToString(false,hostIP);
-				RakNet::ConnectionAttemptResult car = rakPeer->Connect(hostIP,packet->systemAddress.GetPort(),0,0);
-				RakAssert(car==RakNet::CONNECTION_ATTEMPT_STARTED);
+				RakAssert(RakNet::CONNECTION_ATTEMPT_STARTED == rakPeer->Connect(hostIP,packet->systemAddress.GetPort(),0,0));
 			}
 			break;
 
@@ -445,10 +437,12 @@ void dwn::NetGame::update()
 				unsigned int entityID = getBitStreamEntityID(packet);
 
 				if (entityID<m_numNetEntities)
+                {
                     if (packet->data[0] == ID_DOOR_OPEN)
                         ((Door*)m_netEntities[entityID])->setIsOpening();
                     else
                         ((Door*)m_netEntities[entityID])->setIsClosing();
+                }
                 break;
             }
         case ID_GENERATOR_ACTIVE:
@@ -525,7 +519,7 @@ bool dwn::NetGame::isLocalObject(RakNet::RakNetGUID id)
 }
 
 //////////////////////////
-PlayerMate* dwn::NetGame::getPlayerMate(int i)
+PlayerMate* dwn::NetGame::getPlayerMate(unsigned int i)
 {
     if (i<replicaManager3->GetReplicaCount())
         return (PlayerMate*)(replicaManager3->GetReplicaAtIndex(i));

@@ -72,8 +72,8 @@ void EntityPhysics::updatePhysics()
 {
 //    Drawable::setPosition(dwe::vec3f(getBwBody()->GetPosition().x, getPosition().y, getBwBody()->GetPosition().y));
 
-    b2Vec2 position = m_body->GetPosition();
-    float32 angle = m_body->GetAngle();
+    //b2Vec2 position = m_body->GetPosition();
+    //float32 angle = m_body->GetAngle();
 
     const b2Mat22 mat(0,1,1,0);
     for(int i=0; i < m_shape.GetVertexCount(); i++){
@@ -93,13 +93,13 @@ void EntityPhysics::updatePhysics()
 b2Body* EntityPhysics::getBwBody(){return m_body;};
 
 ////////////////////
-void EntityPhysics::createDynamicBody(const dwe::vec3f& pos){
+void EntityPhysics::createDynamicBody(const dwe::vec3f& pos, float32 angle, bool bullet){
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(pos.x, pos.z);
-
     bodyDef.fixedRotation = true;
+    bodyDef.angle = angle;
 
     m_body = World->createBody(&bodyDef);
     m_body->SetUserData(this);  // Sin esta linea no funcionan los callbacks
@@ -110,17 +110,11 @@ void EntityPhysics::createDynamicBody(const dwe::vec3f& pos){
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &m_shape;
-
-    // Set the box density to be non-zero, so it will be dynamic.
-    fixtureDef.density = 1.0f;
-
-    // Override the default friction.
-    fixtureDef.friction = 0.3f;
-
+    fixtureDef.density = 1.0f;   // Set the box density to be non-zero, so it will be dynamic.
+    fixtureDef.friction = 0.3f;   // Override the default friction.
     // Add the shape to the body.
     m_body->CreateFixture(&fixtureDef);
 }
-
 
 //////////////////////
 void EntityPhysics::createStaticBody(const dwe::vec3f& pos, float width, float height){

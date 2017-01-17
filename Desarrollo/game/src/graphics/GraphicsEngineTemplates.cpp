@@ -117,6 +117,8 @@ template<class T>void dwe::NodeTemplate<T>::setAnimation(AnimationType a)
         case eAnimAttack:
             m_node->setMD2Animation(scene::EMAT_ATTACK);
             break;
+        case eAnimNone:
+            break;
         }
 }
 
