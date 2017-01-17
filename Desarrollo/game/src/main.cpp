@@ -226,10 +226,12 @@ int main()
         GEInstance->getSMGR()->getActiveCamera()->setTarget(vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
         GEInstance->getSMGR()->getActiveCamera()->setPosition(vector3df(mainPlayer->getPosition().x,250,mainPlayer->getPosition().z-100));
 
-        while (GEInstance->isRunning() && !GEInstance->receiver.isKeyDown(KEY_RETURN))
+        while (!NetInstance->getGameStarted() && GEInstance->isRunning())
         {
             GEInstance->draw();
             NetInstance->update();
+            if (GEInstance->receiver.isKeyDown(KEY_RETURN))
+                NetInstance->startGame();
         }
     }
 
