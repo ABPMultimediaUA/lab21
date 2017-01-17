@@ -1,7 +1,7 @@
 #include "NetGame.h"
-#include "MessageIdentifiers.h"
 #include "GraphicsEngine.h"
 #include "RakSleep.h"
+#include "NetCommon.h"
 
 #include <iostream>
 #include <unistd.h>  //para sleep
@@ -14,10 +14,6 @@
 
 using namespace dwn;
 
-enum GameMessages
-{
-    ID_GAME_PARTICIPANT_ORDER = ID_USER_PACKET_ENUM+1
-};
 
 dwn::NetGame::NetGame()
 {
@@ -40,8 +36,11 @@ void dwn::NetGame::open()
 {
     m_connected = false;
     m_connectionFailed = false;
+    m_connectionRejected = false;
+    m_gameStarted = false;
     m_participantOrder = 0;
     m_numPlayerMates = 0;
+    m_isServer = false;
 
     // Preguntamos por los parametros de la red
     cout << "//////////////////////////////////////////////\n";
@@ -141,33 +140,40 @@ void dwn::NetGame::open()
 
             RakSleep(60);
         }
-        cout << "\n//\n//Servidores disponibles:\n";
 
-        for(int i=0; i<dirs.size(); i++)
-        //for (std::vector<std::string>::iterator it = dirs.begin(); it != dirs.end(); ++it)
-            cout << "//  ("<<i<<") " << dirs[i] << "\n";
+        if (dirs.size()>0)
+        {
+            cout << "\n//\n//Servidores de partidas disponibles:\n";
 
-        cout << "// Seleccione el numero de servidor [0] por defecto]: ";
+            for(int i=0; i<dirs.size(); i++)
+                cout << "//  ("<<i<<") " << dirs[i] << "\n";
 
-        getline(cin, m_IP);
-        m_IP = dirs[atoi(m_IP.c_str())];  // Si no es valido, o es "", atoi devuelve 0
+            cout << "// Seleccione el numero de servidor de partidas [0] por defecto]: ";
+
+            getline(cin, m_IP);
+            m_IP = dirs[atoi(m_IP.c_str())];  // Si no es valido, o es "", atoi devuelve 0
+        }
+        else
+        {
+            cout << "\n// No hay servidores disponibles. Se inicia en modo un jugador. Presione una tecla para continuar.\n";
+            getchar();
+            m_multiplayer = false;
+        }
     }
 
 
 	// Connect to the NAT punchthrough server
 	if (m_multiplayer)
     {
-        //RakNet::ConnectionAttemptResult car = rakPeer->Connect(DEFAULT_IP, DEFAULT_PT,0,0);
         RakNet::ConnectionAttemptResult car = rakPeer->Connect(m_IP.c_str(), DEFAULT_PT,0,0);
         RakAssert(car==RakNet::CONNECTION_ATTEMPT_STARTED);
     }
-
 
     // Esperamos a conectar
     if (m_multiplayer)
     {
         cout << "\nConectando.";
-        while (!m_connected && !m_connectionFailed)
+        while (!m_connected && !m_connectionFailed && !m_connectionRejected)
         {
             usleep(40000);
             cout << ".";
@@ -177,6 +183,13 @@ void dwn::NetGame::open()
     if (m_connectionFailed)
     {
         cout << "No se encuentra el servidor " << m_IP << ", se inicia el juego en modo 1 jugador.\n";
+        cout << "Presione intro para continuar. ";
+        getchar();
+    }
+    else if (m_connectionRejected)
+    {
+        m_multiplayer = false;
+        cout << "No se puede acceder a la partida seleccionada. Partida llena o empezada, se inicia el juego en modo 1 jugador.\n";
         cout << "Presione intro para continuar. ";
         getchar();
     }
@@ -255,14 +268,11 @@ void dwn::NetGame::update()
                 // Cuando es el primer juego que se ha creado y accede un nuevo jugador
                 PushMessage(RakNet::RakString("Sending player list to new connection"));
                 fullyConnectedMesh2->StartVerifiedJoin(packet->guid);
-                PushMessage(RakNet::RakString("llamo a startverifiedjoin"));
-                //PushMessage(RakNet::RakString(""));
             }
 			break;
 
 		case ID_FCM2_VERIFIED_JOIN_START:
 		    {
-		        PushMessage(RakNet::RakString("recibo fcm2_verified_join_start"));
                 DataStructures::List<RakNet::SystemAddress> addresses;
                 DataStructures::List<RakNet::RakNetGUID> guids;
                 DataStructures::List<RakNet::BitStream*> userData;
@@ -277,14 +287,15 @@ void dwn::NetGame::update()
 			break;
 
 		case ID_FCM2_VERIFIED_JOIN_CAPABLE:
-		    PushMessage(RakNet::RakString("capable"));
-			fullyConnectedMesh2->RespondOnVerifiedJoinCapable(packet, true, 0);
-			// enviar false para rechazar (en servidor)
+		    {
+                // Controlamos que la partida no ha empezado y que no está completa
+                bool aceptar = (m_numPlayerMates < MAX_PLAYERS  && !m_gameStarted);
+                fullyConnectedMesh2->RespondOnVerifiedJoinCapable(packet, aceptar, 0);
+		    }
 			break;
 
 		case ID_FCM2_VERIFIED_JOIN_ACCEPTED:
 		    {
-		        PushMessage(RakNet::RakString("accepted"));
                 DataStructures::List<RakNet::RakNetGUID> systemsAccepted;
                 bool thisSystemAccepted;
                 fullyConnectedMesh2->GetVerifiedJoinAcceptedAdditionalData(packet, &thisSystemAccepted, systemsAccepted, 0);
@@ -302,6 +313,7 @@ void dwn::NetGame::update()
 		case ID_FCM2_VERIFIED_JOIN_REJECTED:
 		    {
 		        PushMessage(RakNet::RakString("rejected"));
+		        m_connectionRejected = true;
 		        // desconectar y marcar como no conectado
 		    }
 			break;
@@ -322,6 +334,7 @@ void dwn::NetGame::update()
             {
                 // Original host dropped. I am the new session host. Upload to the cloud so new players join this system.
                 RakNet::CloudKey cloudKey(NET_CLOUD_KEY,0);
+
                 cloudClient->Post(&cloudKey, 0, 0, rakPeer->GetGuidFromSystemAddress(facilitatorSystemAddress));
             }
 			break;
@@ -330,18 +343,33 @@ void dwn::NetGame::update()
 		    {
                 RakNet::CloudQueryResult cloudQueryResult;
                 cloudClient->OnGetReponse(&cloudQueryResult, packet);
-                if (cloudQueryResult.rowsReturned.Size()>0)
+
+                // Buscamos partidas en servidor
+                std::string seleccion;
+                int maxPartidas=cloudQueryResult.rowsReturned.Size();
+                cout << "//  (0) Crear una nueva partida.\n";
+                if (maxPartidas>0)
                 {
-                    PushMessage(RakNet::RakString("NAT punch to existing game instance"));
-                    natPunchthroughClient->OpenNAT(cloudQueryResult.rowsReturned[0]->clientGUID, facilitatorSystemAddress);
+                    for(int i=0; i<maxPartidas; i++)
+                        cout << "//  ("<<i+1<<") Unirse a " << cloudQueryResult.rowsReturned[i]->clientSystemAddress.ToString() << "\n";
                 }
-                else
+                cout << "// Selecciona partida: ";
+                getline(cin, seleccion);
+
+                m_isServer = (seleccion=="0");
+                if (m_isServer)
                 {
-                    PushMessage(RakNet::RakString("Publishing new game instance"));
+                    PushMessage(RakNet::RakString("Creando nueva partida"));
+                    m_connected = true;
 
                     // Start as a new game instance because no other games are running
                     RakNet::CloudKey cloudKey(NET_CLOUD_KEY,0);
                     cloudClient->Post(&cloudKey, 0, 0, packet->guid);
+                }
+                else
+                {
+                    PushMessage(RakNet::RakString("NAT punch to existing game instance"));
+                    natPunchthroughClient->OpenNAT(cloudQueryResult.rowsReturned[atoi(seleccion.c_str())-1]->clientGUID, facilitatorSystemAddress);
                 }
 
                 cloudClient->DeallocateWithDefaultAllocator(&cloudQueryResult);
@@ -400,7 +428,12 @@ void dwn::NetGame::update()
 				bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
 
 				bsIn.Read(m_participantOrder);
-                m_connected = true;
+                break;
+            }
+        case ID_GAME_STARTED:
+            {
+                PushMessage(RakNet::RakString("Empieza el juego"));
+                m_gameStarted = true;
                 break;
             }
 
@@ -468,6 +501,23 @@ PlayerMate* dwn::NetGame::getPlayerMate(int i)
 //////////////////
 int dwn::NetGame::getNumPlayerMates() { return m_numPlayerMates; }
 
+///////////////////
+void dwn::NetGame::startGame()
+{
+    if (fullyConnectedMesh2->IsHostSystem())
+    {
+        RakNet::SystemAddress serverAddress(m_IP.c_str(), DEFAULT_PT);
+        // Envio el comienzo de partida con broadcast a todos los participantes
+        RakNet::BitStream bsOut;
+        bsOut.Write((RakNet::MessageID)ID_GAME_STARTED);
+        rakPeer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, serverAddress, true);
+
+        m_gameStarted = true;
+    }
+}
+
+///////////////////
+bool dwn::NetGame::getGameStarted() { return m_gameStarted; }
 
 ////////////////////////////////////////////////
 RakNet::Replica3* dwn::NetGame::Connection_RM3DireW::AllocReplica(RakNet::BitStream* allocationId, RakNet::ReplicaManager3* replicaManager3)

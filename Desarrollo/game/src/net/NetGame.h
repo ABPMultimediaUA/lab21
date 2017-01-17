@@ -23,7 +23,7 @@
 #define DEFAULT_IP      "127.0.0.1"
 #define DEFAULT_PT      61111
 #define NET_CLOUD_KEY   "Lab21Key"
-#define MAX_CONNECTIONS 4
+#define MAX_PLAYERS     4
 
 
 namespace dwn
@@ -51,6 +51,9 @@ namespace dwn
             PlayerMate* getPlayerMate(int i);
             int getNumPlayerMates();
 
+            void startGame();   // Enviamos a los demas que empezamos
+            bool getGameStarted();
+
         protected:
 
         private:
@@ -58,13 +61,16 @@ namespace dwn
             static const int                _max_players        = 32;
             static const unsigned short     _tcp_port           = 0;
             static const RakNet::TimeMS     _udp_sleep_timer    = 30;
-            static const unsigned int       _time_search_server = 3000;   // Milisegundos de espera buscando servidores
+            static const unsigned int       _time_search_server = 1500;   // Milisegundos de espera buscando servidores
 
             bool m_multiplayer;
             bool m_connected;
             bool m_connectionFailed;
+            bool m_connectionRejected;
+            bool m_isServer;
+            bool m_gameStarted;
             unsigned short m_participantOrder;
-            PlayerMate* m_playerMates[MAX_CONNECTIONS-1];
+            PlayerMate* m_playerMates[MAX_PLAYERS-1];
             int m_numPlayerMates;
             std::string m_IP;
 
