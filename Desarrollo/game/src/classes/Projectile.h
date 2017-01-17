@@ -16,7 +16,6 @@ class Projectile: public Entity, public EntityPhysics
         Projectile(dwe::vec3f origin, float angle); // Proyectil creado por player
         //Projectile(int *origin, int *destiny); // Proyectil creado por enemigos
         virtual ~Projectile();
-        void moveProjectile();
         bool getCollides();
         virtual void render();
         virtual void update();
@@ -28,11 +27,13 @@ class Projectile: public Entity, public EntityPhysics
     protected:
 
     private:
+        static const float _velocity = 85.f;
+
         dwe::vec3f position;
         int speed;
         float angle;
         bool collides;
-        //int contador;// para quitar, por ahora el disparo dura x veces    rmm
+
 };
 
 #endif // PROJECTILE_H

@@ -17,7 +17,7 @@ Projectile::Projectile(dwe::vec3f origin, float a)
     setClassID(CLASS_PROJECTILE_ID);//rmm
 
     position = origin;
-    speed=55.f;
+    speed = _velocity;
     angle = -a*M_PI/180;
     collides=false;
     //contador = 0;
@@ -42,21 +42,6 @@ Projectile::~Projectile()
     //dtor
 }
 
-void Projectile::moveProjectile()
-{
-/*    contador++;
-    //if(position[0]<-1000 || position[0]>100 || position[1]<-100 || position[1]>100)
-    if(contador>100)
-        collides=true;
-    if(!collides)
-    {
-        position.x=position.x+(speed*cos(angle));
-        position.z=position.z+(speed*sin(angle));
-        setPosition(dwe::vec3f(position.x,0,position.z));
-        //cout<<"Posicion("<<position[0]<<","<<position[1]<<")"<<endl;
-    }*/
-}
-
 bool Projectile::getCollides(){return collides;}
 
 void Projectile::render(){};
@@ -71,9 +56,8 @@ void Projectile::update()
 void Projectile::setNode(dwe::Node* n)
 {
     Drawable::setNode(n);
-    createDynamicBody(getPosition());
+    createDynamicBody(dwe::vec3f(position.x+cos(angle)*25.f,0,position.z+sin(angle)*25.f), angle, true);
 
-    setPosEntity(dwe::vec3f(position.x+cos(angle)*25.f,0,position.z+sin(angle)*25.f), angle);
     setVelocity(dwe::vec3f(speed*cos(angle), 0, speed*sin(angle)));
     update();
     //cout << "Velocidad x: " << speed*cos(angle) << " - Velocidad z: " << speed*sin(angle) << "\n";

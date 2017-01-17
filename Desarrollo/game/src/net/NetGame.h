@@ -52,7 +52,7 @@ namespace dwn
             bool connectionFailed();
             unsigned short getParticipantOrder();
 
-            PlayerMate* getPlayerMate(int i);
+            PlayerMate* getPlayerMate(unsigned int i);
             int getNumPlayerMates();
 
             void startGame();   // Enviamos a los demas que empezamos
@@ -79,7 +79,7 @@ namespace dwn
             std::string m_IP;
 
             Entity* m_netEntities[MAX_NET_ENTITIES];
-            int m_numNetEntities;
+            unsigned int m_numNetEntities;
 
 
             unsigned int getBitStreamEntityID(Packet *packet);
