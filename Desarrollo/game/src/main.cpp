@@ -3,6 +3,7 @@
 #include <Box2D/Common/b2Math.h>
 #include <GraphicsEngine.h>
 #include <vector>
+#include <time.h>
 
 #include "WorldInstance.h"
 
@@ -19,6 +20,7 @@
 #include "Projectile.h"
 #include "Generator.h"
 #include "MagnetKey.h"
+#include "SpeedBoost.h"
 
 #include "TriggerDoor.h"
 #include "TriggerGenerator.h"
@@ -70,6 +72,9 @@ int main()
 
 	GEInstance->init();  // Inicializar motor gráfico
 
+    clock_t t1;          // Creo reloj
+    clock_t t2;
+    clock_t  t;
 
     // Creación de jugador
 	Player* mainPlayer = GEInstance->createMainPlayer();
@@ -115,6 +120,11 @@ int main()
     // Llaves
     MagnetKey *llave=GEInstance->createMagnetKey(0, 50, 0, 350);
     bool llaveCogida=false;
+
+    // SpeedBoost
+    SpeedBoost *speedboost = GEInstance->createSpeedBoost(0, 210, 10, 10);
+    bool hasSpeedBoost = false;
+    int t_speed = 0;
 
     // Triggers -> 0 Door, 1 Generator
     triggers[0]=GEInstance->createTrigger(0, 43.5, 0, 135.9);
@@ -178,6 +188,9 @@ int main()
     //Creación de objeto perception
     Perception* percep = new Perception();
     Pathplanning* pathp = new Pathplanning();
+
+
+
     /*************************** BEHAVIOR TREE **********************************/
 
 
@@ -252,6 +265,13 @@ int main()
     float deltaTime = timer->getTime() - timeStamp;
     float timeLastProjectil = 0;
 
+
+
+    /*********************************************************************/
+    /**                                                                 **/
+    /**                           GAME RUNNING                          **/
+    /**                                                                 **/
+    /*********************************************************************/
 	while(GEInstance->isRunning())
 	{
         if(GEInstance->receiver.isKeyDown(KEY_ESCAPE))
@@ -305,9 +325,6 @@ int main()
         for(int cont=0; cont<NUM_ENTITIES; cont++)
             entities[cont]->update();
 
-
-
-
         GEInstance->updateCamera(mainPlayer->getPosition());
 
 
@@ -335,6 +352,41 @@ int main()
                 delete llave;
             }
         }
+
+
+        //////
+
+        float timeStamp2 = timer->getTime();
+        // Coger el boost de velocidad
+        bool speedBoostTaken = false;
+        if(!hasSpeedBoost)
+        {
+            if (speedboost != 0)
+            {
+                if(mainPlayer->getNode()->intersects(speedboost->getNode()->getNode()))
+                {
+
+                    timeStamp2 = timer->getTime();
+
+                    hasSpeedBoost = true;
+
+                    speedBoostTaken = true;
+
+                    mainPlayer->setSpeed(speedBoostTaken, hasSpeedBoost);
+
+                    speedBoostTaken = false;
+
+                    delete speedboost;
+
+                    speedboost = 0;
+                }
+            }
+
+        }
+
+        mainPlayer->setSpeed(speedBoostTaken, hasSpeedBoost);
+
+        /////
 
         // TriggerSystem
         for(int i=0; i<3; i++)

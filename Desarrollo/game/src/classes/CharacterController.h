@@ -20,6 +20,11 @@ class CharacterController : public dwn::DrawableReplica
         float getSpeedX();
         float getSpeedZ();
 
+        void setSpeed(bool &a, bool &b);
+        bool getSpeedBoost();
+
+
+
     protected:
 
     private:
@@ -31,6 +36,10 @@ class CharacterController : public dwn::DrawableReplica
 
         float m_speedX;
         float m_speedZ;
+        float m_t;
+
+
+        bool m_speedb;
 };
 
 #endif // CHARACTER_H
