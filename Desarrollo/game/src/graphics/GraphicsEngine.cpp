@@ -322,6 +322,8 @@ Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float p
 	d->setPositionOpened(dwe::vec3f(px, py, pz));
 	if(f==1 || f==3)
         d->setRotation(90);
+
+    NetInstance->addNetEntity(d);
     return d;
 }
 
@@ -348,6 +350,8 @@ Generator* dwe::GraphicsEngine::createGenerator(int i, bool b, float px, float p
     Generator* g = new Generator(i, b);
     g->setNode(new Node(irrnode));
     g->setPosition(dwe::vec3f(px, py, pz));
+
+    NetInstance->addNetEntity(g);
     return g;
 }
 

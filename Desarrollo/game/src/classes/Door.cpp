@@ -1,4 +1,5 @@
 #include "Door.h"
+#include "NetGame.h"
 
 Door::Door(int f, bool a)
 {
@@ -170,7 +171,10 @@ void Door::closeDoor()
 void Door::setIsOpening()
 {
     if(active && !isOpened)
+    {
         isOpening = true;
+        NetInstance->sendBroadcast(ID_DOOR_OPEN, m_netID);
+    }
 }
 
 bool Door::getIsOpening()
@@ -181,7 +185,10 @@ bool Door::getIsOpening()
 void Door::setIsClosing()
 {
     if(active && isOpened)
+    {
         isClosing = true;
+        NetInstance->sendBroadcast(ID_DOOR_CLOSE, m_netID);
+    }
 }
 
 bool Door::getIsClosing()

@@ -1,4 +1,5 @@
 #include "Generator.h"
+#include "NetGame.h"
 
 Generator::Generator(int n, bool b)
 {
@@ -27,6 +28,8 @@ void Generator::activateGenerator()
     Door *d;
     if(!active)
     {
+        NetInstance->sendBroadcast(ID_GENERATOR_ACTIVE, m_netID);
+
         active=true;
         for(int i=0; i<entities; i++)
         {

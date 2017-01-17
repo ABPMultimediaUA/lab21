@@ -19,3 +19,6 @@ void Entity::update()
 {
 
 }
+
+/////////////
+void Entity::setNetID(unsigned int netID) { m_netID = netID; }

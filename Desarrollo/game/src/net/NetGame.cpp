@@ -10,6 +10,9 @@
 #include "DrawableReplica.h"
 #include "Player.h"
 #include "PlayerMate.h"
+#include "Entity.h"
+#include "Door.h"
+#include "Generator.h"
 
 
 using namespace dwn;
@@ -40,6 +43,7 @@ void dwn::NetGame::open()
     m_gameStarted = false;
     m_participantOrder = 0;
     m_isServer = false;
+    m_numNetEntities = 0;
 
     // Preguntamos por los parametros de la red
     cout << "//////////////////////////////////////////////\n";
@@ -435,6 +439,25 @@ void dwn::NetGame::update()
                 m_gameStarted = true;
                 break;
             }
+        case ID_DOOR_OPEN:
+        case ID_DOOR_CLOSE:
+            {
+				unsigned int entityID = getBitStreamEntityID(packet);
+
+				if (entityID<m_numNetEntities)
+                    if (packet->data[0] == ID_DOOR_OPEN)
+                        ((Door*)m_netEntities[entityID])->setIsOpening();
+                    else
+                        ((Door*)m_netEntities[entityID])->setIsClosing();
+                break;
+            }
+        case ID_GENERATOR_ACTIVE:
+            {
+				unsigned int entityID = getBitStreamEntityID(packet);
+				if (entityID<m_numNetEntities)
+                    ((Generator*)m_netEntities[entityID])->activateGenerator();
+                break;
+            }
 
 		}
 	}
@@ -443,6 +466,18 @@ void dwn::NetGame::update()
 	unsigned int idx;
 	for (idx=0; idx < replicaManager3->GetReplicaCount(); idx++)
 		((DrawableReplica*)(replicaManager3->GetReplicaAtIndex(idx)))->update(curTime);;
+}
+
+//////////////////////
+unsigned int NetGame::getBitStreamEntityID(Packet *packet)
+{
+    RakNet::BitStream bsIn(packet->data,packet->length,false);
+    bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+
+    unsigned int entityID;
+    bsIn.Read(entityID);
+
+    return entityID;
 }
 
 //////////////
@@ -476,6 +511,14 @@ void dwn::NetGame::addNetObject(dwn::DrawableReplica *drawReplica)
 }
 
 ///////////////////
+void dwn::NetGame::addNetEntity(Entity* entity)
+{
+    m_netEntities[m_numNetEntities] = entity;
+    entity->setNetID(m_numNetEntities);
+    m_numNetEntities++;
+}
+
+///////////////////
 bool dwn::NetGame::isLocalObject(RakNet::RakNetGUID id)
 {
     return (id == rakPeer->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS));
@@ -506,6 +549,16 @@ void dwn::NetGame::startGame()
 
         m_gameStarted = true;
     }
+}
+
+///////////////////
+void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int value)
+{
+    RakNet::SystemAddress serverAddress(m_IP.c_str(), DEFAULT_PT);
+    RakNet::BitStream bsOut;
+    bsOut.Write((RakNet::MessageID)messageID);
+    bsOut.Write(value);
+    rakPeer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, serverAddress, true);
 }
 
 ///////////////////
