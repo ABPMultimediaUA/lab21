@@ -4,7 +4,8 @@ CharacterController::CharacterController()
 {
     m_speedX = 0;
     m_speedZ = 0;
-    speedb = false;
+    m_speedb = false;
+    m_t = 0;
 }
 
 CharacterController::~CharacterController()
@@ -23,7 +24,7 @@ void CharacterController::setHealth(int h) { m_health = h; }
 //////////////////////////
 void CharacterController::readEvents()
 {
-    //float speed;
+    float speed;
 
     // si camina sigilosamente
     if(GEInstance->receiver.isKeyDown(KEY_LSHIFT))
@@ -59,28 +60,46 @@ void CharacterController::readEvents()
 float CharacterController::getSpeedX() { return m_speedX; }
 float CharacterController::getSpeedZ() { return m_speedZ; }
 
-void CharacterController::increaseSpeed()
+void CharacterController::setSpeed(bool &a, bool &b)
 {
 
-    //speed = speed*2;
-    speedb = true;
-    cout << "CORRO RAPIDO" << endl;
+    ITimer* timer = GEInstance->getDevice()->getTimer();
+
+
+    float time;
+
+
+    if (a) // Si acabo de cogerlo
+        m_t = timer->getTime();
+
+    else if (b) // Si cogí el boost
+    {
+        time = timer->getTime();
+       if ((time - m_t) <= 5000.0)
+        {
+            m_speedb = true;
+            //cout << "CORRO RAPIDO" << endl;
+            cout << "tiempo t " << m_t << endl;
+            cout << "tiempo time " << time << endl;
+        }
+        else
+        {
+            cout << "LENTO" << endl;
+            m_speedb = false;
+            a = false;
+            b = false;
+        }
+    }
+    else
+        m_speedb = false;
+
 
 
 }
 
-void CharacterController::decreaseSpeed()
-{
-
-    //speed = speed*2;
-    speedb = false;
-    cout << "CORRO LENTO" << endl;
-
-
-}
 
 bool CharacterController::getSpeedBoost()
 {
-    return speedb;
+    return m_speedb;
 }
 

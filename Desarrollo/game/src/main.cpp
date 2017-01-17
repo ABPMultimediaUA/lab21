@@ -355,40 +355,40 @@ int main()
             }
         }
 
+
+        //////
+
+        float timeStamp2 = timer->getTime();
         // Coger el boost de velocidad
+        bool speedBoostTaken = false;
         if(!hasSpeedBoost)
         {
-            if(mainPlayer->getNode()->intersects(speedboost->getNode()->getNode()))
+            if (speedboost != 0)
             {
-                hasSpeedBoost=true;
-                t2 = clock();
-                t = t2 - t2;
-                //cout << "a lo primero" <<  (float)t2/CLOCKS_PER_SEC << endl;
-                //t1 = t2;
-                do
+                if(mainPlayer->getNode()->intersects(speedboost->getNode()->getNode()))
                 {
 
-                    //t2 = clock() - t2;
-                    mainPlayer->increaseSpeed();
-                    t1 = clock();
+                    timeStamp2 = timer->getTime();
 
-                    //cout << "segundiness:" << (float)t2/CLOCKS_PER_SEC << endl;
-                    //cout << "segundos:" << (float)t1/CLOCKS_PER_SEC << endl;
-                   // cout << "dentro" << endl;
-                   t += t1-t2;
-                   cout << "tiempo" << (float)t/CLOCKS_PER_SEC << endl;
-                } while (((float)t)/CLOCKS_PER_SEC <= 15.0);
-                //cout << "fuera" << endl;
+                    hasSpeedBoost = true;
 
-                if((float)t/CLOCKS_PER_SEC >= 5.0)
-                {
-                    mainPlayer->decreaseSpeed();
-                    cout << "LENTIS" << endl;
+                    speedBoostTaken = true;
 
+                    mainPlayer->setSpeed(speedBoostTaken, hasSpeedBoost);
+
+                    speedBoostTaken = false;
+
+                    delete speedboost;
+
+                    speedboost = 0;
                 }
-                delete speedboost;
             }
+
         }
+
+        mainPlayer->setSpeed(speedBoostTaken, hasSpeedBoost);
+
+        /////
 
         // TriggerSystem
         for(int i=0; i<3; i++)

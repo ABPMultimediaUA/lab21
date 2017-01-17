@@ -367,7 +367,7 @@ SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(int i, float px, float py, flo
     scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/speed/speed");
 
     SpeedBoost* s = new  SpeedBoost(i);
-    s->setNode(new Node(irrnode));
+     s->setNode(new Node(irrnode));
     s->setPosition(dwe::vec3f(px, py, pz));
     return s;
 }
