@@ -57,7 +57,6 @@
 			<Add library="winmm" />
 			<Add directory="lib" />
 		</Linker>
-		<Unit filename="include/PerceptionTask.h" />
 		<Unit filename="src/classes/Ammo.cpp" />
 		<Unit filename="src/classes/Ammo.h" />
 		<Unit filename="src/classes/AmmoGrenade.cpp" />

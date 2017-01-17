@@ -47,7 +47,6 @@ namespace dwn
             bool connectionFailed();
             unsigned short getParticipantOrder();
 
-            void addPlayerMate(PlayerMate* pm);
             PlayerMate* getPlayerMate(int i);
             int getNumPlayerMates();
 
@@ -70,8 +69,6 @@ namespace dwn
             bool m_isServer;
             bool m_gameStarted;
             unsigned short m_participantOrder;
-            PlayerMate* m_playerMates[MAX_PLAYERS-1];
-            int m_numPlayerMates;
             std::string m_IP;
 
 

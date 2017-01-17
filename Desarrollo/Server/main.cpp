@@ -110,9 +110,6 @@ int main(int argc, char **argv)
             case ID_DISCONNECTION_NOTIFICATION:
                 cloudServerHelper.OnConnectionCountChange(rakPeer, cloudClient);
                 break;
-            case ID_GAME_STARTED:
-                std::cout << "\n\n ---------------- ID_GAME_STARTED --------------------- \n\n";
-                break;
             }
 		}
 

@@ -39,7 +39,6 @@ void dwn::NetGame::open()
     m_connectionRejected = false;
     m_gameStarted = false;
     m_participantOrder = 0;
-    m_numPlayerMates = 0;
     m_isServer = false;
 
     // Preguntamos por los parametros de la red
@@ -289,7 +288,7 @@ void dwn::NetGame::update()
 		case ID_FCM2_VERIFIED_JOIN_CAPABLE:
 		    {
                 // Controlamos que la partida no ha empezado y que no está completa
-                bool aceptar = (m_numPlayerMates < MAX_PLAYERS  && !m_gameStarted);
+                bool aceptar = (getNumPlayerMates() < MAX_PLAYERS  && !m_gameStarted);
                 fullyConnectedMesh2->RespondOnVerifiedJoinCapable(packet, aceptar, 0);
 		    }
 			break;
@@ -482,24 +481,17 @@ bool dwn::NetGame::isLocalObject(RakNet::RakNetGUID id)
     return (id == rakPeer->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS));
 }
 
-///////////////////
-void dwn::NetGame::addPlayerMate(PlayerMate* pm)
-{
-    m_playerMates[m_numPlayerMates] = pm;
-    m_numPlayerMates++;
-}
-
 //////////////////////////
 PlayerMate* dwn::NetGame::getPlayerMate(int i)
 {
-    if (i<m_numPlayerMates)
-        return m_playerMates[i];
+    if (i<replicaManager3->GetReplicaCount())
+        return (PlayerMate*)(replicaManager3->GetReplicaAtIndex(i));
     else
         return NULL;
 }
 
 //////////////////
-int dwn::NetGame::getNumPlayerMates() { return m_numPlayerMates; }
+int dwn::NetGame::getNumPlayerMates() { return replicaManager3->GetReplicaCount(); }
 
 ///////////////////
 void dwn::NetGame::startGame()
@@ -507,7 +499,7 @@ void dwn::NetGame::startGame()
     if (fullyConnectedMesh2->IsHostSystem())
     {
         RakNet::SystemAddress serverAddress(m_IP.c_str(), DEFAULT_PT);
-        // Envio el comienzo de partida con broadcast a todos los participantes
+        // Envio el comienzo de partida con broadcast a todos los participantes, menos al server
         RakNet::BitStream bsOut;
         bsOut.Write((RakNet::MessageID)ID_GAME_STARTED);
         rakPeer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, serverAddress, true);
@@ -530,7 +522,6 @@ RakNet::Replica3* dwn::NetGame::Connection_RM3DireW::AllocReplica(RakNet::BitStr
 	if (typeName == "Player")
     {
         PlayerMate* obj = GEInstance->createPlayerMate();
-        NetInstance->addPlayerMate(obj);
         return obj;
     }
     else
