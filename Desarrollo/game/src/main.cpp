@@ -298,6 +298,7 @@ int main()
 
         mainPlayer->update(); //Posición actualizada de Irrlicht Player
         scene.updateProjectiles();
+        speedboost->update();
 
 
         for(int cont=0; cont<NUM_ENTITIES; cont++)

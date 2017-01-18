@@ -16,6 +16,9 @@ class Scene
         void deleteProjectile(unsigned int i);
         void updateProjectiles();
 
+        void createSpeedBoost(int i, Player* p, float px, float py, float pz);
+        void updateSpeedBoosts();
+
     protected:
 
     private:
