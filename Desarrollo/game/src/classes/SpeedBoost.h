@@ -2,12 +2,13 @@
 #define SPEEDBOOST_H
 
 #include "Entity.h"
+#include "Player.h"
 
 class SpeedBoost : public Entity
 {
     public:
 
-        SpeedBoost(int i);
+        SpeedBoost(int i, Player* p);
 
         virtual ~SpeedBoost();
 
@@ -23,6 +24,7 @@ class SpeedBoost : public Entity
     private:
 
         int id;
+        Player* mainPlayer;
 };
 
 #endif // SPEEDBOOST_H

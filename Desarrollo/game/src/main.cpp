@@ -102,8 +102,9 @@ int main()
     bool llaveCogida=false;
 
     // SpeedBoost
-    SpeedBoost *speedboost = GEInstance->createSpeedBoost(0, 210, 10, 10);
-    bool hasSpeedBoost = false;
+    SpeedBoost *speedboost = GEInstance->createSpeedBoost(0, mainPlayer, 210, 10, 10);
+
+
 
     // Triggers -> 0 Door, 1 Generator
     triggers[0]=GEInstance->createTrigger(0, 43.5, 0, 135.9);
@@ -331,37 +332,6 @@ int main()
         }
 
 
-        //////
-        // Coger el boost de velocidad
-        bool speedBoostTaken = false;
-        if(!hasSpeedBoost)
-        {
-            if (speedboost != 0)
-            {
-                if(mainPlayer->getNode()->intersects(speedboost->getNode()->getNode()))
-                {
-
-                    // timeStamp2 = timer->getTime();  RMM no se usa
-
-                    hasSpeedBoost = true;
-
-                    speedBoostTaken = true;
-
-                    mainPlayer->setSpeed(speedBoostTaken, hasSpeedBoost);
-
-                    speedBoostTaken = false;
-
-                    delete speedboost;
-
-                    speedboost = 0;
-                }
-            }
-
-        }
-
-        mainPlayer->setSpeed(speedBoostTaken, hasSpeedBoost);
-
-        /////
         // TriggerSystem
         for(int i=0; i<3; i++)
             if(mainPlayer->getNode()->intersects(triggers[i]->getNode()->getNode()))

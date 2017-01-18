@@ -360,11 +360,11 @@ MagnetKey* dwe::GraphicsEngine::createMagnetKey(int i, float px, float py, float
     return m;
 }
 
-SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(int i, float px, float py, float pz)
+SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(int i, Player* p, float px, float py, float pz)
 {
     scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/speed/speed");
 
-    SpeedBoost* s = new  SpeedBoost(i);
+    SpeedBoost* s = new  SpeedBoost(i, p);
      s->setNode(new Node(irrnode));
     s->setPosition(dwe::vec3f(px, py, pz));
     return s;
