@@ -103,8 +103,8 @@ int main()
     bool llaveCogida=false;
 
     // SpeedBoost
-    SpeedBoost *speedboost = GEInstance->createSpeedBoost(0, mainPlayer, 210, 10, 10);
-
+    scene.createSpeedBoost(0, mainPlayer, 210, 10, 10);
+    scene.createSpeedBoost(1, mainPlayer, 100, 10, 10);
 
 
     // Triggers -> 0 Door, 1 Generator
@@ -298,8 +298,9 @@ int main()
 
 
         mainPlayer->update(); //Posición actualizada de Irrlicht Player
-        speedboost->update(); // Miramos si el player coge un boost de velocidad, para cambiarla
         scene.updateProjectiles();
+        //speedboost->update();
+        scene.updateSpeedBoosts();
 
         for(int cont=0; cont<NUM_ENTITIES; cont++)
             entities[cont]->update();

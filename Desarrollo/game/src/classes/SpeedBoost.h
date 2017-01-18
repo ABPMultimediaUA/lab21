@@ -25,6 +25,9 @@ class SpeedBoost : public Entity
 
         int id;
         Player* mainPlayer;
+        bool hasSpeedBoost;
+
+
 };
 
 #endif // SPEEDBOOST_H

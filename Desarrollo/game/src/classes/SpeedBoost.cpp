@@ -5,6 +5,7 @@ SpeedBoost::SpeedBoost(int i, Player* p)
     //ctor
     id = i;
     mainPlayer = p;
+    hasSpeedBoost = false;
 }
 
 SpeedBoost::~SpeedBoost()
@@ -19,24 +20,17 @@ int SpeedBoost::getId()
 
 void SpeedBoost::update()
 {
-//    ITimer* timer = GEInstance->getDevice()->getTimer();
-
-    //float timeStamp2 = timer->getTime();
-
     // Coger el boost de velocidad
     bool speedBoostTaken = false;
 
-    bool hasSpeedBoost = mainPlayer->getHasSpeedBoost();
+    hasSpeedBoost = mainPlayer->getHasSpeedBoost();
 
     if(!hasSpeedBoost)
     {
-        if (this != 0)
+        if (this->getNode() != 0)
         {
             if(mainPlayer->getNode()->intersects(this->getNode()->getNode()))
             {
-
-                //timeStamp2 = timer->getTime();
-
                 hasSpeedBoost = true;
                 mainPlayer->setHasSpeedBoost(hasSpeedBoost); //
 
@@ -57,6 +51,8 @@ void SpeedBoost::update()
     }
 
     mainPlayer->setSpeed(speedBoostTaken, hasSpeedBoost);
+
+    mainPlayer->setHasSpeedBoost(hasSpeedBoost); //
 
 }
 

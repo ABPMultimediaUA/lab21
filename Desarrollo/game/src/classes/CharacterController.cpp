@@ -86,12 +86,12 @@ void CharacterController::setSpeed(bool &a, bool &b)
         {
             m_speedb = true;
             //cout << "CORRO RAPIDO" << endl;
-            cout << "tiempo t " << m_t << endl;
-            cout << "tiempo time " << time << endl;
+            //cout << "tiempo t " << m_t << endl;
+            //cout << "tiempo time " << time << endl;
         }
         else
         {
-            cout << "LENTO" << endl;
+            //cout << "LENTO" << endl;
             m_speedb = false;
             a = false;
             b = false;

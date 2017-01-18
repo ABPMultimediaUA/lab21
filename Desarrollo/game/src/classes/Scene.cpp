@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "Projectile.h"
+#include "SpeedBoost.h"
 
 
 Scene::Scene()
@@ -46,3 +47,20 @@ void Scene::createProjectile(dwe::vec3f origin, float angle)
     m_projectiles.push_back(GEInstance->createProjectile(origin, angle));
 }
 
+////////////
+void Scene::updateSpeedBoosts()
+{
+    unsigned int i=0;
+    while(i<m_speedBoosts.size())
+    {
+        m_speedBoosts[i]->update();
+
+        i++;
+    }
+}
+
+////////////
+void Scene::createSpeedBoost(int i, Player* p, float px, float py, float pz)
+{
+    m_speedBoosts.push_back(GEInstance->createSpeedBoost(i, p, px, py, pz));
+}
