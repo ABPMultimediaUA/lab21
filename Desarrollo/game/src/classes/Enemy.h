@@ -10,7 +10,10 @@ class Enemy : public Drawable
         Enemy();
         virtual ~Enemy();
 
+        float getSpeed();
+
     protected:
+        float m_speed;   // Velocidad: hay que actualizarla en el constructor de cada enemigo
 
     private:
 };

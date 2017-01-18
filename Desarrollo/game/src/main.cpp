@@ -4,6 +4,7 @@
 #include <GraphicsEngine.h>
 #include <vector>
 #include <time.h>
+#include <typeinfo>
 
 #include "WorldInstance.h"
 
@@ -236,9 +237,8 @@ int main()
 
 
 
-    ITimer* timer = GEInstance->getDevice()->getTimer();
-    float timeStamp = timer->getTime();
-    float deltaTime = timer->getTime() - timeStamp;
+    float timeStamp = World->getTimeElapsed();
+    float deltaTime;
     float timeLastProjectil = 0;
 
 
@@ -256,7 +256,8 @@ int main()
             return 0;
         }
 
-        deltaTime = timer->getTime()-timeStamp; timeStamp=timer->getTime();
+        deltaTime = World->getTimeElapsed() - timeStamp;
+        timeStamp = World->getTimeElapsed();
 
         selector1->run();  // Run Behavior Tree
 
@@ -288,20 +289,22 @@ int main()
 
 
         // comprobamos si dispara
-        if((timer->getTime() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
+        if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
             NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
 
             scene.createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().y);
-            timeLastProjectil = timer->getTime();
+            timeLastProjectil = World->getTimeElapsed();
         }
 
 
         mainPlayer->update(); //Posición actualizada de Irrlicht Player
+        speedboost->update(); // Miramos si el player coge un boost de velocidad, para cambiarla
         scene.updateProjectiles();
-
 
         for(int cont=0; cont<NUM_ENTITIES; cont++)
             entities[cont]->update();
+
+
 
         GEInstance->updateCamera(mainPlayer->getPosition());
 
@@ -328,6 +331,7 @@ int main()
                 llaveCogida=true;
                 mainPlayer->setMKeys(llave->getId());
                 delete llave;
+                llave = 0;
             }
         }
 
@@ -351,6 +355,33 @@ int main()
         //percep->senses(mainPlayer,enemyHumanoid,fovnode,num);  //llamamos a percepcion
 
         NetInstance->update();
+
+
+
+
+
+        //rmm:cheat, cojo todo
+        if (GEInstance->receiver.isKeyDown(KEY_KEY_C))
+        {
+            // Cojo llave
+            if(llave!=0)
+            {
+                llaveCogida=true;
+                mainPlayer->setMKeys(llave->getId());
+            }
+
+            //Activo todo
+            for(int i=0; i<3; i++)
+            {
+                if(i==2)
+                {
+                    if(mainPlayer->getMKey(((Generator*)entities[i])->getNum()))
+                        triggers[i]->triggered(entities[i]);
+                }
+                else if(i==0 || i==1)
+                    triggers[i]->triggered(entities[i]);
+            }
+        }
 	}
 	delete bjoint;
 

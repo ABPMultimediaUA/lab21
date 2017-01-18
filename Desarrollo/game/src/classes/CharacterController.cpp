@@ -1,4 +1,5 @@
 #include "CharacterController.h"
+#include "WorldInstance.h"
 
 CharacterController::CharacterController()
 {
@@ -35,11 +36,16 @@ void CharacterController::readEvents()
     // insulina
     //if(GEInstance->receiver.isKeyDown(KEY_KEY_9))
     if (CharacterController::getSpeedBoost())
-        speed = speed*2;
+        speed = speed*2.f;
 
     // agachado
     if(GEInstance->receiver.isKeyDown(KEY_KEY_8))
-        speed = speed/2;
+        speed = speed/2.f;
+
+    // Si va en diagonal, reducimos velocidad
+    if((GEInstance->receiver.isKeyDown(KEY_KEY_D) || GEInstance->receiver.isKeyDown(KEY_KEY_A))
+       && (GEInstance->receiver.isKeyDown(KEY_KEY_W) || GEInstance->receiver.isKeyDown(KEY_KEY_S)))
+        speed = speed*0.7;  // cos(45) = 0.7...
 
     //Derecha o izquierda
     if(GEInstance->receiver.isKeyDown(KEY_KEY_D))
@@ -56,6 +62,7 @@ void CharacterController::readEvents()
         m_speedZ = -speed;
     else
         m_speedZ = 0.f;
+
 }
 float CharacterController::getSpeedX() { return m_speedX; }
 float CharacterController::getSpeedZ() { return m_speedZ; }
@@ -63,18 +70,18 @@ float CharacterController::getSpeedZ() { return m_speedZ; }
 void CharacterController::setSpeed(bool &a, bool &b)
 {
 
-    ITimer* timer = GEInstance->getDevice()->getTimer();
+    //ITimer* timer = GEInstance->getDevice()->getTimer();
 
 
     float time;
 
 
     if (a) // Si acabo de cogerlo
-        m_t = timer->getTime();
+        m_t = World->getTimeElapsed();//timer->getTime();
 
     else if (b) // Si cogí el boost
     {
-        time = timer->getTime();
+        time = World->getTimeElapsed();//timer->getTime();
        if ((time - m_t) <= 5000.0)
         {
             m_speedb = true;

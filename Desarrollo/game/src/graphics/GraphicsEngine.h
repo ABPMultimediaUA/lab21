@@ -193,7 +193,6 @@ namespace dwe
         void yield();
         vector3df getTransformedBoundingBox(scene::IAnimatedMeshSceneNode* player);
         /*bool intersectsWithBox(vec3f v, vec3f w);*/
-        irr::IrrlichtDevice* getDevice();
         irr::scene::ISceneManager*  getSMGR();
 
         // Creacion de personajes

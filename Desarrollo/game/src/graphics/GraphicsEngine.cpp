@@ -453,6 +453,5 @@ void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition)
     m_smgr->getActiveCamera()->setPosition(vector3df(playerPosition.x+tarLR, _camera_y, playerPosition.z + _camera_z_offset + tarUD));
 }
 
-irr::IrrlichtDevice* dwe::GraphicsEngine::getDevice(){return(m_device);}
 irr::scene::ISceneManager*  dwe::GraphicsEngine::getSMGR(){return(m_smgr);}
 
