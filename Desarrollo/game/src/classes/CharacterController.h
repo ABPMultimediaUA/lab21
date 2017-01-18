@@ -21,8 +21,7 @@ class CharacterController : public dwn::DrawableReplica
         float getSpeedZ();
 
         void setSpeed(bool &a, bool &b);
-        bool getSpeedBoost();
-
+        void setSpeedBoost();
 
 
     protected:
@@ -30,6 +29,7 @@ class CharacterController : public dwn::DrawableReplica
     private:
         static const float _speedRun = 20.f;
         static const float _speedWalk = 5.f;
+        static const float _maxSpeedBostTime = 5000.0;
 
         int m_strength;
         int m_health;
@@ -39,7 +39,8 @@ class CharacterController : public dwn::DrawableReplica
         float m_t;
 
 
-        bool m_speedb;
+        bool m_hasSpeedBoost;
+        float m_timeSpeedBost;
 };
 
 #endif // CHARACTER_H

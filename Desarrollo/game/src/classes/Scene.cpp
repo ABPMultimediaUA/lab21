@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "Projectile.h"
 #include "SpeedBoost.h"
+#include "Consumable.h"
 
 
 Scene::Scene()
@@ -48,19 +49,24 @@ void Scene::createProjectile(dwe::vec3f origin, float angle)
 }
 
 ////////////
-void Scene::updateSpeedBoosts()
+void Scene::updateConsumables(Player* mainPlayer)
 {
     unsigned int i=0;
-    while(i<m_speedBoosts.size())
+    while(i<m_consumables.size())
     {
-        m_speedBoosts[i]->update();
-
-        i++;
+        m_consumables[i]->update(mainPlayer);
+        if (m_consumables[i]->getIsTaken())
+        {
+            delete m_consumables[i];
+            m_consumables.erase(m_consumables.begin()+i);
+        }
+        else
+            i++;
     }
 }
 
 ////////////
-void Scene::createSpeedBoost(int i, Player* p, float px, float py, float pz)
+void Scene::createSpeedBoost(float px, float py, float pz)
 {
-    m_speedBoosts.push_back(GEInstance->createSpeedBoost(i, p, px, py, pz));
+    m_consumables.push_back(GEInstance->createSpeedBoost(px, py, pz));
 }

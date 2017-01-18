@@ -5,6 +5,7 @@
 #include "GraphicsEngine.h"
 
 class Projectile;
+class Consumable;
 
 class Scene
 {
@@ -16,14 +17,14 @@ class Scene
         void deleteProjectile(unsigned int i);
         void updateProjectiles();
 
-        void createSpeedBoost(int i, Player* p, float px, float py, float pz);
-        void updateSpeedBoosts();
+        void createSpeedBoost(float px, float py, float pz);
+        void updateConsumables(Player* mainPlayer);
 
     protected:
 
     private:
         std::vector<Projectile*> m_projectiles;
-        std::vector<SpeedBoost*> m_speedBoosts;
+        std::vector<Consumable*> m_consumables;
 };
 
 #endif // GAME_H

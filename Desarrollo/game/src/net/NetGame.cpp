@@ -14,6 +14,7 @@
 #include "Door.h"
 #include "Generator.h"
 #include "Scene.h"
+#include "Consumable.h"
 
 
 using namespace dwn;
@@ -466,7 +467,13 @@ void dwn::NetGame::update()
                 m_scene->createProjectile(origin, angle);
                 break;
             }
-
+        case ID_CONSUMABLE_TAKEN:
+            {
+				unsigned int consumableID = getBitStreamEntityID(packet);
+				if (consumableID<m_numNetConsumables)
+                    (m_netConsumables[consumableID])->take();
+                break;
+            }
 		}
 	}
 
@@ -524,6 +531,14 @@ void dwn::NetGame::addNetEntity(Entity* entity)
     m_netEntities[m_numNetEntities] = entity;
     entity->setNetID(m_numNetEntities);
     m_numNetEntities++;
+}
+
+///////////////////
+void dwn::NetGame::addNetConsumable(Consumable* consumable)
+{
+    m_netConsumables[m_numNetConsumables] = consumable;
+    consumable->setNetID(m_numNetConsumables);
+    m_numNetConsumables++;
 }
 
 ///////////////////

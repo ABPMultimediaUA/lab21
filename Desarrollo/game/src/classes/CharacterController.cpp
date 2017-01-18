@@ -5,7 +5,7 @@ CharacterController::CharacterController()
 {
     m_speedX = 0;
     m_speedZ = 0;
-    m_speedb = false;
+    m_hasSpeedBoost = false;
     m_t = 0;
 }
 
@@ -35,8 +35,14 @@ void CharacterController::readEvents()
 
     // insulina
     //if(GEInstance->receiver.isKeyDown(KEY_KEY_9))
-    if (CharacterController::getSpeedBoost())
+    if (m_hasSpeedBoost)
+    {
         speed = speed*2.f;
+
+        if (World->getTimeElapsed() - m_timeSpeedBost > _maxSpeedBostTime)
+            m_hasSpeedBoost = false;
+    }
+
 
     // agachado
     if(GEInstance->receiver.isKeyDown(KEY_KEY_8))
@@ -64,49 +70,13 @@ void CharacterController::readEvents()
         m_speedZ = 0.f;
 
 }
+
 float CharacterController::getSpeedX() { return m_speedX; }
 float CharacterController::getSpeedZ() { return m_speedZ; }
 
-void CharacterController::setSpeed(bool &a, bool &b)
+
+void CharacterController::setSpeedBoost()
 {
-
-    //ITimer* timer = GEInstance->getDevice()->getTimer();
-
-
-    float time;
-
-
-    if (a) // Si acabo de cogerlo
-        m_t = World->getTimeElapsed();//timer->getTime();
-
-    else if (b) // Si cogí el boost
-    {
-        time = World->getTimeElapsed();//timer->getTime();
-       if ((time - m_t) <= 5000.0)
-        {
-            m_speedb = true;
-            //cout << "CORRO RAPIDO" << endl;
-            //cout << "tiempo t " << m_t << endl;
-            //cout << "tiempo time " << time << endl;
-        }
-        else
-        {
-            //cout << "LENTO" << endl;
-            m_speedb = false;
-            a = false;
-            b = false;
-        }
-    }
-    else
-        m_speedb = false;
-
-
-
+    m_hasSpeedBoost = true;
+    m_timeSpeedBost = World->getTimeElapsed();
 }
-
-
-bool CharacterController::getSpeedBoost()
-{
-    return m_speedb;
-}
-

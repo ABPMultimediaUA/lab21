@@ -27,9 +27,11 @@
 #define NET_CLOUD_KEY       "Lab21Key"
 #define MAX_PLAYERS         4
 #define MAX_NET_ENTITIES    100
+#define MAX_NET_CONSUMABLES 100
 
 class Entity;
 class Scene;
+class Consumable;
 
 namespace dwn
 {
@@ -44,6 +46,7 @@ namespace dwn
             void update();
             void addNetObject(dwn::DrawableReplica *drawReplica);
             void addNetEntity(Entity* entity);
+            void addNetConsumable(Consumable* consumable);
             bool isLocalObject(RakNet::RakNetGUID id);
 
             static bool isConnectedToNATPunchthroughServer;
@@ -83,6 +86,9 @@ namespace dwn
 
             Entity* m_netEntities[MAX_NET_ENTITIES];
             unsigned int m_numNetEntities;
+
+            Consumable* m_netConsumables[MAX_NET_CONSUMABLES];
+            unsigned int m_numNetConsumables;
 
 
             unsigned int getBitStreamEntityID(Packet *packet);

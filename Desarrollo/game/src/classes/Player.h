@@ -32,8 +32,6 @@ class Player : public CharacterController, public EntityPhysics
         void setLife(int n);
         void setMKeys(int id);
         bool getMKey(int n);
-        bool getHasSpeedBoost();
-        void setHasSpeedBoost(bool s);
 
         virtual const char* getNetObjectID() const;
         virtual void setPosition(dwe::vec3f p);
@@ -48,7 +46,6 @@ class Player : public CharacterController, public EntityPhysics
         int         m_grenades;
         int         m_life;
         bool        m_mKeys[1];
-        bool        m_hasSpeedBoost;
 };
 
 #endif // PLAYER_H
