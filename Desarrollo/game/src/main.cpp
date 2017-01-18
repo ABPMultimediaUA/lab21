@@ -102,7 +102,6 @@ int main()
     bool llaveCogida=false;
 
     // SpeedBoost
-    //SpeedBoost *speedboost = GEInstance->createSpeedBoost(0, mainPlayer, 210, 10, 10);
     scene.createSpeedBoost(0, mainPlayer, 210, 10, 10);
     scene.createSpeedBoost(1, mainPlayer, 100, 10, 10);
 
