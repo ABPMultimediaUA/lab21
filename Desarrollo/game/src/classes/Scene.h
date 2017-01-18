@@ -23,6 +23,7 @@ class Scene
 
     private:
         std::vector<Projectile*> m_projectiles;
+        std::vector<SpeedBoost*> m_speedBoosts;
 };
 
 #endif // GAME_H
