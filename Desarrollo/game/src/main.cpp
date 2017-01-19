@@ -2,6 +2,7 @@
 #include <Box2D/Box2D.h>
 #include <Box2D/Common/b2Math.h>
 #include <GraphicsEngine.h>
+#include <irrKlang.h>
 #include <vector>
 #include <time.h>
 #include <typeinfo>
