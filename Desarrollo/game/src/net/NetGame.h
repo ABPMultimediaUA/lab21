@@ -27,8 +27,11 @@
 #define NET_CLOUD_KEY       "Lab21Key"
 #define MAX_PLAYERS         4
 #define MAX_NET_ENTITIES    100
+#define MAX_NET_CONSUMABLES 100
 
 class Entity;
+class Scene;
+class Consumable;
 
 namespace dwn
 {
@@ -38,11 +41,12 @@ namespace dwn
             static NetGame* Instance();
             virtual ~NetGame();
 
-            void open();
+            void open(Scene *scene);
             void close();
             void update();
             void addNetObject(dwn::DrawableReplica *drawReplica);
             void addNetEntity(Entity* entity);
+            void addNetConsumable(Consumable* consumable);
             bool isLocalObject(RakNet::RakNetGUID id);
 
             static bool isConnectedToNATPunchthroughServer;
@@ -52,13 +56,14 @@ namespace dwn
             bool connectionFailed();
             unsigned short getParticipantOrder();
 
-            PlayerMate* getPlayerMate(int i);
+            PlayerMate* getPlayerMate(unsigned int i);
             int getNumPlayerMates();
 
             void startGame();   // Enviamos a los demas que empezamos
             bool getGameStarted();
 
             void sendBroadcast(unsigned int messageID, unsigned int value);
+            void sendBroadcast(unsigned int messageID, dwe::vec3f origin, float angle);
 
         protected:
 
@@ -77,9 +82,13 @@ namespace dwn
             bool m_gameStarted;
             unsigned short m_participantOrder;
             std::string m_IP;
+            Scene* m_scene;
 
             Entity* m_netEntities[MAX_NET_ENTITIES];
-            int m_numNetEntities;
+            unsigned int m_numNetEntities;
+
+            Consumable* m_netConsumables[MAX_NET_CONSUMABLES];
+            unsigned int m_numNetConsumables;
 
 
             unsigned int getBitStreamEntityID(Packet *packet);

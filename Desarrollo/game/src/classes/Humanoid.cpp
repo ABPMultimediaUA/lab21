@@ -3,6 +3,8 @@
 Humanoid::Humanoid()
 {
     steps = 19;
+    m_speed = 0.1;
+
     //set up state machine
     h_pStateMachine = new StateMachine<Humanoid>(this);
 

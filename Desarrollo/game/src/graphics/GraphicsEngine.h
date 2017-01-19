@@ -30,6 +30,7 @@ class Door;
 class Projectile;
 class Generator;
 class MagnetKey;
+class SpeedBoost;
 class ScenaryElement;
 class AppReceiver;
 class Trigger;
@@ -192,7 +193,6 @@ namespace dwe
         void yield();
         vector3df getTransformedBoundingBox(scene::IAnimatedMeshSceneNode* player);
         /*bool intersectsWithBox(vec3f v, vec3f w);*/
-        irr::IrrlichtDevice* getDevice();
         irr::scene::ISceneManager*  getSMGR();
 
         // Creacion de personajes
@@ -215,6 +215,7 @@ namespace dwe
         Projectile* createProjectile(vec3f origin, float angle);
         Generator* createGenerator(int i, bool b, float px, float py, float pz);
         MagnetKey* createMagnetKey(int i, float px, float py, float pz);
+        SpeedBoost* createSpeedBoost(float px, float py, float pz);
         Trigger* createTrigger(int type, float px, float py, float pz);
 
     private:

@@ -3,6 +3,9 @@
 #include <Box2D/Common/b2Math.h>
 #include <GraphicsEngine.h>
 #include <irrKlang.h>
+#include <vector>
+#include <time.h>
+#include <typeinfo>
 
 #include "WorldInstance.h"
 
@@ -16,9 +19,9 @@
 #include "Humanoid.h"
 
 #include "Door.h"
-#include "Projectile.h"
 #include "Generator.h"
 #include "MagnetKey.h"
+#include "SpeedBoost.h"
 
 #include "TriggerDoor.h"
 #include "TriggerGenerator.h"
@@ -49,20 +52,17 @@
 ///////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
-    NetInstance->open();  // Inicializar motor de red
+    Scene scene;
+
+    NetInstance->open(&scene);  // Inicializar motor de red
 
 	GEInstance->init();  // Inicializar motor gráfico
-
 
     // Creación de jugador
 	Player* mainPlayer = GEInstance->createMainPlayer();
 	mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,-80));
 	mainPlayer->setLife(100);
 	cout << "Barra de vida: " << mainPlayer->getLife() << endl;
-
-    //para la camara, movimiento de descentrar
-    float tarLR = 0;
-    float tarUD = 0;
 
 
     // Creación de escenario
@@ -103,6 +103,11 @@ int main()
     MagnetKey *llave=GEInstance->createMagnetKey(0, 50, 0, 350);
     bool llaveCogida=false;
 
+    // SpeedBoost
+    scene.createSpeedBoost(210, 10, 10);
+    scene.createSpeedBoost(100, 10, 10);
+
+
     // Triggers -> 0 Door, 1 Generator
     triggers[0]=GEInstance->createTrigger(0, 43.5, 0, 135.9);
     triggers[1]=GEInstance->createTrigger(0, 170, 0, 0);
@@ -131,9 +136,6 @@ int main()
     fovnode->setPosition(enemyHumanoid->getPosition());
     fovnode->setRotation(enemyHumanoid->getRotation());
 
-
-	// Creacion objeto Proyectil
-	Projectile *projectile = 0;
 
     //Salud
 	dwe::Node* first_aid = GEInstance->createNode("media/First_Aid_Med_Kit/FirstAidMedKit");
@@ -165,7 +167,9 @@ int main()
     //Creación de objeto perception
     Perception* percep = new Perception();
     Pathplanning* pathp = new Pathplanning();
-    float num;//para cambiar de sigilo a rapido
+
+
+
     /*************************** BEHAVIOR TREE **********************************/
 
 
@@ -209,16 +213,12 @@ int main()
     sequence2->addChild(close);*/
 
 
-
-
     //////////////////////////////////////////////////////////////////
 
     //rmm Cheat: la primera vez que creo el projectile va muy lento, no se pq
-    projectile=GEInstance->createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().x);
-    delete projectile;
-    projectile = 0;
+    scene.createProjectile(dwe::vec3f(1.0, 1.0, 1.0), 0.5);
+    scene.deleteProjectile(0);
     //rmmEnd
-
 
 
     // Esperamos conexion de los demas jugadores
@@ -238,10 +238,17 @@ int main()
 
 
 
-    ITimer* timer = GEInstance->getDevice()->getTimer();
-    float timeStamp = timer->getTime();
-    float deltaTime = timer->getTime() - timeStamp;
+    float timeStamp = World->getTimeElapsed();
+    float deltaTime;
+    float timeLastProjectil = 0;
 
+
+
+    /*********************************************************************/
+    /**                                                                 **/
+    /**                           GAME RUNNING                          **/
+    /**                                                                 **/
+    /*********************************************************************/
 	while(GEInstance->isRunning())
 	{
         if(GEInstance->receiver.isKeyDown(KEY_ESCAPE))
@@ -250,7 +257,8 @@ int main()
             return 0;
         }
 
-        deltaTime = timer->getTime()-timeStamp; timeStamp=timer->getTime();
+        deltaTime = World->getTimeElapsed() - timeStamp;
+        timeStamp = World->getTimeElapsed();
 
         selector1->run();  // Run Behavior Tree
 
@@ -282,31 +290,21 @@ int main()
 
 
         // comprobamos si dispara
-        if(projectile==0 && GEInstance->receiver.isLeftButtonPressed()){
-            projectile=GEInstance->createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().y);
+        if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
+            NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
 
-            //para probar --- cuando disparo pierdo vida
-            mainPlayer->setLife(mainPlayer->getLife()-10);
-            cout << "CUIDADO!! si disparo pierdo vida. \n Vida actual: " << mainPlayer->getLife() << endl;
+            scene.createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().y);
+            timeLastProjectil = World->getTimeElapsed();
         }
 
 
         mainPlayer->update(); //Posición actualizada de Irrlicht Player
-
+        scene.updateProjectiles();
+        scene.updateConsumables(mainPlayer);
 
         for(int cont=0; cont<NUM_ENTITIES; cont++)
             entities[cont]->update();
 
-
-        if(projectile!=0)
-        {
-            projectile->update();
-            if (projectile->getCollides())
-            {
-                delete projectile;
-                projectile = 0;
-            }
-        }
 
 
         GEInstance->updateCamera(mainPlayer->getPosition());
@@ -334,23 +332,57 @@ int main()
                 llaveCogida=true;
                 mainPlayer->setMKeys(llave->getId());
                 delete llave;
+                llave = 0;
             }
         }
+
 
         // TriggerSystem
         for(int i=0; i<3; i++)
             if(mainPlayer->getNode()->intersects(triggers[i]->getNode()->getNode()))
+            {
                 if(GEInstance->receiver.isKeyDown(KEY_SPACE))
-                    if(i==2){
+                {
+                    if(i==2)
+                    {
                         if(mainPlayer->getMKey(((Generator*)entities[i])->getNum()))
                             triggers[i]->triggered(entities[i]);
                     }
                     else if(i==0 || i==1)
                         triggers[i]->triggered(entities[i]);
+                }
+            }
 
         //percep->senses(mainPlayer,enemyHumanoid,fovnode,num);  //llamamos a percepcion
 
         NetInstance->update();
+
+
+
+
+
+        //rmm:cheat, cojo todo
+        if (GEInstance->receiver.isKeyDown(KEY_KEY_C))
+        {
+            // Cojo llave
+            if(llave!=0)
+            {
+                llaveCogida=true;
+                mainPlayer->setMKeys(llave->getId());
+            }
+
+            //Activo todo
+            for(int i=0; i<3; i++)
+            {
+                if(i==2)
+                {
+                    if(mainPlayer->getMKey(((Generator*)entities[i])->getNum()))
+                        triggers[i]->triggered(entities[i]);
+                }
+                else if(i==0 || i==1)
+                    triggers[i]->triggered(entities[i]);
+            }
+        }
 	}
 	delete bjoint;
 

@@ -1,3 +1,4 @@
+#include <time.h>
 #include "WorldInstance.h"
 
 WorldInstance* WorldInstance::pinstance = 0;
@@ -72,6 +73,11 @@ dwe::vec3f WorldInstance::from2Dto3D(int x2d, int y2d, dwe::vec3f rotation)
     return(rotation);
 }
 
+/////////////////////
+float WorldInstance::getTimeElapsed()
+{
+    return clock();
+}
 
 //////////////////////
 b2Vec2 WorldInstance::getGravity(){return(m_gravity);}

@@ -54,7 +54,9 @@ class ContactListener : public b2ContactListener
 
 
 
-
+////////////////////////////////////////////////////////
+// El mundo
+////////////////////////////////////////////////////////
 class WorldInstance
 {
     public:
@@ -69,6 +71,8 @@ class WorldInstance
 
         b2Vec2 getGravity();
         b2World getWorld();
+
+        float getTimeElapsed();
 
         dwe::vec3f from2Dto3D(int x2d, int y2d, dwe::vec3f rotation);
 

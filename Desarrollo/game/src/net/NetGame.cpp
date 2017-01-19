@@ -13,6 +13,8 @@
 #include "Entity.h"
 #include "Door.h"
 #include "Generator.h"
+#include "Scene.h"
+#include "Consumable.h"
 
 
 using namespace dwn;
@@ -35,7 +37,7 @@ dwn::NetGame::~NetGame()
 }
 
 //////////////
-void dwn::NetGame::open()
+void dwn::NetGame::open(Scene *scene)
 {
     m_connected = false;
     m_connectionFailed = false;
@@ -44,6 +46,7 @@ void dwn::NetGame::open()
     m_participantOrder = 0;
     m_isServer = false;
     m_numNetEntities = 0;
+    m_scene = scene;
 
     // Preguntamos por los parametros de la red
     cout << "//////////////////////////////////////////////\n";
@@ -68,10 +71,7 @@ void dwn::NetGame::open()
 
 	// StartupResult solo sirve para hacer el assert y comprobar que ha ido bien
 	if (m_multiplayer)
-    {
-        RakNet::StartupResult sr = rakPeer->Startup(_max_players+1,&sd,1);// +1 is for the connection to the NAT punchthrough server
-        RakAssert(sr==RakNet::RAKNET_STARTED);
-    }
+        rakPeer->Startup(_max_players+1,&sd,1);// +1 is for the connection to the NAT punchthrough server
 
 	// Configuraciones de RakPeerInterface
 	rakPeer->SetMaximumIncomingConnections(_max_players);
@@ -148,7 +148,7 @@ void dwn::NetGame::open()
         {
             cout << "\n//\n//Servidores de partidas disponibles:\n";
 
-            for(int i=0; i<dirs.size(); i++)
+            for(unsigned int i=0; i<dirs.size(); i++)
                 cout << "//  ("<<i<<") " << dirs[i] << "\n";
 
             cout << "// Seleccione el numero de servidor de partidas [0] por defecto]: ";
@@ -167,19 +167,15 @@ void dwn::NetGame::open()
 
 	// Connect to the NAT punchthrough server
 	if (m_multiplayer)
-    {
-        RakNet::ConnectionAttemptResult car = rakPeer->Connect(m_IP.c_str(), DEFAULT_PT,0,0);
-        RakAssert(car==RakNet::CONNECTION_ATTEMPT_STARTED);
-    }
+       rakPeer->Connect(m_IP.c_str(), DEFAULT_PT,0,0);
 
     // Esperamos a conectar
     if (m_multiplayer)
     {
-        cout << "\nConectando.";
+        cout << "// Conectando...\n";
         while (!m_connected && !m_connectionFailed && !m_connectionRejected)
         {
             usleep(40000);
-            cout << ".";
             update();
         }
     }
@@ -410,8 +406,7 @@ void dwn::NetGame::update()
             if (packet->data[1]==1)
             {
                 PushMessage(RakNet::RakString("Connecting to existing game instance"));
-                RakNet::ConnectionAttemptResult car = rakPeer->Connect(packet->systemAddress.ToString(false), packet->systemAddress.GetPort(), 0, 0);
-                RakAssert(car==RakNet::CONNECTION_ATTEMPT_STARTED);
+                rakPeer->Connect(packet->systemAddress.ToString(false), packet->systemAddress.GetPort(), 0, 0);
             }
 			break;
 
@@ -420,8 +415,7 @@ void dwn::NetGame::update()
 			{
 				char hostIP[32];
 				packet->systemAddress.ToString(false,hostIP);
-				RakNet::ConnectionAttemptResult car = rakPeer->Connect(hostIP,packet->systemAddress.GetPort(),0,0);
-				RakAssert(car==RakNet::CONNECTION_ATTEMPT_STARTED);
+				rakPeer->Connect(hostIP,packet->systemAddress.GetPort(),0,0);
 			}
 			break;
 
@@ -445,10 +439,12 @@ void dwn::NetGame::update()
 				unsigned int entityID = getBitStreamEntityID(packet);
 
 				if (entityID<m_numNetEntities)
+                {
                     if (packet->data[0] == ID_DOOR_OPEN)
                         ((Door*)m_netEntities[entityID])->setIsOpening();
                     else
                         ((Door*)m_netEntities[entityID])->setIsClosing();
+                }
                 break;
             }
         case ID_GENERATOR_ACTIVE:
@@ -458,7 +454,26 @@ void dwn::NetGame::update()
                     ((Generator*)m_netEntities[entityID])->activateGenerator();
                 break;
             }
+        case ID_PROJECTILE_CREATE:
+            {
+                dwe::vec3f origin;
+                float angle;
 
+                RakNet::BitStream bsIn(packet->data,packet->length,false);
+                bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+                bsIn.Read(origin);
+                bsIn.Read(angle);
+
+                m_scene->createProjectile(origin, angle);
+                break;
+            }
+        case ID_CONSUMABLE_TAKEN:
+            {
+				unsigned int consumableID = getBitStreamEntityID(packet);
+				if (consumableID<m_numNetConsumables)
+                    (m_netConsumables[consumableID])->take();
+                break;
+            }
 		}
 	}
 
@@ -519,13 +534,21 @@ void dwn::NetGame::addNetEntity(Entity* entity)
 }
 
 ///////////////////
+void dwn::NetGame::addNetConsumable(Consumable* consumable)
+{
+    m_netConsumables[m_numNetConsumables] = consumable;
+    consumable->setNetID(m_numNetConsumables);
+    m_numNetConsumables++;
+}
+
+///////////////////
 bool dwn::NetGame::isLocalObject(RakNet::RakNetGUID id)
 {
     return (id == rakPeer->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS));
 }
 
 //////////////////////////
-PlayerMate* dwn::NetGame::getPlayerMate(int i)
+PlayerMate* dwn::NetGame::getPlayerMate(unsigned int i)
 {
     if (i<replicaManager3->GetReplicaCount())
         return (PlayerMate*)(replicaManager3->GetReplicaAtIndex(i));
@@ -558,6 +581,16 @@ void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int value)
     RakNet::BitStream bsOut;
     bsOut.Write((RakNet::MessageID)messageID);
     bsOut.Write(value);
+    rakPeer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, serverAddress, true);
+}
+///////////////////
+void dwn::NetGame::sendBroadcast(unsigned int messageID, dwe::vec3f origin, float angle)
+{
+    RakNet::SystemAddress serverAddress(m_IP.c_str(), DEFAULT_PT);
+    RakNet::BitStream bsOut;
+    bsOut.Write((RakNet::MessageID)messageID);
+    bsOut.Write(origin);
+    bsOut.Write(angle);
     rakPeer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, serverAddress, true);
 }
 

@@ -114,6 +114,3 @@ void Player::setLife(int n) { m_life = n; }
 void Player::onBeginContact(EntityPhysics* otherObject)
 {
 }
-
-
-

@@ -62,8 +62,8 @@ bool Perception::senses(Player* mainPlayer, Humanoid* enemyHumanoid, dwe::Node* 
         }*/
     }
     p->setPlayer(player);
-
     return (following);
         //pathp->behaviour(player, enemyHumanoid, fovnode, false);
+
 }
 

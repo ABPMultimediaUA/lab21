@@ -46,6 +46,7 @@
 			<Add directory="include/RakNet" />
 			<Add directory="src/classes" />
 			<Add directory="src/graphics" />
+			<Add directory="include/irrKlang" />
 		</Compiler>
 		<Linker>
 			<Add library="lib/libIrrlicht.a" />
@@ -165,6 +166,8 @@
 		<Unit filename="src/classes/Sequence.h" />
 		<Unit filename="src/classes/Shotgun.cpp" />
 		<Unit filename="src/classes/Shotgun.h" />
+		<Unit filename="src/classes/SpeedBoost.cpp" />
+		<Unit filename="src/classes/SpeedBoost.h" />
 		<Unit filename="src/classes/State.h" />
 		<Unit filename="src/classes/StateMachine.h" />
 		<Unit filename="src/classes/Trigger.cpp" />

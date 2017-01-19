@@ -13,6 +13,7 @@
 #include "Projectile.h"
 #include "Generator.h"
 #include "MagnetKey.h"
+#include "SpeedBoost.h"
 
 #include "Trigger.h"
 #include "TriggerDoor.h"
@@ -329,12 +330,6 @@ Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float p
 
 Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle)
 {
-    /*Node* node=createNode("media/proyectil");
-	Projectile* p = new Projectile(origin, angle);
-	p->setNode(node);
-	p->setPosition(dwe::vec3f(origin[0],0,origin[1]));
-    return p;*/
-
     scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/proyectil");
 
     Projectile* p = new Projectile(origin, angle);
@@ -363,6 +358,18 @@ MagnetKey* dwe::GraphicsEngine::createMagnetKey(int i, float px, float py, float
     m->setNode(new Node(irrnode));
     m->setPosition(dwe::vec3f(px, py, pz));
     return m;
+}
+
+SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(float px, float py, float pz)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/speed/speed");
+
+    SpeedBoost* s = new SpeedBoost();
+    s->setNode(new Node(irrnode));
+    s->setPosition(dwe::vec3f(px, py, pz));
+
+    NetInstance->addNetConsumable(s);
+    return s;
 }
 
 Trigger* dwe::GraphicsEngine::createTrigger(int type, float px, float py, float pz)
@@ -448,6 +455,5 @@ void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition)
     m_smgr->getActiveCamera()->setPosition(vector3df(playerPosition.x+tarLR, _camera_y, playerPosition.z + _camera_z_offset + tarUD));
 }
 
-irr::IrrlichtDevice* dwe::GraphicsEngine::getDevice(){return(m_device);}
 irr::scene::ISceneManager*  dwe::GraphicsEngine::getSMGR(){return(m_smgr);}
 
