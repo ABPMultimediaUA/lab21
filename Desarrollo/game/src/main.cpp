@@ -21,6 +21,7 @@
 #include "Generator.h"
 #include "MagnetKey.h"
 #include "SpeedBoost.h"
+#include "Medkit.h"
 
 #include "TriggerDoor.h"
 #include "TriggerGenerator.h"
@@ -106,6 +107,11 @@ int main()
     scene.createSpeedBoost(210, 10, 10);
     scene.createSpeedBoost(100, 10, 10);
 
+    // Medkit
+	scene.createMedkit(400, 0, 0);
+	// 400 0 0
+
+
 
     // Triggers -> 0 Door, 1 Generator
     triggers[0]=GEInstance->createTrigger(0, 43.5, 0, 135.9);
@@ -135,10 +141,6 @@ int main()
     fovnode->setPosition(enemyHumanoid->getPosition());
     fovnode->setRotation(enemyHumanoid->getRotation());
 
-
-    //Salud
-	dwe::Node* first_aid = GEInstance->createNode("media/First_Aid_Med_Kit/FirstAidMedKit");
-	first_aid->setPosition(dwe::vec3f(400,0,0));
 
 	 //Pistola 1
 	dwe::Node* gun_1 = GEInstance->createNode("media/Gun/Gun"); //ESTAS SON LAS BUENAS

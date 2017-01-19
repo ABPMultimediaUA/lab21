@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "Projectile.h"
 #include "SpeedBoost.h"
+#include "Medkit.h"
 #include "Consumable.h"
 
 
@@ -70,3 +71,10 @@ void Scene::createSpeedBoost(float px, float py, float pz)
 {
     m_consumables.push_back(GEInstance->createSpeedBoost(px, py, pz));
 }
+
+////////////
+void Scene::createMedkit(float px, float py, float pz)
+{
+    m_consumables.push_back(GEInstance->createMedkit(px, py, pz));
+}
+

@@ -31,6 +31,7 @@ class Projectile;
 class Generator;
 class MagnetKey;
 class SpeedBoost;
+class Medkit;
 class ScenaryElement;
 class AppReceiver;
 class Trigger;
@@ -216,6 +217,7 @@ namespace dwe
         Generator* createGenerator(int i, bool b, float px, float py, float pz);
         MagnetKey* createMagnetKey(int i, float px, float py, float pz);
         SpeedBoost* createSpeedBoost(float px, float py, float pz);
+        Medkit* createMedkit(float px, float py, float pz);
         Trigger* createTrigger(int type, float px, float py, float pz);
 
     private:

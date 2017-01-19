@@ -18,6 +18,7 @@ class Scene
         void updateProjectiles();
 
         void createSpeedBoost(float px, float py, float pz);
+        void createMedkit(float px, float py, float pz);
         void updateConsumables(Player* mainPlayer);
 
     protected:

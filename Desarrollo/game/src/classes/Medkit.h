@@ -1,7 +1,8 @@
 #ifndef MEDKIT_H
 #define MEDKIT_H
 
-#include <Consumable.h>
+#include "Consumable.h"
+#include "Player.h"
 
 
 class Medkit : public Consumable
@@ -10,7 +11,10 @@ class Medkit : public Consumable
         Medkit();
         virtual ~Medkit();
 
-        void onTake();
+         virtual void onTake(Player* mainPlayer);
+
+         virtual void render() {};
+         virtual void update() {};
 
     protected:
 

@@ -14,6 +14,7 @@
 #include "Generator.h"
 #include "MagnetKey.h"
 #include "SpeedBoost.h"
+#include "Medkit.h"
 
 #include "Trigger.h"
 #include "TriggerDoor.h"
@@ -363,13 +364,26 @@ MagnetKey* dwe::GraphicsEngine::createMagnetKey(int i, float px, float py, float
 SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(float px, float py, float pz)
 {
     scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/speed/speed");
-
     SpeedBoost* s = new SpeedBoost();
     s->setNode(new Node(irrnode));
     s->setPosition(dwe::vec3f(px, py, pz));
 
     NetInstance->addNetConsumable(s);
     return s;
+}
+
+Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/First_Aid_Med_Kit/FirstAidMedKit");
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/speed/speed");
+
+
+    Medkit* h = new Medkit();
+    h->setNode(new Node(irrnode));
+    h->setPosition(dwe::vec3f(px, py, pz));
+
+    NetInstance->addNetConsumable(h);
+    return h;
 }
 
 Trigger* dwe::GraphicsEngine::createTrigger(int type, float px, float py, float pz)

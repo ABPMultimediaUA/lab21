@@ -18,12 +18,12 @@ void Player::update()
     Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
 
     //RECUPERAR VIDA
-    int posX = Drawable::getPosition().x;
+  /*  int posX = Drawable::getPosition().x;
     int posZ = Drawable::getPosition().z;
     if( posX > 392 && posX < 408 && posZ > -8 && posZ < 8){
         setLife(100);
         cout << "Vida recuperada: " << getLife() << endl;
-    }
+    }*/
 }
 
 /////////////
