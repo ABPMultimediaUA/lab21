@@ -10,6 +10,7 @@ Desarrollo/game/obj/
 Desarrollo/game/obj/**/*
 Desarrollo/irrlicht-1.8.4/**/.objs/
 Desarrollo/irrlicht-1.8.4/obj/**/*
+Desarrollo/irrKlang-1.5.0/**
 Desarrollo/RakNetLib/obj/**/*
 Desarrollo/Box2D/box2DEngine/obj/**/*
 Desarrollo/Server/Release Win32/**/*

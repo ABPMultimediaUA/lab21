@@ -38,4 +38,6 @@ States PatrolTask::run()
             no->setRotation(hum->getRotation());
         }
     }
+
+    return success;
 }
