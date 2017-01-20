@@ -109,7 +109,7 @@ int main()
     scene.createSpeedBoost(100, 10, 10);
 
     // Medkit
-	scene.createMedkit(400, 50, 0);
+	scene.createMedkit(400, 10, 0);
 	scene.createMedkit(350, 10, 0);
 
 
