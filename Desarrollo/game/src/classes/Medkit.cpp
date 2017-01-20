@@ -11,7 +11,9 @@ Medkit::~Medkit()
 }
 
 /////////////
-void Medkit::onTake()
+
+void Medkit::onTake(Player* mainPlayer)
 {
-    // TODO
+    mainPlayer->setHealth(100);
+    cout << "Vida recuperada: " << mainPlayer->getLife() << endl;
 }
