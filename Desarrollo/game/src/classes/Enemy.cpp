@@ -13,3 +13,8 @@ Enemy::~Enemy()
 
 /////////////
 float Enemy::getSpeed() { return m_speed; }
+
+
+////////////
+void Enemy::setNetID(unsigned int netID) { m_netID = netID; }
+

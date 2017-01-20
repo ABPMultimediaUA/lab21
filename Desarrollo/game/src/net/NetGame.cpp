@@ -15,6 +15,7 @@
 #include "Generator.h"
 #include "Scene.h"
 #include "Consumable.h"
+#include "Enemy.h"
 
 
 using namespace dwn;
@@ -46,6 +47,9 @@ void dwn::NetGame::open(Scene *scene)
     m_participantOrder = 0;
     m_isServer = false;
     m_numNetEntities = 0;
+    m_numNetConsumables = 0;
+    m_numNetEnemies = 0;
+    m_netEnemyIndex = 0;
     m_scene = scene;
 
     // Preguntamos por los parametros de la red
@@ -456,15 +460,15 @@ void dwn::NetGame::update()
             }
         case ID_PROJECTILE_CREATE:
             {
-                dwe::vec3f origin;
+                dwe::vec3f position;
                 float angle;
 
                 RakNet::BitStream bsIn(packet->data,packet->length,false);
                 bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
-                bsIn.Read(origin);
+                bsIn.Read(position);
                 bsIn.Read(angle);
 
-                m_scene->createProjectile(origin, angle);
+                m_scene->createProjectile(position, angle);
                 break;
             }
         case ID_CONSUMABLE_TAKEN:
@@ -474,13 +478,40 @@ void dwn::NetGame::update()
                     (m_netConsumables[consumableID])->take();
                 break;
             }
+        case ID_ENEMY_UPDATE:
+            {
+                unsigned int enemyID;
+                dwe::vec3f position;
+                dwe::vec3f rotation;
+
+                RakNet::BitStream bsIn(packet->data,packet->length,false);
+                bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+                bsIn.Read(enemyID);
+                bsIn.Read(position);
+                bsIn.Read(rotation);
+
+                if (enemyID<m_numNetEnemies)
+                {
+                    (m_netEnemies[enemyID])->setPosition(position);
+                    (m_netEnemies[enemyID])->setRotation(rotation);
+                }
+                break;
+            }
 		}
 	}
 
-	// Call the Update function for networked game objects added to BaseIrrlichtReplica once the game is ready
+	// Actualizamos las posiciones de los objetos replicables replicamanager3
 	unsigned int idx;
 	for (idx=0; idx < replicaManager3->GetReplicaCount(); idx++)
-		((DrawableReplica*)(replicaManager3->GetReplicaAtIndex(idx)))->update(curTime);;
+		((DrawableReplica*)(replicaManager3->GetReplicaAtIndex(idx)))->update(curTime);
+
+    // Realizamos los ajustes de la posición/rotación de los enemigos, 1 por cada update para
+    // no sobrecargar. Solo si somos el host enviamos la info.
+    if (fullyConnectedMesh2->IsHostSystem() && m_numNetEntities>0)
+    {
+        sendBroadcast(ID_ENEMY_UPDATE, m_netEnemyIndex, ((Enemy*)(m_netEnemies[m_netEnemyIndex]))->getPosition(), ((Enemy*)(m_netEnemies[m_netEnemyIndex]))->getRotation());
+        m_netEnemyIndex = (m_netEnemyIndex < m_numNetEnemies-1)? m_netEnemyIndex+1 : 0;
+    }
 }
 
 //////////////////////
@@ -542,6 +573,14 @@ void dwn::NetGame::addNetConsumable(Consumable* consumable)
 }
 
 ///////////////////
+void dwn::NetGame::addNetEnemy(Enemy* enemy)
+{
+    m_netEnemies[m_numNetEnemies] = enemy;
+    enemy->setNetID(m_numNetEnemies);
+    m_numNetEnemies++;
+}
+
+///////////////////
 bool dwn::NetGame::isLocalObject(RakNet::RakNetGUID id)
 {
     return (id == rakPeer->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS));
@@ -574,6 +613,7 @@ void dwn::NetGame::startGame()
     }
 }
 
+
 ///////////////////
 void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int value)
 {
@@ -584,15 +624,27 @@ void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int value)
     rakPeer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, serverAddress, true);
 }
 ///////////////////
-void dwn::NetGame::sendBroadcast(unsigned int messageID, dwe::vec3f origin, float angle)
+void dwn::NetGame::sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle)
 {
     RakNet::SystemAddress serverAddress(m_IP.c_str(), DEFAULT_PT);
     RakNet::BitStream bsOut;
     bsOut.Write((RakNet::MessageID)messageID);
-    bsOut.Write(origin);
+    bsOut.Write(position);
     bsOut.Write(angle);
     rakPeer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, serverAddress, true);
 }
+///////////////////
+void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int objectID, dwe::vec3f position, dwe::vec3f rotation)
+{
+    RakNet::SystemAddress serverAddress(m_IP.c_str(), DEFAULT_PT);
+    RakNet::BitStream bsOut;
+    bsOut.Write((RakNet::MessageID)messageID);
+    bsOut.Write(objectID);
+    bsOut.Write(position);
+    bsOut.Write(rotation);
+    rakPeer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, serverAddress, true);
+}
+
 
 ///////////////////
 bool dwn::NetGame::getGameStarted() { return m_gameStarted; }

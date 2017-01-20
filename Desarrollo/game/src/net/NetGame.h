@@ -28,10 +28,12 @@
 #define MAX_PLAYERS         4
 #define MAX_NET_ENTITIES    100
 #define MAX_NET_CONSUMABLES 100
+#define MAX_NET_ENEMIES     100
 
 class Entity;
 class Scene;
 class Consumable;
+class Enemy;
 
 namespace dwn
 {
@@ -44,9 +46,12 @@ namespace dwn
             void open(Scene *scene);
             void close();
             void update();
+
             void addNetObject(dwn::DrawableReplica *drawReplica);
             void addNetEntity(Entity* entity);
             void addNetConsumable(Consumable* consumable);
+            void addNetEnemy(Enemy* enemy);
+
             bool isLocalObject(RakNet::RakNetGUID id);
 
             static bool isConnectedToNATPunchthroughServer;
@@ -63,7 +68,8 @@ namespace dwn
             bool getGameStarted();
 
             void sendBroadcast(unsigned int messageID, unsigned int value);
-            void sendBroadcast(unsigned int messageID, dwe::vec3f origin, float angle);
+            void sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle);
+            void sendBroadcast(unsigned int messageID, unsigned int objectID, dwe::vec3f position, dwe::vec3f rotation);
 
         protected:
 
@@ -89,6 +95,10 @@ namespace dwn
 
             Consumable* m_netConsumables[MAX_NET_CONSUMABLES];
             unsigned int m_numNetConsumables;
+
+            Enemy* m_netEnemies[MAX_NET_ENEMIES];
+            unsigned int m_numNetEnemies;
+            unsigned int m_netEnemyIndex;
 
 
             unsigned int getBitStreamEntityID(Packet *packet);

@@ -267,6 +267,7 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid()
 
 	Humanoid* p = new Humanoid();
 	p->setNode(new Node(irrnode));
+	NetInstance->addNetEnemy(p);
     return p;
 }
 
@@ -292,6 +293,7 @@ Dog* dwe::GraphicsEngine::createEnemyDog()
 	Dog* p = new Dog();
 	p->setIAnimNode(irrnode);
 	p->setNode(new Node(irrnode));
+	NetInstance->addNetEnemy(p);
     return p;
 }
 
