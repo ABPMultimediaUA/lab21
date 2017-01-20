@@ -13,6 +13,7 @@ enum GameMessages
     ID_GENERATOR_ACTIVE,
     ID_PROJECTILE_CREATE,
     ID_CONSUMABLE_TAKEN,
+    ID_ENEMY_UPDATE,
 };
 
 #endif // NETCOMMON_H

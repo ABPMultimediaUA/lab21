@@ -236,10 +236,6 @@ namespace dwe
         static const int            _camera_y           = 250;
         static const int            _camera_z_offset    = -100;
 
-
-
-
-
         GraphicsEngine() {};
     };
 }
