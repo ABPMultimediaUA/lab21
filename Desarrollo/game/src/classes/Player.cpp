@@ -5,6 +5,8 @@ Player::Player()
 {
     setClassID(CLASS_PLAYER_ID);
     m_mKeys[0]=false;
+    m_medkits = 0;
+    m_timeMedkit = 2000;
 }
 
 Player::~Player()
@@ -92,6 +94,18 @@ void Player::readEvents()
                               GEInstance->receiver.getCursorY(),
                               getRotation()));
     }
+
+
+    /*********/
+     // consumir botiquin
+    if(GEInstance->receiver.isKeyDown(KEY_KEY_3) && (World->getTimeElapsed() - m_timeMedkit)> 200)
+    {
+        this->consumeMedkit();
+        m_timeMedkit = World->getTimeElapsed();
+    }
+
+    /*********/
+
 }
 
 
@@ -113,4 +127,40 @@ void Player::setLife(int n) { m_life = n; }
 /////////////
 void Player::onBeginContact(EntityPhysics* otherObject)
 {
+}
+
+/////////////
+int Player::getMedkits()
+{
+    return m_medkits;
+}
+
+/////////////
+void Player::setMedkits(int ammount)
+{
+    m_medkits += ammount;
+        cout << m_medkits << endl;
+
+}
+
+/////////////
+void Player::giveMedkits(int ammount)
+{
+    m_medkits -= ammount;
+
+    //////////////////.......
+}
+
+/////////////
+void Player::consumeMedkit()
+{
+
+    if (this->getMedkits() > 0)
+    {
+        m_medkits -= 1;
+        this->setHealth(100);
+        cout << "Vida recuperada: " << this->getLife() << endl;
+    }
+
+    cout << m_medkits << endl;
 }

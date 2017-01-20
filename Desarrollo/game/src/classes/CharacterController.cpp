@@ -69,6 +69,8 @@ void CharacterController::readEvents()
     else
         m_speedZ = 0.f;
 
+
+
 }
 
 float CharacterController::getSpeedX() { return m_speedX; }

@@ -41,6 +41,7 @@ class CharacterController : public dwn::DrawableReplica
 
         bool m_hasSpeedBoost;
         float m_timeSpeedBost;
+
 };
 
 #endif // CHARACTER_H

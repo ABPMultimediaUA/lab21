@@ -109,8 +109,9 @@ int main()
     scene.createSpeedBoost(100, 10, 10);
 
     // Medkit
-	scene.createMedkit(400, 0, 0);
-	// 400 0 0
+	scene.createMedkit(400, 10, 0);
+	scene.createMedkit(350, 10, 0);
+
 
 
 
@@ -141,6 +142,11 @@ int main()
     //fovnode->setMaterialFlag(EMF_WIREFRAME, true);
     fovnode->setPosition(enemyHumanoid->getPosition());
     fovnode->setRotation(enemyHumanoid->getRotation());
+
+
+    //dwe::Node* prueba = GEInstance->createNode("media/medkit/medkit"); //ESTAS SON LAS BUENAS
+	//prueba->setPosition(dwe::vec3f(400,0,0));
+
 
 
 	 //Pistola 1
