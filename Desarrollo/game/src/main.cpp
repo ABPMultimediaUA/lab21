@@ -113,6 +113,14 @@ int main()
 	scene.createMedkit(350, 10, 0);
 
 
+//////
+  // Llaves
+    //Medkit *prueba1=GEInstance->createMedkit( 400, 0, 0);
+
+//
+  //dwe::Node* prueba = GEInstance->createNode("media/bullet/speed"); //ESTAS SON LAS BUENAS
+	//prueba->setPosition(dwe::vec3f(400,0,0));
+
 
 
     // Triggers -> 0 Door, 1 Generator
@@ -143,9 +151,6 @@ int main()
     fovnode->setPosition(enemyHumanoid->getPosition());
     fovnode->setRotation(enemyHumanoid->getRotation());
 
-
-   // dwe::Node* prueba = GEInstance->createNode("media/medkit/medkit"); //ESTAS SON LAS BUENAS
-	//prueba->setPosition(dwe::vec3f(400,0,0));
 
 
 
