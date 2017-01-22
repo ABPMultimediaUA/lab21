@@ -14,5 +14,5 @@ Medkit::~Medkit()
 
 void Medkit::onTake(Player* mainPlayer)
 {
-    mainPlayer->setMedkits(1);
+    mainPlayer->setNumMedkits(1);
 }

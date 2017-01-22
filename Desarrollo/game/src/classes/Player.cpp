@@ -7,6 +7,7 @@ Player::Player()
     m_mKeys[0]=false;
     m_medkits = 0;
     m_timeMedkit = 2000;
+    m_timeGivingStuff = 1000;
 }
 
 Player::~Player()
@@ -105,6 +106,17 @@ void Player::readEvents()
     }
 
     /*********/
+    PlayerMate* playermate = NetInstance->getPlayerMate(1);
+    if (GEInstance->receiver.isKeyDown(KEY_KEY_4)&& (World->getTimeElapsed() - m_timeGivingStuff) > 200)
+    {
+         this->giveMedkits(1,playermate);
+         m_timeGivingStuff = World->getTimeElapsed();
+    }
+
+
+    if(GEInstance->receiver.isKeyDown(KEY_KEY_5))
+        cout << this->getNumMedkits() << endl;
+
 
 }
 
@@ -130,13 +142,13 @@ void Player::onBeginContact(EntityPhysics* otherObject)
 }
 
 /////////////
-int Player::getMedkits()
+int Player::getNumMedkits()
 {
     return m_medkits;
 }
 
 /////////////
-void Player::setMedkits(int ammount)
+void Player::setNumMedkits(int ammount)
 {
     m_medkits += ammount;
         cout << m_medkits << endl;
@@ -144,18 +156,25 @@ void Player::setMedkits(int ammount)
 }
 
 /////////////
-void Player::giveMedkits(int ammount)
+void Player::giveMedkits(int ammount, PlayerMate* playermate)
 {
     m_medkits -= ammount;
 
-    //////////////////.......
+    playermate->setNumMedkits(ammount);
+
+}
+
+/////////////
+void Player::receiveMedkit(int ammount)
+{
+    this->setNumMedkits(ammount);
 }
 
 /////////////
 void Player::consumeMedkit()
 {
 
-    if (this->getMedkits() > 0)
+    if (this->getNumMedkits() > 0)
     {
         m_medkits -= 1;
         this->setHealth(100);
