@@ -32,3 +32,9 @@ unsigned short int PlayerMate::getNumGrenades() { return m_numGrenades; }
 void PlayerMate::setNumGrenades(unsigned short int n) { m_numGrenades = n;}
 unsigned short int PlayerMate::getNumMedkits() { return m_numMedkits; }
 void PlayerMate::setNumMedkits( unsigned short int n) { m_numMedkits += n;}
+
+void PlayerMate::giveMedkits(int ammount)
+{
+    Player* player = (Player*)NetInstance->getPlayerMate(0);
+    player->receiveMedkits(ammount);
+}

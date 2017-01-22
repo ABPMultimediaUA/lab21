@@ -19,14 +19,6 @@ Player::~Player()
 void Player::update()
 {
     Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
-
-    //RECUPERAR VIDA
-  /*  int posX = Drawable::getPosition().x;
-    int posZ = Drawable::getPosition().z;
-    if( posX > 392 && posX < 408 && posZ > -8 && posZ < 8){
-        setLife(100);
-        cout << "Vida recuperada: " << getLife() << endl;
-    }*/
 }
 
 /////////////
@@ -115,7 +107,7 @@ void Player::readEvents()
 
 
     if(GEInstance->receiver.isKeyDown(KEY_KEY_5))
-        cout << this->getNumMedkits() << endl;
+        cout << "tengo " << this->getNumMedkits() << " botiquines" << endl;
 
 
 }
@@ -151,7 +143,6 @@ int Player::getNumMedkits()
 void Player::setNumMedkits(int ammount)
 {
     m_medkits += ammount;
-        cout << m_medkits << endl;
 
 }
 
@@ -162,12 +153,24 @@ void Player::giveMedkits(int ammount, PlayerMate* playermate)
 
     playermate->setNumMedkits(ammount);
 
+    //int i = 0;
+
+
+    //if ((Drawable*)this == NetInstance->getPlayerMate(0))
+      //  i = 1;
+
+    cout << "le doy al otro jugador "<< ammount << " botiquines" << endl;
+    //Player* p = (Player*)NetInstance->getPlayerMate(1);
+
+    //playermate->receiveMedkits(ammount);
+
 }
 
 /////////////
-void Player::receiveMedkit(int ammount)
+void Player::receiveMedkits(int ammount)
 {
     this->setNumMedkits(ammount);
+
 }
 
 /////////////

@@ -37,7 +37,7 @@ class Player : public CharacterController, public EntityPhysics
         int getNumMedkits();
         void setNumMedkits(int ammount);
         void giveMedkits(int ammount, PlayerMate* playermate);
-        void receiveMedkit(int ammount);
+        void receiveMedkits(int ammount);
         void consumeMedkit();
 
         virtual const char* getNetObjectID() const;
