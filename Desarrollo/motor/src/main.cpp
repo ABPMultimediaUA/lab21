@@ -62,7 +62,6 @@ void Reshape(int x, int y){}
 void Motion(int x, int y){}
 
 /**************************************** main() ********************/
-
 int main(int argc, char* argv[])
 {
     // Inicializa GLUT and crea la ventana principal
@@ -83,7 +82,7 @@ int main(int argc, char* argv[])
     GLUI_Master.set_glutMouseFunc( Mouse );
     glutMotionFunc( Motion );
 
-    /**** We register the idle callback with GLUI, *not* with GLUT ****/
+    // We register the idle callback with GLUI, *not* with GLUT
     GLUI_Master.set_glutIdleFunc( Idle );
 
 
@@ -93,7 +92,7 @@ int main(int argc, char* argv[])
 
 
 
-    /**** Regular GLUT main loop ****/
+    // Regular GLUT main loop
     glutMainLoop();
 
     return EXIT_SUCCESS;

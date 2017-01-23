@@ -33,6 +33,8 @@
 		</Build>
 		<Compiler>
 			<Add directory="include" />
+			<Add directory="src/classes" />
+			<Add directory="src/glsl" />
 		</Compiler>
 		<Linker>
 			<Add library="lib/glew32s.lib" />
@@ -43,15 +45,24 @@
 			<Add library="lib/libopengl32.a" />
 			<Add library="lib/libassimp.dll.a" />
 		</Linker>
-		<Unit filename="Objects.cpp" />
-		<Unit filename="Objects.h" />
-		<Unit filename="Program.cpp" />
-		<Unit filename="Program.h" />
-		<Unit filename="Shader.cpp" />
-		<Unit filename="Shader.h" />
-		<Unit filename="Shaders/FragmentShader.glsl" />
-		<Unit filename="Shaders/VertexShader.glsl" />
-		<Unit filename="main.cpp" />
+		<Unit filename="shaders/FragmentShader.glsl" />
+		<Unit filename="shaders/VertexShader.glsl" />
+		<Unit filename="src/classes/Drawable.cpp" />
+		<Unit filename="src/classes/Drawable.h" />
+		<Unit filename="src/classes/Objects.cpp" />
+		<Unit filename="src/classes/Objects.h" />
+		<Unit filename="src/classes/Scene.cpp" />
+		<Unit filename="src/classes/Scene.h" />
+		<Unit filename="src/glsl/Program.cpp" />
+		<Unit filename="src/glsl/Program.h" />
+		<Unit filename="src/glsl/Shader.cpp" />
+		<Unit filename="src/glsl/Shader.h" />
+		<Unit filename="src/graphics/AppReceiver.cpp" />
+		<Unit filename="src/graphics/AppReceiver.h" />
+		<Unit filename="src/graphics/GraphicsEngine.cpp" />
+		<Unit filename="src/graphics/GraphicsEngine.h" />
+		<Unit filename="src/graphics/GraphicsEngineTemplates.cpp" />
+		<Unit filename="src/main.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
