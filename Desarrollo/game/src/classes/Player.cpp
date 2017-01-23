@@ -142,6 +142,13 @@ int Player::getNumMedkits()
 /////////////
 void Player::setNumMedkits(int ammount)
 {
+    m_medkits = ammount;
+
+}
+
+/////////////
+void Player::addMedkits(int ammount)
+{
     m_medkits += ammount;
 
 }
@@ -151,7 +158,7 @@ void Player::giveMedkits(int ammount, PlayerMate* playermate)
 {
     m_medkits -= ammount;
 
-    playermate->setNumMedkits(ammount);
+    playermate->addMedkits(ammount);
 
     //int i = 0;
 
@@ -169,7 +176,7 @@ void Player::giveMedkits(int ammount, PlayerMate* playermate)
 /////////////
 void Player::receiveMedkits(int ammount)
 {
-    this->setNumMedkits(ammount);
+    this->addMedkits(ammount);
 
 }
 

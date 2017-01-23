@@ -36,6 +36,7 @@ class Player : public CharacterController, public EntityPhysics
         bool getMKey(int n);
         int getNumMedkits();
         void setNumMedkits(int ammount);
+        void addMedkits(int ammount);
         void giveMedkits(int ammount, PlayerMate* playermate);
         void receiveMedkits(int ammount);
         void consumeMedkit();
