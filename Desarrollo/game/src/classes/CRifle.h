@@ -3,6 +3,7 @@
 
 #include <defines.h>
 #include <Consumable.h>
+#include "Player.h"
 
 
 class CRifle : public Consumable
@@ -11,11 +12,14 @@ class CRifle : public Consumable
         CRifle();
         virtual ~CRifle();
 
-        void onTake();
+        void onTake(Player* mainplayer);
 
         // Getters & Setters
         FirearmKind getKind();
         void setKind(FirearmKind k);
+
+        virtual void render() {};
+        virtual void update() {};
 
     protected:
 

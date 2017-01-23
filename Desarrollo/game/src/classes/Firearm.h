@@ -11,8 +11,10 @@ class Firearm : public Weapon
         Firearm();
         virtual ~Firearm();
 
-        virtual void shoot() = 0;
-        virtual void reload() = 0;
+        //virtual void shoot() = 0;
+        //virtual void reload() = 0;
+        virtual void shoot(){};
+        virtual void reload(){};
 
         // Getters & setters
         int getCadence();
@@ -21,6 +23,10 @@ class Firearm : public Weapon
         void setBulletsPerShot(int b);
         int getClipSize();
         void setClipSize(int c);
+
+        virtual void render() {};
+        virtual void update() {};
+
 
     protected:
 

@@ -13,6 +13,9 @@ class Rifle : public Firearm
         void shoot();
         void reload();
 
+        void update() {};
+        void render(){};
+
     protected:
 
     private:

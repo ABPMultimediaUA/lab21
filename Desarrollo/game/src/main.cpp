@@ -108,18 +108,30 @@ int main()
     bool llaveCogida=false;
 
     // SpeedBoost
-    scene.createSpeedBoost(210, 10, 10);
-    scene.createSpeedBoost(100, 10, 10);
+    //scene.createSpeedBoost(210, 10, 10);
+    //scene.createSpeedBoost(100, 10, 10);
 
     // Medkit
-	scene.createMedkit(400, 10, 0);
-	scene.createMedkit(350, 10, 0);
+	//scene.createMedkit(400, 10, 0);
+	//scene.createMedkit(350, 10, 0);
 
     //CShotGun
-    scene.createCShotgun(220,10,100);
+    scene.createCShotgun(80,10,100);
+
+    //CRifle
+    scene.createCRifle(80, 10, 50);
 
     // AmmoGun
-    scene.createAmmoGun(400, 10, 100);
+    //scene.createAmmoGun(400, 10, 100);
+
+    // Gun
+    scene.createGun(mainPlayer->getPosition().x - 20, 20, mainPlayer->getPosition().z);
+
+    // Shotgun
+    scene.createShotgun(mainPlayer->getPosition().x - 20, 20, mainPlayer->getPosition().z);
+
+    // Rifle
+    scene.createRifle(mainPlayer->getPosition().x - 20, 20, mainPlayer->getPosition().z);
 /****/
 
     //Medkit *prueba1=GEInstance->createMedkit( 400, 0, 0);
@@ -289,6 +301,8 @@ int main()
         mainPlayer->update(); //Posición actualizada de Irrlicht Player
         scene.updateProjectiles();
         scene.updateConsumables(mainPlayer);
+        //scene.updatePlayerWeapons(mainPlayer, mainPlayer->getPlayerWeapons());
+
 
         for(int cont=0; cont<NUM_ENTITIES; cont++)
             entities[cont]->update();

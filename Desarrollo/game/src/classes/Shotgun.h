@@ -13,6 +13,9 @@ class Shotgun : public Firearm
         void shoot();
         void reload();
 
+        void update() {};
+        void render(){};
+
 
     protected:
 

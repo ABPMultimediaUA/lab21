@@ -27,6 +27,7 @@ Player::~Player()
 void Player::update()
 {
     Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
+
 }
 
 /////////////
@@ -62,17 +63,19 @@ void Player::shoot()
 }
 
 /////////////
+FirearmKind Player::getCurrentWeapon() { return m_currentWeapon; }
+Firearm* Player::getPlayerWeapons() { return *m_weapons; }
 bool Player::getHasShotgun() { return m_hasShotgun; }
 bool Player::getHasRifle() { return m_hasRifle; }
 
 /////////////
-void Player::addWeapon(Firearm* weapon, FirearmKind type)
+void Player::addWeapon(Consumable* weapon, FirearmKind type)
 {
 
     if (!m_hasShotgun && type == eShotgun)
     {
         //m_weapons.push_back(weapon);
-        m_weapons[1] = weapon;
+        m_weapons[1] = new Shotgun();
 
         m_hasShotgun = true;
     }
@@ -80,7 +83,7 @@ void Player::addWeapon(Firearm* weapon, FirearmKind type)
     if (!m_hasRifle && type == eRifle)
     {
         //m_weapons.push_back(weapon);
-        m_weapons[2] = weapon;
+        m_weapons[2] = new Rifle();
 
         m_hasRifle = true;
     }

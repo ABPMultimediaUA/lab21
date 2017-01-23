@@ -3,6 +3,7 @@
 
 #include <defines.h>
 #include <Consumable.h>
+#include "Player.h"
 
 
 class CShotgun : public Consumable

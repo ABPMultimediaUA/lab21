@@ -25,6 +25,10 @@
 #include "iostream"
 
 #include "CShotgun.h"
+#include "CRifle.h"
+#include "Gun.h"
+#include "Shotgun.h"
+#include "Rifle.h"
 #include "AmmoGun.h"
 
 
@@ -407,6 +411,42 @@ AmmoGun* dwe::GraphicsEngine::createAmmoGun(float px, float py, float pz)
     return a;
 }
 
+Gun* dwe::GraphicsEngine::createGun(float px, float py, float pz)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/Gun"); // centrado
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/Gun");
+
+    Gun* g = new Gun();
+    g->setNode(new Node(irrnode));
+    g->setPosition(dwe::vec3f(px, py, pz));
+
+    return g;
+}
+
+Shotgun* dwe::GraphicsEngine::createShotgun(float px, float py, float pz)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/Shotgun"); // centrado
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/Gun");
+
+    Shotgun* sg = new Shotgun();
+    sg->setNode(new Node(irrnode));
+    sg->setPosition(dwe::vec3f(px, py, pz));
+
+    return sg;
+}
+
+Rifle* dwe::GraphicsEngine::createRifle(float px, float py, float pz)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/Rifle"); // centrado
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/Gun");
+
+    Rifle* r = new Rifle();
+    r->setNode(new Node(irrnode));
+    r->setPosition(dwe::vec3f(px, py, pz));
+
+    return r;
+}
+
 CShotgun* dwe::GraphicsEngine::createCShotgun(float px, float py, float pz)
 {
     scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/Shotgun"); // centrado
@@ -421,6 +461,19 @@ CShotgun* dwe::GraphicsEngine::createCShotgun(float px, float py, float pz)
     return sg;
 }
 
+CRifle* dwe::GraphicsEngine::createCRifle(float px, float py, float pz)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/Rifle"); // centrado
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/Gun");
+
+    CRifle* r = new CRifle();
+    r->setNode(new Node(irrnode));
+    r->setPosition(dwe::vec3f(px, py, pz));
+
+    NetInstance->addNetConsumable(r);
+
+    return r;
+}
 
 
 Trigger* dwe::GraphicsEngine::createTrigger(int type, float px, float py, float pz)

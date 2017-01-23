@@ -10,10 +10,10 @@ CRifle::~CRifle()
     //dtor
 }
 
-/////////////
-void CRifle::onTake()
+///////////////
+void CRifle::onTake(Player* mainplayer)
 {
-    // TODO
+    mainplayer->addWeapon(this, eRifle);
 }
 
 ////////////////////

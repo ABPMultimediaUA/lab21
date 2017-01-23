@@ -15,6 +15,8 @@
 
 
 
+
+
 class Player : public CharacterController, public EntityPhysics
 {
     public:
@@ -46,10 +48,13 @@ class Player : public CharacterController, public EntityPhysics
         void giveMedkits(int ammount, PlayerMate* playermate);
         void receiveMedkits(int ammount);
         void consumeMedkit();
-        void addWeapon(Firearm* weapon, FirearmKind type);
+        void addWeapon(Consumable* weapon, FirearmKind type);
         bool getHasShotgun();
         bool getHasRifle();
         void swapCurrentWeapon();
+        FirearmKind getCurrentWeapon();
+        Firearm* getPlayerWeapons();
+
 
         virtual const char* getNetObjectID() const;
         virtual void setPosition(dwe::vec3f p);
