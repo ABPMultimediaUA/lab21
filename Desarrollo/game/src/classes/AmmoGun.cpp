@@ -11,7 +11,7 @@ AmmoGun::~AmmoGun()
 }
 
 //////////////
-void AmmoGun::onTake()
+void AmmoGun::onTake(Player* mainplayer)
 {
     // TODO
 }

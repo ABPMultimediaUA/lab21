@@ -35,6 +35,8 @@ class Medkit;
 class ScenaryElement;
 class AppReceiver;
 class Trigger;
+class CShotgun;
+class AmmoGun;
 
 namespace dwe
 {
@@ -219,6 +221,8 @@ namespace dwe
         SpeedBoost* createSpeedBoost(float px, float py, float pz);
         Medkit* createMedkit(float px, float py, float pz);
         Trigger* createTrigger(int type, float px, float py, float pz);
+        AmmoGun* createAmmoGun(float px, float py, float pz);
+        CShotgun* createCShotgun(float px, float py, float pz);
 
     private:
         irr::IrrlichtDevice*            m_device;

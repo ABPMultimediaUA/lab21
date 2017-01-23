@@ -3,7 +3,8 @@
 #include "SpeedBoost.h"
 #include "Medkit.h"
 #include "Consumable.h"
-
+#include "AmmoGun.h"
+#include "CShotgun.h"
 
 Scene::Scene()
 {
@@ -80,5 +81,19 @@ void Scene::createMedkit(float px, float py, float pz)
 {
     m_consumables.push_back(GEInstance->createMedkit(px, py, pz));
     //GEInstance->createMedkit(px, py, pz);
+}
+
+////////////
+void Scene::createCShotgun(float px, float py, float pz)
+{
+    m_consumables.push_back(GEInstance->createCShotgun(px, py, pz));
+    //GEInstance->createCShotgun(px, py, pz);
+}
+
+////////////
+void Scene::createAmmoGun(float px, float py, float pz)
+{
+    m_consumables.push_back(GEInstance->createAmmoGun(px, py, pz));
+    //GEInstance->createAmmoGun(px, py, pz);
 }
 

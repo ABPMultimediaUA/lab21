@@ -3,11 +3,19 @@
 
 Player::Player()
 {
+    Gun* gun = new Gun();
     setClassID(CLASS_PLAYER_ID);
     m_mKeys[0]=false;
     m_medkits = 0;
     m_timeMedkit = 2000;
     m_timeGivingStuff = 1000;
+    m_timeWeaponSwap = 1000;
+    m_hasGun = true;
+    m_weapons[0] = gun;
+    m_hasShotgun = false;
+    m_hasRifle = false;
+    m_currentWeapon = eGun;
+
 }
 
 Player::~Player()
@@ -51,6 +59,58 @@ void Player::render()
 void Player::shoot()
 {
     //TODO
+}
+
+/////////////
+bool Player::getHasShotgun() { return m_hasShotgun; }
+bool Player::getHasRifle() { return m_hasRifle; }
+
+/////////////
+void Player::addWeapon(Firearm* weapon, FirearmKind type)
+{
+
+    if (!m_hasShotgun && type == eShotgun)
+    {
+        //m_weapons.push_back(weapon);
+        m_weapons[1] = weapon;
+
+        m_hasShotgun = true;
+    }
+
+    if (!m_hasRifle && type == eRifle)
+    {
+        //m_weapons.push_back(weapon);
+        m_weapons[2] = weapon;
+
+        m_hasRifle = true;
+    }
+
+
+}
+
+/////////////
+void Player::swapCurrentWeapon()
+{
+    if (m_currentWeapon == eGun)
+    {
+        if (m_hasShotgun)
+            m_currentWeapon = eShotgun;
+
+        else if (m_hasRifle)
+            m_currentWeapon = eRifle;
+    }
+    else if (m_currentWeapon == eShotgun)
+    {
+        if (m_hasRifle)
+            m_currentWeapon = eRifle;
+
+        else
+            m_currentWeapon = eGun;
+    }
+    else
+        m_currentWeapon = eGun;
+
+    cout << "tengo el arma " << m_currentWeapon << endl;
 }
 
 /////////////
@@ -106,8 +166,11 @@ void Player::readEvents()
     }
 
 
-    if(GEInstance->receiver.isKeyDown(KEY_KEY_5))
-        cout << "tengo " << this->getNumMedkits() << " botiquines" << endl;
+    if(GEInstance->receiver.isKeyDown(KEY_KEY_5) && World->getTimeElapsed() - m_timeWeaponSwap > 200)
+    {
+        this->swapCurrentWeapon();
+        m_timeWeaponSwap = World->getTimeElapsed();
+    }
 
 
 }
@@ -116,6 +179,7 @@ void Player::readEvents()
 ////////////
 int Player::getAmmo(int numWeapon) { return m_ammo[numWeapon]; }
 void Player::setAmmo(int numWeapon, int ammount) { m_ammo[numWeapon] = ammount; }
+void Player::addAmmo(int numWeapon, int ammount) { m_ammo[numWeapon] += ammount; }
 
 ////////////
 int Player::getGrenades() { return m_grenades; }

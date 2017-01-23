@@ -24,6 +24,9 @@
 #include "SpeedBoost.h"
 #include "Medkit.h"
 
+#include "CShotgun.h"
+#include "AmmoGun.h"
+
 #include "TriggerDoor.h"
 #include "TriggerGenerator.h"
 
@@ -112,15 +115,18 @@ int main()
 	scene.createMedkit(400, 10, 0);
 	scene.createMedkit(350, 10, 0);
 
+    //CShotGun
+    scene.createCShotgun(220,10,100);
 
-//////
-  // Llaves
+    // AmmoGun
+    scene.createAmmoGun(400, 10, 100);
+/****/
+
     //Medkit *prueba1=GEInstance->createMedkit( 400, 0, 0);
 
-//
-  //dwe::Node* prueba = GEInstance->createNode("media/bullet/speed"); //ESTAS SON LAS BUENAS
-	//prueba->setPosition(dwe::vec3f(400,0,0));
-
+	 //Pistola 1
+	//CShotgun *gun0 = GEInstance->createCShotgun( 400, 10, 100);
+/****/
 
 
     // Triggers -> 0 Door, 1 Generator
@@ -151,18 +157,6 @@ int main()
     fovnode->setPosition(enemyHumanoid->getPosition());
     fovnode->setRotation(enemyHumanoid->getRotation());
 
-
-
-
-	 //Pistola 1
-	dwe::Node* gun_1 = GEInstance->createNode("media/Gun/Gun"); //ESTAS SON LAS BUENAS
-	gun_1->setPosition(dwe::vec3f(400,10,100));
-	bool haveGun1 = false;
-
-    //Pistola 2
-	dwe::Node* gun_2 = GEInstance->createNode("media/Gun/Gun");   //ESTAS SON LAS BUENAS
-	gun_2->setPosition(dwe::vec3f(220,10,100));
-	bool haveGun2 = false;
 
     //Joint try
 	dwe::Node* joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
@@ -277,25 +271,6 @@ int main()
 
         mainPlayer->readEvents();  // Read keyboard and mouse inputs for de player
 
-        //GET GUN 1
-        if(!haveGun1){
-            if(mainPlayer->getPosition().x > 390 && mainPlayer->getPosition().x < 410){
-                if(mainPlayer->getPosition().z > 90 && mainPlayer->getPosition().z < 110){
-                    cout << "Pistola 1 cogida" << endl;
-                    haveGun1 = true;
-                }
-            }
-        }
-
-         //GET GUN 2
-        if(!haveGun2){
-            if(mainPlayer->getPosition().x > 210 && mainPlayer->getPosition().x < 230){
-                if(mainPlayer->getPosition().z > 90 && mainPlayer->getPosition().z < 110){
-                    cout << "Pistola 2 cogida" << endl;
-                    haveGun2 = true;
-                }
-            }
-        }
 
         // Actualizamos físicas box2d
         World->step(deltaTime);
@@ -327,12 +302,12 @@ int main()
         joint_try->setPosition(dwe::vec3f(bjoint->getPosEntity().x,bjoint->getPosEntity().y,bjoint->getPosEntity().z));
 
         // update GUNS
-        if(haveGun1)
+      /*  if(haveGun1)
             gun_1->setPosition(dwe::vec3f(mainPlayer->getPosition().x-20,20,mainPlayer->getPosition().z+10));
 
         if(haveGun2)
             gun_2->setPosition(dwe::vec3f(mainPlayer->getPosition().x-20,20,mainPlayer->getPosition().z-10));
-
+*/
 
         GEInstance->draw();
 

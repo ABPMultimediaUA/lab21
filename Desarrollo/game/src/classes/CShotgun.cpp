@@ -11,9 +11,9 @@ CShotgun::~CShotgun()
 }
 
 ///////////////
-void CShotgun::onTake()
+void CShotgun::onTake(Player* mainplayer)
 {
-    // TODO
+
 }
 
 //////////////////////

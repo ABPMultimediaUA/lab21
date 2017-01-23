@@ -24,6 +24,9 @@
 
 #include "iostream"
 
+#include "CShotgun.h"
+#include "AmmoGun.h"
+
 
 using namespace std;
 // Necesita volver a poner este namespace
@@ -379,7 +382,7 @@ SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(float px, float py, float pz)
 Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
 {
     scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/medkit/medkit"); // no centrado
-    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/bullet/speed"); // centrado
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/First_Aid_Med_Kit/FirstAidMedKit"); // centrado
 
 
 
@@ -390,6 +393,35 @@ Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
     NetInstance->addNetConsumable(h);
     return h;
 }
+
+AmmoGun* dwe::GraphicsEngine::createAmmoGun(float px, float py, float pz)
+{
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/AmmoGun/speed"); // centrado
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/AmmoGun"); // no centrado
+
+    AmmoGun* a = new AmmoGun();
+    a->setNode(new Node(irrnode));
+    a->setPosition(dwe::vec3f(px, py, pz));
+
+    NetInstance->addNetConsumable(a);
+    return a;
+}
+
+CShotgun* dwe::GraphicsEngine::createCShotgun(float px, float py, float pz)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/Shotgun"); // centrado
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/Gun");
+
+    CShotgun* sg = new CShotgun();
+    sg->setNode(new Node(irrnode));
+    sg->setPosition(dwe::vec3f(px, py, pz));
+
+    NetInstance->addNetConsumable(sg);
+
+    return sg;
+}
+
+
 
 Trigger* dwe::GraphicsEngine::createTrigger(int type, float px, float py, float pz)
 {
