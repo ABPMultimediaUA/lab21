@@ -6,6 +6,7 @@
 #include <vector>
 #include <time.h>
 #include <typeinfo>
+#include <unistd.h>  //para sleep
 
 #include "WorldInstance.h"
 
@@ -87,7 +88,74 @@ int main()
 
 	/****************************/
     Scene scene;
-    NetInstance->open(&scene);  // Inicializar motor de red
+
+    // Preguntamos por los parametros de la red
+    cout << "//////////////////////////////////////////////\n";
+    cout << "// Lab21\n";
+    cout << "//////////////////////////////////////////////\n";
+    cout << "// Selecciona tipo de partida y pulsa intro:\n";
+    std::string type;
+    cout << "// un solo jugador(1) o multijugador (2) [2 por defecto]: ";
+    getline(cin, type);
+    if (type!="1") type="2";
+
+    NetInstance->open(&scene, (type=="2"));  // Inicializar motor de red
+    cout << "//\n// Buscando servidores ";
+    if(NetInstance->searchForServers())
+    {
+        cout << "\n//\n//Servidores de partidas disponibles:\n";
+        std::vector<std::string>* servers = NetInstance->getServers();
+
+        for(unsigned int i=0; i<servers->size(); i++)
+            cout << "//  ("<<i<<") " << servers->at(i) << "\n";
+
+        cout << "// Seleccione el numero de servidor de partidas [0] por defecto]: ";
+
+        std::string ip;
+        getline(cin, ip);
+
+        NetInstance->connectToServer(atoi(ip.c_str()));
+
+        if (NetInstance->getConnectionFailed())
+        {
+            cout << "No se encuentra el servidor " << ip << ", se inicia el juego en modo 1 jugador.\n";
+            cout << "Presione intro para continuar. ";
+            //getchar();
+        }
+        else if (NetInstance->getConnectionRejected())
+        {
+            NetInstance->setMultiplayer(false);
+            cout << "No se puede acceder a la partida seleccionada. Partida llena o empezada, se inicia el juego en modo 1 jugador.\n";
+            cout << "Presione intro para continuar. ";
+            //getchar();
+        }
+        else
+        {
+            std::string seleccion;
+            // Esperamos por las partidas
+            int i=0;
+            while (i<5 && !NetInstance->getGamesSearched())
+            {
+                usleep(40000);
+                NetInstance->update();
+                i++;
+            }
+
+            cout << "//  (0) Crear una nueva partida.\n";
+
+            std::vector<std::string>* gamesIP = NetInstance->getGamesIP();
+            for(unsigned int j=0; j<gamesIP->size(); j++)
+                cout << "//  ("<<i+1<<") Unirse a " << gamesIP->at(i) << "\n";
+
+            cout << "// Selecciona partida: ";
+            getline(cin, seleccion);
+
+            NetInstance->connectToGame(atoi(seleccion.c_str()));
+        }
+    }
+
+
+
 	GEInstance->init();  // Inicializar motor gráfico
 
     // Creación de jugador

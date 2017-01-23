@@ -7,6 +7,7 @@
 
     Clase que gestiona la interfaz entre RakNet y nuestro juego
 */
+#include <vector>
 
 #include "RakPeerInterface.h"
 #include "ReplicaManager3.h"
@@ -43,7 +44,7 @@ namespace dwn
             static NetGame* Instance();
             virtual ~NetGame();
 
-            void open(Scene *scene);
+            void open(Scene *scene, bool multiplayer);
             void close();
             void update();
 
@@ -57,8 +58,11 @@ namespace dwn
             static bool isConnectedToNATPunchthroughServer;
 
             bool isMultiplayer();
-            bool isConnected();
-            bool connectionFailed();
+            void setMultiplayer(bool m);
+            bool getConnected();
+            bool getConnectionFailed();
+            bool getConnectionRejected();
+            bool getGamesSearched();
             unsigned short getParticipantOrder();
 
             PlayerMate* getPlayerMate(unsigned int i);
@@ -67,6 +71,33 @@ namespace dwn
             void startGame();   // Enviamos a los demas que empezamos
             bool getGameStarted();
 
+            std::vector<std::string>* getServers();
+            std::vector<std::string>* getGamesIP();
+
+            /// \brief Buscar servidores
+            /// \details Busca en la red los servidores disponibles y rellena m_servers
+            /// con la lista de servidores encontrados.
+            /// Devuelve true si hay partidas disponibles.
+            bool searchForServers();
+
+            /// \brief Conecta a un servidor
+            /// \details Una vez buscados los servidores con searchForServers, por lo que m_servers tiene datos,
+            /// se llama a esta función para conectar al servidor específico. Despues de conectar se pueden consultar
+            /// m_connected, m_connectionFailed y m_connectionRejected. Devuelve true si ha conectado.
+            /// \param[in] index El indice en m_servers del servidor a conectar.
+            bool connectToServer(unsigned int index);
+
+            /// \brief Conectar a una partida
+            /// \details Conecta a una de las partidas de gamesIP que deben haber sido previamente buscadas (m_gamesSearched true)
+            /// Si se le especifica index=0 crea un servidor de partidas
+            /// \param[in] index el indice en m_gameIP donde conectar
+            bool connectToGame(unsigned int index);
+
+            /// \brief Enviar mensajes
+            /// \details Envian mensajes a todas las máquinas conectadas en la misma partida y se reciben en update() en
+            /// los demás ordenadores.
+            /// \param[in] messageID El id de mensaje que se envian, definidos en NetCommon.h
+            /// \param[in] ... resto de parametros son los datos que se envian junto con el mensaje.
             void sendBroadcast(unsigned int messageID, unsigned int value);
             void sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle);
             void sendBroadcast(unsigned int messageID, unsigned int objectID, dwe::vec3f position, dwe::vec3f rotation);
@@ -84,11 +115,14 @@ namespace dwn
             bool m_connected;
             bool m_connectionFailed;
             bool m_connectionRejected;
+            bool m_gamesSearched;         // Si ya ha hecho la búsqueda de partidas o no
             bool m_isServer;
             bool m_gameStarted;
             unsigned short m_participantOrder;
             std::string m_IP;
             Scene* m_scene;
+            RakNetGUID m_cloudServerGUID;
+
 
             Entity* m_netEntities[MAX_NET_ENTITIES];
             unsigned int m_numNetEntities;
@@ -99,6 +133,10 @@ namespace dwn
             Enemy* m_netEnemies[MAX_NET_ENEMIES];
             unsigned int m_numNetEnemies;
             unsigned int m_netEnemyIndex;
+
+            std::vector<std::string> m_servers;
+            std::vector<std::string> m_gamesIP;
+            std::vector<RakNetGUID> m_gamesGUID;
 
 
             unsigned int getBitStreamEntityID(Packet *packet);
