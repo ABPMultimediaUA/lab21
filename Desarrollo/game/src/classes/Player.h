@@ -5,6 +5,8 @@
 #include <CharacterController.h>
 #include <Firearm.h>
 #include "EntityPhysics.h"
+#include "PlayerMate.h"
+#include "NetGame.h"
 
 
 
@@ -32,9 +34,11 @@ class Player : public CharacterController, public EntityPhysics
         void setLife(int n);
         void setMKeys(int id);
         bool getMKey(int n);
-        int getMedkits();
-        void setMedkits(int ammount);
-        void giveMedkits(int ammount);
+        int getNumMedkits();
+        void setNumMedkits(int ammount);
+        void addMedkits(int ammount);
+        void giveMedkits(int ammount, PlayerMate* playermate);
+        void receiveMedkits(int ammount);
         void consumeMedkit();
 
         virtual const char* getNetObjectID() const;
@@ -52,6 +56,7 @@ class Player : public CharacterController, public EntityPhysics
         bool        m_mKeys[1];
         int         m_medkits;
         float       m_timeMedkit;
+        float       m_timeGivingStuff;
 };
 
 #endif // PLAYER_H

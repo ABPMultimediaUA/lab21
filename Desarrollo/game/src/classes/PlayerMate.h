@@ -3,6 +3,8 @@
 
 #include "DrawableReplica.h"
 #include "GraphicsEngine.h"
+#include "Player.h"
+
 
 class PlayerMate : public dwn::DrawableReplica
 {
@@ -26,6 +28,9 @@ class PlayerMate : public dwn::DrawableReplica
         virtual void setNumGrenades(unsigned short int n);
         virtual unsigned short int getNumMedkits();
         virtual void setNumMedkits(unsigned short int n);
+        virtual void addMedkits(unsigned short int n);
+        virtual void giveMedkits(int ammount);
+
 
     protected:
 

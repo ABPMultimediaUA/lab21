@@ -45,30 +45,61 @@
 #include "EntityPhysics.h"
 #include "ScenaryElement.h"
 
+#include "CSetupDevice.h" // Menus
+
 #define NUM_ENTITIES 3
 
+gui::IGUIEnvironment* env = NULL;
+
+void populateSetupWindow(CSetupDevice* setupDevice) {
+
+	if (!setupDevice) return;
+
+	gui::IGUIEnvironment* setupGUI = setupDevice->getGUIEnvironment();
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
+    int n;
+    /****************************/
+    CSetupDevice* setupDevice = new CSetupDevice(core::dimension2d<u32>(800,600));
+	if (!setupDevice) {
+		printf("Failed setupDevice creation\n");
+		return 1;
+	}
+
+	gui::IGUIEnvironment* setupGUI = setupDevice->getGUIEnvironment();
+	populateSetupWindow(setupDevice);
+
+	if (setupDevice->execute()) { // user closed the window... they don't want to play my game :'(
+		delete setupDevice;
+		setupDevice = NULL;
+		setupGUI = NULL;
+		return 0;
+	}
+
+	/**delete setupDevice; // Borrar la ventana no se ejecuta el bucle???????? **/
+	setupDevice = NULL;
+	setupGUI = NULL;
+
+	/****************************/
     Scene scene;
-
     NetInstance->open(&scene);  // Inicializar motor de red
-
 	GEInstance->init();  // Inicializar motor gráfico
 
     // Creación de jugador
-	Player* mainPlayer = GEInstance->createMainPlayer();
-	mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,-80));
-	mainPlayer->setLife(100);
-	cout << "Barra de vida: " << mainPlayer->getLife() << endl;
+    Player* mainPlayer = GEInstance->createMainPlayer();
+    mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,-80));
+    mainPlayer->setLife(100);
+    cout << "Barra de vida: " << mainPlayer->getLife() << endl;
 
 
     // Creación de escenario
-	dwe::Node* suelo = GEInstance->createNode("media/suelo");
-	suelo->setPosition(dwe::vec3f(0,0,0));
+    dwe::Node* suelo = GEInstance->createNode("media/suelo");
+    suelo->setPosition(dwe::vec3f(0,0,0));
 
     ScenaryElement* wall01 = GEInstance->createWall("media/pared01");wall01->setPosition(dwe::vec3f(-35,   36.3, 135.9));
     ScenaryElement* wall02 = GEInstance->createWall("media/pared02");wall02->setPosition(dwe::vec3f(120.4, 36.3, 135.9));
@@ -109,9 +140,17 @@ int main()
     scene.createSpeedBoost(100, 10, 10);
 
     // Medkit
-	scene.createMedkit(400, 10, 0);
-	scene.createMedkit(350, 10, 0);
+    scene.createMedkit(400, 10, 0);
+    scene.createMedkit(350, 10, 0);
 
+
+//////
+  // Llaves
+    //Medkit *prueba1=GEInstance->createMedkit( 400, 0, 0);
+
+//
+  //dwe::Node* prueba = GEInstance->createNode("media/bullet/speed"); //ESTAS SON LAS BUENAS
+	//prueba->setPosition(dwe::vec3f(400,0,0));
 
 
 
@@ -126,14 +165,14 @@ int main()
     ////////////////////////////////
 
     // Creación de enemigo Humanoide
-	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
-	//enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
-	enemyHumanoid->setPosition(dwe::vec3f(400,24,100));
-	enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
+    Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
+    //enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
+    enemyHumanoid->setPosition(dwe::vec3f(400,24,100));
+    enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
 
-	// Creación de enemigo Dog
-	Dog* enemyDog = GEInstance->createEnemyDog();
-	enemyDog->setPosition(dwe::vec3f(-50,-170,100)); // No está centrado :(
+    // Creación de enemigo Dog
+    Dog* enemyDog = GEInstance->createEnemyDog();
+    enemyDog->setPosition(dwe::vec3f(-50,-170,100)); // No está centrado :(
 
 
 
@@ -143,33 +182,30 @@ int main()
     fovnode->setPosition(enemyHumanoid->getPosition());
     fovnode->setRotation(enemyHumanoid->getRotation());
 
-
    // dwe::Node* prueba = GEInstance->createNode("media/medkit/medkit"); //ESTAS SON LAS BUENAS
-	//prueba->setPosition(dwe::vec3f(400,0,0));
+    //prueba->setPosition(dwe::vec3f(400,0,0));
 
-
-
-	 //Pistola 1
-	dwe::Node* gun_1 = GEInstance->createNode("media/Gun/Gun"); //ESTAS SON LAS BUENAS
-	gun_1->setPosition(dwe::vec3f(400,10,100));
-	bool haveGun1 = false;
+     //Pistola 1
+    dwe::Node* gun_1 = GEInstance->createNode("media/Gun/Gun"); //ESTAS SON LAS BUENAS
+    gun_1->setPosition(dwe::vec3f(400,10,100));
+    bool haveGun1 = false;
 
     //Pistola 2
-	dwe::Node* gun_2 = GEInstance->createNode("media/Gun/Gun");   //ESTAS SON LAS BUENAS
-	gun_2->setPosition(dwe::vec3f(220,10,100));
-	bool haveGun2 = false;
+    dwe::Node* gun_2 = GEInstance->createNode("media/Gun/Gun");   //ESTAS SON LAS BUENAS
+    gun_2->setPosition(dwe::vec3f(220,10,100));
+    bool haveGun2 = false;
 
     //Joint try
-	dwe::Node* joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
-	joint_try->setPosition(dwe::vec3f(0,10,120));
+    dwe::Node* joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
+    joint_try->setPosition(dwe::vec3f(0,10,120));
     EntityPhysics* bjoint = new EntityPhysics();
     bjoint->createJointBody(dwe::vec3f(0,10,120)); // createJointBody(dwe::vec3f(0,10,120));
 
 
-	//////////////////////////////////////////
+    //////////////////////////////////////////
     //CAMERA (nodo padre, posición, directión)
-	ICameraSceneNode* camera1 = GEInstance->getSMGR()->addCameraSceneNode(0,  vector3df(0,0,0), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
-	GEInstance->getSMGR()->setActiveCamera(camera1); //Activar cámara
+    ICameraSceneNode* camera1 = GEInstance->getSMGR()->addCameraSceneNode(0,  vector3df(0,0,0), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
+    GEInstance->getSMGR()->setActiveCamera(camera1); //Activar cámara
 
 
     //Creación de objeto perception
@@ -183,23 +219,23 @@ int main()
 
     /**** Special nodes ****/
 
-	Selector* selector1 = new Selector;
+    Selector* selector1 = new Selector;
 
-	Sequence *sequence1 = new Sequence;
+    Sequence *sequence1 = new Sequence;
     //Sequence *sequence2 = new Sequence;
 
     /**** Tasks ****/
 
     /*CheckIfDoorIsOpenTask* checkOpen = new CheckIfDoorIsOpenTask ((Door*)entities[0]);
     ApproachDoorTask* approach = new ApproachDoorTask (enemyHumanoid, (Door*)entities[0]);
-	OpenDoorTask* open = new OpenDoorTask ((Door*)entities[0]);
-	WalkThroughDoorTask* through = new WalkThroughDoorTask (enemyHumanoid, (Door*)entities[0]);
-	CloseDoorTask* close = new CloseDoorTask ((Door*)entities[0]);*/
+    OpenDoorTask* open = new OpenDoorTask ((Door*)entities[0]);
+    WalkThroughDoorTask* through = new WalkThroughDoorTask (enemyHumanoid, (Door*)entities[0]);
+    CloseDoorTask* close = new CloseDoorTask ((Door*)entities[0]);*/
 
 
     PathplanningTask* path = new PathplanningTask(pathp, mainPlayer, enemyHumanoid, fovnode);
     PerceptionTask* perc = new PerceptionTask(percep, mainPlayer, enemyHumanoid, fovnode, path);
-	PatrolTask* patrol = new PatrolTask(enemyHumanoid, fovnode);
+    PatrolTask* patrol = new PatrolTask(enemyHumanoid, fovnode);
 
 
     /**** Creating the tree ****/
@@ -244,8 +280,6 @@ int main()
         }
     }
 
-
-
     float timeStamp = World->getTimeElapsed();
     float deltaTime;
     float timeLastProjectil = 0;
@@ -257,8 +291,8 @@ int main()
     /**                           GAME RUNNING                          **/
     /**                                                                 **/
     /*********************************************************************/
-	while(GEInstance->isRunning())
-	{
+    while(GEInstance->isRunning())
+    {
         if(GEInstance->receiver.isKeyDown(KEY_ESCAPE))
         {
             GEInstance->close();
@@ -391,10 +425,11 @@ int main()
                     triggers[i]->triggered(entities[i]);
             }
         }
-	}
-	delete bjoint;
+    }
 
-	NetInstance->close();
+    delete bjoint;
+
+    NetInstance->close();
 
 	return 0;
 }
