@@ -365,7 +365,8 @@ MagnetKey* dwe::GraphicsEngine::createMagnetKey(int i, float px, float py, float
 
 SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(float px, float py, float pz)
 {
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/speed/speed");
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/bullet/speed"); // centrado
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/speed/speed"); // no centrado
 
     SpeedBoost* s = new SpeedBoost();
     s->setNode(new Node(irrnode));
@@ -377,7 +378,8 @@ SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(float px, float py, float pz)
 
 Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
 {
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/medkit/medkit");
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/medkit/medkit"); // no centrado
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/bullet/speed"); // centrado
 
 
 

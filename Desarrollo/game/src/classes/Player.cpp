@@ -7,6 +7,7 @@ Player::Player()
     m_mKeys[0]=false;
     m_medkits = 0;
     m_timeMedkit = 2000;
+    m_timeGivingStuff = 1000;
 }
 
 Player::~Player()
@@ -18,14 +19,6 @@ Player::~Player()
 void Player::update()
 {
     Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
-
-    //RECUPERAR VIDA
-  /*  int posX = Drawable::getPosition().x;
-    int posZ = Drawable::getPosition().z;
-    if( posX > 392 && posX < 408 && posZ > -8 && posZ < 8){
-        setLife(100);
-        cout << "Vida recuperada: " << getLife() << endl;
-    }*/
 }
 
 /////////////
@@ -105,6 +98,17 @@ void Player::readEvents()
     }
 
     /*********/
+    PlayerMate* playermate = NetInstance->getPlayerMate(1);
+    if (GEInstance->receiver.isKeyDown(KEY_KEY_4)&& (World->getTimeElapsed() - m_timeGivingStuff) > 200)
+    {
+         this->giveMedkits(1,playermate);
+         m_timeGivingStuff = World->getTimeElapsed();
+    }
+
+
+    if(GEInstance->receiver.isKeyDown(KEY_KEY_5))
+        cout << "tengo " << this->getNumMedkits() << " botiquines" << endl;
+
 
 }
 
@@ -130,32 +134,57 @@ void Player::onBeginContact(EntityPhysics* otherObject)
 }
 
 /////////////
-int Player::getMedkits()
+int Player::getNumMedkits()
 {
     return m_medkits;
 }
 
 /////////////
-void Player::setMedkits(int ammount)
+void Player::setNumMedkits(int ammount)
 {
-    m_medkits += ammount;
-        cout << m_medkits << endl;
+    m_medkits = ammount;
 
 }
 
 /////////////
-void Player::giveMedkits(int ammount)
+void Player::addMedkits(int ammount)
+{
+    m_medkits += ammount;
+
+}
+
+/////////////
+void Player::giveMedkits(int ammount, PlayerMate* playermate)
 {
     m_medkits -= ammount;
 
-    //////////////////.......
+    playermate->addMedkits(ammount);
+
+    //int i = 0;
+
+
+    //if ((Drawable*)this == NetInstance->getPlayerMate(0))
+      //  i = 1;
+
+    cout << "le doy al otro jugador "<< ammount << " botiquines" << endl;
+    //Player* p = (Player*)NetInstance->getPlayerMate(1);
+
+    //playermate->receiveMedkits(ammount);
+
+}
+
+/////////////
+void Player::receiveMedkits(int ammount)
+{
+    this->addMedkits(ammount);
+
 }
 
 /////////////
 void Player::consumeMedkit()
 {
 
-    if (this->getMedkits() > 0)
+    if (this->getNumMedkits() > 0)
     {
         m_medkits -= 1;
         this->setHealth(100);

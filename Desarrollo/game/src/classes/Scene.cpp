@@ -70,11 +70,15 @@ void Scene::updateConsumables(Player* mainPlayer)
 void Scene::createSpeedBoost(float px, float py, float pz)
 {
     m_consumables.push_back(GEInstance->createSpeedBoost(px, py, pz));
+
+    //GEInstance->createSpeedBoost(px, py, pz);
+
 }
 
 ////////////
 void Scene::createMedkit(float px, float py, float pz)
 {
     m_consumables.push_back(GEInstance->createMedkit(px, py, pz));
+    //GEInstance->createMedkit(px, py, pz);
 }
 
