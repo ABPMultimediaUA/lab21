@@ -647,10 +647,9 @@ unsigned int NetGame::getBitStreamEntityID(Packet *packet)
 }
 
 //////////////
-bool NetGame::isMultiplayer()
-{
-    return m_multiplayer;
-}
+bool NetGame::isMultiplayer() { return m_multiplayer; }
+//////////////
+bool NetGame::isServer() { return m_isServer; }
 
 //////////////
 bool NetGame::getConnected() { return m_connected; }

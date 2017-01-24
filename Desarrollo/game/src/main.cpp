@@ -336,9 +336,11 @@ int main()
     // Esperamos conexion de los demas jugadores
     if (NetInstance->isMultiplayer())
     {
-        GEInstance->getSMGR()->getActiveCamera()->setTarget(vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
-        GEInstance->getSMGR()->getActiveCamera()->setPosition(vector3df(mainPlayer->getPosition().x,250,mainPlayer->getPosition().z-100));
-
+        if (NetInstance->isServer())
+            GEInstance->addMessageLine(L"Pulsa intro cuando esten todos los jugadores");
+        else
+            GEInstance->addMessageLine(L"Esperando a que el servidor de la partida inicie el juego");
+        // En startGame solo se inicia si es el servidor
         while (!NetInstance->getGameStarted() && GEInstance->isRunning())
         {
             GEInstance->draw();
@@ -347,6 +349,7 @@ int main()
                 NetInstance->startGame();
         }
     }
+    GEInstance->addMessageLine(L"Partida iniciada");
 
     float timeStamp = World->getTimeElapsed();
     float deltaTime;

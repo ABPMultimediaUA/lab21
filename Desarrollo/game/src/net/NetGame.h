@@ -58,6 +58,7 @@ namespace dwn
             static bool isConnectedToNATPunchthroughServer;
 
             bool isMultiplayer();
+            bool isServer();
             void setMultiplayer(bool m);
             bool getConnected();
             bool getConnectionFailed();
@@ -77,20 +78,22 @@ namespace dwn
             /// \brief Buscar servidores
             /// \details Busca en la red los servidores disponibles y rellena m_servers
             /// con la lista de servidores encontrados.
-            /// Devuelve true si hay partidas disponibles.
+            /// \return true si hay partidas disponibles.
             bool searchForServers();
 
             /// \brief Conecta a un servidor
             /// \details Una vez buscados los servidores con searchForServers, por lo que m_servers tiene datos,
             /// se llama a esta función para conectar al servidor específico. Despues de conectar se pueden consultar
-            /// m_connected, m_connectionFailed y m_connectionRejected. Devuelve true si ha conectado.
+            /// m_connected, m_connectionFailed y m_connectionRejected.
             /// \param[in] index El indice en m_servers del servidor a conectar.
+            /// \return  true si ha conectado (m_connected), y no ha habido Failed (m_connectionFailed) o Rejected (m_connectionRejected).
             bool connectToServer(unsigned int index);
 
             /// \brief Conectar a una partida
             /// \details Conecta a una de las partidas de gamesIP que deben haber sido previamente buscadas (m_gamesSearched true)
             /// Si se le especifica index=0 crea un servidor de partidas
             /// \param[in] index el indice en m_gameIP donde conectar
+            /// \return Devuelve true si no ha habido ningún error
             bool connectToGame(unsigned int index);
 
             /// \brief Enviar mensajes

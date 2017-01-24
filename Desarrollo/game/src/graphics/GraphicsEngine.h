@@ -10,6 +10,8 @@
 #include <Box2D/Box2D.h>
 #include <Box2D/Common/b2Math.h>
 
+#define MAX_MESSAGE_LINES 4
+
 using namespace std;
 
 // Aun estando los namespace sigo definiendo las propiedades
@@ -220,11 +222,23 @@ namespace dwe
         Medkit* createMedkit(float px, float py, float pz);
         Trigger* createTrigger(int type, float px, float py, float pz);
 
+
+        /// \brief Muestra un mensaje en la zona de mensajes
+        /// \details Añade un mensaje a los mensajes que ya hay pasando los demás a lineas superiores y añadiendo
+        /// el texto pasado a la línea más baja. Si se supera el número máximo de mensajes el de la fila superior
+        /// se borrar. No admite acentos.
+        /// \param[in] text Texto a mostrar en la lista de mensajes
+        void addMessageLine(std::wstring text);
+
     private:
+        static const int _screenWidth  = 800;
+        static const int _screenHeight = 600;
+
         irr::IrrlichtDevice*            m_device;
         irr::video::IVideoDriver*       m_driver;
         irr::scene::ISceneManager*      m_smgr;
         irr::gui::IGUIEnvironment*      m_guienv;
+        irr::gui::IGUIStaticText*       m_messageLine[MAX_MESSAGE_LINES];
 
         scene::IAnimatedMeshSceneNode* createIrrAnimatedMeshSceneNode(std::string meshName);
 
