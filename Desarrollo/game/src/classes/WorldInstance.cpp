@@ -1,11 +1,13 @@
 #include <time.h>
 #include "WorldInstance.h"
+#include "Player.h"
 
 WorldInstance* WorldInstance::pinstance = 0;
 
 b2Vec2  WorldInstance::m_gravity(0.f, 0.f);
 b2World WorldInstance::m_world(WorldInstance::m_gravity);
 ContactListener WorldInstance::m_contactListener;
+Player* WorldInstance::m_mainPlayer = 0;
 
 const float   WorldInstance::m_timeStep             = 1.0f / 250.0f;;
 const int     WorldInstance::m_velocityIterations   = 6;
@@ -84,3 +86,16 @@ b2Vec2 WorldInstance::getGravity(){return(m_gravity);}
 
 ///////////////////////
 b2World WorldInstance::getWorld(){return(m_world);}
+
+///////////////////////
+void WorldInstance::setMainPlayer(Player* p) { m_mainPlayer = p; }
+Player* WorldInstance::getMainPlayer()
+{
+    if (m_mainPlayer == 0)
+    {
+        cout << "\nERROR: No se ha asignado el mainPlayer al mundo\n";
+        return 0;
+    }
+    else
+        return m_mainPlayer;
+}

@@ -50,7 +50,7 @@ dwe::GraphicsEngine* dwe::GraphicsEngine::Instance()
 //////////////////////////
 void dwe::GraphicsEngine::init()
 {
-	m_device = createDevice( video::EDT_OPENGL, irr::core::dimension2d<u32>(800, 600), 16,
+	m_device = createDevice( video::EDT_OPENGL, irr::core::dimension2d<u32>(_screenWidth, _screenHeight), 16,
 			false, false, false, &receiver);
 
 	m_device->setWindowCaption(L"Lab21");
@@ -68,20 +68,14 @@ void dwe::GraphicsEngine::init()
 	m_guienv = m_device->getGUIEnvironment();
 
 
-	/*
-	We add a hello world label to the window, using the GUI environment.
-	The text is placed at the position (10,10) as top left corner and
-	(260,22) as lower right corner.
-	*/
-	m_guienv->addStaticText(L"Hello World! This is the Irrlicht Software renderer!",
-		rect<s32>(10,10,260,22), true);
+	// Creamos los mensajes de texto, por ahora vacios
+	for(int i=0; i<MAX_MESSAGE_LINES; i++)
+	{
+        m_messageLine[i] = m_guienv->addStaticText(L"", rect<s32>(10, _screenHeight - (i+1)*16, _screenWidth-20, _screenHeight - i*16), false);
+        m_messageLine[i]->setOverrideColor(SColor(255,255,255,255));
+	}
 
-	/*
-	To look at the mesh, we place a camera into 3d space at the position
-	(0, 30, -40). The camera looks from there to (0,5,0), which is
-	approximately the place where our md2 model is.
-	*/
-	//m_smgr->addCameraSceneNode(0, vector3df(150,180,-200), vector3df(0,0,0));
+	// Posición de la cámara inicial
 	m_smgr->addCameraSceneNode(0, vector3df(-150,120,190), vector3df(0,0,0));
 }
 
@@ -558,6 +552,16 @@ void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition)
     m_smgr->getActiveCamera()->setTarget(vector3df(playerPosition.x+tarLR, playerPosition.y, playerPosition.z+tarUD));
     m_smgr->getActiveCamera()->setPosition(vector3df(playerPosition.x+tarLR, _camera_y, playerPosition.z + _camera_z_offset + tarUD));
 }
+
+//////////////////////////
+void dwe::GraphicsEngine::addMessageLine(std::wstring text)
+{
+    for(int i=MAX_MESSAGE_LINES-1; i>0; i--)
+        m_messageLine[i]->setText(m_messageLine[i-1]->getText());
+    m_messageLine[0]->setText(text.c_str());
+}
+
+
 
 irr::scene::ISceneManager*  dwe::GraphicsEngine::getSMGR(){return(m_smgr);}
 

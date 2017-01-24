@@ -6,6 +6,7 @@
 #include <vector>
 #include <time.h>
 #include <typeinfo>
+#include <unistd.h>  //para sleep
 
 #include "WorldInstance.h"
 
@@ -48,32 +49,132 @@
 #include "EntityPhysics.h"
 #include "ScenaryElement.h"
 
+#include "CSetupDevice.h" // Menus
+
 #define NUM_ENTITIES 3
 
+gui::IGUIEnvironment* env = NULL;
+
+void populateSetupWindow(CSetupDevice* setupDevice) {
+
+	if (!setupDevice) return;
+
+	gui::IGUIEnvironment* setupGUI = setupDevice->getGUIEnvironment();
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
+    /****************************/
+    CSetupDevice* setupDevice = new CSetupDevice(core::dimension2d<u32>(800,600));
+	if (!setupDevice) {
+		printf("Failed setupDevice creation\n");
+		return 1;
+	}
+
+	gui::IGUIEnvironment* setupGUI = setupDevice->getGUIEnvironment();
+	populateSetupWindow(setupDevice);
+
+	if (setupDevice->execute()) { // user closed the window... they don't want to play my game :'(
+		delete setupDevice;
+		setupDevice = NULL;
+		setupGUI = NULL;
+		return 0;
+	}
+
+	/**delete setupDevice; // Borrar la ventana no se ejecuta el bucle???????? **/
+	setupDevice = NULL;
+	setupGUI = NULL;
+
+	/****************************/
     Scene scene;
 
-    NetInstance->open(&scene);  // Inicializar motor de red
+    // Preguntamos por los parametros de la red
+    cout << "//////////////////////////////////////////////\n";
+    cout << "// Lab21\n";
+    cout << "//////////////////////////////////////////////\n";
+    cout << "// Selecciona tipo de partida y pulsa intro:\n";
+    std::string type;
+    cout << "// un solo jugador(1) o multijugador (2) [2 por defecto]: ";
+    getline(cin, type);
+    if (type!="1") type="2";
+
+    NetInstance->open(&scene, (type=="2"));  // Inicializar motor de red
+    cout << "//\n// Buscando servidores ";
+    if(NetInstance->searchForServers())
+    {
+        cout << "\n//\n//Servidores de partidas disponibles:\n";
+        std::vector<std::string>* servers = NetInstance->getServers();
+
+        for(unsigned int i=0; i<servers->size(); i++)
+            cout << "//  ("<<i<<") " << servers->at(i) << "\n";
+
+        cout << "// Seleccione el numero de servidor de partidas [0] por defecto]: ";
+
+        std::string ip;
+        getline(cin, ip);
+
+        NetInstance->connectToServer(atoi(ip.c_str()));
+
+        if (NetInstance->getConnectionFailed())
+        {
+            cout << "No se encuentra el servidor " << ip << ", se inicia el juego en modo 1 jugador.\n";
+            cout << "Presione intro para continuar. ";
+            //getchar();
+        }
+        else if (NetInstance->getConnectionRejected())
+        {
+            NetInstance->setMultiplayer(false);
+            cout << "No se puede acceder a la partida seleccionada. Partida llena o empezada, se inicia el juego en modo 1 jugador.\n";
+            cout << "Presione intro para continuar. ";
+            //getchar();
+        }
+        else
+        {
+            std::string seleccion;
+            // Esperamos por las partidas
+            int i=0;
+            while (i<5 && !NetInstance->getGamesSearched())
+            {
+                usleep(40000);
+                NetInstance->update();
+                i++;
+            }
+
+            cout << "//  (0) Crear una nueva partida.\n";
+
+            std::vector<std::string>* gamesIP = NetInstance->getGamesIP();
+            for(unsigned int j=0; j<gamesIP->size(); j++)
+                cout << "//  ("<<j+1<<") Unirse a " << gamesIP->at(j) << "\n";
+
+            cout << "// Selecciona partida: ";
+            getline(cin, seleccion);
+
+            NetInstance->connectToGame(atoi(seleccion.c_str()));
+        }
+    }
+
+
 
 	GEInstance->init();  // Inicializar motor gráfico
 
     Gun* gun = scene.createGun(0,0,0); // Creo el arma inicial del player
 
     // Creación de jugador
-	Player* mainPlayer = GEInstance->createMainPlayer(gun);
-	mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,-80));
-	mainPlayer->setLife(100);
-	cout << "Barra de vida: " << mainPlayer->getLife() << endl;
+
+    Player* mainPlayer = GEInstance->createMainPlayer(gun);
+    mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,-80));
+    mainPlayer->setLife(100);
+    World->setMainPlayer(mainPlayer);
+    cout << "Barra de vida: " << mainPlayer->getLife() << endl;
+
 
 
     // Creación de escenario
-	dwe::Node* suelo = GEInstance->createNode("media/suelo");
-	suelo->setPosition(dwe::vec3f(0,0,0));
+    dwe::Node* suelo = GEInstance->createNode("media/suelo");
+    suelo->setPosition(dwe::vec3f(0,0,0));
 
     ScenaryElement* wall01 = GEInstance->createWall("media/pared01");wall01->setPosition(dwe::vec3f(-35,   36.3, 135.9));
     ScenaryElement* wall02 = GEInstance->createWall("media/pared02");wall02->setPosition(dwe::vec3f(120.4, 36.3, 135.9));
@@ -110,12 +211,15 @@ int main()
     bool llaveCogida=false;
 
     // SpeedBoost
-    //scene.createSpeedBoost(210, 10, 10);
-    //scene.createSpeedBoost(100, 10, 10);
+    scene.createSpeedBoost(210, 10, 10);
+    scene.createSpeedBoost(100, 10, 10);
 
     // Medkit
-	//scene.createMedkit(400, 10, 0);
-	//scene.createMedkit(350, 10, 0);
+
+	scene.createMedkit(400, 10, 0);
+	scene.createMedkit(350, 10, 0);
+
+
 
     //CShotGun
     scene.createCShotgun(80,10,100);
@@ -155,14 +259,14 @@ int main()
     ////////////////////////////////
 
     // Creación de enemigo Humanoide
-	Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
-	//enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
-	enemyHumanoid->setPosition(dwe::vec3f(400,24,100));
-	enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
+    Humanoid* enemyHumanoid = GEInstance->createEnemyHumanoid();
+    //enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
+    enemyHumanoid->setPosition(dwe::vec3f(400,24,100));
+    enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
 
-	// Creación de enemigo Dog
-	Dog* enemyDog = GEInstance->createEnemyDog();
-	enemyDog->setPosition(dwe::vec3f(-50,-170,100)); // No está centrado :(
+    // Creación de enemigo Dog
+    Dog* enemyDog = GEInstance->createEnemyDog();
+    enemyDog->setPosition(dwe::vec3f(-50,-170,100)); // No está centrado :(
 
 
 
@@ -172,18 +276,21 @@ int main()
     fovnode->setPosition(enemyHumanoid->getPosition());
     fovnode->setRotation(enemyHumanoid->getRotation());
 
+   // dwe::Node* prueba = GEInstance->createNode("media/medkit/medkit"); //ESTAS SON LAS BUENAS
+    //prueba->setPosition(dwe::vec3f(400,0,0));
+
 
     //Joint try
-	dwe::Node* joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
-	joint_try->setPosition(dwe::vec3f(0,10,120));
+    dwe::Node* joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
+    joint_try->setPosition(dwe::vec3f(0,10,120));
     EntityPhysics* bjoint = new EntityPhysics();
     bjoint->createJointBody(dwe::vec3f(0,10,120)); // createJointBody(dwe::vec3f(0,10,120));
 
 
-	//////////////////////////////////////////
+    //////////////////////////////////////////
     //CAMERA (nodo padre, posición, directión)
-	ICameraSceneNode* camera1 = GEInstance->getSMGR()->addCameraSceneNode(0,  vector3df(0,0,0), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
-	GEInstance->getSMGR()->setActiveCamera(camera1); //Activar cámara
+    ICameraSceneNode* camera1 = GEInstance->getSMGR()->addCameraSceneNode(0,  vector3df(0,0,0), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
+    GEInstance->getSMGR()->setActiveCamera(camera1); //Activar cámara
 
 
     //Creación de objeto perception
@@ -197,23 +304,23 @@ int main()
 
     /**** Special nodes ****/
 
-	Selector* selector1 = new Selector;
+    Selector* selector1 = new Selector;
 
-	Sequence *sequence1 = new Sequence;
+    Sequence *sequence1 = new Sequence;
     //Sequence *sequence2 = new Sequence;
 
     /**** Tasks ****/
 
     /*CheckIfDoorIsOpenTask* checkOpen = new CheckIfDoorIsOpenTask ((Door*)entities[0]);
     ApproachDoorTask* approach = new ApproachDoorTask (enemyHumanoid, (Door*)entities[0]);
-	OpenDoorTask* open = new OpenDoorTask ((Door*)entities[0]);
-	WalkThroughDoorTask* through = new WalkThroughDoorTask (enemyHumanoid, (Door*)entities[0]);
-	CloseDoorTask* close = new CloseDoorTask ((Door*)entities[0]);*/
+    OpenDoorTask* open = new OpenDoorTask ((Door*)entities[0]);
+    WalkThroughDoorTask* through = new WalkThroughDoorTask (enemyHumanoid, (Door*)entities[0]);
+    CloseDoorTask* close = new CloseDoorTask ((Door*)entities[0]);*/
 
 
     PathplanningTask* path = new PathplanningTask(pathp, mainPlayer, enemyHumanoid, fovnode);
     PerceptionTask* perc = new PerceptionTask(percep, mainPlayer, enemyHumanoid, fovnode, path);
-	PatrolTask* patrol = new PatrolTask(enemyHumanoid, fovnode);
+    PatrolTask* patrol = new PatrolTask(enemyHumanoid, fovnode);
 
 
     /**** Creating the tree ****/
@@ -246,9 +353,11 @@ int main()
     // Esperamos conexion de los demas jugadores
     if (NetInstance->isMultiplayer())
     {
-        GEInstance->getSMGR()->getActiveCamera()->setTarget(vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
-        GEInstance->getSMGR()->getActiveCamera()->setPosition(vector3df(mainPlayer->getPosition().x,250,mainPlayer->getPosition().z-100));
-
+        if (NetInstance->isServer())
+            GEInstance->addMessageLine(L"Pulsa intro cuando esten todos los jugadores");
+        else
+            GEInstance->addMessageLine(L"Esperando a que el servidor de la partida inicie el juego");
+        // En startGame solo se inicia si es el servidor
         while (!NetInstance->getGameStarted() && GEInstance->isRunning())
         {
             GEInstance->draw();
@@ -257,13 +366,13 @@ int main()
                 NetInstance->startGame();
         }
     }
-
-
+    GEInstance->addMessageLine(L"Partida iniciada");
 
     float timeStamp = World->getTimeElapsed();
     float deltaTime;
     float timeLastProjectil = 0;
 
+    //cout <<"\n---------------------" << mainPlayer->creatingSystemGUID.ToString() <<" --------------"<<mainPlayer->creatingSystemGUID.g <<"\n";
 
 
     /*********************************************************************/
@@ -271,8 +380,8 @@ int main()
     /**                           GAME RUNNING                          **/
     /**                                                                 **/
     /*********************************************************************/
-	while(GEInstance->isRunning())
-	{
+    while(GEInstance->isRunning())
+    {
         if(GEInstance->receiver.isKeyDown(KEY_ESCAPE))
         {
             GEInstance->close();
@@ -382,10 +491,11 @@ int main()
                     triggers[i]->triggered(entities[i]);
             }
         }
-	}
-	delete bjoint;
+    }
 
-	NetInstance->close();
+    delete bjoint;
+
+    NetInstance->close();
 
 	return 0;
 }

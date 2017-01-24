@@ -14,6 +14,7 @@ enum GameMessages
     ID_PROJECTILE_CREATE,
     ID_CONSUMABLE_TAKEN,
     ID_ENEMY_UPDATE,
+    ID_SEND_MEDKIT,
 };
 
 #endif // NETCOMMON_H

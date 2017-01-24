@@ -1,7 +1,12 @@
 #ifndef FACHADEDIREENGINE_H
 #define FACHADEDIREENGINE_H
 
+#define GLEW_STATIC
 
+#include <GL/glui.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include <irrlicht.h>
 #include <string>
@@ -9,8 +14,6 @@
 
 #include <Box2D/Box2D.h>
 #include <Box2D/Common/b2Math.h>
-
-#define MAX_MESSAGE_LINES 4
 
 using namespace std;
 
@@ -23,26 +26,7 @@ using namespace video;
 using namespace io;
 using namespace gui;
 
-class BaseDireWReplica;
-class Player;
-class PlayerMate;
-class Humanoid;
-class Dog;
-class Door;
-class Projectile;
-class Generator;
-class MagnetKey;
-class SpeedBoost;
-class Medkit;
-class ScenaryElement;
 class AppReceiver;
-class Trigger;
-class CShotgun;
-class CRifle;
-class Gun;
-class Shotgun;
-class Rifle;
-class AmmoGun;
 
 namespace dwe
 {
@@ -200,17 +184,7 @@ namespace dwe
         Node* createNode(std::string meshName);
         bool isWindowActive();
         void yield();
-        vector3df getTransformedBoundingBox(scene::IAnimatedMeshSceneNode* player);
-        /*bool intersectsWithBox(vec3f v, vec3f w);*/
-        irr::scene::ISceneManager*  getSMGR();
 
-        // Creacion de personajes
-        Player* createMainPlayer(Gun* gun);
-        PlayerMate* createPlayerMate();
-        Humanoid* createEnemyHumanoid();
-        Dog* createEnemyDog();
-
-        ScenaryElement* createWall(std::string meshName);
 
         //////////////////////////////
         // Eventos de teclado y ratón
@@ -219,38 +193,11 @@ namespace dwe
         void updateCamera(const vec3f playerPosition);
 
 
-        void changeEnemyDogTexture(Dog* dog, const io::path& str);
-        Door* createDoor(int f, bool a, float px, float py, float pz);
-        Projectile* createProjectile(vec3f origin, float angle);
-        Generator* createGenerator(int i, bool b, float px, float py, float pz);
-        MagnetKey* createMagnetKey(int i, float px, float py, float pz);
-        SpeedBoost* createSpeedBoost(float px, float py, float pz);
-        Medkit* createMedkit(float px, float py, float pz);
-        Trigger* createTrigger(int type, float px, float py, float pz);
-        AmmoGun* createAmmoGun(float px, float py, float pz);
-        CShotgun* createCShotgun(float px, float py, float pz);
-        CRifle* createCRifle(float px, float py, float pz);
-        Gun* createGun(float px, float py, float pz);
-        Shotgun* createShotgun(float px, float py, float pz);
-        Rifle* createRifle(float px, float py, float pz);
-
-
-        /// \brief Muestra un mensaje en la zona de mensajes
-        /// \details Añade un mensaje a los mensajes que ya hay pasando los demás a lineas superiores y añadiendo
-        /// el texto pasado a la línea más baja. Si se supera el número máximo de mensajes el de la fila superior
-        /// se borrar. No admite acentos.
-        /// \param[in] text Texto a mostrar en la lista de mensajes
-        void addMessageLine(std::wstring text);
-
     private:
-        static const int _screenWidth  = 800;
-        static const int _screenHeight = 600;
-
         irr::IrrlichtDevice*            m_device;
         irr::video::IVideoDriver*       m_driver;
         irr::scene::ISceneManager*      m_smgr;
         irr::gui::IGUIEnvironment*      m_guienv;
-        irr::gui::IGUIStaticText*       m_messageLine[MAX_MESSAGE_LINES];
 
         scene::IAnimatedMeshSceneNode* createIrrAnimatedMeshSceneNode(std::string meshName);
 

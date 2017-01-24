@@ -77,6 +77,8 @@
 		<Unit filename="src/classes/BatStates.h" />
 		<Unit filename="src/classes/CRifle.cpp" />
 		<Unit filename="src/classes/CRifle.h" />
+		<Unit filename="src/classes/CSetupDevice.cpp" />
+		<Unit filename="src/classes/CSetupDevice.h" />
 		<Unit filename="src/classes/CShotgun.cpp" />
 		<Unit filename="src/classes/CShotgun.h" />
 		<Unit filename="src/classes/CharacterController.cpp" />
