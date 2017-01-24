@@ -192,7 +192,7 @@ vector3df dwe::GraphicsEngine::getTransformedBoundingBox(scene::IAnimatedMeshSce
 
 
 /////////////////////////////
-Player* dwe::GraphicsEngine::createMainPlayer()
+Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 {
 	scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/sydney.md2");
 	if (!mesh)
@@ -225,7 +225,7 @@ Player* dwe::GraphicsEngine::createMainPlayer()
 
 
 
-	Player* p = new Player();
+	Player* p = new Player(gun);
 	p->setNode(new Node(irrnode));
 	NetInstance->addNetObject(p);
     return p;

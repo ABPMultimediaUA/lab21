@@ -62,8 +62,10 @@ int main()
 
 	GEInstance->init();  // Inicializar motor gráfico
 
+    Gun* gun = scene.createGun(0,0,0); // Creo el arma inicial del player
+
     // Creación de jugador
-	Player* mainPlayer = GEInstance->createMainPlayer();
+	Player* mainPlayer = GEInstance->createMainPlayer(gun);
 	mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,-80));
 	mainPlayer->setLife(100);
 	cout << "Barra de vida: " << mainPlayer->getLife() << endl;
@@ -125,13 +127,14 @@ int main()
     //scene.createAmmoGun(400, 10, 100);
 
     // Gun
-    scene.createGun(mainPlayer->getPosition().x - 20, 20, mainPlayer->getPosition().z);
+    //scene.createGun(mainPlayer->getPosition().x - 20, 20, mainPlayer->getPosition().z);
+
 
     // Shotgun
-    scene.createShotgun(mainPlayer->getPosition().x - 20, 20, mainPlayer->getPosition().z);
+    Shotgun* shotgun = scene.createShotgun(0,0,0);
 
     // Rifle
-    scene.createRifle(mainPlayer->getPosition().x - 20, 20, mainPlayer->getPosition().z);
+    Rifle* rifle = scene.createRifle(0,0,0);
 /****/
 
     //Medkit *prueba1=GEInstance->createMedkit( 400, 0, 0);
@@ -298,10 +301,11 @@ int main()
         }
 
 
-        mainPlayer->update(); //Posición actualizada de Irrlicht Player
+        mainPlayer->update(shotgun, rifle); //Posición actualizada de Irrlicht Player
         scene.updateProjectiles();
         scene.updateConsumables(mainPlayer);
-        //scene.updatePlayerWeapons(mainPlayer, mainPlayer->getPlayerWeapons());
+        scene.updatePlayerWeapons(mainPlayer, mainPlayer->getPlayerWeapons());
+
 
 
         for(int cont=0; cont<NUM_ENTITIES; cont++)
@@ -315,13 +319,6 @@ int main()
         //update box of box2d
         joint_try->setPosition(dwe::vec3f(bjoint->getPosEntity().x,bjoint->getPosEntity().y,bjoint->getPosEntity().z));
 
-        // update GUNS
-      /*  if(haveGun1)
-            gun_1->setPosition(dwe::vec3f(mainPlayer->getPosition().x-20,20,mainPlayer->getPosition().z+10));
-
-        if(haveGun2)
-            gun_2->setPosition(dwe::vec3f(mainPlayer->getPosition().x-20,20,mainPlayer->getPosition().z-10));
-*/
 
         GEInstance->draw();
 

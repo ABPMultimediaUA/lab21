@@ -203,7 +203,7 @@ namespace dwe
         irr::scene::ISceneManager*  getSMGR();
 
         // Creacion de personajes
-        Player* createMainPlayer();
+        Player* createMainPlayer(Gun* gun);
         PlayerMate* createPlayerMate();
         Humanoid* createEnemyHumanoid();
         Dog* createEnemyDog();

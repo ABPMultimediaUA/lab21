@@ -1,9 +1,9 @@
 #include "Player.h"
 #include "WorldInstance.h"
 
-Player::Player()
+Player::Player(Gun* gun)
 {
-    Gun* gun = new Gun();
+
     setClassID(CLASS_PLAYER_ID);
     m_mKeys[0]=false;
     m_medkits = 0;
@@ -12,9 +12,12 @@ Player::Player()
     m_timeWeaponSwap = 1000;
     m_hasGun = true;
     m_weapons[0] = gun;
+    m_weapons[1] = 0;
+    m_weapons[2] = 0;
     m_hasShotgun = false;
     m_hasRifle = false;
-    m_currentWeapon = eGun;
+    m_currentWeaponType = eGun;
+    m_currentWeapon = m_weapons[0];
 
 }
 
@@ -24,9 +27,19 @@ Player::~Player()
 }
 
 /////////////
-void Player::update()
+void Player::update(Shotgun* shotgun, Rifle* rifle)
 {
     Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
+
+    if (m_hasShotgun)
+    {
+        m_weapons[1] = shotgun;
+
+    }
+    else if (m_hasRifle)
+    {
+        m_weapons[2] = rifle;
+    }
 
 }
 
@@ -63,8 +76,9 @@ void Player::shoot()
 }
 
 /////////////
-FirearmKind Player::getCurrentWeapon() { return m_currentWeapon; }
-Firearm* Player::getPlayerWeapons() { return *m_weapons; }
+FirearmKind Player::getCurrentWeaponType() { return m_currentWeaponType; }
+Firearm* Player::getCurrentWeapon() { return m_currentWeapon; }
+Firearm** Player::getPlayerWeapons() { return m_weapons; }
 bool Player::getHasShotgun() { return m_hasShotgun; }
 bool Player::getHasRifle() { return m_hasRifle; }
 
@@ -74,18 +88,15 @@ void Player::addWeapon(Consumable* weapon, FirearmKind type)
 
     if (!m_hasShotgun && type == eShotgun)
     {
-        //m_weapons.push_back(weapon);
-        m_weapons[1] = new Shotgun();
-
         m_hasShotgun = true;
+        cout << "temgo shotgun" << endl;
     }
 
     if (!m_hasRifle && type == eRifle)
     {
-        //m_weapons.push_back(weapon);
-        m_weapons[2] = new Rifle();
 
         m_hasRifle = true;
+        cout << "tengo rifle" << endl;
     }
 
 
@@ -94,26 +105,47 @@ void Player::addWeapon(Consumable* weapon, FirearmKind type)
 /////////////
 void Player::swapCurrentWeapon()
 {
-    if (m_currentWeapon == eGun)
+    if (m_currentWeaponType == eGun)
     {
+
         if (m_hasShotgun)
-            m_currentWeapon = eShotgun;
+        {
+            m_currentWeapon = m_weapons[1];
+
+            m_currentWeaponType = eShotgun;
+        }
+
 
         else if (m_hasRifle)
-            m_currentWeapon = eRifle;
+        {
+            m_currentWeapon = m_weapons[2];
+            m_currentWeaponType = eRifle;
+        }
+
     }
-    else if (m_currentWeapon == eShotgun)
+    else if (m_currentWeaponType == eShotgun)
     {
         if (m_hasRifle)
-            m_currentWeapon = eRifle;
+        {
+            m_currentWeapon = m_weapons[2];
+            m_currentWeaponType = eRifle;
+        }
+
 
         else
-            m_currentWeapon = eGun;
+        {
+            m_currentWeapon = m_weapons[0];
+            m_currentWeaponType = eGun;
+        }
+
     }
     else
-        m_currentWeapon = eGun;
+    {
+        m_currentWeapon = m_weapons[0];
+        m_currentWeaponType = eGun;
+    }
 
-    cout << "tengo el arma " << m_currentWeapon << endl;
+    //cout << "tengo el arma " << m_currentWeaponType << endl;
 }
 
 /////////////

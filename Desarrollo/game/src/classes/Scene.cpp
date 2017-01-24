@@ -68,20 +68,20 @@ void Scene::updateConsumables(Player* mainPlayer)
     }
 }
 
-void Scene::updatePlayerWeapons(Player* mainplayer, Firearm* weapons)
+void Scene::updatePlayerWeapons(Player* mainplayer, Firearm** weapons)
 {
-    if  (mainplayer->getCurrentWeapon() == eGun)
+    if  (mainplayer->getCurrentWeaponType() == eGun)
     {
-        weapons[0].setPosition(dwe::vec3f(mainplayer->getPosition().x - 20, 20, mainplayer->getPosition().z));
+        weapons[0]->setPosition(dwe::vec3f(mainplayer->getPosition().x - 20, 20, mainplayer->getPosition().z));
 
     }
-    else if (mainplayer->getCurrentWeapon() == eShotgun)
+    else if (mainplayer->getCurrentWeaponType() == eShotgun)
     {
-        weapons[1].setPosition(dwe::vec3f(mainplayer->getPosition().x - 20, 20, mainplayer->getPosition().z));
+        weapons[1]->setPosition(dwe::vec3f(mainplayer->getPosition().x - 20, 20, mainplayer->getPosition().z));
     }
-    else if (mainplayer->getCurrentWeapon() == eRifle)
+    else if (mainplayer->getCurrentWeaponType() == eRifle)
     {
-        weapons[2].setPosition(dwe::vec3f(mainplayer->getPosition().x - 20, 20, mainplayer->getPosition().z));
+        weapons[2]->setPosition(dwe::vec3f(mainplayer->getPosition().x - 20, 20, mainplayer->getPosition().z));
     }
 }
 
@@ -123,19 +123,19 @@ void Scene::createAmmoGun(float px, float py, float pz)
 }
 
 ////////////
-void Scene::createGun(float px, float py, float pz)
+Gun* Scene::createGun(float px, float py, float pz)
 {
-    GEInstance->createGun(px, py, pz);
+    return GEInstance->createGun(px, py, pz);
 }
 
 ////////////
-void Scene::createShotgun(float px, float py, float pz)
+Shotgun* Scene::createShotgun(float px, float py, float pz)
 {
     GEInstance->createShotgun(px, py, pz);
 }
 
 ////////////
-void Scene::createRifle(float px, float py, float pz)
+Rifle* Scene::createRifle(float px, float py, float pz)
 {
     GEInstance->createRifle(px, py, pz);
 }

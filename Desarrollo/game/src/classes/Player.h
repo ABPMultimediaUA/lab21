@@ -20,10 +20,11 @@
 class Player : public CharacterController, public EntityPhysics
 {
     public:
-        Player();
+        Player(Gun* gun);
         virtual ~Player();
 
-        void update();
+        void update(){};
+        void update(Shotgun* shotgun, Rifle* rifle);
         void render();
         void shoot();
         void throwGrenade();
@@ -52,8 +53,9 @@ class Player : public CharacterController, public EntityPhysics
         bool getHasShotgun();
         bool getHasRifle();
         void swapCurrentWeapon();
-        FirearmKind getCurrentWeapon();
-        Firearm* getPlayerWeapons();
+        FirearmKind getCurrentWeaponType();
+        Firearm* getCurrentWeapon();
+        Firearm** getPlayerWeapons();
 
 
         virtual const char* getNetObjectID() const;
@@ -66,7 +68,6 @@ class Player : public CharacterController, public EntityPhysics
     private:
         int         m_ammo[NUM_WEAPONS];
         Firearm*    m_weapons[NUM_WEAPONS];
-        //std::vector<Firearm*> m_weapons;
         int         m_grenades;
         int         m_life;
         bool        m_mKeys[1];
@@ -77,7 +78,8 @@ class Player : public CharacterController, public EntityPhysics
         bool        m_hasGun;
         bool        m_hasShotgun;
         bool        m_hasRifle;
-        FirearmKind m_currentWeapon;
+        FirearmKind m_currentWeaponType;
+        Firearm*    m_currentWeapon;
 };
 
 #endif // PLAYER_H

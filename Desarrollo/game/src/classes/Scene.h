@@ -23,12 +23,12 @@ class Scene
         void createMedkit(float px, float py, float pz);
         void createCShotgun(float px, float py, float pz);
         void createCRifle(float px, float py, float pz);
-        void createGun(float px, float py, float pz);
-        void createShotgun(float px, float py, float pz);
-        void createRifle(float px, float py, float pz);
+        Gun* createGun(float px, float py, float pz);
+        Shotgun* createShotgun(float px, float py, float pz);
+        Rifle* createRifle(float px, float py, float pz);
         void createAmmoGun(float px, float py, float pz);
         void updateConsumables(Player* mainPlayer);
-        void updatePlayerWeapons(Player* mainPlayer, Firearm* weapons);
+        void updatePlayerWeapons(Player* mainPlayer, Firearm** weapons);
 
     protected:
 
