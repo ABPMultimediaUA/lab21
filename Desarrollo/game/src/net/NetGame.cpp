@@ -7,7 +7,7 @@
 #include <vector>
 #include <unistd.h>  //para sleep
 
-
+#include "WorldInstance.h"
 #include "DrawableReplica.h"
 #include "Player.h"
 #include "PlayerMate.h"
@@ -617,6 +617,19 @@ void dwn::NetGame::update()
                 }
                 break;
             }
+        case ID_SEND_MEDKIT:
+            {
+                RakNet::RakString value;
+                RakNet::BitStream bsIn(packet->data,packet->length,false);
+                bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+                bsIn.Read(value);
+
+                // Si player coincide con la cadena que manda, añadimos medkit
+                if (value == World->getMainPlayer()->creatingSystemGUID.ToString())
+                    World->getMainPlayer()->addMedkits(1);
+                break;
+            }
+
 		}
 	}
 
@@ -735,6 +748,15 @@ void dwn::NetGame::startGame()
 
 ///////////////////
 void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int value)
+{
+    RakNet::SystemAddress serverAddress(m_IP.c_str(), DEFAULT_PT);
+    RakNet::BitStream bsOut;
+    bsOut.Write((RakNet::MessageID)messageID);
+    bsOut.Write(value);
+    rakPeer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, serverAddress, true);
+}
+///////////////////
+void dwn::NetGame::sendBroadcast(unsigned int messageID, RakNet::RakString  value)
 {
     RakNet::SystemAddress serverAddress(m_IP.c_str(), DEFAULT_PT);
     RakNet::BitStream bsOut;

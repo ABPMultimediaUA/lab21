@@ -19,6 +19,8 @@
 #define SCREEN_CENTER_X 400
 #define SCREEN_CENTER_Y 300
 
+class Player;
+
 /////////////////////////////////////////////////////////
 // Clase que se encarga de obtener los eventos de las
 // colisiones de los objetos de box2d.
@@ -74,6 +76,10 @@ class WorldInstance
 
         float getTimeElapsed();
 
+        Player* getMainPlayer();
+        void setMainPlayer(Player* p);
+
+
         dwe::vec3f from2Dto3D(int x2d, int y2d, dwe::vec3f rotation);
 
     protected:
@@ -88,6 +94,8 @@ class WorldInstance
         static b2Vec2           m_gravity;
         static b2World          m_world;
         static ContactListener  m_contactListener;
+
+        static Player*          m_mainPlayer;
 };
 
 #define World WorldInstance::Instance()

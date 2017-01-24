@@ -64,7 +64,6 @@ void populateSetupWindow(CSetupDevice* setupDevice) {
 ///////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
-    int n;
     /****************************/
     CSetupDevice* setupDevice = new CSetupDevice(core::dimension2d<u32>(800,600));
 	if (!setupDevice) {
@@ -145,7 +144,7 @@ int main()
 
             std::vector<std::string>* gamesIP = NetInstance->getGamesIP();
             for(unsigned int j=0; j<gamesIP->size(); j++)
-                cout << "//  ("<<i+1<<") Unirse a " << gamesIP->at(i) << "\n";
+                cout << "//  ("<<j+1<<") Unirse a " << gamesIP->at(j) << "\n";
 
             cout << "// Selecciona partida: ";
             getline(cin, seleccion);
@@ -162,6 +161,7 @@ int main()
     Player* mainPlayer = GEInstance->createMainPlayer();
     mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,-80));
     mainPlayer->setLife(100);
+    World->setMainPlayer(mainPlayer);
     cout << "Barra de vida: " << mainPlayer->getLife() << endl;
 
 
@@ -355,6 +355,7 @@ int main()
     float deltaTime;
     float timeLastProjectil = 0;
 
+    cout <<"\n---------------------" << mainPlayer->creatingSystemGUID.ToString() <<" --------------"<<mainPlayer->creatingSystemGUID.g <<"\n";
 
 
     /*********************************************************************/

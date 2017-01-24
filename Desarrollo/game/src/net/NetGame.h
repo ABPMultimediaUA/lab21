@@ -102,6 +102,7 @@ namespace dwn
             /// \param[in] messageID El id de mensaje que se envian, definidos en NetCommon.h
             /// \param[in] ... resto de parametros son los datos que se envian junto con el mensaje.
             void sendBroadcast(unsigned int messageID, unsigned int value);
+            void sendBroadcast(unsigned int messageID, RakNet::RakString value);
             void sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle);
             void sendBroadcast(unsigned int messageID, unsigned int objectID, dwe::vec3f position, dwe::vec3f rotation);
 

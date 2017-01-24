@@ -150,27 +150,17 @@ void Player::setNumMedkits(int ammount)
 void Player::addMedkits(int ammount)
 {
     m_medkits += ammount;
+    cout << "\nPlayer.cpp------------Obtengo " << ammount << " medkits---------\n";
 
 }
 
 /////////////
 void Player::giveMedkits(int ammount, PlayerMate* playermate)
 {
+    NetInstance->sendBroadcast(ID_SEND_MEDKIT, playermate->creatingSystemGUID.ToString());
     m_medkits -= ammount;
 
-    playermate->addMedkits(ammount);
-
-    //int i = 0;
-
-
-    //if ((Drawable*)this == NetInstance->getPlayerMate(0))
-      //  i = 1;
-
-    cout << "le doy al otro jugador "<< ammount << " botiquines" << endl;
-    //Player* p = (Player*)NetInstance->getPlayerMate(1);
-
-    //playermate->receiveMedkits(ammount);
-
+    cout << "\nPlayer.cpp------------le doy al otro jugador "<< ammount << " botiquines--------------\n";
 }
 
 /////////////
