@@ -3,6 +3,7 @@
 
 #include <defines.h>
 #include <Ammo.h>
+#include "Player.h"
 
 
 class AmmoGun : public Ammo

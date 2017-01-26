@@ -15,6 +15,7 @@ enum GameMessages
     ID_CONSUMABLE_TAKEN,
     ID_ENEMY_UPDATE,
     ID_SEND_MEDKIT,
+    ID_SEND_AMMO,
 };
 
 #endif // NETCOMMON_H

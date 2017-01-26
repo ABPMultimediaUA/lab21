@@ -49,6 +49,8 @@ class Player : public CharacterController, public EntityPhysics
         void giveMedkits(int ammount, PlayerMate* playermate);
         void receiveMedkits(int ammount);
         void consumeMedkit();
+        void giveAmmo(int numWeapon, int ammo, PlayerMate* playermate);
+        void receiveAmmo(int numWeapon, int ammo);
         void addWeapon(Consumable* weapon, FirearmKind type);
         bool getHasShotgun();
         bool getHasRifle();

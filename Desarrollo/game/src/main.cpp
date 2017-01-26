@@ -211,24 +211,23 @@ int main()
     bool llaveCogida=false;
 
     // SpeedBoost
-    scene.createSpeedBoost(210, 10, 10);
-    scene.createSpeedBoost(100, 10, 10);
+    //scene.createSpeedBoost(210, 10, 10);
+    //scene.createSpeedBoost(100, 10, 10);
 
     // Medkit
 
-	scene.createMedkit(400, 10, 0);
-	scene.createMedkit(350, 10, 0);
-
+	//scene.createMedkit(80, 10, 20); // 400 10 0
+	//scene.createMedkit(350, 10, 0);
 
 
     //CShotGun
-    scene.createCShotgun(80,10,100);
+    //scene.createCShotgun(80,10,100);
 
     //CRifle
-    scene.createCRifle(80, 10, 50);
+    //scene.createCRifle(80, 10, 50);
 
     // AmmoGun
-    //scene.createAmmoGun(400, 10, 100);
+    scene.createAmmoGun(80, 10, 100);
 
     // Gun
     //scene.createGun(mainPlayer->getPosition().x - 20, 20, mainPlayer->getPosition().z);
@@ -403,10 +402,16 @@ int main()
 
         // comprobamos si dispara
         if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
-            NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
 
-            scene.createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().y);
-            timeLastProjectil = World->getTimeElapsed();
+                if (mainPlayer->getCurrentWeaponType() == eGun && mainPlayer->getAmmo(0) > 0)
+                {
+                    NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
+
+                    scene.createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().y);
+                    timeLastProjectil = World->getTimeElapsed();
+
+                    mainPlayer->setAmmo(0, mainPlayer->getAmmo(0)-1);
+                }
         }
 
 
