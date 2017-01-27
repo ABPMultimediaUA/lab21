@@ -11,12 +11,20 @@ class SetupDeviceEventReceiver : public IEventReceiver {
 			startGame = start;
 		}
 
-		void setStartButton(gui::IGUIButton* button) {
+		void setPlayAloneButton(gui::IGUIButton* button) {
 			playAloneButton = button;
+		}
+
+		void setPlayOnlineButton(gui::IGUIButton* button) {
+			playOnlineButton = button;
 		}
 
         void setExitButton(gui::IGUIButton* button) {
 			exitButton = button;
+		}
+
+		std::string getNPlayers(){
+            return np;
 		}
 
 		virtual bool OnEvent(const SEvent& event) {
@@ -33,7 +41,12 @@ class SetupDeviceEventReceiver : public IEventReceiver {
 				if (event.GUIEvent.EventType == gui::EGET_BUTTON_CLICKED) {
 					if (event.GUIEvent.Caller == playAloneButton) {
 						if (startGame) *startGame = true;
-						if (quitSetup) *quitSetup = true;
+						np="1";
+						return true;
+					}
+					if (event.GUIEvent.Caller == playOnlineButton) {
+						if (startGame) *startGame = true;
+						np="2";
 						return true;
 					}
 					if (event.GUIEvent.Caller == exitButton) {
@@ -48,12 +61,12 @@ class SetupDeviceEventReceiver : public IEventReceiver {
 
 	private:
 		gui::IGUIButton* playAloneButton;
+		gui::IGUIButton* playOnlineButton;
+		gui::IGUIButton* exitButton;
 		bool* quitSetup;
 		bool* startGame;
+		std::string np;
 
-    private:
-		gui::IGUIButton* exitButton;
-		bool* quitGame;
 
 };
 
@@ -61,6 +74,7 @@ CSetupDevice::CSetupDevice(const core::dimension2d<u32>& screenDim) {
 
 	startGame = false;
 	quitSetup = false;
+	players= "";
 
 	// Create a software based device to allow the user to choose some options
 	receiver = new SetupDeviceEventReceiver(&quitSetup, &startGame);
@@ -101,7 +115,7 @@ CSetupDevice::CSetupDevice(const core::dimension2d<u32>& screenDim) {
 	core::dimension2d<u32> buttonPressedDim = buttonPressedImage->getSize();
     playAloneButton->setPressedImage(buttonPressedImage, core::rect<s32>(0, 0, buttonPressedDim.Width, buttonPressedDim.Height));
 	playAloneButton->setUseAlphaChannel(true);
-	receiver->setStartButton(playAloneButton);
+	receiver->setPlayAloneButton(playAloneButton);
 
 	playOnlineButton = gui->addButton(core::rect<s32>((screenDim.Width/2)-(buttonWidth/2),(screenDim.Height-350)-buttonHeight, (screenDim.Width/2)+(buttonWidth/2),screenDim.Height-350));
 	buttonImage = driver->getTexture("media/playOnline_button.png");
@@ -109,6 +123,7 @@ CSetupDevice::CSetupDevice(const core::dimension2d<u32>& screenDim) {
 	buttonPressedImage = driver->getTexture("media/playOnline_pressed.png");
     playOnlineButton->setPressedImage(buttonPressedImage, core::rect<s32>(0, 0, buttonPressedDim.Width, buttonPressedDim.Height));
 	playOnlineButton->setUseAlphaChannel(true);
+	receiver->setPlayOnlineButton(playOnlineButton);
 
 	achievementsButton = gui->addButton(core::rect<s32>((screenDim.Width/2)-(buttonWidth/2),(screenDim.Height-300)-buttonHeight, (screenDim.Width/2)+(buttonWidth/2),screenDim.Height-300));
 	buttonImage = driver->getTexture("media/achievements_button.png");
@@ -179,6 +194,12 @@ bool CSetupDevice::execute() {
 		driver->endScene();
 	}
 
+	players=receiver->getNPlayers();
+
 	return !startGame;
 
+}
+
+std::string CSetupDevice::getPlayers(){
+    return players;
 }
