@@ -67,6 +67,8 @@ void populateSetupWindow(CSetupDevice* setupDevice) {
 ///////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
+    std::string type;
+
     /****************************/
     CSetupDevice* setupDevice = new CSetupDevice(core::dimension2d<u32>(800,600));
 	if (!setupDevice) {
@@ -78,15 +80,17 @@ int main()
 	populateSetupWindow(setupDevice);
 
 	if (setupDevice->execute()) { // user closed the window... they don't want to play my game :'(
-		delete setupDevice;
-		setupDevice = NULL;
-		setupGUI = NULL;
 		return 0;
 	}
+
+    type=setupDevice->getPlayers();
+	cout<<"CUANTOS JUGADORES: "<<type<<endl;
 
 	/**delete setupDevice; // Borrar la ventana no se ejecuta el bucle???????? **/
 	setupDevice = NULL;
 	setupGUI = NULL;
+
+
 
 	/****************************/
     Scene scene;
@@ -95,10 +99,10 @@ int main()
     cout << "//////////////////////////////////////////////\n";
     cout << "// Lab21\n";
     cout << "//////////////////////////////////////////////\n";
-    cout << "// Selecciona tipo de partida y pulsa intro:\n";
-    std::string type;
-    cout << "// un solo jugador(1) o multijugador (2) [2 por defecto]: ";
-    getline(cin, type);
+    //cout << "// Selecciona tipo de partida y pulsa intro:\n";
+
+    //cout << "// un solo jugador(1) o multijugador (2) [2 por defecto]: ";
+    //getline(cin, type);
     if (type!="1") type="2";
 
     NetInstance->open(&scene, (type=="2"));  // Inicializar motor de red
