@@ -637,9 +637,9 @@ void dwn::NetGame::update()
                 bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
                 bsIn.Read(value);
 
-                // Si player coincide con la cadena que manda, añadimos medkit
+                // Si player coincide con la cadena que manda, añadimos ammo
                 if (value == World->getMainPlayer()->creatingSystemGUID.ToString())
-                    World->getMainPlayer()->addAmmo(0,1);
+                    World->getMainPlayer()->addAmmo(0,10);
                 break;
 
             }

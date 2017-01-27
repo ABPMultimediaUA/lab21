@@ -403,15 +403,15 @@ int main()
         // comprobamos si dispara
         if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
 
-                if (mainPlayer->getCurrentWeaponType() == eGun && mainPlayer->getAmmo(0) > 0)
+                if (mainPlayer->getCurrentWeaponType() == eGun && mainPlayer->getAmmo(0) > 0) //
                 {
                     NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
 
                     scene.createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().y);
                     timeLastProjectil = World->getTimeElapsed();
 
-                    mainPlayer->setAmmo(0, mainPlayer->getAmmo(0)-1);
-                }
+                    mainPlayer->setAmmo(0, mainPlayer->getAmmo(0)-1); //
+                }//
         }
 
 
