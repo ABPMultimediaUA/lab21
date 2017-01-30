@@ -15,6 +15,9 @@ class Ammo : public Consumable
         int getAmmount();
         void setAmmount(int a);
 
+        virtual void render() {};
+        virtual void update() {};
+
     protected:
 
     private:

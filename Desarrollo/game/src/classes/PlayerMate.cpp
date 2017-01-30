@@ -37,5 +37,11 @@ void PlayerMate::addMedkits( unsigned short int n) { m_numMedkits += n;}
 void PlayerMate::giveMedkits(int ammount)
 {
     Player* player = (Player*)NetInstance->getPlayerMate(0);
-    player->receiveMedkits(ammount);
+     player->receiveMedkits(ammount);
+}
+
+void PlayerMate::giveAmmo(int numWeapon, int ammount)
+{
+    Player* player = (Player*)NetInstance->getPlayerMate(0);
+    player->receiveAmmo(numWeapon, ammount);
 }

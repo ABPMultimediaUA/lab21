@@ -1,3 +1,4 @@
+#include <iostream>
 #ifndef INC_CSETUPDEVICE_H
 #define INC_CSETUPDEVICE_H
 
@@ -53,6 +54,8 @@ class CSetupDevice {
 			else             return core::dimension2d<u32>(0,0);
 		}
 
+		std::string getPlayers();
+
 	private:
 		IrrlichtDevice* setupDevice;
 		video::IVideoDriver* driver;
@@ -66,6 +69,7 @@ class CSetupDevice {
 		SetupDeviceEventReceiver* receiver;
 		bool quitSetup;
 		bool startGame;
+		std::string players;
 
 };
 

@@ -25,6 +25,9 @@
 #include "SpeedBoost.h"
 #include "Medkit.h"
 
+#include "CShotgun.h"
+#include "AmmoGun.h"
+
 #include "TriggerDoor.h"
 #include "TriggerGenerator.h"
 
@@ -64,6 +67,8 @@ void populateSetupWindow(CSetupDevice* setupDevice) {
 ///////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
+    std::string type;
+
     /****************************/
     CSetupDevice* setupDevice = new CSetupDevice(core::dimension2d<u32>(800,600));
 	if (!setupDevice) {
@@ -75,15 +80,17 @@ int main()
 	populateSetupWindow(setupDevice);
 
 	if (setupDevice->execute()) { // user closed the window... they don't want to play my game :'(
-		delete setupDevice;
-		setupDevice = NULL;
-		setupGUI = NULL;
 		return 0;
 	}
+
+    type=setupDevice->getPlayers();
+	cout<<"CUANTOS JUGADORES: "<<type<<endl;
 
 	/**delete setupDevice; // Borrar la ventana no se ejecuta el bucle???????? **/
 	setupDevice = NULL;
 	setupGUI = NULL;
+
+
 
 	/****************************/
     Scene scene;
@@ -92,10 +99,10 @@ int main()
     cout << "//////////////////////////////////////////////\n";
     cout << "// Lab21\n";
     cout << "//////////////////////////////////////////////\n";
-    cout << "// Selecciona tipo de partida y pulsa intro:\n";
-    std::string type;
-    cout << "// un solo jugador(1) o multijugador (2) [2 por defecto]: ";
-    getline(cin, type);
+    //cout << "// Selecciona tipo de partida y pulsa intro:\n";
+
+    //cout << "// un solo jugador(1) o multijugador (2) [2 por defecto]: ";
+    //getline(cin, type);
     if (type!="1") type="2";
 
     NetInstance->open(&scene, (type=="2"));  // Inicializar motor de red
@@ -157,12 +164,16 @@ int main()
 
 	GEInstance->init();  // Inicializar motor gráfico
 
+    Gun* gun = scene.createGun(0,0,0); // Creo el arma inicial del player
+
     // Creación de jugador
-    Player* mainPlayer = GEInstance->createMainPlayer();
+
+    Player* mainPlayer = GEInstance->createMainPlayer(gun);
     mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,-80));
     mainPlayer->setLife(100);
     World->setMainPlayer(mainPlayer);
     cout << "Barra de vida: " << mainPlayer->getLife() << endl;
+
 
 
     // Creación de escenario
@@ -204,22 +215,40 @@ int main()
     bool llaveCogida=false;
 
     // SpeedBoost
-    scene.createSpeedBoost(210, 10, 10);
-    scene.createSpeedBoost(100, 10, 10);
+    //scene.createSpeedBoost(210, 10, 10);
+    //scene.createSpeedBoost(100, 10, 10);
 
     // Medkit
-    scene.createMedkit(400, 10, 0);
-    scene.createMedkit(350, 10, 0);
+
+	//scene.createMedkit(80, 10, 20); // 400 10 0
+	//scene.createMedkit(350, 10, 0);
 
 
-//////
-  // Llaves
+    //CShotGun
+    //scene.createCShotgun(80,10,100);
+
+    //CRifle
+    //scene.createCRifle(80, 10, 50);
+
+    // AmmoGun
+    scene.createAmmoGun(80, 10, 100);
+
+    // Gun
+    //scene.createGun(mainPlayer->getPosition().x - 20, 20, mainPlayer->getPosition().z);
+
+
+    // Shotgun
+    Shotgun* shotgun = scene.createShotgun(0,0,0);
+
+    // Rifle
+    Rifle* rifle = scene.createRifle(0,0,0);
+/****/
+
     //Medkit *prueba1=GEInstance->createMedkit( 400, 0, 0);
 
-//
-  //dwe::Node* prueba = GEInstance->createNode("media/bullet/speed"); //ESTAS SON LAS BUENAS
-	//prueba->setPosition(dwe::vec3f(400,0,0));
-
+	 //Pistola 1
+	//CShotgun *gun0 = GEInstance->createCShotgun( 400, 10, 100);
+/****/
 
 
     // Triggers -> 0 Door, 1 Generator
@@ -253,15 +282,6 @@ int main()
    // dwe::Node* prueba = GEInstance->createNode("media/medkit/medkit"); //ESTAS SON LAS BUENAS
     //prueba->setPosition(dwe::vec3f(400,0,0));
 
-     //Pistola 1
-    dwe::Node* gun_1 = GEInstance->createNode("media/Gun/Gun"); //ESTAS SON LAS BUENAS
-    gun_1->setPosition(dwe::vec3f(400,10,100));
-    bool haveGun1 = false;
-
-    //Pistola 2
-    dwe::Node* gun_2 = GEInstance->createNode("media/Gun/Gun");   //ESTAS SON LAS BUENAS
-    gun_2->setPosition(dwe::vec3f(220,10,100));
-    bool haveGun2 = false;
 
     //Joint try
     dwe::Node* joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
@@ -355,6 +375,8 @@ int main()
     float deltaTime;
     float timeLastProjectil = 0;
 
+    //cout <<"\n---------------------" << mainPlayer->creatingSystemGUID.ToString() <<" --------------"<<mainPlayer->creatingSystemGUID.g <<"\n";
+
 
     /*********************************************************************/
     /**                                                                 **/
@@ -376,25 +398,6 @@ int main()
 
         mainPlayer->readEvents();  // Read keyboard and mouse inputs for de player
 
-        //GET GUN 1
-        if(!haveGun1){
-            if(mainPlayer->getPosition().x > 390 && mainPlayer->getPosition().x < 410){
-                if(mainPlayer->getPosition().z > 90 && mainPlayer->getPosition().z < 110){
-                    cout << "Pistola 1 cogida" << endl;
-                    haveGun1 = true;
-                }
-            }
-        }
-
-         //GET GUN 2
-        if(!haveGun2){
-            if(mainPlayer->getPosition().x > 210 && mainPlayer->getPosition().x < 230){
-                if(mainPlayer->getPosition().z > 90 && mainPlayer->getPosition().z < 110){
-                    cout << "Pistola 2 cogida" << endl;
-                    haveGun2 = true;
-                }
-            }
-        }
 
         // Actualizamos físicas box2d
         World->step(deltaTime);
@@ -405,14 +408,24 @@ int main()
         if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
             NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
 
-            scene.createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().y);
-            timeLastProjectil = World->getTimeElapsed();
+                if (mainPlayer->getCurrentWeaponType() == eGun && mainPlayer->getAmmo(0) > 0) //
+                {
+                    NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
+
+                    scene.createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().y);
+                    timeLastProjectil = World->getTimeElapsed();
+
+                    mainPlayer->setAmmo(0, mainPlayer->getAmmo(0)-1); //
+                }//
         }
 
 
-        mainPlayer->update(); //Posición actualizada de Irrlicht Player
+        mainPlayer->update(shotgun, rifle); //Posición actualizada de Irrlicht Player
         scene.updateProjectiles();
         scene.updateConsumables(mainPlayer);
+        scene.updatePlayerWeapons(mainPlayer, mainPlayer->getPlayerWeapons());
+
+
 
         for(int cont=0; cont<NUM_ENTITIES; cont++)
             entities[cont]->update();
@@ -424,13 +437,6 @@ int main()
 
         //update box of box2d
         joint_try->setPosition(dwe::vec3f(bjoint->getPosEntity().x,bjoint->getPosEntity().y,bjoint->getPosEntity().z));
-
-        // update GUNS
-        if(haveGun1)
-            gun_1->setPosition(dwe::vec3f(mainPlayer->getPosition().x-20,20,mainPlayer->getPosition().z+10));
-
-        if(haveGun2)
-            gun_2->setPosition(dwe::vec3f(mainPlayer->getPosition().x-20,20,mainPlayer->getPosition().z-10));
 
 
         GEInstance->draw();

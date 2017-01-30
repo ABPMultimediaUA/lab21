@@ -30,6 +30,7 @@ class PlayerMate : public dwn::DrawableReplica
         virtual void setNumMedkits(unsigned short int n);
         virtual void addMedkits(unsigned short int n);
         virtual void giveMedkits(int ammount);
+        virtual void giveAmmo(int numWeapon, int ammount);
 
 
     protected:

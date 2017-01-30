@@ -24,6 +24,13 @@
 
 #include "iostream"
 
+#include "CShotgun.h"
+#include "CRifle.h"
+#include "Gun.h"
+#include "Shotgun.h"
+#include "Rifle.h"
+#include "AmmoGun.h"
+
 
 using namespace std;
 // Necesita volver a poner este namespace
@@ -179,7 +186,7 @@ vector3df dwe::GraphicsEngine::getTransformedBoundingBox(scene::IAnimatedMeshSce
 
 
 /////////////////////////////
-Player* dwe::GraphicsEngine::createMainPlayer()
+Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 {
 	scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/sydney.md2");
 	if (!mesh)
@@ -212,7 +219,7 @@ Player* dwe::GraphicsEngine::createMainPlayer()
 
 
 
-	Player* p = new Player();
+	Player* p = new Player(gun);
 	p->setNode(new Node(irrnode));
 	NetInstance->addNetObject(p);
     return p;
@@ -372,8 +379,8 @@ SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(float px, float py, float pz)
 
 Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
 {
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/medkit/medkit"); // no centrado
-    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/bullet/speed"); // centrado
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/medkit/medkit"); // no centrado
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/First_Aid_Med_Kit/FirstAidMedKit"); // centrado
 
 
 
@@ -384,6 +391,84 @@ Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
     NetInstance->addNetConsumable(h);
     return h;
 }
+
+AmmoGun* dwe::GraphicsEngine::createAmmoGun(float px, float py, float pz)
+{
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/AmmoGun/speed"); // centrado
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/AmmoGun"); // no centrado
+
+    AmmoGun* a = new AmmoGun();
+    a->setNode(new Node(irrnode));
+    a->setPosition(dwe::vec3f(px, py, pz));
+
+    NetInstance->addNetConsumable(a);
+    return a;
+}
+
+Gun* dwe::GraphicsEngine::createGun(float px, float py, float pz)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/Gun"); // centrado
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/Gun");
+
+    Gun* g = new Gun();
+    g->setNode(new Node(irrnode));
+    g->setPosition(dwe::vec3f(px, py, pz));
+
+    return g;
+}
+
+Shotgun* dwe::GraphicsEngine::createShotgun(float px, float py, float pz)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/Shotgun"); // centrado
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/Gun");
+
+    Shotgun* sg = new Shotgun();
+    sg->setNode(new Node(irrnode));
+    sg->setPosition(dwe::vec3f(px, py, pz));
+
+    return sg;
+}
+
+Rifle* dwe::GraphicsEngine::createRifle(float px, float py, float pz)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/Rifle"); // centrado
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/Gun");
+
+    Rifle* r = new Rifle();
+    r->setNode(new Node(irrnode));
+    r->setPosition(dwe::vec3f(px, py, pz));
+
+    return r;
+}
+
+CShotgun* dwe::GraphicsEngine::createCShotgun(float px, float py, float pz)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/Shotgun"); // centrado
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/Gun");
+
+    CShotgun* sg = new CShotgun();
+    sg->setNode(new Node(irrnode));
+    sg->setPosition(dwe::vec3f(px, py, pz));
+
+    NetInstance->addNetConsumable(sg);
+
+    return sg;
+}
+
+CRifle* dwe::GraphicsEngine::createCRifle(float px, float py, float pz)
+{
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/Rifle"); // centrado
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/Gun");
+
+    CRifle* r = new CRifle();
+    r->setNode(new Node(irrnode));
+    r->setPosition(dwe::vec3f(px, py, pz));
+
+    NetInstance->addNetConsumable(r);
+
+    return r;
+}
+
 
 Trigger* dwe::GraphicsEngine::createTrigger(int type, float px, float py, float pz)
 {

@@ -50,14 +50,14 @@
 			<Add directory="include/irrKlang" />
 		</Compiler>
 		<Linker>
-			<Add library="lib/libIrrlicht.a" />
-			<Add library="lib/libRakNet.a" />
-			<Add library="lib/libbox2DEngine.a" />
+			<Add library="lib\libIrrlicht.a" />
+			<Add library="lib\libRakNet.a" />
+			<Add library="lib\libbox2DEngine.a" />
 			<Add library="ws2_32" />
 			<Add library="opengl32" />
 			<Add library="gdi32" />
 			<Add library="winmm" />
-			<Add library="lib/libirrKlang.a" />
+			<Add library="lib\libirrKlang.a" />
 			<Add directory="lib" />
 		</Linker>
 		<Unit filename="src/classes/Ammo.cpp" />

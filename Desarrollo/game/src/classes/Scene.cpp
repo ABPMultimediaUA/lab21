@@ -3,7 +3,9 @@
 #include "SpeedBoost.h"
 #include "Medkit.h"
 #include "Consumable.h"
-
+#include "AmmoGun.h"
+#include "CShotgun.h"
+#include "CRifle.h"
 
 Scene::Scene()
 {
@@ -66,6 +68,23 @@ void Scene::updateConsumables(Player* mainPlayer)
     }
 }
 
+void Scene::updatePlayerWeapons(Player* mainplayer, Firearm** weapons)
+{
+    if  (mainplayer->getCurrentWeaponType() == eGun)
+    {
+        weapons[0]->setPosition(dwe::vec3f(mainplayer->getPosition().x - 20, 20, mainplayer->getPosition().z));
+
+    }
+    else if (mainplayer->getCurrentWeaponType() == eShotgun)
+    {
+        weapons[1]->setPosition(dwe::vec3f(mainplayer->getPosition().x - 20, 20, mainplayer->getPosition().z));
+    }
+    else if (mainplayer->getCurrentWeaponType() == eRifle)
+    {
+        weapons[2]->setPosition(dwe::vec3f(mainplayer->getPosition().x - 20, 20, mainplayer->getPosition().z));
+    }
+}
+
 ////////////
 void Scene::createSpeedBoost(float px, float py, float pz)
 {
@@ -80,5 +99,44 @@ void Scene::createMedkit(float px, float py, float pz)
 {
     m_consumables.push_back(GEInstance->createMedkit(px, py, pz));
     //GEInstance->createMedkit(px, py, pz);
+}
+
+////////////
+void Scene::createCShotgun(float px, float py, float pz)
+{
+    m_consumables.push_back(GEInstance->createCShotgun(px, py, pz));
+    //GEInstance->createCShotgun(px, py, pz);
+}
+
+////////////
+void Scene::createCRifle(float px, float py, float pz)
+{
+    m_consumables.push_back(GEInstance->createCRifle(px, py, pz));
+    //GEInstance->createCShotgun(px, py, pz);
+}
+
+////////////
+void Scene::createAmmoGun(float px, float py, float pz)
+{
+    m_consumables.push_back(GEInstance->createAmmoGun(px, py, pz));
+    //GEInstance->createAmmoGun(px, py, pz);
+}
+
+////////////
+Gun* Scene::createGun(float px, float py, float pz)
+{
+    return GEInstance->createGun(px, py, pz);
+}
+
+////////////
+Shotgun* Scene::createShotgun(float px, float py, float pz)
+{
+    GEInstance->createShotgun(px, py, pz);
+}
+
+////////////
+Rifle* Scene::createRifle(float px, float py, float pz)
+{
+    GEInstance->createRifle(px, py, pz);
 }
 

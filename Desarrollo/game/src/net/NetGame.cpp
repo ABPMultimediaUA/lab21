@@ -630,6 +630,20 @@ void dwn::NetGame::update()
                 break;
             }
 
+        case ID_SEND_AMMO:
+            {
+                RakNet::RakString value;
+                RakNet::BitStream bsIn(packet->data,packet->length,false);
+                bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+                bsIn.Read(value);
+
+                // Si player coincide con la cadena que manda, añadimos ammo
+                if (value == World->getMainPlayer()->creatingSystemGUID.ToString())
+                    World->getMainPlayer()->addAmmo(0,10);
+                break;
+
+            }
+
 		}
 	}
 

@@ -6,6 +6,8 @@
 
 class Projectile;
 class Consumable;
+class Firearm;
+
 
 class Scene
 {
@@ -19,7 +21,14 @@ class Scene
 
         void createSpeedBoost(float px, float py, float pz);
         void createMedkit(float px, float py, float pz);
+        void createCShotgun(float px, float py, float pz);
+        void createCRifle(float px, float py, float pz);
+        Gun* createGun(float px, float py, float pz);
+        Shotgun* createShotgun(float px, float py, float pz);
+        Rifle* createRifle(float px, float py, float pz);
+        void createAmmoGun(float px, float py, float pz);
         void updateConsumables(Player* mainPlayer);
+        void updatePlayerWeapons(Player* mainPlayer, Firearm** weapons);
 
     protected:
 

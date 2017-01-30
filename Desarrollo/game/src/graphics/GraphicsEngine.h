@@ -37,6 +37,12 @@ class Medkit;
 class ScenaryElement;
 class AppReceiver;
 class Trigger;
+class CShotgun;
+class CRifle;
+class Gun;
+class Shotgun;
+class Rifle;
+class AmmoGun;
 
 namespace dwe
 {
@@ -199,7 +205,7 @@ namespace dwe
         irr::scene::ISceneManager*  getSMGR();
 
         // Creacion de personajes
-        Player* createMainPlayer();
+        Player* createMainPlayer(Gun* gun);
         PlayerMate* createPlayerMate();
         Humanoid* createEnemyHumanoid();
         Dog* createEnemyDog();
@@ -221,6 +227,12 @@ namespace dwe
         SpeedBoost* createSpeedBoost(float px, float py, float pz);
         Medkit* createMedkit(float px, float py, float pz);
         Trigger* createTrigger(int type, float px, float py, float pz);
+        AmmoGun* createAmmoGun(float px, float py, float pz);
+        CShotgun* createCShotgun(float px, float py, float pz);
+        CRifle* createCRifle(float px, float py, float pz);
+        Gun* createGun(float px, float py, float pz);
+        Shotgun* createShotgun(float px, float py, float pz);
+        Rifle* createRifle(float px, float py, float pz);
 
 
         /// \brief Muestra un mensaje en la zona de mensajes

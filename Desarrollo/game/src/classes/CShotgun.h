@@ -3,6 +3,7 @@
 
 #include <defines.h>
 #include <Consumable.h>
+#include "Player.h"
 
 
 class CShotgun : public Consumable
@@ -11,11 +12,14 @@ class CShotgun : public Consumable
         CShotgun();
         virtual ~CShotgun();
 
-        void onTake();
+        virtual void onTake(Player* mainPlayer);
 
         // Getters & Setters
         FirearmKind getKind();
         void setKind(FirearmKind k);
+
+        virtual void render() {};
+        virtual void update() {};
 
     protected:
 
