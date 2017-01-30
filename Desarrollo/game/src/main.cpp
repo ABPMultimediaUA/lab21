@@ -355,8 +355,6 @@ int main()
     float deltaTime;
     float timeLastProjectil = 0;
 
-    cout <<"\n---------------------" << mainPlayer->creatingSystemGUID.ToString() <<" --------------"<<mainPlayer->creatingSystemGUID.g <<"\n";
-
 
     /*********************************************************************/
     /**                                                                 **/
