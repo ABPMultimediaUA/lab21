@@ -1,2 +1,2 @@
 @echo off
-..\Server\NATCompleteServer.exe
+..\Server\Lab21Server.exe
