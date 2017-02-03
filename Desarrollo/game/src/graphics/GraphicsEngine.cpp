@@ -379,8 +379,8 @@ SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(float px, float py, float pz)
 
 Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
 {
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/medkit/medkit"); // no centrado
-    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/First_Aid_Med_Kit/FirstAidMedKit"); // centrado
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/medkit/medkit"); // no centrado
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/First_Aid_Med_Kit/FirstAidMedKit"); // centrado
 
 
 

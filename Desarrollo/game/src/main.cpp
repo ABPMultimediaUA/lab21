@@ -67,6 +67,8 @@ void populateSetupWindow(CSetupDevice* setupDevice) {
 ///////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
+    std::string type;
+
     /****************************/
     CSetupDevice* setupDevice = new CSetupDevice(core::dimension2d<u32>(800,600));
 	if (!setupDevice) {
@@ -78,15 +80,17 @@ int main()
 	populateSetupWindow(setupDevice);
 
 	if (setupDevice->execute()) { // user closed the window... they don't want to play my game :'(
-		delete setupDevice;
-		setupDevice = NULL;
-		setupGUI = NULL;
 		return 0;
 	}
+
+    type=setupDevice->getPlayers();
+	cout<<"CUANTOS JUGADORES: "<<type<<endl;
 
 	/**delete setupDevice; // Borrar la ventana no se ejecuta el bucle???????? **/
 	setupDevice = NULL;
 	setupGUI = NULL;
+
+
 
 	/****************************/
     Scene scene;
@@ -95,10 +99,10 @@ int main()
     cout << "//////////////////////////////////////////////\n";
     cout << "// Lab21\n";
     cout << "//////////////////////////////////////////////\n";
-    cout << "// Selecciona tipo de partida y pulsa intro:\n";
-    std::string type;
-    cout << "// un solo jugador(1) o multijugador (2) [2 por defecto]: ";
-    getline(cin, type);
+    //cout << "// Selecciona tipo de partida y pulsa intro:\n";
+
+    //cout << "// un solo jugador(1) o multijugador (2) [2 por defecto]: ";
+    //getline(cin, type);
     if (type!="1") type="2";
 
     NetInstance->open(&scene, (type=="2"));  // Inicializar motor de red
@@ -211,24 +215,23 @@ int main()
     bool llaveCogida=false;
 
     // SpeedBoost
-    scene.createSpeedBoost(210, 10, 10);
-    scene.createSpeedBoost(100, 10, 10);
+    //scene.createSpeedBoost(210, 10, 10);
+    //scene.createSpeedBoost(100, 10, 10);
 
     // Medkit
 
-	scene.createMedkit(400, 10, 0);
-	scene.createMedkit(350, 10, 0);
-
+	//scene.createMedkit(80, 10, 20); // 400 10 0
+	//scene.createMedkit(350, 10, 0);
 
 
     //CShotGun
-    scene.createCShotgun(80,10,100);
+    //scene.createCShotgun(80,10,100);
 
     //CRifle
-    scene.createCRifle(80, 10, 50);
+    //scene.createCRifle(80, 10, 50);
 
     // AmmoGun
-    //scene.createAmmoGun(400, 10, 100);
+    scene.createAmmoGun(80, 10, 100);
 
     // Gun
     //scene.createGun(mainPlayer->getPosition().x - 20, 20, mainPlayer->getPosition().z);
@@ -405,8 +408,15 @@ int main()
         if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
             NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
 
-            scene.createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().y);
-            timeLastProjectil = World->getTimeElapsed();
+                if (mainPlayer->getCurrentWeaponType() == eGun && mainPlayer->getAmmo(0) > 0) //
+                {
+                    NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
+
+                    scene.createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().y);
+                    timeLastProjectil = World->getTimeElapsed();
+
+                    mainPlayer->setAmmo(0, mainPlayer->getAmmo(0)-1); //
+                }//
         }
 
 

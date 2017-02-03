@@ -18,6 +18,9 @@ Player::Player(Gun* gun)
     m_hasRifle = false;
     m_currentWeaponType = eGun;
     m_currentWeapon = m_weapons[0];
+    m_ammo[0] = 10;
+    m_ammo[1] = 0;
+    m_ammo[2] = 0;
 
 }
 
@@ -189,6 +192,7 @@ void Player::readEvents()
     if(GEInstance->receiver.isKeyDown(KEY_KEY_3) && (World->getTimeElapsed() - m_timeMedkit)> 200)
     {
         this->consumeMedkit();
+        cout << this->getAmmo(0);
         m_timeMedkit = World->getTimeElapsed();
     }
 
@@ -196,7 +200,8 @@ void Player::readEvents()
     PlayerMate* playermate = NetInstance->getPlayerMate(1);
     if (GEInstance->receiver.isKeyDown(KEY_KEY_4)&& (World->getTimeElapsed() - m_timeGivingStuff) > 200)
     {
-         this->giveMedkits(1,playermate);
+         //this->giveMedkits(1,playermate);
+         this->giveAmmo(0,1, playermate);
          m_timeGivingStuff = World->getTimeElapsed();
     }
 
@@ -215,6 +220,21 @@ void Player::readEvents()
 int Player::getAmmo(int numWeapon) { return m_ammo[numWeapon]; }
 void Player::setAmmo(int numWeapon, int ammount) { m_ammo[numWeapon] = ammount; }
 void Player::addAmmo(int numWeapon, int ammount) { m_ammo[numWeapon] += ammount; }
+
+/////////////
+void Player::giveAmmo(int numWeapon, int ammount, PlayerMate* playermate)
+{
+    NetInstance->sendBroadcast(ID_SEND_AMMO, playermate->creatingSystemGUID.ToString());
+    m_ammo[numWeapon] -= ammount;
+
+}
+
+/////////////
+void Player::receiveAmmo(int numWeapon, int ammount)
+{
+    this->addAmmo(numWeapon, ammount);
+
+}
 
 ////////////
 int Player::getGrenades() { return m_grenades; }
