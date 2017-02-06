@@ -80,6 +80,9 @@ int main()
 	populateSetupWindow(setupDevice);
 
 	if (setupDevice->execute()) { // user closed the window... they don't want to play my game :'(
+		delete setupDevice;
+		setupDevice = NULL;
+		setupGUI = NULL;
 		return 0;
 	}
 
@@ -376,7 +379,7 @@ int main()
     float timeLastProjectil = 0;
 
     //cout <<"\n---------------------" << mainPlayer->creatingSystemGUID.ToString() <<" --------------"<<mainPlayer->creatingSystemGUID.g <<"\n";
-
+int a = 0;
 
     /*********************************************************************/
     /**                                                                 **/
@@ -385,6 +388,13 @@ int main()
     /*********************************************************************/
     while(GEInstance->isRunning())
     {
+        if(a==0){
+            delete setupDevice;
+            setupDevice = NULL;
+            setupGUI = NULL;
+            a=1;
+        }
+
         if(GEInstance->receiver.isKeyDown(KEY_ESCAPE))
         {
             GEInstance->close();
