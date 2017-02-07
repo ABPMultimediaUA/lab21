@@ -2,8 +2,7 @@
 
 Hud::Hud()
 {
-    //ctor
-    GEInstance->addMessageLine(L"Partida iniciada");
+
 
 }
 
@@ -15,5 +14,5 @@ Hud::~Hud()
 void Hud::draw()
 {
 
-   // GEInstance->drawHud();
+   GEInstance->addMessageLine(L"Partida iniciada");
 }
