@@ -50,6 +50,7 @@
 #include "ScenaryElement.h"
 
 #include "CSetupDevice.h" // Menus
+#include "Hud.h"
 
 #define NUM_ENTITIES 3
 
@@ -90,9 +91,6 @@ int main()
 	setupDevice = NULL;
 	setupGUI = NULL;
 
-
-
-	/****************************/
     Scene scene;
 
     // Preguntamos por los parametros de la red
@@ -166,6 +164,11 @@ int main()
 
     Gun* gun = scene.createGun(0,0,0); // Creo el arma inicial del player
 
+    /*********************/
+	Hud* hud = new Hud();
+    hud->draw();
+
+	/****************************/
     // Creación de jugador
 
     Player* mainPlayer = GEInstance->createMainPlayer(gun);
@@ -369,7 +372,8 @@ int main()
                 NetInstance->startGame();
         }
     }
-    GEInstance->addMessageLine(L"Partida iniciada");
+    //GEInstance->addMessageLine(L"Partida iniciada");
+    //GEInstance->addsfMessageLine("Partida iniciada");
 
     float timeStamp = World->getTimeElapsed();
     float deltaTime;

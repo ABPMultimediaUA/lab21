@@ -75,6 +75,15 @@ void dwe::GraphicsEngine::init()
         m_messageLine[i]->setOverrideColor(SColor(255,255,255,255));
 	}
 
+	for(int i=0; i<MAX_MESSAGE_LINES; i++)
+	{
+        m_sfmessageLine[i].setFont(m_font);
+        m_sfmessageLine[i].setCharacterSize(14);
+        m_sfmessageLine[i].setFillColor(sf::Color(255, 255, 255, 255));
+        m_sfmessageLine[i].setPosition(10.f, _screenHeight - (i+1)*16.f);
+        m_sfmessageLine[i].setString("");
+	}
+
 	// Posición de la cámara inicial
 	m_smgr->addCameraSceneNode(0, vector3df(-150,120,190), vector3df(0,0,0));
 }
@@ -123,9 +132,9 @@ void dwe::GraphicsEngine::draw()
 
     m_driver->endScene();
 
-    wchar_t tmp[255];
-    swprintf(tmp, L"Lab21 - fps:%d triangles:%d", m_driver->getFPS(), m_driver->getPrimitiveCountDrawn());
-  	m_device->setWindowCaption(tmp);
+   // wchar_t tmp[255];
+    //swprintf(tmp, L"Lab21 - fps:%d triangles:%d", m_driver->getFPS(), m_driver->getPrimitiveCountDrawn());
+  	//m_device->setWindowCaption(tmp);
 }
 
 
@@ -559,8 +568,15 @@ void dwe::GraphicsEngine::addMessageLine(std::wstring text)
     for(int i=MAX_MESSAGE_LINES-1; i>0; i--)
         m_messageLine[i]->setText(m_messageLine[i-1]->getText());
     m_messageLine[0]->setText(text.c_str());
+
 }
 
+void dwe::GraphicsEngine::addsfMessageLine(std::string text)
+{
+    for(int i=MAX_MESSAGE_LINES-1; i>0; i--)
+        m_sfmessageLine[i].setString(m_sfmessageLine[i-1].getString());
+    m_sfmessageLine[0].setString(text);
+}
 
 
 irr::scene::ISceneManager*  dwe::GraphicsEngine::getSMGR(){return(m_smgr);}
