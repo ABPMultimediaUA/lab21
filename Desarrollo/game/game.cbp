@@ -50,14 +50,14 @@
 			<Add directory="include/irrKlang" />
 		</Compiler>
 		<Linker>
-			<Add library="lib\libIrrlicht.a" />
-			<Add library="lib\libRakNet.a" />
-			<Add library="lib\libbox2DEngine.a" />
+			<Add library="lib/libIrrlicht.a" />
+			<Add library="lib/libRakNet.a" />
+			<Add library="lib/libbox2DEngine.a" />
 			<Add library="ws2_32" />
 			<Add library="opengl32" />
 			<Add library="gdi32" />
 			<Add library="winmm" />
-			<Add library="lib\libirrKlang.a" />
+			<Add library="lib/libirrKlang.a" />
 			<Add directory="lib" />
 		</Linker>
 		<Unit filename="src/classes/Ammo.cpp" />
@@ -121,6 +121,8 @@
 		<Unit filename="src/classes/GuardianStates.h" />
 		<Unit filename="src/classes/Gun.cpp" />
 		<Unit filename="src/classes/Gun.h" />
+		<Unit filename="src/classes/Hud.cpp" />
+		<Unit filename="src/classes/Hud.h" />
 		<Unit filename="src/classes/Humanoid.cpp" />
 		<Unit filename="src/classes/Humanoid.h" />
 		<Unit filename="src/classes/HumanoidStates.cpp" />

@@ -2,6 +2,8 @@
 #define FACHADEDIREENGINE_H
 
 
+#include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>
 
 #include <irrlicht.h>
 #include <string>
