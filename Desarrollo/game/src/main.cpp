@@ -54,6 +54,10 @@
 
 #define NUM_ENTITIES 3
 
+#include <fstream> //Lectura de ficheros
+#include <document.h> //ES UN .H de rapidJSON
+using namespace rapidjson;
+
 gui::IGUIEnvironment* env = NULL;
 
 void populateSetupWindow(CSetupDevice* setupDevice) {
@@ -68,6 +72,28 @@ void populateSetupWindow(CSetupDevice* setupDevice) {
 ///////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
+    ///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+    const char* json; //Aqui va a ir todo el archivo
+    std::string allText = "";
+
+    //FICHERO
+    ifstream fichero ("unityText.json", ios::in | ios::app | ios::binary); //Abro fichero
+    if(fichero.is_open()){
+        std::string line;
+
+        while( getline(fichero, line)){
+            allText += line; //Inserto todas las lineas en un string
+        }
+        fichero.close();
+    }
+
+    json = allText.c_str(); //meter string a json
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+
     std::string type;
 
     /****************************/
@@ -183,7 +209,24 @@ int main()
     dwe::Node* suelo = GEInstance->createNode("media/suelo");
     suelo->setPosition(dwe::vec3f(0,0,0));
 
-    ScenaryElement* wall01 = GEInstance->createWall("media/pared01");wall01->setPosition(dwe::vec3f(-35,   36.3, 135.9));
+
+     //RAPIDJSON
+    Document document; //Creacion de documento para rapidJSON
+    if (document.Parse(json).HasParseError() == false) //coger el json y ver si es correcto
+    {
+        const Value& elements = document["elements"]; //Referencia a todos los "elements"
+        for(int i=0; i < elements.Size(); i++){
+            const Value& e = elements[i]; //Recorrer cada "element"
+            cout << e["mesh"].GetString() << endl;
+            ScenaryElement* wall20 = GEInstance->createWall(e["mesh"].GetString());
+            wall20->setPosition(dwe::vec3f(200,   20, 80));
+        }
+
+
+
+    }
+
+    /*ScenaryElement* wall01 = GEInstance->createWall("media/pared01");wall01->setPosition(dwe::vec3f(-35,   36.3, 135.9));
     ScenaryElement* wall02 = GEInstance->createWall("media/pared02");wall02->setPosition(dwe::vec3f(120.4, 36.3, 135.9));
     ScenaryElement* wall03 = GEInstance->createWall("media/pared03");wall03->setPosition(dwe::vec3f(42.7,  36.3, -132.2));
     ScenaryElement* wall04 = GEInstance->createWall("media/pared04");wall04->setPosition(dwe::vec3f(-84.9, 36.3, 2.2));
@@ -195,7 +238,7 @@ int main()
     ScenaryElement* wall10 = GEInstance->createWall("media/pared10");wall10->setPosition(dwe::vec3f(-84.4, 36.3, 269.9));
     ScenaryElement* wall11 = GEInstance->createWall("media/pared11");wall11->setPosition(dwe::vec3f(170.8, 36.3, 269.6));
     ScenaryElement* wall12 = GEInstance->createWall("media/pared12");wall12->setPosition(dwe::vec3f(43.1,  36.3, 399.8));
-
+*/
     Entity **entities; // Array de entidades
     Entity **sector; // Sector no funcional que se le asigna a un generador
     Trigger **triggers; // Triggers

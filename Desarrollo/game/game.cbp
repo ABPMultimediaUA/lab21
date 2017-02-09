@@ -59,6 +59,7 @@
 			<Add directory="src/classes" />
 			<Add directory="src/graphics" />
 			<Add directory="include/irrKlang" />
+			<Add directory="include/rapidjson" />
 		</Compiler>
 		<Linker>
 			<Add library="lib/libIrrlicht.a" />
@@ -73,6 +74,41 @@
 			<Add library="jpeg" />
 			<Add directory="lib" />
 		</Linker>
+		<Unit filename="include/rapidjson/allocators.h" />
+		<Unit filename="include/rapidjson/document.h" />
+		<Unit filename="include/rapidjson/encodedstream.h" />
+		<Unit filename="include/rapidjson/encodings.h" />
+		<Unit filename="include/rapidjson/error/en.h" />
+		<Unit filename="include/rapidjson/error/error.h" />
+		<Unit filename="include/rapidjson/filereadstream.h" />
+		<Unit filename="include/rapidjson/filewritestream.h" />
+		<Unit filename="include/rapidjson/fwd.h" />
+		<Unit filename="include/rapidjson/internal/biginteger.h" />
+		<Unit filename="include/rapidjson/internal/diyfp.h" />
+		<Unit filename="include/rapidjson/internal/dtoa.h" />
+		<Unit filename="include/rapidjson/internal/ieee754.h" />
+		<Unit filename="include/rapidjson/internal/itoa.h" />
+		<Unit filename="include/rapidjson/internal/meta.h" />
+		<Unit filename="include/rapidjson/internal/pow10.h" />
+		<Unit filename="include/rapidjson/internal/regex.h" />
+		<Unit filename="include/rapidjson/internal/stack.h" />
+		<Unit filename="include/rapidjson/internal/strfunc.h" />
+		<Unit filename="include/rapidjson/internal/strtod.h" />
+		<Unit filename="include/rapidjson/internal/swap.h" />
+		<Unit filename="include/rapidjson/istreamwrapper.h" />
+		<Unit filename="include/rapidjson/memorybuffer.h" />
+		<Unit filename="include/rapidjson/memorystream.h" />
+		<Unit filename="include/rapidjson/msinttypes/inttypes.h" />
+		<Unit filename="include/rapidjson/msinttypes/stdint.h" />
+		<Unit filename="include/rapidjson/ostreamwrapper.h" />
+		<Unit filename="include/rapidjson/pointer.h" />
+		<Unit filename="include/rapidjson/prettywriter.h" />
+		<Unit filename="include/rapidjson/rapidjson.h" />
+		<Unit filename="include/rapidjson/reader.h" />
+		<Unit filename="include/rapidjson/schema.h" />
+		<Unit filename="include/rapidjson/stream.h" />
+		<Unit filename="include/rapidjson/stringbuffer.h" />
+		<Unit filename="include/rapidjson/writer.h" />
 		<Unit filename="src/classes/Ammo.cpp" />
 		<Unit filename="src/classes/Ammo.h" />
 		<Unit filename="src/classes/AmmoGrenade.cpp" />
