@@ -1,8 +1,17 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef SCENE_H
+#define SCENE_H
 
 #include <vector>
 #include "GraphicsEngine.h"
+
+#include "TriggerDoor.h"
+#include "TriggerGenerator.h"
+#include "Door.h"
+#include "Generator.h"
+#include "MagnetKey.h"
+#include "Gun.h"
+
+#define NUM_ENTITIES 3
 
 class Projectile;
 class Consumable;
@@ -12,8 +21,16 @@ class Firearm;
 class Scene
 {
     public:
+
+        static Scene* Instance();
+
         Scene();
         virtual ~Scene();
+
+        void Init();
+
+        void Update();
+
 
         void createProjectile(dwe::vec3f origin, float angle);
         void deleteProjectile(unsigned int i);
@@ -33,8 +50,16 @@ class Scene
     protected:
 
     private:
+
+        Entity *entities[NUM_ENTITIES]; // Array de entidades
+        Entity *sector[1]; // Sector no funcional que se le asigna a un generador
+        Trigger *triggers[3]; // Triggers
+        bool llaveCogida;
+        Player* mainPlayer;
+        Gun* gun;
+
         std::vector<Projectile*> m_projectiles;
         std::vector<Consumable*> m_consumables;
 };
 
-#endif // GAME_H
+#endif // SCENE_H

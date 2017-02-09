@@ -204,6 +204,9 @@ namespace dwe
         /*bool intersectsWithBox(vec3f v, vec3f w);*/
         irr::scene::ISceneManager*  getSMGR();
 
+        // Boton
+        //irr::gui::IGUIButton* createButton(const core::rect<s32>& rectangle);
+
         // Creacion de personajes
         Player* createMainPlayer(Gun* gun);
         PlayerMate* createPlayerMate();

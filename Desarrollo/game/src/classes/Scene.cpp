@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include "WorldInstance.h"
 #include "Projectile.h"
 #include "SpeedBoost.h"
 #include "Medkit.h"
@@ -7,15 +8,57 @@
 #include "CShotgun.h"
 #include "CRifle.h"
 
+Scene* Scene::Instance()
+{
+  static Scene instance;
+
+  return &instance;
+}
+
 Scene::Scene()
 {
     //ctor
+
+}
+
+void Scene::Init()
+{
+        entities[0]=GEInstance->createDoor(0, true, 43.5, 0, 135.9);
+    entities[1]=GEInstance->createDoor(3, false, 170, 0, 0); // false
+    sector[0]=entities[1];
+
+
+    // Generadores
+    entities[2]=GEInstance->createGenerator(0, false, -50, 0, -50); // false
+    ((Generator*)entities[2])->setSector(sector, 1);
+
+    // Llaves
+    MagnetKey *llave=GEInstance->createMagnetKey(0, 50, 0, 350);
+    llaveCogida=false;
+
+
+    gun = createGun(0,0,0); // Creo el arma inicial del player
+
+    // Creación de jugador
+
+    mainPlayer = GEInstance->createMainPlayer(gun);
+    mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,-80));
+    mainPlayer->setLife(100);
+    World->setMainPlayer(mainPlayer);
+    cout << "Barra de vida: " << mainPlayer->getLife() << endl;
 }
 
 Scene::~Scene()
 {
     //dtor
 }
+
+void Scene::Update()
+{
+    for(int cont=0; cont<NUM_ENTITIES; cont++)
+        entities[cont]->update();
+}
+
 
 ////////////
 void Scene::updateProjectiles()

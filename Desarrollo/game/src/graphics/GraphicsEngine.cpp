@@ -139,6 +139,7 @@ scene::IAnimatedMeshSceneNode* dwe::GraphicsEngine::createIrrAnimatedMeshSceneNo
 		exit(0);
 	}
 	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
+
 	if (irrnode)
 	{
 		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
@@ -220,7 +221,7 @@ Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 
 
 	Player* p = new Player(gun);
-	p->setNode(new Node(irrnode));
+	p->setNode(new Node(irrnode));cout<<"-----------------------------"<<endl;
 	NetInstance->addNetObject(p);
     return p;
 }
@@ -318,9 +319,11 @@ void dwe::GraphicsEngine::changeEnemyDogTexture(Dog* dog,const io::path& text)
 
 Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float pz)
 {
+
     scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/puerta");
     Door* d = new Door(f, a);
 	d->setNode(new Node(irrnode));
+
     d->setPosition(dwe::vec3f(px, py, pz)); // Cerrada
 	//d->setPosition(dwe::vec3f(43.5-70, 36.3, 135.9)); // Abierta
 	d->setPositionClosed(dwe::vec3f(px, py, pz)); // Localización de la puerta CERRADA
@@ -560,6 +563,16 @@ void dwe::GraphicsEngine::addMessageLine(std::wstring text)
         m_messageLine[i]->setText(m_messageLine[i-1]->getText());
     m_messageLine[0]->setText(text.c_str());
 }
+/*******  Metodo a usar para crear botones en fachada ****/
+/*irr::gui::IGUIButton* dwe::GraphicsEngine::createButton(const core::rect<s32>& rectangle)
+{
+    s32 buttonWidth = 128;
+	s32 buttonHeight = 32;
+	irr::gui::IGUIButton*
+    m_guienv->addButton(rectangle);
+    video::ITexture* buttonImage = driver->getTexture("media/playAlone_button.png");
+    core::dimension2d<u32> buttonDim = buttonImage->getSize();
+}*/
 
 
 
