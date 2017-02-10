@@ -50,6 +50,7 @@
 #include "ScenaryElement.h"
 
 #include "CSetupDevice.h" // Menus
+#include "Hud.h"
 
 #define NUM_ENTITIES 3
 
@@ -69,7 +70,7 @@ int main()
 {
     std::string type;
 
-    /*rmm:menu CSetupDevice* setupDevice = new CSetupDevice(core::dimension2d<u32>(800,600));
+    CSetupDevice* setupDevice = new CSetupDevice(core::dimension2d<u32>(800,600));
 	if (!setupDevice) {
 		printf("Failed setupDevice creation\n");
 		return 1;
@@ -87,11 +88,8 @@ int main()
 
 	// delete setupDevice; // Borrar la ventana no se ejecuta el bucle????????
 	setupDevice = NULL;
-	setupGUI = NULL;*/
+	setupGUI = NULL;
 
-
-
-	/****************************/
     Scene scene;
 
     // Preguntamos por los parametros de la red
@@ -102,7 +100,7 @@ int main()
 
     cout << "// un solo jugador(1) o multijugador (2) [2 por defecto]: ";
     getline(cin, type);
-//rmm:menu    if (type!="1") type="2";
+    if (type!="1") type="2";
 
     NetInstance->open(&scene, (type=="2"));  // Inicializar motor de red
     cout << "//\n// Buscando servidores ";
@@ -165,6 +163,11 @@ int main()
 
     Gun* gun = scene.createGun(0,0,0); // Creo el arma inicial del player
 
+    /*********************/
+	Hud* hud = new Hud();
+    hud->draw();
+
+	/****************************/
     // Creación de jugador
 
     Player* mainPlayer = GEInstance->createMainPlayer(gun);
@@ -368,7 +371,8 @@ int main()
                 NetInstance->startGame();
         }
     }
-    GEInstance->addMessageLine(L"Partida iniciada");
+    //GEInstance->addMessageLine(L"Partida iniciada");
+    //GEInstance->addsfMessageLine("Partida iniciada");
 
     float timeStamp = World->getTimeElapsed();
     float deltaTime;

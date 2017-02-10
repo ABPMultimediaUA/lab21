@@ -2,6 +2,8 @@
 #define FACHADEDIREENGINE_H
 
 
+#include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>
 
 #include <irrlicht.h>
 #include <string>
@@ -241,8 +243,14 @@ namespace dwe
         /// se borrar. No admite acentos.
         /// \param[in] text Texto a mostrar en la lista de mensajes
         void addMessageLine(std::wstring text);
+        void addsfMessageLine(std::string text);
 
     private:
+
+        sf::Font            m_font;
+        sf::Text            m_sfmessageLine[MAX_MESSAGE_LINES];
+        /////////
+
         static const int _screenWidth  = 800;
         static const int _screenHeight = 600;
 
