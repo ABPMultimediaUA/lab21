@@ -69,8 +69,7 @@ int main()
 {
     std::string type;
 
-    /****************************/
-    CSetupDevice* setupDevice = new CSetupDevice(core::dimension2d<u32>(800,600));
+    /*rmm:menu CSetupDevice* setupDevice = new CSetupDevice(core::dimension2d<u32>(800,600));
 	if (!setupDevice) {
 		printf("Failed setupDevice creation\n");
 		return 1;
@@ -86,9 +85,9 @@ int main()
     type=setupDevice->getPlayers();
 	cout<<"CUANTOS JUGADORES: "<<type<<endl;
 
-	/**delete setupDevice; // Borrar la ventana no se ejecuta el bucle???????? **/
+	// delete setupDevice; // Borrar la ventana no se ejecuta el bucle????????
 	setupDevice = NULL;
-	setupGUI = NULL;
+	setupGUI = NULL;*/
 
 
 
@@ -99,11 +98,11 @@ int main()
     cout << "//////////////////////////////////////////////\n";
     cout << "// Lab21\n";
     cout << "//////////////////////////////////////////////\n";
-    //cout << "// Selecciona tipo de partida y pulsa intro:\n";
+    cout << "// Selecciona tipo de partida y pulsa intro:\n";
 
-    //cout << "// un solo jugador(1) o multijugador (2) [2 por defecto]: ";
-    //getline(cin, type);
-    if (type!="1") type="2";
+    cout << "// un solo jugador(1) o multijugador (2) [2 por defecto]: ";
+    getline(cin, type);
+//rmm:menu    if (type!="1") type="2";
 
     NetInstance->open(&scene, (type=="2"));  // Inicializar motor de red
     cout << "//\n// Buscando servidores ";
