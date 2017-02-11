@@ -55,8 +55,6 @@ namespace dwn
 
             bool isLocalObject(RakNet::RakNetGUID id);
 
-            static bool isConnectedToNATPunchthroughServer;
-
             bool isMultiplayer();
             bool isServer();
             void setMultiplayer(bool m);
