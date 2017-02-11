@@ -9,6 +9,9 @@
 #include <string>
 #include <AppReceiver.h>
 
+#include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>
+
 #include <Box2D/Box2D.h>
 #include <Box2D/Common/b2Math.h>
 
@@ -243,7 +246,11 @@ namespace dwe
         /// se borrar. No admite acentos.
         /// \param[in] text Texto a mostrar en la lista de mensajes
         void addMessageLine(std::wstring text);
-        void addsfMessageLine(std::string text);
+        void addsfMessageLine(std::string text);//
+
+         class GETexture : public sf::Texture { // Para el hud
+
+         } ;
 
     private:
 

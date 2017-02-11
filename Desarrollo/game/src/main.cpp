@@ -1,4 +1,6 @@
 #include <iostream>
+#include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>
 #include <Box2D/Box2D.h>
 #include <Box2D/Common/b2Math.h>
 #include <GraphicsEngine.h>
@@ -165,8 +167,16 @@ int main()
     Gun* gun = scene.createGun(0,0,0); // Creo el arma inicial del player
 
     /*********************/
-	Hud* hud = new Hud();
-    hud->draw();
+   /* cout << "AKSHDASD" << endl;
+    dwe::GraphicsEngine::GETexture textureHud;
+    if (!textureHud.loadFromFile("../media/exit_button.png")) {
+
+        return EXIT_FAILURE;
+        cout << "AKSHDASD" << endl;
+    }
+    else cout << "AAAAAAAAA" << endl;
+	Hud* hud = new Hud(&textureHud);
+    hud->draw();*/
 
 	/****************************/
     // Creación de jugador
