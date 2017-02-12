@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "GSMainMenu.h"
 #include "NetGame.h"
+//#include "Hud.h"
 
 int main()
 {
@@ -10,4 +11,9 @@ int main()
     NetInstance->close();
 
 	return 0;
+
+	/******************/
+	//Hud* hud = new Hud();
+	//hud->draw();
+	/*****************/
 }
