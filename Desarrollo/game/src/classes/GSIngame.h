@@ -16,6 +16,7 @@ private:
     int page;
     float timeStamp;
     float deltaTime;
+    bool m;
 };
 
 #endif // GSINGAME_H

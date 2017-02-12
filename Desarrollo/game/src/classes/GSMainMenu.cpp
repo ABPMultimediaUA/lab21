@@ -11,6 +11,8 @@ using namespace std;
 
 GSMainMenu::GSMainMenu(){
     page = 0;
+    m = false;
+    a = false;
     /*s32 buttonWidth = 128;
 	s32 buttonHeight = 32;
 	s32 screenDimW=800;
@@ -20,20 +22,20 @@ GSMainMenu::GSMainMenu(){
 
 GSMainMenu* GSMainMenu::getInstance()
 {
-  static GSMainMenu instance;
-
-  return &instance;
+    static GSMainMenu instance;
+    return &instance;
 }
 
 
 void GSMainMenu::Render(){
     if(page==0){
-        cout<<"Menu"<<endl;
-
-    }
-    if(page==1){
-        page=0;
-        Game::getInstance()->ChangeState(GSIngame::getInstance());
+        if(!m){
+            cout<<"Menu"<<endl;
+            cout<<"Pulsa 1 para iniciar partida 1 jugador"<<endl;
+            cout<<"Pulsa 2 para iniciar partida 2 jugadores"<<endl;
+            //cout<<"Pulsa Escape para salir del juego"<<endl;
+            m=true;
+        }
     }
 }
 
@@ -42,9 +44,6 @@ void GSMainMenu::SetPage(int n){
 }
 
 void GSMainMenu::HandleEvents(){
-    /*if(GEInstance->receiver.isKeyDown(KEY_SPACE)){
-        Game::getInstance()->ChangeState(GSIngame::getInstance());
-    }*/
 
 }
 
@@ -52,16 +51,13 @@ void GSMainMenu::Update(){
     std::string type;
 
 	/****************************/
-
-
-    a = false;
     //getline(cin, type);
     if(GEInstance->receiver.isKeyDown(KEY_KEY_1)){
-       type=1;
+        type=1;
         a = true;
     }
     if(GEInstance->receiver.isKeyDown(KEY_KEY_2)){
-       type=2;
+        type=2;
         a = true;
     }
     if(a){
@@ -123,6 +119,8 @@ void GSMainMenu::Update(){
         }
 
         Game::getInstance()->ChangeState(GSIngame::getInstance());
+        m=false;
+        a=false;
     }
 
 }

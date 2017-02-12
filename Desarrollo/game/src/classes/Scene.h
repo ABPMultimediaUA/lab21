@@ -4,12 +4,23 @@
 #include <vector>
 #include "GraphicsEngine.h"
 
+#include "Dog.h"
+#include "Humanoid.h"
+
 #include "TriggerDoor.h"
 #include "TriggerGenerator.h"
 #include "Door.h"
 #include "Generator.h"
 #include "MagnetKey.h"
 #include "Gun.h"
+
+#include "Pathplanning.h"
+#include "Perception.h"
+#include "Selector.h"
+#include "Sequence.h"
+#include "PathplanningTask.h"
+#include "PerceptionTask.h"
+#include "PatrolTask.h"
 
 #define NUM_ENTITIES 3
 
@@ -54,12 +65,37 @@ class Scene
         Entity *entities[NUM_ENTITIES]; // Array de entidades
         Entity *sector[1]; // Sector no funcional que se le asigna a un generador
         Trigger *triggers[3]; // Triggers
+        MagnetKey *llave;
         bool llaveCogida;
+
+        // NPcs
         Player* mainPlayer;
+        Humanoid* enemyHumanoid;
+        Dog* enemyDog;
+        /**/
+        dwe::Node* fovnode; // Futuro dentro de cada enemigo
+        Perception* percep;
+        Pathplanning* pathp;
+        Selector* selector1;
+        Sequence *sequence1;
+        PathplanningTask* path;
+        PerceptionTask* perc;
+        PatrolTask* patrol;
+
+        // Objets
         Gun* gun;
+        Shotgun* shotgun;
+        Rifle* rifle;
 
         std::vector<Projectile*> m_projectiles;
         std::vector<Consumable*> m_consumables;
+
+        float timeLastProjectil;
+
+        // Random
+        dwe::Node* joint_try;
+        EntityPhysics* bjoint;
+        ICameraSceneNode* camera1;
 };
 
 #endif // SCENE_H

@@ -15,6 +15,7 @@ public:
 
 private:
     int page;
+    bool m;
 };
 
 #endif // GSPAUSE_H

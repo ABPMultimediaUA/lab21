@@ -8,6 +8,7 @@ using namespace std;
 
 GSPause::GSPause(){
     page = 0;
+    m = false;
 }
 
 GSPause* GSPause::getInstance()
@@ -20,9 +21,13 @@ GSPause* GSPause::getInstance()
 
 void GSPause::Render(){
     if(page==0){
-        cout<<"Pause"<<endl;
+        if(!m){
+            cout<<"Pause"<<endl;
+            cout<<"Pulsa P para volver al juego"<<endl;
+            cout<<"Pulsa F9 para volver al menu"<<endl;
+            m = true;
+        }
     }
-
 }
 
 void GSPause::SetPage(int n){
@@ -32,9 +37,11 @@ void GSPause::SetPage(int n){
 void GSPause::HandleEvents(){
     if(GEInstance->receiver.isKeyDown(KEY_KEY_P)){
         Game::getInstance()->ChangeState(GSIngame::getInstance());
+        m = false;
     }
     if(GEInstance->receiver.isKeyDown(KEY_F9)){
         Game::getInstance()->ChangeState(GSMainMenu::getInstance());
+        m = false;
     }
 }
 

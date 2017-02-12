@@ -21,6 +21,7 @@ public:
 private:
     int page;
     bool a; // Controla cosas
+    bool m;
     //gui::IGUIButton* playAloneButton;
 };
 

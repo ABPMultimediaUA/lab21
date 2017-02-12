@@ -19,8 +19,6 @@
 #include "Mother.h"
 #include "Guardian.h"
 #include "Legless.h"
-#include "Dog.h"
-#include "Humanoid.h"
 
 #include "SpeedBoost.h"
 #include "Medkit.h"
