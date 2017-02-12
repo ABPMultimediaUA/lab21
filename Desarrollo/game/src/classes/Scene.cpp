@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include "WorldInstance.h"
 #include "Projectile.h"
 #include "SpeedBoost.h"
 #include "Medkit.h"
@@ -7,15 +8,216 @@
 #include "CShotgun.h"
 #include "CRifle.h"
 
+Scene* Scene::Instance()
+{
+  static Scene instance;
+
+  return &instance;
+}
+
 Scene::Scene()
 {
     //ctor
+
+}
+
+void Scene::Init()
+{
+    /**********************************/
+    if (NetInstance->isMultiplayer())
+    {
+        if (NetInstance->isServer())
+            GEInstance->addMessageLine(L"Pulsa intro cuando esten todos los jugadores");
+        else
+            GEInstance->addMessageLine(L"Esperando a que el servidor de la partida inicie el juego");
+        // En startGame solo se inicia si es el servidor
+        while (!NetInstance->getGameStarted() && GEInstance->isRunning())
+        {
+            GEInstance->draw();
+            NetInstance->update();
+            if (GEInstance->receiver.isKeyDown(KEY_RETURN))
+                NetInstance->startGame();
+        }
+    }
+    GEInstance->addMessageLine(L"Partida iniciada");
+    /**********************************/
+
+    // Creacion de Mundo
+    entities[0]=GEInstance->createDoor(0, true, 43.5, 0, 135.9);
+    entities[1]=GEInstance->createDoor(3, false, 170, 0, 0); // false
+    sector[0]=entities[1];
+
+
+    // Generadores
+    entities[2]=GEInstance->createGenerator(0, false, -50, 0, -50); // false
+    ((Generator*)entities[2])->setSector(sector, 1);
+
+    // Llaves
+    llave=GEInstance->createMagnetKey(0, 50, 0, 350);
+    llaveCogida=false;
+
+    // Gun
+    gun = createGun(0,0,0); // Creo el arma inicial del player
+    createAmmoGun(80, 10, 100);
+
+    // Shotgun
+    shotgun = createShotgun(0,0,0);
+
+    // Rifle
+    rifle = createRifle(0,0,0);
+
+    // Creación de jugador
+
+    mainPlayer = GEInstance->createMainPlayer(gun);
+    mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,-80));
+    mainPlayer->setLife(100);
+    World->setMainPlayer(mainPlayer);
+    cout << "Barra de vida: " << mainPlayer->getLife() << endl;
+
+    ////////////////////////////////
+    //         Enemigos           //
+    ////////////////////////////////
+
+    // Creación de enemigo Humanoide
+    enemyHumanoid = GEInstance->createEnemyHumanoid();
+    //enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
+    enemyHumanoid->setPosition(dwe::vec3f(400,24,100));
+    enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
+
+    // Creación de enemigo Dog
+    enemyDog = GEInstance->createEnemyDog();
+    enemyDog->setPosition(dwe::vec3f(-50,-170,100));
+
+    //Creación fov
+    fovnode = GEInstance->createNode("media/fov");
+    //fovnode->setMaterialFlag(EMF_WIREFRAME, true);
+    fovnode->setPosition(enemyHumanoid->getPosition());
+    fovnode->setRotation(enemyHumanoid->getRotation());
+
+    //Creación de objeto perception
+    percep = new Perception();
+    pathp = new Pathplanning();
+    /**** Special nodes ****/
+    selector1 = new Selector;
+    sequence1 = new Sequence;
+    /**** Tasks ****/
+    path = new PathplanningTask(pathp, mainPlayer, enemyHumanoid, fovnode);
+    perc = new PerceptionTask(percep, mainPlayer, enemyHumanoid, fovnode, path);
+    patrol = new PatrolTask(enemyHumanoid, fovnode);
+    /**** Creating the tree ****/
+
+    selector1->addChild(sequence1);
+    selector1->addChild(patrol);
+
+    sequence1->addChild(perc);
+    sequence1->addChild(path);
+
+    //Joint try
+    joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
+    joint_try->setPosition(dwe::vec3f(0,10,120));
+    bjoint = new EntityPhysics();
+    bjoint->createJointBody(dwe::vec3f(0,10,120)); // createJointBody(dwe::vec3f(0,10,120));
+
+    //CAMERA (nodo padre, posición, directión)
+    camera1 = GEInstance->getSMGR()->addCameraSceneNode(0,  vector3df(0,0,0), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
+    GEInstance->getSMGR()->setActiveCamera(camera1); //Activar cámara
+
+    // Triggers -> 0 Door, 1 Generator
+    triggers[0]=GEInstance->createTrigger(0, 43.5, 0, 135.9);
+    triggers[1]=GEInstance->createTrigger(0, 170, 0, 0);
+    triggers[2]=GEInstance->createTrigger(1, -50, 0, -50);
+
+    //rmm Cheat: la primera vez que creo el projectile va muy lento, no se pq
+    createProjectile(dwe::vec3f(1.0, 1.0, 1.0), 0.5);
+    deleteProjectile(0);
+    timeLastProjectil = 0;
 }
 
 Scene::~Scene()
 {
     //dtor
 }
+
+void Scene::Update()
+{
+    for(int cont=0; cont<NUM_ENTITIES; cont++)
+        entities[cont]->update();
+    GEInstance->updateCamera(mainPlayer->getPosition());
+    mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
+    selector1->run();  // Run Behavior Tree
+
+    // comprobamos si dispara
+    if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
+        NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
+        if (mainPlayer->getCurrentWeaponType() == eGun && mainPlayer->getAmmo(0) > 0) //
+        {
+            NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
+
+            createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().y);
+            timeLastProjectil = World->getTimeElapsed();
+
+            mainPlayer->setAmmo(0, mainPlayer->getAmmo(0)-1); //
+        }//
+    }
+    mainPlayer->update(shotgun, rifle); //Posición actualizada de Irrlicht Player
+    updateProjectiles();
+    updateConsumables(mainPlayer);
+    updatePlayerWeapons(mainPlayer, mainPlayer->getPlayerWeapons());
+
+    //update box of box2d
+    joint_try->setPosition(dwe::vec3f(bjoint->getPosEntity().x,bjoint->getPosEntity().y,bjoint->getPosEntity().z));
+    // Coger la llave
+    if(!llaveCogida)
+    {
+        if(mainPlayer->getNode()->intersects(llave->getNode()->getNode()))
+        {
+            llaveCogida=true;
+            mainPlayer->setMKeys(llave->getId());
+            delete llave;
+            llave = 0;
+        }
+    }
+
+    // TriggerSystem
+    for(int i=0; i<3; i++){
+        if(mainPlayer->getNode()->intersects(triggers[i]->getNode()->getNode()))
+        {
+            if(GEInstance->receiver.isKeyDown(KEY_SPACE))
+            {
+                if(i==2)
+                {
+                    if(mainPlayer->getMKey(((Generator*)entities[i])->getNum()))
+                        triggers[i]->triggered(entities[i]);
+                }
+                else if(i==0 || i==1)
+                    triggers[i]->triggered(entities[i]);
+            }
+        }
+    }
+    //rmm:cheat, cojo todo
+    if (GEInstance->receiver.isKeyDown(KEY_KEY_C))
+    {
+        // Cojo llave
+        if(llave!=0)
+        {
+            llaveCogida=true;
+            mainPlayer->setMKeys(llave->getId());
+        }
+
+        //Activo todo
+        for(int i=0; i<3; i++)
+        {
+            if(i==2)
+            {
+                if(mainPlayer->getMKey(((Generator*)entities[i])->getNum()))
+                    triggers[i]->triggered(entities[i]);
+            }
+            else if(i==0 || i==1)
+                triggers[i]->triggered(entities[i]);
+        }
+    }
+}
+
 
 ////////////
 void Scene::updateProjectiles()

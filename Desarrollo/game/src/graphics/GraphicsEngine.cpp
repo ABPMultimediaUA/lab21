@@ -74,7 +74,7 @@ void dwe::GraphicsEngine::init()
         m_messageLine[i] = m_guienv->addStaticText(L"", rect<s32>(10, _screenHeight - (i+1)*16, _screenWidth-20, _screenHeight - i*16), false);
         m_messageLine[i]->setOverrideColor(SColor(255,255,255,255));
 	}
-
+    /****
 	for(int i=0; i<MAX_MESSAGE_LINES; i++)
 	{
         m_sfmessageLine[i].setFont(m_font);
@@ -83,7 +83,7 @@ void dwe::GraphicsEngine::init()
         m_sfmessageLine[i].setPosition(10.f, _screenHeight - (i+1)*16.f);
         m_sfmessageLine[i].setString("");
 	}
-
+    ****/
 	// Posición de la cámara inicial
 	m_smgr->addCameraSceneNode(0, vector3df(-150,120,190), vector3df(0,0,0));
 }
@@ -148,6 +148,7 @@ scene::IAnimatedMeshSceneNode* dwe::GraphicsEngine::createIrrAnimatedMeshSceneNo
 		exit(0);
 	}
 	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
+
 	if (irrnode)
 	{
 		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
@@ -229,7 +230,7 @@ Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 
 
 	Player* p = new Player(gun);
-	p->setNode(new Node(irrnode));
+	p->setNode(new Node(irrnode));cout<<"-----------------------------"<<endl;
 	NetInstance->addNetObject(p);
     return p;
 }
@@ -327,9 +328,11 @@ void dwe::GraphicsEngine::changeEnemyDogTexture(Dog* dog,const io::path& text)
 
 Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float pz)
 {
+
     scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/puerta");
     Door* d = new Door(f, a);
 	d->setNode(new Node(irrnode));
+
     d->setPosition(dwe::vec3f(px, py, pz)); // Cerrada
 	//d->setPosition(dwe::vec3f(43.5-70, 36.3, 135.9)); // Abierta
 	d->setPositionClosed(dwe::vec3f(px, py, pz)); // Localización de la puerta CERRADA
@@ -570,14 +573,24 @@ void dwe::GraphicsEngine::addMessageLine(std::wstring text)
     m_messageLine[0]->setText(text.c_str());
 
 }
-
+/*******  Metodo a usar para crear botones en fachada ****/
+/*irr::gui::IGUIButton* dwe::GraphicsEngine::createButton(const core::rect<s32>& rectangle)
+{
+    s32 buttonWidth = 128;
+	s32 buttonHeight = 32;
+	irr::gui::IGUIButton*
+    m_guienv->addButton(rectangle);
+    video::ITexture* buttonImage = driver->getTexture("media/playAlone_button.png");
+    core::dimension2d<u32> buttonDim = buttonImage->getSize();
+}*/
+/****
 void dwe::GraphicsEngine::addsfMessageLine(std::string text)
 {
     for(int i=MAX_MESSAGE_LINES-1; i>0; i--)
         m_sfmessageLine[i].setString(m_sfmessageLine[i-1].getString());
     m_sfmessageLine[0].setString(text);
 }
-
+****/
 
 irr::scene::ISceneManager*  dwe::GraphicsEngine::getSMGR(){return(m_smgr);}
 

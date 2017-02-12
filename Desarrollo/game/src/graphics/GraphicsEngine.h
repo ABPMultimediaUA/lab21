@@ -2,12 +2,15 @@
 #define FACHADEDIREENGINE_H
 
 
-#include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
+/*#include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>*/
 
 #include <irrlicht.h>
 #include <string>
 #include <AppReceiver.h>
+
+#include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>
 
 #include <Box2D/Box2D.h>
 #include <Box2D/Common/b2Math.h>
@@ -206,6 +209,9 @@ namespace dwe
         /*bool intersectsWithBox(vec3f v, vec3f w);*/
         irr::scene::ISceneManager*  getSMGR();
 
+        // Boton
+        //irr::gui::IGUIButton* createButton(const core::rect<s32>& rectangle);
+
         // Creacion de personajes
         Player* createMainPlayer(Gun* gun);
         PlayerMate* createPlayerMate();
@@ -243,13 +249,17 @@ namespace dwe
         /// se borrar. No admite acentos.
         /// \param[in] text Texto a mostrar en la lista de mensajes
         void addMessageLine(std::wstring text);
-        void addsfMessageLine(std::string text);
+        void addsfMessageLine(std::string text);//
+
+         class GETexture : public sf::Texture { // Para el hud
+
+         } ;
 
     private:
-
+        /*****
         sf::Font            m_font;
         sf::Text            m_sfmessageLine[MAX_MESSAGE_LINES];
-        /////////
+        *****/
 
         static const int _screenWidth  = 800;
         static const int _screenHeight = 600;

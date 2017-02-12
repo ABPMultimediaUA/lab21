@@ -1,6 +1,7 @@
 #include "Hud.h"
 
-Hud::Hud()
+
+Hud::Hud(dwe::GraphicsEngine::GETexture* t)
 {
 
 

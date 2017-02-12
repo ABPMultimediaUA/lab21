@@ -70,8 +70,11 @@
 			<Add library="gdi32" />
 			<Add library="winmm" />
 			<Add library="lib/libirrKlang.a" />
+<<<<<<< HEAD
+=======
 			<Add library="freetype" />
 			<Add library="jpeg" />
+>>>>>>> master
 			<Add directory="lib" />
 		</Linker>
 		<Unit filename="include/rapidjson/allocators.h" />
@@ -159,7 +162,17 @@
 		<Unit filename="src/classes/Firearm.h" />
 		<Unit filename="src/classes/Flashlight.cpp" />
 		<Unit filename="src/classes/Flashlight.h" />
+		<Unit filename="src/classes/GSDead.cpp" />
+		<Unit filename="src/classes/GSDead.h" />
+		<Unit filename="src/classes/GSIngame.cpp" />
+		<Unit filename="src/classes/GSIngame.h" />
+		<Unit filename="src/classes/GSMainMenu.cpp" />
+		<Unit filename="src/classes/GSMainMenu.h" />
+		<Unit filename="src/classes/GSPause.cpp" />
+		<Unit filename="src/classes/GSPause.h" />
 		<Unit filename="src/classes/GState.h" />
+		<Unit filename="src/classes/Game.cpp" />
+		<Unit filename="src/classes/Game.h" />
 		<Unit filename="src/classes/Generator.cpp" />
 		<Unit filename="src/classes/Generator.h" />
 		<Unit filename="src/classes/Grenade.cpp" />
@@ -180,6 +193,8 @@
 		<Unit filename="src/classes/Legless.h" />
 		<Unit filename="src/classes/LeglessStates.cpp" />
 		<Unit filename="src/classes/LeglessStates.h" />
+		<Unit filename="src/classes/LoadMap.cpp" />
+		<Unit filename="src/classes/LoadMap.h" />
 		<Unit filename="src/classes/MagnetKey.cpp" />
 		<Unit filename="src/classes/MagnetKey.h" />
 		<Unit filename="src/classes/Medkit.cpp" />

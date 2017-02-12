@@ -55,8 +55,6 @@ namespace dwn
 
             bool isLocalObject(RakNet::RakNetGUID id);
 
-            static bool isConnectedToNATPunchthroughServer;
-
             bool isMultiplayer();
             bool isServer();
             void setMultiplayer(bool m);
@@ -123,7 +121,7 @@ namespace dwn
             bool m_isServer;
             bool m_gameStarted;
             unsigned short m_participantOrder;
-            std::string m_IP;
+            std::string m_serverIP;
             Scene* m_scene;
             RakNetGUID m_cloudServerGUID;
 
