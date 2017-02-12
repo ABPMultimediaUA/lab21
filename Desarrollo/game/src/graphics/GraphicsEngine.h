@@ -2,8 +2,8 @@
 #define FACHADEDIREENGINE_H
 
 
-#include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
+/*#include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>*/
 
 #include <irrlicht.h>
 #include <string>
@@ -209,6 +209,9 @@ namespace dwe
         /*bool intersectsWithBox(vec3f v, vec3f w);*/
         irr::scene::ISceneManager*  getSMGR();
 
+        // Boton
+        //irr::gui::IGUIButton* createButton(const core::rect<s32>& rectangle);
+
         // Creacion de personajes
         Player* createMainPlayer(Gun* gun);
         PlayerMate* createPlayerMate();
@@ -253,10 +256,10 @@ namespace dwe
          } ;
 
     private:
-
+        /*****
         sf::Font            m_font;
         sf::Text            m_sfmessageLine[MAX_MESSAGE_LINES];
-        /////////
+        *****/
 
         static const int _screenWidth  = 800;
         static const int _screenHeight = 600;
