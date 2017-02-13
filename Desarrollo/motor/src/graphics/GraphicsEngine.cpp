@@ -152,13 +152,13 @@ void dwe::GraphicsEngine::draw()
     m_viewMatrix = m_viewMatrix * rotateMatrix;
     m_viewMatrix = glm::scale(m_viewMatrix, glm::vec3(m_scale, m_scale, m_scale));
 
-    glUniform1i(m_uLuz0Location, true);
-    glUniformMatrix4fv(m_uVMatrixLocation, 1, GL_FALSE, glm::value_ptr(m_viewMatrix)); // Para la luz matrix view pero sin escalado!
-
     // Habilitamos el paso de attributes
     glEnableVertexAttribArray(m_aPositionLocation);
     glEnableVertexAttribArray(m_aNormalLocation);
     glUseProgram(m_shaderProgram->ReturnProgramID());
+
+    glUniform1i(m_uLuz0Location, true);
+    glUniformMatrix4fv(m_uVMatrixLocation, 1, GL_FALSE, glm::value_ptr(m_viewMatrix)); // Para la luz matrix view pero sin escalado!
 
     // Dibujar
     render();
@@ -375,3 +375,54 @@ dwe::vec2f dwe::GraphicsEngine::getMousePosition()
 
     return vec2f(x,y);
 }
+
+
+
+
+
+
+/////////////////////////////////////////////////
+// GraphicNode
+/////////////////////////////////////////////////
+
+///////////////////////
+bool dwe::GraphicNode::setEntity(dwe::Entity* e) { m_entity = e; return true; }
+dwe::Entity* dwe::GraphicNode::getEntity() { return m_entity; }
+
+///////////////////////////////////
+dwe::GraphicNode* dwe::GraphicNode::getParent() { return m_parent; }
+
+///////////////////////////////
+unsigned int dwe::GraphicNode::addChild(dwe::GraphicNode* n)
+{
+    m_childs.push_back(n);
+    return (m_childs.size() - 1);  // devolvemos el indice añadido
+}
+
+///////////////////////
+void dwe::GraphicNode::draw()
+{
+    if (m_entity != 0)
+        m_entity->beginDraw();
+
+    for(vector<GraphicNode*>::iterator it = m_childs.begin(); it != m_childs.end(); it++)
+        (*it)->draw();
+
+    if (m_entity != 0)
+        m_entity->endDraw();
+}
+
+/////////////////
+void dwe::EMesh::beginDraw()
+{
+    std::cout << "Begin " << m_cadena << "\n";
+}
+
+/////////////////
+void dwe::EMesh::endDraw()
+{
+    std::cout << "End " << m_cadena << "\n";
+}
+
+
+

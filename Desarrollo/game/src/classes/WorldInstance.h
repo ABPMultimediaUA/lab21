@@ -6,7 +6,6 @@
 #include <Box2D/Box2D.h>
 #include <Box2D/Common/b2Math.h>
 
-
 #define PLAYER_SPEED 50.0f
 #define M_PI 3.14159265358979323846
 #define POS_ERROR 100 // Creado para el ajuste de coordenadas de los muros de blender/irrlicht a box2d
@@ -18,6 +17,8 @@
 
 #define SCREEN_CENTER_X 400
 #define SCREEN_CENTER_Y 300
+
+#define NUM_ENTITIES 3
 
 class Player;
 
@@ -64,6 +65,10 @@ class WorldInstance
     public:
         static WorldInstance* Instance();
 
+        WorldInstance();
+
+        void Update();
+
         void init();
 
         b2Body* createBody(b2BodyDef *bodyDef);
@@ -95,7 +100,7 @@ class WorldInstance
         static b2World          m_world;
         static ContactListener  m_contactListener;
 
-        static Player*          m_mainPlayer;
+        static Player* m_mainPlayer;
 };
 
 #define World WorldInstance::Instance()
