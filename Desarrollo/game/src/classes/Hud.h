@@ -3,12 +3,15 @@
 
 #include <Drawable.h>
 #include <GraphicsEngine.h>
+#include <Player.h>
+
 
 
 class Hud : public Drawable
 {
     public:
-        Hud();
+
+        Hud(dwe::GraphicsEngine::GETexture* t);
         virtual ~Hud();
         virtual void update(){};
         virtual void render(){};

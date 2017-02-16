@@ -1,0 +1,74 @@
+{
+"elements" :[
+	{ "element-id": "Wall"  , "mesh": "media/pared01" }, 
+	{ "element-id": "Floor" , "mesh": "media/pared01" }, 
+	{ "element-id": "PlayerStart"  , "mesh": "media/dog" }
+	], 
+"levels": [
+	{
+		"level-id":0,
+		"level-name":"HALL",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":0, "y":0, "z":0 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall",
+				"position": { "x":20, "y":0, "z":-20 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall",
+				"position": { "x":30, "y":0, "z":0 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall",
+				"position": { "x":-30, "y":0, "z":0 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall",
+				"position": { "x":-20, "y":0, "z":-20 },
+				"rotation": { "x":0, "y":0, "z":0 }}
+		],
+		"initial-enemies": [
+			{ "element-id": "EmenySpam",
+				"position": { "x":0, "y":0, "z":10 },
+				"rotation": { "x":0, "y":0, "z":0 }}
+		],
+		"initial-consumable": [
+			{ "element-id": "Bullets",
+				"position": { "x":-27, "y":2, "z":0 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Health",
+				"position": { "x":26.1, "y":2, "z":-13.8 },
+				"rotation": { "x":0, "y":0, "z":0 }}
+		],
+		"initial-entity": [
+			{ "element-id": "PlayerStart",
+				"position": { "x":20.8, "y":2, "z":6.610001 },
+				"rotation": { "x":0, "y":0.1564345, "z":0 }}
+		]
+	},
+	{
+		"level-id":1,
+		"level-name":"AISLE01",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":0.2, "y":0, "z":-40 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall",
+				"position": { "x":0.2, "y":0, "z":-60 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall",
+				"position": { "x":10.2, "y":0, "z":-40 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall",
+				"position": { "x":-9.8, "y":0, "z":-40 },
+				"rotation": { "x":0, "y":0, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+			{ "element-id": "Health",
+				"position": { "x":-2.5, "y":2, "z":-53.8 },
+				"rotation": { "x":0, "y":0, "z":0 }}
+		],
+		"initial-entity": [
+		]
+	}
+]}

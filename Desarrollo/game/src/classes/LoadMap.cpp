@@ -1,13 +1,47 @@
 #include "LoadMap.h"
 #include "GraphicsEngine.h"
 #include "ScenaryElement.h"
-
+#include <fstream> //Lectura de ficheros
+#include <document.h> //ES UN .H de rapidJSON
+using namespace rapidjson;
 
 LoadMap::LoadMap()
 {
 
     suelo = GEInstance->createNode("media/suelo");
     suelo->setPosition(dwe::vec3f(0,0,0));
+
+
+    const char* json; //Aqui va a ir todo el archivo
+    std::string allText = "";
+
+    //FICHERO
+    ifstream fichero ("unityText.json", ios::in | ios::app | ios::binary); //Abro fichero
+    if(fichero.is_open()){
+        std::string line;
+
+        while( getline(fichero, line)){
+            allText += line; //Inserto todas las lineas en un string
+        }
+        fichero.close();
+    }
+
+    json = allText.c_str(); //meter string a json
+
+    //RAPIDJSON
+    Document document; //Creacion de documento para rapidJSON
+    if (document.Parse(json).HasParseError() == false) //coger el json y ver si es correcto
+    {
+        const Value& elements = document["elements"]; //Referencia a todos los "elements"
+        for(int i=0; i < elements.Size(); i++){
+            const Value& e = elements[i]; //Recorrer cada "element"
+            cout << e["mesh"].GetString() << endl;
+            ScenaryElement* wall20 = GEInstance->createWall(e["mesh"].GetString());
+            wall20->setPosition(dwe::vec3f(200,   20, 80));
+        }
+    }
+
+/*
 
     wall01 = GEInstance->createWall("media/pared01");wall01->setPosition(dwe::vec3f(-35,   36.3, 135.9));
     wall02 = GEInstance->createWall("media/pared02");wall02->setPosition(dwe::vec3f(120.4, 36.3, 135.9));
@@ -21,6 +55,7 @@ LoadMap::LoadMap()
     wall10 = GEInstance->createWall("media/pared10");wall10->setPosition(dwe::vec3f(-84.4, 36.3, 269.9));
     wall11 = GEInstance->createWall("media/pared11");wall11->setPosition(dwe::vec3f(170.8, 36.3, 269.6));
     wall12 = GEInstance->createWall("media/pared12");wall12->setPosition(dwe::vec3f(43.1,  36.3, 399.8));
+*/
 }
 
 LoadMap::~LoadMap()
