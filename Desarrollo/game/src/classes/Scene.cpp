@@ -140,12 +140,17 @@ Scene::~Scene()
 
 void Scene::Update()
 {
+    if(enemyHumanoid && enemyHumanoid->getHealth()<=0){
+        NetInstance->removeNetEnemy(enemyHumanoid);
+        delete enemyHumanoid;
+        enemyHumanoid=0;
+    }
+
     for(int cont=0; cont<NUM_ENTITIES; cont++)
         entities[cont]->update();
     GEInstance->updateCamera(mainPlayer->getPosition());
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
-    selector1->run();  // Run Behavior Tree
-
+    if(enemyHumanoid)selector1->run();  // Run Behavior Tree
     // comprobamos si dispara
     if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
         NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
@@ -228,6 +233,7 @@ void Scene::updateProjectiles()
         m_projectiles[i]->update();
         if (m_projectiles[i]->getCollides())
         {
+            cout<<"colision"<<endl;
             delete m_projectiles[i];
             m_projectiles.erase(m_projectiles.begin()+i);
         }
@@ -285,6 +291,12 @@ void Scene::updatePlayerWeapons(Player* mainplayer, Firearm** weapons)
     {
         weapons[2]->setPosition(dwe::vec3f(mainplayer->getPosition().x - 20, 20, mainplayer->getPosition().z));
     }
+}
+
+////////////
+void Scene::createEnemyHumanoid(dwe::vec3f origin, float angle)
+{
+   // m_enemies.push_back(GEInstance->createEnemyHumanoid(origin, angle));
 }
 
 ////////////
