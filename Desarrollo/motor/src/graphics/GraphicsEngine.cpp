@@ -399,6 +399,13 @@ unsigned int dwe::GraphicNode::addChild(dwe::GraphicNode* n)
     return (m_childs.size() - 1);  // devolvemos el indice añadido
 }
 
+///////////////////////////////
+unsigned int dwe::GraphicNode::removeChild(dwe::GraphicNode* n)
+{
+    m_childs.erase(std::remove(m_childs.begin(), m_childs.end(), n), m_childs.end());
+    return (m_childs.size()); // Devolvemos cantidad de hijos
+}
+
 ///////////////////////
 void dwe::GraphicNode::draw()
 {
