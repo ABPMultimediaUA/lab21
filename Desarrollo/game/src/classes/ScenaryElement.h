@@ -20,6 +20,7 @@ class ScenaryElement : public Drawable, public EntityPhysics
     protected:
 
     private:
+        int rotationY;
 };
 
 #endif // SCENARYELEMENT_H

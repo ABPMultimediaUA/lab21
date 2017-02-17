@@ -69,7 +69,7 @@ void Scene::Init()
     // Creación de jugador
 
     mainPlayer = GEInstance->createMainPlayer(gun);
-    mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,-80));
+    mainPlayer->setPosition(dwe::vec3f(0-((NetInstance->getParticipantOrder()-1)*30),24,-250));
     mainPlayer->setLife(100);
     World->setMainPlayer(mainPlayer);
     cout << "Barra de vida: " << mainPlayer->getLife() << endl;

@@ -261,8 +261,8 @@ namespace dwe
         sf::Text            m_sfmessageLine[MAX_MESSAGE_LINES];
         *****/
 
-        static const int _screenWidth  = 800;
-        static const int _screenHeight = 600;
+        static const int _screenWidth  = 1200;
+        static const int _screenHeight = 800;
 
         irr::IrrlichtDevice*            m_device;
         irr::video::IVideoDriver*       m_driver;
