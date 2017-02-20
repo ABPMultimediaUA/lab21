@@ -205,7 +205,7 @@ namespace dwe
             ~GraphicNode() {};
 
             unsigned int addChild(GraphicNode* n);
-            //unsigned int removeChild(GraphicNode* n);
+            unsigned int removeChild(GraphicNode* n);
 
             bool setEntity(Entity* e);
             Entity* getEntity();

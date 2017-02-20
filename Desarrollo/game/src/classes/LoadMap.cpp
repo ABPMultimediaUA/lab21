@@ -77,6 +77,22 @@ LoadMap::LoadMap()
                     ScenaryElement* wall = GEInstance->createWall("media/unityPared02");
                     wall->setRotation(dwe::vec3f(rx,ry,rz));
                     wall->setPosition(dwe::vec3f(tx,ty,tz));
+                }else if(id=="Wall_01_50m"){
+                    ScenaryElement* wall = GEInstance->createWall("media/unityPared01_50m");
+                    wall->setRotation(dwe::vec3f(rx,ry,rz));
+                    wall->setPosition(dwe::vec3f(tx,ty,tz));
+                }else if(id=="Wall_01_100m"){
+                    ScenaryElement* wall = GEInstance->createWall("media/unityPared01_100m");
+                    wall->setRotation(dwe::vec3f(rx,ry,rz));
+                    wall->setPosition(dwe::vec3f(tx,ty,tz));
+                }else if(id=="Wall_01_200m"){
+                    ScenaryElement* wall = GEInstance->createWall("media/unityPared01_200m");
+                    wall->setRotation(dwe::vec3f(rx,ry,rz));
+                    wall->setPosition(dwe::vec3f(tx,ty,tz));
+                }else if(id=="Wall_01_300m"){
+                    ScenaryElement* wall = GEInstance->createWall("media/unityPared01_300m");
+                    wall->setRotation(dwe::vec3f(rx,ry,rz));
+                    wall->setPosition(dwe::vec3f(tx,ty,tz));
                 }
 
                 // ScenaryElement* wall20 = GEInstance->createWall(e["mesh"].GetString());
