@@ -116,7 +116,7 @@ void Scene::Init()
 
     enemyHumanoid = GEInstance->createEnemyHumanoid();
     //enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
-    enemyHumanoid->setPosition(dwe::vec3f(300,24,100));
+    enemyHumanoid->setPosition(dwe::vec3f(300,24,150));
     enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
     m_enemies.push_back(enemyHumanoid);
 
@@ -143,6 +143,32 @@ void Scene::Init()
     sequence1->addChild(perc);
     sequence1->addChild(path);
 
+    /////TERCER ENEMIGO
+
+    enemyHumanoid = GEInstance->createEnemyHumanoid();
+    //enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
+    enemyHumanoid->setPosition(dwe::vec3f(50.f, 24.f, 350.f));
+    enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
+    m_enemies.push_back(enemyHumanoid);
+
+    //Creación de objeto perception
+
+    /**** Special nodes ****/
+    selector3 = new Selector;
+    sequence1 = new Sequence;
+    /**** Tasks ****/
+    path = new PathplanningTask(pathp, mainPlayer, enemyHumanoid, fovnode);
+    perc = new PerceptionTask(percep, mainPlayer, enemyHumanoid, fovnode, path);
+    patrol = new PatrolTask(enemyHumanoid, fovnode);
+    /**** Creating the tree ****/
+
+    selector3->addChild(sequence1);
+    selector3->addChild(patrol);
+
+    sequence1->addChild(perc);
+    sequence1->addChild(path);
+
+
     //Joint try
     joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
     joint_try->setPosition(dwe::vec3f(0,10,120));
@@ -167,6 +193,51 @@ void Scene::Init()
 Scene::~Scene()
 {
     //dtor
+    /*for(int i=0; i<NUM_ENTITIES; i++){
+        delete entities[i];
+    }
+    delete entities;
+    for(int i=0; i<1; i++){
+        delete sector[i];
+    }
+    delete sector;
+    for(int i=0; i<3; i++){
+        delete triggers[i];
+    }
+    delete triggers;
+    delete llave;
+    delete mainPlayer;
+    delete enemyDog;
+    delete fovnode;
+    delete percep;
+    delete pathp;
+    delete selector1;
+    delete selector2;
+    delete selector3;
+    delete sequence1;
+    delete path;
+    delete perc;
+    delete patrol;
+    delete gun;
+    delete shotgun;
+    delete rifle;
+    for(int i=0; i<m_enemies.size(); i++){
+        enemyHumanoid=(Humanoid*)m_enemies.at(i);
+        m_enemies.erase(m_enemies.begin()+i);
+        NetInstance->removeNetEnemy(enemyHumanoid);
+        delete enemyHumanoid;
+    }
+    for(int i=0; i<m_projectiles.size(); i++){
+        m_projectiles.erase(m_projectiles.begin()+i);
+    }
+    for(int i=0; i<m_consumables.size(); i++){
+        m_consumables.erase(m_consumables.begin()+i);
+    }
+    delete joint_try;
+    delete bjoint;
+    delete camera1;
+    cout<<"He conseguido borrar tooodo"<<endl;
+    */
 }
 
 void Scene::Update()
@@ -193,6 +264,7 @@ void Scene::Update()
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
     if(enemyHumanoid)selector1->run();  // Run Behavior Tree
     if(enemyHumanoid)selector2->run();
+    if(enemyHumanoid)selector3->run();
     // comprobamos si dispara
 
     if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){

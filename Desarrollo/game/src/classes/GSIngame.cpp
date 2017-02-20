@@ -14,7 +14,6 @@ GSIngame::GSIngame(){
     cout<<"Cargado el mapa"<<endl;
     WorldInstance::Instance();
     timeStamp = World->getTimeElapsed();
-    Scene::Instance();
     Scene::Instance()->Init();
 }
 
@@ -62,4 +61,10 @@ void GSIngame::Render(){
         GEInstance->draw();
     }
 }
-GSIngame::~GSIngame(){}
+GSIngame::~GSIngame(){
+    /*
+    delete Scene::Instance();
+    delete LoadMap::getInstance();
+    cout<<"He borrado el mapa"<<endl;
+    */
+}

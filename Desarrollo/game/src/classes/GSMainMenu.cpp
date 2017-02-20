@@ -86,7 +86,6 @@ void GSMainMenu::HandleEvents(){
 
 void GSMainMenu::Update(){
     std::string type;
-
 	/****************************/
     //getline(cin, type);
     if(GEInstance->receiver.isKeyDown(KEY_KEY_1)){
