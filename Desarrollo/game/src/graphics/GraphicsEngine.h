@@ -255,14 +255,17 @@ namespace dwe
 
          } ;
 
+         int get_screenWidth(){return _screenWidth;};
+         int get_screenHeight(){return _screenHeight;};
+
     private:
         /*****
         sf::Font            m_font;
         sf::Text            m_sfmessageLine[MAX_MESSAGE_LINES];
         *****/
 
-        static const int _screenWidth  = 1200;
-        static const int _screenHeight = 800;
+        static const int _screenWidth  = 1000;
+        static const int _screenHeight = 700;
 
         irr::IrrlichtDevice*            m_device;
         irr::video::IVideoDriver*       m_driver;
