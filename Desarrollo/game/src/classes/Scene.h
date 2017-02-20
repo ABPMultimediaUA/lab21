@@ -79,6 +79,7 @@ class Scene
         Perception* percep;
         Pathplanning* pathp;
         Selector* selector1;
+        Selector* selector2;
         Sequence *sequence1;
         PathplanningTask* path;
         PerceptionTask* perc;

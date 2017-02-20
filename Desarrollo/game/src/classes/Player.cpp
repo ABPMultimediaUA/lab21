@@ -21,6 +21,7 @@ Player::Player(Gun* gun)
     m_ammo[0] = 10;
     m_ammo[1] = 0;
     m_ammo[2] = 0;
+    m_health=10;
 
 }
 
@@ -243,14 +244,9 @@ void Player::setMKeys(int id){  m_mKeys[id]=true; }
 bool Player::getMKey(int n){ return m_mKeys[n]; }
 
 ////////////
-int Player::getLife() { return m_life; }
-void Player::setLife(int n) { m_life = n; }
+int Player::getHealth() { return m_health; }
+void Player::setHealth(int n) { m_health = n; }
 
-
-/////////////
-void Player::onBeginContact(EntityPhysics* otherObject)
-{
-}
 
 /////////////
 int Player::getNumMedkits()
@@ -297,8 +293,15 @@ void Player::consumeMedkit()
     {
         m_medkits -= 1;
         this->setHealth(100);
-        cout << "Vida recuperada: " << this->getLife() << endl;
+        cout << "Vida recuperada: " << this->getHealth() << endl;
     }
 
     cout << m_medkits << endl;
+}
+/////////////
+void Player::onBeginContact(EntityPhysics* otherObject)
+{
+    if((otherObject && otherObject->getClassID()==CLASS_ENEMY_ID)){
+        m_health-=5;
+    }
 }
