@@ -1,14 +1,14 @@
 #ifndef WAYPOINT_H
 #define WAYPOINT_H
 
-
+/*
 class Waypoint
 {
     public:
 
         Waypoint(){};
 
-        Waypoint(int idx, dwe::vec3f);
+        //Waypoint(int idx, dwe::vec3f);
 
         virtual ~Waypoint();
 
@@ -25,5 +25,5 @@ class Waypoint
         int index;
         dwe::vec3f position;
 };
-
+*/
 #endif // WAYPOINT_H

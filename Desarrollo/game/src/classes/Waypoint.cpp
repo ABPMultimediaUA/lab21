@@ -1,5 +1,5 @@
 #include "Waypoint.h"
-
+/*
 Waypoint::Waypoint()
 {
     //ctor
@@ -34,3 +34,4 @@ dwe::vec2f Waypoint::getPosition()
 {
     return position;
 }
+*/

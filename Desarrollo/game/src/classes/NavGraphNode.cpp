@@ -1,6 +1,6 @@
 #include "NavGraphNode.h"
 
-NavGraphNode::NavGraphNode()
+/*NavGraphNode::NavGraphNode()
 {
     //ctor
 }
@@ -34,3 +34,4 @@ dwe::vec2f NavGraphNode::getPosition()
 {
     return position;
 }
+*/

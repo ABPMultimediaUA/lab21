@@ -1,6 +1,6 @@
 #ifndef NAVGRAPHNODE_H
 #define NAVGRAPHNODE_H
-
+/*
 class NavGraphNode
 {
     public:
@@ -25,5 +25,5 @@ class NavGraphNode
         dwe::vec3f position;
 
 };
-
+*/
 #endif // NAVGRAPHNODE_H
