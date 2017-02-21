@@ -3,9 +3,12 @@
 
 #define GLEW_STATIC
 
+#include <math.h>
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <glm/ext.hpp>
 
 #include <string>
 #include <list>
@@ -153,7 +156,7 @@ namespace dwe
 
             void identity();
             void load(glm::mat4 m);
-            void traspose();
+            void transpose();
 
             void translate(vec3f t);
             void translate(float x, float y, float z);
@@ -161,8 +164,13 @@ namespace dwe
             void rotate(vec3f r);
             void rotate(float x, float y, float z);
 
+            void scale(vec3f s);
+            void scale(float x, float y, float z);
+
             void beginDraw();
             void endDraw();
+
+            glm::mat4 getMatrix();
 
         private:
             glm::mat4   m_matrix;

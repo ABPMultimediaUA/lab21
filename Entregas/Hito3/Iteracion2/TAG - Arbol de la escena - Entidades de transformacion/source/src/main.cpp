@@ -8,7 +8,7 @@
 
 #include "Scene.h"
 #include "GraphicsEngine.h"
-
+#include "Player.h"
 
 using namespace dwe;
 
@@ -41,15 +41,15 @@ int main()
     nodoRoot.addChild(&nodo03);
 
     dwe::GraphicNode nodo04;
-    dwe::EMesh entity04;
-    entity04.m_cadena = "04";
-    nodo04.setEntity(&entity04);
+    dwe::ETransform transform04;
+    transform04.m_cadena = "04 - MATRIX";
+    nodo04.setEntity(&transform04);
     nodo01.addChild(&nodo04);
 
     dwe::GraphicNode nodo05;
-    dwe::EMesh entity05;
-    entity05.m_cadena = "05";
-    nodo05.setEntity(&entity05);
+    dwe::ETransform transform05;
+    transform05.m_cadena = "05 - MATRIX";
+    nodo05.setEntity(&transform05);
     nodo01.addChild(&nodo05);
 
     dwe::GraphicNode nodo06;
@@ -77,9 +77,9 @@ int main()
     nodo02.addChild(&nodo09);
 
     dwe::GraphicNode nodo10;
-    dwe::EMesh entity10;
-    entity10.m_cadena = "10";
-    nodo10.setEntity(&entity10);
+    dwe::ETransform transform10;
+    transform10.m_cadena = "10 - MATRIX";
+    nodo10.setEntity(&transform10);
     nodo03.addChild(&nodo10);
 
     dwe::GraphicNode nodo11;
@@ -109,6 +109,17 @@ int main()
     transform03.translate(dwe::vec3f(2, 3, 4));
 
     nodoRoot.draw();
+
+    //return 0;
+
+    GEInstance->init();
+
+    Player* mainPlayer = GEInstance->createMainPlayer();
+
+    GEInstance->addMessageLine("Gestor de ventanas con SFML");
+    GEInstance->addMessageLine("Carga de modelos con ASSIMP");
+    GEInstance->addMessageLine("Rotar con teclas A D W S");
+    GEInstance->addMessageLine("Movimiento con ratón");
 
     //               Root
     //          /      |     \
@@ -147,6 +158,27 @@ int main()
     // End Root
     /////////////////////////////////////
 
+    while (GEInstance->isRunning())
+    {
+        dwe::vec3f rotation = mainPlayer->getRotation();
+        if(GEInstance->receiver.isKeyDown(KEY_KEY_A))
+            rotation.y -= 0.0005;
+        else if(GEInstance->receiver.isKeyDown(KEY_KEY_D))
+            rotation.y += 0.0005;
+        else if(GEInstance->receiver.isKeyDown(KEY_KEY_W))
+            rotation.x -= 0.0005;
+        else if(GEInstance->receiver.isKeyDown(KEY_KEY_S))
+            rotation.x += 0.0005;
+        mainPlayer->setRotation(rotation);
+
+        dwe::vec3f position = mainPlayer->getPosition();
+        dwe::vec2f mousePos = GEInstance->getMousePosition();
+        position.x = (mousePos.x - SCREEN_WIDTH/2)/80.0;
+        position.y = (mousePos.y + SCREEN_HEIGHT/2)/80.0;
+        mainPlayer->setPosition(position);
+
+        GEInstance->draw();
+    }
 
     return 0;
 }
