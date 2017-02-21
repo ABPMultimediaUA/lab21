@@ -18,7 +18,7 @@ Scene* Scene::Instance()
 }
 
 Scene::Scene()
-{
+{cout<<"dfasudka"<<endl;
     //ctor
 
 }
@@ -94,7 +94,7 @@ void Scene::Init()
     fovnode->setPosition(enemyHumanoid->getPosition());
     fovnode->setRotation(enemyHumanoid->getRotation());
 
-
+cout<<"dfasudka"<<endl;
     //Creación de objeto perception
     percep = new Perception();
     pathp = new Pathplanning();
@@ -190,6 +190,53 @@ void Scene::Init()
     timeLastProjectil = 0;
 }
 
+void Scene::Destroy(){
+    for(int i=0; i<NUM_ENTITIES; i++){
+        delete entities[i];
+    }
+    delete[] entities;
+    for(int i=0; i<1; i++){
+        delete sector[i];
+    }
+    delete[] sector;
+    for(int i=0; i<3; i++){
+        delete triggers[i];
+    }
+    delete[] triggers;
+    delete llave;
+    delete mainPlayer;
+    delete enemyDog;
+    delete fovnode;
+    delete percep;
+    delete pathp;
+    delete selector1;
+    delete selector2;
+    delete selector3;
+    delete sequence1;
+    delete path;
+    delete perc;
+    delete patrol;
+    delete gun;
+    delete shotgun;
+    delete rifle;
+    for(int i=0; i<m_enemies.size(); i++){
+        enemyHumanoid=(Humanoid*)m_enemies.at(i);
+        m_enemies.erase(m_enemies.begin()+i);
+        NetInstance->removeNetEnemy(enemyHumanoid);
+        delete enemyHumanoid;
+    }
+    for(int i=0; i<m_projectiles.size(); i++){
+        m_projectiles.erase(m_projectiles.begin()+i);
+    }
+    for(int i=0; i<m_consumables.size(); i++){
+        m_consumables.erase(m_consumables.begin()+i);
+    }
+    delete joint_try;
+    delete bjoint;
+    //delete camera1;
+    cout<<"He conseguido borrar tooodo"<<endl;
+}
+
 Scene::~Scene()
 {
 
@@ -197,15 +244,15 @@ Scene::~Scene()
     for(int i=0; i<NUM_ENTITIES; i++){
         delete entities[i];
     }
-    delete entities;
+    delete[] entities;
     for(int i=0; i<1; i++){
         delete sector[i];
     }
-    delete sector;
+    delete[] sector;
     for(int i=0; i<3; i++){
         delete triggers[i];
     }
-    delete triggers;
+    delete[] triggers;
     delete llave;
     delete mainPlayer;
     delete enemyDog;
@@ -251,6 +298,7 @@ void Scene::Update()
             Enemy* enemy=m_enemies.at(i);
             if(enemy && enemy->getHealth()<=0){
                 m_enemies.erase(m_enemies.begin()+i);
+
                 NetInstance->removeNetEnemy(enemy);
                 delete enemy;
                 enemy=0;

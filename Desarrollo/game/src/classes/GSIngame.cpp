@@ -10,13 +10,7 @@
 using namespace std;
 
 GSIngame::GSIngame(){
-    page=0;
-    m=false;
-    LoadMap::getInstance();
-    cout<<"Cargado el mapa"<<endl;
-    WorldInstance::Instance();
-    timeStamp = World->getTimeElapsed();
-    Scene::Instance()->Init();
+
 }
 
 GSIngame* GSIngame::getInstance()
@@ -24,6 +18,16 @@ GSIngame* GSIngame::getInstance()
   static GSIngame instance;
 
   return &instance;
+}
+
+void GSIngame::Init(){
+    page=0;
+    m=false;
+    LoadMap::getInstance()->Init();
+    cout<<"Cargado el mapa"<<endl;
+    WorldInstance::Instance();
+    timeStamp = World->getTimeElapsed();
+    Scene::Instance()->Init();
 }
 
 void GSIngame::Update(){
@@ -49,9 +53,7 @@ void GSIngame::HandleEvents(){
     else if(GEInstance->receiver.isKeyDown(KEY_ESCAPE))
     {
         Game::getInstance()->setRunning(false);
-        NetInstance->close();
-        GEInstance->close();
-        delete GEInstance;
+        cout<<"maafns1ertyujkl1"<<endl;
         //GEInstance=0;
 
         //return 0;
@@ -65,13 +67,11 @@ void GSIngame::Render(){
             cout<<"Pulsa F10 para pausar el juego"<<endl;
             m=true;
         }
-        if(Game::getInstance()->getRunning())GEInstance->draw();
+        GEInstance->draw();
     }
 }
 GSIngame::~GSIngame(){
 
-    delete Scene::Instance();
-    delete LoadMap::getInstance();
     cout<<"He borrado el mapa"<<endl;
 
 }

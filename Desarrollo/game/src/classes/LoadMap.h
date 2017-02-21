@@ -8,6 +8,8 @@ class LoadMap {
         static LoadMap* getInstance();
         LoadMap();
         ~LoadMap();
+        void Init();
+        void Destroy();
     private:
         // Suelo
         dwe::Node* suelo;

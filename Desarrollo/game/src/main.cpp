@@ -9,9 +9,11 @@ int main()
     Game::getInstance()->ChangeState(GSMainMenu::getInstance());
     GEInstance->init();
     Game::getInstance()->Run();
-    NetInstance->close();
-    delete GSIngame::getInstance();
-    delete GSMainMenu::getInstance();
+    //NetInstance->close();
+    //delete GSIngame::getInstance();
+    cout<<"dustII"<<endl;
+    //delete GSMainMenu::getInstance();
+    cout<<"mirage"<<endl;
 
 	return 0;
 

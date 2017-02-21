@@ -39,6 +39,7 @@ class Scene
         virtual ~Scene();
 
         void Init();
+        void Destroy();
 
         void Update();
 
