@@ -20,18 +20,7 @@ class LoadMap {
 
 
         // Paredes
-        ScenaryElement* wall01;
-        ScenaryElement* wall02;
-        ScenaryElement* wall03;
-        ScenaryElement* wall04;
-        ScenaryElement* wall05;
-        ScenaryElement* wall06;
-        ScenaryElement* wall07;
-        ScenaryElement* wall08;
-        ScenaryElement* wall09;
-        ScenaryElement* wall10;
-        ScenaryElement* wall11;
-        ScenaryElement* wall12;
+        ScenaryElement* wall;
 };
 
 #endif // LOADMAP_H

@@ -7,180 +7,46 @@
 "levels": [
 	{
 		"level-id":0,
-		"level-name":"AISLE01 (3)",
-		"static-elements": [
-			{ "element-id": "Wall_02",
-				"position": { "x":-960, "y":0, "z":-1350 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":-860, "y":0, "z":-1300 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":-860, "y":0, "z":-1400 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Floor",
-				"position": { "x":-860, "y":0, "z":-1350 },
-				"rotation": { "x":0, "y":90, "z":0 }}
-		],
-		"initial-enemies": [
-		],
-		"initial-consumable": [
-			{ "element-id": "Health",
-				"position": { "x":-899.5, "y":10, "z":-1348 },
-				"rotation": { "x":0, "y":90, "z":0 }}
-		],
-		"initial-entity": [
-		]
-
-	},
-	{
-		"level-id":1,
-		"level-name":"AISLE01 (4)",
-		"static-elements": [
-			{ "element-id": "Wall_01",
-				"position": { "x":-660.0001, "y":0, "z":-1300 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":-660.0001, "y":0, "z":-1400 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Floor",
-				"position": { "x":-660.0001, "y":0, "z":-1350 },
-				"rotation": { "x":0, "y":90, "z":0 }}
-		],
-		"initial-enemies": [
-		],
-		"initial-consumable": [
-			{ "element-id": "Health",
-				"position": { "x":-699.5001, "y":10, "z":-1348 },
-				"rotation": { "x":0, "y":90, "z":0 }}
-		],
-		"initial-entity": [
-		]
-
-	},
-	{
-		"level-id":2,
-		"level-name":"AISLE01 (5)",
-		"static-elements": [
-			{ "element-id": "Wall_01",
-				"position": { "x":-460.0001, "y":0, "z":-1300 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":-460.0001, "y":0, "z":-1400 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Floor",
-				"position": { "x":-460.0001, "y":0, "z":-1350 },
-				"rotation": { "x":0, "y":90, "z":0 }}
-		],
-		"initial-enemies": [
-		],
-		"initial-consumable": [
-			{ "element-id": "Health",
-				"position": { "x":-499.5001, "y":10, "z":-1348 },
-				"rotation": { "x":0, "y":90, "z":0 }}
-		],
-		"initial-entity": [
-		]
-
-	},
-	{
-		"level-id":3,
-		"level-name":"AISLE01 (6)",
-		"static-elements": [
-			{ "element-id": "Wall_01",
-				"position": { "x":-260.0001, "y":0, "z":-1300 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":-260.0001, "y":0, "z":-1400 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Floor",
-				"position": { "x":-260.0001, "y":0, "z":-1350 },
-				"rotation": { "x":0, "y":90, "z":0 }}
-		],
-		"initial-enemies": [
-		],
-		"initial-consumable": [
-			{ "element-id": "Health",
-				"position": { "x":-299.5001, "y":10, "z":-1348 },
-				"rotation": { "x":0, "y":90, "z":0 }}
-		],
-		"initial-entity": [
-		]
-
-	},
-	{
-		"level-id":4,
-		"level-name":"AISLE01 (7)",
-		"static-elements": [
-			{ "element-id": "Wall_01",
-				"position": { "x":-60.00009, "y":0, "z":-1400 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Floor",
-				"position": { "x":-60.00009, "y":0, "z":-1350 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_02",
-				"position": { "x":-110.0001, "y":0, "z":-1300 },
-				"rotation": { "x":0, "y":180, "z":0 }},
-			{ "element-id": "Wall_02",
-				"position": { "x":49.99997, "y":0, "z":-1350 },
-				"rotation": { "x":0, "y":90, "z":0 }}
-		],
-		"initial-enemies": [
-		],
-		"initial-consumable": [
-			{ "element-id": "Health",
-				"position": { "x":-99.50012, "y":10, "z":-1348 },
-				"rotation": { "x":0, "y":90, "z":0 }}
-		],
-		"initial-entity": [
-		]
-
-	},
-	{
-		"level-id":5,
 		"level-name":"HALL_PRINCIPAL",
 		"static-elements": [
 			{ "element-id": "Floor",
-				"position": { "x":0, "y":0, "z":0 },
+				"position": { "x":0, "y":0, "z":-200 },
 				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_200m",
-				"position": { "x":250, "y":0, "z":-500 },
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-700, "y":0, "z":-500 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_200m",
 				"position": { "x":-250, "y":0, "z":-500 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_200m",
-				"position": { "x":800, "y":0, "z":-100 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01_200m",
-				"position": { "x":-800, "y":0, "z":-100 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01_300m",
-				"position": { "x":500, "y":0, "z":500 },
+				"position": { "x":250, "y":0, "z":-500 },
 				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-300, "y":0, "z":500 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-700, "y":0, "z":500 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-800, "y":0, "z":400 },
-				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":700, "y":0, "z":-500 },
 				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":800, "y":0, "z":400 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01_50m",
-				"position": { "x":-650, "y":0, "z":-500 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_50m",
-				"position": { "x":-800, "y":0, "z":-450 },
-				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_50m",
 				"position": { "x":800, "y":0, "z":-450 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":800, "y":0, "z":-100 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":700, "y":0, "z":100 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":300, "y":0, "z":100 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":-300, "y":0, "z":100 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-700, "y":0, "z":100 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":-800, "y":0, "z":-100 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-800, "y":0, "z":-450 },
 				"rotation": { "x":0, "y":90, "z":0 }}
 		],
 		"initial-enemies": [
@@ -203,70 +69,196 @@
 		]
 	},
 	{
-		"level-id":6,
-		"level-name":"HALL",
+		"level-id":1,
+		"level-name":"Pasillo_Inicial_01",
 		"static-elements": [
 			{ "element-id": "Floor",
-				"position": { "x":0, "y":0, "z":-1000 },
+				"position": { "x":-950, "y":0, "z":-1150 },
 				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":150, "y":0, "z":-1000 },
+			{ "element-id": "Wall_01_300m",
+				"position": { "x":-950, "y":0, "z":-1200 },
 				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":-150, "y":0, "z":-1000 },
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-1250, "y":0, "z":-1150 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1150, "y":0, "z":-1100 },
 				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_02",
-				"position": { "x":100, "y":0, "z":-1100 },
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-900, "y":0, "z":-1100 },
 				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_02",
-				"position": { "x":-100, "y":0, "z":-1100 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_02",
-				"position": { "x":100, "y":0, "z":-900 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_02",
-				"position": { "x":-100, "y":0, "z":-900 },
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-750, "y":0, "z":-1100 },
 				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-enemies": [
-			{ "element-id": "EmenySpam",
-				"position": { "x":0, "y":0, "z":-920 },
-				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
-			{ "element-id": "Health",
-				"position": { "x":123.5, "y":10, "z":-1080 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Health",
-				"position": { "x":-112.5, "y":10, "z":-966.2 },
-				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
-			{ "element-id": "PlayerStart",
-				"position": { "x":120, "y":10, "z":-949.5 },
-				"rotation": { "x":0, "y":18, "z":0 }}
 		]
+
+	},
+	{
+		"level-id":2,
+		"level-name":"Sala_Seguridad",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-1000, "y":0, "z":-1000 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1200, "y":0, "z":-1000 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-800, "y":0, "z":-1000 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":-1000, "y":0, "z":-900 },
+				"rotation": { "x":0, "y":0, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":3,
+		"level-name":"Pasillo_Inicial_02",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-150, "y":0, "z":-1150 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_300m",
+				"position": { "x":-350, "y":0, "z":-1100 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_300m",
+				"position": { "x":-350, "y":0, "z":-1200 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":350, "y":0, "z":-1150 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":250, "y":0, "z":-1200 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":250, "y":0, "z":-1100 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":100, "y":0, "z":-1200 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":100, "y":0, "z":-1100 },
+				"rotation": { "x":0, "y":180, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":4,
+		"level-name":"Sala_Seguridad (1)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":0, "y":0, "z":-1300 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":200, "y":0, "z":-1300 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-200, "y":0, "z":-1300 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":0, "y":0, "z":-1400 },
+				"rotation": { "x":0, "y":180, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":5,
+		"level-name":"Pasillo_Inicial_03",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":0, "y":0, "z":-800 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_300m",
+				"position": { "x":-50.00001, "y":0, "z":-800 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_300m",
+				"position": { "x":50.00001, "y":0, "z":-800 },
+				"rotation": { "x":0, "y":90, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":6,
+		"level-name":"Baño_IZQ",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-450, "y":0, "z":-600 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-650, "y":0, "z":-600 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":-450, "y":0, "z":-700 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-250, "y":0, "z":-600 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-450, "y":0, "z":-550 },
+				"rotation": { "x":0, "y":270, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
 	},
 	{
 		"level-id":7,
-		"level-name":"AISLE01",
+		"level-name":"Baño_DER",
 		"static-elements": [
-			{ "element-id": "Wall_01",
-				"position": { "x":-50, "y":0, "z":-1210 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":50, "y":0, "z":-1210 },
-				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Floor",
-				"position": { "x":0, "y":0, "z":-1210 },
-				"rotation": { "x":0, "y":0, "z":0 }}
+				"position": { "x":450, "y":0, "z":-600 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":250, "y":0, "z":-600 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":450, "y":0, "z":-700 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":650, "y":0, "z":-600 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":450, "y":0, "z":-550 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
-			{ "element-id": "Health",
-				"position": { "x":-2, "y":10, "z":-1249.5 },
-				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 		]
@@ -274,24 +266,24 @@
 	},
 	{
 		"level-id":8,
-		"level-name":"AISLE01 (1)",
+		"level-name":"Pasillo_Corto_Habitaciones",
 		"static-elements": [
-			{ "element-id": "Wall_01",
-				"position": { "x":-50, "y":0, "z":-610 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":50, "y":0, "z":-610 },
-				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Floor",
-				"position": { "x":0, "y":0, "z":-610 },
+				"position": { "x":1000, "y":0, "z":-350 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":849.9999, "y":0, "z":-400 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":1100, "y":0, "z":-400 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":1000, "y":0, "z":-300 },
 				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
-			{ "element-id": "Health",
-				"position": { "x":-2, "y":10, "z":-649.5 },
-				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 		]
@@ -299,24 +291,24 @@
 	},
 	{
 		"level-id":9,
-		"level-name":"AISLE01 (2)",
+		"level-name":"Pasillo_Corto_Habitaciones (1)",
 		"static-elements": [
-			{ "element-id": "Wall_01",
-				"position": { "x":-50, "y":0, "z":-810 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":50, "y":0, "z":-810 },
-				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Floor",
-				"position": { "x":0, "y":0, "z":-810 },
-				"rotation": { "x":0, "y":0, "z":0 }}
+				"position": { "x":950, "y":0, "z":-600 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":1000, "y":0, "z":-750 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":1000, "y":0, "z":-500 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":900, "y":0, "z":-600 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
-			{ "element-id": "Health",
-				"position": { "x":-2, "y":10, "z":-849.5 },
-				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 		]
@@ -324,24 +316,24 @@
 	},
 	{
 		"level-id":10,
-		"level-name":"PASILLO RELLENO 1",
+		"level-name":"Pasillo_Corto_Habitaciones (4)",
 		"static-elements": [
-			{ "element-id": "Wall_01",
-				"position": { "x":-800, "y":0, "z":-610 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":-700, "y":0, "z":-610 },
-				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Floor",
-				"position": { "x":-750, "y":0, "z":-610 },
-				"rotation": { "x":0, "y":0, "z":0 }}
+				"position": { "x":1200, "y":0, "z":-650 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":1350, "y":0, "z":-600 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":1100, "y":0, "z":-600 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":1200, "y":0, "z":-700 },
+				"rotation": { "x":0, "y":180, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
-			{ "element-id": "Health",
-				"position": { "x":-752, "y":10, "z":-649.5 },
-				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 		]
@@ -349,24 +341,21 @@
 	},
 	{
 		"level-id":11,
-		"level-name":"PASILLO RELLENO 2",
+		"level-name":"Pasillo_MUYcorto_01",
 		"static-elements": [
-			{ "element-id": "Wall_01",
-				"position": { "x":-800, "y":0, "z":-810 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":-700, "y":0, "z":-810 },
-				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Floor",
-				"position": { "x":-750, "y":0, "z":-810 },
-				"rotation": { "x":0, "y":0, "z":0 }}
+				"position": { "x":950, "y":0, "z":-900 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":1000, "y":0, "z":-950 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":900, "y":0, "z":-950.0001 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
-			{ "element-id": "Health",
-				"position": { "x":-752, "y":10, "z":-849.5 },
-				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 		]
@@ -374,87 +363,46 @@
 	},
 	{
 		"level-id":12,
-		"level-name":"SALA DE RELLENO",
+		"level-name":"Pasillo_MUYcorto_01 (1)",
 		"static-elements": [
 			{ "element-id": "Floor",
-				"position": { "x":-750, "y":0, "z":-1000 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":-600, "y":0, "z":-1000 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":-900, "y":0, "z":-1000 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_02",
-				"position": { "x":-850, "y":0, "z":-1100 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_02",
-				"position": { "x":-650, "y":0, "z":-900 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_02",
-				"position": { "x":-650, "y":0, "z":-1100 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_02",
-				"position": { "x":-850, "y":0, "z":-900 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_02",
-				"position": { "x":-750, "y":0, "z":-1100 },
-				"rotation": { "x":0, "y":0, "z":0 }}
+				"position": { "x":950, "y":0, "z":-1100 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":1000, "y":0, "z":-1150 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":900, "y":0, "z":-1150 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-enemies": [
-			{ "element-id": "EmenySpam",
-				"position": { "x":-750, "y":0, "z":-920 },
-				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
-			{ "element-id": "Health",
-				"position": { "x":-626.5, "y":10, "z":-1080 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Health",
-				"position": { "x":-862.5, "y":10, "z":-966.2 },
-				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
-			{ "element-id": "PlayerStart",
-				"position": { "x":-630, "y":10, "z":-949.5 },
-				"rotation": { "x":0, "y":18, "z":0 }}
 		]
+
 	},
 	{
 		"level-id":13,
-		"level-name":"BAÑO IZQUIERDA",
+		"level-name":"Pasillo_MUYcorto_01 (2)",
 		"static-elements": [
-			{ "element-id": "Wall_01",
-				"position": { "x":-600, "y":0, "z":-610 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":-200, "y":0, "z":-610 },
-				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Floor",
-				"position": { "x":-408, "y":0, "z":-661 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_02",
-				"position": { "x":-600, "y":0, "z":-750 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":-500, "y":0, "z":-800 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":-300, "y":0, "z":-800 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_02",
-				"position": { "x":-200, "y":0, "z":-750 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_02",
-				"position": { "x":-450, "y":0, "z":-550 },
-				"rotation": { "x":0, "y":90, "z":0 }}
+				"position": { "x":950, "y":0, "z":-1300 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":1000, "y":0, "z":-1350 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":900, "y":0, "z":-1350 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":950, "y":0, "z":-1400 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
-			{ "element-id": "Health",
-				"position": { "x":-552, "y":10, "z":-649.5 },
-				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 		]
@@ -462,39 +410,630 @@
 	},
 	{
 		"level-id":14,
-		"level-name":"BAÑO DERECHA",
+		"level-name":"Habitación_pequeña_01",
 		"static-elements": [
-			{ "element-id": "Wall_01",
-				"position": { "x":600, "y":0, "z":-610 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":200, "y":0, "z":-610 },
-				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Floor",
-				"position": { "x":408, "y":0, "z":-661 },
+				"position": { "x":800, "y":0, "z":-850 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":800, "y":0, "z":-950 },
 				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_02",
-				"position": { "x":600, "y":0, "z":-750 },
-				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":500, "y":0, "z":-800 },
-				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Wall_01",
-				"position": { "x":300, "y":0, "z":-800 },
-				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Wall_02",
-				"position": { "x":200, "y":0, "z":-750 },
-				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Wall_02",
-				"position": { "x":450, "y":0, "z":-550 },
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":800, "y":0, "z":-750 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":700, "y":0, "z":-850 },
 				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
-			{ "element-id": "Health",
-				"position": { "x":552, "y":10, "z":-649.5 },
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":15,
+		"level-name":"Habitación_pequeña_01 (1)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":800, "y":0, "z":-1050 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":800, "y":0, "z":-1150 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":800, "y":0, "z":-949.9999 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":699.9999, "y":0, "z":-1050 },
+				"rotation": { "x":0, "y":270, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":16,
+		"level-name":"Habitación_pequeña_01 (2)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":800, "y":0, "z":-1250 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":800, "y":0, "z":-1350 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":800, "y":0, "z":-1150 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":699.9999, "y":0, "z":-1250 },
+				"rotation": { "x":0, "y":270, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":17,
+		"level-name":"Habitación_pequeña_01 (3)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":1100, "y":0, "z":-1250 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":1100, "y":0, "z":-1150 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":1100, "y":0, "z":-1350 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":1200, "y":0, "z":-1250 },
+				"rotation": { "x":0, "y":90, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":18,
+		"level-name":"Habitación_pequeña_01 (4)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":1100, "y":0, "z":-1050 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":1100, "y":0, "z":-949.9999 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":1100, "y":0, "z":-1150 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":1200, "y":0, "z":-1050 },
+				"rotation": { "x":0, "y":90, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":19,
+		"level-name":"Habitación_pequeña_01 (5)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":1100, "y":0, "z":-850 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":1100, "y":0, "z":-749.9999 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":1100, "y":0, "z":-950.0001 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":1200, "y":0, "z":-850 },
+				"rotation": { "x":0, "y":90, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":20,
+		"level-name":"Pasillo_Corto_Habitaciones (2)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-1000, "y":0, "z":-350 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-1150, "y":0, "z":-400 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-900, "y":0, "z":-400 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":-1000, "y":0, "z":-300 },
 				"rotation": { "x":0, "y":0, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":21,
+		"level-name":"Sala_Destrozada",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-1000, "y":0, "z":-500 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-899.9999, "y":0, "z":-500 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1100, "y":0, "z":-500 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1000, "y":0, "z":-600.0001 },
+				"rotation": { "x":0, "y":180, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":22,
+		"level-name":"Pasillo_Corto_Labs",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-1250, "y":0, "z":-300 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-1200, "y":0, "z":-450 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1200, "y":0, "z":-200 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":-1300, "y":0, "z":-300 },
+				"rotation": { "x":0, "y":270, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":23,
+		"level-name":"LAB_L_01",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-1400, "y":0, "z":-600 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1200, "y":0, "z":-600 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1400, "y":0, "z":-489 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1600, "y":0, "z":-600 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":-1400, "y":0, "z":-700 },
+				"rotation": { "x":0, "y":180, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":24,
+		"level-name":"LAB_L_01 (1)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-1700, "y":0, "z":-400 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1900, "y":0, "z":-400 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1700, "y":0, "z":-500 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1500, "y":0, "z":-400 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":-1700, "y":0, "z":-300 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-1850, "y":0, "z":-500 },
+				"rotation": { "x":0, "y":0, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":25,
+		"level-name":"LAB_L_01 (2)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-1100, "y":0, "z":100 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1100, "y":0, "z":300 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1211, "y":0, "z":100 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1100, "y":0, "z":-100 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":-1000, "y":0, "z":99.99998 },
+				"rotation": { "x":0, "y":90, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":26,
+		"level-name":"LAB_L_01 (3)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-1400, "y":0, "z":100 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1400, "y":0, "z":-100.0001 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1289, "y":0, "z":100 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1400, "y":0, "z":300.0001 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":-1500, "y":0, "z":99.99998 },
+				"rotation": { "x":0, "y":270, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":27,
+		"level-name":"Pasillo_MUYMUYcorto_01 (2)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-1250, "y":0, "z":-50 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-1250, "y":0, "z":2.288818E-05 },
+				"rotation": { "x":0, "y":0, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":28,
+		"level-name":"Pasillo_MUYMUYcorto_01 (3)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-1250, "y":0, "z":250 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-1250, "y":0, "z":200 },
+				"rotation": { "x":0, "y":180, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":29,
+		"level-name":"Pasillo_Corto_Labs (1)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-1250, "y":0, "z":500 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-1200, "y":0, "z":349.9999 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":-1300, "y":0, "z":500 },
+				"rotation": { "x":0, "y":270, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":30,
+		"level-name":"LAB_L_01 (4)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-1100, "y":0, "z":600 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1100, "y":0, "z":800 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1200, "y":0, "z":600 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1100, "y":0, "z":400 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":-1000, "y":0, "z":600 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-1200, "y":0, "z":750 },
+				"rotation": { "x":0, "y":90, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":31,
+		"level-name":"LAB_L_01 (5)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-1400, "y":0, "z":800 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1600, "y":0, "z":800 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1400, "y":0, "z":689 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1200, "y":0, "z":800 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":-1400, "y":0, "z":900 },
+				"rotation": { "x":0, "y":0, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":32,
+		"level-name":"LAB_L_01 (6)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-1700, "y":0, "z":600 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1500, "y":0, "z":600 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1700, "y":0, "z":700 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1900, "y":0, "z":600 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":-1700, "y":0, "z":500 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-1850, "y":0, "z":700 },
+				"rotation": { "x":0, "y":180, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":33,
+		"level-name":"Pasillo_MUYMUYcorto_01",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-550, "y":0, "z":150 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-600, "y":0, "z":150 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-500, "y":0, "z":150 },
+				"rotation": { "x":0, "y":90, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":34,
+		"level-name":"Pasillo_MUYcorto_01 (3)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-550, "y":0, "z":300 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-600, "y":0, "z":350 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-500, "y":0, "z":350 },
+				"rotation": { "x":0, "y":90, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":35,
+		"level-name":"Habitación_pequeña_01 (7)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-700, "y":0, "z":300 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-700, "y":0, "z":199.9999 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-700, "y":0, "z":400.0001 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-800.0001, "y":0, "z":300 },
+				"rotation": { "x":0, "y":270, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":36,
+		"level-name":"Habitación_pequeña_01 (6)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-400, "y":0, "z":300 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-400, "y":0, "z":400.0001 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-400, "y":0, "z":199.9999 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-299.9999, "y":0, "z":300 },
+				"rotation": { "x":0, "y":90, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":37,
+		"level-name":"Pasillo_MUYMUYcorto_01 (1)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":550, "y":0, "z":150 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":500, "y":0, "z":150 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":600, "y":0, "z":150 },
+				"rotation": { "x":0, "y":90, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":38,
+		"level-name":"Sala_Seguridad (2)",
+		"static-elements": [
+			{ "element-id": "Floor",
+				"position": { "x":-550, "y":0, "z":500 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-750, "y":0, "z":500 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-350, "y":0, "z":500 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":-550, "y":0, "z":600 },
+				"rotation": { "x":0, "y":0, "z":0 }}
+		],
+		"initial-enemies": [
+		],
+		"initial-consumable": [
 		],
 		"initial-entity": [
 		]
