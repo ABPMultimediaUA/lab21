@@ -524,39 +524,42 @@ void dwe::GraphicsEngine::close()
 //////////////////////////
 void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition)
 {
+    float cursorX = GEInstance->receiver.getCursorX();
+    float cursorY = GEInstance->receiver.getCursorY();
+    int   width   = GEInstance->get_screenWidth();
+    int   height  = GEInstance->get_screenHeight();
+    int   borderL = width - (width-50);
+    int   borderR = width-50;
+    int   borderU = height - (height-50);
+    int   borderD = height-50;
+
+
+
     //update camera target
     //Desencuadre horizontal
-    if(GEInstance->receiver.getCursorX()<50){
-        if(tarLR > -_camera_desviation)
-            tarLR -= _camera_progression;
-    }else if(GEInstance->receiver.getCursorX()>750){
-        if(tarLR<_camera_desviation)
-            tarLR+=_camera_progression;
+    if(cursorX < borderL){
+        if(tarLR > -_camera_desviation)       tarLR -= _camera_progression;
+    }else if(cursorX > borderR){
+        if(tarLR < _camera_desviation)        tarLR+=_camera_progression;
     }else{
         //Volver a centrar
         if(tarLR!=0)
-            if(tarLR<0)
-                tarLR+=_camera_progression;
-            else
-                tarLR-=_camera_progression;
+            if(tarLR<0)     tarLR+=_camera_progression;
+            else            tarLR-=_camera_progression;
         else
             tarLR = 0;
     }
 
     //Desencuadre vertical
-    if(GEInstance->receiver.getCursorY()<50){
-        if(tarUD<_camera_desviation)
-            tarUD+=_camera_progression;
-    }else if(GEInstance->receiver.getCursorY()>550){
-        if(tarUD>-_camera_desviation)
-            tarUD-=_camera_progression;
+    if(cursorY < borderU){
+        if(tarUD < _camera_desviation)        tarUD+=_camera_progression;
+    }else if(cursorY > borderD){
+        if(tarUD > -_camera_desviation)       tarUD-=_camera_progression;
     }else{
         //Volver a centrar
         if(tarUD!=0)
-            if(tarUD<0)
-                tarUD+=_camera_progression;
-            else
-                tarUD-=_camera_progression;
+            if(tarUD<0)     tarUD+=_camera_progression;
+            else            tarUD-=_camera_progression;
         else
             tarUD = 0;
     }

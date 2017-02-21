@@ -47,6 +47,8 @@ class Scene
         void deleteProjectile(unsigned int i);
         void updateProjectiles();
 
+        void createEnemyHumanoid(dwe::vec3f origin, float angle);
+
         void createSpeedBoost(float px, float py, float pz);
         void createMedkit(float px, float py, float pz);
         void createCShotgun(float px, float py, float pz);
@@ -77,6 +79,7 @@ class Scene
         Perception* percep;
         Pathplanning* pathp;
         Selector* selector1;
+        Selector* selector2;
         Sequence *sequence1;
         PathplanningTask* path;
         PerceptionTask* perc;
@@ -89,6 +92,7 @@ class Scene
 
         std::vector<Projectile*> m_projectiles;
         std::vector<Consumable*> m_consumables;
+        std::vector<Enemy*> m_enemies;
 
         float timeLastProjectil;
 

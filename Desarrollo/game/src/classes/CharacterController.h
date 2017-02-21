@@ -27,7 +27,7 @@ class CharacterController : public dwn::DrawableReplica
     protected:
 
     private:
-        static const float _speedRun = 20.f;
+        static const float _speedRun = 50.f;
         static const float _speedWalk = 5.f;
         static const float _maxSpeedBostTime = 5000.0;
 

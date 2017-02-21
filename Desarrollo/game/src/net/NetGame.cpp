@@ -613,7 +613,7 @@ void dwn::NetGame::update()
                 bsIn.Read(position);
                 bsIn.Read(rotation);
 
-                if (enemyID<m_numNetEnemies)
+                if (enemyID<m_numNetEnemies && m_netEnemies[enemyID])
                 {
                     (m_netEnemies[enemyID])->setPosition(position);
                     (m_netEnemies[enemyID])->setRotation(rotation);
@@ -657,7 +657,7 @@ void dwn::NetGame::update()
 
     // Realizamos los ajustes de la posición/rotación de los enemigos, 1 por cada update para
     // no sobrecargar. Solo si somos el host enviamos la info.
-    if (fullyConnectedMesh2->IsHostSystem() && m_numNetEntities>0)
+    if (fullyConnectedMesh2->IsHostSystem() && m_numNetEntities>0 && m_netEnemies[m_netEnemyIndex])
     {
         sendBroadcast(ID_ENEMY_UPDATE, m_netEnemyIndex, ((Enemy*)(m_netEnemies[m_netEnemyIndex]))->getPosition(), ((Enemy*)(m_netEnemies[m_netEnemyIndex]))->getRotation());
         m_netEnemyIndex = (m_netEnemyIndex < m_numNetEnemies-1)? m_netEnemyIndex+1 : 0;
@@ -727,6 +727,18 @@ void dwn::NetGame::addNetEnemy(Enemy* enemy)
     m_netEnemies[m_numNetEnemies] = enemy;
     enemy->setNetID(m_numNetEnemies);
     m_numNetEnemies++;
+}
+
+///////////////////
+void dwn::NetGame::removeNetEnemy(Enemy* enemy)
+{
+    unsigned int i=0;
+    while(i<m_numNetEnemies)
+    {
+        if (m_netEnemies[i] == enemy)
+            m_netEnemies[i] = 0;
+        i++;
+    }
 }
 
 ///////////////////

@@ -14,9 +14,7 @@
 #define CLASS_PLAYER_ID         1
 #define CLASS_PROJECTILE_ID     2
 #define CLASS_WALL_ID           3
-
-#define SCREEN_CENTER_X 400
-#define SCREEN_CENTER_Y 300
+#define CLASS_ENEMY_ID          4
 
 #define NUM_ENTITIES 3
 

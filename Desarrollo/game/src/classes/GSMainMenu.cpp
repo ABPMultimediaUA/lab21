@@ -13,11 +13,46 @@ GSMainMenu::GSMainMenu(){
     page = 0;
     m = false;
     a = false;
-    /*s32 buttonWidth = 128;
-	s32 buttonHeight = 32;
-	s32 screenDimW=800;
-	s32 screenDimH=600;*/
-    //playAloneButton = gui::addButton(core::rect<s32>((screenDimW/2)-(buttonWidth/2),(screenDimH-400)-buttonHeight, (screenDimW/2)+(buttonWidth/2),screenDimH-400));
+    /***font = new sf::Font();
+    pBackground  = new sf::Texture();
+    mainMenuBG = new sf::Texture();
+    -cargar la textura de mainMenuBG-
+    bg = new sf::RectangleShape();
+    pBackground = mainMenuBG;
+    bg->setSize(sf::Vector2f(1280,720));
+    bg->setTexture(pBackground, true);
+
+    -textos-
+    textSingleplayer = new sf::Text();
+    textSingleplayer->setFont(*font);
+    textSingleplayer->setColor(sf::Color::Red);
+    textSingleplayer->setString("Un jugador");
+    textSingleplayer->setPosition(225,200);
+    textSingleplayer->setCharacterSize(18);
+
+    textMultiplayer = new sf::Text();
+    textMultiplayer->setFont(*font);
+    textMultiplayer->setColor(sf::Color::White);
+    textMultiplayer->setString("Multijugador");
+    textMultiplayer->setPosition(225,300);
+    textMultiplayer->setCharacterSize(18);
+
+    textOptions = new sf::Text();
+    textOptions->setFont(*font);
+    textOptions->setColor(sf::Color::White);
+    textOptions->setString("Opciones");
+    textOptions->setPosition(225,400);
+    textOptions->setCharacterSize(18);
+
+    textExit = new sf::Text();
+    textExit->setFont(*font);
+    textExit->setColor(sf::Color::White);
+    textExit->setString("Salir");
+    textExit->setPosition(225,500);
+    textExit->setCharacterSize(18);
+
+    selectedItemIndex = 0;
+    ***/
 }
 
 GSMainMenu* GSMainMenu::getInstance()
@@ -29,6 +64,8 @@ GSMainMenu* GSMainMenu::getInstance()
 
 void GSMainMenu::Render(){
     if(page==0){
+        /***pBackground = menuPrincipalFondo;
+        bg->setTexture(pBackground, true);***/
         if(!m){
             cout<<"Menu"<<endl;
             cout<<"Pulsa 1 para iniciar partida 1 jugador"<<endl;

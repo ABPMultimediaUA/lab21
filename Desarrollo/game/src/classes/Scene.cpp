@@ -7,6 +7,8 @@
 #include "AmmoGun.h"
 #include "CShotgun.h"
 #include "CRifle.h"
+#include "Game.h"
+#include "GSDead.h"
 
 Scene* Scene::Instance()
 {
@@ -70,9 +72,9 @@ void Scene::Init()
 
     mainPlayer = GEInstance->createMainPlayer(gun);
     mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,-80));
-    mainPlayer->setLife(100);
+    mainPlayer->setHealth(10);
     World->setMainPlayer(mainPlayer);
-    cout << "Barra de vida: " << mainPlayer->getLife() << endl;
+    cout << "Barra de vida: " << mainPlayer->getHealth() << endl;
 
     ////////////////////////////////
     //         Enemigos           //
@@ -84,15 +86,14 @@ void Scene::Init()
     enemyHumanoid->setPosition(dwe::vec3f(400,24,100));
     enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
 
-    // Creación de enemigo Dog
-    enemyDog = GEInstance->createEnemyDog();
-    enemyDog->setPosition(dwe::vec3f(-50,-170,100));
+    m_enemies.push_back(enemyHumanoid);
 
     //Creación fov
     fovnode = GEInstance->createNode("media/fov");
     //fovnode->setMaterialFlag(EMF_WIREFRAME, true);
     fovnode->setPosition(enemyHumanoid->getPosition());
     fovnode->setRotation(enemyHumanoid->getRotation());
+
 
     //Creación de objeto perception
     percep = new Perception();
@@ -108,6 +109,36 @@ void Scene::Init()
 
     selector1->addChild(sequence1);
     selector1->addChild(patrol);
+
+    sequence1->addChild(perc);
+    sequence1->addChild(path);
+    /////SEGUNDO ENEMIGO
+
+    enemyHumanoid = GEInstance->createEnemyHumanoid();
+    //enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
+    enemyHumanoid->setPosition(dwe::vec3f(300,24,100));
+    enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
+    m_enemies.push_back(enemyHumanoid);
+
+    // Creación de enemigo Dog
+    enemyDog = GEInstance->createEnemyDog();
+    enemyDog->setPosition(dwe::vec3f(-50,-170,100));
+
+
+
+    //Creación de objeto perception
+
+    /**** Special nodes ****/
+    selector2 = new Selector;
+    sequence1 = new Sequence;
+    /**** Tasks ****/
+    path = new PathplanningTask(pathp, mainPlayer, enemyHumanoid, fovnode);
+    perc = new PerceptionTask(percep, mainPlayer, enemyHumanoid, fovnode, path);
+    patrol = new PatrolTask(enemyHumanoid, fovnode);
+    /**** Creating the tree ****/
+
+    selector2->addChild(sequence1);
+    selector2->addChild(patrol);
 
     sequence1->addChild(perc);
     sequence1->addChild(path);
@@ -140,13 +171,30 @@ Scene::~Scene()
 
 void Scene::Update()
 {
+
+    if(mainPlayer->getHealth()<=0){
+        Game::getInstance()->ChangeState(GSDead::getInstance());
+    }
+    for(int i=0; i<m_enemies.size(); i++){ //recorre
+            Enemy* enemy=m_enemies.at(i);
+            if(enemy && enemy->getHealth()<=0){
+                m_enemies.erase(m_enemies.begin()+i);
+                NetInstance->removeNetEnemy(enemy);
+                delete enemy;
+                enemy=0;
+                enemyHumanoid = 0;
+            }
+    }
+
     for(int cont=0; cont<NUM_ENTITIES; cont++)
         entities[cont]->update();
+
     GEInstance->updateCamera(mainPlayer->getPosition());
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
-    selector1->run();  // Run Behavior Tree
-
+    if(enemyHumanoid)selector1->run();  // Run Behavior Tree
+    if(enemyHumanoid)selector2->run();
     // comprobamos si dispara
+
     if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
         NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
         if (mainPlayer->getCurrentWeaponType() == eGun && mainPlayer->getAmmo(0) > 0) //
@@ -228,6 +276,7 @@ void Scene::updateProjectiles()
         m_projectiles[i]->update();
         if (m_projectiles[i]->getCollides())
         {
+            cout<<"colision"<<endl;
             delete m_projectiles[i];
             m_projectiles.erase(m_projectiles.begin()+i);
         }
@@ -285,6 +334,12 @@ void Scene::updatePlayerWeapons(Player* mainplayer, Firearm** weapons)
     {
         weapons[2]->setPosition(dwe::vec3f(mainplayer->getPosition().x - 20, 20, mainplayer->getPosition().z));
     }
+}
+
+////////////
+void Scene::createEnemyHumanoid(dwe::vec3f origin, float angle)
+{
+   // m_enemies.push_back(GEInstance->createEnemyHumanoid(origin, angle));
 }
 
 ////////////
