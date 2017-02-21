@@ -3,6 +3,8 @@
 #include "WorldInstance.h"
 #include "GSPause.h"
 #include "GSDead.h"
+#include "NetGame.h"
+
 
 #include <iostream>
 using namespace std;
@@ -46,7 +48,12 @@ void GSIngame::HandleEvents(){
     }
     else if(GEInstance->receiver.isKeyDown(KEY_ESCAPE))
     {
+        Game::getInstance()->setRunning(false);
+        NetInstance->close();
         GEInstance->close();
+        delete GEInstance;
+        //GEInstance=0;
+
         //return 0;
     }
 }
@@ -58,13 +65,13 @@ void GSIngame::Render(){
             cout<<"Pulsa F10 para pausar el juego"<<endl;
             m=true;
         }
-        GEInstance->draw();
+        if(Game::getInstance()->getRunning())GEInstance->draw();
     }
 }
 GSIngame::~GSIngame(){
-    /*
+
     delete Scene::Instance();
     delete LoadMap::getInstance();
     cout<<"He borrado el mapa"<<endl;
-    */
+
 }

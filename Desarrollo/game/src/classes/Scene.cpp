@@ -192,8 +192,9 @@ void Scene::Init()
 
 Scene::~Scene()
 {
+
     //dtor
-    /*for(int i=0; i<NUM_ENTITIES; i++){
+    for(int i=0; i<NUM_ENTITIES; i++){
         delete entities[i];
     }
     delete entities;
@@ -235,9 +236,9 @@ Scene::~Scene()
     }
     delete joint_try;
     delete bjoint;
-    delete camera1;
+    //delete camera1;
     cout<<"He conseguido borrar tooodo"<<endl;
-    */
+
 }
 
 void Scene::Update()

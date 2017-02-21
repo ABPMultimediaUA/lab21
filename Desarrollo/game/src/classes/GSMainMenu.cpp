@@ -153,11 +153,11 @@ void GSMainMenu::Update(){
                 NetInstance->connectToGame(atoi(seleccion.c_str()));
             }
         }
-
         Game::getInstance()->ChangeState(GSIngame::getInstance());
         m=false;
         a=false;
     }
 
 }
+
 GSMainMenu::~GSMainMenu(){}
