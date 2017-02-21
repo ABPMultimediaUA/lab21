@@ -172,6 +172,7 @@ namespace dwe
 
             glm::mat4 getMatrix();
 
+
         private:
             glm::mat4   m_matrix;
     };
@@ -201,6 +202,8 @@ namespace dwe
         public:
             EMesh() {};
             ~EMesh() {};
+
+            void loadMesh(char *file);
 
             void beginDraw();
             void endDraw();

@@ -420,6 +420,12 @@ void dwe::GraphicNode::draw()
 }
 
 /////////////////
+void dwe::EMesh::loadMesh(char *file)
+{
+    cout << "Cargando malla " << file << endl;
+}
+
+/////////////////
 void dwe::EMesh::beginDraw()
 {
     std::cout << "Begin " << m_cadena << "\n";
@@ -435,12 +441,14 @@ void dwe::EMesh::endDraw()
 void dwe::ETransform::identity()
 {
     m_matrix = glm::mat4();
+
 }
 
 /////////////////
 void dwe::ETransform::load(glm::mat4 m)
 {
     m_matrix = m;
+
 }
 
 /////////////////
@@ -518,12 +526,19 @@ void dwe::ETransform::beginDraw()
 {
     std::cout << "Begin " << m_cadena << "\n";
     std::cout << glm::to_string(this->getMatrix()) << endl;
+
+    glPushMatrix();
+    glMultMatrixf((GLfloat*)&m_matrix);
+
+
 }
 
 /////////////////
 void dwe::ETransform::endDraw()
 {
     std::cout << "End " << m_cadena << "\n";
+
+    glPopMatrix();
 }
 
 

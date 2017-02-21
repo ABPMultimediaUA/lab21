@@ -4371,7 +4371,7 @@
 1487585624 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\classes\drawable.h
 	"GraphicsEngine.h"
 
-1487687796 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\graphicsengine.h
+1487693153 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\graphicsengine.h
 	<math.h>
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
@@ -5432,7 +5432,7 @@
 
 1487585624 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\appreceiver.cpp
 
-1487687721 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
+1487694307 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
 	<GL/glew.h>
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
@@ -6060,7 +6060,7 @@
 
 1487585622 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\include\glm\gtx\simd_mat4.inl
 
-1487687832 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\main.cpp
+1487694219 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\main.cpp
 	<GL/glew.h>
 	<stdexcept>
 	<SFML/Graphics.hpp>
