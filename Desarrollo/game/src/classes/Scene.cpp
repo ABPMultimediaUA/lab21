@@ -220,7 +220,7 @@ void Scene::Destroy(){
     delete shotgun;
     delete rifle;
     for(int i=0; i<m_enemies.size(); i++){
-        enemyHumanoid=(Humanoid*)m_enemies.at(i);
+        enemyHumanoid=(Humanoid*)m_enemies[i];
         m_enemies.erase(m_enemies.begin()+i);
         NetInstance->removeNetEnemy(enemyHumanoid);
         delete enemyHumanoid;
