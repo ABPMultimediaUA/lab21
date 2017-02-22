@@ -128,7 +128,7 @@ int main()
     GEInstance->addMessageLine("Gestor de ventanas con SFML");
     GEInstance->addMessageLine("Carga de modelos con ASSIMP");
     GEInstance->addMessageLine("Rotar con teclas A D W S");
-    GEInstance->addMessageLine("Movimiento con ratÛn");
+    GEInstance->addMessageLine("Movimiento con rat√≥n");
 
     //               Root
     //          /      |     \
