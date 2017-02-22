@@ -3,12 +3,12 @@
 
 #define GLEW_STATIC
 
-#include "math.h"
+#include <math.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include "glm/ext.hpp"
+#include <glm/ext.hpp>
 
 #include <string>
 #include <list>
@@ -31,6 +31,8 @@
 #define U_VMATRIX               "u_VMatrix"
 #define U_COLOR                 "u_Color"
 #define U_LUZ0                  "u_Luz0"
+
+
 
 
 #define SCREEN_WIDTH  800

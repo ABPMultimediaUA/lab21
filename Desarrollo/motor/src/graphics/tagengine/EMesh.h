@@ -12,6 +12,8 @@ namespace dwe
             EMesh();
             ~EMesh();
 
+            void loadMesh(char *file);
+
             void beginDraw();
             void endDraw();
     };

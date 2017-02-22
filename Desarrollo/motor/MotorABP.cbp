@@ -60,8 +60,9 @@
 			<Add library="jpeg" />
 			<Add directory="lib" />
 		</Linker>
-		<Unit filename="Shaders/FragmentShader.glsl" />
-		<Unit filename="Shaders/VertexShader.glsl" />
+		<Unit filename="shaders/FragmentShader.glsl" />
+		<Unit filename="shaders/VertexShader.glsl" />
+		<Unit filename="src/Main.cpp" />
 		<Unit filename="src/classes/Drawable.cpp" />
 		<Unit filename="src/classes/Drawable.h" />
 		<Unit filename="src/classes/Player.cpp" />
@@ -95,7 +96,6 @@
 		<Unit filename="src/graphics/tagengine/ResourceManager.h" />
 		<Unit filename="src/graphics/tagengine/ResourceMesh.cpp" />
 		<Unit filename="src/graphics/tagengine/ResourceMesh.h" />
-		<Unit filename="src/main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -23,3 +23,9 @@ void dwe::EMesh::endDraw()
 {
     std::cout << "End " << m_cadena << "\n";
 }
+
+/////////////////
+void dwe::EMesh::loadMesh(char *file)
+{
+    std::cout << "Cargando malla " << file << std::endl;
+}

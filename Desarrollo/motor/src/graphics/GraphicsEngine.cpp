@@ -375,4 +375,3 @@ dwe::vec2f dwe::GraphicsEngine::getMousePosition()
 
     return vec2f(x,y);
 }
-

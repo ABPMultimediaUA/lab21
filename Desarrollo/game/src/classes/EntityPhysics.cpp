@@ -44,7 +44,8 @@ dwe::vec3f EntityPhysics::getPosEntity()
 ////////////////////
 void EntityPhysics::setPosEntity(dwe::vec3f position, float rotation)
 {
-    m_body->SetTransform(b2Vec2(position.x, position.z), rotation);
+    //BOX ROTA EN RADIANES, POR ESO "-(rotation/180)*PI" ... EL SIGNO "-" ES PORQUE EL SISTEMA INTERNO DE ROTACIÓN SON CONTRARIOS ENTRE IRRLICHT Y BOX2D
+    m_body->SetTransform(b2Vec2(position.x, position.z), -(rotation/180)*PI );
 }
 
 ////////////////////
@@ -117,11 +118,12 @@ void EntityPhysics::createDynamicBody(const dwe::vec3f& pos, float32 angle, bool
 }
 
 //////////////////////
-void EntityPhysics::createStaticBody(const dwe::vec3f& pos, float width, float height){
+void EntityPhysics::createStaticBody(const dwe::vec3f& pos, float width, float height, float32 angle){
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(pos.x, pos.z);
+    //bodyDef.angle = angle;
 
     m_body = World->createBody(&bodyDef);
     m_body->SetUserData(this);  // Sin esta linea no funcionan los callbacks

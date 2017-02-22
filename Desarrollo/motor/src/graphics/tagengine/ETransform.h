@@ -26,8 +26,13 @@ namespace dwe
             void rotate(vec3f r);
             void rotate(float x, float y, float z);
 
+            void scale(vec3f s);
+            void scale(float x, float y, float z);
+
             void beginDraw();
             void endDraw();
+
+            glm::mat4 getMatrix();
 
         private:
             glm::mat4   m_matrix;
