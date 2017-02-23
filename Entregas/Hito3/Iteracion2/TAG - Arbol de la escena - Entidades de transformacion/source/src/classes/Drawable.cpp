@@ -53,4 +53,4 @@ void Drawable::setAnimation(dwe::AnimationType a)
         m_animation = a;
     }
 }
-dwe::AnimationType Drawable::getAnimation() { return m_animation; }}
+dwe::AnimationType Drawable::getAnimation() { return m_animation; }
