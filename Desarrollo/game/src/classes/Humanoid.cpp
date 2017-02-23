@@ -30,7 +30,7 @@ Humanoid::Humanoid()
     /**** Tasks ****/
     path = new PathplanningTask(pathp, this/*, fovnode*/);
     perc = new PerceptionTask(percep, this, /*fovnode,*/ path);
-    patrol = new PatrolTask(this, fovnode);
+    patrol = new PatrolTask(this/*, fovnode*/);
     /**** Creating the tree ****/
 
     selector1->addChild(sequence1);
