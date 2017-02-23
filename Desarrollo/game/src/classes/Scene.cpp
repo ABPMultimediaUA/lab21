@@ -18,7 +18,7 @@ Scene* Scene::Instance()
 }
 
 Scene::Scene()
-{
+{cout<<"dfasudka"<<endl;
     //ctor
 
 }
@@ -88,12 +88,11 @@ void Scene::Init()
 
     m_enemies.push_back(enemyHumanoid);
 
-
     /////SEGUNDO ENEMIGO
 
     enemyHumanoid = GEInstance->createEnemyHumanoid();
     //enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
-    enemyHumanoid->setPosition(dwe::vec3f(300,24,100));
+    enemyHumanoid->setPosition(dwe::vec3f(300,24,150));
     enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
     m_enemies.push_back(enemyHumanoid);
 
@@ -101,6 +100,13 @@ void Scene::Init()
     enemyDog = GEInstance->createEnemyDog();
     enemyDog->setPosition(dwe::vec3f(-50,-170,100));
 
+    /////TERCER ENEMIGO
+
+    enemyHumanoid = GEInstance->createEnemyHumanoid();
+    //enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
+    enemyHumanoid->setPosition(dwe::vec3f(50.f, 24.f, 350.f));
+    enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
+    m_enemies.push_back(enemyHumanoid);
 
     //Joint try
     joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
@@ -123,9 +129,82 @@ void Scene::Init()
     timeLastProjectil = 0;
 }
 
+void Scene::Destroy(){
+    for(int i=0; i<NUM_ENTITIES; i++){
+        delete entities[i];
+    }
+    delete[] entities;
+    for(int i=0; i<1; i++){
+        delete sector[i];
+    }
+    delete[] sector;
+    for(int i=0; i<3; i++){
+        delete triggers[i];
+    }
+    delete[] triggers;
+    delete llave;
+    delete mainPlayer;
+    delete enemyDog;
+    delete gun;
+    delete shotgun;
+    delete rifle;
+    for(int i=0; i<m_enemies.size(); i++){
+        enemyHumanoid=(Humanoid*)m_enemies[i];
+        m_enemies.erase(m_enemies.begin()+i);
+        NetInstance->removeNetEnemy(enemyHumanoid);
+        delete enemyHumanoid;
+    }
+    for(int i=0; i<m_projectiles.size(); i++){
+        m_projectiles.erase(m_projectiles.begin()+i);
+    }
+    for(int i=0; i<m_consumables.size(); i++){
+        m_consumables.erase(m_consumables.begin()+i);
+    }
+    delete joint_try;
+    delete bjoint;
+    //delete camera1;
+    cout<<"He conseguido borrar tooodo"<<endl;
+}
+
 Scene::~Scene()
 {
+
     //dtor
+    for(int i=0; i<NUM_ENTITIES; i++){
+        delete entities[i];
+    }
+    delete[] entities;
+    for(int i=0; i<1; i++){
+        delete sector[i];
+    }
+    delete[] sector;
+    for(int i=0; i<3; i++){
+        delete triggers[i];
+    }
+    delete[] triggers;
+    delete llave;
+    delete mainPlayer;
+    delete enemyDog;
+    delete gun;
+    delete shotgun;
+    delete rifle;
+    for(int i=0; i<m_enemies.size(); i++){
+        enemyHumanoid=(Humanoid*)m_enemies.at(i);
+        m_enemies.erase(m_enemies.begin()+i);
+        NetInstance->removeNetEnemy(enemyHumanoid);
+        delete enemyHumanoid;
+    }
+    for(int i=0; i<m_projectiles.size(); i++){
+        m_projectiles.erase(m_projectiles.begin()+i);
+    }
+    for(int i=0; i<m_consumables.size(); i++){
+        m_consumables.erase(m_consumables.begin()+i);
+    }
+    delete joint_try;
+    delete bjoint;
+    //delete camera1;
+    cout<<"He conseguido borrar tooodo"<<endl;
+
 }
 
 void Scene::Update()
@@ -138,6 +217,7 @@ void Scene::Update()
             Enemy* enemy=m_enemies.at(i);
             if(enemy && enemy->getHealth()<=0){
                 m_enemies.erase(m_enemies.begin()+i);
+
                 NetInstance->removeNetEnemy(enemy);
                 delete enemy;
                 enemy=0;
@@ -150,6 +230,7 @@ void Scene::Update()
 
     GEInstance->updateCamera(mainPlayer->getPosition());
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
+
     for(int e=0; e<m_enemies.size(); e++) //recorre
             m_enemies[e]->update();
 

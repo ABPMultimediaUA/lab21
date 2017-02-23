@@ -39,6 +39,7 @@ class Scene
         virtual ~Scene();
 
         void Init();
+        void Destroy();
 
         void Update();
 
@@ -75,7 +76,6 @@ class Scene
         Humanoid* enemyHumanoid;
         Dog* enemyDog;
         /**/
-
 
         // Objets
         Gun* gun;
