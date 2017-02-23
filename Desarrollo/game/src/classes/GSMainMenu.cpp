@@ -66,6 +66,7 @@ void GSMainMenu::Render(){
     if(page==0){
         /***pBackground = menuPrincipalFondo;
         bg->setTexture(pBackground, true);***/
+
         if(!m){
             cout<<"Menu"<<endl;
             cout<<"Pulsa 1 para iniciar partida 1 jugador"<<endl;
@@ -86,7 +87,6 @@ void GSMainMenu::HandleEvents(){
 
 void GSMainMenu::Update(){
     std::string type;
-
 	/****************************/
     //getline(cin, type);
     if(GEInstance->receiver.isKeyDown(KEY_KEY_1)){
@@ -98,7 +98,6 @@ void GSMainMenu::Update(){
         a = true;
     }
     if(a){
-
 
         NetInstance->open(Scene::Instance(), (type=="2"));  // Inicializar motor de red
         cout << "//\n// Buscando servidores ";
@@ -154,11 +153,14 @@ void GSMainMenu::Update(){
                 NetInstance->connectToGame(atoi(seleccion.c_str()));
             }
         }
-
         Game::getInstance()->ChangeState(GSIngame::getInstance());
+        GSIngame::getInstance()->Init();
+        cout<<"fidel"<<endl;
         m=false;
         a=false;
     }
 
 }
-GSMainMenu::~GSMainMenu(){}
+
+GSMainMenu::~GSMainMenu(){
+cout<<"cache"<<endl;}

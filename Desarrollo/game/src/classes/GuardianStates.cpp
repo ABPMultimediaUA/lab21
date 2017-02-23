@@ -26,8 +26,6 @@ void GPatrolState::Execute(Guardian* pGuardian)
 
     cout << "\n" << "Guardian" << ": " << "Patrolling here... Nobody can get our things";
 
-    if(pGuardian->getSteps() == 17)
-        pGuardian->GetFSM()->ChangeState(GLookingForPlayerState::Instance());
 }
 
 
@@ -54,9 +52,6 @@ void GLookingForPlayerState::Enter(Guardian* pGuardian)
 void GLookingForPlayerState::Execute(Guardian* pGuardian)
 {
     cout << "\n" << "Guardian" << ": " << "Hey, what are you doing here?";
-
-    if(pGuardian->getSteps() == 15)
-        pGuardian->GetFSM()->ChangeState(GRangedAttackState::Instance());
 }
 
 void GLookingForPlayerState::Exit(Guardian* pGuardian)
@@ -84,11 +79,6 @@ void GRangedAttackState::Execute(Guardian* pGuardian)
 {
     cout << "\n" << "Guardian" << ": " << "GHHHHHHHSSSS";
 
-    if(pGuardian->getSteps() == 13)
-        pGuardian->GetFSM()->ChangeState(GMeleeAttackState::Instance());
-
-    if(pGuardian->getSteps() == 9)
-        pGuardian->GetFSM()->ChangeState(GPatrolState::Instance());
 }
 
 void GRangedAttackState::Exit(Guardian* pGuardian)
@@ -116,8 +106,6 @@ void GMeleeAttackState::Execute(Guardian* pGuardian)
 {
     cout << "\n" << "Guardian" << ": " << "'PUNCH!'";
 
-    if(pGuardian->getSteps() == 11)
-        pGuardian->GetFSM()->ChangeState(GRangedAttackState::Instance());
 }
 
 void GMeleeAttackState::Exit(Guardian* pGuardian)

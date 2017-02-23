@@ -7,6 +7,15 @@
 #include <iostream>
 
 
+class Perception;
+class Pathplanning;
+class Selector;
+class Sequence;
+class PathplanningTask;
+class PerceptionTask;
+class PatrolTask;
+
+
 class Humanoid : public Enemy
 {
     public:
@@ -20,7 +29,7 @@ class Humanoid : public Enemy
 
         int getSteps();
 
-        virtual void update() {};
+        void update();
 
         virtual void render() {};
 
@@ -32,5 +41,16 @@ class Humanoid : public Enemy
         int steps;
 
         StateMachine<Humanoid>*  h_pStateMachine;
+
+        dwe::Node* fovnode; // Futuro dentro de cada enemigo
+
+        Perception* percep;
+        Pathplanning* pathp;
+        Selector* selector1;
+        Sequence *sequence1;
+
+        PathplanningTask* path;
+        PerceptionTask* perc;
+        PatrolTask* patrol;
 };
 #endif // HUMANOID_H
