@@ -16,9 +16,6 @@
 #define CLASS_WALL_ID           3
 #define CLASS_ENEMY_ID          4
 
-#define SCREEN_CENTER_X 400
-#define SCREEN_CENTER_Y 300
-
 #define NUM_ENTITIES 3
 
 class Player;

@@ -3,9 +3,12 @@
 
 #define GLEW_STATIC
 
+#include <math.h>
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <glm/ext.hpp>
 
 #include <string>
 #include <list>
@@ -35,6 +38,9 @@
 #define SCREEN_WIDTH  800
 #define SCREEN_HEIGHT 600
 #define MAX_MESSAGE_LINES 4
+
+
+#include "ResourceMesh.h"
 
 
 
@@ -129,97 +135,6 @@ namespace dwe
         v.Z = dweV.z;
         return v;
     }*/
-
-    ///////////////////////////////////////////////
-    // Arbol de escena
-    ///////////////////////////////////////////////
-    class Entity
-    {
-        public:
-            Entity() {};
-            ~Entity() {};
-
-            std::string m_cadena;
-
-            virtual void beginDraw() = 0;
-            virtual void endDraw() = 0;
-    };
-
-    class ETransform : public Entity
-    {
-        public:
-            ETransform() {};
-            ~ETransform() {};
-
-            void identity();
-            void load(glm::mat4 m);
-            void traspose();
-
-            void translate(vec3f t);
-            void translate(float x, float y, float z);
-
-            void rotate(vec3f r);
-            void rotate(float x, float y, float z);
-
-            void beginDraw();
-            void endDraw();
-
-        private:
-            glm::mat4   m_matrix;
-    };
-
-    class ELight : public Entity
-    {
-        public:
-            ELight() {};
-            ~ELight() {};
-
-            void beginDraw();
-            void endDraw();
-    };
-
-    class ECamera : public Entity
-    {
-        public:
-            ECamera() {};
-            ~ECamera() {};
-
-            void beginDraw();
-            void endDraw();
-    };
-
-    class EMesh : public Entity
-    {
-        public:
-            EMesh() {};
-            ~EMesh() {};
-
-            void beginDraw();
-            void endDraw();
-    };
-
-    class GraphicNode
-    {
-        public:
-            GraphicNode() {};
-            ~GraphicNode() {};
-
-            unsigned int addChild(GraphicNode* n);
-            unsigned int removeChild(GraphicNode* n);
-
-            bool setEntity(Entity* e);
-            Entity* getEntity();
-            GraphicNode* getParent();
-
-            void draw();
-
-        private:
-            Entity*                 m_entity;
-            vector<GraphicNode*>    m_childs;
-            GraphicNode*            m_parent;
-
-    };
-
 
     ///////////////////////////////////////////////
     // Node
