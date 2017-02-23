@@ -11,8 +11,6 @@
 #include "Player.h"
 
 
-
-
 #include "GraphicNode.h"
 #include "EMesh.h"
 #include "ResourceManager.h"
@@ -196,7 +194,7 @@ int main()
     GEInstance->addMessageLine("Gestor de ventanas con SFML");
     GEInstance->addMessageLine("Carga de modelos con ASSIMP");
     GEInstance->addMessageLine("Rotar con teclas A D W S");
-    GEInstance->addMessageLine("Movimiento con ratón");
+    GEInstance->addMessageLine("Movimiento con ratÃ³n");
 
     while (GEInstance->isRunning())
     {
