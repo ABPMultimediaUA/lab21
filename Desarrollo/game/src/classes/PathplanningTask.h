@@ -2,13 +2,17 @@
 #define PATHPLANNINGTASK_H
 
 #include "Node.h"
-#include "Pathplanning.h"
+#include "GraphicsEngine.h"
+
+class Pathplanning;
+class Humanoid;
+class Drawable;
 
 class PathplanningTask : public Node
 {
     public:
 
-        PathplanningTask(Pathplanning* p, Drawable* pl, Humanoid* h, dwe::Node* n);
+        PathplanningTask(Pathplanning* p, Humanoid* h/*,  dwe::Node* n*/);
 
         virtual ~PathplanningTask();
 
@@ -23,7 +27,7 @@ class PathplanningTask : public Node
         Pathplanning* path;
         Drawable* play;
         Humanoid* hum;
-        dwe::Node* no;
+        //dwe::Node* no;
 };
 
 #endif // PATHPLANNINGTASK_H

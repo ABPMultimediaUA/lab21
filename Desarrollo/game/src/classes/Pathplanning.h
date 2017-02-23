@@ -1,7 +1,10 @@
 #ifndef PATHPLANNING_H
 #define PATHPLANNING_H
 
-#include "Humanoid.h"
+#include "GraphicsEngine.h"
+
+class Humanoid;
+class Drawable;
 
 class Pathplanning
 {
@@ -13,7 +16,7 @@ class Pathplanning
 
         //void CreatePathToPosition(dwe::vec2f TargetPos, std::list<dwe::vec2f& path);
 
-        void behaviour(Drawable* mainPlayer, Humanoid* enemyHumanoid, dwe::Node* fovnode, bool danyo);
+        void behaviour(Drawable* mainPlayer, Humanoid* enemyHumanoid, /*dwe::Node* fovnode, */bool danyo);
 
     protected:
 

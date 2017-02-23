@@ -1,4 +1,5 @@
 #include "Pathplanning.h"
+#include "Humanoid.h"
 
 
 Pathplanning::Pathplanning()
@@ -31,7 +32,7 @@ Pathplanning::~Pathplanning()
 
 
 
-void Pathplanning::behaviour(Drawable* mainPlayer, Humanoid* enemyHumanoid, dwe::Node* fovnode, bool danyo)
+void Pathplanning::behaviour(Drawable* mainPlayer, Humanoid* enemyHumanoid, /*dwe::Node* fovnode, */bool danyo)
 {
     float movX = 0.0;
     float movZ = 0.0;
@@ -43,39 +44,39 @@ void Pathplanning::behaviour(Drawable* mainPlayer, Humanoid* enemyHumanoid, dwe:
         if(enemyHumanoid->getPosition().x<mainPlayer->getPosition().x && (enemyHumanoid->getPosition().z<mainPlayer->getPosition().z+1 && enemyHumanoid->getPosition().z>mainPlayer->getPosition().z-1))
         {
             enemyHumanoid->setRotation(dwe::vec3f(0, 0.f, 0));
-            fovnode->setRotation(enemyHumanoid->getRotation());
+            //fovnode->setRotation(enemyHumanoid->getRotation());
         }
         else if(enemyHumanoid->getPosition().z<mainPlayer->getPosition().z && (enemyHumanoid->getPosition().x<mainPlayer->getPosition().x+1 && enemyHumanoid->getPosition().x>mainPlayer->getPosition().x-1))
         {
             enemyHumanoid->setRotation(dwe::vec3f(0, 270.f, 0));
-            fovnode->setRotation(enemyHumanoid->getRotation());
+            //fovnode->setRotation(enemyHumanoid->getRotation());
         }
         else if(enemyHumanoid->getPosition().x>mainPlayer->getPosition().x && (enemyHumanoid->getPosition().z<mainPlayer->getPosition().z+1 && enemyHumanoid->getPosition().z>mainPlayer->getPosition().z-1))
         {
             enemyHumanoid->setRotation(dwe::vec3f(0, 180.f, 0));
-            fovnode->setRotation(enemyHumanoid->getRotation());
+            //fovnode->setRotation(enemyHumanoid->getRotation());
         }
         else if(enemyHumanoid->getPosition().z>mainPlayer->getPosition().z && (enemyHumanoid->getPosition().x<mainPlayer->getPosition().x+1 && enemyHumanoid->getPosition().x>mainPlayer->getPosition().x-1))
         {
             enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
-            fovnode->setRotation(enemyHumanoid->getRotation());
+            //fovnode->setRotation(enemyHumanoid->getRotation());
         }
         //rotaciones diagonal
         else if(enemyHumanoid->getPosition().x<mainPlayer->getPosition().x && enemyHumanoid->getPosition().z<mainPlayer->getPosition().z){
             enemyHumanoid->setRotation(dwe::vec3f(0, 315.f, 0));
-            fovnode->setRotation(enemyHumanoid->getRotation());
+            //fovnode->setRotation(enemyHumanoid->getRotation());
         }
         else if(enemyHumanoid->getPosition().x>mainPlayer->getPosition().x && enemyHumanoid->getPosition().z>mainPlayer->getPosition().z){
             enemyHumanoid->setRotation(dwe::vec3f(0, 135.f, 0));
-            fovnode->setRotation(enemyHumanoid->getRotation());
+            //fovnode->setRotation(enemyHumanoid->getRotation());
         }
         else if(enemyHumanoid->getPosition().x<mainPlayer->getPosition().x && enemyHumanoid->getPosition().z>mainPlayer->getPosition().z){
             enemyHumanoid->setRotation(dwe::vec3f(0, 45.f, 0));
-            fovnode->setRotation(enemyHumanoid->getRotation());
+            //fovnode->setRotation(enemyHumanoid->getRotation());
         }
         else if(enemyHumanoid->getPosition().x>mainPlayer->getPosition().x && enemyHumanoid->getPosition().z<mainPlayer->getPosition().z){
             enemyHumanoid->setRotation(dwe::vec3f(0, 225.f, 0));
-            fovnode->setRotation(enemyHumanoid->getRotation());
+            //fovnode->setRotation(enemyHumanoid->getRotation());
         }
 
 
