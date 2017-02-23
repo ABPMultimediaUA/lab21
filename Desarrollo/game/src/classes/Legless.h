@@ -18,16 +18,15 @@ class Legless : public Enemy
 
         void Update();
 
-        int getCrawl();
-
-
     protected:
 
     private:
 
-        int crawl;
-
         StateMachine<Legless>*  l_pStateMachine;
+
+        //Pathfinding
+
+        //Perception
 };
 
 #endif // LEGLESS_H

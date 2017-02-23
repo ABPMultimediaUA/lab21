@@ -88,30 +88,6 @@ void Scene::Init()
 
     m_enemies.push_back(enemyHumanoid);
 
-    //Creación fov
-    fovnode = GEInstance->createNode("media/fov");
-    //fovnode->setMaterialFlag(EMF_WIREFRAME, true);
-    fovnode->setPosition(enemyHumanoid->getPosition());
-    fovnode->setRotation(enemyHumanoid->getRotation());
-
-cout<<"dfasudka"<<endl;
-    //Creación de objeto perception
-    percep = new Perception();
-    pathp = new Pathplanning();
-    /**** Special nodes ****/
-    selector1 = new Selector;
-    sequence1 = new Sequence;
-    /**** Tasks ****/
-    path = new PathplanningTask(pathp, mainPlayer, enemyHumanoid, fovnode);
-    perc = new PerceptionTask(percep, mainPlayer, enemyHumanoid, fovnode, path);
-    patrol = new PatrolTask(enemyHumanoid, fovnode);
-    /**** Creating the tree ****/
-
-    selector1->addChild(sequence1);
-    selector1->addChild(patrol);
-
-    sequence1->addChild(perc);
-    sequence1->addChild(path);
     /////SEGUNDO ENEMIGO
 
     enemyHumanoid = GEInstance->createEnemyHumanoid();
@@ -124,25 +100,6 @@ cout<<"dfasudka"<<endl;
     enemyDog = GEInstance->createEnemyDog();
     enemyDog->setPosition(dwe::vec3f(-50,-170,100));
 
-
-
-    //Creación de objeto perception
-
-    /**** Special nodes ****/
-    selector2 = new Selector;
-    sequence1 = new Sequence;
-    /**** Tasks ****/
-    path = new PathplanningTask(pathp, mainPlayer, enemyHumanoid, fovnode);
-    perc = new PerceptionTask(percep, mainPlayer, enemyHumanoid, fovnode, path);
-    patrol = new PatrolTask(enemyHumanoid, fovnode);
-    /**** Creating the tree ****/
-
-    selector2->addChild(sequence1);
-    selector2->addChild(patrol);
-
-    sequence1->addChild(perc);
-    sequence1->addChild(path);
-
     /////TERCER ENEMIGO
 
     enemyHumanoid = GEInstance->createEnemyHumanoid();
@@ -150,24 +107,6 @@ cout<<"dfasudka"<<endl;
     enemyHumanoid->setPosition(dwe::vec3f(50.f, 24.f, 350.f));
     enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
     m_enemies.push_back(enemyHumanoid);
-
-    //Creación de objeto perception
-
-    /**** Special nodes ****/
-    selector3 = new Selector;
-    sequence1 = new Sequence;
-    /**** Tasks ****/
-    path = new PathplanningTask(pathp, mainPlayer, enemyHumanoid, fovnode);
-    perc = new PerceptionTask(percep, mainPlayer, enemyHumanoid, fovnode, path);
-    patrol = new PatrolTask(enemyHumanoid, fovnode);
-    /**** Creating the tree ****/
-
-    selector3->addChild(sequence1);
-    selector3->addChild(patrol);
-
-    sequence1->addChild(perc);
-    sequence1->addChild(path);
-
 
     //Joint try
     joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
@@ -206,16 +145,6 @@ void Scene::Destroy(){
     delete llave;
     delete mainPlayer;
     delete enemyDog;
-    delete fovnode;
-    delete percep;
-    delete pathp;
-    delete selector1;
-    delete selector2;
-    delete selector3;
-    delete sequence1;
-    delete path;
-    delete perc;
-    delete patrol;
     delete gun;
     delete shotgun;
     delete rifle;
@@ -256,16 +185,6 @@ Scene::~Scene()
     delete llave;
     delete mainPlayer;
     delete enemyDog;
-    delete fovnode;
-    delete percep;
-    delete pathp;
-    delete selector1;
-    delete selector2;
-    delete selector3;
-    delete sequence1;
-    delete path;
-    delete perc;
-    delete patrol;
     delete gun;
     delete shotgun;
     delete rifle;
@@ -311,9 +230,10 @@ void Scene::Update()
 
     GEInstance->updateCamera(mainPlayer->getPosition());
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
-    if(enemyHumanoid)selector1->run();  // Run Behavior Tree
-    if(enemyHumanoid)selector2->run();
-    if(enemyHumanoid)selector3->run();
+
+    for(int e=0; e<m_enemies.size(); e++) //recorre
+            m_enemies[e]->update();
+
     // comprobamos si dispara
 
     if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){

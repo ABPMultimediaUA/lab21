@@ -16,23 +16,20 @@ BPatrolState* BPatrolState::Instance()
 
 void BPatrolState::Enter(Bat* pBat)
 {
-    cout << "\n" << "Bat" << ": " << "Starting to patrol";
+
 }
 
 
 void BPatrolState::Execute(Bat* pBat)
 {
-
-    cout << "\n" << "Bat" << ": " << "Paaatrooonus";
-
-    if(pBat->getStepstoalarm() == 15)
-        pBat->GetFSM()->ChangeState(BAlarmState::Instance());
+    //if ve al jugador
+    //pBat->GetFSM()->ChangeState(BAlarmState::Instance());
 }
 
 
 void BPatrolState::Exit(Bat* pBat)
 {
-  cout << "\n" << "Bat" << ": " << "I saw the player and I'm gonna follow him while screaming like a crazy kid";
+
 }
 
 /*******************/
@@ -46,21 +43,18 @@ BAlarmState* BAlarmState::Instance()
 
 void BAlarmState::Enter(Bat* pBat)
 {
-    cout << "\n" << "Bat" << ": " << "Starting to follow him and scream a lot";
+
 }
 
 
 void BAlarmState::Execute(Bat* pBat)
 {
-    cout << "\n" << "Bat" << ": " << "AAAAAAAAAAAAAAAAAAAAH";
-
-    if(pBat->getStepstoalarm() == 5)
-        pBat->GetFSM()->ChangeState(BPatrolState::Instance());
+    //if deja de ver al jugador
+    //pBat->GetFSM()->ChangeState(BPatrolState::Instance());
 }
 
 void BAlarmState::Exit(Bat* pBat)
 {
     // Bat dies
-    cout << "\n" << "Bat" << ": " << "Dying";
 }
 
