@@ -40,6 +40,9 @@
 #define MAX_MESSAGE_LINES 4
 
 
+#include "ResourceMesh.h"
+
+
 
 
 using namespace std;
@@ -132,105 +135,6 @@ namespace dwe
         v.Z = dweV.z;
         return v;
     }*/
-
-    ///////////////////////////////////////////////
-    // Arbol de escena
-    ///////////////////////////////////////////////
-    class Entity
-    {
-        public:
-            Entity() {};
-            ~Entity() {};
-
-            std::string m_cadena;
-
-            virtual void beginDraw() = 0;
-            virtual void endDraw() = 0;
-    };
-
-    class ETransform : public Entity
-    {
-        public:
-            ETransform() {};
-            ~ETransform() {};
-
-            void identity();
-            void load(glm::mat4 m);
-            void transpose();
-
-            void translate(vec3f t);
-            void translate(float x, float y, float z);
-
-            void rotate(vec3f r);
-            void rotate(float x, float y, float z);
-
-            void scale(vec3f s);
-            void scale(float x, float y, float z);
-
-            void beginDraw();
-            void endDraw();
-
-            glm::mat4 getMatrix();
-
-
-        private:
-            glm::mat4   m_matrix;
-    };
-
-    class ELight : public Entity
-    {
-        public:
-            ELight() {};
-            ~ELight() {};
-
-            void beginDraw();
-            void endDraw();
-    };
-
-    class ECamera : public Entity
-    {
-        public:
-            ECamera() {};
-            ~ECamera() {};
-
-            void beginDraw();
-            void endDraw();
-    };
-
-    class EMesh : public Entity
-    {
-        public:
-            EMesh() {};
-            ~EMesh() {};
-
-            void loadMesh(char *file);
-
-            void beginDraw();
-            void endDraw();
-    };
-
-    class GraphicNode
-    {
-        public:
-            GraphicNode() {};
-            ~GraphicNode() {};
-
-            unsigned int addChild(GraphicNode* n);
-            unsigned int removeChild(GraphicNode* n);
-
-            bool setEntity(Entity* e);
-            Entity* getEntity();
-            GraphicNode* getParent();
-
-            void draw();
-
-        private:
-            Entity*                 m_entity;
-            vector<GraphicNode*>    m_childs;
-            GraphicNode*            m_parent;
-
-    };
-
 
     ///////////////////////////////////////////////
     // Node

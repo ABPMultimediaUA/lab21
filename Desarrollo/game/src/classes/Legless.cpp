@@ -2,7 +2,6 @@
 
 Legless::Legless()
 {
-    crawl = 19;
     //set up state machine
     l_pStateMachine = new StateMachine<Legless>(this);
 
@@ -12,18 +11,12 @@ Legless::Legless()
 
 void Legless::Update()
 {
-    crawl--;
     l_pStateMachine->Update();
 }
 
 StateMachine<Legless>* Legless::GetFSM()const
 {
     return l_pStateMachine;
-}
-
-int Legless::getCrawl ()
-{
-    return crawl;
 }
 
 Legless::~Legless()

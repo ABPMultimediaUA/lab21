@@ -10,6 +10,14 @@
 #include "GraphicsEngine.h"
 #include "Player.h"
 
+
+#include "GraphicNode.h"
+#include "EMesh.h"
+#include "ResourceManager.h"
+#include "ResourceMesh.h"
+#include "ETransform.h"
+
+
 using namespace dwe;
 
 int main()
@@ -107,6 +115,7 @@ int main()
     transform01.rotate(90, 0, 0);
     //transform01.translate(3, 2, 4);
 
+
    /* transform02.load(glm::mat4(1, 2, 3, 4, 2, 4, 1, 2, 2, 1, 3, 4, 4, 1, 3, 2));
     transform02.transpose();
 
@@ -119,16 +128,9 @@ int main()
     nodoRoot.draw();
 
 
+
     //return 0;
 
-    GEInstance->init();
-
-    Player* mainPlayer = GEInstance->createMainPlayer();
-
-    GEInstance->addMessageLine("Gestor de ventanas con SFML");
-    GEInstance->addMessageLine("Carga de modelos con ASSIMP");
-    GEInstance->addMessageLine("Rotar con teclas A D W S");
-    GEInstance->addMessageLine("Movimiento con ratón");
 
     //               Root
     //          /      |     \
@@ -166,6 +168,35 @@ int main()
     // End 03
     // End Root
     /////////////////////////////////////
+
+    std::cout << "//////////////////////////////////////////\n// Probando resourcemanager\n////////////////////////////\n";
+
+    ResourceManager resourceManager;
+    ResourceMesh* resourceMesh;
+
+    resourceMesh = static_cast<ResourceMesh*>(resourceManager.getResource("media/newcube.obj"));
+    resourceManager.getResource("media/newcube.obj");
+    resourceManager.getResource("media/newcube.obj");
+    resourceManager.getResource("media/newcube.obj");
+    resourceManager.getResource("media/newcube.obj");
+    resourceManager.getResource("media/newcube.obj");
+
+    std::cout << "///////////////////////////////////\n";
+
+
+
+
+
+
+
+    GEInstance->init();
+
+    Player* mainPlayer = GEInstance->createMainPlayer();
+
+    GEInstance->addMessageLine("Gestor de ventanas con SFML");
+    GEInstance->addMessageLine("Carga de modelos con ASSIMP");
+    GEInstance->addMessageLine("Rotar con teclas A D W S");
+    GEInstance->addMessageLine("Movimiento con ratÃ³n");
 
     while (GEInstance->isRunning())
     {

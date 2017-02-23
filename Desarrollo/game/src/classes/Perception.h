@@ -1,15 +1,16 @@
 #ifndef PERCEPTION_H
 #define PERCEPTION_H
 #include "Player.h"
-#include "Humanoid.h"
-#include "PathplanningTask.h"
+
+class Humanoid;
+class PathplanningTask;
 
 class Perception
 {
     public:
         Perception();
         virtual ~Perception();
-        bool senses(Player* mainPlayer, Humanoid* enemyHumanoid, dwe::Node* fovnode, PathplanningTask* p);
+        bool senses(Player* mainPlayer, Humanoid* enemyHumanoid, /*dwe::Node* fovnode,*/ PathplanningTask* p);
 
     protected:
 

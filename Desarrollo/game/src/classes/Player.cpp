@@ -303,5 +303,6 @@ void Player::onBeginContact(EntityPhysics* otherObject)
 {
     if((otherObject && otherObject->getClassID()==CLASS_ENEMY_ID)){
         m_health-=5;
+        cout<<m_health<<endl;
     }
 }
