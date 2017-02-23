@@ -8,6 +8,9 @@ using namespace rapidjson;
 LoadMap::LoadMap()
 {
 
+}
+
+void LoadMap::Init(){
     suelo = GEInstance->createNode("media/suelo");
     suelo->setPosition(dwe::vec3f(0,0,0));
 
@@ -84,7 +87,10 @@ LoadMap::LoadMap()
 
         }
     }
-
+}
+void LoadMap::Destroy(){
+    delete suelo;
+    delete wall;
 }
 
 LoadMap::~LoadMap()

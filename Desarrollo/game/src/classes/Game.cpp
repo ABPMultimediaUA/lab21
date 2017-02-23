@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <GraphicsEngine.h>
+#include "NetGame.h"
 
 Game::Game(){
     running = true;
@@ -16,12 +17,14 @@ Game::~Game(){
 }
 
 void Game::Run(){
-     while(GEInstance->isRunning()){
+
+     while(running){
+        GEInstance->isRunning();
         Update();
         HandleEvents();
         Render();
-        Quit();
-    }
+    }cout<<"hadouken"<<endl;
+    Quit();
 }
 
 void Game::ChangeState(GState *newState){
@@ -35,9 +38,13 @@ bool Game::getRunning(){
     return running;
 }
 void Game::Quit(){
-    if(!running){
+cout<<"muffins"<<endl;
         //se cierra el motor
-    }
+        NetInstance->close();
+        cout<<"muffinz"<<endl;
+        GEInstance->close();
+        cout<<"muggins"<<endl;
+
 }
 void Game::Update(){
     CurrentState->Update();

@@ -8,6 +8,8 @@ class GSIngame : public GState{
 public:
     GSIngame();
     ~GSIngame();
+    void Init();
+
     void HandleEvents();
     void Update();
     void Render();

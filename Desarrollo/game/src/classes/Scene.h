@@ -39,6 +39,7 @@ class Scene
         virtual ~Scene();
 
         void Init();
+        void Destroy();
 
         void Update();
 
@@ -75,15 +76,6 @@ class Scene
         Humanoid* enemyHumanoid;
         Dog* enemyDog;
         /**/
-        dwe::Node* fovnode; // Futuro dentro de cada enemigo
-        Perception* percep;
-        Pathplanning* pathp;
-        Selector* selector1;
-        Selector* selector2;
-        Sequence *sequence1;
-        PathplanningTask* path;
-        PerceptionTask* perc;
-        PatrolTask* patrol;
 
         // Objets
         Gun* gun;

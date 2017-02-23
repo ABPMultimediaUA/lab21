@@ -70,11 +70,7 @@
 			<Add library="gdi32" />
 			<Add library="winmm" />
 			<Add library="lib/libirrKlang.a" />
-<<<<<<< HEAD
-=======
-			<Add library="freetype" />
 			<Add library="jpeg" />
->>>>>>> master
 			<Add directory="lib" />
 		</Linker>
 		<Unit filename="include/rapidjson/allocators.h" />
@@ -203,6 +199,8 @@
 		<Unit filename="src/classes/Mother.h" />
 		<Unit filename="src/classes/MotherStates.cpp" />
 		<Unit filename="src/classes/MotherStates.h" />
+		<Unit filename="src/classes/NavGraphNode.cpp" />
+		<Unit filename="src/classes/NavGraphNode.h" />
 		<Unit filename="src/classes/Node.cpp" />
 		<Unit filename="src/classes/Node.h" />
 		<Unit filename="src/classes/NodeStates.h" />
@@ -248,6 +246,8 @@
 		<Unit filename="src/classes/TriggerGenerator.h" />
 		<Unit filename="src/classes/WalkThroughDoorTask.cpp" />
 		<Unit filename="src/classes/WalkThroughDoorTask.h" />
+		<Unit filename="src/classes/Waypoint.cpp" />
+		<Unit filename="src/classes/Waypoint.h" />
 		<Unit filename="src/classes/Weapon.cpp" />
 		<Unit filename="src/classes/Weapon.h" />
 		<Unit filename="src/classes/WorldInstance.cpp" />

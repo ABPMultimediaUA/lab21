@@ -3,19 +3,14 @@
 #include "WorldInstance.h"
 #include "GSPause.h"
 #include "GSDead.h"
+#include "NetGame.h"
+
 
 #include <iostream>
 using namespace std;
 
 GSIngame::GSIngame(){
-    page=0;
-    m=false;
-    LoadMap::getInstance();
-    cout<<"Cargado el mapa"<<endl;
-    WorldInstance::Instance();
-    timeStamp = World->getTimeElapsed();
-    Scene::Instance();
-    Scene::Instance()->Init();
+
 }
 
 GSIngame* GSIngame::getInstance()
@@ -23,6 +18,16 @@ GSIngame* GSIngame::getInstance()
   static GSIngame instance;
 
   return &instance;
+}
+
+void GSIngame::Init(){
+    page=0;
+    m=false;
+    LoadMap::getInstance()->Init();
+    cout<<"Cargado el mapa"<<endl;
+    WorldInstance::Instance();
+    timeStamp = World->getTimeElapsed();
+    Scene::Instance()->Init();
 }
 
 void GSIngame::Update(){
@@ -47,7 +52,10 @@ void GSIngame::HandleEvents(){
     }
     else if(GEInstance->receiver.isKeyDown(KEY_ESCAPE))
     {
-        GEInstance->close();
+        Game::getInstance()->setRunning(false);
+        cout<<"maafns1ertyujkl1"<<endl;
+        //GEInstance=0;
+
         //return 0;
     }
 }
@@ -62,4 +70,8 @@ void GSIngame::Render(){
         GEInstance->draw();
     }
 }
-GSIngame::~GSIngame(){}
+GSIngame::~GSIngame(){
+
+    cout<<"He borrado el mapa"<<endl;
+
+}

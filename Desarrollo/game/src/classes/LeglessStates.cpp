@@ -16,23 +16,20 @@ LPatrolState* LPatrolState::Instance()
 
 void LPatrolState::Enter(Legless* pLegless)
 {
-    cout << "\n" << "Legless" << ": " << "Starting to crawl because I have no legs";
+
 }
 
 
 void LPatrolState::Execute(Legless* pLegless)
 {
-
-    cout << "\n" << "Legless" << ": " << "Patrolling. Moving with my arms";
-
-    if(pLegless->getCrawl() == 15)
-        pLegless->GetFSM()->ChangeState(LLookingForPlayerState::Instance());
+    //if ve al jugador
+    //pLegless->GetFSM()->ChangeState(LLookingForPlayerState::Instance());
 }
 
 
 void LPatrolState::Exit(Legless* pLegless)
 {
-  cout << "\n" << "Legless" << ": " << "Hmmmm?";
+
 }
 
 /*******************/
@@ -46,22 +43,22 @@ LLookingForPlayerState* LLookingForPlayerState::Instance()
 
 void LLookingForPlayerState::Enter(Legless* pLegless)
 {
-    cout << "\n" << "Legless" << ": " << "There is something here";
+
 }
 
 
 void LLookingForPlayerState::Execute(Legless* pLegless)
 {
-    cout << "\n" << "Legless" << ": " << "Looking for I don't know what";
+    //if cerca del jugador
+    //pLegless->GetFSM()->ChangeState(LAttackState::Instance());
 
-    if(pLegless->getCrawl() == 10)
-        pLegless->GetFSM()->ChangeState(LAttackState::Instance());
+    //if deja de ver al jugador
+    //pLegless->GetFSM()->ChangeState(LPatrolState::Instance());
 }
 
 void LLookingForPlayerState::Exit(Legless* pLegless)
 {
 
-    cout << "\n" << "Legless" << ": " << "You, wait!";
 }
 
 /*******************/
@@ -75,21 +72,18 @@ LAttackState* LAttackState::Instance()
 
 void LAttackState::Enter(Legless* pLegless)
 {
-    cout << "\n" << "Legless" << ": " << "I'm gonna catch you and kill you";
+
 }
 
 
 void LAttackState::Execute(Legless* pLegless)
 {
-    cout << "\n" << "Legless" << ": " << "'ZAP!'";
-
-    if(pLegless->getCrawl() == 5)
-        pLegless->GetFSM()->ChangeState(LPatrolState::Instance());
+    //if termina de atacar
+    //pLegless->GetFSM()->ChangeState(LLookingForPlayerState::Instance());
 }
 
 void LAttackState::Exit(Legless* pLegless)
 {
-
-    cout << "\n" << "Legless" << ": " << "I'm dying...";
+    //muere
 }
 
