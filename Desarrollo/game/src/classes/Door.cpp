@@ -7,7 +7,7 @@ Door::Door(int f, bool a)
     y = 0;
     z = 0;
     facing = f;
-    speed = 0.6;  // RMM no se puede poner a 0.5, sino la puerta no vuelve a abrirse ¿?
+    speed = 0.6;  // RMM no se puede poner a 0.5, sino la puerta no vuelve a abrirse
     active = a;
     isOpened = false;
     op=0;
@@ -223,10 +223,12 @@ void Door::render()
 
 void Door::setNode(dwe::Node* n)
 {
+
     Drawable::setNode(n);
 
     dwe::vec3f s = n->getBoundingBox();
-    createStaticBody(getPosition(), s.x, s.z);
+    createStaticBody(getPosition(), s.x, s.z, 0);
+
 }
 
 void Door::setPosition(dwe::vec3f p)

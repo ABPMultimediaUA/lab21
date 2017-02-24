@@ -3,9 +3,12 @@
 
 #define GLEW_STATIC
 
+#include <math.h>
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <glm/ext.hpp>
 
 #include <string>
 #include <list>
@@ -35,6 +38,9 @@
 #define SCREEN_WIDTH  800
 #define SCREEN_HEIGHT 600
 #define MAX_MESSAGE_LINES 4
+
+
+#include "ResourceMesh.h"
 
 
 
@@ -129,7 +135,6 @@ namespace dwe
         v.Z = dweV.z;
         return v;
     }*/
-
 
     ///////////////////////////////////////////////
     // Node

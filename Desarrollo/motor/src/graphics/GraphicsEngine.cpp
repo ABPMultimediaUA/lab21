@@ -152,13 +152,13 @@ void dwe::GraphicsEngine::draw()
     m_viewMatrix = m_viewMatrix * rotateMatrix;
     m_viewMatrix = glm::scale(m_viewMatrix, glm::vec3(m_scale, m_scale, m_scale));
 
-    glUniform1i(m_uLuz0Location, true);
-    glUniformMatrix4fv(m_uVMatrixLocation, 1, GL_FALSE, glm::value_ptr(m_viewMatrix)); // Para la luz matrix view pero sin escalado!
-
     // Habilitamos el paso de attributes
     glEnableVertexAttribArray(m_aPositionLocation);
     glEnableVertexAttribArray(m_aNormalLocation);
     glUseProgram(m_shaderProgram->ReturnProgramID());
+
+    glUniform1i(m_uLuz0Location, true);
+    glUniformMatrix4fv(m_uVMatrixLocation, 1, GL_FALSE, glm::value_ptr(m_viewMatrix)); // Para la luz matrix view pero sin escalado!
 
     // Dibujar
     render();

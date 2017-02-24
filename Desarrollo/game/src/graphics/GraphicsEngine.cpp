@@ -74,7 +74,16 @@ void dwe::GraphicsEngine::init()
         m_messageLine[i] = m_guienv->addStaticText(L"", rect<s32>(10, _screenHeight - (i+1)*16, _screenWidth-20, _screenHeight - i*16), false);
         m_messageLine[i]->setOverrideColor(SColor(255,255,255,255));
 	}
-
+    /****
+	for(int i=0; i<MAX_MESSAGE_LINES; i++)
+	{
+        m_sfmessageLine[i].setFont(m_font);
+        m_sfmessageLine[i].setCharacterSize(14);
+        m_sfmessageLine[i].setFillColor(sf::Color(255, 255, 255, 255));
+        m_sfmessageLine[i].setPosition(10.f, _screenHeight - (i+1)*16.f);
+        m_sfmessageLine[i].setString("");
+	}
+    ****/
 	// Posición de la cámara inicial
 	m_smgr->addCameraSceneNode(0, vector3df(-150,120,190), vector3df(0,0,0));
 }
@@ -123,9 +132,9 @@ void dwe::GraphicsEngine::draw()
 
     m_driver->endScene();
 
-    wchar_t tmp[255];
-    swprintf(tmp, L"Lab21 - fps:%d triangles:%d", m_driver->getFPS(), m_driver->getPrimitiveCountDrawn());
-  	m_device->setWindowCaption(tmp);
+   // wchar_t tmp[255];
+    //swprintf(tmp, L"Lab21 - fps:%d triangles:%d", m_driver->getFPS(), m_driver->getPrimitiveCountDrawn());
+  	//m_device->setWindowCaption(tmp);
 }
 
 
@@ -139,6 +148,7 @@ scene::IAnimatedMeshSceneNode* dwe::GraphicsEngine::createIrrAnimatedMeshSceneNo
 		exit(0);
 	}
 	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
+
 	if (irrnode)
 	{
 		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
@@ -220,7 +230,7 @@ Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 
 
 	Player* p = new Player(gun);
-	p->setNode(new Node(irrnode));
+	p->setNode(new Node(irrnode));cout<<"-----------------------------"<<endl;
 	NetInstance->addNetObject(p);
     return p;
 }
@@ -318,9 +328,11 @@ void dwe::GraphicsEngine::changeEnemyDogTexture(Dog* dog,const io::path& text)
 
 Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float pz)
 {
+
     scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/puerta");
     Door* d = new Door(f, a);
 	d->setNode(new Node(irrnode));
+
     d->setPosition(dwe::vec3f(px, py, pz)); // Cerrada
 	//d->setPosition(dwe::vec3f(43.5-70, 36.3, 135.9)); // Abierta
 	d->setPositionClosed(dwe::vec3f(px, py, pz)); // Localización de la puerta CERRADA
@@ -512,39 +524,42 @@ void dwe::GraphicsEngine::close()
 //////////////////////////
 void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition)
 {
+    float cursorX = GEInstance->receiver.getCursorX();
+    float cursorY = GEInstance->receiver.getCursorY();
+    int   width   = GEInstance->get_screenWidth();
+    int   height  = GEInstance->get_screenHeight();
+    int   borderL = width - (width-50);
+    int   borderR = width-50;
+    int   borderU = height - (height-50);
+    int   borderD = height-50;
+
+
+
     //update camera target
     //Desencuadre horizontal
-    if(GEInstance->receiver.getCursorX()<50){
-        if(tarLR > -_camera_desviation)
-            tarLR -= _camera_progression;
-    }else if(GEInstance->receiver.getCursorX()>750){
-        if(tarLR<_camera_desviation)
-            tarLR+=_camera_progression;
+    if(cursorX < borderL){
+        if(tarLR > -_camera_desviation)       tarLR -= _camera_progression;
+    }else if(cursorX > borderR){
+        if(tarLR < _camera_desviation)        tarLR+=_camera_progression;
     }else{
         //Volver a centrar
         if(tarLR!=0)
-            if(tarLR<0)
-                tarLR+=_camera_progression;
-            else
-                tarLR-=_camera_progression;
+            if(tarLR<0)     tarLR+=_camera_progression;
+            else            tarLR-=_camera_progression;
         else
             tarLR = 0;
     }
 
     //Desencuadre vertical
-    if(GEInstance->receiver.getCursorY()<50){
-        if(tarUD<_camera_desviation)
-            tarUD+=_camera_progression;
-    }else if(GEInstance->receiver.getCursorY()>550){
-        if(tarUD>-_camera_desviation)
-            tarUD-=_camera_progression;
+    if(cursorY < borderU){
+        if(tarUD < _camera_desviation)        tarUD+=_camera_progression;
+    }else if(cursorY > borderD){
+        if(tarUD > -_camera_desviation)       tarUD-=_camera_progression;
     }else{
         //Volver a centrar
         if(tarUD!=0)
-            if(tarUD<0)
-                tarUD+=_camera_progression;
-            else
-                tarUD-=_camera_progression;
+            if(tarUD<0)     tarUD+=_camera_progression;
+            else            tarUD-=_camera_progression;
         else
             tarUD = 0;
     }
@@ -559,9 +574,26 @@ void dwe::GraphicsEngine::addMessageLine(std::wstring text)
     for(int i=MAX_MESSAGE_LINES-1; i>0; i--)
         m_messageLine[i]->setText(m_messageLine[i-1]->getText());
     m_messageLine[0]->setText(text.c_str());
+
 }
-
-
+/*******  Metodo a usar para crear botones en fachada ****/
+/*irr::gui::IGUIButton* dwe::GraphicsEngine::createButton(const core::rect<s32>& rectangle)
+{
+    s32 buttonWidth = 128;
+	s32 buttonHeight = 32;
+	irr::gui::IGUIButton*
+    m_guienv->addButton(rectangle);
+    video::ITexture* buttonImage = driver->getTexture("media/playAlone_button.png");
+    core::dimension2d<u32> buttonDim = buttonImage->getSize();
+}*/
+/****
+void dwe::GraphicsEngine::addsfMessageLine(std::string text)
+{
+    for(int i=MAX_MESSAGE_LINES-1; i>0; i--)
+        m_sfmessageLine[i].setString(m_sfmessageLine[i-1].getString());
+    m_sfmessageLine[0].setString(text);
+}
+****/
 
 irr::scene::ISceneManager*  dwe::GraphicsEngine::getSMGR(){return(m_smgr);}
 

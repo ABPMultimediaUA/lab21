@@ -1,15 +1,18 @@
 #ifndef PERCEPTIONTASK_H
 #define PERCEPTIONTASK_H
 
-//#include "Node.h"
-#include "Perception.h"
-#include "PathplanningTask.h"
+#include "Node.h"
+#include "GraphicsEngine.h"
+
+class Perception;
+class Humanoid;
+class PathplanningTask;
 
 class PerceptionTask : public Node
 {
     public:
 
-        PerceptionTask(Perception* p, Player* pl, Humanoid* h, dwe::Node* n, PathplanningTask* pa);
+        PerceptionTask(Perception* p, Humanoid* h, /*dwe::Node* n, */PathplanningTask* pa);
 
         virtual ~PerceptionTask();
 
@@ -22,7 +25,7 @@ class PerceptionTask : public Node
         Perception* per;
         Player* play;
         Humanoid* hum;
-        dwe::Node* no;
+        //dwe::Node* no;
         PathplanningTask* path;
 };
 

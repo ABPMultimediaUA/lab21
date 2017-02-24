@@ -18,14 +18,9 @@ class Guardian : public Enemy
 
         void Update();
 
-        int getSteps();
-
-
     protected:
 
     private:
-
-        int steps;
 
         StateMachine<Guardian>*  g_pStateMachine;
 };

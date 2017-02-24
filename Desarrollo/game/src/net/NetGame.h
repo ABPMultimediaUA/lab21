@@ -52,10 +52,9 @@ namespace dwn
             void addNetEntity(Entity* entity);
             void addNetConsumable(Consumable* consumable);
             void addNetEnemy(Enemy* enemy);
+            void removeNetEnemy(Enemy* enemy);
 
             bool isLocalObject(RakNet::RakNetGUID id);
-
-            static bool isConnectedToNATPunchthroughServer;
 
             bool isMultiplayer();
             bool isServer();
@@ -119,11 +118,11 @@ namespace dwn
             bool m_connected;
             bool m_connectionFailed;
             bool m_connectionRejected;
-            bool m_gamesSearched;         // Si ya ha hecho la búsqueda de partidas o no
+            bool m_gamesSearched;         // Si ya ha heif(enemyHumanoid)cout<<"moriste wey"<<endl;cho la búsqueda de partidas o no
             bool m_isServer;
             bool m_gameStarted;
             unsigned short m_participantOrder;
-            std::string m_IP;
+            std::string m_serverIP;
             Scene* m_scene;
             RakNetGUID m_cloudServerGUID;
 

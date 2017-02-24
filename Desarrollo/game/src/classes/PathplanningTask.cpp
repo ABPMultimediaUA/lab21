@@ -1,12 +1,15 @@
 #include "PathplanningTask.h"
+#include "WorldInstance.h"
+#include "Pathplanning.h"
+#include "Perception.h"
 
-PathplanningTask::PathplanningTask(Pathplanning* p, Drawable* pl, Humanoid* h, dwe::Node* n)
+PathplanningTask::PathplanningTask(Pathplanning* p, Humanoid* h/*, dwe::Node* n*/)
 {
     //ctor
     path = p;
-    play = pl;
+    play = World->getMainPlayer();
     hum = h;
-    no = n;
+    //no = n;
     brunning = false;
 }
 
@@ -17,7 +20,7 @@ PathplanningTask::~PathplanningTask()
 
 States PathplanningTask::run()
 {
-    path->behaviour(play, hum, no, false);
+    path->behaviour(play, hum,/* no, */false);
     return success;
 }
 

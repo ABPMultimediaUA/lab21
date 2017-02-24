@@ -1,10 +1,10 @@
 #include "PatrolTask.h"
 
-PatrolTask::PatrolTask(Humanoid* h, dwe::Node* n)
+PatrolTask::PatrolTask(Humanoid* h/*, dwe::Node* n*/)
 {
     //ctor
     hum = h;
-    no = n;
+    //no = n;
     pos1 = 100;
     pos2 = -100;
     dir = 0;
@@ -26,7 +26,7 @@ States PatrolTask::run()
         if(hum->getPosition().z<=pos2){
             dir = 1;
             hum->setRotation(dwe::vec3f(0, 270.f, 0));
-            no->setRotation(hum->getRotation());
+            //no->setRotation(hum->getRotation());
         }
     }
     else
@@ -35,7 +35,7 @@ States PatrolTask::run()
         if(hum->getPosition().z>=pos1){
             dir = 0;
             hum->setRotation(dwe::vec3f(0, 90.f, 0));
-            no->setRotation(hum->getRotation());
+            //no->setRotation(hum->getRotation());
         }
     }
 

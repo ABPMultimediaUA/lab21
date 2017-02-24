@@ -1,8 +1,28 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef SCENE_H
+#define SCENE_H
 
 #include <vector>
 #include "GraphicsEngine.h"
+
+#include "Dog.h"
+#include "Humanoid.h"
+
+#include "TriggerDoor.h"
+#include "TriggerGenerator.h"
+#include "Door.h"
+#include "Generator.h"
+#include "MagnetKey.h"
+#include "Gun.h"
+
+#include "Pathplanning.h"
+#include "Perception.h"
+#include "Selector.h"
+#include "Sequence.h"
+#include "PathplanningTask.h"
+#include "PerceptionTask.h"
+#include "PatrolTask.h"
+
+#define NUM_ENTITIES 3
 
 class Projectile;
 class Consumable;
@@ -12,12 +32,23 @@ class Firearm;
 class Scene
 {
     public:
+
+        static Scene* Instance();
+
         Scene();
         virtual ~Scene();
+
+        void Init();
+        void Destroy();
+
+        void Update();
+
 
         void createProjectile(dwe::vec3f origin, float angle);
         void deleteProjectile(unsigned int i);
         void updateProjectiles();
+
+        void createEnemyHumanoid(dwe::vec3f origin, float angle);
 
         void createSpeedBoost(float px, float py, float pz);
         void createMedkit(float px, float py, float pz);
@@ -33,8 +64,34 @@ class Scene
     protected:
 
     private:
+
+        Entity *entities[NUM_ENTITIES]; // Array de entidades
+        Entity *sector[1]; // Sector no funcional que se le asigna a un generador
+        Trigger *triggers[3]; // Triggers
+        MagnetKey *llave;
+        bool llaveCogida;
+
+        // NPcs
+        Player* mainPlayer;
+        Humanoid* enemyHumanoid;
+        Dog* enemyDog;
+        /**/
+
+        // Objets
+        Gun* gun;
+        Shotgun* shotgun;
+        Rifle* rifle;
+
         std::vector<Projectile*> m_projectiles;
         std::vector<Consumable*> m_consumables;
+        std::vector<Enemy*> m_enemies;
+
+        float timeLastProjectil;
+
+        // Random
+        dwe::Node* joint_try;
+        EntityPhysics* bjoint;
+        ICameraSceneNode* camera1;
 };
 
-#endif // GAME_H
+#endif // SCENE_H

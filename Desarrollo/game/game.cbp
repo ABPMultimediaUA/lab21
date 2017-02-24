@@ -12,6 +12,7 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
+				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="include" />
@@ -19,6 +20,11 @@
 					<Add directory="src" />
 					<Add directory="src/classes" />
 				</Compiler>
+				<Linker>
+					<Add library="sfml-graphics-s-d" />
+					<Add library="sfml-window-s-d" />
+					<Add library="sfml-system-s-d" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/game" prefix_auto="1" extension_auto="1" />
@@ -26,6 +32,7 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
+				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-O2" />
 					<Add directory="include" />
@@ -35,6 +42,9 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add library="sfml-graphics-s" />
+					<Add library="sfml-window-s" />
+					<Add library="sfml-system-s" />
 				</Linker>
 			</Target>
 		</Build>
@@ -42,24 +52,62 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 			<Add option="-D_IRR_STATIC_LIB_" />
+			<Add option="-DSFML_STATIC" />
 			<Add directory="include/illricht" />
 			<Add directory="include" />
 			<Add directory="include/RakNet" />
 			<Add directory="src/classes" />
 			<Add directory="src/graphics" />
 			<Add directory="include/irrKlang" />
+			<Add directory="include/rapidjson" />
 		</Compiler>
 		<Linker>
-			<Add library="lib\libIrrlicht.a" />
-			<Add library="lib\libRakNet.a" />
-			<Add library="lib\libbox2DEngine.a" />
+			<Add library="lib/libIrrlicht.a" />
+			<Add library="lib/libRakNet.a" />
+			<Add library="lib/libbox2DEngine.a" />
 			<Add library="ws2_32" />
 			<Add library="opengl32" />
 			<Add library="gdi32" />
 			<Add library="winmm" />
-			<Add library="lib\libirrKlang.a" />
+			<Add library="lib/libirrKlang.a" />
+			<Add library="jpeg" />
 			<Add directory="lib" />
 		</Linker>
+		<Unit filename="include/rapidjson/allocators.h" />
+		<Unit filename="include/rapidjson/document.h" />
+		<Unit filename="include/rapidjson/encodedstream.h" />
+		<Unit filename="include/rapidjson/encodings.h" />
+		<Unit filename="include/rapidjson/error/en.h" />
+		<Unit filename="include/rapidjson/error/error.h" />
+		<Unit filename="include/rapidjson/filereadstream.h" />
+		<Unit filename="include/rapidjson/filewritestream.h" />
+		<Unit filename="include/rapidjson/fwd.h" />
+		<Unit filename="include/rapidjson/internal/biginteger.h" />
+		<Unit filename="include/rapidjson/internal/diyfp.h" />
+		<Unit filename="include/rapidjson/internal/dtoa.h" />
+		<Unit filename="include/rapidjson/internal/ieee754.h" />
+		<Unit filename="include/rapidjson/internal/itoa.h" />
+		<Unit filename="include/rapidjson/internal/meta.h" />
+		<Unit filename="include/rapidjson/internal/pow10.h" />
+		<Unit filename="include/rapidjson/internal/regex.h" />
+		<Unit filename="include/rapidjson/internal/stack.h" />
+		<Unit filename="include/rapidjson/internal/strfunc.h" />
+		<Unit filename="include/rapidjson/internal/strtod.h" />
+		<Unit filename="include/rapidjson/internal/swap.h" />
+		<Unit filename="include/rapidjson/istreamwrapper.h" />
+		<Unit filename="include/rapidjson/memorybuffer.h" />
+		<Unit filename="include/rapidjson/memorystream.h" />
+		<Unit filename="include/rapidjson/msinttypes/inttypes.h" />
+		<Unit filename="include/rapidjson/msinttypes/stdint.h" />
+		<Unit filename="include/rapidjson/ostreamwrapper.h" />
+		<Unit filename="include/rapidjson/pointer.h" />
+		<Unit filename="include/rapidjson/prettywriter.h" />
+		<Unit filename="include/rapidjson/rapidjson.h" />
+		<Unit filename="include/rapidjson/reader.h" />
+		<Unit filename="include/rapidjson/schema.h" />
+		<Unit filename="include/rapidjson/stream.h" />
+		<Unit filename="include/rapidjson/stringbuffer.h" />
+		<Unit filename="include/rapidjson/writer.h" />
 		<Unit filename="src/classes/Ammo.cpp" />
 		<Unit filename="src/classes/Ammo.h" />
 		<Unit filename="src/classes/AmmoGrenade.cpp" />
@@ -110,7 +158,17 @@
 		<Unit filename="src/classes/Firearm.h" />
 		<Unit filename="src/classes/Flashlight.cpp" />
 		<Unit filename="src/classes/Flashlight.h" />
+		<Unit filename="src/classes/GSDead.cpp" />
+		<Unit filename="src/classes/GSDead.h" />
+		<Unit filename="src/classes/GSIngame.cpp" />
+		<Unit filename="src/classes/GSIngame.h" />
+		<Unit filename="src/classes/GSMainMenu.cpp" />
+		<Unit filename="src/classes/GSMainMenu.h" />
+		<Unit filename="src/classes/GSPause.cpp" />
+		<Unit filename="src/classes/GSPause.h" />
 		<Unit filename="src/classes/GState.h" />
+		<Unit filename="src/classes/Game.cpp" />
+		<Unit filename="src/classes/Game.h" />
 		<Unit filename="src/classes/Generator.cpp" />
 		<Unit filename="src/classes/Generator.h" />
 		<Unit filename="src/classes/Grenade.cpp" />
@@ -121,6 +179,8 @@
 		<Unit filename="src/classes/GuardianStates.h" />
 		<Unit filename="src/classes/Gun.cpp" />
 		<Unit filename="src/classes/Gun.h" />
+		<Unit filename="src/classes/Hud.cpp" />
+		<Unit filename="src/classes/Hud.h" />
 		<Unit filename="src/classes/Humanoid.cpp" />
 		<Unit filename="src/classes/Humanoid.h" />
 		<Unit filename="src/classes/HumanoidStates.cpp" />
@@ -129,6 +189,8 @@
 		<Unit filename="src/classes/Legless.h" />
 		<Unit filename="src/classes/LeglessStates.cpp" />
 		<Unit filename="src/classes/LeglessStates.h" />
+		<Unit filename="src/classes/LoadMap.cpp" />
+		<Unit filename="src/classes/LoadMap.h" />
 		<Unit filename="src/classes/MagnetKey.cpp" />
 		<Unit filename="src/classes/MagnetKey.h" />
 		<Unit filename="src/classes/Medkit.cpp" />
@@ -137,6 +199,8 @@
 		<Unit filename="src/classes/Mother.h" />
 		<Unit filename="src/classes/MotherStates.cpp" />
 		<Unit filename="src/classes/MotherStates.h" />
+		<Unit filename="src/classes/NavGraphNode.cpp" />
+		<Unit filename="src/classes/NavGraphNode.h" />
 		<Unit filename="src/classes/Node.cpp" />
 		<Unit filename="src/classes/Node.h" />
 		<Unit filename="src/classes/NodeStates.h" />
@@ -182,6 +246,8 @@
 		<Unit filename="src/classes/TriggerGenerator.h" />
 		<Unit filename="src/classes/WalkThroughDoorTask.cpp" />
 		<Unit filename="src/classes/WalkThroughDoorTask.h" />
+		<Unit filename="src/classes/Waypoint.cpp" />
+		<Unit filename="src/classes/Waypoint.h" />
 		<Unit filename="src/classes/Weapon.cpp" />
 		<Unit filename="src/classes/Weapon.h" />
 		<Unit filename="src/classes/WorldInstance.cpp" />
