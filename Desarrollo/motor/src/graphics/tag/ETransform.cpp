@@ -6,6 +6,7 @@
 #include <iostream>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/string_cast.hpp>
+#include "tag/EntitiesAttributes.h"
 
 tag::ETransform::ETransform()
 {
@@ -102,16 +103,18 @@ void tag::ETransform::scale(float x, float y, float z)
     m_matrix = glm::scale(m_matrix, glm::vec3(x, y, z));
 }
 
+std::stack<glm::mat4> tag::EntitiesAttributes::m_stack;
+glm::mat4 tag::EntitiesAttributes::m_ModelViewMatrix;
 /////////////////
 void tag::ETransform::beginDraw()
 {
     std::cout << "Begin " << m_cadena << "\n";
-    std::cout << glm::to_string(this->getMatrix()) << std::endl;
+    //std::cout << "estoy en " << glm::to_string(m_matrix) << endl;
 
-    glPushMatrix();
-    glMultMatrixf((GLfloat*)&m_matrix);
+    tag::EntitiesAttributes::m_stack.push(tag::EntitiesAttributes::m_ModelViewMatrix);
+    tag::EntitiesAttributes::m_ModelViewMatrix *= m_matrix;
 
-
+    std::cout << "Begin, modelmatrix : " << glm::to_string(tag::EntitiesAttributes::m_ModelViewMatrix) << std::endl;
 }
 
 /////////////////
@@ -119,7 +122,11 @@ void tag::ETransform::endDraw()
 {
     std::cout << "End " << m_cadena << "\n";
 
-    glPopMatrix();
+    tag::EntitiesAttributes::m_stack.pop();
+
+    tag::EntitiesAttributes::m_ModelViewMatrix = m_matrix;
+
+    std::cout << "End, modelmatrix : " << glm::to_string(tag::EntitiesAttributes::m_ModelViewMatrix) << std::endl;
 }
 
 
