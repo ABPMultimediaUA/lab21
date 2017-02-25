@@ -4393,7 +4393,13 @@
 1487862841 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\classes\drawable.h
 	"GraphicsEngine.h"
 
-1487870400 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\graphicsengine.h
+1488030991 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\graphicsengine.h
+	<GL/glew.h>
+	<assimp/Importer.hpp>
+	<assimp/scene.h>
+	<assimp/postprocess.h>
+	<SFML/Graphics.hpp>
+	<SFML/OpenGL.hpp>
 	<math.h>
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
@@ -4402,12 +4408,8 @@
 	<string>
 	<list>
 	<AppReceiver.h>
-	<SFML/Graphics.hpp>
-	<SFML/OpenGL.hpp>
-	<assimp/Importer.hpp>
-	<assimp/scene.h>
-	<assimp/postprocess.h>
-	"ResourceMesh.h"
+	"tag/ResourceMesh.h"
+	"tag/TAGEngine.h"
 	"GraphicsEngineTemplates.cpp"
 
 1487862840 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\include\glm\glm.hpp
@@ -8860,11 +8862,9 @@
 1487870400 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tagengine\resource.h
 	<string>
 
-1487870400 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
+1488030991 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
 	<GL/glew.h>
 	<glm/glm.hpp>
-	<glm/gtc/matrix_transform.hpp>
-	<glm/gtc/type_ptr.hpp>
 	"GraphicsEngine.h"
 	<iostream>
 	<vector>
@@ -8873,6 +8873,7 @@
 	"Shader.h"
 	"Program.h"
 	"Player.h"
+	"tag/TAGEngine.h"
 
 1487870400 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tagengine\ecamera.cpp
 	"ECamera.h"
@@ -8928,7 +8929,7 @@
 	<iostream>
 	<stdexcept>
 
-1488020770 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\main.cpp
+1488030991 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\main.cpp
 	<GL/glew.h>
 	<stdexcept>
 	<SFML/Graphics.hpp>
@@ -8936,11 +8937,12 @@
 	"Scene.h"
 	"GraphicsEngine.h"
 	"Player.h"
-	"GraphicNode.h"
-	"EMesh.h"
-	"ResourceManager.h"
-	"ResourceMesh.h"
-	"ETransform.h"
+	"tag/GraphicNode.h"
+	"tag/EMesh.h"
+	"tag/ResourceManager.h"
+	"tag/ResourceMesh.h"
+	"tag/ETransform.h"
+	"tag/TAGEngine.h"
 
 1488017873 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tagengine\etransform.h
 	"Entity.h"
@@ -9017,4 +9019,116 @@
 	"tag/Entity.h"
 	<glm/glm.hpp>
 	<stack>
+
+1488030991 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.h
+	<GL/glew.h>
+	"Resource.h"
+	<SFML/OpenGL.hpp>
+	<assimp/Importer.hpp>
+	<assimp/scene.h>
+	<assimp/postprocess.h>
+
+1488030991 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\resource.h
+	<string>
+
+1488030991 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
+	<GL/glew.h>
+	<SFML/Graphics.hpp>
+	<glm/glm.hpp>
+	"tag/Types.h"
+	"Program.h"
+	"ResourceManager.h"
+	"ResourceMesh.h"
+
+1488030991 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\types.h
+
+1488030991 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.h
+	<vector>
+	<string>
+	"Resource.h"
+
+1488030991 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\ecamera.cpp
+	"tag/ECamera.h"
+
+1488030991 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\ecamera.h
+	"Entity.h"
+
+1488043996 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\entity.h
+	<string>
+	<stack>
+	<glm/glm.hpp>
+	<stack>
+
+1488030991 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\elight.cpp
+	"tag/ELight.h"
+
+1488030991 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\elight.h
+	"Entity.h"
+
+1488030991 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\emesh.cpp
+	"tag/EMesh.h"
+	<iostream>
+
+1488030991 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\emesh.h
+	"Entity.h"
+
+1488030991 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\entitiesattributes.cpp
+	"tag/EntitiesAttributes.h"
+
+1488030991 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\entitiesattributes.h
+	"tag/Entity.h"
+	<glm/glm.hpp>
+	<stack>
+
+1488044102 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\entity.cpp
+	"tag/Entity.h"
+
+1488030991 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\graphicnode.cpp
+	"tag/GraphicNode.h"
+	"tag/Entity.h"
+	<algorithm>
+
+1488030991 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\graphicnode.h
+	<vector>
+
+1488030991 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\resource.cpp
+	"tag/Resource.h"
+
+1488030991 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.cpp
+	"tag/ResourceManager.h"
+	<iostream>
+	"tag/ResourceMesh.h"
+
+1488030991 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.cpp
+	"tag/ResourceMesh.h"
+	<stdio.h>
+	<iostream>
+	<stdexcept>
+	"tag/Entity.h"
+	"tag/TAGEngine.h"
+	"tag/Types.h"
+	<glm/gtc/matrix_transform.hpp>
+
+1488030991 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
+	"tag/TAGEngine.h"
+	<stdexcept>
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	"Shader.h"
+	"tag/Entity.h"
+	"tag/ResourceManager.h"
+	"tag/ResourceMesh.h"
+
+1488030991 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\etransform.h
+	"Entity.h"
+	<glm/glm.hpp>
+	"tag/Types.h"
+
+1488044124 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
+	"tag/ETransform.h"
+	<GL/glew.h>
+	<iostream>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtx/string_cast.hpp>
 

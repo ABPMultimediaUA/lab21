@@ -4,6 +4,7 @@
 #include <string>
 #include <stack>
 #include <glm/glm.hpp>
+#include <stack>
 
 namespace tag
 {
@@ -19,6 +20,7 @@ namespace tag
             virtual void endDraw() = 0;
 
             static glm::mat4 MVmatrix;  // glm la inicializa a entidad
+            static std::stack<glm::mat4> TStack;
 
         private:
     };
