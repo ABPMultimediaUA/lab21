@@ -6,7 +6,7 @@
 
 #include "Resource.h"
 
-namespace dwe
+namespace tag
 {
     class ResourceManager
     {

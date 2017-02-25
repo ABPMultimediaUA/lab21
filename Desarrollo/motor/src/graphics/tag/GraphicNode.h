@@ -3,7 +3,7 @@
 
 #include <vector>
 
-namespace dwe
+namespace tag
 {
     class Entity;
 
@@ -16,7 +16,7 @@ namespace dwe
             unsigned int addChild(GraphicNode* n);
             unsigned int removeChild(const GraphicNode* n);
 
-            bool setEntity(dwe::Entity* e);
+            bool setEntity(Entity* e);
             Entity* getEntity();
             GraphicNode* getParent();
 
