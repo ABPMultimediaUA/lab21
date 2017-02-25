@@ -3,7 +3,7 @@
 
 #include "Entity.h"
 
-namespace dwe
+namespace tag
 {
     class ELight : public Entity
     {

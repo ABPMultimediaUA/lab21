@@ -1098,7 +1098,13 @@
 1485764323 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\drawable.h
 	"GraphicsEngine.h"
 
-1487793589 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.h
+1488015733 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.h
+	<GL/glew.h>
+	<assimp/Importer.hpp>
+	<assimp/scene.h>
+	<assimp/postprocess.h>
+	<SFML/Graphics.hpp>
+	<SFML/OpenGL.hpp>
 	<math.h>
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
@@ -1107,12 +1113,8 @@
 	<string>
 	<list>
 	<AppReceiver.h>
-	<SFML/Graphics.hpp>
-	<SFML/OpenGL.hpp>
-	<assimp/Importer.hpp>
-	<assimp/scene.h>
-	<assimp/postprocess.h>
-	"ResourceMesh.h"
+	"tag/ResourceMesh.h"
+	"tag/TAGEngine.h"
 	"GraphicsEngineTemplates.cpp"
 
 1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\glm.hpp
@@ -2160,11 +2162,9 @@
 
 1485208670 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\appreceiver.cpp
 
-1487793755 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
+1488015055 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
 	<GL/glew.h>
 	<glm/glm.hpp>
-	<glm/gtc/matrix_transform.hpp>
-	<glm/gtc/type_ptr.hpp>
 	"GraphicsEngine.h"
 	<iostream>
 	<vector>
@@ -2173,11 +2173,12 @@
 	"Shader.h"
 	"Program.h"
 	"Player.h"
+	"tag/TAGEngine.h"
 
 1485764323 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
 	"GraphicsEngine.h"
 
-1487793995 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\main.cpp
+1488015561 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\main.cpp
 	<GL/glew.h>
 	<stdexcept>
 	<SFML/Graphics.hpp>
@@ -2185,11 +2186,12 @@
 	"Scene.h"
 	"GraphicsEngine.h"
 	"Player.h"
-	"GraphicNode.h"
-	"EMesh.h"
-	"ResourceManager.h"
-	"ResourceMesh.h"
-	"ETransform.h"
+	"tag/GraphicNode.h"
+	"tag/EMesh.h"
+	"tag/ResourceManager.h"
+	"tag/ResourceMesh.h"
+	"tag/ETransform.h"
+	"tag/TAGEngine.h"
 
 1485882417 source:c:\proyectos\lab21\desarrollo\motor\src\classes\drawable.cpp
 	"Drawable.h"
@@ -4373,72 +4375,80 @@
 	"GraphicsEngine.h"
 	"Player.h"
 
-1487792943 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\ecamera.cpp
+1488012548 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\ecamera.cpp
 	"ECamera.h"
 
-1487792943 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\ecamera.h
+1488012551 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\ecamera.h
 	"Entity.h"
 
-1487792943 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\entity.h
+1488012581 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\entity.h
 	<string>
+	<glm/glm.hpp>
 
-1487792943 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\elight.cpp
+1488012558 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\elight.cpp
 	"ELight.h"
 
-1487792943 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\elight.h
+1488012561 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\elight.h
 	"Entity.h"
 
-1487793771 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\emesh.cpp
+1488012569 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\emesh.cpp
 	"EMesh.h"
 	<iostream>
 
-1487793555 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\emesh.h
+1488012571 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\emesh.h
 	"Entity.h"
 
-1487792943 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\entity.cpp
+1488012579 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\entity.cpp
 	"Entity.h"
 
-1487793817 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\etransform.cpp
+1487845496 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\etransform.cpp
 	"ETransform.h"
 
-1487793512 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\etransform.h
+1488012610 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\etransform.h
 	"Entity.h"
 	<glm/glm.hpp>
 	"GraphicsEngine.h"
 
-1487792943 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\graphicnode.h
+1488012639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\graphicnode.h
 	<vector>
 
-1487792943 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\graphicnode.cpp
+1487794409 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\graphicnode.cpp
 	"GraphicNode.h"
 	"Entity.h"
 	<algorithm>
 
-1487792943 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\resource.cpp
+1487794409 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\resource.cpp
 	"Resource.h"
 
-1487792943 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\resource.h
+1488012653 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\resource.h
 	<string>
 
-1487792943 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\resourcemesh.cpp
+1488011859 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\resourcemesh.cpp
 	"ResourceMesh.h"
 	<stdio.h>
 	<iostream>
 	<stdexcept>
+	"GraphicsEngine.h"
+	"Entity.h"
+	"TAGEngine.h"
 
-1487792943 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\resourcemesh.h
+1488012680 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\resourcemesh.h
+	<GL/glew.h>
 	"Resource.h"
 	<SFML/OpenGL.hpp>
 	<assimp/Importer.hpp>
 	<assimp/scene.h>
 	<assimp/postprocess.h>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	<glm/ext.hpp>
 
-1487792943 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\resourcemanager.cpp
+1487794409 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\resourcemanager.cpp
 	"ResourceManager.h"
 	<iostream>
 	"ResourceMesh.h"
 
-1487792943 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\resourcemanager.h
+1488012663 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\resourcemanager.h
 	<vector>
 	<string>
 	"Resource.h"
@@ -5053,4 +5063,123 @@
 1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\intrinsic_matrix.inl
 
 1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\simd_mat4.inl
+
+1488014746 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\tagengine.h
+	<GL/glew.h>
+	<SFML/Graphics.hpp>
+	<glm/glm.hpp>
+	"Program.h"
+	"ResourceManager.h"
+	"ResourceMesh.h"
+
+1488012462 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\tagengine.cpp
+	"TAGEngine.h"
+	<stdexcept>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	<glm/ext.hpp>
+	"Shader.h"
+	"Entity.h"
+
+1488021471 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.h
+	<GL/glew.h>
+	"Resource.h"
+	<SFML/OpenGL.hpp>
+	<assimp/Importer.hpp>
+	<assimp/scene.h>
+	<assimp/postprocess.h>
+
+1488012653 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resource.h
+	<string>
+
+1488015614 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
+	<GL/glew.h>
+	<SFML/Graphics.hpp>
+	<glm/glm.hpp>
+	"tag/Types.h"
+	"Program.h"
+	"ResourceManager.h"
+	"ResourceMesh.h"
+
+1488012663 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.h
+	<vector>
+	<string>
+	"Resource.h"
+
+1488015134 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\ecamera.cpp
+	"tag/ECamera.h"
+
+1488012551 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\ecamera.h
+	"Entity.h"
+
+1488012581 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\entity.h
+	<string>
+	<glm/glm.hpp>
+
+1488015134 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\elight.cpp
+	"tag/ELight.h"
+
+1488012561 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\elight.h
+	"Entity.h"
+
+1488015134 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\emesh.cpp
+	"tag/EMesh.h"
+	<iostream>
+
+1488012571 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\emesh.h
+	"Entity.h"
+
+1488015134 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\entity.cpp
+	"tag/Entity.h"
+
+1488015448 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
+	"tag/ETransform.h"
+	<GL/glew.h>
+	<iostream>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtx/string_cast.hpp>
+
+1488015086 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\etransform.h
+	"Entity.h"
+	<glm/glm.hpp>
+	"tag/Types.h"
+
+1488014955 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\types.h
+
+1488021614 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\graphicnode.cpp
+	"tag/GraphicNode.h"
+	"tag/Entity.h"
+	<algorithm>
+
+1488012639 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\graphicnode.h
+	<vector>
+
+1488015134 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resource.cpp
+	"tag/Resource.h"
+
+1488015134 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.cpp
+	"tag/ResourceManager.h"
+	<iostream>
+	"tag/ResourceMesh.h"
+
+1488021521 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.cpp
+	"tag/ResourceMesh.h"
+	<stdio.h>
+	<iostream>
+	<stdexcept>
+	"tag/Entity.h"
+	"tag/TAGEngine.h"
+	"tag/Types.h"
+	<glm/gtc/matrix_transform.hpp>
+
+1488015133 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
+	"tag/TAGEngine.h"
+	<stdexcept>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	<glm/ext.hpp>
+	"Shader.h"
+	"tag/Entity.h"
+	"tag/ResourceManager.h"
+	"tag/ResourceMesh.h"
 

@@ -14,7 +14,6 @@
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="src/graphics/tagengine" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics-s-d" />
@@ -28,9 +27,6 @@
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
-				<Compiler>
-					<Add directory="src/graphics/tagengine" />
-				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics-s" />
 					<Add library="sfml-window-s" />
@@ -78,24 +74,27 @@
 		<Unit filename="src/graphics/GraphicsEngine.cpp" />
 		<Unit filename="src/graphics/GraphicsEngine.h" />
 		<Unit filename="src/graphics/GraphicsEngineTemplates.cpp" />
-		<Unit filename="src/graphics/tagengine/ECamera.cpp" />
-		<Unit filename="src/graphics/tagengine/ECamera.h" />
-		<Unit filename="src/graphics/tagengine/ELight.cpp" />
-		<Unit filename="src/graphics/tagengine/ELight.h" />
-		<Unit filename="src/graphics/tagengine/EMesh.cpp" />
-		<Unit filename="src/graphics/tagengine/EMesh.h" />
-		<Unit filename="src/graphics/tagengine/ETransform.cpp" />
-		<Unit filename="src/graphics/tagengine/ETransform.h" />
-		<Unit filename="src/graphics/tagengine/Entity.cpp" />
-		<Unit filename="src/graphics/tagengine/Entity.h" />
-		<Unit filename="src/graphics/tagengine/GraphicNode.cpp" />
-		<Unit filename="src/graphics/tagengine/GraphicNode.h" />
-		<Unit filename="src/graphics/tagengine/Resource.cpp" />
-		<Unit filename="src/graphics/tagengine/Resource.h" />
-		<Unit filename="src/graphics/tagengine/ResourceManager.cpp" />
-		<Unit filename="src/graphics/tagengine/ResourceManager.h" />
-		<Unit filename="src/graphics/tagengine/ResourceMesh.cpp" />
-		<Unit filename="src/graphics/tagengine/ResourceMesh.h" />
+		<Unit filename="src/graphics/tag/ECamera.cpp" />
+		<Unit filename="src/graphics/tag/ECamera.h" />
+		<Unit filename="src/graphics/tag/ELight.cpp" />
+		<Unit filename="src/graphics/tag/ELight.h" />
+		<Unit filename="src/graphics/tag/EMesh.cpp" />
+		<Unit filename="src/graphics/tag/EMesh.h" />
+		<Unit filename="src/graphics/tag/ETransform.cpp" />
+		<Unit filename="src/graphics/tag/ETransform.h" />
+		<Unit filename="src/graphics/tag/Entity.cpp" />
+		<Unit filename="src/graphics/tag/Entity.h" />
+		<Unit filename="src/graphics/tag/GraphicNode.cpp" />
+		<Unit filename="src/graphics/tag/GraphicNode.h" />
+		<Unit filename="src/graphics/tag/Resource.cpp" />
+		<Unit filename="src/graphics/tag/Resource.h" />
+		<Unit filename="src/graphics/tag/ResourceManager.cpp" />
+		<Unit filename="src/graphics/tag/ResourceManager.h" />
+		<Unit filename="src/graphics/tag/ResourceMesh.cpp" />
+		<Unit filename="src/graphics/tag/ResourceMesh.h" />
+		<Unit filename="src/graphics/tag/TAGEngine.cpp" />
+		<Unit filename="src/graphics/tag/TAGEngine.h" />
+		<Unit filename="src/graphics/tag/Types.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

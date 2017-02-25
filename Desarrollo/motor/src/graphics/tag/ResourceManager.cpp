@@ -1,21 +1,21 @@
-#include "ResourceManager.h"
+#include "tag/ResourceManager.h"
 
 #include <iostream>
 
-#include "ResourceMesh.h"
+#include "tag/ResourceMesh.h"
 
-dwe::ResourceManager::ResourceManager()
+tag::ResourceManager::ResourceManager()
 {
     //ctor
 }
 
-dwe::ResourceManager::~ResourceManager()
+tag::ResourceManager::~ResourceManager()
 {
     //dtor
 }
 
 
-dwe::Resource* dwe::ResourceManager::getResource(std::string name)
+tag::Resource* tag::ResourceManager::getResource(std::string name)
 {
     // Buscamos si existe el resource
     Resource* res = 0;

@@ -13,103 +13,52 @@
 
 
 
-#include "GraphicNode.h"
-#include "EMesh.h"
-#include "ResourceManager.h"
-#include "ResourceMesh.h"
-#include "ETransform.h"
+#include "tag/GraphicNode.h"
+#include "tag/EMesh.h"
+#include "tag/ResourceManager.h"
+#include "tag/ResourceMesh.h"
+#include "tag/ETransform.h"
+#include "tag/TAGEngine.h"
 
 
-using namespace dwe;
+using namespace tag;
 
 int main()
 {
     /////////////////////////////////////
     // Creacion del arbol
     /////////////////////////////////////
-    dwe::GraphicNode nodoRoot;
-    dwe::EMesh entityRoot;
+    tag::GraphicNode nodoRoot;
+    tag::EMesh entityRoot;
     entityRoot.m_cadena = "Root";
     nodoRoot.setEntity(&entityRoot);
 
-    dwe::GraphicNode nodo01;
-    dwe::ETransform transform01;
+    tag::GraphicNode nodo01;
+    tag::ETransform transform01;
     transform01.m_cadena = "01 - MATRIX";
     nodo01.setEntity(&transform01);
     nodoRoot.addChild(&nodo01);
-/*
-    dwe::GraphicNode nodo02;
-    dwe::ETransform transform02;
-    transform02.m_cadena = "02 - MATRIX";
-    nodo02.setEntity(&transform02);
-    nodoRoot.addChild(&nodo02);
 
-    dwe::GraphicNode nodo03;
-    dwe::ETransform transform03;
-    transform03.m_cadena = "03 - MATRIX";
-    nodo03.setEntity(&transform03);
-    nodoRoot.addChild(&nodo03);
-*/
-    dwe::GraphicNode nodo04;
-    dwe::ETransform transform04;
+    tag::GraphicNode nodo04;
+    tag::ETransform transform04;
     transform04.m_cadena = "04 - MATRIX";
     nodo04.setEntity(&transform04);
     nodo01.addChild(&nodo04);
-/*
-    dwe::GraphicNode nodo05;
-    dwe::ETransform transform05;
-    transform05.m_cadena = "05 - MATRIX";
-    nodo05.setEntity(&transform05);
-    nodo01.addChild(&nodo05);
-*/
-    dwe::GraphicNode nodo06;
-    dwe::EMesh entity06;
+
+    tag::GraphicNode nodo06;
+    tag::EMesh entity06;
     entity06.loadMesh("malla6.obj");
     entity06.m_cadena = "06 - MESH";
     nodo06.setEntity(&entity06);
     nodo04.addChild(&nodo06);
 
-    dwe::GraphicNode nodo07;
-    dwe::EMesh entity07;
+    tag::GraphicNode nodo07;
+    tag::EMesh entity07;
     entity07.loadMesh("malla7.obj");
     entity07.m_cadena = "07 - MESH";
     nodo07.setEntity(&entity07);
     nodo04.addChild(&nodo07);
-/*
-    dwe::GraphicNode nodo08;
-    dwe::EMesh entity08;
-    entity08.loadMesh("malla8.obj");
-    entity08.m_cadena = "08 - MESH";
-    nodo08.setEntity(&entity08);
-    nodo05.addChild(&nodo08);
 
-    dwe::GraphicNode nodo09;
-    dwe::EMesh entity09;
-    entity09.loadMesh("malla9.obj");
-    entity09.m_cadena = "09 - MESH";
-    nodo09.setEntity(&entity09);
-    nodo02.addChild(&nodo09);
-
-    dwe::GraphicNode nodo10;
-    dwe::ETransform transform10;
-    transform10.m_cadena = "10 - MATRIX";
-    nodo10.setEntity(&transform10);
-    nodo03.addChild(&nodo10);
-
-    dwe::GraphicNode nodo11;
-    dwe::EMesh entity11;
-    entity11.loadMesh("malla11.obj");
-    entity11.m_cadena = "11 - MESH";
-    nodo11.setEntity(&entity11);
-    nodo10.addChild(&nodo11);
-
-    dwe::GraphicNode nodo12;
-    dwe::EMesh entity12;
-    entity12.loadMesh("malla12.obj");
-    entity12.m_cadena = "12 - MESH";
-    nodo12.setEntity(&entity12);
-    nodo10.addChild(&nodo12);
-*/
     /////////////////////////////////////
     // Transformaciones
     /////////////////////////////////////
@@ -171,24 +120,34 @@ int main()
 
     std::cout << "//////////////////////////////////////////\n// Probando resourcemanager\n////////////////////////////\n";
 
-    ResourceManager resourceManager;
-    ResourceMesh* resourceMesh;
+//    ResourceManager resourceManager;
+//    ResourceMesh* resourceMesh;
 
-    resourceMesh = static_cast<ResourceMesh*>(resourceManager.getResource("media/newcube.obj"));
-    resourceManager.getResource("media/newcube.obj");
-    resourceManager.getResource("media/newcube.obj");
-    resourceManager.getResource("media/newcube.obj");
-    resourceManager.getResource("media/newcube.obj");
-    resourceManager.getResource("media/newcube.obj");
+//    resourceMesh = static_cast<ResourceMesh*>(resourceManager.getResource("media/newcube.obj"));
+//    resourceManager.getResource("media/newcube.obj");
+//    resourceManager.getResource("media/newcube.obj");
+//    resourceManager.getResource("media/newcube.obj");
+//    resourceManager.getResource("media/newcube.obj");
+//    resourceManager.getResource("media/newcube.obj");
 
-    std::cout << "///////////////////////////////////\n";
+    TAGEngine tagEngine;
+    tagEngine.init();
+    tagEngine.createNode();
+    while (tagEngine.isRunning())
+    {
+        tagEngine.draw();
+    }
+    return 0;
+
+
+    ///////////////////////////////////
 
 
 
 
 
 
-
+/*
     GEInstance->init();
 
     Player* mainPlayer = GEInstance->createMainPlayer();
@@ -220,5 +179,5 @@ int main()
         GEInstance->draw();
     }
 
-    return 0;
+    return 0;*/
 }

@@ -1,10 +1,9 @@
 #define GLEW_STATIC
 #include<GL/glew.h>
 #include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 #include "GraphicsEngine.h"
+
 
 #include <iostream>
 #include <vector>
@@ -15,7 +14,7 @@
 #include "Program.h"
 
 #include "Player.h"
-//#include <SFML/String.hpp>
+#include "tag/TAGEngine.h"
 
 
 using namespace std;
@@ -40,74 +39,7 @@ dwe::GraphicsEngine* dwe::GraphicsEngine::Instance()
 //////////////////////////
 void dwe::GraphicsEngine::init()
 {
-    // Importante para que muestre bien el cubo y no haga un mal culling
-    sf::ContextSettings contextSettings;
-    contextSettings.depthBits = 24;
-    contextSettings.sRgbCapable = false;
-
-    m_window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Lab21", sf::Style::Default, contextSettings);
-
-    // Habilita el z_buffer
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
-
-    // Inicialización de GLEW
-    if(glewInit() != GLEW_OK)
-        throw std::runtime_error("glewInit failed");
-
-    // print out some info about the graphics drivers
-    //std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
-    //std::cout << "GLSL version: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
-    //std::cout << "Vendedor: " << glGetString(GL_VENDOR) << std::endl;
-    //std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
-
-    m_scale = 1.0;
-    memcpy(m_view_position, view_position_default, 3*sizeof(float));
-    memcpy(m_view_rotate, view_rotate_default, 16*sizeof(float));
-
-
-    // Carga de los Shaders
-    Shader shader;
-    std::vector<GLuint> shaders;
-    shaders.push_back(shader.LoadShader("shaders/VertexShader.glsl", GL_VERTEX_SHADER));
-    shaders.push_back(shader.LoadShader("shaders/FragmentShader.glsl", GL_FRAGMENT_SHADER));
-
-    m_shaderProgram = new Program(shaders);
-    glUseProgram(m_shaderProgram->ReturnProgramID());
-
-    // Attributes
-    m_aPositionLocation = m_shaderProgram->attrib(A_POSITION);
-    m_aNormalLocation   = m_shaderProgram->attrib(A_NORMAL);
-
-    // Uniforms
-    m_uProjectionMatrixLocation   = m_shaderProgram->uniform(U_PROJECTIONMATRIX);
-    m_uMVMatrixLocation           = m_shaderProgram->uniform(U_MVMATRIX);
-    m_uVMatrixLocation            = m_shaderProgram->uniform(U_VMATRIX);
-    m_uColorLocation              = m_shaderProgram->uniform(U_COLOR);
-    m_uLuz0Location               = m_shaderProgram->uniform(U_LUZ0);
-
-
-    // Estableciendo la matriz de proyección perspectiva
-    glm::mat4 m_projectionMatrix = glm::perspective(45.0f, (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 1000.0f);
-    glUniformMatrix4fv(m_uProjectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(m_projectionMatrix));
-
-    m_scenes.clear();
-
-    // Creamos los mensajes de texto, por ahora vacios
-    if (!m_font.loadFromFile("media/ExoRegular.otf"))
-        throw std::runtime_error("No se ha podido cargar la fuente de texto");
-
-	for(int i=0; i<MAX_MESSAGE_LINES; i++)
-	{
-        m_messageLine[i].setFont(m_font);
-        m_messageLine[i].setCharacterSize(14);
-        m_messageLine[i].setFillColor(sf::Color(255, 255, 255, 255));
-        m_messageLine[i].setPosition(10.f, SCREEN_HEIGHT - (i+1)*16.f);
-        m_messageLine[i].setString("");
-	}
-
-    m_secondsLastDraw = 0;
-    m_clock.restart();
+    m_tagEngine.init();
 }
 
 //////////////////////////
@@ -118,28 +50,13 @@ void dwe::GraphicsEngine::release()
 //////////////////////////
 bool dwe::GraphicsEngine::isRunning()
 {
-    sf::Event event;
-    while (m_window->pollEvent(event))
-    {
-        if (event.type == sf::Event::Closed)
-        {
-            m_window->close();
-        }
-        else if (event.type == sf::Event::Resized)
-        {
-            glViewport(0, 0, event.size.width, event.size.height);
-        }
-        else
-            receiver.OnEvent(event);
-    }
-
-    return m_window->isOpen();
+    return m_tagEngine.isRunning();
 }
 
 //////////////////////////
 void dwe::GraphicsEngine::draw()
 {
-    m_window->setActive(true);
+/*    m_window->setActive(true);
     glm::mat4 rotateMatrix;
 
     glClearColor(0.0, 0.7, 0.9, 1.0);
@@ -180,7 +97,7 @@ void dwe::GraphicsEngine::draw()
     float fps = 1.f / (m_clock.getElapsedTime().asSeconds() - m_secondsLastDraw);
     m_secondsLastDraw = m_clock.getElapsedTime().asSeconds();
     sprintf(tmp, "Lab21 - fps:%f", fps);
-    m_window->setTitle(tmp);
+    m_window->setTitle(tmp);*/
 }
 
 //////////////////////////
@@ -370,8 +287,8 @@ void dwe::GraphicsEngine::addMessageLine(std::string text)
 ////////////////////////////////
 dwe::vec2f dwe::GraphicsEngine::getMousePosition()
 {
-    float x =  sf::Mouse::getPosition(*m_window).x;
+/*    float x =  sf::Mouse::getPosition(*m_window).x;
     float y = -sf::Mouse::getPosition(*m_window).y;
 
-    return vec2f(x,y);
+    return vec2f(x,y);*/
 }

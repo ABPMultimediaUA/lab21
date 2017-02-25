@@ -2,6 +2,14 @@
 #define FACHADEDIREENGINE_H
 
 #define GLEW_STATIC
+#include<GL/glew.h>
+
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
+#include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>
 
 #include <math.h>
 
@@ -14,34 +22,13 @@
 #include <list>
 #include <AppReceiver.h>
 
-#include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
 
-#include <assimp/Importer.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
-
-// Nombre de los attributes
-#define A_POSITION  "a_Position"
-#define A_NORMAL    "a_Normal"
-
-// Nombre de los uniforms
-#define U_PROJECTIONMATRIX      "u_ProjectionMatrix"
-#define U_MVMATRIX              "u_MVMatrix"
-#define U_VMATRIX               "u_VMatrix"
-#define U_COLOR                 "u_Color"
-#define U_LUZ0                  "u_Luz0"
-
-
-
-
-#define SCREEN_WIDTH  800
-#define SCREEN_HEIGHT 600
 #define MAX_MESSAGE_LINES 4
 
 
-#include "ResourceMesh.h"
 
+#include "tag/ResourceMesh.h"
+#include "tag/TAGEngine.h"
 
 
 
@@ -98,43 +85,8 @@ namespace dwe
     // ====
     //
     ///////////////////////////////////////////////
-    template <class T>
-    class vec3
-    {
-    public:
-        T x;
-        T y;
-        T z;
+    typedef tag::vec3f vec3f;
 
-        // Constructor con xyz a cero
-        vec3() : x(0), y(0), z(0) {};
-        // Constructor con el mismo valor para xyz
-        vec3(T _p) : x(_p), y(_p), z(_p) {};
-        // Constructor con valores xyz
-        vec3(T _x, T _y, T _z) : x(_x), y(_y), z(_z) {};
-        // Constructor con los valores de otro vec3
-        vec3(const vec3<T>& v) : x(v.x), y(v.y), z(v.z) {};
-    };
-    typedef vec3<glm::f32> vec3f;
-    typedef vec3<int> vec3i;
-
-    /*template<typename T> vec3<T> irrVector2dwe(irr::core::vector3d<T> irrV)
-    {
-        vec3<T> v;
-        v.x = irrV.X;
-        v.y = irrV.Y;
-        v.z = irrV.Z;
-        return v;
-    }
-
-    template<typename T> irr::core::vector3d<T> dweVector2irr(vec3<T> dweV)
-    {
-        irr::core::vector3df v;
-        v.X = dweV.x;
-        v.Y = dweV.y;
-        v.Z = dweV.z;
-        return v;
-    }*/
 
     ///////////////////////////////////////////////
     // Node
@@ -238,7 +190,7 @@ namespace dwe
 
 
     private:
-        sf::RenderWindow*   m_window;
+
         sf::Clock           m_clock;
         float               m_secondsLastDraw;
         Program*            m_shaderProgram;
@@ -247,6 +199,7 @@ namespace dwe
 
         sf::Font            m_font;
         sf::Text            m_messageLine[MAX_MESSAGE_LINES];
+        tag::TAGEngine      m_tagEngine;
 
 
         // Handles de los attributes y uniforms

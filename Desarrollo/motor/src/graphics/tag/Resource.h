@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace dwe
+namespace tag
 {
     class Resource
     {
