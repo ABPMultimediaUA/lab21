@@ -1,6 +1,9 @@
 #include "GSPause.h"
 #include "GSIngame.h"
 #include "GSMainMenu.h"
+#include "Scene.h"
+#include "LoadMap.h"
+#include "NetGame.h"
 
 #include <iostream>
 
@@ -41,6 +44,10 @@ void GSPause::HandleEvents(){
     }
     if(GEInstance->receiver.isKeyDown(KEY_F9)){
         Game::getInstance()->ChangeState(GSMainMenu::getInstance());
+        NetInstance->close();
+        Game::getInstance()->ChangeState(GSMainMenu::getInstance());
+        Scene::Instance()->Destroy();
+        LoadMap::getInstance()->Destroy();
         m = false;
     }
 }

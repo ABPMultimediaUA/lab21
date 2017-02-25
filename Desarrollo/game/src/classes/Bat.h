@@ -18,14 +18,15 @@ class Bat : public Enemy
 
         void Update();
 
-        int getStepstoalarm();
-
-
     protected:
 
     private:
-        int stepstoalarm;
+
         StateMachine<Bat>*  b_pStateMachine;
+
+        //Pathfinding
+
+        //Perception
 };
 
 #endif // BAT_H

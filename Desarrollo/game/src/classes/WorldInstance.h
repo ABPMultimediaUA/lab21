@@ -64,6 +64,7 @@ class WorldInstance
         static WorldInstance* Instance();
 
         WorldInstance();
+        ~WorldInstance(){};
 
         void Update();
 

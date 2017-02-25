@@ -8,7 +8,7 @@ class PatrolTask : public Node
 {
     public:
 
-        PatrolTask(Humanoid* h, dwe::Node* n);
+        PatrolTask(Humanoid* h/*, dwe::Node* n*/);
 
         virtual ~PatrolTask();
 
@@ -19,7 +19,7 @@ class PatrolTask : public Node
     private:
 
         Humanoid* hum;
-        dwe::Node* no;
+        //dwe::Node* no;
         float pos1;
         float pos2;
         bool dir;

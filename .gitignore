@@ -23,3 +23,4 @@ Desarrollo/**/*.layout
 Desarrollo/motor/**/*.exe
 Desarrollo/motor/obj/
 Desarrollo/motor/obj/**/*
+**/*.depend

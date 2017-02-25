@@ -8,6 +8,9 @@ using namespace rapidjson;
 LoadMap::LoadMap()
 {
 
+}
+
+void LoadMap::Init(){
     suelo = GEInstance->createNode("media/suelo");
     suelo->setPosition(dwe::vec3f(0,0,0));
 
@@ -31,19 +34,6 @@ LoadMap::LoadMap()
     //RAPIDJSON
     Document document; //Creacion de documento para rapidJSON
 
-    /*
-    if (document.Parse(json).HasParseError() == false) //coger el json y ver si es correcto
-    {
-        const Value& elements = document["elements"]; //Referencia a todos los "elements"
-        for(int i=0; i < elements.Size(); i++){
-            const Value& e = elements[i]; //Recorrer cada "element"
-            cout << e["mesh"].GetString() << endl;
-
-            ScenaryElement* wall20 = GEInstance->createWall(e["mesh"].GetString());
-            wall20->setPosition(dwe::vec3f(200,   20, 80));
-        }
-    }
-    */
     //THE WALLS
     if (document.Parse(json).HasParseError() == false) //coger el json y ver si es correcto
     {
@@ -68,7 +58,6 @@ LoadMap::LoadMap()
 
                 //cout << e["position"]["x"].GetDouble() << endl;
 
-                ScenaryElement* wall;
                 if(id=="Wall_01"){
                     ScenaryElement* wall = GEInstance->createWall("media/unityPared01");
                     wall->setRotation(dwe::vec3f(rx,ry,rz));
@@ -94,26 +83,25 @@ LoadMap::LoadMap()
                     wall->setRotation(dwe::vec3f(rx,ry,rz));
                     wall->setPosition(dwe::vec3f(tx,ty,tz));
                 }
-
-                // ScenaryElement* wall20 = GEInstance->createWall(e["mesh"].GetString());
-               // wall20->setPosition(dwe::vec3f(200,   20, 80));
             }
 
         }
     }
-
+}
+void LoadMap::Destroy(){
+    delete suelo; suelo=0;
+    delete wall;
 }
 
 LoadMap::~LoadMap()
 {
-    delete suelo;
-    delete wall;
+    if(suelo)
+        Destroy();
 }
 
 LoadMap* LoadMap::getInstance()
 {
   static LoadMap instance;
-
   return &instance;
 }
 

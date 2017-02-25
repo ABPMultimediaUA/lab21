@@ -3,6 +3,8 @@
 #include <GraphicsEngine.h>
 #include "NetGame.h"
 #include "PlayerMate.h"
+#include "Humanoid.h"
+#include "PathplanningTask.h"
 
 Perception::Perception()
 {
@@ -15,7 +17,7 @@ Perception::~Perception()
 }
 //Pathplanning* pathp = new Pathplanning();//creo el pathplanning para usar luego
 
-bool Perception::senses(Player* mainPlayer, Humanoid* enemyHumanoid, dwe::Node* fovnode, PathplanningTask* p)
+bool Perception::senses(Player* mainPlayer, Humanoid* enemyHumanoid, /*dwe::Node* fovnode,*/ PathplanningTask* p)
 {
     // Buscamos que player o playermate está más cerca para trabajar con él
     Drawable* player;
@@ -39,7 +41,7 @@ bool Perception::senses(Player* mainPlayer, Humanoid* enemyHumanoid, dwe::Node* 
         }
 
 
-    fovnode->setPosition(enemyHumanoid->getPosition());
+    //fovnode->setPosition(enemyHumanoid->getPosition());
 
     if(!following)  //si no estamos siguiendo calculamos la distancia de percepcion
     {
