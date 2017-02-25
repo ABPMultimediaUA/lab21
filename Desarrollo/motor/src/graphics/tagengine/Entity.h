@@ -2,7 +2,8 @@
 #define ENTITY_H
 
 #include <string>
-
+#include <stack>
+#include <glm/glm.hpp>
 namespace dwe
 {
     class Entity
@@ -16,9 +17,12 @@ namespace dwe
             virtual void beginDraw() = 0;
             virtual void endDraw() = 0;
 
+
         protected:
 
         private:
+
+
     };
 }
 

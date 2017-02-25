@@ -95,16 +95,18 @@ void dwe::ETransform::scale(float x, float y, float z)
     m_matrix = glm::scale(m_matrix, glm::vec3(x, y, z));
 }
 
+std::stack<glm::mat4> dwe::EntitiesAttributes::m_stack;
+glm::mat4 dwe::EntitiesAttributes::m_ModelViewMatrix;
 /////////////////
 void dwe::ETransform::beginDraw()
 {
     std::cout << "Begin " << m_cadena << "\n";
-    std::cout << glm::to_string(this->getMatrix()) << endl;
+    //std::cout << "estoy en " << glm::to_string(m_matrix) << endl;
 
-    glPushMatrix();
-    glMultMatrixf((GLfloat*)&m_matrix);
+    dwe::EntitiesAttributes::m_stack.push(dwe::EntitiesAttributes::m_ModelViewMatrix);
+    dwe::EntitiesAttributes::m_ModelViewMatrix *= m_matrix;
 
-
+    cout << "Begin, modelmatrix : " << glm::to_string(dwe::EntitiesAttributes::m_ModelViewMatrix) << endl;
 }
 
 /////////////////
@@ -112,7 +114,11 @@ void dwe::ETransform::endDraw()
 {
     std::cout << "End " << m_cadena << "\n";
 
-    glPopMatrix();
+    dwe::EntitiesAttributes::m_stack.pop();
+
+    dwe::EntitiesAttributes::m_ModelViewMatrix = m_matrix;
+
+    cout << "End, modelmatrix : " << glm::to_string(dwe::EntitiesAttributes::m_ModelViewMatrix) << endl;
 }
 
 

@@ -86,6 +86,8 @@
 		<Unit filename="src/graphics/tagengine/EMesh.h" />
 		<Unit filename="src/graphics/tagengine/ETransform.cpp" />
 		<Unit filename="src/graphics/tagengine/ETransform.h" />
+		<Unit filename="src/graphics/tagengine/EntitiesAttributes.cpp" />
+		<Unit filename="src/graphics/tagengine/EntitiesAttributes.h" />
 		<Unit filename="src/graphics/tagengine/Entity.cpp" />
 		<Unit filename="src/graphics/tagengine/Entity.h" />
 		<Unit filename="src/graphics/tagengine/GraphicNode.cpp" />

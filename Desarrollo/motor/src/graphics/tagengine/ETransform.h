@@ -7,6 +7,7 @@
 
 #include "GraphicsEngine.h"
 
+#include "EntitiesAttributes.h"
 
 namespace dwe
 {
