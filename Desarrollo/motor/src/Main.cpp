@@ -66,6 +66,7 @@ int main()
     transform01.rotate(90, 0, 0);
     //transform01.translate(3, 2, 4);
 
+
    /* transform02.load(glm::mat4(1, 2, 3, 4, 2, 4, 1, 2, 2, 1, 3, 4, 4, 1, 3, 2));
     transform02.transpose();
 
@@ -76,6 +77,7 @@ int main()
     transform04.translate(2, 3, 4);
 
     nodoRoot.draw();
+
 
 
     //return 0;

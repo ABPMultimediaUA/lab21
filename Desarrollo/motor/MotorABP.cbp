@@ -82,6 +82,8 @@
 		<Unit filename="src/graphics/tag/EMesh.h" />
 		<Unit filename="src/graphics/tag/ETransform.cpp" />
 		<Unit filename="src/graphics/tag/ETransform.h" />
+		<Unit filename="src/graphics/tag/EntitiesAttributes.cpp" />
+		<Unit filename="src/graphics/tag/EntitiesAttributes.h" />
 		<Unit filename="src/graphics/tag/Entity.cpp" />
 		<Unit filename="src/graphics/tag/Entity.h" />
 		<Unit filename="src/graphics/tag/GraphicNode.cpp" />
@@ -94,7 +96,7 @@
 		<Unit filename="src/graphics/tag/ResourceMesh.h" />
 		<Unit filename="src/graphics/tag/TAGEngine.cpp" />
 		<Unit filename="src/graphics/tag/TAGEngine.h" />
-		<Unit filename="src/graphics/tag/Types.h" />
+
 		<Extensions>
 			<code_completion />
 			<envvars />

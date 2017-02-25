@@ -2,6 +2,7 @@
 #define ENTITY_H
 
 #include <string>
+#include <stack>
 #include <glm/glm.hpp>
 
 namespace tag
