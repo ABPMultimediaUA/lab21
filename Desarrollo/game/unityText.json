@@ -9,7 +9,7 @@
 		"level-id":0,
 		"level-name":"Pasillo_Inicial_01",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_300x50",
 				"position": { "x":-950, "y":0, "z":-1150 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_300m",
@@ -40,7 +40,7 @@
 		"level-id":1,
 		"level-name":"Sala_Seguridad",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":-1000, "y":0, "z":-1000 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -65,7 +65,7 @@
 		"level-id":2,
 		"level-name":"Pasillo_Inicial_02",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_500x50",
 				"position": { "x":-150, "y":0, "z":-1150 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_300m",
@@ -102,7 +102,7 @@
 		"level-id":3,
 		"level-name":"Sala_Seguridad (1)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":0, "y":0, "z":-1300 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -127,7 +127,7 @@
 		"level-id":4,
 		"level-name":"Pasillo_Inicial_03",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_300x50",
 				"position": { "x":0, "y":0, "z":-800 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_300m",
@@ -203,6 +203,12 @@
 				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":550, "y":0, "z":90.5 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":-550, "y":0, "z":90.5 },
+				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "PlayerStart",
 				"position": { "x":120, "y":10, "z":50.5 },
 				"rotation": { "x":0, "y":18, "z":0 }}
@@ -212,7 +218,7 @@
 		"level-id":6,
 		"level-name":"Baño_IZQ",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":-450, "y":0, "z":-600 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -240,7 +246,7 @@
 		"level-id":7,
 		"level-name":"Baño_DER",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":450, "y":0, "z":-600 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -268,7 +274,7 @@
 		"level-id":8,
 		"level-name":"Pasillo_Corto_Labs_",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x50",
 				"position": { "x":-1000, "y":0, "z":-350 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -293,7 +299,7 @@
 		"level-id":9,
 		"level-name":"Sala_Destrozada",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x100",
 				"position": { "x":-1000, "y":0, "z":-500 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -318,7 +324,7 @@
 		"level-id":10,
 		"level-name":"Pasillo_Corto_Labs",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x50",
 				"position": { "x":-1250, "y":0, "z":-300 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -343,7 +349,7 @@
 		"level-id":11,
 		"level-name":"LAB_L_01",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":-1400, "y":0, "z":-600 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -371,7 +377,7 @@
 		"level-id":12,
 		"level-name":"LAB_L_01 (1)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":-1700, "y":0, "z":-400 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -402,7 +408,7 @@
 		"level-id":13,
 		"level-name":"LAB_L_01 (2)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":-1100, "y":0, "z":100 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -430,7 +436,7 @@
 		"level-id":14,
 		"level-name":"LAB_L_01 (3)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":-1400, "y":0, "z":100 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -458,7 +464,7 @@
 		"level-id":15,
 		"level-name":"Pasillo_MUYMUYcorto_01 (2)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_50x50",
 				"position": { "x":-1250, "y":0, "z":-50 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -477,7 +483,7 @@
 		"level-id":16,
 		"level-name":"Pasillo_MUYMUYcorto_01 (3)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_50x50",
 				"position": { "x":-1250, "y":0, "z":250 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -496,7 +502,7 @@
 		"level-id":17,
 		"level-name":"Pasillo_Corto_Labs (1)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x50",
 				"position": { "x":-1250, "y":0, "z":500 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -518,7 +524,7 @@
 		"level-id":18,
 		"level-name":"LAB_L_01 (4)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":-1100, "y":0, "z":600 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -549,7 +555,7 @@
 		"level-id":19,
 		"level-name":"LAB_L_01 (5)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":-1400, "y":0, "z":800 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -577,7 +583,7 @@
 		"level-id":20,
 		"level-name":"LAB_L_01 (6)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":-1700, "y":0, "z":600 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -608,7 +614,7 @@
 		"level-id":21,
 		"level-name":"Pasillo_MUYMUYcorto_01",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_50x50",
 				"position": { "x":-550, "y":0, "z":150 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -630,7 +636,7 @@
 		"level-id":22,
 		"level-name":"Pasillo_MUYcorto_01 (3)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x50",
 				"position": { "x":-550, "y":0, "z":300 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -652,7 +658,7 @@
 		"level-id":23,
 		"level-name":"Habitación_pequeña_01 (7)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x100",
 				"position": { "x":-700, "y":0, "z":300 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -677,7 +683,7 @@
 		"level-id":24,
 		"level-name":"Habitación_pequeña_01 (6)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x100",
 				"position": { "x":-400, "y":0, "z":300 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -702,7 +708,7 @@
 		"level-id":25,
 		"level-name":"Sala_Seguridad (2)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":-550, "y":0, "z":500 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -727,7 +733,7 @@
 		"level-id":26,
 		"level-name":"Pasillo_MUYMUYcorto_01 (1)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_50x50",
 				"position": { "x":550, "y":0, "z":150 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -749,7 +755,7 @@
 		"level-id":27,
 		"level-name":"Pasillo_Corto_Labs (5)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x50",
 				"position": { "x":550.2, "y":0, "z":400 },
 				"rotation": { "x":0, "y":90.00005, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -774,7 +780,7 @@
 		"level-id":28,
 		"level-name":"Pasillo_Corto_Labs (3)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x50",
 				"position": { "x":600.2, "y":0, "z":650 },
 				"rotation": { "x":0, "y":4.951887E-05, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -799,7 +805,7 @@
 		"level-id":29,
 		"level-name":"Sala_Destrozada (1)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x100",
 				"position": { "x":400.2, "y":0, "z":400 },
 				"rotation": { "x":0, "y":270.0001, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -824,7 +830,7 @@
 		"level-id":30,
 		"level-name":"LAB_L_01 (13)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":300.2, "y":0, "z":800 },
 				"rotation": { "x":0, "y":270.0001, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -852,7 +858,7 @@
 		"level-id":31,
 		"level-name":"LAB_L_01 (12)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":500.2, "y":0, "z":1100 },
 				"rotation": { "x":0, "y":90.00005, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -886,7 +892,7 @@
 		"level-id":32,
 		"level-name":"LAB_L_01 (7)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":1500.2, "y":0, "z":1100 },
 				"rotation": { "x":0, "y":270.0001, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -920,7 +926,7 @@
 		"level-id":33,
 		"level-name":"LAB_L_01 (8)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":1700.2, "y":0, "z":800 },
 				"rotation": { "x":0, "y":90.00005, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -948,7 +954,7 @@
 		"level-id":34,
 		"level-name":"Pasillo_Corto_Labs (2)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x50",
 				"position": { "x":1400.2, "y":0, "z":650 },
 				"rotation": { "x":0, "y":4.951887E-05, "z":0 }},
 			{ "element-id": "Wall_01_200m",
@@ -1008,7 +1014,7 @@
 		"level-id":37,
 		"level-name":"LAB_L_01 (10)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":1000.2, "y":0, "z":800 },
 				"rotation": { "x":0, "y":4.951887E-05, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1045,7 +1051,7 @@
 		"level-id":38,
 		"level-name":"LAB_L_01 (11)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":1000.2, "y":0, "z":500 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1073,7 +1079,7 @@
 		"level-id":39,
 		"level-name":"Pasillo_MUYMUYcorto_01 (6)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_50x50",
 				"position": { "x":1000, "y":0, "z":950 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -1095,7 +1101,7 @@
 		"level-id":40,
 		"level-name":"LAB_L_01 (9)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_250x200",
 				"position": { "x":1000, "y":0, "z":1200 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -1138,7 +1144,7 @@
 		"level-id":41,
 		"level-name":"Pasillo_MUY--corto_01",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Wall_01_100m",
 				"position": { "x":1300, "y":0, "z":1250 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1160,7 +1166,7 @@
 		"level-id":42,
 		"level-name":"Pasillo_MUY--corto_01 (1)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x50",
 				"position": { "x":700, "y":0, "z":1250 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1182,7 +1188,7 @@
 		"level-id":43,
 		"level-name":"LAB_L_01 (14)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":1000, "y":0, "z":1500 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1207,7 +1213,7 @@
 		"level-id":44,
 		"level-name":"Pasillo_Corto_Habitaciones",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x50",
 				"position": { "x":1000, "y":0, "z":-350 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -1232,7 +1238,7 @@
 		"level-id":45,
 		"level-name":"Pasillo_Corto_Habitaciones (1)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x50",
 				"position": { "x":950, "y":0, "z":-600 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -1257,7 +1263,7 @@
 		"level-id":46,
 		"level-name":"Pasillo_MUYcorto_01",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x50",
 				"position": { "x":950, "y":0, "z":-900 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -1279,7 +1285,7 @@
 		"level-id":47,
 		"level-name":"Pasillo_MUYcorto_01 (1)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x50",
 				"position": { "x":950, "y":0, "z":-1100 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -1301,7 +1307,7 @@
 		"level-id":48,
 		"level-name":"Pasillo_MUYcorto_01 (2)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x50",
 				"position": { "x":950, "y":0, "z":-1300 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -1326,7 +1332,7 @@
 		"level-id":49,
 		"level-name":"Habitación_pequeña_01",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x100",
 				"position": { "x":800, "y":0, "z":-850 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1351,7 +1357,7 @@
 		"level-id":50,
 		"level-name":"Habitación_pequeña_01 (1)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x100",
 				"position": { "x":800, "y":0, "z":-1050 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1376,7 +1382,7 @@
 		"level-id":51,
 		"level-name":"Habitación_pequeña_01 (2)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x100",
 				"position": { "x":800, "y":0, "z":-1250 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1401,7 +1407,7 @@
 		"level-id":52,
 		"level-name":"Habitación_pequeña_01 (3)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x100",
 				"position": { "x":1100, "y":0, "z":-1250 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1426,7 +1432,7 @@
 		"level-id":53,
 		"level-name":"Habitación_pequeña_01 (4)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x100",
 				"position": { "x":1100, "y":0, "z":-1050 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1451,7 +1457,7 @@
 		"level-id":54,
 		"level-name":"Habitación_pequeña_01 (5)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x100",
 				"position": { "x":1100, "y":0, "z":-850 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1476,7 +1482,7 @@
 		"level-id":55,
 		"level-name":"Pasillo_Corto_Habitaciones (4)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x50",
 				"position": { "x":1200, "y":0, "z":-650 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -1501,7 +1507,7 @@
 		"level-id":56,
 		"level-name":"Pasillo_Corto_Habitaciones (3)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x50",
 				"position": { "x":1600, "y":0, "z":-650 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -1526,7 +1532,7 @@
 		"level-id":57,
 		"level-name":"Pasillo_MUYcorto_01 (6)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x50",
 				"position": { "x":1900, "y":0, "z":-650 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -1548,7 +1554,7 @@
 		"level-id":58,
 		"level-name":"Pasillo_MUYcorto_01 (4)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x50",
 				"position": { "x":2100, "y":0, "z":-650 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -1570,7 +1576,7 @@
 		"level-id":59,
 		"level-name":"Pasillo_MUYcorto_01 (5)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x50",
 				"position": { "x":2300, "y":0, "z":-650 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -1595,7 +1601,7 @@
 		"level-id":60,
 		"level-name":"Habitación_pequeña_01 (8)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x100",
 				"position": { "x":1850, "y":0, "z":-500 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1620,7 +1626,7 @@
 		"level-id":61,
 		"level-name":"Habitación_pequeña_01 (9)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x100",
 				"position": { "x":1850, "y":0, "z":-800 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1645,7 +1651,7 @@
 		"level-id":62,
 		"level-name":"Habitación_pequeña_01 (10)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x100",
 				"position": { "x":2050, "y":0, "z":-500 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1670,7 +1676,7 @@
 		"level-id":63,
 		"level-name":"Habitación_pequeña_01 (11)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x100",
 				"position": { "x":2050, "y":0, "z":-800 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1695,7 +1701,7 @@
 		"level-id":64,
 		"level-name":"Habitación_pequeña_01 (12)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x100",
 				"position": { "x":2250, "y":0, "z":-500 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1720,7 +1726,7 @@
 		"level-id":65,
 		"level-name":"Habitación_pequeña_01 (13)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x100",
 				"position": { "x":2250, "y":0, "z":-800 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1745,7 +1751,7 @@
 		"level-id":66,
 		"level-name":"Comedor_SalaDeEstar",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_250x300",
 				"position": { "x":1450, "y":0, "z":-300 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1810,7 +1816,7 @@
 		"level-id":68,
 		"level-name":"Gym",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x150",
 				"position": { "x":1350, "y":0, "z":200 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_200m",
@@ -1838,7 +1844,7 @@
 		"level-id":69,
 		"level-name":"SalaRelax",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x150",
 				"position": { "x":1650, "y":0, "z":200 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_200m",
@@ -1866,7 +1872,7 @@
 		"level-id":70,
 		"level-name":"LAB_PlantaALTA",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_250x200",
 				"position": { "x":4900, "y":0, "z":9.155273E-05 },
 				"rotation": { "x":0, "y":270.0001, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -1909,7 +1915,7 @@
 		"level-id":71,
 		"level-name":"Pasillo_MUY--corto_01 (2)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x50",
 				"position": { "x":4850, "y":0, "z":-300.2 },
 				"rotation": { "x":0, "y":270.0001, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1931,7 +1937,7 @@
 		"level-id":72,
 		"level-name":"Pasillo_MUY--corto_01 (3)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x50",
 				"position": { "x":4850, "y":0, "z":299.8 },
 				"rotation": { "x":0, "y":270.0001, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1953,7 +1959,7 @@
 		"level-id":73,
 		"level-name":"Pasillo_MUYMUYcorto_01 (7)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_50x50",
 				"position": { "x":5150, "y":0, "z":-0.2 },
 				"rotation": { "x":0, "y":5.464151E-05, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -1975,7 +1981,7 @@
 		"level-id":74,
 		"level-name":"LAB_L_01 (16)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":5300, "y":0, "z":-700.2 },
 				"rotation": { "x":0, "y":180.0001, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -2003,7 +2009,7 @@
 		"level-id":75,
 		"level-name":"LAB_L_01 (17)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":5000, "y":0, "z":-500.2 },
 				"rotation": { "x":0, "y":0.0001058679, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -2037,7 +2043,7 @@
 		"level-id":76,
 		"level-name":"LAB_L_01 (18)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":5600, "y":0, "z":-0.2 },
 				"rotation": { "x":0, "y":90.00009, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -2065,7 +2071,7 @@
 		"level-id":77,
 		"level-name":"LAB_L_01 (19)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":5300, "y":0, "z":-0.2 },
 				"rotation": { "x":0, "y":270.0001, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -2102,7 +2108,7 @@
 		"level-id":78,
 		"level-name":"Pasillo_MUYMUYcorto_01 (8)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_50x50",
 				"position": { "x":5450, "y":0, "z":-150.2 },
 				"rotation": { "x":0, "y":0.0001058679, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -2121,7 +2127,7 @@
 		"level-id":79,
 		"level-name":"Pasillo_MUYMUYcorto_01 (9)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_50x50",
 				"position": { "x":5450, "y":0, "z":149.8 },
 				"rotation": { "x":0, "y":180.0001, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -2140,7 +2146,7 @@
 		"level-id":80,
 		"level-name":"Pasillo_Corto_Labs (4)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x50",
 				"position": { "x":5450, "y":0, "z":399.8 },
 				"rotation": { "x":0, "y":270.0001, "z":0 }},
 			{ "element-id": "Wall_01_200m",
@@ -2162,7 +2168,7 @@
 		"level-id":81,
 		"level-name":"Pasillo_Corto_Labs (6)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x50",
 				"position": { "x":5450, "y":0, "z":-400 },
 				"rotation": { "x":0, "y":270.0001, "z":0 }},
 			{ "element-id": "Wall_01_200m",
@@ -2184,7 +2190,7 @@
 		"level-id":82,
 		"level-name":"LAB_L_01 (21)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":5300, "y":0, "z":699.8 },
 				"rotation": { "x":0, "y":0.0001058679, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -2212,7 +2218,7 @@
 		"level-id":83,
 		"level-name":"LAB_L_01 (22)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":5000, "y":0, "z":499.8 },
 				"rotation": { "x":0, "y":180.0001, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -2246,7 +2252,7 @@
 		"level-id":84,
 		"level-name":"Pasillo_Corto_Labs (7)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x50",
 				"position": { "x":3950, "y":0, "z":400 },
 				"rotation": { "x":0, "y":90.00005, "z":0 }},
 			{ "element-id": "Wall_01_200m",
@@ -2268,7 +2274,7 @@
 		"level-id":85,
 		"level-name":"LAB_L_01 (23)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":4400, "y":0, "z":-500 },
 				"rotation": { "x":0, "y":5.122642E-05, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -2302,7 +2308,7 @@
 		"level-id":86,
 		"level-name":"LAB_L_01 (24)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":4100, "y":0, "z":-700 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -2330,7 +2336,7 @@
 		"level-id":87,
 		"level-name":"LAB_PlantaALTA (1)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_250x200",
 				"position": { "x":4500, "y":0, "z":7.629395E-06 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -2373,7 +2379,7 @@
 		"level-id":88,
 		"level-name":"Pasillo_Corto_Labs (8)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x50",
 				"position": { "x":3950, "y":0, "z":-400 },
 				"rotation": { "x":0, "y":90.00005, "z":0 }},
 			{ "element-id": "Wall_01_200m",
@@ -2395,7 +2401,7 @@
 		"level-id":89,
 		"level-name":"Pasillo_MUYMUYcorto_01 (10)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_50x50",
 				"position": { "x":3950, "y":0, "z":-150 },
 				"rotation": { "x":0, "y":5.122642E-05, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -2414,7 +2420,7 @@
 		"level-id":90,
 		"level-name":"Pasillo_MUYMUYcorto_01 (11)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_50x50",
 				"position": { "x":3950, "y":0, "z":150 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -2433,7 +2439,7 @@
 		"level-id":91,
 		"level-name":"LAB_L_01 (20)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":4100, "y":0, "z":0 },
 				"rotation": { "x":0, "y":90.00005, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -2470,7 +2476,7 @@
 		"level-id":92,
 		"level-name":"LAB_L_01 (25)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":3800, "y":0, "z":0 },
 				"rotation": { "x":0, "y":270.0001, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -2498,7 +2504,7 @@
 		"level-id":93,
 		"level-name":"LAB_L_01 (26)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":4400, "y":0, "z":500 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -2532,7 +2538,7 @@
 		"level-id":94,
 		"level-name":"LAB_L_01 (27)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x100",
 				"position": { "x":4100, "y":0, "z":700 },
 				"rotation": { "x":0, "y":5.122642E-05, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -2560,7 +2566,7 @@
 		"level-id":95,
 		"level-name":"Pasillo_MUYMUYcorto_01 (12)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_50x50",
 				"position": { "x":4250, "y":0, "z":0 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -2582,7 +2588,7 @@
 		"level-id":96,
 		"level-name":"Pasillo_MUY--corto_01 (4)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x50",
 				"position": { "x":4550, "y":0, "z":-300 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -2604,7 +2610,7 @@
 		"level-id":97,
 		"level-name":"Pasillo_MUY--corto_01 (5)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_100x50",
 				"position": { "x":4550, "y":0, "z":300 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_100m",

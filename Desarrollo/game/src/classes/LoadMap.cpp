@@ -30,7 +30,18 @@ struct TTag2Floor {
 
 TTag2Floor mappingFloor[] = {
         {"Floor_Hall"      ,   "unitySuelo_Hall"      }
+    ,   {"Floor_50x50"     ,   "unitySuelo_50x50"     }
+    ,   {"Floor_100x50"    ,   "unitySuelo_100x50"    }
+    ,   {"Floor_200x50"    ,   "unitySuelo_200x50"    }
+    ,   {"Floor_300x50"    ,   "unitySuelo_300x50"    }
+    ,   {"Floor_500x50"    ,   "unitySuelo_500x50"    }
+    ,   {"Floor_100x100"   ,   "unitySuelo_100x100"   }
+    ,   {"Floor_200x100"   ,   "unitySuelo_200x100"   }
     ,   {"Floor_900x100"   ,   "unitySuelo_900x100"   }
+    ,   {"Floor_200x150"   ,   "unitySuelo_200x150"   }
+    ,   {"Floor_250x200"   ,   "unitySuelo_250x200"   }
+    ,   {"Floor_250x300"   ,   "unitySuelo_250x300"   }
+    ,   {"Floor_400x300"   ,   "unitySuelo_400x300"   }
     ,   {       "0"        ,             "0"          }
 };
 
@@ -93,6 +104,22 @@ void LoadMap::Init(){
                 }
 
             }
+
+            //DOORS
+            const Value& de = levels[i]["initial-entity"]; //Referencia a todos los "static-elements";
+            for(int j=0; j < de.Size(); j++){
+
+                const Value& e = de[j]; //Recorrer cada "element"
+                std::string id = e["element-id"].GetString();
+                int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = e["position"]["z"].GetDouble();
+                int rx = e["rotation"]["x"].GetDouble();    int ry = e["rotation"]["y"].GetDouble();    int rz = e["rotation"]["z"].GetDouble();
+                //cout << e["element-id"].GetString() << endl;
+                //cout << "pos(" << tx << "," << ty << "," << tz << ") ; rot(" <<  rx << ":" <<  ry << ":" <<  rz << ")"<< endl;
+                if(id=="Door"){
+                    GEInstance->createDoor(0, true, tx, ty, tz);
+                }
+            }
+
         }
     }
 }
