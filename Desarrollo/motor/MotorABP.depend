@@ -9149,18 +9149,19 @@
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/string_cast.hpp>
 
-1488060719 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.h
+1488122881 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.h
 	<GL/glew.h>
 	"Resource.h"
 	<SFML/OpenGL.hpp>
 	<assimp/Importer.hpp>
 	<assimp/scene.h>
 	<assimp/postprocess.h>
+	"tag/Types.h"
 
 1488060719 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\resource.h
 	<string>
 
-1488060719 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
+1488122881 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
 	<GL/glew.h>
 	<SFML/Graphics.hpp>
 	<glm/glm.hpp>
@@ -9169,7 +9170,8 @@
 	"ResourceManager.h"
 	"ResourceMesh.h"
 
-1488060719 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\types.h
+1488122881 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\types.h
+	<glm/gtc/type_precision.hpp>
 
 1488060719 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.h
 	<vector>
