@@ -7,7 +7,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/string_cast.hpp>
 
-
 tag::ETransform::ETransform()
 {
     //ctor
@@ -108,7 +107,10 @@ void tag::ETransform::scale(float x, float y, float z)
 void tag::ETransform::beginDraw()
 {
     std::cout << "Begin " << m_cadena << "\n";
+<<<<<<<<< Temporary merge branch 1:Desarrollo/motor/src/graphics/tagengine/ETransform.cpp
     //std::cout << "estoy en " << glm::to_string(m_matrix) << endl;
+=========
+    std::cout << glm::to_string(this->getMatrix()) << std::endl;
 
     tag::Entity::TStack.push(tag::Entity::MVmatrix);
     tag::Entity::MVmatrix *= m_matrix;
