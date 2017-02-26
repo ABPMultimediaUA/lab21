@@ -329,7 +329,7 @@ void dwe::GraphicsEngine::changeEnemyDogTexture(Dog* dog,const io::path& text)
 Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float pz)
 {
 
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/puerta");
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/unityPuerta_50m");
     Door* d = new Door(f, a);
 	d->setNode(new Node(irrnode));
 
