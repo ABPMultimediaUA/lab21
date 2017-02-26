@@ -20,7 +20,6 @@ class LoadMap {
 
         Entity *wallEntities[NUM_ENTITIES]; // Array de entidades
 
-
         // Paredes
         ScenaryElement* wall;
 };
