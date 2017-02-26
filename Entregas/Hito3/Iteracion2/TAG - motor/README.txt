@@ -1,4 +1,4 @@
- /\/\/\/\/\/\/\/\/\/\/\/\
+﻿ /\/\/\/\/\/\/\/\/\/\/\/\
 ( DireWolf Games - Lab21 )
  \/\/\/\/\/\/\/\/\/\/\/\/
 
@@ -13,6 +13,15 @@
 	Los dos cubos son dibujados por el método draw de la clase ResourceMesh, método que por ahora recibe los parámetros de posición y rotación.
 	
 
+3. TAG. Árbol de la escena: Tipos de datos para entidades tipo transformación. Salida en modo texto.
+
+	Se utiliza una pila propia de matrices para el cálculo de la ModelView a partir de las matrices del árbol.
+
+	
+4. TAG. Árbol de la escena: Tipos de datos para entidades tipo malla. Salida en modo texto.
+	
+	Se crea la entidad de malla para los nodos del árbol; por el momento no se ha unificado junto a las mallas del visualizador.
 
 ------------
 Rubén Moreno
+Marina López
