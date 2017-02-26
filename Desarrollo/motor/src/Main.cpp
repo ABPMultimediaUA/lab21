@@ -80,60 +80,12 @@ int main()
 
 
 
-    //return 0;
 
 
-    //               Root
-    //          /      |     \
-    //        1        2      3
-    //      /   \     /      /
-    //    4      5   9      10
-    //  /  \    /          /  \
-    // 6   7   8         11   12
-    //
-    // Salida:
-    // Begin Root
-    // Begin 01
-    // Begin 04
-    // Begin 06
-    // End 06
-    // Begin 07
-    // End 07
-    // End 04
-    // Begin 05
-    // Begin 08
-    // End 08
-    // End 05
-    // End 01
-    // Begin 02
-    // Begin 09
-    // End 09
-    // End 02
-    // Begin 03
-    // Begin 10
-    // Begin 11
-    // End 11
-    // Begin 12
-    // End 12
-    // End 10
-    // End 03
-    // End Root
-    /////////////////////////////////////
-
-    std::cout << "//////////////////////////////////////////\n// Probando resourcemanager\n////////////////////////////\n";
-
-//    ResourceManager resourceManager;
-//    ResourceMesh* resourceMesh;
-
-//    resourceMesh = static_cast<ResourceMesh*>(resourceManager.getResource("media/newcube.obj"));
-//    resourceManager.getResource("media/newcube.obj");
-//    resourceManager.getResource("media/newcube.obj");
-//    resourceManager.getResource("media/newcube.obj");
-//    resourceManager.getResource("media/newcube.obj");
-//    resourceManager.getResource("media/newcube.obj");
 
     TAGEngine tagEngine;
     tagEngine.init();
+    std::cout << "\n\n\nCargamos mallas: \n--------------------\n";
     tagEngine.createNode();
     while (tagEngine.isRunning())
     {

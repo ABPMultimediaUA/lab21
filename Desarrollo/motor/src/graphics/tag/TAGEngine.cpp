@@ -165,11 +165,13 @@ void tag::TAGEngine::draw()
 /////////////////////
 void tag::TAGEngine::renderElements()
 {
-    resourceMesh->draw();
+    resourceMesh->draw(vec3f(-2,0,0), vec3f(2,2,1));
+    resourceMesh2->draw(vec3f(2,0,0), vec3f(1,0,1));
 }
 
 
 void tag::TAGEngine::createNode()
 {
     resourceMesh = static_cast<ResourceMesh*>(m_resourceManager.getResource("media/newcube.obj"));
+    resourceMesh2 = static_cast<ResourceMesh*>(m_resourceManager.getResource("media/newcube.obj"));
 }

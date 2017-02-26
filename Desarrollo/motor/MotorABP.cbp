@@ -94,6 +94,7 @@
 		<Unit filename="src/graphics/tag/ResourceMesh.h" />
 		<Unit filename="src/graphics/tag/TAGEngine.cpp" />
 		<Unit filename="src/graphics/tag/TAGEngine.h" />
+		<Unit filename="src/graphics/tag/Types.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

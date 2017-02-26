@@ -10,6 +10,8 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
+#include "tag/Types.h"
+
 
 
 namespace tag
@@ -21,7 +23,9 @@ namespace tag
             virtual ~ResourceMesh();
 
             void load(std::string fileName);
-            void draw();
+
+            // TODO los parametros de posicion y rotacion son provisionales para pruebas
+            void draw(vec3f position, vec3f rotation);
 
         private:
             GLfloat* m_vertices;
