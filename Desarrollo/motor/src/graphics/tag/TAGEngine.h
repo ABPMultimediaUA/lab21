@@ -27,7 +27,6 @@
 
 
 #include "Program.h"
-//#include "GraphicsEngine.h"
 #include "ResourceManager.h"
 #include "ResourceMesh.h"
 
@@ -56,8 +55,9 @@ namespace tag
             /// dibuja los nodos y muestra los fps.
             void draw();
 
-            // TODO quitar. Función provisional que crea un nodo con el cubo para dibujarlo en renderElements
+            // TODO quitar. Funciónes provisionales que crean un nodo con el cubo para dibujarlo en renderElements
             void createNode();
+            void createNode2();
 
 
             // Handles de los attributes y uniforms
@@ -68,6 +68,9 @@ namespace tag
             static int m_uVMatrixLocation;
             static int m_uColorLocation;
             static int m_uLuz0Location;
+
+
+            ResourceManager getResourceManager(); //
 
         private:
             sf::RenderWindow*   m_window;
@@ -82,9 +85,9 @@ namespace tag
             ResourceManager     m_resourceManager;
 
             ResourceMesh* resourceMesh;  // TODO quitar. Provisional para mostrar un cubo en renderElements
+            ResourceMesh* resourceMesh2;  // TODO quitar. Provisional para mostrar un cubo en renderElements
 
             glm::mat4 m_projectionMatrix; // Almacena la matriz de proyección
-            //glm::mat4 m_viewMatrix;       // Almacena la matriz de la vista (cámara)
 
             void renderElements();
     };

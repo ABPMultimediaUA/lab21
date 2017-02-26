@@ -46,12 +46,11 @@ void tag::ResourceMesh::aiVector3DToArrayGLFloat(const aiVector3D &source, GLflo
 
 void tag::ResourceMesh::load(std::string fileName)
 {
-    std::cout <<"load\n";
     setName(fileName);
 
-    Assimp::Importer importer;
-    // No hacer un delete, ya se encarga Assimp de dejarlo todo limpito
+    // No hacer un delete de aiScene, ya se encarga Assimp de dejarlo todo limpito
     // aiProcess_Triangulate: totalmente necesario. Asumimos 3 caras por vertice.
+    Assimp::Importer importer;
     const aiScene* scene =  importer.ReadFile(fileName,
                                 aiProcess_Triangulate            |
                                 aiProcess_JoinIdenticalVertices  |
@@ -105,16 +104,14 @@ void tag::ResourceMesh::load(std::string fileName)
     m_color[3] = 1.0;
 }
 
-void tag::ResourceMesh::draw()
+void tag::ResourceMesh::draw(vec3f position, vec3f rotation)
 {
     glm::mat4   modelMatrix;
     glm::mat4   modelViewMatrix;
 
 
     //////////////////////////
-    // TODO el cálculo de la posición y la rotación no irá aqui.
-    vec3f position(0,0,0);
-    vec3f rotation(2,2,1);
+    // TODO el cálculo de la posición y la rotación (modelview) no irá aqui.
     // Cálculo de la ModelView
     modelMatrix     = glm::mat4(1.0f); // matriz identidad
     // Aplicamos posicion

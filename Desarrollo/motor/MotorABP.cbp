@@ -56,8 +56,8 @@
 			<Add library="jpeg" />
 			<Add directory="lib" />
 		</Linker>
-		<Unit filename="shaders/FragmentShader.glsl" />
-		<Unit filename="shaders/VertexShader.glsl" />
+		<Unit filename="Shaders/FragmentShader.glsl" />
+		<Unit filename="Shaders/VertexShader.glsl" />
 		<Unit filename="src/Main.cpp" />
 		<Unit filename="src/classes/Drawable.cpp" />
 		<Unit filename="src/classes/Drawable.h" />
@@ -82,8 +82,6 @@
 		<Unit filename="src/graphics/tag/EMesh.h" />
 		<Unit filename="src/graphics/tag/ETransform.cpp" />
 		<Unit filename="src/graphics/tag/ETransform.h" />
-		<Unit filename="src/graphics/tag/EntitiesAttributes.cpp" />
-		<Unit filename="src/graphics/tag/EntitiesAttributes.h" />
 		<Unit filename="src/graphics/tag/Entity.cpp" />
 		<Unit filename="src/graphics/tag/Entity.h" />
 		<Unit filename="src/graphics/tag/GraphicNode.cpp" />
@@ -96,7 +94,7 @@
 		<Unit filename="src/graphics/tag/ResourceMesh.h" />
 		<Unit filename="src/graphics/tag/TAGEngine.cpp" />
 		<Unit filename="src/graphics/tag/TAGEngine.h" />
-
+		<Unit filename="src/graphics/tag/Types.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
