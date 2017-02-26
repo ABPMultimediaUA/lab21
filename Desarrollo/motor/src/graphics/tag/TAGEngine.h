@@ -69,6 +69,9 @@ namespace tag
             static int m_uColorLocation;
             static int m_uLuz0Location;
 
+
+            ResourceManager getResourceManager(); //
+
         private:
             sf::RenderWindow*   m_window;
             Program*            m_shaderProgram;

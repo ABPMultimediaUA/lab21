@@ -20,6 +20,7 @@ tag::Resource* tag::ResourceManager::getResource(std::string name)
     // Buscamos si existe el resource
     Resource* res = 0;
     std::vector<Resource*>::iterator it = m_resources.begin();
+
     while (res == 0 && it != m_resources.end())
     {
         if ((*it)->getName() == name)

@@ -56,8 +56,8 @@
 			<Add library="jpeg" />
 			<Add directory="lib" />
 		</Linker>
-		<Unit filename="shaders/FragmentShader.glsl" />
-		<Unit filename="shaders/VertexShader.glsl" />
+		<Unit filename="Shaders/FragmentShader.glsl" />
+		<Unit filename="Shaders/VertexShader.glsl" />
 		<Unit filename="src/Main.cpp" />
 		<Unit filename="src/classes/Drawable.cpp" />
 		<Unit filename="src/classes/Drawable.h" />

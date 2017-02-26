@@ -11,8 +11,6 @@
 #include "Player.h"
 
 
-
-
 #include "tag/GraphicNode.h"
 #include "tag/EMesh.h"
 #include "tag/ResourceManager.h"
@@ -25,6 +23,7 @@ using namespace tag;
 
 int main()
 {
+
     /////////////////////////////////////
     // Creacion del arbol
     /////////////////////////////////////
@@ -47,14 +46,14 @@ int main()
 
     tag::GraphicNode nodo06;
     tag::EMesh entity06;
-    entity06.loadMesh("malla6.obj");
+    entity06.loadMesh("media/newcube.obj");
     entity06.m_cadena = "06 - MESH";
     nodo06.setEntity(&entity06);
     nodo04.addChild(&nodo06);
 
     tag::GraphicNode nodo07;
     tag::EMesh entity07;
-    entity07.loadMesh("malla7.obj");
+    entity07.loadMesh("media/newcube.obj");
     entity07.m_cadena = "07 - MESH";
     nodo07.setEntity(&entity07);
     nodo04.addChild(&nodo07);
@@ -62,43 +61,39 @@ int main()
     /////////////////////////////////////
     // Transformaciones
     /////////////////////////////////////
-    transform01.identity();
     transform01.rotate(90, 0, 0);
-    //transform01.translate(3, 2, 4);
-
-
-   /* transform02.load(glm::mat4(1, 2, 3, 4, 2, 4, 1, 2, 2, 1, 3, 4, 4, 1, 3, 2));
-    transform02.transpose();
-
-    transform03.identity();
-    transform03.rotate(dwe::vec3f(180, 0, 90));
-    transform03.translate(dwe::vec3f(2, 3, 4));*/
 
     transform04.translate(2, 3, 4);
 
     nodoRoot.draw();
 
+/*
+              root
+               /
+               1
+               /
+               4
+              / \
+             6   7
 
-
-
-
+*/
 
     TAGEngine tagEngine;
     tagEngine.init();
+
     std::cout << "\n\n\nCargamos mallas: \n--------------------\n";
+
     tagEngine.createNode();
+
     while (tagEngine.isRunning())
     {
         tagEngine.draw();
     }
+
     return 0;
 
 
     ///////////////////////////////////
-
-
-
-
 
 
 /*

@@ -175,3 +175,8 @@ void tag::TAGEngine::createNode()
     resourceMesh = static_cast<ResourceMesh*>(m_resourceManager.getResource("media/newcube.obj"));
     resourceMesh2 = static_cast<ResourceMesh*>(m_resourceManager.getResource("media/newcube.obj"));
 }
+
+tag::ResourceManager tag::TAGEngine::getResourceManager()
+{
+    return m_resourceManager;
+}
