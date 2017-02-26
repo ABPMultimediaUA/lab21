@@ -4,7 +4,7 @@
 #include "Entity.h"
 
 
-namespace dwe
+namespace tag
 {
     class EMesh : public Entity
     {

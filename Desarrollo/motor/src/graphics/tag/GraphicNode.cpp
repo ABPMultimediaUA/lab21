@@ -1,44 +1,44 @@
-#include "GraphicNode.h"
+#include "tag/GraphicNode.h"
 
-#include "Entity.h"
+#include "tag/Entity.h"
 
 #include <algorithm>
 
 
-dwe::GraphicNode::GraphicNode()
+tag::GraphicNode::GraphicNode()
 {
     //ctor
 }
 
-dwe::GraphicNode::~GraphicNode()
+tag::GraphicNode::~GraphicNode()
 {
     //dtor
 }
 
 ////////////////////////////////////
-dwe::GraphicNode* dwe::GraphicNode::getParent() { return m_parent; }
+tag::GraphicNode* tag::GraphicNode::getParent() { return m_parent; }
 
 
 ///////////////////////
-bool dwe::GraphicNode::setEntity(dwe::Entity* e){ m_entity = e; return true; };
-dwe::Entity* dwe::GraphicNode::getEntity() { return m_entity; }
+bool tag::GraphicNode::setEntity(tag::Entity* e){ m_entity = e; return true; };
+tag::Entity* tag::GraphicNode::getEntity() { return m_entity; }
 
 ///////////////////////////////
-unsigned int dwe::GraphicNode::addChild(dwe::GraphicNode* n)
+unsigned int tag::GraphicNode::addChild(tag::GraphicNode* n)
 {
     m_childs.push_back(n);
     return (m_childs.size() - 1);  // devolvemos el indice añadido
 }
 
 ///////////////////////////////
-unsigned int dwe::GraphicNode::removeChild(const dwe::GraphicNode* n)
+unsigned int tag::GraphicNode::removeChild(const tag::GraphicNode* n)
 {
     m_childs.erase(std::remove(m_childs.begin(), m_childs.end(), n), m_childs.end());
     return (m_childs.size()); // Devolvemos cantidad de hijos
 }
 
 ///////////////////////
-void dwe::GraphicNode::draw()
+void tag::GraphicNode::draw()
 {
     if (m_entity != 0)
         m_entity->beginDraw();

@@ -5,10 +5,9 @@
 
 #include <glm/glm.hpp>
 
-#include "GraphicsEngine.h"
+#include "tag/Types.h"
 
-
-namespace dwe
+namespace tag
 {
     class ETransform : public Entity
     {
@@ -18,7 +17,7 @@ namespace dwe
 
             void identity();
             void load(glm::mat4 m);
-            void traspose();
+            void transpose();
 
             void translate(vec3f t);
             void translate(float x, float y, float z);

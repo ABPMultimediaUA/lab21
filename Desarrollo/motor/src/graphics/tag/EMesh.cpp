@@ -1,31 +1,31 @@
-#include "EMesh.h"
+#include "tag/EMesh.h"
 
 #include <iostream>
 
-dwe::EMesh::EMesh()
+tag::EMesh::EMesh()
 {
     //ctor
 }
 
-dwe::EMesh::~EMesh()
+tag::EMesh::~EMesh()
 {
     //dtor
 }
 
 /////////////////
-void dwe::EMesh::beginDraw()
+void tag::EMesh::beginDraw()
 {
     std::cout << "Begin " << m_cadena << "\n";
 }
 
 /////////////////
-void dwe::EMesh::endDraw()
+void tag::EMesh::endDraw()
 {
     std::cout << "End " << m_cadena << "\n";
 }
 
 /////////////////
-void dwe::EMesh::loadMesh(char *file)
+void tag::EMesh::loadMesh(char *file)
 {
     std::cout << "Cargando malla " << file << std::endl;
 }
