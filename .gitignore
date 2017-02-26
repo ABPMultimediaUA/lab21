@@ -23,4 +23,5 @@ Desarrollo/**/*.layout
 Desarrollo/motor/**/*.exe
 Desarrollo/motor/obj/
 Desarrollo/motor/obj/**/*
+Desarrollo/motor/include/SFML/
 **/*.depend
