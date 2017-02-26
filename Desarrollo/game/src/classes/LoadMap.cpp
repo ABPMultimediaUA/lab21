@@ -97,14 +97,14 @@ void LoadMap::Init(){
     }
 }
 void LoadMap::Destroy(){
-    delete suelo;
+    delete suelo; suelo=0;
     delete wall;
 }
 
 LoadMap::~LoadMap()
 {
-    delete suelo;
-    delete wall;
+    if(suelo)
+        Destroy();
 }
 
 LoadMap* LoadMap::getInstance()
