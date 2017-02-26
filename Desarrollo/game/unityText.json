@@ -149,7 +149,7 @@
 		"level-id":5,
 		"level-name":"HALL_PRINCIPAL",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_Hall",
 				"position": { "x":0, "y":0, "z":-200 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -2626,7 +2626,7 @@
 		"level-id":98,
 		"level-name":"Pasillo_FINAL",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_900x100",
 				"position": { "x":6.103516E-05, "y":0, "z":1000.001 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_300m",
