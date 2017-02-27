@@ -232,7 +232,7 @@ void Scene::Update()
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
 
     for(int e=0; e<m_enemies.size(); e++) //recorre
-            m_enemies[e]->update();
+           // m_enemies[e]->update();
 
     // comprobamos si dispara
 

@@ -17,9 +17,9 @@
 					<Add directory="src/graphics/tagengine" />
 				</Compiler>
 				<Linker>
-					<Add library="sfml-graphics-s-d" />
-					<Add library="sfml-window-s-d" />
-					<Add library="sfml-system-s-d" />
+					<Add library="include/SFML/lib/libsfml-graphics-s.a" />
+					<Add library="include/SFML/lib/libsfml-window-s.a" />
+					<Add library="include/SFML/lib/libsfml-system-s.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -32,9 +32,9 @@
 					<Add directory="src/graphics/tagengine" />
 				</Compiler>
 				<Linker>
-					<Add library="sfml-graphics-s" />
-					<Add library="sfml-window-s" />
-					<Add library="sfml-system-s" />
+					<Add library="include/SFML/lib/libsfml-graphics-s.a" />
+					<Add library="include/SFML/lib/libsfml-window-s.a" />
+					<Add library="include/SFML/lib/libsfml-system-s.a" />
 				</Linker>
 			</Target>
 		</Build>
@@ -60,8 +60,8 @@
 			<Add library="jpeg" />
 			<Add directory="lib" />
 		</Linker>
-		<Unit filename="shaders/FragmentShader.glsl" />
-		<Unit filename="shaders/VertexShader.glsl" />
+		<Unit filename="Shaders/FragmentShader.glsl" />
+		<Unit filename="Shaders/VertexShader.glsl" />
 		<Unit filename="src/Main.cpp" />
 		<Unit filename="src/classes/Drawable.cpp" />
 		<Unit filename="src/classes/Drawable.h" />
