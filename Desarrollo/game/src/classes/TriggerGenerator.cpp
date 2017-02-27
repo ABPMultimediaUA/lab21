@@ -1,4 +1,5 @@
 #include "TriggerGenerator.h"
+#include "WorldInstance.h"
 
 TriggerGenerator::TriggerGenerator()
 {
@@ -20,7 +21,8 @@ void TriggerGenerator::render()
 
 }
 
-void TriggerGenerator::update()
+void TriggerGenerator::update(Entity *e)
 {
-
+    if(World->getMainPlayer()->getMKey(((Generator*)e)->getNum()))
+        triggered(e);
 }

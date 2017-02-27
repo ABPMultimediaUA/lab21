@@ -35,6 +35,9 @@ void GSIngame::Update(){
     deltaTime = World->getTimeElapsed() - timeStamp;
     timeStamp = World->getTimeElapsed();
     Scene::Instance()->Update();
+
+    LoadMap::getInstance()->Update();
+
     // Actualizamos físicas box2d
     World->step(deltaTime);
     World->clearForces();

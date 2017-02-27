@@ -7,7 +7,7 @@ Door::Door(int f, bool a)
     y = 0;
     z = 0;
     facing = f;
-    speed = 0.6;  // RMM no se puede poner a 0.5, sino la puerta no vuelve a abrirse
+    speed = 0.7;
     active = a;
     isOpened = false;
     op=0;
@@ -125,7 +125,7 @@ void Door::closeDoor()
     {
         case 0:
 
-            if(x>cl)
+            if(x>=cl)
                 x-=speed;
 
             setPosition(dwe::vec3f(x,y,z));
@@ -135,7 +135,7 @@ void Door::closeDoor()
 
         case 1:
 
-            if(z>cl)
+            if(z>=cl)
                 z-=speed;
 
             setPosition(dwe::vec3f(x,y,z));
@@ -145,7 +145,7 @@ void Door::closeDoor()
 
         case 2:
 
-            if(x<cl)
+            if(x<=cl)
                 x+=speed;
 
             setPosition(dwe::vec3f(x,y,z));
@@ -155,7 +155,7 @@ void Door::closeDoor()
 
         case 3:
 
-            if(z<cl)
+            if(z<=cl)
                 z+=speed;
 
             setPosition(dwe::vec3f(x,y,z));

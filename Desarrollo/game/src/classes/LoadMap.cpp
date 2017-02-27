@@ -116,14 +116,50 @@ void LoadMap::Init(){
                 //cout << e["element-id"].GetString() << endl;
                 //cout << "pos(" << tx << "," << ty << "," << tz << ") ; rot(" <<  rx << ":" <<  ry << ":" <<  rz << ")"<< endl;
                 if(id=="Door"){
-                    GEInstance->createDoor(0, true, tx, ty, tz);
+                    entities[j]=GEInstance->createDoor(0, true, tx, ty, tz);
+                    doorTriggers[j]=GEInstance->createTriggerDoor(tx, ty, tz);
                 }
             }
 
         }
     }
 }
+
+/*
+    // Creacion de Mundo
+    sector[0]=entities[1];
+
+
+
+// Generadores
+    entities[2]=GEInstance->createGenerator(0, false, -50, 0, -50); // false
+    ((Generator*)entities[2])->setSector(sector, 1);
+
+*/
+
+void LoadMap::Update(){
+    for(int cont=0; cont<NUM_ENTITIES2; cont++)
+    {
+        entities[cont]->update();
+        doorTriggers[cont]->update(entities[cont]);
+    }
+
+}
+
 void LoadMap::Destroy(){
+     for(int i=0; i<NUM_ENTITIES; i++){
+        delete entities[i];
+    }
+    delete[] entities;
+     /*for(int i=0; i<1; i++){
+        delete sector[i];
+    }
+    delete[] sector;*/
+    for(int i=0; i<3; i++){
+        delete doorTriggers[i];
+    }
+    delete[] doorTriggers;
+
     delete suelo; suelo=0;
     delete wall;
 }

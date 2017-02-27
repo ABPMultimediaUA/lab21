@@ -22,7 +22,7 @@
 #include "PerceptionTask.h"
 #include "PatrolTask.h"
 
-#define NUM_ENTITIES 3
+#define NUM_ENTITIES 10
 
 class Projectile;
 class Consumable;
@@ -61,13 +61,12 @@ class Scene
         void updateConsumables(Player* mainPlayer);
         void updatePlayerWeapons(Player* mainPlayer, Firearm** weapons);
 
+        Entity* getEntities();
+
     protected:
 
     private:
 
-        Entity *entities[NUM_ENTITIES]; // Array de entidades
-        Entity *sector[1]; // Sector no funcional que se le asigna a un generador
-        Trigger *triggers[3]; // Triggers
         MagnetKey *llave;
         bool llaveCogida;
 
