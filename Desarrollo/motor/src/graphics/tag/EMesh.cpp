@@ -1,7 +1,9 @@
 #include "tag/EMesh.h"
 
 #include <iostream>
-
+#include "tag/ResourceManager.h"
+#include "tag/ResourceMesh.h"
+#include "tag/TAGEngine.h"
 tag::EMesh::EMesh()
 {
     //ctor
@@ -25,7 +27,9 @@ void tag::EMesh::endDraw()
 }
 
 /////////////////
-void tag::EMesh::loadMesh(char *file)
+void tag::EMesh::loadMesh(std::string fileName)
 {
-    std::cout << "Cargando malla " << file << std::endl;
+    std::cout << "Cargando malla " << fileName << std::endl;
+
+    //m_mesh = static_cast<ResourceMesh*>(resourceManager->getResource(fileName));
 }

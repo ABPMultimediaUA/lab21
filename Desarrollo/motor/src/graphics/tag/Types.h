@@ -1,6 +1,8 @@
 #ifndef TAGTYPES_H
 #define TAGTYPES_H
 
+#include <glm/gtc/type_precision.hpp>
+
 namespace tag
 {
     ///////////////////////////////////////////////

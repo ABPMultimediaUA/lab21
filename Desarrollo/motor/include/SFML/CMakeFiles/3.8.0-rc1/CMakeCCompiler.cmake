@@ -1,9 +1,15 @@
 set(CMAKE_C_COMPILER "C:/MinGW/bin/gcc.exe")
 set(CMAKE_C_COMPILER_ARG1 "")
 set(CMAKE_C_COMPILER_ID "GNU")
+<<<<<<< HEAD
 set(CMAKE_C_COMPILER_VERSION "5.3.0")
 set(CMAKE_C_COMPILER_WRAPPER "")
 set(CMAKE_C_STANDARD_COMPUTED_DEFAULT "11")
+=======
+set(CMAKE_C_COMPILER_VERSION "4.9.3")
+set(CMAKE_C_COMPILER_WRAPPER "")
+set(CMAKE_C_STANDARD_COMPUTED_DEFAULT "90")
+>>>>>>> 00a7e67e5c1c0372f2de5457bb5991b3e756dbb1
 set(CMAKE_C_COMPILE_FEATURES "c_std_90;c_function_prototypes;c_std_99;c_restrict;c_variadic_macros;c_std_11;c_static_assert")
 set(CMAKE_C90_COMPILE_FEATURES "c_std_90;c_function_prototypes")
 set(CMAKE_C99_COMPILE_FEATURES "c_std_99;c_restrict;c_variadic_macros")
@@ -64,5 +70,9 @@ endif()
 
 
 set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "mingw32;moldname;mingwex;msvcrt;advapi32;shell32;user32;kernel32;mingw32;moldname;mingwex;msvcrt")
+<<<<<<< HEAD
 set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "C:/MinGW/lib/gcc/mingw32/5.3.0;C:/MinGW/lib/gcc;C:/MinGW/mingw32/lib;C:/MinGW/lib")
+=======
+set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "C:/MinGW/lib/gcc/mingw32/4.9.3;C:/MinGW/lib/gcc;C:/MinGW/mingw32/lib;C:/MinGW/lib")
+>>>>>>> 00a7e67e5c1c0372f2de5457bb5991b3e756dbb1
 set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

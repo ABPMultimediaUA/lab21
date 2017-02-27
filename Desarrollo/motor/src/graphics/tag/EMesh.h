@@ -2,6 +2,9 @@
 #define EMESH_H
 
 #include "Entity.h"
+#include "ResourceManager.h"
+#include "ResourceMesh.h"
+#include "TAGEngine.h"
 
 
 namespace tag
@@ -12,10 +15,15 @@ namespace tag
             EMesh();
             ~EMesh();
 
-            void loadMesh(char *file);
+            void loadMesh(std::string fileName);
 
             void beginDraw();
             void endDraw();
+
+        private:
+
+            ResourceMesh* m_mesh;
+            ResourceManager* resourceManager; //
     };
 }
 

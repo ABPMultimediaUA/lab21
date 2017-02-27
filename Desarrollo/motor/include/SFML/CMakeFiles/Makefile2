@@ -333,8 +333,13 @@ src/SFML/Graphics/preinstall:
 # Target rules for target src/SFML/Graphics/CMakeFiles/sfml-graphics.dir
 
 # All Build rule for target.
+<<<<<<< HEAD
 src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all: src/SFML/Window/CMakeFiles/sfml-window.dir/all
 src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
+=======
+src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
+src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all: src/SFML/Window/CMakeFiles/sfml-window.dir/all
+>>>>>>> 00a7e67e5c1c0372f2de5457bb5991b3e756dbb1
 	$(MAKE) -f src\SFML\Graphics\CMakeFiles\sfml-graphics.dir\build.make src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/depend
 	$(MAKE) -f src\SFML\Graphics\CMakeFiles\sfml-graphics.dir\build.make src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\SFML\CMakeFiles --progress-num=22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45 "Built target sfml-graphics"
@@ -489,8 +494,13 @@ examples/ftp/preinstall:
 # Target rules for target examples/ftp/CMakeFiles/ftp.dir
 
 # All Build rule for target.
+<<<<<<< HEAD
 examples/ftp/CMakeFiles/ftp.dir/all: src/SFML/Network/CMakeFiles/sfml-network.dir/all
 examples/ftp/CMakeFiles/ftp.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
+=======
+examples/ftp/CMakeFiles/ftp.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
+examples/ftp/CMakeFiles/ftp.dir/all: src/SFML/Network/CMakeFiles/sfml-network.dir/all
+>>>>>>> 00a7e67e5c1c0372f2de5457bb5991b3e756dbb1
 	$(MAKE) -f examples\ftp\CMakeFiles\ftp.dir\build.make examples/ftp/CMakeFiles/ftp.dir/depend
 	$(MAKE) -f examples\ftp\CMakeFiles\ftp.dir\build.make examples/ftp/CMakeFiles/ftp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\SFML\CMakeFiles --progress-num=1 "Built target ftp"
@@ -545,10 +555,17 @@ examples/opengl/preinstall:
 # Target rules for target examples/opengl/CMakeFiles/opengl.dir
 
 # All Build rule for target.
+<<<<<<< HEAD
 examples/opengl/CMakeFiles/opengl.dir/all: src/SFML/Window/CMakeFiles/sfml-window.dir/all
 examples/opengl/CMakeFiles/opengl.dir/all: src/SFML/Main/CMakeFiles/sfml-main.dir/all
 examples/opengl/CMakeFiles/opengl.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
 examples/opengl/CMakeFiles/opengl.dir/all: src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all
+=======
+examples/opengl/CMakeFiles/opengl.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
+examples/opengl/CMakeFiles/opengl.dir/all: src/SFML/Main/CMakeFiles/sfml-main.dir/all
+examples/opengl/CMakeFiles/opengl.dir/all: src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all
+examples/opengl/CMakeFiles/opengl.dir/all: src/SFML/Window/CMakeFiles/sfml-window.dir/all
+>>>>>>> 00a7e67e5c1c0372f2de5457bb5991b3e756dbb1
 	$(MAKE) -f examples\opengl\CMakeFiles\opengl.dir\build.make examples/opengl/CMakeFiles/opengl.dir/depend
 	$(MAKE) -f examples\opengl\CMakeFiles\opengl.dir\build.make examples/opengl/CMakeFiles/opengl.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\SFML\CMakeFiles --progress-num=2,3 "Built target opengl"
@@ -603,11 +620,19 @@ examples/pong/preinstall:
 # Target rules for target examples/pong/CMakeFiles/pong.dir
 
 # All Build rule for target.
+<<<<<<< HEAD
 examples/pong/CMakeFiles/pong.dir/all: src/SFML/Window/CMakeFiles/sfml-window.dir/all
 examples/pong/CMakeFiles/pong.dir/all: src/SFML/Main/CMakeFiles/sfml-main.dir/all
 examples/pong/CMakeFiles/pong.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
 examples/pong/CMakeFiles/pong.dir/all: src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all
 examples/pong/CMakeFiles/pong.dir/all: src/SFML/Audio/CMakeFiles/sfml-audio.dir/all
+=======
+examples/pong/CMakeFiles/pong.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
+examples/pong/CMakeFiles/pong.dir/all: src/SFML/Main/CMakeFiles/sfml-main.dir/all
+examples/pong/CMakeFiles/pong.dir/all: src/SFML/Audio/CMakeFiles/sfml-audio.dir/all
+examples/pong/CMakeFiles/pong.dir/all: src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all
+examples/pong/CMakeFiles/pong.dir/all: src/SFML/Window/CMakeFiles/sfml-window.dir/all
+>>>>>>> 00a7e67e5c1c0372f2de5457bb5991b3e756dbb1
 	$(MAKE) -f examples\pong\CMakeFiles\pong.dir\build.make examples/pong/CMakeFiles/pong.dir/depend
 	$(MAKE) -f examples\pong\CMakeFiles\pong.dir\build.make examples/pong/CMakeFiles/pong.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\SFML\CMakeFiles --progress-num=4 "Built target pong"
@@ -662,10 +687,17 @@ examples/shader/preinstall:
 # Target rules for target examples/shader/CMakeFiles/shader.dir
 
 # All Build rule for target.
+<<<<<<< HEAD
 examples/shader/CMakeFiles/shader.dir/all: src/SFML/Window/CMakeFiles/sfml-window.dir/all
 examples/shader/CMakeFiles/shader.dir/all: src/SFML/Main/CMakeFiles/sfml-main.dir/all
 examples/shader/CMakeFiles/shader.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
 examples/shader/CMakeFiles/shader.dir/all: src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all
+=======
+examples/shader/CMakeFiles/shader.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
+examples/shader/CMakeFiles/shader.dir/all: src/SFML/Main/CMakeFiles/sfml-main.dir/all
+examples/shader/CMakeFiles/shader.dir/all: src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all
+examples/shader/CMakeFiles/shader.dir/all: src/SFML/Window/CMakeFiles/sfml-window.dir/all
+>>>>>>> 00a7e67e5c1c0372f2de5457bb5991b3e756dbb1
 	$(MAKE) -f examples\shader\CMakeFiles\shader.dir\build.make examples/shader/CMakeFiles/shader.dir/depend
 	$(MAKE) -f examples\shader\CMakeFiles\shader.dir\build.make examples/shader/CMakeFiles/shader.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\SFML\CMakeFiles --progress-num=86,87 "Built target shader"
@@ -720,8 +752,13 @@ examples/sockets/preinstall:
 # Target rules for target examples/sockets/CMakeFiles/sockets.dir
 
 # All Build rule for target.
+<<<<<<< HEAD
 examples/sockets/CMakeFiles/sockets.dir/all: src/SFML/Network/CMakeFiles/sfml-network.dir/all
 examples/sockets/CMakeFiles/sockets.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
+=======
+examples/sockets/CMakeFiles/sockets.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
+examples/sockets/CMakeFiles/sockets.dir/all: src/SFML/Network/CMakeFiles/sfml-network.dir/all
+>>>>>>> 00a7e67e5c1c0372f2de5457bb5991b3e756dbb1
 	$(MAKE) -f examples\sockets\CMakeFiles\sockets.dir\build.make examples/sockets/CMakeFiles/sockets.dir/depend
 	$(MAKE) -f examples\sockets\CMakeFiles\sockets.dir\build.make examples/sockets/CMakeFiles/sockets.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\SFML\CMakeFiles --progress-num=88,89,90 "Built target sockets"
@@ -888,9 +925,15 @@ examples/voip/preinstall:
 # Target rules for target examples/voip/CMakeFiles/voip.dir
 
 # All Build rule for target.
+<<<<<<< HEAD
 examples/voip/CMakeFiles/voip.dir/all: src/SFML/Network/CMakeFiles/sfml-network.dir/all
 examples/voip/CMakeFiles/voip.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
 examples/voip/CMakeFiles/voip.dir/all: src/SFML/Audio/CMakeFiles/sfml-audio.dir/all
+=======
+examples/voip/CMakeFiles/voip.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
+examples/voip/CMakeFiles/voip.dir/all: src/SFML/Audio/CMakeFiles/sfml-audio.dir/all
+examples/voip/CMakeFiles/voip.dir/all: src/SFML/Network/CMakeFiles/sfml-network.dir/all
+>>>>>>> 00a7e67e5c1c0372f2de5457bb5991b3e756dbb1
 	$(MAKE) -f examples\voip\CMakeFiles\voip.dir\build.make examples/voip/CMakeFiles/voip.dir/depend
 	$(MAKE) -f examples\voip\CMakeFiles\voip.dir\build.make examples/voip/CMakeFiles/voip.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\SFML\CMakeFiles --progress-num=94,95,96 "Built target voip"
@@ -945,9 +988,15 @@ examples/window/preinstall:
 # Target rules for target examples/window/CMakeFiles/window.dir
 
 # All Build rule for target.
+<<<<<<< HEAD
 examples/window/CMakeFiles/window.dir/all: src/SFML/Window/CMakeFiles/sfml-window.dir/all
 examples/window/CMakeFiles/window.dir/all: src/SFML/Main/CMakeFiles/sfml-main.dir/all
 examples/window/CMakeFiles/window.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
+=======
+examples/window/CMakeFiles/window.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
+examples/window/CMakeFiles/window.dir/all: src/SFML/Main/CMakeFiles/sfml-main.dir/all
+examples/window/CMakeFiles/window.dir/all: src/SFML/Window/CMakeFiles/sfml-window.dir/all
+>>>>>>> 00a7e67e5c1c0372f2de5457bb5991b3e756dbb1
 	$(MAKE) -f examples\window\CMakeFiles\window.dir\build.make examples/window/CMakeFiles/window.dir/depend
 	$(MAKE) -f examples\window\CMakeFiles\window.dir\build.make examples/window/CMakeFiles/window.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\SFML\CMakeFiles --progress-num=99,100 "Built target window"
@@ -1002,10 +1051,17 @@ examples/win32/preinstall:
 # Target rules for target examples/win32/CMakeFiles/win32.dir
 
 # All Build rule for target.
+<<<<<<< HEAD
 examples/win32/CMakeFiles/win32.dir/all: src/SFML/Window/CMakeFiles/sfml-window.dir/all
 examples/win32/CMakeFiles/win32.dir/all: src/SFML/Main/CMakeFiles/sfml-main.dir/all
 examples/win32/CMakeFiles/win32.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
 examples/win32/CMakeFiles/win32.dir/all: src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all
+=======
+examples/win32/CMakeFiles/win32.dir/all: src/SFML/System/CMakeFiles/sfml-system.dir/all
+examples/win32/CMakeFiles/win32.dir/all: src/SFML/Main/CMakeFiles/sfml-main.dir/all
+examples/win32/CMakeFiles/win32.dir/all: src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all
+examples/win32/CMakeFiles/win32.dir/all: src/SFML/Window/CMakeFiles/sfml-window.dir/all
+>>>>>>> 00a7e67e5c1c0372f2de5457bb5991b3e756dbb1
 	$(MAKE) -f examples\win32\CMakeFiles\win32.dir\build.make examples/win32/CMakeFiles/win32.dir/depend
 	$(MAKE) -f examples\win32\CMakeFiles\win32.dir\build.make examples/win32/CMakeFiles/win32.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\SFML\CMakeFiles --progress-num=97,98 "Built target win32"
