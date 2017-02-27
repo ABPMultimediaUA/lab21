@@ -8,31 +8,44 @@ using namespace rapidjson;
 LoadMap::LoadMap()
 {
 
-
-
-
-/*
-
-    wall01 = GEInstance->createWall("media/pared01");wall01->setPosition(dwe::vec3f(-35,   36.3, 135.9));
-    wall02 = GEInstance->createWall("media/pared02");wall02->setPosition(dwe::vec3f(120.4, 36.3, 135.9));
-    wall03 = GEInstance->createWall("media/pared03");wall03->setPosition(dwe::vec3f(42.7,  36.3, -132.2));
-    wall04 = GEInstance->createWall("media/pared04");wall04->setPosition(dwe::vec3f(-84.9, 36.3, 2.2));
-    wall05 = GEInstance->createWall("media/pared05");wall05->setPosition(dwe::vec3f(170.5, 36.3, 82.6));
-    wall06 = GEInstance->createWall("media/pared06");wall06->setPosition(dwe::vec3f(170.5, 36.3, -76.7));
-    wall07 = GEInstance->createWall("media/pared07");wall07->setPosition(dwe::vec3f(304.8, 36.3, -132.2));
-    wall08 = GEInstance->createWall("media/pared08");wall08->setPosition(dwe::vec3f(304.8, 36.3, 133.8));
-    wall09 = GEInstance->createWall("media/pared09");wall09->setPosition(dwe::vec3f(432.7, 36.3, 2.2));
-    wall10 = GEInstance->createWall("media/pared10");wall10->setPosition(dwe::vec3f(-84.4, 36.3, 269.9));
-    wall11 = GEInstance->createWall("media/pared11");wall11->setPosition(dwe::vec3f(170.8, 36.3, 269.6));
-    wall12 = GEInstance->createWall("media/pared12");wall12->setPosition(dwe::vec3f(43.1,  36.3, 399.8));
-*/
 }
 
+struct TTag2Wall {
+    std::string tag;
+    std::string model;
+};
+
+TTag2Wall mappingWall[] = {
+        {"Wall_01_50m"    ,   "unityPared01_50m"  }
+    ,   {"Wall_01_100m"   ,   "unityPared01_100m" }
+    ,   {"Wall_01_200m"   ,   "unityPared01_200m" }
+    ,   {"Wall_01_300m"   ,   "unityPared01_300m" }
+    ,   {       "0"       ,             "0"       }
+};
+
+struct TTag2Floor {
+    std::string tag;
+    std::string model;
+};
+
+TTag2Floor mappingFloor[] = {
+        {"Floor_Hall"      ,   "unitySuelo_Hall"      }
+    ,   {"Floor_50x50"     ,   "unitySuelo_50x50"     }
+    ,   {"Floor_100x50"    ,   "unitySuelo_100x50"    }
+    ,   {"Floor_200x50"    ,   "unitySuelo_200x50"    }
+    ,   {"Floor_300x50"    ,   "unitySuelo_300x50"    }
+    ,   {"Floor_500x50"    ,   "unitySuelo_500x50"    }
+    ,   {"Floor_100x100"   ,   "unitySuelo_100x100"   }
+    ,   {"Floor_200x100"   ,   "unitySuelo_200x100"   }
+    ,   {"Floor_900x100"   ,   "unitySuelo_900x100"   }
+    ,   {"Floor_200x150"   ,   "unitySuelo_200x150"   }
+    ,   {"Floor_250x200"   ,   "unitySuelo_250x200"   }
+    ,   {"Floor_250x300"   ,   "unitySuelo_250x300"   }
+    ,   {"Floor_400x300"   ,   "unitySuelo_400x300"   }
+    ,   {       "0"        ,             "0"          }
+};
+
 void LoadMap::Init(){
-    suelo = GEInstance->createNode("media/suelo");
-    suelo->setPosition(dwe::vec3f(0,0,0));
-
-
     const char* json; //Aqui va a ir todo el archivo
     std::string allText = "";
 
@@ -52,109 +65,78 @@ void LoadMap::Init(){
     //RAPIDJSON
     Document document; //Creacion de documento para rapidJSON
 
-    /*
-    if (document.Parse(json).HasParseError() == false) //coger el json y ver si es correcto
-    {
-        const Value& elements = document["elements"]; //Referencia a todos los "elements"
-        for(int i=0; i < elements.Size(); i++){
-            const Value& e = elements[i]; //Recorrer cada "element"
-            cout << e["mesh"].GetString() << endl;
-
-            ScenaryElement* wall20 = GEInstance->createWall(e["mesh"].GetString());
-            wall20->setPosition(dwe::vec3f(200,   20, 80));
-        }
-    }
-<<<<<<< HEAD
-}
-*/
-
-
-    //THE WALLS
+    //RECORRIDO
     if (document.Parse(json).HasParseError() == false) //coger el json y ver si es correcto
     {
         const Value& levels = document["levels"]; //Referencia a todos los "levels"
-        cout << "TAMAÑO DE LEVELS = " << levels.Size() << endl;
+        //cout << "TAMAÑO DE LEVELS = " << levels.Size() << endl;
         for(int i=0; i < levels.Size(); i++){
             const Value& se = levels[i]["static-elements"]; //Referencia a todos los "static-elements";
-            cout << "TAMAÑO DE SE = " << se.Size() << endl;
+            //cout << "TAMAÑO DE SE = " << se.Size() << endl;
             for(int j=0; j < se.Size(); j++){
 
                 const Value& e = se[j]; //Recorrer cada "element"
                 std::string id = e["element-id"].GetString();
-                int tx = e["position"]["x"].GetDouble();
-                int ty = e["position"]["y"].GetDouble();
-                int tz = e["position"]["z"].GetDouble();
-                int rx = e["rotation"]["x"].GetDouble();
-                int ry = e["rotation"]["y"].GetDouble();
-                int rz = e["rotation"]["z"].GetDouble();
+                int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = e["position"]["z"].GetDouble();
+                int rx = e["rotation"]["x"].GetDouble();    int ry = e["rotation"]["y"].GetDouble();    int rz = e["rotation"]["z"].GetDouble();
+                //cout << e["element-id"].GetString() << endl;
+                //cout << "pos(" << tx << "," << ty << "," << tz << ") ; rot(" <<  rx << ":" <<  ry << ":" <<  rz << ")"<< endl;
 
-                cout << e["element-id"].GetString() << endl;
-                cout << "pos(" << tx << "," << ty << "," << tz << ") ; rot(" <<  rx << ":" <<  ry << ":" <<  rz << ")"<< endl;
-
-                //cout << e["position"]["x"].GetDouble() << endl;
-
-                ScenaryElement* wall;
-                if(id=="Wall_01"){
-                    ScenaryElement* wall = GEInstance->createWall("media/unityPared01");
-                    wall->setRotation(dwe::vec3f(rx,ry,rz));
-                    wall->setPosition(dwe::vec3f(tx,ty,tz));
-                }else if(id=="Wall_02"){
-                    ScenaryElement* wall = GEInstance->createWall("media/unityPared02");
-                    wall->setRotation(dwe::vec3f(rx,ry,rz));
-                    wall->setPosition(dwe::vec3f(tx,ty,tz));
-                }else if(id=="Wall_01_50m"){
-                    ScenaryElement* wall = GEInstance->createWall("media/unityPared01_50m");
-                    wall->setRotation(dwe::vec3f(rx,ry,rz));
-                    wall->setPosition(dwe::vec3f(tx,ty,tz));
-                }else if(id=="Wall_01_100m"){
-                    ScenaryElement* wall = GEInstance->createWall("media/unityPared01_100m");
-                    wall->setRotation(dwe::vec3f(rx,ry,rz));
-                    wall->setPosition(dwe::vec3f(tx,ty,tz));
-                }else if(id=="Wall_01_200m"){
-                    ScenaryElement* wall = GEInstance->createWall("media/unityPared01_200m");
-                    wall->setRotation(dwe::vec3f(rx,ry,rz));
-                    wall->setPosition(dwe::vec3f(tx,ty,tz));
-                }else if(id=="Wall_01_300m"){
-                    ScenaryElement* wall = GEInstance->createWall("media/unityPared01_300m");
-                    wall->setRotation(dwe::vec3f(rx,ry,rz));
-                    wall->setPosition(dwe::vec3f(tx,ty,tz));
+                //WALLS
+                TTag2Wall *next = mappingWall;
+                while(next->tag != "0"){
+                    if(id==next->tag){
+                        ScenaryElement* wall = GEInstance->createWall("media/"+next->model);
+                        wall->setRotation(dwe::vec3f(rx,ry,rz));
+                        wall->setPosition(dwe::vec3f(tx,ty,tz));
+                    };
+                    ++next;
+                }
+                //FLOORS
+                TTag2Floor *nextF = mappingFloor;
+                while(nextF->tag != "0"){
+                        if(id==nextF->tag){
+                            suelo = GEInstance->createNode("media/"+nextF->model);
+                            suelo->setRotation(dwe::vec3f(rx,ry,rz));
+                            suelo->setPosition(dwe::vec3f(tx,ty,tz));
+                        }
+                    ++nextF;
                 }
 
-                // ScenaryElement* wall20 = GEInstance->createWall(e["mesh"].GetString());
-               // wall20->setPosition(dwe::vec3f(200,   20, 80));
+            }
+
+            //DOORS
+            const Value& de = levels[i]["initial-entity"]; //Referencia a todos los "static-elements";
+            for(int j=0; j < de.Size(); j++){
+
+                const Value& e = de[j]; //Recorrer cada "element"
+                std::string id = e["element-id"].GetString();
+                int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = e["position"]["z"].GetDouble();
+                int rx = e["rotation"]["x"].GetDouble();    int ry = e["rotation"]["y"].GetDouble();    int rz = e["rotation"]["z"].GetDouble();
+                //cout << e["element-id"].GetString() << endl;
+                //cout << "pos(" << tx << "," << ty << "," << tz << ") ; rot(" <<  rx << ":" <<  ry << ":" <<  rz << ")"<< endl;
+                if(id=="Door"){
+                    GEInstance->createDoor(0, true, tx, ty, tz);
+                }
             }
 
         }
     }
 }
 void LoadMap::Destroy(){
-    delete suelo;
+    delete suelo; suelo=0;
     delete wall;
-    /*delete suelo;
-    delete wall01;
-    delete wall02;
-    delete wall03;
-    delete wall04;
-    delete wall05;
-    delete wall06;
-    delete wall07;
-    delete wall08;
-    delete wall09;
-    delete wall10;
-    delete wall11;
-    delete wall12;*/
 }
 
 LoadMap::~LoadMap()
 {
-    delete suelo;
-    delete wall;
+    if(suelo)
+        Destroy();
 }
 
 LoadMap* LoadMap::getInstance()
 {
   static LoadMap instance;
-
   return &instance;
 }
 

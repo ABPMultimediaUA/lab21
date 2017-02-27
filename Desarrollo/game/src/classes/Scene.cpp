@@ -134,16 +134,16 @@ void Scene::Destroy(){
         delete entities[i];
     }
     delete[] entities;
-    for(int i=0; i<1; i++){
+    /*for(int i=0; i<1; i++){
         delete sector[i];
     }
-    delete[] sector;
+    delete[] sector;*/
     for(int i=0; i<3; i++){
         delete triggers[i];
     }
     delete[] triggers;
     delete llave;
-    delete mainPlayer;
+    delete mainPlayer; mainPlayer=0;
     delete enemyDog;
     delete gun;
     delete shotgun;
@@ -169,41 +169,8 @@ void Scene::Destroy(){
 Scene::~Scene()
 {
 
-    //dtor
-    for(int i=0; i<NUM_ENTITIES; i++){
-        delete entities[i];
-    }
-    delete[] entities;
-    for(int i=0; i<1; i++){
-        delete sector[i];
-    }
-    delete[] sector;
-    for(int i=0; i<3; i++){
-        delete triggers[i];
-    }
-    delete[] triggers;
-    delete llave;
-    delete mainPlayer;
-    delete enemyDog;
-    delete gun;
-    delete shotgun;
-    delete rifle;
-    for(int i=0; i<m_enemies.size(); i++){
-        enemyHumanoid=(Humanoid*)m_enemies.at(i);
-        m_enemies.erase(m_enemies.begin()+i);
-        NetInstance->removeNetEnemy(enemyHumanoid);
-        delete enemyHumanoid;
-    }
-    for(int i=0; i<m_projectiles.size(); i++){
-        m_projectiles.erase(m_projectiles.begin()+i);
-    }
-    for(int i=0; i<m_consumables.size(); i++){
-        m_consumables.erase(m_consumables.begin()+i);
-    }
-    delete joint_try;
-    delete bjoint;
-    //delete camera1;
-    cout<<"He conseguido borrar tooodo"<<endl;
+if(mainPlayer)
+    Destroy();
 
 }
 
@@ -232,7 +199,12 @@ void Scene::Update()
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
 
     for(int e=0; e<m_enemies.size(); e++) //recorre
+<<<<<<< HEAD
            // m_enemies[e]->update();
+=======
+        if(m_enemies[e])
+            m_enemies[e]->update();
+>>>>>>> master
 
     // comprobamos si dispara
 
