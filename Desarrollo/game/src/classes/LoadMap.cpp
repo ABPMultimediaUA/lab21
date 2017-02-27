@@ -147,15 +147,16 @@ void LoadMap::Update(){
 }
 
 void LoadMap::Destroy(){
-     for(int i=0; i<NUM_ENTITIES; i++){
+     for(int i=0; i<NUM_ENTITIES2; i++){
         delete entities[i];
     }
+
     delete[] entities;
      /*for(int i=0; i<1; i++){
         delete sector[i];
     }
     delete[] sector;*/
-    for(int i=0; i<3; i++){
+    for(int i=0; i<NUM_ENTITIES2; i++){
         delete doorTriggers[i];
     }
     delete[] doorTriggers;
