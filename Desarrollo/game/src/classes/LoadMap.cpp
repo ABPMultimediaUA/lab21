@@ -65,6 +65,8 @@ void LoadMap::Init(){
     //RAPIDJSON
     Document document; //Creacion de documento para rapidJSON
 
+    int contDoorIn = 0; //Se necesita para que el array no se sobreescriba
+
     //RECORRIDO
     if (document.Parse(json).HasParseError() == false) //coger el json y ver si es correcto
     {
@@ -116,8 +118,19 @@ void LoadMap::Init(){
                 //cout << e["element-id"].GetString() << endl;
                 //cout << "pos(" << tx << "," << ty << "," << tz << ") ; rot(" <<  rx << ":" <<  ry << ":" <<  rz << ")"<< endl;
                 if(id=="Door"){
-                    entities[j]=GEInstance->createDoor(0, true, tx, ty, tz);
-                    doorTriggers[j]=GEInstance->createTriggerDoor(tx, ty, tz);
+                    cout << "contDoorIn = " << contDoorIn << endl;
+
+                        if(ry==0){
+                            entities[contDoorIn]=GEInstance->createDoor(0, true, tx, ty, tz);
+                        }else if(ry==90){
+                            entities[contDoorIn]=GEInstance->createDoor(1, true, tx, ty, tz);
+                        }else if(ry==180){
+                            entities[contDoorIn]=GEInstance->createDoor(2, true, tx, ty, tz);
+                        }else if(ry==270 || ry==-90){
+                            entities[contDoorIn]=GEInstance->createDoor(3, true, tx, ty, tz);
+                        }
+                    doorTriggers[contDoorIn]=GEInstance->createTriggerDoor(tx, ty, tz);
+                    ++contDoorIn;
                 }
             }
 

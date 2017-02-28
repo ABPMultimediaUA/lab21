@@ -6,12 +6,14 @@
 #include "TriggerDoor.h"
 #include "Door.h"
 
+#include <vector>
+
 
 
 /////
 #include "Entity.h"
 #define NUM_ENTITIES 100
-#define NUM_ENTITIES2 2
+#define NUM_ENTITIES2 52
 
 class LoadMap {
     public:
