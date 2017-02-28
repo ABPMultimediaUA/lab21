@@ -65,6 +65,8 @@ void LoadMap::Init(){
     //RAPIDJSON
     Document document; //Creacion de documento para rapidJSON
 
+    int contDoorIn = 0; //Se necesita para que el array no se sobreescriba
+
     //RECORRIDO
     if (document.Parse(json).HasParseError() == false) //coger el json y ver si es correcto
     {
@@ -116,14 +118,62 @@ void LoadMap::Init(){
                 //cout << e["element-id"].GetString() << endl;
                 //cout << "pos(" << tx << "," << ty << "," << tz << ") ; rot(" <<  rx << ":" <<  ry << ":" <<  rz << ")"<< endl;
                 if(id=="Door"){
-                    GEInstance->createDoor(0, true, tx, ty, tz);
+                    cout << "contDoorIn = " << contDoorIn << endl;
+
+                        if(ry==0){
+                            entities[contDoorIn]=GEInstance->createDoor(0, true, tx, ty, tz);
+                        }else if(ry==90){
+                            entities[contDoorIn]=GEInstance->createDoor(1, true, tx, ty, tz);
+                        }else if(ry==180){
+                            entities[contDoorIn]=GEInstance->createDoor(2, true, tx, ty, tz);
+                        }else if(ry==270 || ry==-90){
+                            entities[contDoorIn]=GEInstance->createDoor(3, true, tx, ty, tz);
+                        }
+                    doorTriggers[contDoorIn]=GEInstance->createTriggerDoor(tx, ty, tz);
+                    ++contDoorIn;
                 }
             }
 
         }
     }
 }
+
+/*
+    // Creacion de Mundo
+    sector[0]=entities[1];
+
+
+
+// Generadores
+    entities[2]=GEInstance->createGenerator(0, false, -50, 0, -50); // false
+    ((Generator*)entities[2])->setSector(sector, 1);
+
+*/
+
+void LoadMap::Update(){
+    for(int cont=0; cont<NUM_ENTITIES2; cont++)
+    {
+        entities[cont]->update();
+        doorTriggers[cont]->update(entities[cont]);
+    }
+
+}
+
 void LoadMap::Destroy(){
+     for(int i=0; i<NUM_ENTITIES2; i++){
+        delete entities[i];
+    }
+
+    delete[] entities;
+     /*for(int i=0; i<1; i++){
+        delete sector[i];
+    }
+    delete[] sector;*/
+    for(int i=0; i<NUM_ENTITIES2; i++){
+        delete doorTriggers[i];
+    }
+    delete[] doorTriggers;
+
     delete suelo; suelo=0;
     delete wall;
 }

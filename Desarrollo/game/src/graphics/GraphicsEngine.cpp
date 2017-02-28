@@ -480,8 +480,7 @@ CRifle* dwe::GraphicsEngine::createCRifle(float px, float py, float pz)
 
     return r;
 }
-
-
+/*
 Trigger* dwe::GraphicsEngine::createTrigger(int type, float px, float py, float pz)
 {
     Trigger *t;
@@ -498,6 +497,26 @@ Trigger* dwe::GraphicsEngine::createTrigger(int type, float px, float py, float 
         t = new TriggerGenerator();
     }
 
+    t->setNode(new Node(irrnode));
+    t->setPosition(dwe::vec3f(px, py, pz));
+    return t;
+}
+*/
+TriggerDoor* dwe::GraphicsEngine::createTriggerDoor(float px, float py, float pz)
+{
+    TriggerDoor *t;
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/triggerDoor");
+    t = new TriggerDoor();
+    t->setNode(new Node(irrnode));
+    t->setPosition(dwe::vec3f(px, py, pz));
+    return t;
+}
+
+TriggerGenerator* dwe::GraphicsEngine::createTriggerGenerator(float px, float py, float pz)
+{
+    TriggerGenerator *t;
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/triggerGenerator");
+    t = new TriggerGenerator();
     t->setNode(new Node(irrnode));
     t->setPosition(dwe::vec3f(px, py, pz));
     return t;

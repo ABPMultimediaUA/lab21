@@ -11,9 +11,7 @@ int main()
     Game::getInstance()->Run();
     //NetInstance->close();
     //delete GSIngame::getInstance();
-    cout<<"dustII"<<endl;
     //delete GSMainMenu::getInstance();
-    cout<<"mirage"<<endl;
 
 	return 0;
 
