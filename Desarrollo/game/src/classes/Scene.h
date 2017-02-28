@@ -61,7 +61,6 @@ class Scene
         void updateConsumables(Player* mainPlayer);
         void updatePlayerWeapons(Player* mainPlayer, Firearm** weapons);
 
-        Entity* getEntities();
 
     protected:
 

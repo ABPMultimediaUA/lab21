@@ -407,7 +407,7 @@ Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
 AmmoGun* dwe::GraphicsEngine::createAmmoGun(float px, float py, float pz)
 {
     //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/AmmoGun/speed"); // centrado
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/AmmoGun"); // no centrado
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/gun"); // no centrado
 
     AmmoGun* a = new AmmoGun();
     a->setNode(new Node(irrnode));

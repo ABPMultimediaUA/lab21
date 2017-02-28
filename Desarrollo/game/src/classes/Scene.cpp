@@ -18,7 +18,8 @@ Scene* Scene::Instance()
 }
 
 Scene::Scene()
-{cout<<"dfasudka"<<endl;
+{
+    cout<<"IN Scene constructor"<<endl;
     //ctor
 
 }
@@ -54,6 +55,7 @@ void Scene::Init()
     // Gun
     gun = createGun(0,0,0); // Creo el arma inicial del player
     createAmmoGun(80, 10, 100);
+    createAmmoGun(80, 10, 40);
 
     // Shotgun
     shotgun = createShotgun(0,0,0);
@@ -314,9 +316,7 @@ void Scene::createEnemyHumanoid(dwe::vec3f origin, float angle)
 void Scene::createSpeedBoost(float px, float py, float pz)
 {
     m_consumables.push_back(GEInstance->createSpeedBoost(px, py, pz));
-
     //GEInstance->createSpeedBoost(px, py, pz);
-
 }
 
 ////////////
