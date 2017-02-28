@@ -12,7 +12,7 @@ class TriggerGenerator: public Trigger
         triggered(Entity *e);
 
         virtual void render();
-        virtual void update();
+        void update(Entity *e);
 
     protected:
 

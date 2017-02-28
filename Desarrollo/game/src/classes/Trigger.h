@@ -16,7 +16,7 @@ class Trigger: public Drawable
         virtual void triggered(Entity* e);
 
         virtual void render();
-        virtual void update();
+        void update();
 
 
     protected:

@@ -44,15 +44,8 @@ void Scene::Init()
     GEInstance->addMessageLine(L"Partida iniciada");
     /**********************************/
 
-    // Creacion de Mundo
-    entities[0]=GEInstance->createDoor(0, true, 43.5, 0, 135.9);
-    entities[1]=GEInstance->createDoor(3, false, 170, 0, 0); // false
-    sector[0]=entities[1];
 
 
-    // Generadores
-    entities[2]=GEInstance->createGenerator(0, false, -50, 0, -50); // false
-    ((Generator*)entities[2])->setSector(sector, 1);
 
     // Llaves
     llave=GEInstance->createMagnetKey(0, 50, 0, 350);
@@ -118,11 +111,6 @@ void Scene::Init()
     camera1 = GEInstance->getSMGR()->addCameraSceneNode(0,  vector3df(0,0,0), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
     GEInstance->getSMGR()->setActiveCamera(camera1); //Activar cámara
 
-    // Triggers -> 0 Door, 1 Generator
-    triggers[0]=GEInstance->createTrigger(0, 43.5, 0, 135.9);
-    triggers[1]=GEInstance->createTrigger(0, 170, 0, 0);
-    triggers[2]=GEInstance->createTrigger(1, -50, 0, -50);
-
     //rmm Cheat: la primera vez que creo el projectile va muy lento, no se pq
     createProjectile(dwe::vec3f(1.0, 1.0, 1.0), 0.5);
     deleteProjectile(0);
@@ -130,18 +118,6 @@ void Scene::Init()
 }
 
 void Scene::Destroy(){
-    for(int i=0; i<NUM_ENTITIES; i++){
-        delete entities[i];
-    }
-    delete[] entities;
-    /*for(int i=0; i<1; i++){
-        delete sector[i];
-    }
-    delete[] sector;*/
-    for(int i=0; i<3; i++){
-        delete triggers[i];
-    }
-    delete[] triggers;
     delete llave;
     delete mainPlayer; mainPlayer=0;
     delete enemyDog;
@@ -192,9 +168,6 @@ void Scene::Update()
             }
     }
 
-    for(int cont=0; cont<NUM_ENTITIES; cont++)
-        entities[cont]->update();
-
     GEInstance->updateCamera(mainPlayer->getPosition());
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
 
@@ -235,22 +208,7 @@ void Scene::Update()
         }
     }
 
-    // TriggerSystem
-    for(int i=0; i<3; i++){
-        if(mainPlayer->getNode()->intersects(triggers[i]->getNode()->getNode()))
-        {
-            if(GEInstance->receiver.isKeyDown(KEY_SPACE))
-            {
-                if(i==2)
-                {
-                    if(mainPlayer->getMKey(((Generator*)entities[i])->getNum()))
-                        triggers[i]->triggered(entities[i]);
-                }
-                else if(i==0 || i==1)
-                    triggers[i]->triggered(entities[i]);
-            }
-        }
-    }
+    /*
     //rmm:cheat, cojo todo
     if (GEInstance->receiver.isKeyDown(KEY_KEY_C))
     {
@@ -273,6 +231,7 @@ void Scene::Update()
                 triggers[i]->triggered(entities[i]);
         }
     }
+    */
 }
 
 
