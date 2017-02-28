@@ -4375,7 +4375,7 @@
 	"GraphicsEngine.h"
 	"Player.h"
 
-1487862839 D
+1488060719 D
 	"./Compiler/pushpack1.h"
 	"./Compiler/poppack1.h"
 	"vector2.inl"
@@ -4384,6 +4384,12 @@
 	"quaternion.inl"
 	"matrix3x3.inl"
 	"matrix4x4.inl"
+	"tag/TAGEngine.h"
+	"GraphicNode.h"
+	"EMesh.h"
+	"ResourceManager.h"
+	"ResourceMesh.h"
+	"ETransform.h"
 
 1487792943 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tagengine\ecamera.cpp
 
@@ -4919,7 +4925,7 @@
 	"../vector_relational.hpp"
 	"../common.hpp"
 
-1487585624 ter
+1488205464 ter
 	<limits>
 	"round.inl"
 	<cmath>
@@ -4955,6 +4961,30 @@
 	"../detail/intrinsic_matrix.hpp"
 	"../gtx/simd_vec4.hpp"
 	"simd_mat4.inl"
+	"GraphicsEngine.h"
+	<iostream>
+	<vector>
+	"AppReceiver.h"
+	"Scene.h"
+	"Shader.h"
+	"Program.h"
+	"Player.h"
+	<GL/glew.h>
+	<stdexcept>
+	<SFML/Graphics.hpp>
+	<SFML/OpenGL.hpp>
+	"Scene.h"
+	"GraphicsEngine.h"
+	"Player.h"
+	"tag/TAGEngine.h"
+	<stdexcept>
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	"Shader.h"
+	"tag/Entity.h"
+	"tag/ResourceManager.h"
+	"tag/ResourceMesh.h"
 
 1487862840 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\include\glm\detail\type_mat4x2.inl
 
@@ -6029,9 +6059,6 @@
 1486145457 c:\users\rafael\desktop\lab21\desarrollo\motor\src\classes\drawable.h
 	"GraphicsEngine.h"
 
-<<<<<<< HEAD
-1487839378 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.h
-=======
 1488060719 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.h
 	<GL/glew.h>
 	<assimp/Importer.hpp>
@@ -6050,7 +6077,6 @@
 	"tag/ResourceMesh.h"
 	"tag/TAGEngine.h"
 	"GraphicsEngineTemplates.cpp"
->>>>>>> master
 
 1487862839 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\include\assimp\defs.h
 
@@ -7878,29 +7904,15 @@
 
 1486144316 source:c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\appreceiver.cpp
 
-<<<<<<< HEAD
-1487839378 source:c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
+1488060719 source:c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
 	<GL/glew.h>
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
-=======
-1488060719 source:c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
 	<GL/glew.h>
 	<glm/glm.hpp>
->>>>>>> master
-	"GraphicsEngine.h"
-	<iostream>
-	<vector>
-	"AppReceiver.h"
-	"Scene.h"
-	"Shader.h"
-	"Program.h"
-	"Player.h"
-<<<<<<< HEAD
-=======
-	"tag/TAGEngine.h"
->>>>>>> master
+
+1487839378 ype_ptr.hpp>
 
 1486145457 source:c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
 	"GraphicsEngine.h"
@@ -7965,32 +7977,15 @@
 	<iostream>
 	<stdexcept>
 
-<<<<<<< HEAD
-1487839378 source:c:\users\rafael\desktop\lab21\desarrollo\motor\src\main.cpp
-=======
 1488060719 source:c:\users\rafael\desktop\lab21\desarrollo\motor\src\main.cpp
->>>>>>> master
-	<GL/glew.h>
-	<stdexcept>
-	<SFML/Graphics.hpp>
-	<SFML/OpenGL.hpp>
-	"Scene.h"
-	"GraphicsEngine.h"
-	"Player.h"
-<<<<<<< HEAD
-	"GraphicNode.h"
-	"EMesh.h"
-	"ResourceManager.h"
-	"ResourceMesh.h"
-	"ETransform.h"
-=======
+
+1488060719 m.h"
 	"tag/GraphicNode.h"
 	"tag/EMesh.h"
 	"tag/ResourceManager.h"
 	"tag/ResourceMesh.h"
 	"tag/ETransform.h"
 	"tag/TAGEngine.h"
->>>>>>> master
 
 1487862840 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\include\glm\ext.hpp
 	"./gtc/bitfield.hpp"
@@ -9176,7 +9171,6 @@
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/string_cast.hpp>
 
-<<<<<<< HEAD
 1487958188 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\classes\drawable.cpp
 	"Drawable.h"
 
@@ -10823,7 +10817,7 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1488205464 c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.h
+1488206606 c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.h
 	<GL/glew.h>
 	"Resource.h"
 	<SFML/OpenGL.hpp>
@@ -10835,7 +10829,7 @@
 1488058316 c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\resource.h
 	<string>
 
-1488205464 c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
+1488206606 c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
 	<GL/glew.h>
 	<SFML/Graphics.hpp>
 	<glm/glm.hpp>
@@ -10844,7 +10838,7 @@
 	"ResourceManager.h"
 	"ResourceMesh.h"
 
-1488205464 c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\types.h
+1488206606 c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\types.h
 	<glm/gtc/type_precision.hpp>
 
 1487958188 c:\users\edu\desktop\lab21\desarrollo\motor\src\glsl\program.h
@@ -10921,14 +10915,14 @@
 1488058316 c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\elight.h
 	"Entity.h"
 
-1488205464 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\emesh.cpp
+1488206606 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\emesh.cpp
 	"tag/EMesh.h"
 	<iostream>
 	"tag/ResourceManager.h"
 	"tag/ResourceMesh.h"
 	"tag/TAGEngine.h"
 
-1488205464 c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\emesh.h
+1488206606 c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\emesh.h
 	"Entity.h"
 	"ResourceManager.h"
 	"ResourceMesh.h"
@@ -10937,7 +10931,7 @@
 1488058316 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\entity.cpp
 	"tag/Entity.h"
 
-1488205464 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
+1488206606 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
 	"tag/ETransform.h"
 	<GL/glew.h>
 	<iostream>
@@ -10960,12 +10954,12 @@
 1488058316 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\resource.cpp
 	"tag/Resource.h"
 
-1488205464 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.cpp
+1488206606 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.cpp
 	"tag/ResourceManager.h"
 	<iostream>
 	"tag/ResourceMesh.h"
 
-1488205464 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.cpp
+1488206606 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.cpp
 	"tag/ResourceMesh.h"
 	<stdio.h>
 	<iostream>
@@ -10975,8 +10969,17 @@
 	"tag/Types.h"
 	<glm/gtc/matrix_transform.hpp>
 
-1488205464 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
-=======
+1488206606 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
+	"tag/TAGEngine.h"
+	<stdexcept>
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	"Shader.h"
+	"tag/Entity.h"
+	"tag/ResourceManager.h"
+	"tag/ResourceMesh.h"
+
 1488122881 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.h
 	<GL/glew.h>
 	"Resource.h"
@@ -11073,19 +11076,8 @@
 	<glm/gtc/matrix_transform.hpp>
 
 1488060719 source:c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
->>>>>>> master
-	"tag/TAGEngine.h"
-	<stdexcept>
-	<glm/glm.hpp>
-	<glm/gtc/matrix_transform.hpp>
-	<glm/gtc/type_ptr.hpp>
-	"Shader.h"
-	"tag/Entity.h"
-	"tag/ResourceManager.h"
-	"tag/ResourceMesh.h"
 
-<<<<<<< HEAD
-1488205464 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\main.cpp
+1488206606 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\main.cpp
 	<GL/glew.h>
 	<stdexcept>
 	<SFML/Graphics.hpp>
@@ -11100,5 +11092,5 @@
 	"tag/ETransform.h"
 	"tag/TAGEngine.h"
 
-=======
->>>>>>> master
+1488205464 gine.h"
+
