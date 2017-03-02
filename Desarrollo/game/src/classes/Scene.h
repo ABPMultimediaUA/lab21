@@ -60,6 +60,8 @@ class Scene
         void createAmmoGun(float px, float py, float pz);
         void updateConsumables(Player* mainPlayer);
         void updatePlayerWeapons(Player* mainPlayer, Firearm** weapons);
+        void updateWeapons(Player* mainPlayer);
+
 
 
     protected:

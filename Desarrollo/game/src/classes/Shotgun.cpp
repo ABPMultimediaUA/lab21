@@ -1,4 +1,5 @@
 #include "Shotgun.h"
+#include "Player.h"
 
 Shotgun::Shotgun()
 {
@@ -20,4 +21,10 @@ void Shotgun::shoot()
 void Shotgun::reload()
 {
     // TODO
+}
+
+//////////
+void Shotgun::onTake(Player* mainPlayer)
+{
+    cout << "HE COGIDO UN SHOTGUN" << endl;
 }

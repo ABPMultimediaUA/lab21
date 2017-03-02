@@ -111,21 +111,17 @@ void Player::swapCurrentWeapon()
 {
     if (m_currentWeaponType == eGun)
     {
-
         if (m_hasShotgun)
         {
             m_currentWeapon = m_weapons[1];
-
             m_currentWeaponType = eShotgun;
         }
-
 
         else if (m_hasRifle)
         {
             m_currentWeapon = m_weapons[2];
             m_currentWeaponType = eRifle;
         }
-
     }
     else if (m_currentWeaponType == eShotgun)
     {

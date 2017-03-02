@@ -117,15 +117,9 @@ void LoadMap::Init(){
                 const Value& e = ce[j]; //Recorrer cada "element"
                 std::string id = e["element-id"].GetString();
                 int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = e["position"]["z"].GetDouble();
-                //int rx = e["rotation"]["x"].GetDouble();    int ry = e["rotation"]["y"].GetDouble();    int rz = e["rotation"]["z"].GetDouble();
-                //cout << e["element-id"].GetString() << endl;
-                //cout << "pos(" << tx << "," << ty << "," << tz << ") ; rot(" <<  rx << ":" <<  ry << ":" <<  rz << ")"<< endl;
                 if(id=="Bullets"){
-                   //ERRORES GORDOS DE CONCEPTO --- AARON
-                   /*
-                    Scene* s;
+                    Scene* s = Scene::Instance();
                     s->createAmmoGun(tx, ty, tz);
-                    */
                     ++contAmmoIn;
                 }
             }

@@ -1,4 +1,5 @@
 #include "Rifle.h"
+#include "Player.h"
 
 Rifle::Rifle()
 {
@@ -19,5 +20,12 @@ void Rifle::shoot()
 ////////////
 void Rifle::reload()
 {
+    // TODO
+}
+
+//////////
+void Rifle::onTake(Player* mainPlayer)
+{
+    cout << "HE COGIDO UN RIFLE" << endl;
     // TODO
 }
