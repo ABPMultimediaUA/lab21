@@ -47,13 +47,13 @@ void Door::setPositionClosed(dwe::vec3f p)
 void Door::setPositionOpened(dwe::vec3f p)
 {
     if(facing==0)
-        op=p.x+50.5;
+        op=p.x+100.5;
     else if(facing==1)
-        op=p.z+50.5;
+        op=p.z+100.5;
     else if(facing==2)
-        op=p.x-50.5;
+        op=p.x-100.5;
     else if(facing==3)
-        op=p.z-50.5;
+        op=p.z-100.5;
 }
 void Door::openDoor()
 {

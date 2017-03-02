@@ -58,8 +58,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":-1000, "y":0, "z":-1100 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":2,
@@ -120,8 +122,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":0, "y":0, "z":-1200 },
+				"rotation": { "x":0, "y":180, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":4,
@@ -208,6 +212,15 @@
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Door",
 				"position": { "x":-550, "y":0, "z":90.5 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":-800, "y":0, "z":-359.5 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":800, "y":0, "z":-359.5 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":0, "y":0, "z":-509.5 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "PlayerStart",
 				"position": { "x":120, "y":10, "z":50.5 },
@@ -317,8 +330,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":-1050, "y":0, "z":-399.9999 },
+				"rotation": { "x":0, "y":180, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":10,
@@ -370,8 +385,13 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":-1550, "y":0, "z":-500 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":-1250, "y":0, "z":-500 },
+				"rotation": { "x":0, "y":180, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":12,
@@ -429,8 +449,13 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":-1200, "y":0, "z":-50 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":-1200, "y":0, "z":250 },
+				"rotation": { "x":0, "y":90, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":14,
@@ -457,8 +482,13 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":-1300, "y":0, "z":250.0001 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":-1300, "y":0, "z":-50.00008 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":15,
@@ -548,8 +578,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":-1200, "y":0, "z":450 },
+				"rotation": { "x":0, "y":90, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":19,
@@ -576,8 +608,13 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":-1250, "y":0, "z":700 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":-1550, "y":0, "z":700 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":20,
@@ -676,8 +713,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":-599.9999, "y":0, "z":250 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":24,
@@ -701,8 +740,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":-500.0001, "y":0, "z":250 },
+				"rotation": { "x":0, "y":90, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":25,
@@ -726,8 +767,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":-550, "y":0, "z":400 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":26,
@@ -823,8 +866,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":500.2001, "y":0, "z":449.9999 },
+				"rotation": { "x":0, "y":270.0001, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":30,
@@ -851,8 +896,13 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":400.2001, "y":0, "z":949.9999 },
+				"rotation": { "x":0, "y":270.0001, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":400.1999, "y":0, "z":649.9999 },
+				"rotation": { "x":0, "y":270.0001, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":31,
@@ -947,8 +997,13 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":1600.2, "y":0, "z":650.0001 },
+				"rotation": { "x":0, "y":90.00005, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":1600.2, "y":0, "z":950.0001 },
+				"rotation": { "x":0, "y":90.00005, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":34,
@@ -976,7 +1031,7 @@
 		"level-id":35,
 		"level-name":"Pasillo_MUYMUYcorto_01 (4)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_50x50",
 				"position": { "x":1150.2, "y":0, "z":650 },
 				"rotation": { "x":0, "y":270.0001, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -995,7 +1050,7 @@
 		"level-id":36,
 		"level-name":"Pasillo_MUYMUYcorto_01 (5)",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_50x50",
 				"position": { "x":850.2, "y":0, "z":650 },
 				"rotation": { "x":0, "y":90.00005, "z":0 }},
 			{ "element-id": "Wall_01_50m",
@@ -1044,8 +1099,16 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":1150.2, "y":0, "z":699.9998 },
+				"rotation": { "x":0, "y":4.951887E-05, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":850.1998, "y":0, "z":700.0001 },
+				"rotation": { "x":0, "y":4.951887E-05, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":1000.2, "y":0, "z":900.0001 },
+				"rotation": { "x":0, "y":4.951887E-05, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":38,
@@ -1072,8 +1135,13 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":850.2, "y":0, "z":600.0002 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":1150.2, "y":0, "z":599.9999 },
+				"rotation": { "x":0, "y":180, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":39,
@@ -1137,14 +1205,28 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":1000, "y":0, "z":999.9999 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":1250, "y":0, "z":1250 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":749.9999, "y":0, "z":1250 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":1100, "y":0, "z":1400 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":899.9999, "y":0, "z":1400 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":41,
 		"level-name":"Pasillo_MUY--corto_01",
 		"static-elements": [
-			{ "element-id": "Wall_01_100m",
+			{ "element-id": "Floor_100x50",
 				"position": { "x":1300, "y":0, "z":1250 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
@@ -1350,8 +1432,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":900, "y":0, "z":-850 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":50,
@@ -1375,8 +1459,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":900.0001, "y":0, "z":-1050 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":51,
@@ -1400,8 +1486,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":900.0001, "y":0, "z":-1250 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":52,
@@ -1425,8 +1513,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":999.9999, "y":0, "z":-1250 },
+				"rotation": { "x":0, "y":90, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":53,
@@ -1450,8 +1540,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":999.9999, "y":0, "z":-1050 },
+				"rotation": { "x":0, "y":90, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":54,
@@ -1475,8 +1567,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":999.9999, "y":0, "z":-850 },
+				"rotation": { "x":0, "y":90, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":55,
@@ -1619,8 +1713,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":1850, "y":0, "z":-600.0001 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":61,
@@ -1644,8 +1740,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":1850, "y":0, "z":-699.9999 },
+				"rotation": { "x":0, "y":180, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":62,
@@ -1669,8 +1767,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":2050, "y":0, "z":-600.0001 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":63,
@@ -1694,8 +1794,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":2050, "y":0, "z":-699.9999 },
+				"rotation": { "x":0, "y":180, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":64,
@@ -1719,8 +1821,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":2250, "y":0, "z":-600.0001 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":65,
@@ -1744,8 +1848,10 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":2250, "y":0, "z":-699.9999 },
+				"rotation": { "x":0, "y":180, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":66,
@@ -1781,14 +1887,31 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":1200, "y":0, "z":-350 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":1250, "y":0, "z":-600 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":1650, "y":0, "z":-600 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":1700, "y":0, "z":-150 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":1550, "y":0, "z":0 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":1450, "y":0, "z":0 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":67,
 		"level-name":"Cocina",
 		"static-elements": [
-			{ "element-id": "Floor",
+			{ "element-id": "Floor_200x150",
 				"position": { "x":1900, "y":0, "z":-150 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_200m",
