@@ -102,7 +102,7 @@ void dwe::GraphicsEngine::draw()
 
 //////////////////////////
 void dwe::GraphicsEngine::render()
-{
+{/*
     glm::mat4   modelMatrix;
     glm::mat4   modelViewMatrix;
 
@@ -138,7 +138,7 @@ void dwe::GraphicsEngine::render()
         }
 
         iter++;
-    }
+    }*/
 }
 
 ////////////////////////////////////////////////////

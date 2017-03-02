@@ -70,7 +70,7 @@ namespace tag
             static int m_uLuz0Location;
 
 
-            ResourceManager getResourceManager(); //
+            ResourceManager getResourceManager(); //f
 
         private:
             sf::RenderWindow*   m_window;

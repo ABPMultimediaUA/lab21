@@ -12,3 +12,6 @@ tag::ELight::~ELight()
 
 void tag::ELight::beginDraw() {};
 void tag::ELight::endDraw() {};
+
+GLfloat tag::ELight::getIntensity() { return m_intensity; }
+void tag::ELight::setIntensity( GLfloat intensity ) { m_intensity = intensity; }

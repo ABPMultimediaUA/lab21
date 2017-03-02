@@ -2,6 +2,7 @@
 #define ELIGHT_H
 
 #include "Entity.h"
+#include "tag/TAGEngine.h"
 
 namespace tag
 {
@@ -13,6 +14,14 @@ namespace tag
 
             void beginDraw();
             void endDraw();
+
+            GLfloat getIntensity();
+            void setIntensity(GLfloat intensity);
+
+        private:
+
+            GLfloat m_intensity;
+
     };
 }
 
