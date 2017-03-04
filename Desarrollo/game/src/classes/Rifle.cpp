@@ -22,10 +22,3 @@ void Rifle::reload()
 {
     // TODO
 }
-
-//////////
-void Rifle::onTake(Player* mainPlayer)
-{
-    cout << "HE COGIDO UN RIFLE" << endl;
-    // TODO
-}

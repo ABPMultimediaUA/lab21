@@ -22,9 +22,3 @@ void Shotgun::reload()
 {
     // TODO
 }
-
-//////////
-void Shotgun::onTake(Player* mainPlayer)
-{
-    cout << "HE COGIDO UN SHOTGUN" << endl;
-}

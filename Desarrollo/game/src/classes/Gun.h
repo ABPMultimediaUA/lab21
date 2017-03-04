@@ -13,8 +13,6 @@ class Gun : public Firearm
 
         void shoot();
         void reload();
-        void onTake(Player* mainPlayer);
-
         //void update(Player* mainPlayer);
         //void render();
 

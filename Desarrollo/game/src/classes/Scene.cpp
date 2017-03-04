@@ -50,7 +50,7 @@ void Scene::Init()
 
     // GUN - SHOTGUN - RIFLE
     gun = createGun(0,0,0); // Creo el arma inicial del player
-    shotgun = createShotgun(10,10,-100);
+    shotgun = createShotgun(-100,10,20);
     rifle = createRifle(-100,10,10);
 
     // Creación de jugador
@@ -168,7 +168,6 @@ void Scene::Update()
 
     //UPDATE
     mainPlayer->update(shotgun, rifle); //Posición actualizada de Irrlicht Player
-    updateWeapons(mainPlayer);
     updateProjectiles();
     updateConsumables(mainPlayer);
     updatePlayerWeapons(mainPlayer, mainPlayer->getPlayerWeapons());
@@ -267,22 +266,16 @@ void Scene::updateConsumables(Player* mainPlayer)
     }
 }
 
-////////////
-void Scene::updateWeapons(Player* mainPlayer)
-{
-    gun->check(mainPlayer);
-    shotgun->check(mainPlayer);
-    rifle->check(mainPlayer);
-}
-
 void Scene::updatePlayerWeapons(Player* mainplayer, Firearm** weapons)
 {
-    if  (mainplayer->getCurrentWeaponType() == eGun)
+    cout << "- "<< mainplayer->getCurrentWeaponType() << ":" << eRifle << endl;
+    if  (mainplayer->getCurrentWeaponType() == eGun){
         weapons[0]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
-    else if (mainplayer->getCurrentWeaponType() == eShotgun)
+    }else if (mainplayer->getCurrentWeaponType() == eShotgun){
         weapons[1]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
-    else if (mainplayer->getCurrentWeaponType() == eRifle)
+    }else if (mainplayer->getCurrentWeaponType() == eRifle){
         weapons[2]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
+    }
 }
 
 ////////////

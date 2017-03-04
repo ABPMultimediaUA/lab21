@@ -12,11 +12,6 @@
 #include "Rifle.h"
 #include "Shotgun.h"
 
-
-
-
-
-
 class Player : public CharacterController, public EntityPhysics
 {
     public:
@@ -54,11 +49,10 @@ class Player : public CharacterController, public EntityPhysics
         void addWeapon(Consumable* weapon, FirearmKind type);
         bool getHasShotgun();
         bool getHasRifle();
-        void swapCurrentWeapon();
+        void swapCurrentWeapon(int w);
         FirearmKind getCurrentWeaponType();
         Firearm* getCurrentWeapon();
         Firearm** getPlayerWeapons();
-
 
         virtual const char* getNetObjectID() const;
         virtual void setPosition(dwe::vec3f p);

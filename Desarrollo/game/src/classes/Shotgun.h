@@ -13,8 +13,6 @@ class Shotgun : public Firearm
 
         void shoot();
         void reload();
-        void onTake(Player* mainPlayer);
-
         //void update();
         void render(){};
 

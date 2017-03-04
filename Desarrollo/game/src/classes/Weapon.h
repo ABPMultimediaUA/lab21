@@ -12,11 +12,9 @@ class Weapon : public Drawable
         virtual ~Weapon();
 
         virtual void shoot() = 0;
-        virtual void onTake(Player* mainPlayer) = 0;
 
         bool getIsTaken();
         void update(){};
-        virtual void check(Player* mainPlayer);
         void take();   // Marca como ya cogido y quita nodo como en update
         void setNetID(unsigned int netID);
 

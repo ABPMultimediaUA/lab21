@@ -1,5 +1,6 @@
 #include "CharacterController.h"
 #include "WorldInstance.h"
+#include "Player.h"
 
 CharacterController::CharacterController()
 {

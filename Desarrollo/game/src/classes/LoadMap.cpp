@@ -152,6 +152,20 @@ void LoadMap::Init(){
             }
 
         }
+
+
+        ////////// HACIENDO PRUEBAS CON OTRO TIPO DE BALAS
+        //SHOTGUN BULLETS
+        for(int i=0; i<1; i++){
+            Scene* s = Scene::Instance();
+            s->createCShotgun(0, 10, 20*i);
+        }
+        //RIFLE BULLETS
+        for(int i=0; i<1; i++){
+            Scene* s = Scene::Instance();
+            s->createCRifle(20, 10, 20*i);
+        }
+
     }
 }
 
