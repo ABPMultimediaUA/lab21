@@ -48,6 +48,26 @@ class SparseGraph
         int nextNodeIndex;
 
         int numActiveNodes;
+
+    public:
+
+        class EdgeIterator
+        {
+            private:
+
+                typename EdgeList::iterator         curEdge;
+                SparseGraph<node_type, edge_type>&  G;
+                const int                           NodeIndex;
+
+            public:
+
+                EdgeIterator(SparseGraph<node_type, edge_type>& graph, int node);
+                edge_type*  begin();
+                edge_type*  next();
+                bool end();
+        };
+
+    friend class EdgeIterator;
 };
 
 #include "SparseGraph.cpp"

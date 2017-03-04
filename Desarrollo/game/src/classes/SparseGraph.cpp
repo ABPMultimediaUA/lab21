@@ -244,4 +244,35 @@ bool SparseGraph<node_type, edge_type>::isEdgePresent(int from, int to)const
     return false;
 }
 
+
+/*****************************************************ITERATORS***************************************************/
+
+template <class node_type, class edge_type>
+SparseGraph<node_type, edge_type>::EdgeIterator::EdgeIterator(SparseGraph<node_type, edge_type>& graph,
+                                                              int node): G(graph), NodeIndex(node)
+{
+    curEdge = G.edges[NodeIndex].begin();
+}
+
+template <class node_type, class edge_type>
+edge_type* SparseGraph<node_type, edge_type>::EdgeIterator::begin()
+{
+    curEdge = G.edges[NodeIndex].begin();
+    return &(*curEdge);
+}
+
+template <class node_type, class edge_type>
+edge_type* SparseGraph<node_type, edge_type>::EdgeIterator::next()
+{
+    ++curEdge;
+    if (end()) return 0;
+        return &(*curEdge);
+}
+
+template <class node_type, class edge_type>
+bool SparseGraph<node_type, edge_type>::EdgeIterator::end()
+{
+    return (curEdge == G.m_Edges[NodeIndex].end());
+}
+
 #endif // SPARSEGRAPH_C
