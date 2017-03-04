@@ -8879,7 +8879,7 @@
 1487870400 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tagengine\resource.h
 	<string>
 
-1488196939 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
+1488616174 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"GraphicsEngine.h"
@@ -8946,7 +8946,7 @@
 	<iostream>
 	<stdexcept>
 
-1488108854 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\main.cpp
+1488478134 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\main.cpp
 	<GL/glew.h>
 	<stdexcept>
 	<SFML/Graphics.hpp>
@@ -9049,7 +9049,7 @@
 1488030991 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\resource.h
 	<string>
 
-1488465810 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
+1488616174 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
 	<GL/glew.h>
 	<SFML/Graphics.hpp>
 	<glm/glm.hpp>
@@ -9066,10 +9066,10 @@
 	<string>
 	"Resource.h"
 
-1488030991 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\ecamera.cpp
+1488616174 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\ecamera.cpp
 	"tag/ECamera.h"
 
-1488465194 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\ecamera.h
+1488616174 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\ecamera.h
 	"Entity.h"
 	"tag/TAGEngine.h"
 
@@ -9079,10 +9079,10 @@
 	<glm/glm.hpp>
 	<stack>
 
-1488211134 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\elight.cpp
+1488617775 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\elight.cpp
 	"tag/ELight.h"
 
-1488465219 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\elight.h
+1488617832 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\elight.h
 	"Entity.h"
 	"tag/TAGEngine.h"
 
@@ -9136,7 +9136,7 @@
 	"tag/Types.h"
 	<glm/gtc/matrix_transform.hpp>
 
-1488108854 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
+1488471145 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
 	"tag/TAGEngine.h"
 	<stdexcept>
 	<glm/glm.hpp>
@@ -9152,7 +9152,7 @@
 	<glm/glm.hpp>
 	"tag/Types.h"
 
-1488102835 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
+1488617198 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
 	"tag/ETransform.h"
 	<GL/glew.h>
 	<iostream>

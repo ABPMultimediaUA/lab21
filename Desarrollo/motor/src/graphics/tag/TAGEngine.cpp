@@ -40,7 +40,7 @@ void tag::TAGEngine::init()
     m_window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Lab21", sf::Style::Default, contextSettings);
 
     // Habilita el z_buffer
-    glEnable(GL_DEPTH_TEST);
+   // glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
     // Inicialización de GLEW

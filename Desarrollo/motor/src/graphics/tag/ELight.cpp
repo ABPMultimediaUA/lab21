@@ -13,5 +13,11 @@ tag::ELight::~ELight()
 void tag::ELight::beginDraw() {};
 void tag::ELight::endDraw() {};
 
-GLfloat tag::ELight::getIntensity() { return m_intensity; }
-void tag::ELight::setIntensity( GLfloat intensity ) { m_intensity = intensity; }
+glm::vec4 tag::ELight::getDiffuseIntensity() { return m_DiffuseIntensity; }
+void tag::ELight::setDiffuseIntensity( glm::vec4 intensity ) { m_DiffuseIntensity = intensity; }
+
+glm::vec4 tag::ELight::getSpecularIntensity() { return m_SpecularIntensity; }
+void tag::ELight::setSpecularIntensity( glm::vec4 intensity ) { m_SpecularIntensity = intensity; }
+
+glm::vec4 tag::ELight::getAmbientIntensity() { return m_AmbientIntensity; }
+void tag::ELight::setAmbientIntensity( glm::vec4 intensity ) { m_AmbientIntensity = intensity; }
