@@ -120,9 +120,9 @@ void tag::ETransform::endDraw()
 {
     std::cout << "End " << m_cadena << "\n";
 
-    tag::Entity::TStack.pop();
+    tag:Entity:MVmatrix = tag::Entity::TStack.top();
 
-    tag::Entity::MVmatrix = m_matrix;
+    tag::Entity::TStack.pop();
 
     std::cout << "End, modelmatrix : " << glm::to_string(tag::Entity::MVmatrix) << std::endl;
 }
