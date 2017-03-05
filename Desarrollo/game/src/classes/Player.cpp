@@ -233,28 +233,20 @@ void Player::setNumMedkits(int ammount)
 }
 
 /////////////
-void Player::addMedkits(int ammount)
-{
+void Player::addMedkits(int ammount){
     m_medkits += ammount;
     cout << "\nPlayer.cpp------------Obtengo " << ammount << " medkits---------\n";
-
 }
 
 /////////////
-void Player::giveMedkits(int ammount, PlayerMate* playermate)
-{
+void Player::giveMedkits(int ammount, PlayerMate* playermate){
     NetInstance->sendBroadcast(ID_SEND_MEDKIT, playermate->creatingSystemGUID.ToString());
     m_medkits -= ammount;
-
     cout << "\nPlayer.cpp------------le doy al otro jugador "<< ammount << " botiquines--------------\n";
 }
 
 /////////////
-void Player::receiveMedkits(int ammount)
-{
-    this->addMedkits(ammount);
-
-}
+void Player::receiveMedkits(int ammount)    {   this->addMedkits(ammount);  }
 
 /////////////
 void Player::consumeMedkit()
@@ -272,6 +264,6 @@ void Player::onBeginContact(EntityPhysics* otherObject)
 {
     if((otherObject && otherObject->getClassID()==CLASS_ENEMY_ID)){
         m_health-=5;
-        cout<<m_health<<endl;
+        cout<< "Perdiendo vida: " << m_health <<endl;
     }
 }
