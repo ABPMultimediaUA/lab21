@@ -1,6 +1,7 @@
 #include "LoadMap.h"
 #include "GraphicsEngine.h"
 #include "ScenaryElement.h"
+
 #include <fstream> //Lectura de ficheros
 #include <document.h> //ES UN .H de rapidJSON
 using namespace rapidjson;
@@ -66,6 +67,7 @@ void LoadMap::Init(){
     Document document; //Creacion de documento para rapidJSON
 
     int contDoorIn = 0; //Se necesita para que el array no se sobreescriba
+    int contAmmoIn = 0; //Se necesita para que el array no se sobreescriba
 
     //RECORRIDO
     if (document.Parse(json).HasParseError() == false) //coger el json y ver si es correcto
@@ -107,6 +109,23 @@ void LoadMap::Init(){
 
             }
 
+
+            //CONSUMABLES
+            const Value& ce = levels[i]["initial-consumable"]; //Referencia a todos los "static-elements";
+            for(int j=0; j < ce.Size(); j++){
+
+                const Value& e = ce[j]; //Recorrer cada "element"
+                std::string id = e["element-id"].GetString();
+                int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = e["position"]["z"].GetDouble();
+                if(id=="Bullets"){
+                    Scene* s = Scene::Instance();
+                    s->createAmmoGun(tx, ty, tz);
+                    ++contAmmoIn;
+                }
+            }
+
+
+
             //DOORS
             const Value& de = levels[i]["initial-entity"]; //Referencia a todos los "static-elements";
             for(int j=0; j < de.Size(); j++){
@@ -118,8 +137,6 @@ void LoadMap::Init(){
                 //cout << e["element-id"].GetString() << endl;
                 //cout << "pos(" << tx << "," << ty << "," << tz << ") ; rot(" <<  rx << ":" <<  ry << ":" <<  rz << ")"<< endl;
                 if(id=="Door"){
-                    cout << "contDoorIn = " << contDoorIn << endl;
-
                         if(ry==0){
                             entities[contDoorIn]=GEInstance->createDoor(0, true, tx, ty, tz);
                         }else if(ry==90){
@@ -157,6 +174,10 @@ void LoadMap::Update(){
         doorTriggers[cont]->update(entities[cont]);
     }
 
+    //Scene::updateConsumables(mainPlayer);
+
+
+
 }
 
 void LoadMap::Destroy(){
@@ -168,7 +189,7 @@ void LoadMap::Destroy(){
      /*for(int i=0; i<1; i++){
         delete sector[i];
     }
-    delete[] sector;*/
+    delete[] sector ;*/
     for(int i=0; i<NUM_ENTITIES2; i++){
         delete doorTriggers[i];
     }

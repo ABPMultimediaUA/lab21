@@ -4,6 +4,7 @@
 #include <defines.h>
 #include <Weapon.h>
 
+class Player;
 
 class Firearm : public Weapon
 {
@@ -11,8 +12,6 @@ class Firearm : public Weapon
         Firearm();
         virtual ~Firearm();
 
-        //virtual void shoot() = 0;
-        //virtual void reload() = 0;
         virtual void shoot(){};
         virtual void reload(){};
 
@@ -25,8 +24,7 @@ class Firearm : public Weapon
         void setClipSize(int c);
 
         virtual void render() {};
-        virtual void update() {};
-
+        //virtual void update(Player* mainPlayer);
 
     protected:
 
