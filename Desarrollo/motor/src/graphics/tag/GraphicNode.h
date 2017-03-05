@@ -18,7 +18,9 @@ namespace tag
 
             bool setEntity(Entity* e);
             Entity* getEntity();
+
             GraphicNode* getParent();
+            void setParent(GraphicNode* parent);
 
             void draw();
 
