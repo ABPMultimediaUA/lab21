@@ -9066,10 +9066,11 @@
 	<string>
 	"Resource.h"
 
-1488616174 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\ecamera.cpp
+1488620523 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\ecamera.cpp
 	"tag/ECamera.h"
+	<glm/gtc/matrix_transform.hpp>
 
-1488616174 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\ecamera.h
+1488620441 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\ecamera.h
 	"Entity.h"
 	"tag/TAGEngine.h"
 
@@ -9136,7 +9137,7 @@
 	"tag/Types.h"
 	<glm/gtc/matrix_transform.hpp>
 
-1488471145 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
+1488620544 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
 	"tag/TAGEngine.h"
 	<stdexcept>
 	<glm/glm.hpp>
@@ -9146,6 +9147,7 @@
 	"tag/Entity.h"
 	"tag/ResourceManager.h"
 	"tag/ResourceMesh.h"
+	"tag/ECamera.h"
 
 1488030991 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\etransform.h
 	"Entity.h"

@@ -10,6 +10,7 @@
 #include "tag/Entity.h"
 #include "tag/ResourceManager.h"
 #include "tag/ResourceMesh.h"
+#include "tag/ECamera.h"
 
 int tag::TAGEngine::m_aPositionLocation;
 int tag::TAGEngine::m_aNormalLocation;
@@ -40,7 +41,7 @@ void tag::TAGEngine::init()
     m_window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Lab21", sf::Style::Default, contextSettings);
 
     // Habilita el z_buffer
-   // glEnable(GL_DEPTH_TEST);
+    glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
     // Inicialización de GLEW
@@ -71,6 +72,7 @@ void tag::TAGEngine::init()
     // Estableciendo la matriz de proyección perspectiva
     glm::mat4 m_projectionMatrix = glm::perspective(45.0f, (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 1000.0f);
     glUniformMatrix4fv(TAGEngine::m_uProjectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(m_projectionMatrix));
+
 
     // Creamos los mensajes de texto, por ahora vacios
     if (!m_font.loadFromFile("media/ExoRegular.otf"))
