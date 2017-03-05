@@ -21,7 +21,6 @@ Scene::Scene()
 {
     cout<<"IN Scene constructor"<<endl;
     //ctor
-
 }
 
 void Scene::Init()
@@ -50,8 +49,8 @@ void Scene::Init()
 
     // GUN - SHOTGUN - RIFLE
     gun = createGun(0,0,0); // Creo el arma inicial del player
-    shotgun = createShotgun(-100,10,20);
-    rifle = createRifle(-100,10,10);
+    shotgun = createShotgun(-100,10,210);
+    rifle = createRifle(-100,10,200);
 
     // Creación de jugador
     mainPlayer = GEInstance->createMainPlayer(gun);
@@ -65,7 +64,14 @@ void Scene::Init()
     ////////////////////////////////
     for(int i=0; i<4; i++){
         enemyHumanoid = GEInstance->createEnemyHumanoid();
-        enemyHumanoid->setPosition(dwe::vec3f(500+(i*10),24,-200+(i*80) ));
+        enemyHumanoid->setPosition(dwe::vec3f(500+(i*10),24,-250+(i*80) ));
+        //enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
+        m_enemies.push_back(enemyHumanoid);
+    }
+
+    for(int i=0; i<4; i++){
+        enemyHumanoid = GEInstance->createEnemyHumanoid();
+        enemyHumanoid->setPosition(dwe::vec3f(-300+(i*10),24,-400+(i*80) ));
         //enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
         m_enemies.push_back(enemyHumanoid);
     }
@@ -144,7 +150,42 @@ void Scene::Update()
             }
     }
 
-    GEInstance->updateCamera(mainPlayer->getPosition());
+
+    //////////////////////////////////////////
+    //         CAMARA INTELIGENTE           //
+    //////////////////////////////////////////
+    //PARA CAMARA INTELIGENTE --- La idea es contar cuántos enemigos tenemos a cada extremo y acercar la cámara según el extremo que más haya.
+    moreEnemiesX = 0;
+    moreEnemiesZ = 0;
+    int dist2player = 0;
+    for(int e=0; e<m_enemies.size(); e++){
+        if(m_enemies[e]){
+            int playerX = mainPlayer->getPosition().x;      int playerZ = mainPlayer->getPosition().z;
+            int enemyX  = m_enemies[e]->getPosition().x;    int enemyZ  = m_enemies[e]->getPosition().z;
+            int d2pX    = abs(playerX - enemyX);            int d2pZ    = abs(playerZ - enemyZ);
+
+            //CERCAR --- SOLO CALCULAR LOS ENEMIGOS CERCANOS (pero no demasiado cerca)
+            //VER EN QUE CUADRANTE ESTA EL ENEMIGO CON RESPECTO AL JUGADOR
+            if(d2pX>50 && d2pX<300){
+                if(enemyX<playerX)       moreEnemiesX--; //IZQ
+                else                     moreEnemiesX++; //DER
+            }
+            if(d2pZ>50 && d2pZ<300){
+                if(enemyZ<playerZ)       moreEnemiesZ--; //DOWN
+                else                     moreEnemiesZ++; //UP
+            }
+
+            //ENEMIGO MAS ALEJADO DEL GRUPO MAS GRANDE
+
+        }
+    }
+
+    //////////////////////////////////////////
+    //////////////////////////////////////////
+    //////////////////////////////////////////
+
+
+    GEInstance->updateCamera(mainPlayer->getPosition(), moreEnemiesX, moreEnemiesZ);
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
 
     for(int e=0; e<m_enemies.size(); e++) //recorre
@@ -268,7 +309,7 @@ void Scene::updateConsumables(Player* mainPlayer)
 
 void Scene::updatePlayerWeapons(Player* mainplayer, Firearm** weapons)
 {
-    cout << "- "<< mainplayer->getCurrentWeaponType() << ":" << eRifle << endl;
+    //cout << "- "<< mainplayer->getCurrentWeaponType() << ":" << eRifle << endl;
     if  (mainplayer->getCurrentWeaponType() == eGun){
         weapons[0]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
     }else if (mainplayer->getCurrentWeaponType() == eShotgun){

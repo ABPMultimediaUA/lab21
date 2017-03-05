@@ -112,8 +112,7 @@ void Player::swapCurrentWeapon(int w)
             m_currentWeaponType = eRifle;
         }
     }
-
-    cout << "TENGO EL ARMA " << m_currentWeaponType << endl;
+    //cout << "TENGO EL ARMA " << m_currentWeaponType << endl;
 }
 
 /////////////
