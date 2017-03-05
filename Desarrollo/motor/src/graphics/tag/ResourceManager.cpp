@@ -32,7 +32,7 @@ tag::Resource* tag::ResourceManager::getResource(std::string name)
     {
         // TODO por ahora solo creo recursos malla
         res = new ResourceMesh();
-        static_cast<ResourceMesh*>(res)->load(name);
+        static_cast<ResourceMesh*>(res)->load(name);  // TODO para quitar el static_cast, hacer que TResource tenga un load virtual puro
         m_resources.push_back(res);
 
         std::cout << "creamos nueva: " << name << "\n";
