@@ -108,6 +108,9 @@
 		<Unit filename="include/rapidjson/stream.h" />
 		<Unit filename="include/rapidjson/stringbuffer.h" />
 		<Unit filename="include/rapidjson/writer.h" />
+		<Unit filename="src/classes/AStarAlgorithm.cpp" />
+		<Unit filename="src/classes/AStarAlgorithm.h" />
+		<Unit filename="src/classes/AStarHeuristics.h" />
 		<Unit filename="src/classes/Ammo.cpp" />
 		<Unit filename="src/classes/Ammo.h" />
 		<Unit filename="src/classes/AmmoGrenade.cpp" />
@@ -171,6 +174,10 @@
 		<Unit filename="src/classes/Game.h" />
 		<Unit filename="src/classes/Generator.cpp" />
 		<Unit filename="src/classes/Generator.h" />
+		<Unit filename="src/classes/GraphEdge.cpp" />
+		<Unit filename="src/classes/GraphEdge.h" />
+		<Unit filename="src/classes/GraphNode.cpp" />
+		<Unit filename="src/classes/GraphNode.h" />
 		<Unit filename="src/classes/Grenade.cpp" />
 		<Unit filename="src/classes/Grenade.h" />
 		<Unit filename="src/classes/Guardian.cpp" />
@@ -220,6 +227,8 @@
 		<Unit filename="src/classes/Player.h" />
 		<Unit filename="src/classes/PlayerMate.cpp" />
 		<Unit filename="src/classes/PlayerMate.h" />
+		<Unit filename="src/classes/PriorityQueue.cpp" />
+		<Unit filename="src/classes/PriorityQueue.h" />
 		<Unit filename="src/classes/Projectile.cpp" />
 		<Unit filename="src/classes/Projectile.h" />
 		<Unit filename="src/classes/Rifle.cpp" />
@@ -234,6 +243,8 @@
 		<Unit filename="src/classes/Sequence.h" />
 		<Unit filename="src/classes/Shotgun.cpp" />
 		<Unit filename="src/classes/Shotgun.h" />
+		<Unit filename="src/classes/SparseGraph.cpp" />
+		<Unit filename="src/classes/SparseGraph.h" />
 		<Unit filename="src/classes/SpeedBoost.cpp" />
 		<Unit filename="src/classes/SpeedBoost.h" />
 		<Unit filename="src/classes/State.h" />
