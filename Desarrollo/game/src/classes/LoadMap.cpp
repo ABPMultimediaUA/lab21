@@ -166,32 +166,32 @@ void LoadMap::Init(){
             s->createCRifle(20, 10, 20*i);
         }
 
+
+        Scene* a = Scene::Instance();
+
+        a->createCRifle(-100, 10, -100);
+        a->createCRifle(-100, 10, 0);
+        a->createCRifle(-200, 10, -100);
+        a->createCRifle(-200, 10, 0);
+
+
     }
 }
 
 /*
-    // Creacion de Mundo
-    sector[0]=entities[1];
-
-
-
+// Creacion de Mundo
+sector[0]=entities[1];
 // Generadores
-    entities[2]=GEInstance->createGenerator(0, false, -50, 0, -50); // false
-    ((Generator*)entities[2])->setSector(sector, 1);
-
+entities[2]=GEInstance->createGenerator(0, false, -50, 0, -50); // false
+((Generator*)entities[2])->setSector(sector, 1);
 */
 
 void LoadMap::Update(){
-    for(int cont=0; cont<NUM_ENTITIES2; cont++)
-    {
+    for(int cont=0; cont<NUM_ENTITIES2; cont++){
         entities[cont]->update();
         doorTriggers[cont]->update(entities[cont]);
     }
-
     //Scene::updateConsumables(mainPlayer);
-
-
-
 }
 
 void LoadMap::Destroy(){

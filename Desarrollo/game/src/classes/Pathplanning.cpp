@@ -13,25 +13,6 @@ Pathplanning::~Pathplanning()
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void Pathplanning::behaviour(Drawable* mainPlayer, Humanoid* enemyHumanoid, /*dwe::Node* fovnode, */bool danyo)
 {
     float movX = 0.0;

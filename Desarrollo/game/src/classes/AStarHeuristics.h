@@ -2,6 +2,7 @@
 #define ASTARHEURISTICS_H
 
 #include "GraphicsEngine.h"
+#include "cmath"
 
 class Heuristic_Euclid
 {
@@ -33,7 +34,7 @@ class Heuristic_Manhattan
         template <class graph_type>
         static double Calculate(const graph_type& G, int nd1, int nd2)
         {
-            Vector2D v(G.GetNode(nd1).Pos() - G.GetNode(nd2).Pos());
+            dwe::vec2f v(G.GetNode(nd1).Pos() - G.GetNode(nd2).Pos());
             return abs(v.x) + abs(v.y);
         }
 };
@@ -44,6 +45,8 @@ class Heuristic_Manhattan
 //be handy if you find that you frequently have lots of agents all following
 //each other in single file to get from one place to another
 //-----------------------------------------------------------------------------
+
+/*
 class Heuristic_Noisy_Euclidian
 {
     public:
@@ -62,6 +65,7 @@ class Heuristic_Noisy_Euclidian
             return sqrt(ySeparation*ySeparation + xSeparation*xSeparation) * rand()%(1.1f-0.9f+1)+0.9f;
         }
 };
+*/
 
 //-----------------------------------------------------------------------------
 //you can use this class to turn the A* algorithm into Dijkstra's search.

@@ -1,7 +1,9 @@
 #ifndef ASTARALGORITHM_H
 #define ASTARALGORITHM_H
 
-#include "SparseGraph.h"
+//#include "SparseGraph.h"
+#include <vector>
+#include <list>
 
 template <class graph_type, class heuristic>
 class Graph_SearchAStar

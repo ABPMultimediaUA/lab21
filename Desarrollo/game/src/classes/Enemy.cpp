@@ -7,7 +7,7 @@ Enemy::Enemy()
     m_speed = 0.0;
     setClassID(CLASS_ENEMY_ID);
     m_health=10;
-
+    currentNodeW = 0;
 }
 
 Enemy::~Enemy()
