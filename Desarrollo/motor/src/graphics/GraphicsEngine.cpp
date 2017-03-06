@@ -291,4 +291,5 @@ dwe::vec2f dwe::GraphicsEngine::getMousePosition()
     float y = -sf::Mouse::getPosition(*m_window).y;
 
     return vec2f(x,y);*/
+    return vec2f(0,0);
 }
