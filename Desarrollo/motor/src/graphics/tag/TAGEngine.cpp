@@ -10,6 +10,7 @@
 #include "tag/Entity.h"
 #include "tag/ResourceManager.h"
 #include "tag/ResourceMesh.h"
+#include "tag/EAnimation.h"
 
 int tag::TAGEngine::m_aPositionLocation;
 int tag::TAGEngine::m_aNormalLocation;
@@ -161,19 +162,41 @@ void tag::TAGEngine::draw()
     sprintf(tmp, "Lab21 - fps:%f", fps);
     m_window->setTitle(tmp);
 }
-
+bool tecla=false;
 /////////////////////
+int cont=0;
 void tag::TAGEngine::renderElements()
 {
-    resourceMesh->draw(vec3f(-2,0,0), vec3f(2,2,1));
-    resourceMesh2->draw(vec3f(2,0,0), vec3f(1,0,1));
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && resourceAnimated->getFrame(cont)!=0 && cont<3){
+        resourceAnimated->getFrame(cont)->draw(vec3f(4,0,0), vec3f(0,0,0));
+        cont++;
+    }
+    else {
+        resourceAnimated->getFrame(0)->draw(vec3f(4,0,0), vec3f(0,0,0));
+        cont=0;
+    }
+        /*tecla=!tecla;
+    resourceMesh->draw(vec3f(-4,0,0), vec3f(2,2,1));
+    resourceMesh2->draw(vec3f(0,0,0), vec3f(1,1,1));
+    if(tecla==false)
+        resourceAnimated->getFrame(cont)->draw(vec3f(4,0,0), vec3f(0,0,0));
+    else
+        resourceAnimated->getFrame(1)->draw(vec3f(4,0,0), vec3f(0,0,0));*/
 }
 
 
 void tag::TAGEngine::createNode()
 {
-    resourceMesh = static_cast<ResourceMesh*>(m_resourceManager.getResource("media/newcube.obj"));
-    resourceMesh2 = static_cast<ResourceMesh*>(m_resourceManager.getResource("media/newcube.obj"));
+    resourceMesh = static_cast<ResourceMesh*>(m_resourceManager.getResource("media/perrorig.obj"));
+    //resourceMesh2 = static_cast<ResourceMesh*>(m_resourceManager.getResource("media/newcube.obj"));
+    resourceMesh2 = static_cast<ResourceMesh*>(m_resourceManager.getResource("media/perrorig2.obj"));
+    resourceMesh3 = static_cast<ResourceMesh*>(m_resourceManager.getResource("media/perrorig3.obj"));
+
+    resourceAnimated->setFrame(0, resourceMesh);
+    resourceAnimated->setFrame(1, resourceMesh2);
+    resourceAnimated->setFrame(2, resourceMesh3);
+
 }
 
 tag::ResourceManager tag::TAGEngine::getResourceManager()

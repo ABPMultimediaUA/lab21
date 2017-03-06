@@ -31,7 +31,7 @@
 #include "ResourceMesh.h"
 
 namespace tag
-{
+{class EAnimation;
     class TAGEngine
     {
         public:
@@ -86,6 +86,11 @@ namespace tag
 
             ResourceMesh* resourceMesh;  // TODO quitar. Provisional para mostrar un cubo en renderElements
             ResourceMesh* resourceMesh2;  // TODO quitar. Provisional para mostrar un cubo en renderElements
+            ResourceMesh* resourceMesh3;
+            //ResourceMesh* resourceMesh4;
+            EAnimation* resourceAnimated;
+            //ResourceMesh* arrayMesh[3];
+
 
             glm::mat4 m_projectionMatrix; // Almacena la matriz de proyección
 

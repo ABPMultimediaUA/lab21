@@ -17,6 +17,7 @@
 #include "tag/ResourceMesh.h"
 #include "tag/ETransform.h"
 #include "tag/TAGEngine.h"
+#include "tag/EAnimation.h"
 
 
 using namespace tag;
@@ -58,6 +59,13 @@ int main()
     nodo07.setEntity(&entity07);
     nodo04.addChild(&nodo07);
 
+    tag::GraphicNode nodo08;
+    tag::EAnimation entity08;
+    entity08.loadFrame("media/newcube.obj", 1);
+    entity08.m_cadena = "08 - ANIMATEDMESH";
+    nodo08.setEntity(&entity08);
+    nodo04.addChild(&nodo08);
+
     /////////////////////////////////////
     // Transformaciones
     /////////////////////////////////////
@@ -73,8 +81,8 @@ int main()
                1
                /
                4
-              / \
-             6   7
+              /|\
+             6 7 8
 
 */
 
