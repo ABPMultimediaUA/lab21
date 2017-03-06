@@ -9043,7 +9043,7 @@
 1488795746 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\resource.h
 	<string>
 
-1488805261 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
+1488809527 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
 	<GL/glew.h>
 	<SFML/Graphics.hpp>
 	<glm/glm.hpp>
@@ -9067,7 +9067,7 @@
 	<glm/gtc/matrix_transform.hpp>
 	<iostream>
 
-1488801341 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\ecamera.h
+1488809527 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\ecamera.h
 	"Entity.h"
 	"tag/TAGEngine.h"
 
