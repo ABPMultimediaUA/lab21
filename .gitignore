@@ -8,12 +8,19 @@ Desarrollo/irrlicht-1.8.4/bin/Linux/**
 Desarrollo/game/bin/**/*
 Desarrollo/game/obj/
 Desarrollo/game/obj/**/*
-Desarrollo/game/game.layout
-Desarrollo/irrlicht-1.8.4/**/*.layout
 Desarrollo/irrlicht-1.8.4/**/.objs/
 Desarrollo/irrlicht-1.8.4/obj/**/*
+Desarrollo/irrKlang-1.5.0/**/*
 Desarrollo/RakNetLib/obj/**/*
 Desarrollo/Box2D/box2DEngine/obj/**/*
 Desarrollo/Server/Release Win32/**/*
 Desarrollo/Server/Debug Win32/**/*
 Desarrollo/Server/*.exe
+Desarrollo/game/lib/**/*
+Desarrollo/assimp-3.2/build/**/*
+Desarrollo/**/*.layout
+**/Thumbs.db
+Desarrollo/motor/**/*.exe
+Desarrollo/motor/obj/
+Desarrollo/motor/obj/**/*
+**/*.depend

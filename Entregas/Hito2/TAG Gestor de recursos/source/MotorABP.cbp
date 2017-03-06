@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="MotorABP" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/MotorABPd" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/MotorABP" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="include" />
+			<Add directory="src/classes" />
+			<Add directory="src/glsl" />
+			<Add directory="src/GL" />
+			<Add directory="src/glm" />
+			<Add directory="src/graphics" />
+		</Compiler>
+		<Linker>
+			<Add library="sfml-graphics" />
+			<Add library="sfml-window" />
+			<Add library="sfml-system" />
+			<Add library="lib/glew32s.lib" />
+			<Add library="lib/glew32.lib" />
+			<Add library="libopengl32" />
+			<Add library="lib/libassimp.dll.a" />
+			<Add directory="lib" />
+		</Linker>
+		<Unit filename="shaders/FragmentShader.glsl" />
+		<Unit filename="shaders/VertexShader.glsl" />
+		<Unit filename="src/Main.cpp" />
+		<Unit filename="src/classes/Drawable.cpp" />
+		<Unit filename="src/classes/Drawable.h" />
+		<Unit filename="src/classes/Player.cpp" />
+		<Unit filename="src/classes/Player.h" />
+		<Unit filename="src/classes/Scene.cpp" />
+		<Unit filename="src/classes/Scene.h" />
+		<Unit filename="src/glsl/Program.cpp" />
+		<Unit filename="src/glsl/Program.h" />
+		<Unit filename="src/glsl/Shader.cpp" />
+		<Unit filename="src/glsl/Shader.h" />
+		<Unit filename="src/graphics/AppReceiver.cpp" />
+		<Unit filename="src/graphics/AppReceiver.h" />
+		<Unit filename="src/graphics/GraphicsEngine.cpp" />
+		<Unit filename="src/graphics/GraphicsEngine.h" />
+		<Unit filename="src/graphics/GraphicsEngineTemplates.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

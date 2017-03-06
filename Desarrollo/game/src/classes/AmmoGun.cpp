@@ -11,9 +11,10 @@ AmmoGun::~AmmoGun()
 }
 
 //////////////
-void AmmoGun::onTake()
+void AmmoGun::onTake(Player* mainplayer)
 {
-    // TODO
+    mainplayer->addAmmo(0,10);
+    cout << mainplayer->getAmmo(0) << endl;
 }
 
 /////////////////////

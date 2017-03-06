@@ -1,0 +1,76 @@
+#include <iostream>
+#ifndef INC_CSETUPDEVICE_H
+#define INC_CSETUPDEVICE_H
+
+#include <irrlicht.h>
+
+using namespace irr;
+
+class SetupDeviceEventReceiver;
+
+/*! Class to provide a simple and customisable configuration window on start-up */
+class CSetupDevice {
+
+	public:
+		/**
+		\brief Constructor
+		\param screenDim - The dimensions of the window to pop-up
+		*/
+		CSetupDevice(const core::dimension2d<u32>& screenDim);
+		/**
+		\brief Destructor
+		*/
+		~CSetupDevice();
+		/**
+		\brief Begin execution of the device
+		*/
+		bool execute();
+		/**
+		\brief End execution of the device
+		*/
+		void shutdown();
+
+		/**
+		\brief Returns the Irrlicht Device
+		\return an IrrlichtDevice*
+		*/
+		inline IrrlichtDevice* getDevice() { return setupDevice; }
+		/**
+		\brief Returns the Video Driver
+		\return a IVideoDriver*
+		*/
+		inline video::IVideoDriver* getVideoDriver() { return driver; }
+		/**
+		\brief Returns the GUI Environment
+		\return a IGUIEnvironment*
+		*/
+		inline gui::IGUIEnvironment* getGUIEnvironment() { return gui; }
+		/**
+		\brief Returns the desktop resolution of the PC
+		\return a dimension2d<u32>
+		*/
+		inline core::dimension2d<u32> getDesktopResolution() {
+			if (setupDevice) return setupDevice->getVideoModeList()->getDesktopResolution();
+			else             return core::dimension2d<u32>(0,0);
+		}
+
+		std::string getPlayers();
+
+	private:
+		IrrlichtDevice* setupDevice;
+		video::IVideoDriver* driver;
+		video::ITexture* backTexture;
+		gui::IGUIEnvironment* gui;
+		gui::IGUIButton* playAloneButton;
+		gui::IGUIButton* playOnlineButton;
+		gui::IGUIButton* achievementsButton;
+		gui::IGUIButton* optionsButton;
+		gui::IGUIButton* exitButton;
+		SetupDeviceEventReceiver* receiver;
+		bool quitSetup;
+		bool startGame;
+		std::string players;
+
+};
+
+#endif /* INC_CSETUPDEVICE_H */

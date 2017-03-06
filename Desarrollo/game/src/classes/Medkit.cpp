@@ -11,7 +11,9 @@ Medkit::~Medkit()
 }
 
 /////////////
-void Medkit::onTake()
+
+void Medkit::onTake(Player* mainPlayer)
 {
-    // TODO
+    mainPlayer->addMedkits(1);
+    //cout << "posicion player " << mainPlayer->getPosition().x << " " << mainPlayer->getPosition().y << " " << mainPlayer->getPosition().z << endl;
 }

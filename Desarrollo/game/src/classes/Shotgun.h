@@ -3,6 +3,7 @@
 
 #include <Firearm.h>
 
+class Player;
 
 class Shotgun : public Firearm
 {
@@ -12,6 +13,8 @@ class Shotgun : public Firearm
 
         void shoot();
         void reload();
+        //void update();
+        void render(){};
 
 
     protected:
