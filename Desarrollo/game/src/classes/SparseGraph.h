@@ -2,11 +2,11 @@
 #define SPARSEGRAPH_H
 
 //#include "NavGraphNode.h"
-
 #include <vector>
 #include <list>
 
 template <class node_type, class edge_type>
+
 class SparseGraph
 {
     public:

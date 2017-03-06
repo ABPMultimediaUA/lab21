@@ -18,7 +18,7 @@ Scene* Scene::Instance()
   return &instance;
 }
 ///////////////////////////////
-Scene::Scene()
+Scene::Scene():navgraf(false)
 {
     cout<<"IN Scene constructor"<<endl;
     //ctor
@@ -44,6 +44,32 @@ void Scene::Init()
     }
     GEInstance->addMessageLine(L"Partida iniciada");
     /**********************************/
+
+
+    ////////WAYPOINTTTTTTTT --- crear sus nodos
+    NavGraphNode nodo1(0,dwe::vec2f(-100,0));
+    navgraf.addNode(nodo1);
+
+    NavGraphNode nodo2(1,dwe::vec2f(-100,-100));
+    navgraf.addNode(nodo2);
+
+    NavGraphNode nodo3(2,dwe::vec2f(-200,0));
+    navgraf.addNode(nodo3);
+
+    NavGraphNode nodo4(3,dwe::vec2f(-200,-100));
+    navgraf.addNode(nodo4);
+
+    //ARISTAS
+    GraphEdge arista1(0,1,100);
+    GraphEdge arista2(1,2,100);
+    GraphEdge arista3(2,3,100);
+    GraphEdge arista4(3,0,100);
+
+    navgraf.addEdge(arista1);
+    navgraf.addEdge(arista2);
+    navgraf.addEdge(arista3);
+    navgraf.addEdge(arista4);
+
     // Llaves
     //llave=GEInstance->createMagnetKey(0, 50, 0, 350);
     //llaveCogida=false;

@@ -6,6 +6,11 @@
 #include "PathplanningTask.h"
 #include "PerceptionTask.h"
 #include "PatrolTask.h"
+#include "AStarAlgorithm.h"
+#include "AStarHeuristics.h"
+#include "SparseGraph.h"
+#include "NavGraphNode.h"
+#include "GraphEdge.h"
 
 Humanoid::Humanoid()
 {
@@ -49,7 +54,9 @@ void Humanoid::Update()
 
 void Humanoid::update()
 {
-    selector1->run();
+    Graph_SearchAStar<SparseGraph<NavGraphNode,GraphEdge> ,Heuristic_Euclid> a(navgraf, currentNodeW, 3); //probando
+    a.GetPathToTarget();
+    //selector1->run();
 }
 
 StateMachine<Humanoid>* Humanoid::GetFSM()const

@@ -166,6 +166,15 @@ void LoadMap::Init(){
             s->createCRifle(20, 10, 20*i);
         }
 
+
+        Scene* a = Scene::Instance();
+
+        a->createCRifle(-100, 10, -100);
+        a->createCRifle(-100, 10, 0);
+        a->createCRifle(-200, 10, -100);
+        a->createCRifle(-200, 10, 0);
+
+
     }
 }
 

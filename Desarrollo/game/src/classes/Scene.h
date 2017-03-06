@@ -22,12 +22,15 @@
 #include "PerceptionTask.h"
 #include "PatrolTask.h"
 
+#include "SparseGraph.h"
+#include "NavGraphNode.h"
+#include "GraphEdge.h"
+
 #define NUM_ENTITIES 10
 
 class Projectile;
 class Consumable;
 class Firearm;
-
 
 class Scene
 {
@@ -76,6 +79,11 @@ class Scene
         Humanoid* enemyHumanoid;
         Dog* enemyDog;
         /**/
+
+
+        //WAIPONTSSS
+        SparseGraph<NavGraphNode, GraphEdge> navgraf;
+
 
         // Objets
         Gun* gun;
