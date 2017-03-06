@@ -34,7 +34,7 @@ class Heuristic_Manhattan
         static double Calculate(const graph_type& G, int nd1, int nd2)
         {
             Vector2D v(G.GetNode(nd1).Pos() - G.GetNode(nd2).Pos());
-            return abs(v.x + v.y);
+            return abs(v.x) + abs(v.y);
         }
 };
 
