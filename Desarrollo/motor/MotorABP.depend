@@ -1092,13 +1092,13 @@
 	"GraphicsEngine.h"
 	"Player.h"
 
-1485764323 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\drawable.cpp
+1485506502 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\drawable.cpp
 	"Drawable.h"
 
-1485764323 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\drawable.h
+1485506495 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\drawable.h
 	"GraphicsEngine.h"
 
-1488022512 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.h
+1488021785 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.h
 	<GL/glew.h>
 	<assimp/Importer.hpp>
 	<assimp/scene.h>
@@ -1146,7 +1146,7 @@
 	"vector_relational.hpp"
 	"integer.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\_fixes.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\_fixes.hpp
 	<cmath>
 
 1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\fwd.hpp
@@ -1155,12 +1155,12 @@
 	"detail/type_vec.hpp"
 	"detail/type_mat.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_int.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_int.hpp
 	"setup.hpp"
 	<type_traits>
 	<cstdint>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\setup.hpp
+1441569934 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\setup.hpp
 	<cassert>
 	<cstddef>
 	<cuda.h>
@@ -1172,50 +1172,50 @@
 	<emmintrin.h>
 	<__config>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_float.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_float.hpp
 	"setup.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec.hpp
+1438465103 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec.hpp
 	"precision.hpp"
 	"type_int.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\precision.hpp
+1441038560 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\precision.hpp
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat.hpp
 	"precision.hpp"
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\vec2.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\vec2.hpp
 	"detail/type_vec2.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec2.hpp
+1441568189 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec2.hpp
 	"type_vec.hpp"
 	"_swizzle.hpp"
 	"_swizzle_func.hpp"
 	<cstddef>
 	"type_vec2.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\_swizzle.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\_swizzle.hpp
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\_swizzle_func.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\_swizzle_func.hpp
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec2.inl
+1441568189 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec2.inl
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\vec3.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\vec3.hpp
 	"detail/type_vec3.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec3.hpp
+1441568189 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec3.hpp
 	"type_vec.hpp"
 	"_swizzle.hpp"
 	"_swizzle_func.hpp"
 	<cstddef>
 	"type_vec3.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec3.inl
+1441568189 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec3.inl
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\vec4.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\vec4.hpp
 	"detail/type_vec4.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec4.hpp
+1441568189 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec4.hpp
 	"setup.hpp"
 	"type_vec.hpp"
 	"_swizzle.hpp"
@@ -1223,21 +1223,21 @@
 	<cstddef>
 	"type_vec4.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec4.inl
+1441568189 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec4.inl
 	"type_vec4_sse2.inl"
 	"type_vec4_avx.inl"
 	"type_vec4_avx2.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec4_sse2.inl
+1441038892 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec4_sse2.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec4_avx.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec4_avx.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec4_avx2.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec4_avx2.inl
 
 1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\mat2x2.hpp
 	"detail/type_mat2x2.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat2x2.hpp
+1440864226 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat2x2.hpp
 	"../fwd.hpp"
 	"type_vec2.hpp"
 	"type_mat.hpp"
@@ -1245,12 +1245,12 @@
 	<cstddef>
 	"type_mat2x2.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat2x2.inl
+1438470808 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat2x2.inl
 
 1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\mat2x3.hpp
 	"detail/type_mat2x3.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat2x3.hpp
+1438468469 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat2x3.hpp
 	"../fwd.hpp"
 	"type_vec2.hpp"
 	"type_vec3.hpp"
@@ -1259,12 +1259,12 @@
 	<cstddef>
 	"type_mat2x3.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat2x3.inl
+1438470737 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat2x3.inl
 
 1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\mat2x4.hpp
 	"detail/type_mat2x4.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat2x4.hpp
+1438468425 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat2x4.hpp
 	"../fwd.hpp"
 	"type_vec2.hpp"
 	"type_vec4.hpp"
@@ -1273,12 +1273,12 @@
 	<cstddef>
 	"type_mat2x4.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat2x4.inl
+1438470573 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat2x4.inl
 
 1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\mat3x2.hpp
 	"detail/type_mat3x2.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat3x2.hpp
+1438468285 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat3x2.hpp
 	"../fwd.hpp"
 	"type_vec2.hpp"
 	"type_vec3.hpp"
@@ -1287,12 +1287,12 @@
 	<cstddef>
 	"type_mat3x2.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat3x2.inl
+1438470418 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat3x2.inl
 
 1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\mat3x3.hpp
 	"detail/type_mat3x3.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat3x3.hpp
+1438468227 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat3x3.hpp
 	"../fwd.hpp"
 	"type_vec3.hpp"
 	"type_mat.hpp"
@@ -1300,12 +1300,12 @@
 	<cstddef>
 	"type_mat3x3.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat3x3.inl
+1438470302 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat3x3.inl
 
 1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\mat3x4.hpp
 	"detail/type_mat3x4.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat3x4.hpp
+1438468095 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat3x4.hpp
 	"../fwd.hpp"
 	"type_vec3.hpp"
 	"type_vec4.hpp"
@@ -1314,12 +1314,12 @@
 	<cstddef>
 	"type_mat3x4.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat3x4.inl
+1438470191 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat3x4.inl
 
 1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\mat4x2.hpp
 	"detail/type_mat4x2.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat4x2.hpp
+1438468017 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat4x2.hpp
 	"../fwd.hpp"
 	"type_vec2.hpp"
 	"type_vec4.hpp"
@@ -1328,12 +1328,12 @@
 	<cstddef>
 	"type_mat4x2.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat4x2.inl
+1438470017 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat4x2.inl
 
 1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\mat4x3.hpp
 	"detail/type_mat4x3.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat4x3.hpp
+1438467958 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat4x3.hpp
 	"../fwd.hpp"
 	"type_vec3.hpp"
 	"type_vec4.hpp"
@@ -1342,12 +1342,12 @@
 	<cstddef>
 	"type_mat4x3.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat4x3.inl
+1438470532 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat4x3.inl
 
 1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\mat4x4.hpp
 	"detail/type_mat4x4.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat4x4.hpp
+1438467899 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat4x4.hpp
 	"../fwd.hpp"
 	"type_vec4.hpp"
 	"type_mat.hpp"
@@ -1355,28 +1355,28 @@
 	<cstddef>
 	"type_mat4x4.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat4x4.inl
+1438469995 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_mat4x4.inl
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\trigonometric.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\trigonometric.hpp
 	"detail/func_trigonometric.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_trigonometric.hpp
+1441051837 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_trigonometric.hpp
 	"setup.hpp"
 	"precision.hpp"
 	"func_trigonometric.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_trigonometric.inl
+1441052446 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_trigonometric.inl
 	"_vectorize.hpp"
 	<cmath>
 	<limits>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\_vectorize.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\_vectorize.hpp
 	"type_vec1.hpp"
 	"type_vec2.hpp"
 	"type_vec3.hpp"
 	"type_vec4.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec1.hpp
+1441568189 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec1.hpp
 	"../fwd.hpp"
 	"type_vec.hpp"
 	"_swizzle.hpp"
@@ -1384,12 +1384,12 @@
 	<cstddef>
 	"type_vec1.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec1.inl
+1441568189 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_vec1.inl
 
 1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\exponential.hpp
 	"detail/func_exponential.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_exponential.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_exponential.hpp
 	"type_vec1.hpp"
 	"type_vec2.hpp"
 	"type_vec3.hpp"
@@ -1397,32 +1397,32 @@
 	<cmath>
 	"func_exponential.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_exponential.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_exponential.inl
 	"func_vector_relational.hpp"
 	"_vectorize.hpp"
 	<limits>
 	<cmath>
 	<cassert>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_vector_relational.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_vector_relational.hpp
 	"precision.hpp"
 	"setup.hpp"
 	"func_vector_relational.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_vector_relational.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_vector_relational.inl
 	<limits>
 
 1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\common.hpp
 	"detail/func_common.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_common.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_common.hpp
 	"setup.hpp"
 	"precision.hpp"
 	"type_int.hpp"
 	"_fixes.hpp"
 	"func_common.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_common.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_common.inl
 	"func_vector_relational.hpp"
 	"type_vec2.hpp"
 	"type_vec3.hpp"
@@ -1430,43 +1430,43 @@
 	"_vectorize.hpp"
 	<limits>
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\packing.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\packing.hpp
 	"detail/func_packing.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_packing.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_packing.hpp
 	"type_vec2.hpp"
 	"type_vec4.hpp"
 	"func_packing.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_packing.inl
+1437262117 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_packing.inl
 	"func_common.hpp"
 	"type_half.hpp"
 	"../fwd.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_half.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_half.hpp
 	"setup.hpp"
 	"type_half.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_half.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\type_half.inl
 
 1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\geometric.hpp
 	"detail/func_geometric.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_geometric.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_geometric.hpp
 	"type_vec3.hpp"
 	"func_geometric.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_geometric.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_geometric.inl
 	"func_exponential.hpp"
 	"func_common.hpp"
 	"type_vec2.hpp"
 	"type_vec4.hpp"
 	"type_float.hpp"
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\matrix.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\matrix.hpp
 	"detail/func_matrix.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_matrix.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_matrix.hpp
 	"../detail/precision.hpp"
 	"../detail/setup.hpp"
 	"../detail/type_mat.hpp"
@@ -1484,24 +1484,24 @@
 	"../mat4x4.hpp"
 	"func_matrix.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_matrix.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_matrix.inl
 	"../geometric.hpp"
 	<limits>
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\vector_relational.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\vector_relational.hpp
 	"detail/func_vector_relational.hpp"
 
 1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\integer.hpp
 	"detail/func_integer.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_integer.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_integer.hpp
 	"setup.hpp"
 	"precision.hpp"
 	"func_common.hpp"
 	"func_vector_relational.hpp"
 	"func_integer.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_integer.inl
+1426535103 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\func_integer.inl
 	"type_vec2.hpp"
 	"type_vec3.hpp"
 	"type_vec4.hpp"
@@ -1510,7 +1510,7 @@
 	<intrin.h>
 	<limits>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\matrix_transform.hpp
+1441038256 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\matrix_transform.hpp
 	"../mat4x4.hpp"
 	"../vec2.hpp"
 	"../vec3.hpp"
@@ -1518,19 +1518,19 @@
 	"../gtc/constants.hpp"
 	"matrix_transform.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\constants.hpp
+1441051454 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\constants.hpp
 	"../detail/setup.hpp"
 	"constants.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\constants.inl
+1441052694 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\constants.inl
 	<limits>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\matrix_transform.inl
+1426534869 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\matrix_transform.inl
 	"../geometric.hpp"
 	"../trigonometric.hpp"
 	"../matrix.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\type_ptr.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\type_ptr.hpp
 	"../gtc/quaternion.hpp"
 	"../vec2.hpp"
 	"../vec3.hpp"
@@ -1547,7 +1547,7 @@
 	<cstring>
 	"type_ptr.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\quaternion.hpp
+1438471086 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\quaternion.hpp
 	"../mat3x3.hpp"
 	"../mat4x4.hpp"
 	"../vec3.hpp"
@@ -1555,16 +1555,16 @@
 	"../gtc/constants.hpp"
 	"quaternion.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\quaternion.inl
+1438472000 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\quaternion.inl
 	"../trigonometric.hpp"
 	"../geometric.hpp"
 	"../exponential.hpp"
 	<limits>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\type_ptr.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\type_ptr.inl
 	<cstring>
 
-1485764323 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\appreceiver.h
+1485607413 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\appreceiver.h
 	<GraphicsEngine.h>
 	<iostream>
 	<SFML/Graphics.hpp>
@@ -1971,11 +1971,11 @@
 	<GLES/glext.h>
 	<GLES2/gl2ext.h>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\importer.hpp
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\importer.hpp
 	"types.h"
 	"config.h"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\types.h
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\types.h
 	<sys/types.h>
 	<memory.h>
 	<math.h>
@@ -2001,61 +2001,61 @@
 	"matrix3x3.inl"
 	"matrix4x4.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\defs.h
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\defs.h
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\vector3.h
+1482311188 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\vector3.h
 	<cmath>
 	<math.h>
 	"./Compiler/pushpack1.h"
 	"./Compiler/poppack1.h"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\compiler\pushpack1.h
+1480186913 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\compiler\pushpack1.h
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\compiler\poppack1.h
+1480186913 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\compiler\poppack1.h
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\vector2.h
+1482311188 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\vector2.h
 	<cmath>
 	<math.h>
 	"./Compiler/pushpack1.h"
 	"./Compiler/poppack1.h"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\color4.h
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\color4.h
 	"./Compiler/pushpack1.h"
 	"./Compiler/poppack1.h"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\matrix3x3.h
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\matrix3x3.h
 	"./Compiler/pushpack1.h"
 	"./Compiler/poppack1.h"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\matrix4x4.h
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\matrix4x4.h
 	"./Compiler/pushpack1.h"
 	"./Compiler/poppack1.h"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\quaternion.h
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\quaternion.h
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\vector2.inl
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\vector2.inl
 	"vector2.h"
 	<cmath>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\vector3.inl
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\vector3.inl
 	"vector3.h"
 	<cmath>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\color4.inl
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\color4.inl
 	"color4.h"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\quaternion.inl
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\quaternion.inl
 	"quaternion.h"
 	<cmath>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\matrix3x3.inl
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\matrix3x3.inl
 	"matrix3x3.h"
 	"matrix4x4.h"
 	<algorithm>
 	<cmath>
 	<limits>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\matrix4x4.inl
+1482311188 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\matrix4x4.inl
 	"matrix4x4.h"
 	"matrix3x3.h"
 	"quaternion.h"
@@ -2064,9 +2064,9 @@
 	<cmath>
 	<math.h>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\config.h
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\config.h
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\scene.h
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\scene.h
 	"types.h"
 	"texture.h"
 	"mesh.h"
@@ -2076,63 +2076,63 @@
 	"anim.h"
 	"metadata.h"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\texture.h
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\texture.h
 	"types.h"
 	"./Compiler/pushpack1.h"
 	"./Compiler/poppack1.h"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\mesh.h
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\mesh.h
 	"types.h"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\light.h
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\light.h
 	"types.h"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\camera.h
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\camera.h
 	"types.h"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\material.h
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\material.h
 	"types.h"
 	"./Compiler/pushpack1.h"
 	"./Compiler/poppack1.h"
 	"material.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\material.inl
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\material.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\anim.h
+1480186911 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\anim.h
 	"types.h"
 	"quaternion.h"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\metadata.h
+1482311188 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\metadata.h
 	<assert.h>
 	"Compiler/pstdint.h"
 	<stdint.h>
 	<string>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\compiler\pstdint.h
+1480186913 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\compiler\pstdint.h
 	<stddef.h>
 	<limits.h>
 	<signal.h>
 	<stdint.h>
 	<wchar.h>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\postprocess.h
+1480186912 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\postprocess.h
 	"types.h"
 
-1485764323 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
+1485516580 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
 	"GraphicsEngine.h"
 
-1485764323 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\player.cpp
+1485506558 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\player.cpp
 	"Player.h"
 
-1485764323 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\player.h
+1485506391 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\player.h
 	"Drawable.h"
 
-1485764323 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\scene.cpp
+1485502586 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\scene.cpp
 	"Scene.h"
 
-1485764323 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\scene.h
+1485502572 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\scene.h
 
-1485349039 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\glsl\program.cpp
+1485208670 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\glsl\program.cpp
 	"Program.h"
 
 1485764323 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\glsl\program.h
@@ -2141,7 +2141,7 @@
 	<vector>
 	<SFML/OpenGL.hpp>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\gl\glew.h
+1439236490 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\gl\glew.h
 	<stddef.h>
 	<inttypes.h>
 	<stdint.h>
@@ -2150,7 +2150,7 @@
 	<OpenGL/glu.h>
 	<GL/glu.h>
 
-1485764323 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\glsl\shader.cpp
+1485351137 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\glsl\shader.cpp
 	"Shader.h"
 
 1485764323 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\glsl\shader.h
@@ -2175,10 +2175,10 @@
 	"Player.h"
 	"tag/TAGEngine.h"
 
-1485764323 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
+1485516580 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
 	"GraphicsEngine.h"
 
-1488756721 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\main.cpp
+1488802410 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\main.cpp
 	<GL/glew.h>
 	"Scene.h"
 	"GraphicsEngine.h"
@@ -4765,7 +4765,7 @@
 	"./gtx/simd_vec4.hpp"
 	"./gtx/simd_mat4.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\bitfield.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\bitfield.hpp
 	"../detail/setup.hpp"
 	"../detail/precision.hpp"
 	"../detail/type_int.hpp"
@@ -4773,14 +4773,14 @@
 	<limits>
 	"bitfield.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\bitfield.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\bitfield.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\epsilon.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\epsilon.hpp
 	"../detail/setup.hpp"
 	"../detail/precision.hpp"
 	"epsilon.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\epsilon.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\epsilon.inl
 	"quaternion.hpp"
 	"../vector_relational.hpp"
 	"../common.hpp"
@@ -4788,7 +4788,7 @@
 	"../vec3.hpp"
 	"../vec4.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\integer.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\integer.hpp
 	"../detail/setup.hpp"
 	"../detail/precision.hpp"
 	"../detail/func_common.hpp"
@@ -4797,15 +4797,15 @@
 	<limits>
 	"integer.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\integer.inl
+1424014360 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\integer.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\matrix_access.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\matrix_access.hpp
 	"../detail/setup.hpp"
 	"matrix_access.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\matrix_access.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\matrix_access.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\matrix_integer.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\matrix_integer.hpp
 	"../mat2x2.hpp"
 	"../mat2x3.hpp"
 	"../mat2x4.hpp"
@@ -4816,7 +4816,7 @@
 	"../mat4x3.hpp"
 	"../mat4x4.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\matrix_inverse.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\matrix_inverse.hpp
 	"../detail/setup.hpp"
 	"../matrix.hpp"
 	"../mat2x2.hpp"
@@ -4824,9 +4824,9 @@
 	"../mat4x4.hpp"
 	"matrix_inverse.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\matrix_inverse.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\matrix_inverse.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\noise.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\noise.hpp
 	"../detail/setup.hpp"
 	"../detail/precision.hpp"
 	"../detail/_noise.hpp"
@@ -4838,19 +4838,19 @@
 	"../vec4.hpp"
 	"noise.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\_noise.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\_noise.hpp
 	"../vec2.hpp"
 	"../vec3.hpp"
 	"../vec4.hpp"
 	"../common.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\noise.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\noise.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\packing.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\packing.hpp
 	"type_precision.hpp"
 	"packing.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\type_precision.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\type_precision.hpp
 	"../gtc/quaternion.hpp"
 	"../gtc/vec1.hpp"
 	"../vec2.hpp"
@@ -4867,16 +4867,16 @@
 	"../mat4x4.hpp"
 	"type_precision.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\vec1.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\vec1.hpp
 	"../glm.hpp"
 	"../detail/type_vec1.hpp"
 	"vec1.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\vec1.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\vec1.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\type_precision.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\type_precision.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\packing.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\packing.inl
 	"../common.hpp"
 	"../vec2.hpp"
 	"../vec3.hpp"
@@ -4884,32 +4884,34 @@
 	"../detail/type_half.hpp"
 	<cstring>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\random.hpp
+1437693407 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\random.hpp
 	"../vec2.hpp"
 	"../vec3.hpp"
 	"random.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\random.inl
+1440864226 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\random.inl
 	"../geometric.hpp"
 	"../exponential.hpp"
 	<cstdlib>
 	<ctime>
 	<cassert>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\reciprocal.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\reciprocal.hpp
 	"../detail/setup.hpp"
 	"reciprocal.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\reciprocal.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\reciprocal.inl
 	"../trigonometric.hpp"
 	<limits>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\round.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\round.hpp
 	"../detail/setup.hpp"
 	"../detail/precision.hpp"
 	"../detail/_vectorize.hpp"
 	"../vector_relational.hpp"
 	"../common.hpp"
+	<limits>
+	"round.inl"
 
 1487585624 ter
 	<limits>
@@ -5019,54 +5021,56 @@
 
 1487862839 .hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\round.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\round.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\ulp.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\ulp.hpp
 	"../detail/setup.hpp"
 	"../detail/precision.hpp"
 	"../detail/type_int.hpp"
 	"ulp.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\ulp.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\ulp.inl
 	"../detail/type_int.hpp"
 	<cmath>
 	<cfloat>
 	<limits>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\associated_min_max.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\associated_min_max.hpp
 	"../glm.hpp"
 	"associated_min_max.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\associated_min_max.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\associated_min_max.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\bit.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\bit.hpp
 	"../gtc/bitfield.hpp"
 	"bit.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\bit.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\bit.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\closest_point.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\closest_point.hpp
 	"../glm.hpp"
 	"closest_point.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\closest_point.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\closest_point.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\color_space.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\color_space.hpp
 	"../glm.hpp"
 	"color_space.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\color_space.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\color_space.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\color_space_ycocg.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\color_space_ycocg.hpp
 	"../glm.hpp"
 	"color_space_YCoCg.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\color_space_ycocg.inl
+1424014360 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\color_space_ycocg.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\compatibility.hpp
+1437315607 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\compatibility.hpp
 	"../glm.hpp"
 	"../gtc/quaternion.hpp"
 	<cfloat>
+	<cmath>
+	"compatibility.inl"
 
 1487862839 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\include\glm\detail\func_exponential.inl
 	"func_vector_relational.hpp"
@@ -5234,97 +5238,100 @@
 
 1487862840 ometric.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\compatibility.inl
+1437315632 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\compatibility.inl
 	<limits>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\component_wise.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\component_wise.hpp
 	"../detail/setup.hpp"
 	"../detail/precision.hpp"
 	"component_wise.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\component_wise.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\component_wise.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\dual_quaternion.hpp
+1438471815 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\dual_quaternion.hpp
 	"../glm.hpp"
 	"../gtc/constants.hpp"
 	"../gtc/quaternion.hpp"
 	"dual_quaternion.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\dual_quaternion.inl
+1438471857 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\dual_quaternion.inl
 	"../geometric.hpp"
 	<limits>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\euler_angles.hpp
+1426534869 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\euler_angles.hpp
 	"../glm.hpp"
 	"euler_angles.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\euler_angles.inl
+1426534869 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\euler_angles.inl
 	"compatibility.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\extend.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\extend.hpp
 	"../glm.hpp"
 	"extend.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\extend.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\extend.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\extented_min_max.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\extented_min_max.hpp
 	"../glm.hpp"
 	"extented_min_max.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\extented_min_max.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\extented_min_max.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\fast_exponential.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\fast_exponential.hpp
 	"../glm.hpp"
 	"fast_exponential.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\fast_exponential.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\fast_exponential.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\fast_square_root.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\fast_square_root.hpp
 	"../common.hpp"
 	"../exponential.hpp"
 	"../geometric.hpp"
 	"fast_square_root.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\fast_square_root.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\fast_square_root.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\fast_trigonometry.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\fast_trigonometry.hpp
 	"../gtc/constants.hpp"
 	"fast_trigonometry.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\fast_trigonometry.inl
+1424202754 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\fast_trigonometry.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\gradient_paint.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\gradient_paint.hpp
 	"../glm.hpp"
 	"../gtx/optimum_pow.hpp"
 	"gradient_paint.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\optimum_pow.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\optimum_pow.hpp
 	"../glm.hpp"
 	"optimum_pow.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\optimum_pow.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\optimum_pow.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\gradient_paint.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\gradient_paint.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\handed_coordinate_space.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\handed_coordinate_space.hpp
 	"../glm.hpp"
 	"handed_coordinate_space.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\handed_coordinate_space.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\handed_coordinate_space.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\integer.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\integer.hpp
 	"../glm.hpp"
 	"../gtc/integer.hpp"
 	"integer.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\integer.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\integer.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\intersect.hpp
+1437254569 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\intersect.hpp
 	"../glm.hpp"
 	"../gtx/closest_point.hpp"
 	"intersect.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\intersect.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\intersect.inl
+	"../geometric.hpp"
+	<cfloat>
+	<limits>
 
 1487862840 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\include\glm\gtc\type_ptr.inl
 	<cstring>
@@ -5768,159 +5775,159 @@
 
 1487862839 
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\log_base.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\log_base.hpp
 	"../glm.hpp"
 	"log_base.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\log_base.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\log_base.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_cross_product.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_cross_product.hpp
 	"../glm.hpp"
 	"matrix_cross_product.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_cross_product.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_cross_product.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_interpolation.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_interpolation.hpp
 	"../glm.hpp"
 	"matrix_interpolation.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_interpolation.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_interpolation.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_major_storage.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_major_storage.hpp
 	"../glm.hpp"
 	"matrix_major_storage.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_major_storage.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_major_storage.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_operation.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_operation.hpp
 	"../glm.hpp"
 	"matrix_operation.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_operation.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_operation.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_query.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_query.hpp
 	"../glm.hpp"
 	"../gtx/vector_query.hpp"
 	<limits>
 	"matrix_query.inl"
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\vector_query.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\vector_query.hpp
 	"../glm.hpp"
 	<cfloat>
 	<limits>
 	"vector_query.inl"
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\vector_query.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\vector_query.inl
 	<cassert>
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_query.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\matrix_query.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\mixed_product.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\mixed_product.hpp
 	"../glm.hpp"
 	"mixed_product.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\mixed_product.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\mixed_product.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\norm.hpp
+1437695657 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\norm.hpp
 	"../glm.hpp"
 	"../gtx/quaternion.hpp"
 	"norm.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\quaternion.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\quaternion.hpp
 	"../glm.hpp"
 	"../gtc/constants.hpp"
 	"../gtc/quaternion.hpp"
 	"../gtx/norm.hpp"
 	"quaternion.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\quaternion.inl
+1441050881 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\quaternion.inl
 	<limits>
 	"../gtc/constants.hpp"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\norm.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\norm.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\normal.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\normal.hpp
 	"../glm.hpp"
 	"normal.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\normal.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\normal.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\normalize_dot.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\normalize_dot.hpp
 	"../gtx/fast_square_root.hpp"
 	"normalize_dot.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\normalize_dot.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\normalize_dot.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\number_precision.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\number_precision.hpp
 	"../glm.hpp"
 	"../gtc/type_precision.hpp"
 	"number_precision.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\number_precision.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\number_precision.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\orthonormalize.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\orthonormalize.hpp
 	"../vec3.hpp"
 	"../mat3x3.hpp"
 	"../geometric.hpp"
 	"orthonormalize.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\orthonormalize.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\orthonormalize.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\perpendicular.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\perpendicular.hpp
 	"../glm.hpp"
 	"../gtx/projection.hpp"
 	"perpendicular.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\projection.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\projection.hpp
 	"../geometric.hpp"
 	"projection.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\projection.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\projection.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\perpendicular.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\perpendicular.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\polar_coordinates.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\polar_coordinates.hpp
 	"../glm.hpp"
 	"polar_coordinates.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\polar_coordinates.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\polar_coordinates.inl
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\raw_data.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\raw_data.hpp
 	"../detail/setup.hpp"
 	"../detail/type_int.hpp"
 	"raw_data.inl"
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\raw_data.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\raw_data.inl
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\rotate_vector.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\rotate_vector.hpp
 	"../glm.hpp"
 	"../gtx/transform.hpp"
 	"rotate_vector.inl"
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\transform.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\transform.hpp
 	"../glm.hpp"
 	"../gtc/matrix_transform.hpp"
 	"transform.inl"
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\transform.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\transform.inl
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\rotate_vector.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\rotate_vector.inl
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\spline.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\spline.hpp
 	"../glm.hpp"
 	"../gtx/optimum_pow.hpp"
 	"spline.inl"
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\spline.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\spline.inl
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\std_based_type.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\std_based_type.hpp
 	"../glm.hpp"
 	<cstdlib>
 	"std_based_type.inl"
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\std_based_type.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\std_based_type.inl
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\string_cast.hpp
+1441053133 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\string_cast.hpp
 	"../glm.hpp"
 	"../gtc/type_precision.hpp"
 	"../gtc/quaternion.hpp"
@@ -5928,39 +5935,39 @@
 	<string>
 	"string_cast.inl"
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\string_cast.inl
+1441053062 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\string_cast.inl
 	<cstdarg>
 	<cstdio>
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\transform2.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\transform2.hpp
 	"../glm.hpp"
 	"../gtx/transform.hpp"
 	"transform2.inl"
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\transform2.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\transform2.inl
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\type_aligned.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\type_aligned.hpp
 	"../gtc/type_precision.hpp"
 	"type_aligned.inl"
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\type_aligned.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\type_aligned.inl
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\vector_angle.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\vector_angle.hpp
 	"../glm.hpp"
 	"../gtc/epsilon.hpp"
 	"../gtx/quaternion.hpp"
 	"../gtx/rotate_vector.hpp"
 	"vector_angle.inl"
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\vector_angle.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\vector_angle.inl
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\wrap.hpp
+1435427837 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\wrap.hpp
 	"../glm.hpp"
 	"wrap.inl"
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\wrap.inl
+1435428490 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\wrap.inl
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\scalar_multiplication.hpp
+1426534869 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\scalar_multiplication.hpp
 	"../detail/setup.hpp"
 	"../vec2.hpp"
 	"../vec3.hpp"
@@ -5968,52 +5975,52 @@
 	"../mat2x2.hpp"
 	<type_traits>
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\range.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\range.hpp
 	"../detail/setup.hpp"
 	"../gtc/type_ptr.hpp"
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\simd_vec4.hpp
+1437861365 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\simd_vec4.hpp
 	"../glm.hpp"
 	"../detail/intrinsic_common.hpp"
 	"../detail/intrinsic_geometric.hpp"
 	"../detail/intrinsic_integer.hpp"
 	"simd_vec4.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\intrinsic_common.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\intrinsic_common.hpp
 	"setup.hpp"
 	"intrinsic_common.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\intrinsic_common.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\intrinsic_common.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\intrinsic_geometric.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\intrinsic_geometric.hpp
 	"setup.hpp"
 	"intrinsic_common.hpp"
 	"intrinsic_geometric.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\intrinsic_geometric.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\intrinsic_geometric.inl
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\intrinsic_integer.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\intrinsic_integer.hpp
 	"glm/glm.hpp"
 	"intrinsic_integer.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\intrinsic_integer.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\intrinsic_integer.inl
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\simd_vec4.inl
+1437859211 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\simd_vec4.inl
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\simd_mat4.hpp
+1437861365 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\simd_mat4.hpp
 	"../detail/setup.hpp"
 	"../detail/intrinsic_matrix.hpp"
 	"../gtx/simd_vec4.hpp"
 	"simd_mat4.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\intrinsic_matrix.hpp
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\intrinsic_matrix.hpp
 	"setup.hpp"
 	"intrinsic_geometric.hpp"
 	"intrinsic_matrix.inl"
 
-1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\intrinsic_matrix.inl
+1424014283 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\detail\intrinsic_matrix.inl
 
-1482322075 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\simd_mat4.inl
+1437859311 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtx\simd_mat4.inl
 
 1486145457 source:c:\users\rafael\desktop\lab21\desarrollo\motor\src\classes\drawable.cpp
 	"Drawable.h"
@@ -8993,7 +9000,7 @@
 1488102581 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\types.h
 	<glm/gtc/type_precision.hpp>
 
-1488022512 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.h
+1488012663 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.h
 	<vector>
 	<string>
 	"Resource.h"
@@ -9277,20 +9284,20 @@
 1488742941 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\graphicnode.h
 	<vector>
 
-1488022512 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resource.cpp
+1488015134 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resource.cpp
 	"tag/Resource.h"
 
-1488749532 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
+1488802809 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
 	"tag/ETransform.h"
 	<GL/glew.h>
 	<glm/gtc/matrix_transform.hpp>
 
-1488022835 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\etransform.h
+1488015086 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\etransform.h
 	"Entity.h"
 	<glm/glm.hpp>
 	"tag/Types.h"
 
-1488748478 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.cpp
+1488748473 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.cpp
 	"tag/ResourceManager.h"
 	"tag/ResourceMesh.h"
 
