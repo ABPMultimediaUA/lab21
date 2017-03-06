@@ -24,6 +24,8 @@ int main()
 
     GraphicNode* camera = tagEngine.createPerspectiveCamera(vec3f(0,0,-9.0), vec3f(0,0,0), 45.0f, TAGEngine::screenWidth / TAGEngine::screenHeight, 0.1f, 1000.0f);
 
+    GraphicNode* light  = tagEngine.createLight(vec3f(0,0,-9.0), vec3f(0,0,0));
+
     while (tagEngine.isRunning())
     {
         tagEngine.draw();

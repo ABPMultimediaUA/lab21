@@ -86,7 +86,10 @@ namespace tag
             /// y se establece la Entity::viewMatrix.
             void setActiveCamera(const unsigned int activeCamera);
 
+            /***/
+            GraphicNode* createLight(const vec3f position, const vec3f rotation, GraphicNode* parent=0);
 
+            void setLightOn(const unsigned int light);
 
             // Handles de los attributes y uniforms
             static int m_aPositionLocation;
@@ -111,6 +114,7 @@ namespace tag
             sf::Text            m_messageLine[MAX_MESSAGE_LINES];
 
             GraphicNode                 m_rootNode;
+            std::vector<GraphicNode*>   m_lights;
             std::vector<GraphicNode*>   m_cameras;
             unsigned int                m_numActiveCamera;
 

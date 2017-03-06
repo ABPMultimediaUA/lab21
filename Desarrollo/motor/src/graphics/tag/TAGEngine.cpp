@@ -10,6 +10,7 @@
 #include "tag/Entity.h"
 #include "tag/ResourceMesh.h"
 #include "tag/ECamera.h"
+#include "tag/ELight.h"
 #include "tag/ETransform.h"
 #include "tag/EMesh.h"
 
@@ -28,6 +29,7 @@ const float tag::TAGEngine::screenWidth;
 tag::TAGEngine::TAGEngine() :
     m_rootNode(),
     m_cameras(),
+    m_lights(),
     m_numActiveCamera(0)
 {
     //ctor
@@ -132,9 +134,6 @@ void tag::TAGEngine::draw()
     glEnableVertexAttribArray(TAGEngine::m_aPositionLocation);
     glEnableVertexAttribArray(TAGEngine::m_aNormalLocation);
     glUseProgram(m_shaderProgram->ReturnProgramID());
-
-    glUniform1i(TAGEngine::m_uLuz0Location, true);
-    glUniformMatrix4fv(TAGEngine::m_uVMatrixLocation, 1, GL_FALSE, glm::value_ptr(Entity::viewMatrix)); // Para la luz matrix view pero sin escalado!
 
 
     // Dibujar
@@ -274,6 +273,67 @@ void tag::TAGEngine::setActiveCamera(const unsigned int activeCamera)
     // Recorremos hasta root guardando todas las transformaciones.
     std::stack<glm::mat4> pila;
     GraphicNode* node = nodeCam;
+
+    while (node=node->getParent())
+    {
+        Entity* entity = node->getEntity();
+
+        // Si hace un cast no válido, devuelve nulo
+        if (ETransform* t = dynamic_cast<ETransform*>(entity))
+            pila.push(t->getMatrix());
+    }
+
+    // Aplicamos las transformaciones sacando de la pila
+    Entity::viewMatrix = glm::mat4();
+    while (pila.size()>0)
+    {
+        Entity::viewMatrix *= pila.top();
+        pila.pop();
+    }
+}
+
+//////////////////////////////////
+tag::GraphicNode* tag::TAGEngine::createLight(const vec3f position, const vec3f rotation, GraphicNode* parent)
+{
+    // Si no especificamos padre, usamos el root. 0 es el valor por defecto
+    if (parent==0)
+        parent = &m_rootNode;
+
+    // Creamos nodo de traslación (posición)
+    GraphicNode* nodoTraslacion = createNodePosition(position, parent);
+
+    // Creamos nodo de Rotación
+    GraphicNode* nodoRotacion = createNodeRotation(rotation, nodoTraslacion);
+
+    // Creamos nodo de luz
+    GraphicNode* nodoLuz = new GraphicNode();
+    ELight* luz = new ELight();
+
+    nodoLuz->setEntity(luz);
+
+    nodoRotacion->addChild(nodoLuz);
+
+    // Registramos la cámara
+    m_lights.push_back(nodoLuz);
+
+    setLightOn(m_lights.size());
+
+    return nodoLuz;
+}
+
+void tag::TAGEngine::setLightOn(const unsigned int light)
+{
+    // Obtenemos el nodo
+    GraphicNode* nodeLuz = m_lights.at(light-1);
+
+    glUniform1i(TAGEngine::m_uLuz0Location, true);
+    glUniformMatrix4fv(TAGEngine::m_uVMatrixLocation, 1, GL_FALSE, glm::value_ptr(Entity::viewMatrix)); // Para la luz matrix view pero sin escalado!
+
+
+    // Calculamos Entity::viewMatrix
+    // Recorremos hasta root guardando todas las transformaciones.
+    std::stack<glm::mat4> pila;
+    GraphicNode* node = nodeLuz;
 
     while (node=node->getParent())
     {
