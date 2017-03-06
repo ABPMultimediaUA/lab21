@@ -48,7 +48,7 @@ void tag::ETransform::translate(vec3f t)
     m_matrix = glm::translate(m_matrix, glm::vec3(t.x, t.y, t.z));
 }
 
-/////////////////
+//////////////////////
 void tag::ETransform::translate(float x, float y, float z)
 {
     m_matrix = glm::translate(m_matrix, glm::vec3(x, y, z));
@@ -61,17 +61,32 @@ void tag::ETransform::rotate(vec3f t)
     ETransform::rotate(t.x, t.y, t.z);
 }
 
-/////////////////
+//////////////////////
 void tag::ETransform::rotate(float x, float y, float z)
 {
+    float toRad = M_PI / 180;
+
     if (x != 0)
+    {
+        x = x * toRad;
         m_matrix = glm::rotate(m_matrix, x, glm::vec3(1, 0, 0));
+    }
+
 
     if (y != 0)
+    {
+        y = y * toRad;
         m_matrix = glm::rotate(m_matrix, y, glm::vec3(0, 1, 0));
+    }
+
 
     if (z != 0)
+    {
+        z = z * toRad;
         m_matrix = glm::rotate(m_matrix, z, glm::vec3(0, 0, 1));
+    }
+
+
 }
 
 /////////////////
