@@ -196,28 +196,36 @@ tag::GraphicNode* tag::TAGEngine::createNodePosition(const vec3f position, Graph
     return nodoPosition;
 }
 
-////////////////////////////
-tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const vec3f position, const vec3f rotation, GraphicNode* parent)
+//////////////////////////////////
+tag::GraphicNode* tag::TAGEngine::createNodePR(const vec3f position, const vec3f rotation, GraphicNode* parent)
 {
     // Si no especificamos padre, usamos el root. 0 es el valor por defecto
     if (parent==0)
         parent = &m_rootNode;
 
+    // Creamos nodo de Rotación
+    GraphicNode* nodoRotacion = createNodeRotation(rotation, parent);
 
     // Creamos nodo de traslación (posición)
-    GraphicNode* nodoTraslacion = createNodePosition(position, parent);
+    GraphicNode* nodoTraslacion = createNodePosition(position, nodoRotacion);
 
-    // Creamos nodo de Rotación
-    GraphicNode* nodoRotacion = createNodeRotation(rotation, nodoTraslacion);
+    // Cremamos nodo final
+    GraphicNode* nodo = new GraphicNode();
+    nodoTraslacion->addChild(nodo);
 
+    return nodo;
+}
 
+////////////////////////////
+tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const vec3f position, const vec3f rotation, GraphicNode* parent)
+{
     // Creamos nodo de malla
-    GraphicNode* nodoMalla = new GraphicNode();
+    GraphicNode* nodoMalla = createNodePR(position, rotation, parent);
+
+    // Creamos malla
     EMesh* malla = new EMesh();
     nodoMalla->setEntity(malla);
     malla->loadMesh(fileName);
-
-    nodoRotacion->addChild(nodoMalla);
 
     return nodoMalla;
 }
@@ -225,33 +233,20 @@ tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const v
 //////////////////////////////////
 tag::GraphicNode* tag::TAGEngine::createPerspectiveCamera(const vec3f position, const vec3f rotation, float fov, float aspect, float near, float far, GraphicNode* parent)
 {
-    // Si no especificamos padre, usamos el root. 0 es el valor por defecto
-    if (parent==0)
-        parent = &m_rootNode;
-
-    // Creamos nodo de traslación (posición)
-    GraphicNode* nodoTraslacion = createNodePosition(position, parent);
-
-    // Creamos nodo de Rotación
-    GraphicNode* nodoRotacion = createNodeRotation(rotation, nodoTraslacion);
-
     // Creamos nodo de cámara
-    GraphicNode* nodoCam = new GraphicNode();
+    GraphicNode* nodoCam = createNodePR(position, rotation, parent);
+
+    // Creamos camara
     ECamera* cam = new ECamera();
     cam->setPerspective(fov, aspect, near, far);
     nodoCam->setEntity(cam);
 
-    nodoRotacion->addChild(nodoCam);
-
     // Registramos la cámara
     m_cameras.push_back(nodoCam);
 
-
     // Activo la cámara recien creada si no hay ninguna activa
     if (m_numActiveCamera == 0)
-    {
         setActiveCamera(m_cameras.size());
-    }
 
     return nodoCam;
 }
@@ -287,7 +282,7 @@ void tag::TAGEngine::setActiveCamera(const unsigned int activeCamera)
     Entity::viewMatrix = glm::mat4();
     while (pila.size()>0)
     {
-        Entity::viewMatrix *= pila.top();
+        Entity::viewMatrix = pila.top() * Entity::viewMatrix;
         pila.pop();
     }
 }
@@ -295,27 +290,15 @@ void tag::TAGEngine::setActiveCamera(const unsigned int activeCamera)
 //////////////////////////////////
 tag::GraphicNode* tag::TAGEngine::createLight(const vec3f position, const vec3f rotation, GraphicNode* parent)
 {
-    // Si no especificamos padre, usamos el root. 0 es el valor por defecto
-    if (parent==0)
-        parent = &m_rootNode;
-
-    // Creamos nodo de traslación (posición)
-    GraphicNode* nodoTraslacion = createNodePosition(position, parent);
-
-    // Creamos nodo de Rotación
-    GraphicNode* nodoRotacion = createNodeRotation(rotation, nodoTraslacion);
-
     // Creamos nodo de luz
-    GraphicNode* nodoLuz = new GraphicNode();
+    GraphicNode* nodoLuz = createNodePR(position, rotation, parent);
     ELight* luz = new ELight();
-
     nodoLuz->setEntity(luz);
 
-    nodoRotacion->addChild(nodoLuz);
-
-    // Registramos la cámara
+    // Registramos la luz
     m_lights.push_back(nodoLuz);
 
+    // Activamos luz
     setLightOn(m_lights.size());
 
     return nodoLuz;
@@ -347,10 +330,9 @@ void tag::TAGEngine::setLightOn(const unsigned int light)
     glm::mat4 lMatrix;
     while (pila.size()>0)
     {
-        lMatrix *= pila.top();
+        lMatrix = pila.top() * lMatrix;
         pila.pop();
     }
 
     glUniformMatrix4fv(TAGEngine::m_uLMatrixLocation, 1, GL_FALSE, glm::value_ptr(lMatrix)); // Para la luz matrix view pero sin escalado!
-
 }
