@@ -102,7 +102,7 @@ void dwe::GraphicsEngine::draw()
 
 //////////////////////////
 void dwe::GraphicsEngine::render()
-{
+{/*
     glm::mat4   modelMatrix;
     glm::mat4   modelViewMatrix;
 
@@ -138,7 +138,7 @@ void dwe::GraphicsEngine::render()
         }
 
         iter++;
-    }
+    }*/
 }
 
 ////////////////////////////////////////////////////
@@ -291,4 +291,5 @@ dwe::vec2f dwe::GraphicsEngine::getMousePosition()
     float y = -sf::Mouse::getPosition(*m_window).y;
 
     return vec2f(x,y);*/
+    return vec2f(0,0);
 }

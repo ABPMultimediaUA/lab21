@@ -1,4 +1,5 @@
 #include "Rifle.h"
+#include "Player.h"
 
 Rifle::Rifle()
 {

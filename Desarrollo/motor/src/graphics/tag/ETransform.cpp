@@ -3,9 +3,8 @@
 #define GLEW_STATIC
 #include<GL/glew.h>
 
-#include <iostream>
 #include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/string_cast.hpp>
+
 
 tag::ETransform::ETransform()
 {
@@ -65,29 +64,14 @@ void tag::ETransform::rotate(vec3f t)
 /////////////////
 void tag::ETransform::rotate(float x, float y, float z)
 {
-    float toRad = M_PI / 180;
-
     if (x != 0)
-    {
-        x = x * toRad;
         m_matrix = glm::rotate(m_matrix, x, glm::vec3(1, 0, 0));
-    }
-
 
     if (y != 0)
-    {
-        y = y * toRad;
         m_matrix = glm::rotate(m_matrix, y, glm::vec3(0, 1, 0));
-    }
-
 
     if (z != 0)
-    {
-        z = z * toRad;
         m_matrix = glm::rotate(m_matrix, z, glm::vec3(0, 0, 1));
-    }
-
-
 }
 
 /////////////////
@@ -106,25 +90,15 @@ void tag::ETransform::scale(float x, float y, float z)
 /////////////////
 void tag::ETransform::beginDraw()
 {
-    std::cout << "Begin " << m_cadena << "\n";
-    //std::cout << "estoy en " << glm::to_string(m_matrix) << endl;
-
-    tag::Entity::TStack.push(tag::Entity::MVmatrix);
-    tag::Entity::MVmatrix *= m_matrix;
-
-    std::cout << "Begin, modelmatrix : " << glm::to_string(tag::Entity::MVmatrix) << std::endl;
+    Entity::TStack.push(Entity::modelMatrix);
+    Entity::modelMatrix *= m_matrix;
 }
 
 /////////////////
 void tag::ETransform::endDraw()
 {
-    std::cout << "End " << m_cadena << "\n";
-
-    tag::Entity::TStack.pop();
-
-    tag::Entity::MVmatrix = m_matrix;
-
-    std::cout << "End, modelmatrix : " << glm::to_string(tag::Entity::MVmatrix) << std::endl;
+    Entity::modelMatrix = Entity::TStack.top();
+    Entity::TStack.pop();
 }
 
 

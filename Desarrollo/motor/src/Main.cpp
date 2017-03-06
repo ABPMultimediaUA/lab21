@@ -1,89 +1,28 @@
 #define GLEW_STATIC
 #include<GL/glew.h>
 
-#include <stdexcept>
-
-#include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
-
 #include "Scene.h"
 #include "GraphicsEngine.h"
 #include "Player.h"
 
 
 #include "tag/GraphicNode.h"
-#include "tag/EMesh.h"
-#include "tag/ResourceManager.h"
-#include "tag/ResourceMesh.h"
-#include "tag/ETransform.h"
-#include "tag/TAGEngine.h"
+
+
 
 
 using namespace tag;
 
 int main()
 {
-
-    /////////////////////////////////////
-    // Creacion del arbol
-    /////////////////////////////////////
-    tag::GraphicNode nodoRoot;
-    tag::EMesh entityRoot;
-    entityRoot.m_cadena = "Root";
-    nodoRoot.setEntity(&entityRoot);
-
-    tag::GraphicNode nodo01;
-    tag::ETransform transform01;
-    transform01.m_cadena = "01 - MATRIX";
-    nodo01.setEntity(&transform01);
-    nodoRoot.addChild(&nodo01);
-
-    tag::GraphicNode nodo04;
-    tag::ETransform transform04;
-    transform04.m_cadena = "04 - MATRIX";
-    nodo04.setEntity(&transform04);
-    nodo01.addChild(&nodo04);
-
-    tag::GraphicNode nodo06;
-    tag::EMesh entity06;
-    entity06.loadMesh("media/newcube.obj");
-    entity06.m_cadena = "06 - MESH";
-    nodo06.setEntity(&entity06);
-    nodo04.addChild(&nodo06);
-
-    tag::GraphicNode nodo07;
-    tag::EMesh entity07;
-    entity07.loadMesh("media/newcube.obj");
-    entity07.m_cadena = "07 - MESH";
-    nodo07.setEntity(&entity07);
-    nodo04.addChild(&nodo07);
-
-    /////////////////////////////////////
-    // Transformaciones
-    /////////////////////////////////////
-    transform01.rotate(90, 0, 0);
-
-    transform04.translate(2, 3, 4);
-
-    nodoRoot.draw();
-
-/*
-              root
-               /
-               1
-               /
-               4
-              / \
-             6   7
-
-*/
-
     TAGEngine tagEngine;
     tagEngine.init();
 
-    std::cout << "\n\n\nCargamos mallas: \n--------------------\n";
+    GraphicNode* cube01 = tagEngine.createMesh("media/newcube.obj", vec3f(-2,0,0), vec3f(2,2,1));
+    GraphicNode* cube02 = tagEngine.createMesh("media/newcube.obj", vec3f( 2,0,0), vec3f(0,2,0));
+    GraphicNode* cube03 = tagEngine.createMesh("media/newcube.obj", vec3f( 0,-2.2,0), vec3f(0,0,0), cube02);
 
-    tagEngine.createNode();
+    GraphicNode* camera = tagEngine.createPerspectiveCamera(vec3f(0,0,-9.0), vec3f(0,0,0), 45.0f, TAGEngine::screenWidth / TAGEngine::screenHeight, 0.1f, 1000.0f);
 
     while (tagEngine.isRunning())
     {
