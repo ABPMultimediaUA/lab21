@@ -18,7 +18,7 @@ int tag::TAGEngine::m_aPositionLocation;
 int tag::TAGEngine::m_aNormalLocation;
 int tag::TAGEngine::m_uProjectionMatrixLocation;
 int tag::TAGEngine::m_uMVMatrixLocation;
-int tag::TAGEngine::m_uVMatrixLocation;
+int tag::TAGEngine::m_uLMatrixLocation;
 int tag::TAGEngine::m_uColorLocation;
 int tag::TAGEngine::m_uLuz0Location;
 
@@ -74,7 +74,7 @@ void tag::TAGEngine::init()
     // Uniforms
     TAGEngine::m_uProjectionMatrixLocation   = m_shaderProgram->uniform(U_PROJECTIONMATRIX);
     TAGEngine::m_uMVMatrixLocation           = m_shaderProgram->uniform(U_MVMATRIX);
-    TAGEngine::m_uVMatrixLocation            = m_shaderProgram->uniform(U_VMATRIX);
+    TAGEngine::m_uLMatrixLocation            = m_shaderProgram->uniform(U_LMATRIX);
     TAGEngine::m_uColorLocation              = m_shaderProgram->uniform(U_COLOR);
     TAGEngine::m_uLuz0Location               = m_shaderProgram->uniform(U_LUZ0);
 
@@ -327,7 +327,6 @@ void tag::TAGEngine::setLightOn(const unsigned int light)
     GraphicNode* nodeLuz = m_lights.at(light-1);
 
     glUniform1i(TAGEngine::m_uLuz0Location, true);
-    glUniformMatrix4fv(TAGEngine::m_uVMatrixLocation, 1, GL_FALSE, glm::value_ptr(Entity::viewMatrix)); // Para la luz matrix view pero sin escalado!
 
 
     // Calculamos Entity::viewMatrix
@@ -345,10 +344,13 @@ void tag::TAGEngine::setLightOn(const unsigned int light)
     }
 
     // Aplicamos las transformaciones sacando de la pila
-    Entity::viewMatrix = glm::mat4();
+    glm::mat4 lMatrix;
     while (pila.size()>0)
     {
-        Entity::viewMatrix *= pila.top();
+        lMatrix *= pila.top();
         pila.pop();
     }
+
+    glUniformMatrix4fv(TAGEngine::m_uLMatrixLocation, 1, GL_FALSE, glm::value_ptr(lMatrix)); // Para la luz matrix view pero sin escalado!
+
 }

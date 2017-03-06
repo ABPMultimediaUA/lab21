@@ -8945,7 +8945,7 @@
 	<iostream>
 	<stdexcept>
 
-1488805151 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\main.cpp
+1488812670 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\main.cpp
 	<GL/glew.h>
 	"Scene.h"
 	"GraphicsEngine.h"
@@ -9050,7 +9050,7 @@
 1488795746 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\resource.h
 	<string>
 
-1488809527 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
+1488814296 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
 	<GL/glew.h>
 	<SFML/Graphics.hpp>
 	<glm/glm.hpp>
@@ -9074,7 +9074,7 @@
 	<glm/gtc/matrix_transform.hpp>
 	<iostream>
 
-1488809527 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\ecamera.h
+1488809612 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\ecamera.h
 	"Entity.h"
 	"tag/TAGEngine.h"
 
@@ -9085,10 +9085,10 @@
 	<stack>
 	"tag/ResourceManager.h"
 
-1488805037 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\elight.cpp
+1488809612 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\elight.cpp
 	"tag/ELight.h"
 
-1488805069 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\elight.h
+1488809612 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\elight.h
 	"Entity.h"
 	"tag/TAGEngine.h"
 
@@ -9135,7 +9135,7 @@
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/string_cast.hpp>
 
-1488804989 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
+1488814844 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
 	"tag/TAGEngine.h"
 	<stdexcept>
 	<glm/glm.hpp>
@@ -9154,7 +9154,7 @@
 	<glm/glm.hpp>
 	"tag/Types.h"
 
-1488795746 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
+1488810377 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
 	"tag/ETransform.h"
 	<GL/glew.h>
 	<glm/gtc/matrix_transform.hpp>
