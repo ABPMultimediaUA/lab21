@@ -35,16 +35,11 @@ void Player::update(Shotgun* shotgun, Rifle* rifle)
 {
     Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
 
-    if (m_hasShotgun)
-    {
+    if (m_hasShotgun){
         m_weapons[1] = shotgun;
-
-    }
-    else if (m_hasRifle)
-    {
+    }else if (m_hasRifle){
         m_weapons[2] = rifle;
     }
-
 }
 
 /////////////
@@ -89,67 +84,35 @@ bool Player::getHasRifle() { return m_hasRifle; }
 /////////////
 void Player::addWeapon(Consumable* weapon, FirearmKind type)
 {
-
-    if (!m_hasShotgun && type == eShotgun)
-    {
+    if (!m_hasShotgun && type == eShotgun){
         m_hasShotgun = true;
-        cout << "temgo shotgun" << endl;
+        cout << "TENGO SHOTGUN" << endl;
     }
 
-    if (!m_hasRifle && type == eRifle)
-    {
-
+    if (!m_hasRifle && type == eRifle){
         m_hasRifle = true;
-        cout << "tengo rifle" << endl;
+        cout << "TENGO RIFLE" << endl;
     }
-
-
 }
 
 /////////////
-void Player::swapCurrentWeapon()
+void Player::swapCurrentWeapon(int w)
 {
-    if (m_currentWeaponType == eGun)
-    {
-
-        if (m_hasShotgun)
-        {
-            m_currentWeapon = m_weapons[1];
-
-            m_currentWeaponType = eShotgun;
-        }
-
-
-        else if (m_hasRifle)
-        {
-            m_currentWeapon = m_weapons[2];
-            m_currentWeaponType = eRifle;
-        }
-
-    }
-    else if (m_currentWeaponType == eShotgun)
-    {
-        if (m_hasRifle)
-        {
-            m_currentWeapon = m_weapons[2];
-            m_currentWeaponType = eRifle;
-        }
-
-
-        else
-        {
-            m_currentWeapon = m_weapons[0];
-            m_currentWeaponType = eGun;
-        }
-
-    }
-    else
-    {
+    if(w==0){               //GUN
         m_currentWeapon = m_weapons[0];
         m_currentWeaponType = eGun;
+    }else if(w==1){         //SHOTGUN
+        if (m_hasShotgun){
+            m_currentWeapon = m_weapons[1];
+            m_currentWeaponType = eShotgun;
+        }
+    }else if(w==2){         //RIFLE
+        if (m_hasRifle){
+            m_currentWeapon = m_weapons[2];
+            m_currentWeaponType = eRifle;
+        }
     }
-
-    //cout << "tengo el arma " << m_currentWeaponType << endl;
+    //cout << "TENGO EL ARMA " << m_currentWeaponType << endl;
 }
 
 /////////////
@@ -207,10 +170,18 @@ void Player::readEvents()
     }
 
 
-    if(GEInstance->receiver.isKeyDown(KEY_KEY_5) && World->getTimeElapsed() - m_timeWeaponSwap > 200)
-    {
-        this->swapCurrentWeapon();
+    /*if(GEInstance->receiver.isKeyDown(KEY_KEY_5) && World->getTimeElapsed() - m_timeWeaponSwap > 200){
+        this->swapCurrentWeapon(3);
         m_timeWeaponSwap = World->getTimeElapsed();
+    }*/
+
+    //CAMBIAR ARMA
+    if(GEInstance->receiver.isKeyDown(KEY_KEY_B)){
+        this->swapCurrentWeapon(0);
+    }else if(GEInstance->receiver.isKeyDown(KEY_KEY_N)){
+        this->swapCurrentWeapon(1);
+    }else if(GEInstance->receiver.isKeyDown(KEY_KEY_M)){
+        this->swapCurrentWeapon(2);
     }
 
 
@@ -288,9 +259,7 @@ void Player::receiveMedkits(int ammount)
 /////////////
 void Player::consumeMedkit()
 {
-
-    if (this->getNumMedkits() > 0)
-    {
+    if (this->getNumMedkits() > 0){
         m_medkits -= 1;
         this->setHealth(100);
         cout << "Vida recuperada: " << this->getHealth() << endl;

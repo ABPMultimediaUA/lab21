@@ -23,6 +23,7 @@
 #include "ScenaryElement.h"
 
 #include "iostream"
+#include "cmath"
 
 #include "CShotgun.h"
 #include "CRifle.h"
@@ -199,14 +200,12 @@ vector3df dwe::GraphicsEngine::getTransformedBoundingBox(scene::IAnimatedMeshSce
 Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 {
 	scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/sydney.md2");
-	if (!mesh)
-	{
+	if (!mesh){
 		m_device->drop();
 		exit(0);
 	}
 	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
-	if (irrnode)
-	{
+	if (irrnode){
 		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
 		irrnode->setMD2Animation(scene::EMAT_STAND);
 		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/sydney.bmp") );
@@ -215,7 +214,7 @@ Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 	irrnode->setPosition(vector3df(0,24,10));
 
 
-
+/*
 	// TODO ¿esto es para quitar????
 	vector3df extent= irrnode->getTransformedBoundingBox().getExtent();
     //now extent.X is the X size of the box, .Y is Y etc.
@@ -227,7 +226,7 @@ Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
     //createDynPhyEntity(m_world,vector2d<s32>(0,0), m_device);
     // TODO .................... hasta aqui
 
-
+*/
 
 	Player* p = new Player(gun);
 	p->setNode(new Node(irrnode));cout<<"-----------------------------"<<endl;
@@ -241,14 +240,13 @@ Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 {
 	scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/playermate.md2");
-	if (!mesh)
-	{
+	if (!mesh){
 		m_device->drop();
 		exit(0);
 	}
+
 	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
-	if (irrnode)
-	{
+	if (irrnode){
 		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
 		irrnode->setMD2Animation(scene::EMAT_STAND);
 		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/playermate.bmp") );
@@ -407,7 +405,7 @@ Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
 AmmoGun* dwe::GraphicsEngine::createAmmoGun(float px, float py, float pz)
 {
     //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/AmmoGun/speed"); // centrado
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/AmmoGun"); // no centrado
+    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/gun"); // no centrado
 
     AmmoGun* a = new AmmoGun();
     a->setNode(new Node(irrnode));
@@ -541,7 +539,7 @@ void dwe::GraphicsEngine::close()
 }
 
 //////////////////////////
-void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition)
+void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition, int moreEnemiesX, int moreEnemiesZ)
 {
     float cursorX = GEInstance->receiver.getCursorX();
     float cursorY = GEInstance->receiver.getCursorY();
@@ -551,8 +549,6 @@ void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition)
     int   borderR = width-50;
     int   borderU = height - (height-50);
     int   borderD = height-50;
-
-
 
     //update camera target
     //Desencuadre horizontal
@@ -583,8 +579,43 @@ void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition)
             tarUD = 0;
     }
 
-    m_smgr->getActiveCamera()->setTarget(vector3df(playerPosition.x+tarLR, playerPosition.y, playerPosition.z+tarUD));
-    m_smgr->getActiveCamera()->setPosition(vector3df(playerPosition.x+tarLR, _camera_y, playerPosition.z + _camera_z_offset + tarUD));
+
+    int des  = _camera_desviation/2;
+    float prog = 0.25f;
+    //DEPENDE DE LOS ENEMIGOS
+    if(moreEnemiesX!=0 && (moreEnemiesX>2 || moreEnemiesX<-2) ){
+        if(moreEnemiesX>0)
+            if(zoomX < des)      zoomX += prog;
+        if(moreEnemiesX<0)
+            if(zoomX > -des)     zoomX -= prog;
+    }else{
+        if(zoomX!=0)
+            if(zoomX<0)          zoomX += prog;
+            else                 zoomX -= prog;
+        else
+            zoomX = 0;
+    }
+
+    //DEPENDE DE LOS ENEMIGOS
+    if(moreEnemiesZ!=0 && (moreEnemiesZ>2 || moreEnemiesZ<-2) ){
+        if(moreEnemiesZ>0)
+            if(zoomZ < des)      zoomZ += prog;
+        if(moreEnemiesZ<0)
+            if(zoomZ > -des)     zoomZ -= prog;
+    }else{
+        if(zoomZ!=0)
+            if(zoomZ<0)          zoomZ += prog;
+            else                 zoomZ -= prog;
+        else
+            zoomZ = 0;
+    }
+    /*
+    cout << "----------------------------------------\n";
+    cout << "mE_X = " << moreEnemiesX << " : mE_Z = " << moreEnemiesZ << endl;
+    cout << "ZOOMX= " << zoomX << " : ZOOMZ= " << zoomZ << endl;
+    */
+    m_smgr->getActiveCamera()->setTarget(vector3df(playerPosition.x+ tarLR + zoomX, playerPosition.y, playerPosition.z+tarUD + zoomZ));
+    m_smgr->getActiveCamera()->setPosition(vector3df(playerPosition.x+tarLR + zoomX, _camera_y + abs(zoomX) + abs(zoomZ), playerPosition.z + _camera_z_offset + tarUD));
 }
 
 //////////////////////////

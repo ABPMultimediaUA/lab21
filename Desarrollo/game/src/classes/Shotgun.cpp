@@ -1,4 +1,5 @@
 #include "Shotgun.h"
+#include "Player.h"
 
 Shotgun::Shotgun()
 {

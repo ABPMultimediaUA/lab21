@@ -8,8 +8,10 @@
 
 #include "Shader.h"
 #include "tag/Entity.h"
-#include "tag/ResourceManager.h"
 #include "tag/ResourceMesh.h"
+#include "tag/ECamera.h"
+#include "tag/ETransform.h"
+#include "tag/EMesh.h"
 
 int tag::TAGEngine::m_aPositionLocation;
 int tag::TAGEngine::m_aNormalLocation;
@@ -19,7 +21,14 @@ int tag::TAGEngine::m_uVMatrixLocation;
 int tag::TAGEngine::m_uColorLocation;
 int tag::TAGEngine::m_uLuz0Location;
 
-tag::TAGEngine::TAGEngine()
+const float tag::TAGEngine::screenHeight;
+const float tag::TAGEngine::screenWidth;
+
+
+tag::TAGEngine::TAGEngine() :
+    m_rootNode(),
+    m_cameras(),
+    m_numActiveCamera(0)
 {
     //ctor
 }
@@ -67,10 +76,6 @@ void tag::TAGEngine::init()
     TAGEngine::m_uColorLocation              = m_shaderProgram->uniform(U_COLOR);
     TAGEngine::m_uLuz0Location               = m_shaderProgram->uniform(U_LUZ0);
 
-
-    // Estableciendo la matriz de proyección perspectiva
-    glm::mat4 m_projectionMatrix = glm::perspective(45.0f, (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 1000.0f);
-    glUniformMatrix4fv(TAGEngine::m_uProjectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(m_projectionMatrix));
 
     // Creamos los mensajes de texto, por ahora vacios
     if (!m_font.loadFromFile("media/ExoRegular.otf"))
@@ -121,15 +126,7 @@ void tag::TAGEngine::draw()
     glClearColor(0.0, 0.7, 0.9, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    // Cálculo de la vista (cámara)
-    // TODO por ahora la posicion de la camara la establecemos aqui
-    rotateMatrix = glm::mat4(1.0,0.0,0.0,0.0, 0.0,1.0,0.0,0.0, 0.0,0.0,1.0,0.0, 0.0,0.0,0.0,1.0);
-    positionMatrix = glm::vec3(0.0, 0.0, -9.0);
-    Entity::MVmatrix = glm::mat4();
-    Entity::MVmatrix = glm::translate(Entity::MVmatrix, glm::vec3(positionMatrix[0], positionMatrix[1], positionMatrix[2]));
-    Entity::MVmatrix = Entity::MVmatrix * rotateMatrix;
-    Entity::MVmatrix = glm::scale(Entity::MVmatrix, glm::vec3(1.0, 1.0, 1.0));
-
+    // El cálculo de la vista (cámara) se realiza en el setActiveCamera.
 
     // Habilitamos el paso de attributes
     glEnableVertexAttribArray(TAGEngine::m_aPositionLocation);
@@ -137,10 +134,12 @@ void tag::TAGEngine::draw()
     glUseProgram(m_shaderProgram->ReturnProgramID());
 
     glUniform1i(TAGEngine::m_uLuz0Location, true);
-    glUniformMatrix4fv(TAGEngine::m_uVMatrixLocation, 1, GL_FALSE, glm::value_ptr(Entity::MVmatrix)); // Para la luz matrix view pero sin escalado!
+    glUniformMatrix4fv(TAGEngine::m_uVMatrixLocation, 1, GL_FALSE, glm::value_ptr(Entity::viewMatrix)); // Para la luz matrix view pero sin escalado!
+
 
     // Dibujar
     renderElements();
+
 
     glDisableVertexAttribArray(TAGEngine::m_aPositionLocation);
     glDisableVertexAttribArray(TAGEngine::m_aNormalLocation);
@@ -165,18 +164,131 @@ void tag::TAGEngine::draw()
 /////////////////////
 void tag::TAGEngine::renderElements()
 {
-    resourceMesh->draw(vec3f(-2,0,0), vec3f(2,2,1));
-    resourceMesh2->draw(vec3f(2,0,0), vec3f(1,0,1));
+    // Recorremos el arbol llamando al draw
+    m_rootNode.draw();
 }
 
-
-void tag::TAGEngine::createNode()
+//////////////////////////////////
+tag::GraphicNode* tag::TAGEngine::createNodeTransform(GraphicNode* parent)
 {
-    resourceMesh = static_cast<ResourceMesh*>(m_resourceManager.getResource("media/newcube.obj"));
-    resourceMesh2 = static_cast<ResourceMesh*>(m_resourceManager.getResource("media/newcube.obj"));
+    GraphicNode* nodoTransform = new GraphicNode();
+    ETransform* etransform = new ETransform();
+    nodoTransform->setEntity(etransform);
+    parent->addChild(nodoTransform);
+
+    return nodoTransform;
 }
 
-tag::ResourceManager tag::TAGEngine::getResourceManager()
+//////////////////////////////////
+tag::GraphicNode* tag::TAGEngine::createNodeRotation(const vec3f rotation, GraphicNode* parent)
 {
-    return m_resourceManager;
+    GraphicNode* nodoRotacion = createNodeTransform(parent);
+    static_cast<ETransform*>(nodoRotacion->getEntity())->rotate(rotation);
+
+    return nodoRotacion;
+}
+
+//////////////////////////////////
+tag::GraphicNode* tag::TAGEngine::createNodePosition(const vec3f position, GraphicNode* parent)
+{
+    GraphicNode* nodoPosition = createNodeTransform(parent);
+    static_cast<ETransform*>(nodoPosition->getEntity())->translate(position);
+
+    return nodoPosition;
+}
+
+////////////////////////////
+tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const vec3f position, const vec3f rotation, GraphicNode* parent)
+{
+    // Si no especificamos padre, usamos el root. 0 es el valor por defecto
+    if (parent==0)
+        parent = &m_rootNode;
+
+
+    // Creamos nodo de traslación (posición)
+    GraphicNode* nodoTraslacion = createNodePosition(position, parent);
+
+    // Creamos nodo de Rotación
+    GraphicNode* nodoRotacion = createNodeRotation(rotation, nodoTraslacion);
+
+
+    // Creamos nodo de malla
+    GraphicNode* nodoMalla = new GraphicNode();
+    EMesh* malla = new EMesh();
+    nodoMalla->setEntity(malla);
+    malla->loadMesh(fileName);
+
+    nodoRotacion->addChild(nodoMalla);
+
+    return nodoMalla;
+}
+
+//////////////////////////////////
+tag::GraphicNode* tag::TAGEngine::createPerspectiveCamera(const vec3f position, const vec3f rotation, float fov, float aspect, float near, float far, GraphicNode* parent)
+{
+    // Si no especificamos padre, usamos el root. 0 es el valor por defecto
+    if (parent==0)
+        parent = &m_rootNode;
+
+    // Creamos nodo de traslación (posición)
+    GraphicNode* nodoTraslacion = createNodePosition(position, parent);
+
+    // Creamos nodo de Rotación
+    GraphicNode* nodoRotacion = createNodeRotation(rotation, nodoTraslacion);
+
+    // Creamos nodo de cámara
+    GraphicNode* nodoCam = new GraphicNode();
+    ECamera* cam = new ECamera();
+    cam->setPerspective(fov, aspect, near, far);
+    nodoCam->setEntity(cam);
+
+    nodoRotacion->addChild(nodoCam);
+
+    // Registramos la cámara
+    m_cameras.push_back(nodoCam);
+
+
+    // Activo la cámara recien creada si no hay ninguna activa
+    if (m_numActiveCamera == 0)
+    {
+        setActiveCamera(m_cameras.size());
+    }
+
+    return nodoCam;
+}
+
+/////////////////////
+void tag::TAGEngine::setActiveCamera(const unsigned int activeCamera)
+{
+    // TODO controlar si la camara no existe o es cero
+    m_numActiveCamera = activeCamera;
+
+    // Obtenemos el nodo
+    GraphicNode* nodeCam = m_cameras.at(m_numActiveCamera-1);
+
+    // Estableciendo la matriz de proyección perspectiva
+    glm::mat4 m_projectionMatrix = static_cast<ECamera*>(nodeCam->getEntity())->getProjectionMatrix();
+    glUniformMatrix4fv(TAGEngine::m_uProjectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(m_projectionMatrix));
+
+    // Calculamos Entity::viewMatrix
+    // Recorremos hasta root guardando todas las transformaciones.
+    std::stack<glm::mat4> pila;
+    GraphicNode* node = nodeCam;
+
+    while (node=node->getParent())
+    {
+        Entity* entity = node->getEntity();
+
+        // Si hace un cast no válido, devuelve nulo
+        if (ETransform* t = dynamic_cast<ETransform*>(entity))
+            pila.push(t->getMatrix());
+    }
+
+    // Aplicamos las transformaciones sacando de la pila
+    Entity::viewMatrix = glm::mat4();
+    while (pila.size()>0)
+    {
+        Entity::viewMatrix *= pila.top();
+        pila.pop();
+    }
 }

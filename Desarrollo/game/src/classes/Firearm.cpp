@@ -1,4 +1,5 @@
 #include "Firearm.h"
+#include "Player.h"
 
 Firearm::Firearm()
 {

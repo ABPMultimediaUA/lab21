@@ -43,6 +43,7 @@ class Scene
 
         void Update();
 
+        void closestEnemy(Player* mainPlayer, Enemy* enemy);
 
         void createProjectile(dwe::vec3f origin, float angle);
         void deleteProjectile(unsigned int i);
@@ -61,7 +62,7 @@ class Scene
         void updateConsumables(Player* mainPlayer);
         void updatePlayerWeapons(Player* mainPlayer, Firearm** weapons);
 
-        Entity* getEntities();
+        Enemy* getClosestEnemy();
 
     protected:
 
@@ -86,6 +87,10 @@ class Scene
         std::vector<Enemy*> m_enemies;
 
         float timeLastProjectil;
+
+
+        int moreEnemiesX;
+        int moreEnemiesZ;
 
         // Random
         dwe::Node* joint_try;

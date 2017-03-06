@@ -227,8 +227,7 @@ namespace dwe
         // Eventos de teclado y ratón
         AppReceiver receiver;
 
-        void updateCamera(const vec3f playerPosition);
-
+        void updateCamera(const vec3f playerPosition, int moreEnemiesX, int moreEnemiesZ);
 
         void changeEnemyDogTexture(Dog* dog, const io::path& str);
         Door* createDoor(int f, bool a, float px, float py, float pz);
@@ -283,6 +282,8 @@ namespace dwe
         // Camara
         float tarUD;
         float tarLR;
+        float zoomX;
+        float zoomZ;
         static const unsigned short _camera_desviation  = 50;
         static const float          _camera_progression = 0.5f;
         static const int            _camera_y           = 250;

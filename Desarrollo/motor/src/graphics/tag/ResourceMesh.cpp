@@ -1,7 +1,6 @@
 #include "tag/ResourceMesh.h"
 
 #include <stdio.h>
-#include <iostream>
 #include <stdexcept>
 
 
@@ -11,6 +10,7 @@
 
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 
 tag::ResourceMesh::ResourceMesh() :
@@ -104,25 +104,11 @@ void tag::ResourceMesh::load(std::string fileName)
     m_color[3] = 1.0;
 }
 
-void tag::ResourceMesh::draw(vec3f position, vec3f rotation)
+void tag::ResourceMesh::draw()
 {
-    glm::mat4   modelMatrix;
     glm::mat4   modelViewMatrix;
 
-
-    //////////////////////////
-    // TODO el cálculo de la posición y la rotación (modelview) no irá aqui.
-    // Cálculo de la ModelView
-    modelMatrix     = glm::mat4(1.0f); // matriz identidad
-    // Aplicamos posicion
-    modelMatrix     = glm::translate(modelMatrix, glm::vec3(position.x, position.y, position.z));
-    // Aplicamos rotacion
-    modelMatrix     = glm::rotate(modelMatrix, rotation.x, glm::vec3(1,0,0));
-    modelMatrix     = glm::rotate(modelMatrix, rotation.y, glm::vec3(0,1,0));
-    modelMatrix     = glm::rotate(modelMatrix, rotation.z, glm::vec3(0,0,1));
-    modelViewMatrix = Entity::MVmatrix * modelMatrix;
-    ///////////////////////////
-
+    modelViewMatrix = Entity::viewMatrix * Entity::modelMatrix;
 
     // Envía nuestra ModelView al Vertex Shader
     glUniformMatrix4fv(TAGEngine::m_uMVMatrixLocation, 1, GL_FALSE, &modelViewMatrix[0][0]);

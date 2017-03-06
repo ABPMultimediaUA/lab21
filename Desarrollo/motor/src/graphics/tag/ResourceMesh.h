@@ -22,10 +22,9 @@ namespace tag
             ResourceMesh();
             virtual ~ResourceMesh();
 
-            void load(std::string fileName);
+            virtual void load(std::string fileName);
 
-            // TODO los parametros de posicion y rotacion son provisionales para pruebas
-            void draw(vec3f position, vec3f rotation);
+            void draw();
 
         private:
             GLfloat* m_vertices;
