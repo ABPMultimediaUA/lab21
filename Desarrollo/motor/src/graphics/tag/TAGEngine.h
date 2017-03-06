@@ -125,6 +125,7 @@ namespace tag
             GraphicNode* createNodeTransform(GraphicNode* parent);
             GraphicNode* createNodeRotation(const vec3f rotation, GraphicNode* parent);
             GraphicNode* createNodePosition(const vec3f position, GraphicNode* parent);
+            GraphicNode* createNodePR(const vec3f position, const vec3f rotation, GraphicNode* parent);
     };
 }
 
