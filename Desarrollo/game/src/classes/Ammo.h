@@ -10,7 +10,6 @@ class Ammo : public Consumable
         Ammo();
         virtual ~Ammo();
 
-
         // Getters & Setters
         int getAmmount();
         void setAmmount(int a);

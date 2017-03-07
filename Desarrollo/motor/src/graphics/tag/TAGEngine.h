@@ -12,7 +12,7 @@
 // Nombre de los uniforms
 #define U_PROJECTIONMATRIX      "u_ProjectionMatrix"
 #define U_MVMATRIX              "u_MVMatrix"
-#define U_VMATRIX               "u_VMatrix"
+#define U_LMATRIX               "u_LMatrix"
 #define U_COLOR                 "u_Color"
 #define U_LUZ0                  "u_Luz0"
 
@@ -24,6 +24,8 @@
 #include <glm/glm.hpp>
 
 #include "tag/Types.h"
+#include "tag/GraphicNode.h"
+#include "tag/EMesh.h"
 
 
 #include "Program.h"
@@ -55,22 +57,51 @@ namespace tag
             /// dibuja los nodos y muestra los fps.
             void draw();
 
-            // TODO quitar. Funciónes provisionales que crean un nodo con el cubo para dibujarlo en renderElements
-            void createNode();
-            void createNode2();
+            /// \brief Crea una malla en el arbol.
+            /// \details Crea los nodos de transformacion, uno de posicion y otro de rotación. Crea
+            /// el nodo Mesh y le asocia un ResourceMesh con la malla cargada mediante el
+            /// ResourceManager.
+            /// \param[in] fileName Nombre del fichero que contiene la malla
+            /// \param[in] position Posición. Creará un nodo Transform con esos valores
+            /// \param[in] rotation Rotación. Creará un nodo Transform con esos valores
+            /// \param[in] parent Nodo padre. Si es 0 se le asignará el root.
+            /// \return puntero al nodo de la malla creada
+            GraphicNode* createMesh(const std::string fileName, const vec3f position, const vec3f rotation, GraphicNode* parent=0);
 
+
+            /// \brief Crea una cámara de perspectiva en el arbol.
+            /// \details Crea los nodos de transformacion, uno de posicion y otro de rotación. Crea
+            /// el nodo ECamera y le asigna los parametros de Perspectiva. Si es la primera cámara que
+            /// se crea (si m_numActiveCamera es cero, no hay ninguna activa) llama a setActiveCamera() con la nueva creada.
+            /// \param[in] position Posición. Creará un nodo Transform con esos valores
+            /// \param[in] rotation Rotación. Creará un nodo Transform con esos valores
+            /// \param[in] fov, aspect, near, far Parámetros para la cámara de perspectiva.
+            /// \param[in] parent Nodo padre. Si es 0 se le asignará el root.
+            /// \return puntero al nodo de la cámara creada
+            GraphicNode* createPerspectiveCamera(const vec3f position, const vec3f rotation, float fov, float aspect, float near, float far, GraphicNode* parent=0);
+
+
+            /// \brief Establece la cámara activa. 0 ninguna cámara activa, 1 primera cámara...
+            /// \details Cuando se establece la cámara activa se recalculan las transformaciones de la cámara
+            /// y se establece la Entity::viewMatrix.
+            void setActiveCamera(const unsigned int activeCamera);
+
+            /***/
+            GraphicNode* createLight(const vec3f position, const vec3f rotation, GraphicNode* parent=0);
+
+            void setLightOn(const unsigned int light);
 
             // Handles de los attributes y uniforms
             static int m_aPositionLocation;
             static int m_aNormalLocation;
             static int m_uProjectionMatrixLocation;
             static int m_uMVMatrixLocation;
-            static int m_uVMatrixLocation;
+            static int m_uLMatrixLocation;
             static int m_uColorLocation;
             static int m_uLuz0Location;
 
-
-            ResourceManager getResourceManager(); //
+            static const float screenHeight = 600;
+            static const float screenWidth  = 800;
 
         private:
             sf::RenderWindow*   m_window;
@@ -82,6 +113,7 @@ namespace tag
             sf::Font            m_font;
             sf::Text            m_messageLine[MAX_MESSAGE_LINES];
 
+<<<<<<< HEAD
             ResourceManager     m_resourceManager;
 
             ResourceMesh* resourceMesh;  // TODO quitar. Provisional para mostrar un cubo en renderElements
@@ -91,10 +123,21 @@ namespace tag
             EAnimation* resourceAnimated;
             //ResourceMesh* arrayMesh[3];
 
+=======
+            GraphicNode                 m_rootNode;
+            std::vector<GraphicNode*>   m_lights;
+            std::vector<GraphicNode*>   m_cameras;
+            unsigned int                m_numActiveCamera;
+>>>>>>> master
 
             glm::mat4 m_projectionMatrix; // Almacena la matriz de proyección
 
             void renderElements();
+
+            GraphicNode* createNodeTransform(GraphicNode* parent);
+            GraphicNode* createNodeRotation(const vec3f rotation, GraphicNode* parent);
+            GraphicNode* createNodePosition(const vec3f position, GraphicNode* parent);
+            GraphicNode* createNodePR(const vec3f position, const vec3f rotation, GraphicNode* parent);
     };
 }
 

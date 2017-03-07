@@ -18,9 +18,9 @@ Scene* Scene::Instance()
 }
 
 Scene::Scene()
-{cout<<"dfasudka"<<endl;
+{
+    cout<<"IN Scene constructor"<<endl;
     //ctor
-
 }
 
 void Scene::Init()
@@ -43,26 +43,16 @@ void Scene::Init()
     }
     GEInstance->addMessageLine(L"Partida iniciada");
     /**********************************/
-
-
-
-
     // Llaves
-    llave=GEInstance->createMagnetKey(0, 50, 0, 350);
-    llaveCogida=false;
+    //llave=GEInstance->createMagnetKey(0, 50, 0, 350);
+    //llaveCogida=false;
 
-    // Gun
+    // GUN - SHOTGUN - RIFLE
     gun = createGun(0,0,0); // Creo el arma inicial del player
-    createAmmoGun(80, 10, 100);
-
-    // Shotgun
-    shotgun = createShotgun(0,0,0);
-
-    // Rifle
-    rifle = createRifle(0,0,0);
+    shotgun = createShotgun(-100,10,210);
+    rifle = createRifle(-100,10,200);
 
     // Creación de jugador
-
     mainPlayer = GEInstance->createMainPlayer(gun);
     mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,-80));
     mainPlayer->setHealth(10);
@@ -72,34 +62,26 @@ void Scene::Init()
     ////////////////////////////////
     //         Enemigos           //
     ////////////////////////////////
+    for(int i=0; i<4; i++){
+        enemyHumanoid = GEInstance->createEnemyHumanoid();
+        enemyHumanoid->setPosition(dwe::vec3f(500+(i*10),24,-250+(i*80) ));
+        //enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
+        m_enemies.push_back(enemyHumanoid);
+    }
 
-    // Creación de enemigo Humanoide
-    enemyHumanoid = GEInstance->createEnemyHumanoid();
-    //enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
-    enemyHumanoid->setPosition(dwe::vec3f(400,24,100));
-    enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
-
-    m_enemies.push_back(enemyHumanoid);
-
-    /////SEGUNDO ENEMIGO
-
-    enemyHumanoid = GEInstance->createEnemyHumanoid();
-    //enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
-    enemyHumanoid->setPosition(dwe::vec3f(300,24,150));
-    enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
-    m_enemies.push_back(enemyHumanoid);
+    for(int i=0; i<4; i++){
+        enemyHumanoid = GEInstance->createEnemyHumanoid();
+        enemyHumanoid->setPosition(dwe::vec3f(-300+(i*10),24,-400+(i*80) ));
+        //enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
+        m_enemies.push_back(enemyHumanoid);
+    }
+    ////////////////////////////////
+    ////////////////////////////////
+    ////////////////////////////////
 
     // Creación de enemigo Dog
-    enemyDog = GEInstance->createEnemyDog();
-    enemyDog->setPosition(dwe::vec3f(-50,-170,100));
-
-    /////TERCER ENEMIGO
-
-    enemyHumanoid = GEInstance->createEnemyHumanoid();
-    //enemyHumanoid->setPosition(dwe::vec3f(43.5,24,-100));
-    enemyHumanoid->setPosition(dwe::vec3f(50.f, 24.f, 350.f));
-    enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
-    m_enemies.push_back(enemyHumanoid);
+    //enemyDog = GEInstance->createEnemyDog();
+    //enemyDog->setPosition(dwe::vec3f(-50,-170,100));
 
     //Joint try
     joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
@@ -118,9 +100,9 @@ void Scene::Init()
 }
 
 void Scene::Destroy(){
-    delete llave;
+    //delete llave;
+    //delete enemyDog;
     delete mainPlayer; mainPlayer=0;
-    delete enemyDog;
     delete gun;
     delete shotgun;
     delete rifle;
@@ -139,7 +121,7 @@ void Scene::Destroy(){
     delete joint_try;
     delete bjoint;
     //delete camera1;
-    cout<<"He conseguido borrar tooodo"<<endl;
+    cout<<"DELETE ALL"<<endl;
 }
 
 Scene::~Scene()
@@ -168,7 +150,42 @@ void Scene::Update()
             }
     }
 
-    GEInstance->updateCamera(mainPlayer->getPosition());
+
+    //////////////////////////////////////////
+    //         CAMARA INTELIGENTE           //
+    //////////////////////////////////////////
+    //PARA CAMARA INTELIGENTE --- La idea es contar cuántos enemigos tenemos a cada extremo y acercar la cámara según el extremo que más haya.
+    moreEnemiesX = 0;
+    moreEnemiesZ = 0;
+    int dist2player = 0;
+    for(int e=0; e<m_enemies.size(); e++){
+        if(m_enemies[e]){
+            int playerX = mainPlayer->getPosition().x;      int playerZ = mainPlayer->getPosition().z;
+            int enemyX  = m_enemies[e]->getPosition().x;    int enemyZ  = m_enemies[e]->getPosition().z;
+            int d2pX    = abs(playerX - enemyX);            int d2pZ    = abs(playerZ - enemyZ);
+
+            //CERCAR --- SOLO CALCULAR LOS ENEMIGOS CERCANOS (pero no demasiado cerca)
+            //VER EN QUE CUADRANTE ESTA EL ENEMIGO CON RESPECTO AL JUGADOR
+            if(d2pX>50 && d2pX<300){
+                if(enemyX<playerX)       moreEnemiesX--; //IZQ
+                else                     moreEnemiesX++; //DER
+            }
+            if(d2pZ>50 && d2pZ<300){
+                if(enemyZ<playerZ)       moreEnemiesZ--; //DOWN
+                else                     moreEnemiesZ++; //UP
+            }
+
+            //ENEMIGO MAS ALEJADO DEL GRUPO MAS GRANDE
+
+        }
+    }
+
+    //////////////////////////////////////////
+    //////////////////////////////////////////
+    //////////////////////////////////////////
+
+
+    GEInstance->updateCamera(mainPlayer->getPosition(), moreEnemiesX, moreEnemiesZ);
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
 
     for(int e=0; e<m_enemies.size(); e++) //recorre
@@ -193,6 +210,8 @@ void Scene::Update()
             mainPlayer->setAmmo(0, mainPlayer->getAmmo(0)-1); //
         }//
     }
+
+    //UPDATE
     mainPlayer->update(shotgun, rifle); //Posición actualizada de Irrlicht Player
     updateProjectiles();
     updateConsumables(mainPlayer);
@@ -200,6 +219,8 @@ void Scene::Update()
 
     //update box of box2d
     joint_try->setPosition(dwe::vec3f(bjoint->getPosEntity().x,bjoint->getPosEntity().y,bjoint->getPosEntity().z));
+
+    /*
     // Coger la llave
     if(!llaveCogida)
     {
@@ -211,7 +232,7 @@ void Scene::Update()
             llave = 0;
         }
     }
-
+    */
     /*
     //rmm:cheat, cojo todo
     if (GEInstance->receiver.isKeyDown(KEY_KEY_C))
@@ -267,7 +288,6 @@ void Scene::deleteProjectile(unsigned int i)
     }
 }
 
-
 ////////////
 void Scene::createProjectile(dwe::vec3f origin, float angle)
 {
@@ -293,79 +313,31 @@ void Scene::updateConsumables(Player* mainPlayer)
 
 void Scene::updatePlayerWeapons(Player* mainplayer, Firearm** weapons)
 {
-    if  (mainplayer->getCurrentWeaponType() == eGun)
-    {
-        weapons[0]->setPosition(dwe::vec3f(mainplayer->getPosition().x - 20, 20, mainplayer->getPosition().z));
-
-    }
-    else if (mainplayer->getCurrentWeaponType() == eShotgun)
-    {
-        weapons[1]->setPosition(dwe::vec3f(mainplayer->getPosition().x - 20, 20, mainplayer->getPosition().z));
-    }
-    else if (mainplayer->getCurrentWeaponType() == eRifle)
-    {
-        weapons[2]->setPosition(dwe::vec3f(mainplayer->getPosition().x - 20, 20, mainplayer->getPosition().z));
+    //cout << "- "<< mainplayer->getCurrentWeaponType() << ":" << eRifle << endl;
+    if  (mainplayer->getCurrentWeaponType() == eGun){
+        weapons[0]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
+    }else if (mainplayer->getCurrentWeaponType() == eShotgun){
+        weapons[1]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
+    }else if (mainplayer->getCurrentWeaponType() == eRifle){
+        weapons[2]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
     }
 }
 
 ////////////
-void Scene::createEnemyHumanoid(dwe::vec3f origin, float angle)
-{
+void Scene::createEnemyHumanoid(dwe::vec3f origin, float angle){
    // m_enemies.push_back(GEInstance->createEnemyHumanoid(origin, angle));
 }
 
-////////////
-void Scene::createSpeedBoost(float px, float py, float pz)
-{
-    m_consumables.push_back(GEInstance->createSpeedBoost(px, py, pz));
 
-    //GEInstance->createSpeedBoost(px, py, pz);
+//CREATE CONSUMABLES
+void Scene::createSpeedBoost(float px, float py, float pz)  { m_consumables.push_back(GEInstance->createSpeedBoost(px, py, pz));    }
+void Scene::createMedkit(float px, float py, float pz)      { m_consumables.push_back(GEInstance->createMedkit(px, py, pz));        }
+void Scene::createCShotgun(float px, float py, float pz)    { m_consumables.push_back(GEInstance->createCShotgun(px, py, pz));      }
+void Scene::createCRifle(float px, float py, float pz)      { m_consumables.push_back(GEInstance->createCRifle(px, py, pz));        }
+void Scene::createAmmoGun(float px, float py, float pz)     { m_consumables.push_back(GEInstance->createAmmoGun(px, py, pz));       }
 
-}
-
-////////////
-void Scene::createMedkit(float px, float py, float pz)
-{
-    m_consumables.push_back(GEInstance->createMedkit(px, py, pz));
-    //GEInstance->createMedkit(px, py, pz);
-}
-
-////////////
-void Scene::createCShotgun(float px, float py, float pz)
-{
-    m_consumables.push_back(GEInstance->createCShotgun(px, py, pz));
-    //GEInstance->createCShotgun(px, py, pz);
-}
-
-////////////
-void Scene::createCRifle(float px, float py, float pz)
-{
-    m_consumables.push_back(GEInstance->createCRifle(px, py, pz));
-    //GEInstance->createCShotgun(px, py, pz);
-}
-
-////////////
-void Scene::createAmmoGun(float px, float py, float pz)
-{
-    m_consumables.push_back(GEInstance->createAmmoGun(px, py, pz));
-    //GEInstance->createAmmoGun(px, py, pz);
-}
-
-////////////
-Gun* Scene::createGun(float px, float py, float pz)
-{
-    return GEInstance->createGun(px, py, pz);
-}
-
-////////////
-Shotgun* Scene::createShotgun(float px, float py, float pz)
-{
-    GEInstance->createShotgun(px, py, pz);
-}
-
-////////////
-Rifle* Scene::createRifle(float px, float py, float pz)
-{
-    GEInstance->createRifle(px, py, pz);
-}
+//CREATE WEAPONS
+Gun* Scene::createGun(float px, float py, float pz)         {   return GEInstance->createGun(px, py, pz);   }
+Shotgun* Scene::createShotgun(float px, float py, float pz) {   GEInstance->createShotgun(px, py, pz);      }
+Rifle* Scene::createRifle(float px, float py, float pz)     {   GEInstance->createRifle(px, py, pz);        }
 

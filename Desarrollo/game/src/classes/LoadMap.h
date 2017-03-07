@@ -5,6 +5,7 @@
 #include "Entity.h"
 #include "TriggerDoor.h"
 #include "Door.h"
+#include "Scene.h"
 
 #include <vector>
 
@@ -13,7 +14,7 @@
 /////
 #include "Entity.h"
 #define NUM_ENTITIES 100
-#define NUM_ENTITIES2 52
+#define NUM_ENTITIES2 53
 
 class LoadMap {
     public:
@@ -35,6 +36,7 @@ class LoadMap {
 
         Entity *entities[NUM_ENTITIES2]; // Array de entidades
         Entity *sector[1]; // Sector no funcional que se le asigna a un generador
+        Consumable *ammos[2];
         TriggerDoor *doorTriggers[NUM_ENTITIES2]; // Triggers
 };
 

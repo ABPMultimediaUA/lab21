@@ -1,29 +1,30 @@
 #define GLEW_STATIC
 #include<GL/glew.h>
 
-#include <stdexcept>
-
-#include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
-
 #include "Scene.h"
 #include "GraphicsEngine.h"
 #include "Player.h"
 
 
 #include "tag/GraphicNode.h"
+<<<<<<< HEAD
 #include "tag/EMesh.h"
 #include "tag/ResourceManager.h"
 #include "tag/ResourceMesh.h"
 #include "tag/ETransform.h"
 #include "tag/TAGEngine.h"
 #include "tag/EAnimation.h"
+=======
+
+
+>>>>>>> master
 
 
 using namespace tag;
 
 int main()
 {
+<<<<<<< HEAD
 
     /////////////////////////////////////
     // Creacion del arbol
@@ -86,12 +87,18 @@ int main()
 
 */
 
+=======
+>>>>>>> master
     TAGEngine tagEngine;
     tagEngine.init();
 
-    std::cout << "\n\n\nCargamos mallas: \n--------------------\n";
+    GraphicNode* cube01 = tagEngine.createMesh("media/newcube.obj", vec3f(-2,0,0), vec3f(2,45,1));
+    GraphicNode* cube02 = tagEngine.createMesh("media/newcube.obj", vec3f( 2,0,0), vec3f(0,20,0));
+    GraphicNode* cube03 = tagEngine.createMesh("media/newcube.obj", vec3f( 0,-2.2,0), vec3f(0,0,0), cube02);
 
-    tagEngine.createNode();
+    GraphicNode* camera = tagEngine.createPerspectiveCamera(vec3f(2,0,-9.0), vec3f(0,0,0), 45.0f, TAGEngine::screenWidth / TAGEngine::screenHeight, 0.1f, 1000.0f);
+
+    GraphicNode* light  = tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0));
 
     while (tagEngine.isRunning())
     {

@@ -5,7 +5,10 @@
 #include <algorithm>
 
 
-tag::GraphicNode::GraphicNode()
+tag::GraphicNode::GraphicNode() :
+    m_entity(0),
+    m_childs(),
+    m_parent(0)
 {
     //ctor
 }
@@ -13,10 +16,12 @@ tag::GraphicNode::GraphicNode()
 tag::GraphicNode::~GraphicNode()
 {
     //dtor
+    // TODO en el destructor deberíamos borrar todos los hijos (delete)
 }
 
 ////////////////////////////////////
 tag::GraphicNode* tag::GraphicNode::getParent() { return m_parent; }
+void tag::GraphicNode::setParent(tag::GraphicNode* parent) { m_parent = parent; }
 
 
 ///////////////////////
@@ -27,6 +32,7 @@ tag::Entity* tag::GraphicNode::getEntity() { return m_entity; }
 unsigned int tag::GraphicNode::addChild(tag::GraphicNode* n)
 {
     m_childs.push_back(n);
+    n->setParent(this);
     return (m_childs.size() - 1);  // devolvemos el indice añadido
 }
 

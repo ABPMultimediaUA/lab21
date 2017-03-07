@@ -1,7 +1,5 @@
 #include "tag/ResourceManager.h"
 
-#include <iostream>
-
 #include "tag/ResourceMesh.h"
 
 tag::ResourceManager::ResourceManager()
@@ -20,7 +18,6 @@ tag::Resource* tag::ResourceManager::getResource(std::string name)
     // Buscamos si existe el resource
     Resource* res = 0;
     std::vector<Resource*>::iterator it = m_resources.begin();
-
     while (res == 0 && it != m_resources.end())
     {
         if ((*it)->getName() == name)
@@ -28,17 +25,14 @@ tag::Resource* tag::ResourceManager::getResource(std::string name)
         ++it;
     }
 
+    // Si no existe, la creamos
     if (res == 0)
     {
-        // TODO por ahora solo creo recursos malla
+        // TODO por ahora solo creo recursos malla. Una posible solución : loadResource(name, resource*)
         res = new ResourceMesh();
-        static_cast<ResourceMesh*>(res)->load(name);
+        res->load(name);
         m_resources.push_back(res);
-
-        std::cout << "creamos nueva: " << name << "\n";
     }
-    else
-        std::cout << "usamos previamente: " << name << "\n";
 
     return res;
 }
