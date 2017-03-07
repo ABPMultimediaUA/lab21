@@ -7,89 +7,24 @@
 
 
 #include "tag/GraphicNode.h"
-<<<<<<< HEAD
-#include "tag/EMesh.h"
-#include "tag/ResourceManager.h"
-#include "tag/ResourceMesh.h"
-#include "tag/ETransform.h"
-#include "tag/TAGEngine.h"
-#include "tag/EAnimation.h"
-=======
-
-
->>>>>>> master
 
 
 using namespace tag;
 
 int main()
 {
-<<<<<<< HEAD
+    GEInstance->init();
 
-    /////////////////////////////////////
-    // Creacion del arbol
-    /////////////////////////////////////
-    tag::GraphicNode nodoRoot;
-    tag::EMesh entityRoot;
-    entityRoot.m_cadena = "Root";
-    nodoRoot.setEntity(&entityRoot);
+    GEInstance->createMainPlayer();
 
-    tag::GraphicNode nodo01;
-    tag::ETransform transform01;
-    transform01.m_cadena = "01 - MATRIX";
-    nodo01.setEntity(&transform01);
-    nodoRoot.addChild(&nodo01);
+    while (GEInstance->isRunning())
+    {
+        GEInstance->draw();
+    }
 
-    tag::GraphicNode nodo04;
-    tag::ETransform transform04;
-    transform04.m_cadena = "04 - MATRIX";
-    nodo04.setEntity(&transform04);
-    nodo01.addChild(&nodo04);
+    return 0;
 
-    tag::GraphicNode nodo06;
-    tag::EMesh entity06;
-    entity06.loadMesh("media/newcube.obj");
-    entity06.m_cadena = "06 - MESH";
-    nodo06.setEntity(&entity06);
-    nodo04.addChild(&nodo06);
-
-    tag::GraphicNode nodo07;
-    tag::EMesh entity07;
-    entity07.loadMesh("media/newcube.obj");
-    entity07.m_cadena = "07 - MESH";
-    nodo07.setEntity(&entity07);
-    nodo04.addChild(&nodo07);
-
-    tag::GraphicNode nodo08;
-    tag::EAnimation entity08;
-    entity08.loadFrame("media/newcube.obj", 1);
-    entity08.m_cadena = "08 - ANIMATEDMESH";
-    nodo08.setEntity(&entity08);
-    nodo04.addChild(&nodo08);
-
-    /////////////////////////////////////
-    // Transformaciones
-    /////////////////////////////////////
-    transform01.rotate(90, 0, 0);
-
-    transform04.translate(2, 3, 4);
-
-    nodoRoot.draw();
-
-/*
-              root
-               /
-               1
-               /
-               4
-              /|\
-             6 7 8
-
-*/
-
-=======
->>>>>>> master
-    TAGEngine tagEngine;
+    /*TAGEngine tagEngine;
     tagEngine.init();
 
     GraphicNode* cube01 = tagEngine.createMesh("media/newcube.obj", vec3f(-2,0,0), vec3f(2,45,1));
@@ -105,7 +40,7 @@ int main()
         tagEngine.draw();
     }
 
-    return 0;
+    return 0;*/
 
 
     ///////////////////////////////////

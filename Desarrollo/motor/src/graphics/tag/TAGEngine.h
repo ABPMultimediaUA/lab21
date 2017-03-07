@@ -20,7 +20,6 @@
 #define GLEW_STATIC
 #include<GL/glew.h>
 
-#include <SFML/Graphics.hpp>
 #include <glm/glm.hpp>
 
 #include "tag/Types.h"
@@ -31,9 +30,10 @@
 #include "Program.h"
 #include "ResourceManager.h"
 #include "ResourceMesh.h"
+#include "tag/EAnimation.h"
 
 namespace tag
-{class EAnimation;
+{
     class TAGEngine
     {
         public:
@@ -104,31 +104,12 @@ namespace tag
             static const float screenWidth  = 800;
 
         private:
-            sf::RenderWindow*   m_window;
             Program*            m_shaderProgram;
 
-            sf::Clock           m_clock;
-            float               m_secondsLastDraw;
-
-            sf::Font            m_font;
-            sf::Text            m_messageLine[MAX_MESSAGE_LINES];
-
-<<<<<<< HEAD
-            ResourceManager     m_resourceManager;
-
-            ResourceMesh* resourceMesh;  // TODO quitar. Provisional para mostrar un cubo en renderElements
-            ResourceMesh* resourceMesh2;  // TODO quitar. Provisional para mostrar un cubo en renderElements
-            ResourceMesh* resourceMesh3;
-            //ResourceMesh* resourceMesh4;
-            EAnimation* resourceAnimated;
-            //ResourceMesh* arrayMesh[3];
-
-=======
             GraphicNode                 m_rootNode;
             std::vector<GraphicNode*>   m_lights;
             std::vector<GraphicNode*>   m_cameras;
             unsigned int                m_numActiveCamera;
->>>>>>> master
 
             glm::mat4 m_projectionMatrix; // Almacena la matriz de proyección
 
