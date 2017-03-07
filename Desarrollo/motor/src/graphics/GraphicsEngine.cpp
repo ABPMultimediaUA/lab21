@@ -14,8 +14,6 @@
 #include "Program.h"
 
 #include "Player.h"
-#include "tag/TAGEngine.h"
-
 
 using namespace std;
 // Necesita volver a poner este namespace
@@ -39,7 +37,30 @@ dwe::GraphicsEngine* dwe::GraphicsEngine::Instance()
 //////////////////////////
 void dwe::GraphicsEngine::init()
 {
+    // Importante para que muestre bien el cubo y no haga un mal culling
+    sf::ContextSettings contextSettings;
+    contextSettings.depthBits = 24;
+    contextSettings.sRgbCapable = false;
+
+    m_window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Lab21", sf::Style::Default, contextSettings);
+
+    // Creamos los mensajes de texto, por ahora vacios
+    if (!m_font.loadFromFile("media/ExoRegular.otf"))
+        throw std::runtime_error("No se ha podido cargar la fuente de texto");
+
+	for(int i=0; i<MAX_MESSAGE_LINES; i++)
+	{
+        m_messageLine[i].setFont(m_font);
+        m_messageLine[i].setCharacterSize(14);
+        m_messageLine[i].setFillColor(sf::Color(255, 255, 255, 255));
+        m_messageLine[i].setPosition(10.f, SCREEN_HEIGHT - (i+1)*16.f);
+        m_messageLine[i].setString("");
+	}
+
     m_tagEngine.init();
+
+    m_secondsLastDraw = 0;
+    m_clock.restart();
 }
 
 //////////////////////////
@@ -50,12 +71,53 @@ void dwe::GraphicsEngine::release()
 //////////////////////////
 bool dwe::GraphicsEngine::isRunning()
 {
-    return m_tagEngine.isRunning();
+    sf::Event event;
+    while (m_window->pollEvent(event))
+    {
+        if (event.type == sf::Event::Closed)
+        {
+            m_window->close();
+        }
+        // TODO faltan eventos de teclado
+        /*else if (event.type == sf::Event::Resized)
+        {
+            glViewport(0, 0, event.size.width, event.size.height);
+        }
+        else
+            receiver.OnEvent(event);*/
+    }
+
+    return m_window->isOpen() && m_tagEngine.isRunning();
 }
 
 //////////////////////////
 void dwe::GraphicsEngine::draw()
 {
+    m_window->setActive(true);
+    m_tagEngine.draw();
+
+    m_window->setActive(false);
+
+
+    // Entre pushGLStates y popGLStates dibujamos los sprites
+    m_window->pushGLStates();
+
+    // Lineas de mensaje del jugador
+    for(unsigned int i=0; i<MAX_MESSAGE_LINES; i++)
+        m_window->draw(m_messageLine[i]);
+
+    m_window->popGLStates();
+
+
+    m_window->display();
+
+    char tmp[25];
+    float fps = 1.f / (m_clock.getElapsedTime().asSeconds() - m_secondsLastDraw);
+    m_secondsLastDraw = m_clock.getElapsedTime().asSeconds();
+    sprintf(tmp, "Lab21 - fps:%f", fps);
+    m_window->setTitle(tmp);
+
+
 /*    m_window->setActive(true);
     glm::mat4 rotateMatrix;
 
@@ -252,27 +314,15 @@ void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition)
 /////////////////////////////
 Player* dwe::GraphicsEngine::createMainPlayer()
 {
-    const aiScene* scene =  m_importer.ReadFile("media/newcube.obj",
-                                aiProcess_Triangulate            |
-                                aiProcess_JoinIdenticalVertices  |
-                                0
-                            );
-    if(!scene)
-    {
-        char msg[255];
-        sprintf(msg, "Error cargando MainPlayer: %s", m_importer.GetErrorString());
-        throw std::runtime_error(msg);
-    }
+    tag::GraphicNode* cube01 = m_tagEngine.createMesh("media/newcube.obj", vec3f(-2,0,0), vec3f(2,45,1));
+    tag::GraphicNode* cube02 = m_tagEngine.createMesh("media/newcube.obj", vec3f( 2,0,0), vec3f(0,20,0));
+    tag::GraphicNode* cube03 = m_tagEngine.createMesh("media/newcube.obj", vec3f( 0,-2.2,0), vec3f(0,0,0), cube02);
 
-    Node* node = new Node(scene);
-    node->setColor(1.0, 0.5, 0.5, 1.0);
-    m_scenes.push_back(node);
+    tag::GraphicNode* camera = m_tagEngine.createPerspectiveCamera(vec3f(2,0,-9.0), vec3f(0,0,0), 45.0f, tag::TAGEngine::screenWidth / tag::TAGEngine::screenHeight, 0.1f, 1000.0f);
 
-	Player* p = new Player();
-	p->setNode(node);
-	p->setPosition(dwe::vec3f(0,0,0));
+    tag::GraphicNode* light  = m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0));
 
-    return p;
+    return 0;
 }
 
 

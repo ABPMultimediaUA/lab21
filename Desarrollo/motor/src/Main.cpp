@@ -9,29 +9,38 @@
 #include "tag/GraphicNode.h"
 
 
-
-
 using namespace tag;
 
 int main()
 {
-    TAGEngine tagEngine;
+    GEInstance->init();
+
+    GEInstance->createMainPlayer();
+
+    while (GEInstance->isRunning())
+    {
+        GEInstance->draw();
+    }
+
+    return 0;
+
+    /*TAGEngine tagEngine;
     tagEngine.init();
 
-    GraphicNode* cube01 = tagEngine.createMesh("media/newcube.obj", vec3f(-2,0,0), vec3f(2,2,1));
-    GraphicNode* cube02 = tagEngine.createMesh("media/newcube.obj", vec3f( 2,0,0), vec3f(0,2,0));
+    GraphicNode* cube01 = tagEngine.createMesh("media/newcube.obj", vec3f(-2,0,0), vec3f(2,45,1));
+    GraphicNode* cube02 = tagEngine.createMesh("media/newcube.obj", vec3f( 2,0,0), vec3f(0,20,0));
     GraphicNode* cube03 = tagEngine.createMesh("media/newcube.obj", vec3f( 0,-2.2,0), vec3f(0,0,0), cube02);
 
-    GraphicNode* camera = tagEngine.createPerspectiveCamera(vec3f(0,0,-9.0), vec3f(0,0,0), 45.0f, TAGEngine::screenWidth / TAGEngine::screenHeight, 0.1f, 1000.0f);
+    GraphicNode* camera = tagEngine.createPerspectiveCamera(vec3f(2,0,-9.0), vec3f(0,0,0), 45.0f, TAGEngine::screenWidth / TAGEngine::screenHeight, 0.1f, 1000.0f);
 
-    GraphicNode* light  = tagEngine.createLight(vec3f(0,0,-9.0), vec3f(0,0,0));
+    GraphicNode* light  = tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0));
 
     while (tagEngine.isRunning())
     {
         tagEngine.draw();
     }
 
-    return 0;
+    return 0;*/
 
 
     ///////////////////////////////////

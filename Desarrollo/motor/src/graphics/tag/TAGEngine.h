@@ -12,7 +12,7 @@
 // Nombre de los uniforms
 #define U_PROJECTIONMATRIX      "u_ProjectionMatrix"
 #define U_MVMATRIX              "u_MVMatrix"
-#define U_VMATRIX               "u_VMatrix"
+#define U_LMATRIX               "u_LMatrix"
 #define U_COLOR                 "u_Color"
 #define U_LUZ0                  "u_Luz0"
 
@@ -20,7 +20,6 @@
 #define GLEW_STATIC
 #include<GL/glew.h>
 
-#include <SFML/Graphics.hpp>
 #include <glm/glm.hpp>
 
 #include "tag/Types.h"
@@ -96,7 +95,7 @@ namespace tag
             static int m_aNormalLocation;
             static int m_uProjectionMatrixLocation;
             static int m_uMVMatrixLocation;
-            static int m_uVMatrixLocation;
+            static int m_uLMatrixLocation;
             static int m_uColorLocation;
             static int m_uLuz0Location;
 
@@ -104,14 +103,7 @@ namespace tag
             static const float screenWidth  = 800;
 
         private:
-            sf::RenderWindow*   m_window;
             Program*            m_shaderProgram;
-
-            sf::Clock           m_clock;
-            float               m_secondsLastDraw;
-
-            sf::Font            m_font;
-            sf::Text            m_messageLine[MAX_MESSAGE_LINES];
 
             GraphicNode                 m_rootNode;
             std::vector<GraphicNode*>   m_lights;
@@ -125,6 +117,7 @@ namespace tag
             GraphicNode* createNodeTransform(GraphicNode* parent);
             GraphicNode* createNodeRotation(const vec3f rotation, GraphicNode* parent);
             GraphicNode* createNodePosition(const vec3f position, GraphicNode* parent);
+            GraphicNode* createNodePR(const vec3f position, const vec3f rotation, GraphicNode* parent);
     };
 }
 
