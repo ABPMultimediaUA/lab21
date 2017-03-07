@@ -174,9 +174,6 @@ void Scene::Update()
                 if(enemyZ<playerZ)       moreEnemiesZ--; //DOWN
                 else                     moreEnemiesZ++; //UP
             }
-
-            //ENEMIGO MAS ALEJADO DEL GRUPO MAS GRANDE
-
         }
     }
 
@@ -189,8 +186,18 @@ void Scene::Update()
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
 
     for(int e=0; e<m_enemies.size(); e++) //recorre
-        if(m_enemies[e])
+        if(m_enemies[e]){
+
+
+            m_enemies[e]->setPosEntity(
+                    dwe::vec3f( m_enemies[e]->getPosEntity().x + 1,
+                                m_enemies[e]->getPosEntity().y    ,
+                                m_enemies[e]->getPosEntity().z)
+                    ,0); //ultimo valor el angulo
+            //PASAR POSICION BOX2D A IRRLICH
+            m_enemies[e]->setPosition(dwe::vec3f(m_enemies[e]->getPosEntity().x, 24 , m_enemies[e]->getPosEntity().z));
             m_enemies[e]->update();
+        }
 
     // comprobamos si dispara
 
