@@ -20,7 +20,6 @@
 #define GLEW_STATIC
 #include<GL/glew.h>
 
-#include <SFML/Graphics.hpp>
 #include <glm/glm.hpp>
 
 #include "tag/Types.h"
@@ -104,14 +103,7 @@ namespace tag
             static const float screenWidth  = 800;
 
         private:
-            sf::RenderWindow*   m_window;
             Program*            m_shaderProgram;
-
-            sf::Clock           m_clock;
-            float               m_secondsLastDraw;
-
-            sf::Font            m_font;
-            sf::Text            m_messageLine[MAX_MESSAGE_LINES];
 
             GraphicNode                 m_rootNode;
             std::vector<GraphicNode*>   m_lights;

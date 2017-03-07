@@ -9,13 +9,22 @@
 #include "tag/GraphicNode.h"
 
 
-
-
 using namespace tag;
 
 int main()
 {
-    TAGEngine tagEngine;
+    GEInstance->init();
+
+    GEInstance->createMainPlayer();
+
+    while (GEInstance->isRunning())
+    {
+        GEInstance->draw();
+    }
+
+    return 0;
+
+    /*TAGEngine tagEngine;
     tagEngine.init();
 
     GraphicNode* cube01 = tagEngine.createMesh("media/newcube.obj", vec3f(-2,0,0), vec3f(2,45,1));
@@ -31,7 +40,7 @@ int main()
         tagEngine.draw();
     }
 
-    return 0;
+    return 0;*/
 
 
     ///////////////////////////////////

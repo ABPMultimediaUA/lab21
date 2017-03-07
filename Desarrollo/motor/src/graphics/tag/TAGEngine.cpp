@@ -28,8 +28,8 @@ const float tag::TAGEngine::screenWidth;
 
 tag::TAGEngine::TAGEngine() :
     m_rootNode(),
-    m_cameras(),
     m_lights(),
+    m_cameras(),
     m_numActiveCamera(0)
 {
     //ctor
@@ -43,12 +43,6 @@ tag::TAGEngine::~TAGEngine()
 /////////////////////
 void tag::TAGEngine::init()
 {
-    // Importante para que muestre bien el cubo y no haga un mal culling
-    sf::ContextSettings contextSettings;
-    contextSettings.depthBits = 24;
-    contextSettings.sRgbCapable = false;
-
-    m_window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Lab21", sf::Style::Default, contextSettings);
 
     // Habilita el z_buffer
     glEnable(GL_DEPTH_TEST);
@@ -77,51 +71,17 @@ void tag::TAGEngine::init()
     TAGEngine::m_uLMatrixLocation            = m_shaderProgram->uniform(U_LMATRIX);
     TAGEngine::m_uColorLocation              = m_shaderProgram->uniform(U_COLOR);
     TAGEngine::m_uLuz0Location               = m_shaderProgram->uniform(U_LUZ0);
-
-
-    // Creamos los mensajes de texto, por ahora vacios
-    if (!m_font.loadFromFile("media/ExoRegular.otf"))
-        throw std::runtime_error("No se ha podido cargar la fuente de texto");
-
-	for(int i=0; i<MAX_MESSAGE_LINES; i++)
-	{
-        m_messageLine[i].setFont(m_font);
-        m_messageLine[i].setCharacterSize(14);
-        m_messageLine[i].setFillColor(sf::Color(255, 255, 255, 255));
-        m_messageLine[i].setPosition(10.f, SCREEN_HEIGHT - (i+1)*16.f);
-        m_messageLine[i].setString("");
-	}
-
-    m_secondsLastDraw = 0;
-    m_clock.restart();
 }
 
 /////////////////////
 bool tag::TAGEngine::isRunning()
 {
-    sf::Event event;
-    while (m_window->pollEvent(event))
-    {
-        if (event.type == sf::Event::Closed)
-        {
-            m_window->close();
-        }
-        // TODO faltan eventos de teclado
-        /*else if (event.type == sf::Event::Resized)
-        {
-            glViewport(0, 0, event.size.width, event.size.height);
-        }
-        else
-            receiver.OnEvent(event);*/
-    }
-
-    return m_window->isOpen();
+    return true;
 }
 
 /////////////////////
 void tag::TAGEngine::draw()
 {
-    m_window->setActive(true);
     glm::mat4 rotateMatrix;
     glm::vec3 positionMatrix;
 
@@ -143,21 +103,6 @@ void tag::TAGEngine::draw()
     glDisableVertexAttribArray(TAGEngine::m_aPositionLocation);
     glDisableVertexAttribArray(TAGEngine::m_aNormalLocation);
     glUseProgram(0);
-
-    m_window->setActive(false);
-
-    m_window->pushGLStates();
-    for(unsigned int i=0; i<MAX_MESSAGE_LINES; i++)
-        m_window->draw(m_messageLine[i]);
-    m_window->popGLStates();
-
-    m_window->display();
-
-    char tmp[25];
-    float fps = 1.f / (m_clock.getElapsedTime().asSeconds() - m_secondsLastDraw);
-    m_secondsLastDraw = m_clock.getElapsedTime().asSeconds();
-    sprintf(tmp, "Lab21 - fps:%f", fps);
-    m_window->setTitle(tmp);
 }
 
 /////////////////////
@@ -269,12 +214,12 @@ void tag::TAGEngine::setActiveCamera(const unsigned int activeCamera)
     std::stack<glm::mat4> pila;
     GraphicNode* node = nodeCam;
 
-    while (node=node->getParent())
+    while ( (node=node->getParent()) )
     {
         Entity* entity = node->getEntity();
 
         // Si hace un cast no válido, devuelve nulo
-        if (ETransform* t = dynamic_cast<ETransform*>(entity))
+        if ( ETransform* t = dynamic_cast<ETransform*>(entity) )
             pila.push(t->getMatrix());
     }
 
@@ -304,6 +249,7 @@ tag::GraphicNode* tag::TAGEngine::createLight(const vec3f position, const vec3f 
     return nodoLuz;
 }
 
+/////////////////////
 void tag::TAGEngine::setLightOn(const unsigned int light)
 {
     // Obtenemos el nodo
@@ -317,12 +263,12 @@ void tag::TAGEngine::setLightOn(const unsigned int light)
     std::stack<glm::mat4> pila;
     GraphicNode* node = nodeLuz;
 
-    while (node=node->getParent())
+    while ( (node=node->getParent()) )
     {
         Entity* entity = node->getEntity();
 
         // Si hace un cast no válido, devuelve nulo
-        if (ETransform* t = dynamic_cast<ETransform*>(entity))
+        if ( ETransform* t = dynamic_cast<ETransform*>(entity) )
             pila.push(t->getMatrix());
     }
 
