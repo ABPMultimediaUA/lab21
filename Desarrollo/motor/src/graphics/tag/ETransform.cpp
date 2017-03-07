@@ -106,7 +106,7 @@ void tag::ETransform::scale(float x, float y, float z)
 void tag::ETransform::beginDraw()
 {
     Entity::TStack.push(Entity::modelMatrix);
-    Entity::modelMatrix *= m_matrix;
+    Entity::modelMatrix = m_matrix * Entity::modelMatrix;
 }
 
 /////////////////

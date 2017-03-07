@@ -6,7 +6,7 @@ uniform mat4 u_ProjectionMatrix; 	// in: Matriz Projection
 uniform mat4 u_MVMatrix;	        // in: Matriz ModelView
 uniform mat4 u_LMatrix;             // in: Matriz Luz
 uniform vec4 u_Color;		        // in: Color del objeto
-uniform int  u_Luz0;                // in: Indica si la luz 0 está encedida
+uniform int u_Luz0;                // in: Indica si la luz 0 está encedida
 
 varying vec4 v_Color;		        // out: Color al fragment shader
 

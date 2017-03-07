@@ -1098,11 +1098,8 @@
 1485506495 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\drawable.h
 	"GraphicsEngine.h"
 
-1488021785 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.h
+1488893134 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.h
 	<GL/glew.h>
-	<assimp/Importer.hpp>
-	<assimp/scene.h>
-	<assimp/postprocess.h>
 	<SFML/Graphics.hpp>
 	<SFML/OpenGL.hpp>
 	<math.h>
@@ -2162,7 +2159,7 @@
 
 1485208670 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\appreceiver.cpp
 
-1488748557 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
+1488893527 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"GraphicsEngine.h"
@@ -2178,7 +2175,7 @@
 1485516580 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
 	"GraphicsEngine.h"
 
-1488802410 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\main.cpp
+1488894267 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\main.cpp
 	<GL/glew.h>
 	"Scene.h"
 	"GraphicsEngine.h"
@@ -8978,9 +8975,8 @@
 1488743358 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resource.h
 	<string>
 
-1488755257 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
+1488893142 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
 	<GL/glew.h>
-	<SFML/Graphics.hpp>
 	<glm/glm.hpp>
 	"tag/Types.h"
 	"tag/GraphicNode.h"
@@ -9002,7 +8998,7 @@
 	<glm/gtc/matrix_transform.hpp>
 	<iostream>
 
-1488740661 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\ecamera.h
+1488812057 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\ecamera.h
 	"Entity.h"
 	"tag/TAGEngine.h"
 
@@ -9013,10 +9009,10 @@
 	<stack>
 	"tag/ResourceManager.h"
 
-1488740661 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\elight.cpp
+1488812057 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\elight.cpp
 	"tag/ELight.h"
 
-1488740661 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\elight.h
+1488812057 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\elight.h
 	"Entity.h"
 	"tag/TAGEngine.h"
 
@@ -9276,7 +9272,7 @@
 1488015134 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resource.cpp
 	"tag/Resource.h"
 
-1488802809 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
+1488819655 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
 	"tag/ETransform.h"
 	<GL/glew.h>
 	<glm/gtc/matrix_transform.hpp>
@@ -9290,7 +9286,7 @@
 	"tag/ResourceManager.h"
 	"tag/ResourceMesh.h"
 
-1488749381 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.cpp
+1488817645 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.cpp
 	"tag/ResourceMesh.h"
 	<stdio.h>
 	<stdexcept>
@@ -9300,7 +9296,7 @@
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/string_cast.hpp>
 
-1488756756 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
+1488894132 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
 	"tag/TAGEngine.h"
 	<stdexcept>
 	<glm/glm.hpp>
@@ -9310,6 +9306,7 @@
 	"tag/Entity.h"
 	"tag/ResourceMesh.h"
 	"tag/ECamera.h"
+	"tag/ELight.h"
 	"tag/ETransform.h"
 	"tag/EMesh.h"
 
