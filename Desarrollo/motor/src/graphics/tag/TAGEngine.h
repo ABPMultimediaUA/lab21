@@ -85,10 +85,23 @@ namespace tag
             /// y se establece la Entity::viewMatrix.
             void setActiveCamera(const unsigned int activeCamera);
 
-            /***/
+            /// \brief Crea una luz en el árbol de la escena.
+            /// \details Crea los nodos de transformacion, uno de posicion y otro de rotación. Crea
+            /// el nodo ELight. Activa la luz.
+            /// \param[in] position Posición. Creará un nodo Transform con esos valores
+            /// \param[in] rotation Rotación. Creará un nodo Transform con esos valores
+            /// \param[in] parent Nodo padre. Si es 0 se le asignará el root.
             GraphicNode* createLight(const vec3f position, const vec3f rotation, GraphicNode* parent=0);
 
+            /// \brief Activa o desactiva una luz.
+            /// \param[in] Posición en el array de luces de la luz a activar o desactivar.
             void setLightOn(const unsigned int light);
+
+            /// \brief Función para calcular la posición de la cámara o de la luz
+            /// \details Es llamada por setActiveCamera y setLightOn.
+            /// \param[in] nodo luz/cámara.
+            /// \param[in] matriz de posición de luz o cámara (view)
+            void calculateMatrix(GraphicNode* node, glm::mat4 &matrix);
 
             // Handles de los attributes y uniforms
             static int m_aPositionLocation;

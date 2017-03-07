@@ -209,27 +209,11 @@ void tag::TAGEngine::setActiveCamera(const unsigned int activeCamera)
     glm::mat4 m_projectionMatrix = static_cast<ECamera*>(nodeCam->getEntity())->getProjectionMatrix();
     glUniformMatrix4fv(TAGEngine::m_uProjectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(m_projectionMatrix));
 
-    // Calculamos Entity::viewMatrix
-    // Recorremos hasta root guardando todas las transformaciones.
-    std::stack<glm::mat4> pila;
-    GraphicNode* node = nodeCam;
 
-    while ( (node=node->getParent()) )
-    {
-        Entity* entity = node->getEntity();
-
-        // Si hace un cast no válido, devuelve nulo
-        if ( ETransform* t = dynamic_cast<ETransform*>(entity) )
-            pila.push(t->getMatrix());
-    }
-
-    // Aplicamos las transformaciones sacando de la pila
+    // Calculamos la matriz Entity::viewMatrix
     Entity::viewMatrix = glm::mat4();
-    while (pila.size()>0)
-    {
-        Entity::viewMatrix = pila.top() * Entity::viewMatrix;
-        pila.pop();
-    }
+    calculateMatrix(nodeCam, Entity::viewMatrix);
+
 }
 
 //////////////////////////////////
@@ -257,11 +241,18 @@ void tag::TAGEngine::setLightOn(const unsigned int light)
 
     glUniform1i(TAGEngine::m_uLuz0Location, true);
 
+    // Calculamos lMatrix (posición de la luz)
+    glm::mat4 lMatrix;
+    calculateMatrix(nodeLuz, lMatrix);
 
-    // Calculamos Entity::viewMatrix
+    glUniformMatrix4fv(TAGEngine::m_uLMatrixLocation, 1, GL_FALSE, glm::value_ptr(lMatrix));
+}
+
+void tag::TAGEngine::calculateMatrix(GraphicNode* n, glm::mat4 &matrix)
+{
     // Recorremos hasta root guardando todas las transformaciones.
     std::stack<glm::mat4> pila;
-    GraphicNode* node = nodeLuz;
+    GraphicNode* node = n;
 
     while ( (node=node->getParent()) )
     {
@@ -273,12 +264,10 @@ void tag::TAGEngine::setLightOn(const unsigned int light)
     }
 
     // Aplicamos las transformaciones sacando de la pila
-    glm::mat4 lMatrix;
     while (pila.size()>0)
     {
-        lMatrix = pila.top() * lMatrix;
+        matrix = pila.top() * matrix;
         pila.pop();
     }
-
-    glUniformMatrix4fv(TAGEngine::m_uLMatrixLocation, 1, GL_FALSE, glm::value_ptr(lMatrix)); // Para la luz matrix view pero sin escalado!
 }
+

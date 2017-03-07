@@ -4382,11 +4382,8 @@
 1487862841 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\classes\drawable.h
 	"GraphicsEngine.h"
 
-1488030991 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\graphicsengine.h
+1488896935 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\graphicsengine.h
 	<GL/glew.h>
-	<assimp/Importer.hpp>
-	<assimp/scene.h>
-	<assimp/postprocess.h>
 	<SFML/Graphics.hpp>
 	<SFML/OpenGL.hpp>
 	<math.h>
@@ -8875,7 +8872,7 @@
 1487870400 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tagengine\resource.h
 	<string>
 
-1488795746 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
+1488896935 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"GraphicsEngine.h"
@@ -8886,7 +8883,6 @@
 	"Shader.h"
 	"Program.h"
 	"Player.h"
-	"tag/TAGEngine.h"
 
 1487870400 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tagengine\ecamera.cpp
 	"ECamera.h"
@@ -8942,7 +8938,7 @@
 	<iostream>
 	<stdexcept>
 
-1488812670 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\main.cpp
+1488896935 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\main.cpp
 	<GL/glew.h>
 	"Scene.h"
 	"GraphicsEngine.h"
@@ -9046,9 +9042,8 @@
 1488795746 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\resource.h
 	<string>
 
-1488814296 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
+1488898869 c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
 	<GL/glew.h>
-	<SFML/Graphics.hpp>
 	<glm/glm.hpp>
 	"tag/Types.h"
 	"tag/GraphicNode.h"
@@ -9131,7 +9126,7 @@
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/string_cast.hpp>
 
-1488814844 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
+1488899155 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
 	"tag/TAGEngine.h"
 	<stdexcept>
 	<glm/glm.hpp>
@@ -9150,7 +9145,7 @@
 	<glm/glm.hpp>
 	"tag/Types.h"
 
-1488810377 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
+1488897309 source:c:\users\marin\desktop\universidad\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
 	"tag/ETransform.h"
 	<GL/glew.h>
 	<glm/gtc/matrix_transform.hpp>
