@@ -121,7 +121,7 @@ bool tag::TAGEngine::isRunning()
 /////////////////////
 void tag::TAGEngine::draw()
 {
-    m_window->setActive(true);
+    m_window->setActive(true); setActive();
     glm::mat4 rotateMatrix;
     glm::vec3 positionMatrix;
 
