@@ -34,7 +34,6 @@ void CharacterController::readEvents()
             m_hasSpeedBoost = false;
     }
 
-
     //AGACHADO
     if(GEInstance->receiver.isKeyDown(KEY_KEY_8))
         speed = speed/2.f;

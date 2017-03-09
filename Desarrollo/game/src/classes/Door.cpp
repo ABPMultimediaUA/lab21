@@ -3,9 +3,7 @@
 
 Door::Door(int f, bool a)
 {
-    x = 0;
-    y = 0;
-    z = 0;
+    x = 0;  y = 0;  z = 0;
     facing = f;
     speed = 0.7;
     active = a;
@@ -21,39 +19,23 @@ Door::~Door()
     //dtor
 }
 
-void Door::setActive(){ active=true; }
-
-bool Door::getActive(){ return active; }
-
-bool Door::getIfOpened()
-{
-    return isOpened;
-}
+void Door::setActive()  {   active=true;      }
+bool Door::getActive()  {   return active;    }
+bool Door::getIfOpened(){   return isOpened;  }
 
 
 void Door::setPositionClosed(dwe::vec3f p)
 {
-
-     if (facing == 0 || facing == 2)
-     {
-         cl = p.x;
-     }
-     else
-     {
-         cl = p.z;
-     }
+     if (facing == 0 || facing == 2)    cl = p.x;
+     else                               cl = p.z;
 }
 
 void Door::setPositionOpened(dwe::vec3f p)
 {
-    if(facing==0)
-        op=p.x+100.5;
-    else if(facing==1)
-        op=p.z+100.5;
-    else if(facing==2)
-        op=p.x-100.5;
-    else if(facing==3)
-        op=p.z-100.5;
+    if(facing==0)           op=p.x+100.5;
+    else if(facing==1)      op=p.z+100.5;
+    else if(facing==2)      op=p.x-100.5;
+    else if(facing==3)      op=p.z-100.5;
 }
 void Door::openDoor()
 {
@@ -66,46 +48,34 @@ void Door::openDoor()
 
 
 
-    switch (facing)
-    {
+    switch (facing){
         case 0:
-
             if(x<op)
                 x += speed;
 
             setPosition(dwe::vec3f(x,y,z));
             isOpened = (x>=op);
-
             break;
-
         case 1:
-
             if(z<op)
                 z+= speed;
 
             setPosition(dwe::vec3f(x,y,z));
             isOpened = (z>=op);
-
             break;
-
         case 2:
-
             if(x>op)
                 x-= speed;
 
             setPosition(dwe::vec3f(x,y,z));
             isOpened =(x<=op);
-
             break;
-
         case 3:
-
             if(z>op)
                 z-=speed;
 
             setPosition(dwe::vec3f(x,y,z));
             isOpened =(z<=op);
-
             break;
     }
 
@@ -120,47 +90,35 @@ void Door::closeDoor()
     y = getPosition().y;
     z = getPosition().z;
 
-
     switch (facing)
     {
         case 0:
-
             if(x>=cl)
                 x-=speed;
 
             setPosition(dwe::vec3f(x,y,z));
             isOpened=(x>=cl);
-
             break;
-
         case 1:
-
             if(z>=cl)
                 z-=speed;
 
             setPosition(dwe::vec3f(x,y,z));
             isOpened=(z>=cl);
-
             break;
-
         case 2:
-
             if(x<=cl)
                 x+=speed;
 
             setPosition(dwe::vec3f(x,y,z));
             isOpened=(x<=cl);
-
             break;
-
         case 3:
-
             if(z<=cl)
                 z+=speed;
 
             setPosition(dwe::vec3f(x,y,z));
             isOpened=(z<=cl);
-
             break;
     }
 
@@ -199,21 +157,9 @@ bool Door::getIsClosing()
 
 void Door::update()
 {
-    //cout<<"Updateando"<<endl;
     if(active)
-    {
-        if(isOpening && !isOpened)
-        {
-            openDoor();
-        }/*else if(isOpened){
-            delete this;
-        }*/
-        else if (isClosing && isOpened)
-        {
-            closeDoor();
-        }
-
-    }
+        if(isOpening && !isOpened)          openDoor();
+        else if (isClosing && isOpened)     closeDoor();
 }
 
 void Door::render()

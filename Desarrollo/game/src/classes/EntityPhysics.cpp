@@ -71,7 +71,7 @@ void EntityPhysics::setEntityPhysics(const b2PolygonShape& bShape, b2Body* const
 
 void EntityPhysics::updatePhysics()
 {
-//    Drawable::setPosition(dwe::vec3f(getBwBody()->GetPosition().x, getPosition().y, getBwBody()->GetPosition().y));
+    //Drawable::setPosition(dwe::vec3f(getBwBody()->GetPosition().x, getPosition().y, getBwBody()->GetPosition().y));
 
     //b2Vec2 position = m_body->GetPosition();
     //float32 angle = m_body->GetAngle();
