@@ -10,19 +10,20 @@
 #include "Game.h"
 #include "GSDead.h"
 
+///////////////////////////////
 Scene* Scene::Instance()
 {
   static Scene instance;
 
   return &instance;
 }
-
+///////////////////////////////
 Scene::Scene()
 {
     cout<<"IN Scene constructor"<<endl;
     //ctor
 }
-
+///////////////////////////////
 void Scene::Init()
 {
     /**********************************/
@@ -65,14 +66,12 @@ void Scene::Init()
     for(int i=0; i<4; i++){
         enemyHumanoid = GEInstance->createEnemyHumanoid();
         enemyHumanoid->setPosition(dwe::vec3f(500+(i*10),24,-250+(i*80) ));
-        //enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
         m_enemies.push_back(enemyHumanoid);
     }
 
     for(int i=0; i<4; i++){
         enemyHumanoid = GEInstance->createEnemyHumanoid();
         enemyHumanoid->setPosition(dwe::vec3f(-300+(i*10),24,-400+(i*80) ));
-        //enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
         m_enemies.push_back(enemyHumanoid);
     }
     ////////////////////////////////
@@ -99,6 +98,7 @@ void Scene::Init()
     timeLastProjectil = 0;
 }
 
+///////////////////////////////
 void Scene::Destroy(){
     //delete llave;
     //delete enemyDog;
@@ -120,21 +120,16 @@ void Scene::Destroy(){
     }
     delete joint_try;
     delete bjoint;
-    //delete camera1;
+    delete camera1;
     cout<<"DELETE ALL"<<endl;
 }
 
-Scene::~Scene()
-{
+///////////////////////////////
+Scene::~Scene() { if(mainPlayer) Destroy(); }
 
-if(mainPlayer)
-    Destroy();
-
-}
-
+///////////////////////////////
 void Scene::Update()
 {
-
     if(mainPlayer->getHealth()<=0){
         Game::getInstance()->ChangeState(GSDead::getInstance());
     }
@@ -162,7 +157,7 @@ void Scene::Update()
         if(m_enemies[e]){
             int playerX = mainPlayer->getPosition().x;      int playerZ = mainPlayer->getPosition().z;
             int enemyX  = m_enemies[e]->getPosition().x;    int enemyZ  = m_enemies[e]->getPosition().z;
-            int d2pX    = abs(playerX - enemyX);            int d2pZ    = abs(playerZ - enemyZ);
+            int d2pX    = abs(playerX - enemyX);            int d2pZ    = abs(playerZ - enemyZ);  //distance 2 player
 
             //CERCAR --- SOLO CALCULAR LOS ENEMIGOS CERCANOS (pero no demasiado cerca)
             //VER EN QUE CUADRANTE ESTA EL ENEMIGO CON RESPECTO AL JUGADOR
@@ -174,30 +169,30 @@ void Scene::Update()
                 if(enemyZ<playerZ)       moreEnemiesZ--; //DOWN
                 else                     moreEnemiesZ++; //UP
             }
-
-            //ENEMIGO MAS ALEJADO DEL GRUPO MAS GRANDE
-
         }
     }
-
     //////////////////////////////////////////
     //////////////////////////////////////////
     //////////////////////////////////////////
-
 
     GEInstance->updateCamera(mainPlayer->getPosition(), moreEnemiesX, moreEnemiesZ);
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
 
     for(int e=0; e<m_enemies.size(); e++) //recorre
-<<<<<<< HEAD
-           // m_enemies[e]->update();
-=======
-        if(m_enemies[e])
+        if(m_enemies[e]){
+
+
+            m_enemies[e]->setPosEntity(
+                    dwe::vec3f( m_enemies[e]->getPosEntity().x + 1,
+                                m_enemies[e]->getPosEntity().y    ,
+                                m_enemies[e]->getPosEntity().z)
+                    ,0); //ultimo valor el angulo
+            //PASAR POSICION BOX2D A IRRLICH
+            m_enemies[e]->setPosition(dwe::vec3f(m_enemies[e]->getPosEntity().x, 24 , m_enemies[e]->getPosEntity().z));
             m_enemies[e]->update();
->>>>>>> master
+        }
 
     // comprobamos si dispara
-
     if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
         NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
         if (mainPlayer->getCurrentWeaponType() == eGun && mainPlayer->getAmmo(0) > 0) //
@@ -230,30 +225,6 @@ void Scene::Update()
             mainPlayer->setMKeys(llave->getId());
             delete llave;
             llave = 0;
-        }
-    }
-    */
-    /*
-    //rmm:cheat, cojo todo
-    if (GEInstance->receiver.isKeyDown(KEY_KEY_C))
-    {
-        // Cojo llave
-        if(llave!=0)
-        {
-            llaveCogida=true;
-            mainPlayer->setMKeys(llave->getId());
-        }
-
-        //Activo todo
-        for(int i=0; i<3; i++)
-        {
-            if(i==2)
-            {
-                if(mainPlayer->getMKey(((Generator*)entities[i])->getNum()))
-                    triggers[i]->triggered(entities[i]);
-            }
-            else if(i==0 || i==1)
-                triggers[i]->triggered(entities[i]);
         }
     }
     */
@@ -323,11 +294,7 @@ void Scene::updatePlayerWeapons(Player* mainplayer, Firearm** weapons)
     }
 }
 
-////////////
-void Scene::createEnemyHumanoid(dwe::vec3f origin, float angle){
-   // m_enemies.push_back(GEInstance->createEnemyHumanoid(origin, angle));
-}
-
+////////////////////////////
 
 //CREATE CONSUMABLES
 void Scene::createSpeedBoost(float px, float py, float pz)  { m_consumables.push_back(GEInstance->createSpeedBoost(px, py, pz));    }

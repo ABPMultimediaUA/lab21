@@ -25,17 +25,17 @@ void tag::EAnimation::endDraw()
 }
 
 /////////////////
-void tag::EAnimation::loadAnimation(std::string fileName, int frames)
+void tag::EAnimation::loadAnimation(std::string fileName, int animation, int frames)
 {
-    m_animations = new ResourceMesh**[2]; //array de 3 animaciones
+    /*m_animations = new ResourceMesh**[2]; //array q debe ser el numero de animaciones q tenga el obj (podriamos definirlo al principio y asi solo pasariamos animacion a animacion)
     for(int i = 0; i < 3; i++){
-        m_animations[i] = new ResourceMesh*[5]; //tamanyo de la animacion
+        m_animations[i] = new ResourceMesh*[5]; //tamanyo de la animacion(numero de frames o meshes)
+    }*/
+
+    m_animations[animation] = new ResourceMesh*[frames]; //tamanyo de la animacion(numero de frames o meshes)
+    for(int j = 0; j < frames; j++){
+        m_animations[animation][j] = static_cast<ResourceMesh*>(Entity::resourceManager.getResource(fileName));
     }
-    m_animations[0][0] = static_cast<ResourceMesh*>(Entity::resourceManager.getResource(fileName));
-    m_animations[0][1] = static_cast<ResourceMesh*>(Entity::resourceManager.getResource(fileName));
-    m_animations[0][2] = static_cast<ResourceMesh*>(Entity::resourceManager.getResource(fileName));
-
-
 
 }
 tag::ResourceMesh* tag::EAnimation::getFrame(int animation, int frame)
