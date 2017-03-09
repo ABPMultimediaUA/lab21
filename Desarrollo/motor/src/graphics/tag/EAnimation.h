@@ -2,10 +2,7 @@
 #define EANIMATION_H
 
 #include "Entity.h"
-#include "ResourceManager.h"
 #include "ResourceMesh.h"
-#include "TAGEngine.h"
-
 
 namespace tag
 {
@@ -15,15 +12,14 @@ namespace tag
             EAnimation();
             ~EAnimation();
 
-            void loadFrame(std::string fileName, int frame);//cargamos frame a frame
+            void loadAnimation(std::string fileName, int frames);//cargamos la animacion y su numero de frames
 
-            void beginDraw();
+            void beginDraw(int animation, int frame);//dibujaremos a partir de la animacion y su frame
             void endDraw();
-            ResourceMesh* getFrame(int i);//devuelve un frame
-            void setFrame(int j, ResourceMesh* resource);//devuelve un frame
+            ResourceMesh* getFrame(int animation, int frame);//devuelve un mesh en una posicion de su animacion
+            void setFrame(int animation, int frame, ResourceMesh* resource);//pasamos el numero de la animacion, el frame y el mesh
         private:
-            ResourceMesh* m_animation[2];//por poner un numero
-            ResourceManager* resourceManager; //
+            ResourceMesh ***m_animations;//va a ser el array de animaciones
     };
 }
 

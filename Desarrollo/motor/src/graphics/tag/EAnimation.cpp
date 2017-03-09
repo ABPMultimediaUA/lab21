@@ -1,10 +1,7 @@
 #include "tag/EAnimation.h"
 
-#include <iostream>
-#include "tag/ResourceManager.h"
-#include "tag/ResourceMesh.h"
-#include "tag/TAGEngine.h"
-tag::EAnimation::EAnimation()
+tag::EAnimation::EAnimation() :
+    m_animations(0)
 {
     //ctor
 }
@@ -15,31 +12,39 @@ tag::EAnimation::~EAnimation()
 }
 
 /////////////////
-void tag::EAnimation::beginDraw()
+void tag::EAnimation::beginDraw(int animation, int frame)
 {
-    std::cout << "Begin " << m_cadena << "\n";
+    if (m_animations!=0)
+        m_animations[animation][frame]->draw();
 }
 
 /////////////////
 void tag::EAnimation::endDraw()
 {
-    std::cout << "End " << m_cadena << "\n";
+
 }
 
 /////////////////
-void tag::EAnimation::loadFrame(std::string fileName, int frame)
+void tag::EAnimation::loadAnimation(std::string fileName, int frames)
 {
-    std::cout << "Cargando malla animada " << fileName << std::endl;
-    //m_animation[frame] = fileName; //metemos la malla en el frame
+    m_animations = new ResourceMesh**[2]; //array de 3 animaciones
+    for(int i = 0; i < 3; i++){
+        m_animations[i] = new ResourceMesh*[5]; //tamanyo de la animacion
+    }
+    m_animations[0][0] = static_cast<ResourceMesh*>(Entity::resourceManager.getResource(fileName));
+    m_animations[0][1] = static_cast<ResourceMesh*>(Entity::resourceManager.getResource(fileName));
+    m_animations[0][2] = static_cast<ResourceMesh*>(Entity::resourceManager.getResource(fileName));
+
+
 
 }
-tag::ResourceMesh* tag::EAnimation::getFrame(int i)
+tag::ResourceMesh* tag::EAnimation::getFrame(int animation, int frame)
 {
-    return m_animation[i];
+    return m_animations[animation][frame];
 }
-void tag::EAnimation::setFrame(int j, ResourceMesh* resource)
+void tag::EAnimation::setFrame(int animation, int frame, ResourceMesh* resource)
 {
-    m_animation[j] = resource;
+   m_animations[animation][frame] = resource;
 }
 
 
