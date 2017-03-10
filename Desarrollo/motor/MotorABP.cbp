@@ -16,9 +16,9 @@
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
-					<Add library="sfml-graphics-s-d" />
-					<Add library="sfml-window-s-d" />
-					<Add library="sfml-system-s-d" />
+					<Add library="lib/libsfml-graphics-s.a" />
+					<Add library="lib/libsfml-window-s.a" />
+					<Add library="lib/libsfml-system-s.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -27,11 +27,6 @@
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
-				<Linker>
-					<Add library="sfml-graphics-s" />
-					<Add library="sfml-window-s" />
-					<Add library="sfml-system-s" />
-				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
@@ -56,8 +51,8 @@
 			<Add library="jpeg" />
 			<Add directory="lib" />
 		</Linker>
-		<Unit filename="Shaders/FragmentShader.glsl" />
-		<Unit filename="Shaders/VertexShader.glsl" />
+		<Unit filename="shaders/FragmentShader.glsl" />
+		<Unit filename="shaders/VertexShader.glsl" />
 		<Unit filename="src/Main.cpp" />
 		<Unit filename="src/classes/Drawable.cpp" />
 		<Unit filename="src/classes/Drawable.h" />
@@ -74,6 +69,8 @@
 		<Unit filename="src/graphics/GraphicsEngine.cpp" />
 		<Unit filename="src/graphics/GraphicsEngine.h" />
 		<Unit filename="src/graphics/GraphicsEngineTemplates.cpp" />
+		<Unit filename="src/graphics/tag/EAnimation.cpp" />
+		<Unit filename="src/graphics/tag/EAnimation.h" />
 		<Unit filename="src/graphics/tag/ECamera.cpp" />
 		<Unit filename="src/graphics/tag/ECamera.h" />
 		<Unit filename="src/graphics/tag/ELight.cpp" />
