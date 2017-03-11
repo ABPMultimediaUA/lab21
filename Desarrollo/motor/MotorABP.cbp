@@ -16,9 +16,9 @@
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
-					<Add library="lib/libsfml-graphics-s.a" />
-					<Add library="lib/libsfml-window-s.a" />
-					<Add library="lib/libsfml-system-s.a" />
+					<Add library="libsfml-graphics-s-d" />
+					<Add library="libsfml-window-s-d" />
+					<Add library="libsfml-system-s-d" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -27,6 +27,11 @@
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
+				<Linker>
+					<Add library="sfml-graphics-s" />
+					<Add library="sfml-window-s" />
+					<Add library="sfml-system-s" />
+				</Linker>
 			</Target>
 		</Build>
 		<Compiler>

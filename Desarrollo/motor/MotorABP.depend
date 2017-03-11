@@ -1566,7 +1566,7 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics/BlendMode.hpp>
 	<SFML/Graphics/CircleShape.hpp>
@@ -1594,7 +1594,7 @@
 	<SFML/Graphics/VertexArray.hpp>
 	<SFML/Graphics/View.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window.hpp
 	<SFML/System.hpp>
 	<SFML/Window/Context.hpp>
 	<SFML/Window/ContextSettings.hpp>
@@ -1609,7 +1609,7 @@
 	<SFML/Window/WindowHandle.hpp>
 	<SFML/Window/WindowStyle.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Clock.hpp>
 	<SFML/System/Err.hpp>
@@ -1629,24 +1629,24 @@
 	<SFML/System/Vector2.hpp>
 	<SFML/System/Vector3.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\config.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\config.hpp
 	"TargetConditionals.h"
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\clock.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\clock.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/Time.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\export.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\export.hpp
 	<SFML/Config.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\time.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\time.hpp
 	<SFML/System/Export.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\err.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\err.hpp
 	<SFML/System/Export.hpp>
 	<ostream>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\fileinputstream.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\fileinputstream.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Export.hpp>
 	<SFML/System/InputStream.hpp>
@@ -1654,32 +1654,32 @@
 	<cstdio>
 	<string>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\inputstream.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\inputstream.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Export.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\noncopyable.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\noncopyable.hpp
 	<SFML/System/Export.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\lock.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\lock.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\memoryinputstream.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\memoryinputstream.hpp
 	<SFML/Config.hpp>
 	<SFML/System/InputStream.hpp>
 	<SFML/System/Export.hpp>
 	<cstdlib>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\mutex.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\mutex.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\sleep.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\sleep.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/Time.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\string.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\string.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/Utf.hpp>
 	<iterator>
@@ -1687,7 +1687,7 @@
 	<string>
 	<SFML/System/String.inl>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\utf.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\utf.hpp
 	<SFML/Config.hpp>
 	<algorithm>
 	<locale>
@@ -1695,86 +1695,86 @@
 	<cstdlib>
 	<SFML/System/Utf.inl>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\utf.inl
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\utf.inl
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\string.inl
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\string.inl
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\thread.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\thread.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
 	<SFML/System/Thread.inl>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\thread.inl
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\thread.inl
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\threadlocal.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\threadlocal.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\threadlocalptr.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\threadlocalptr.hpp
 	<SFML/System/ThreadLocal.hpp>
 	<SFML/System/ThreadLocalPtr.inl>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\threadlocalptr.inl
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\threadlocalptr.inl
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\vector2.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\vector2.hpp
 	<SFML/System/Vector2.inl>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\vector2.inl
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\vector2.inl
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\vector3.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\vector3.hpp
 	<SFML/System/Vector3.inl>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\vector3.inl
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\system\vector3.inl
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\context.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\context.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/Window/GlResource.hpp>
 	<SFML/Window/ContextSettings.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\export.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\export.hpp
 	<SFML/Config.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\glresource.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\glresource.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\contextsettings.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\contextsettings.hpp
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\event.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\event.hpp
 	<SFML/Config.hpp>
 	<SFML/Window/Joystick.hpp>
 	<SFML/Window/Keyboard.hpp>
 	<SFML/Window/Mouse.hpp>
 	<SFML/Window/Sensor.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\joystick.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\joystick.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/String.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\keyboard.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\keyboard.hpp
 	<SFML/Window/Export.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\mouse.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\mouse.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/Vector2.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\sensor.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\sensor.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/Vector3.hpp>
 	<SFML/System/Time.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\touch.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\touch.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/Vector2.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\videomode.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\videomode.hpp
 	<SFML/Window/Export.hpp>
 	<vector>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\window.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\window.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/Window/ContextSettings.hpp>
 	<SFML/Window/VideoMode.hpp>
@@ -1786,54 +1786,54 @@
 	<SFML/System/NonCopyable.hpp>
 	<SFML/System/String.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\windowhandle.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\windowhandle.hpp
 	<SFML/Config.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\windowstyle.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\window\windowstyle.hpp
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\blendmode.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\blendmode.hpp
 	<SFML/Graphics/Export.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\export.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\export.hpp
 	<SFML/Config.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\circleshape.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\circleshape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\shape.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\shape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Transformable.hpp>
 	<SFML/Graphics/VertexArray.hpp>
 	<SFML/System/Vector2.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\drawable.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\drawable.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderStates.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\renderstates.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\renderstates.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/BlendMode.hpp>
 	<SFML/Graphics/Transform.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\transform.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\transform.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/System/Vector2.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\rect.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\rect.hpp
 	<SFML/System/Vector2.hpp>
 	<algorithm>
 	<SFML/Graphics/Rect.inl>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\rect.inl
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\rect.inl
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\transformable.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\transformable.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Transform.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\vertexarray.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\vertexarray.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Vertex.hpp>
 	<SFML/Graphics/PrimitiveType.hpp>
@@ -1841,22 +1841,22 @@
 	<SFML/Graphics/Drawable.hpp>
 	<vector>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\vertex.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\vertex.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/System/Vector2.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\color.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\color.hpp
 	<SFML/Graphics/Export.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\primitivetype.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\primitivetype.hpp
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\convexshape.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\convexshape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
 	<vector>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\font.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\font.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Glyph.hpp>
 	<SFML/Graphics/Texture.hpp>
@@ -1867,27 +1867,27 @@
 	<string>
 	<vector>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\glyph.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\glyph.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Rect.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\texture.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\texture.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Image.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\image.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\image.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<string>
 	<vector>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\rectangleshape.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\rectangleshape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\rendertarget.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\rendertarget.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
@@ -1899,25 +1899,25 @@
 	<SFML/Graphics/Vertex.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\view.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\view.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Transform.hpp>
 	<SFML/System/Vector2.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\rendertexture.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\rendertexture.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Texture.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\renderwindow.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\renderwindow.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/Graphics/Image.hpp>
 	<SFML/Window/Window.hpp>
 	<string>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\shader.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\shader.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Glsl.hpp>
 	<SFML/Window/GlResource.hpp>
@@ -1927,23 +1927,23 @@
 	<map>
 	<string>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\glsl.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\glsl.hpp
 	<SFML/Graphics/Transform.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/System/Vector2.hpp>
 	<SFML/System/Vector3.hpp>
 	<SFML/Graphics/Glsl.inl>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\glsl.inl
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\glsl.inl
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\sprite.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\sprite.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Transformable.hpp>
 	<SFML/Graphics/Vertex.hpp>
 	<SFML/Graphics/Rect.hpp>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\text.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\graphics\text.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Transformable.hpp>
@@ -1954,7 +1954,7 @@
 	<string>
 	<vector>
 
-1485764322 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\opengl.hpp
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\sfml\opengl.hpp
 	<SFML/Config.hpp>
 	<windows.h>
 	<GL/gl.h>
@@ -2159,7 +2159,7 @@
 
 1485208670 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\appreceiver.cpp
 
-1488958375 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
+1489137304 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"GraphicsEngine.h"
@@ -4361,7 +4361,7 @@
 	"Player.h"
 	"tag/GraphicNode.h"
 
-1488894132 D
+1489081657 D
 	"./Compiler/pushpack1.h"
 	"./Compiler/poppack1.h"
 	"vector2.inl"
@@ -4951,6 +4951,18 @@
 	"tag/TAGEngine.h"
 	"tag/Types.h"
 	<glm/gtc/matrix_transform.hpp>
+	"tag/TAGEngine.h"
+	<stdexcept>
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	"Shader.h"
+	"tag/Entity.h"
+	"tag/ResourceMesh.h"
+	"tag/ECamera.h"
+	"tag/ELight.h"
+	"tag/ETransform.h"
+	"tag/EMesh.h"
 	"tag/TAGEngine.h"
 	<stdexcept>
 	<glm/glm.hpp>
@@ -8979,7 +8991,7 @@
 	<glm/glm.hpp>
 	<stack>
 
-1489136551 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.h
+1489137304 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.h
 	<GL/glew.h>
 	"Resource.h"
 	<SFML/OpenGL.hpp>
@@ -8991,7 +9003,7 @@
 1488756873 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resource.h
 	<string>
 
-1488894846 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"tag/Types.h"
@@ -9000,6 +9012,7 @@
 	"Program.h"
 	"ResourceManager.h"
 	"ResourceMesh.h"
+	"tag/EAnimation.h"
 
 1488102581 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\types.h
 	<glm/gtc/type_precision.hpp>
@@ -9276,7 +9289,6 @@
 	"tag/ResourceManager.h"
 	"tag/ResourceMesh.h"
 
-<<<<<<< HEAD
 1488756873 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\graphicnode.cpp
 	"tag/GraphicNode.h"
 	"tag/Entity.h"
@@ -9287,7 +9299,9 @@
 
 1488022512 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resource.cpp
 	"tag/Resource.h"
-=======
+
+1488022512 rce.h"
+
 1487863593 c:\users\sergio\desktop\lab21\desarrollo\motor\include\glm\ext.hpp
 	"./gtc/bitfield.hpp"
 	"./gtc/constants.hpp"
@@ -9374,17 +9388,12 @@
 	"epsilon.inl"
 
 1487863593 nl"
->>>>>>> master
 
-1488815865 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
-	"tag/ETransform.h"
-	<GL/glew.h>
-	<glm/gtc/matrix_transform.hpp>
+1488819655 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
 	"tag/ETransform.h"
 	<GL/glew.h>
 	<glm/gtc/matrix_transform.hpp>
 
-<<<<<<< HEAD
 1488022835 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\etransform.h
 	"Entity.h"
 	<glm/glm.hpp>
@@ -9394,18 +9403,31 @@
 	"tag/ResourceManager.h"
 	"tag/ResourceMesh.h"
 
-1489133738 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.cpp
+1489137304 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.cpp
 	"tag/ResourceMesh.h"
 	<stdio.h>
 	<stdexcept>
+	<iostream>
 	"tag/Entity.h"
 	"tag/TAGEngine.h"
 	"tag/Types.h"
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/string_cast.hpp>
 
-1489136251 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
-=======
+1489137335 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
+	"tag/TAGEngine.h"
+	<stdexcept>
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	"Shader.h"
+	"tag/Entity.h"
+	"tag/ResourceMesh.h"
+	"tag/ECamera.h"
+	"tag/ELight.h"
+	"tag/ETransform.h"
+	"tag/EMesh.h"
+
 1487863593 c:\users\sergio\desktop\lab21\desarrollo\motor\include\glm\gtc\epsilon.inl
 	"quaternion.hpp"
 	"../vector_relational.hpp"
@@ -10073,19 +10095,6 @@
 
 1488215325 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\etransform.h
 
-1488743009 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\graphicnode.cpp
-	"tag/GraphicNode.h"
-	"tag/Entity.h"
-	<algorithm>
-
-1488742941 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\graphicnode.h
-	<vector>
-
-1488015134 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resource.cpp
-	"tag/Resource.h"
-
-1488015086 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\etransform.h
-
 1488881430 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\graphicnode.cpp
 	"tag/GraphicNode.h"
 	"tag/Entity.h"
@@ -10111,32 +10120,7 @@
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/string_cast.hpp>
 
-1488748473 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.cpp
-	"tag/ResourceManager.h"
-	"tag/ResourceMesh.h"
-
-1488817645 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.cpp
-	"tag/ResourceMesh.h"
-	<stdio.h>
-
 1489081657 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
->>>>>>> master
-	"tag/TAGEngine.h"
-	<stdexcept>
-	<glm/glm.hpp>
-	<glm/gtc/matrix_transform.hpp>
-	<glm/gtc/type_ptr.hpp>
-	"Shader.h"
-	"tag/Entity.h"
-	"tag/ResourceMesh.h"
-	"tag/ECamera.h"
-	"tag/ELight.h"
-	"tag/ETransform.h"
-	"tag/EMesh.h"
-<<<<<<< HEAD
-=======
-
-1488894132 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
 
 1489082656 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\eanimation.h
 	"Entity.h"
@@ -10146,5 +10130,11 @@
 	"tag/EAnimation.h"
 
 1488712332 gine.h"
->>>>>>> master
+
+1489137335 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\eanimation.h
+	"Entity.h"
+	"ResourceMesh.h"
+
+1489137335 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\eanimation.cpp
+	"tag/EAnimation.h"
 
