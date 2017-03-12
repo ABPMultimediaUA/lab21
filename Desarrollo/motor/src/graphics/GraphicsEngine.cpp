@@ -45,8 +45,8 @@ void dwe::GraphicsEngine::init()
     m_window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Lab21", sf::Style::Default, contextSettings);
 
     // Creamos los mensajes de texto, por ahora vacios
-    if (!m_font.loadFromFile("media/ExoRegular.otf"))
-        throw std::runtime_error("No se ha podido cargar la fuente de texto");
+    /*if (!m_font.loadFromFile("media/ExoRegular.otf"))
+        throw std::runtime_error("No se ha podido cargar la fuente de texto");*/
 
 	for(int i=0; i<MAX_MESSAGE_LINES; i++)
 	{
