@@ -213,21 +213,6 @@ Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 
 	irrnode->setPosition(vector3df(0,24,10));
 
-
-/*
-	// TODO ¿esto es para quitar????
-	vector3df extent= irrnode->getTransformedBoundingBox().getExtent();
-    //now extent.X is the X size of the box, .Y is Y etc.
-    cout << "SIZE: X = " << extent.X << " ... Y = " << extent.Y << " ... Z = " << extent.Z << endl;
-
-    vector3df pos= irrnode->getPosition();
-    cout << "POS: X = " << pos.X << " ... Y = " << pos.Y << " ... Z = " << pos.Z << endl;
-
-    //createDynPhyEntity(m_world,vector2d<s32>(0,0), m_device);
-    // TODO .................... hasta aqui
-
-*/
-
 	Player* p = new Player(gun);
 	p->setNode(new Node(irrnode));cout<<"-----------------------------"<<endl;
 	NetInstance->addNetObject(p);

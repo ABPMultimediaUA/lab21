@@ -33,10 +33,10 @@ class EntityPhysics
         void setClassID(int i);
         int getClassID();
 
+        void updatePhysics();
     protected:
 
     private:
-        void updatePhysics();
         b2PolygonShape      m_shape;
         b2Body*             m_body;
         IrrlichtDevice*     m_device;

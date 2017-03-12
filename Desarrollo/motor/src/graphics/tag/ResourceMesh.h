@@ -27,18 +27,28 @@ namespace tag
             void draw();
 
         private:
-            GLfloat* m_vertices;
-            GLfloat* m_normals;
-            GLfloat* m_textUV;
-            GLfloat* m_color;
+            GLfloat *m_vertices;
+            GLfloat *m_normals;
+            GLfloat *m_textUV;
+            GLfloat *m_color;
 
-            GLuint* m_verticesIndex;
-            GLuint* m_normalsIndex;
-            GLuint* m_textUVIndex;
+            GLuint *m_verticesIndices;
+            GLuint *m_normalsIndices;
+            GLuint *m_textUVIndices;
 
-            unsigned int m_numVertices;
+            GLuint m_numVertices;
+            GLuint m_numIndices;
+
+            GLuint m_vbVertices;
+            GLuint m_ibVertices;
+            GLuint m_vbNormals;
+            GLuint m_ibNormals;
 
             void aiVector3DToArrayGLFloat(const aiVector3D &source, GLfloat* dest);
+            void aiSceneToOpenGLMesh(const aiScene* scene);
+            void prepareOpenGLBuffers();
+            void createOpenGLBuffers();
+            void deleteOpenGLBuffers();
     };
 }
 

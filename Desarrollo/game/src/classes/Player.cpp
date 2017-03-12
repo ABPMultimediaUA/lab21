@@ -34,12 +34,8 @@ Player::~Player()
 void Player::update(Shotgun* shotgun, Rifle* rifle)
 {
     Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
-
-    if (m_hasShotgun){
-        m_weapons[1] = shotgun;
-    }else if (m_hasRifle){
-        m_weapons[2] = rifle;
-    }
+    if (m_hasShotgun)   {   m_weapons[1] = shotgun; }
+    if (m_hasRifle)     {   m_weapons[2] = rifle;   }
 }
 
 /////////////
@@ -85,6 +81,7 @@ bool Player::getHasRifle() { return m_hasRifle; }
 void Player::addWeapon(Consumable* weapon, FirearmKind type)
 {
     if (!m_hasShotgun && type == eShotgun){
+
         m_hasShotgun = true;
         cout << "TENGO SHOTGUN" << endl;
     }
@@ -233,28 +230,20 @@ void Player::setNumMedkits(int ammount)
 }
 
 /////////////
-void Player::addMedkits(int ammount)
-{
+void Player::addMedkits(int ammount){
     m_medkits += ammount;
     cout << "\nPlayer.cpp------------Obtengo " << ammount << " medkits---------\n";
-
 }
 
 /////////////
-void Player::giveMedkits(int ammount, PlayerMate* playermate)
-{
+void Player::giveMedkits(int ammount, PlayerMate* playermate){
     NetInstance->sendBroadcast(ID_SEND_MEDKIT, playermate->creatingSystemGUID.ToString());
     m_medkits -= ammount;
-
     cout << "\nPlayer.cpp------------le doy al otro jugador "<< ammount << " botiquines--------------\n";
 }
 
 /////////////
-void Player::receiveMedkits(int ammount)
-{
-    this->addMedkits(ammount);
-
-}
+void Player::receiveMedkits(int ammount)    {   this->addMedkits(ammount);  }
 
 /////////////
 void Player::consumeMedkit()
@@ -272,6 +261,6 @@ void Player::onBeginContact(EntityPhysics* otherObject)
 {
     if((otherObject && otherObject->getClassID()==CLASS_ENEMY_ID)){
         m_health-=5;
-        cout<<m_health<<endl;
+        cout<< "Perdiendo vida: " << m_health <<endl;
     }
 }
