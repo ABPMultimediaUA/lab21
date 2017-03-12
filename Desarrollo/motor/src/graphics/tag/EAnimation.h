@@ -20,6 +20,7 @@ namespace tag
 
             void beginDraw(int animation, int frame);//dibujaremos a partir de la animacion y su frame
             void endDraw();
+            void createAnimation(int numAnimations);//creamos el array pasandole un numero de animaciones q tendra
             ResourceMesh* getFrame(int animation, int frame);//devuelve un mesh en una posicion de su animacion
             void setFrame(int animation, int frame, ResourceMesh* resource);//pasamos el numero de la animacion, el frame y el mesh
         private:

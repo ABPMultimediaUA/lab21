@@ -25,6 +25,11 @@ void tag::EAnimation::endDraw()
 }
 
 /////////////////
+
+void tag::EAnimation::createAnimation(int numAnimations){
+    m_animations = new ResourceMesh**[numAnimations];
+}
+
 void tag::EAnimation::loadAnimation(std::string fileName, int animation, int frames)
 {
     /*m_animations = new ResourceMesh**[2]; //array q debe ser el numero de animaciones q tenga el obj (podriamos definirlo al principio y asi solo pasariamos animacion a animacion)
