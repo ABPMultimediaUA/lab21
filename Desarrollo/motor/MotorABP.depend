@@ -11833,7 +11833,7 @@
 	<vector>
 	<SFML/OpenGL.hpp>
 
-1489313689 c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\eanimation.h
+1489414413 c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\eanimation.h
 	"Entity.h"
 	"ResourceMesh.h"
 
@@ -11903,7 +11903,7 @@
 	"tag/ResourceManager.h"
 	"tag/ResourceMesh.h"
 
-1489315252 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
+1489331030 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"GraphicsEngine.h"
@@ -11915,7 +11915,7 @@
 	"Program.h"
 	"Player.h"
 
-1489313689 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\eanimation.cpp
+1489414413 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\eanimation.cpp
 	"tag/EAnimation.h"
 
 1488896254 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
