@@ -9,6 +9,8 @@
 #include "CRifle.h"
 #include "Game.h"
 #include "GSDead.h"
+#include "NavGraphNode.h"
+#include "NavGraphEdge.h"
 
 Scene* Scene::Instance()
 {
@@ -17,7 +19,7 @@ Scene* Scene::Instance()
   return &instance;
 }
 
-Scene::Scene()
+Scene::Scene() : navGraph(false)
 {
     cout<<"IN Scene constructor"<<endl;
     //ctor
@@ -47,6 +49,69 @@ void Scene::Init()
     //llave=GEInstance->createMagnetKey(0, 50, 0, 350);
     //llaveCogida=false;
 
+    /******************Waypoints*******************/
+
+    NavGraphNode node0(0, dwe::vec2f(-200, 0));
+    NavGraphNode node1(1, dwe::vec2f(-200, -100));
+    NavGraphNode node2(2, dwe::vec2f(-100, -100));
+    NavGraphNode node3(3, dwe::vec2f(-100, 0));
+
+    NavGraphNode node4(4, dwe::vec2f(-150, -50));
+
+    NavGraphNode node5(5, dwe::vec2f(-175, -200));
+    NavGraphNode node6(6, dwe::vec2f(-125, -200));
+
+    NavGraphNode node7(7, dwe::vec2f(-150, -150));
+
+    navGraph.addNode(node0);
+    navGraph.addNode(node1);
+    navGraph.addNode(node2);
+    navGraph.addNode(node3);
+    navGraph.addNode(node4);
+    navGraph.addNode(node5);
+    navGraph.addNode(node6);
+    navGraph.addNode(node7);
+
+    NavGraphEdge edge01(0, 1, 100);
+    NavGraphEdge edge03(0, 3, 100);
+    NavGraphEdge edge04(0, 4, 70.710678);
+
+    NavGraphEdge edge12(1, 2, 100);
+    NavGraphEdge edge14(1, 4, 70.710678);
+    NavGraphEdge edge15(1, 5, 103.07764);
+
+    NavGraphEdge edge23(2, 3, 100);
+    NavGraphEdge edge24(2, 4, 70.710678);
+    NavGraphEdge edge26(2, 6, 103.07764);
+
+    NavGraphEdge edge34(3, 4, 70.710678);
+
+    NavGraphEdge edge75(7, 5, 55.901699);
+    NavGraphEdge edge76(7, 6, 55.901699);
+
+
+    navGraph.addEdge(edge01);
+    navGraph.addEdge(edge03);
+    navGraph.addEdge(edge04);
+    navGraph.addEdge(edge12);
+    navGraph.addEdge(edge14);
+    navGraph.addEdge(edge15);
+    navGraph.addEdge(edge23);
+    navGraph.addEdge(edge24);
+    navGraph.addEdge(edge26);
+    navGraph.addEdge(edge34);
+    navGraph.addEdge(edge75);
+    navGraph.addEdge(edge76);
+
+    Shotgun* node = createShotgun(-100,10,-100);
+    node = createShotgun(-100,10,0);
+    node = createShotgun(-200,10,0);
+    node = createShotgun(-200,10,-100);
+    node = createShotgun(-150,10,-50);
+    node = createShotgun(-175,10,-200);
+    node = createShotgun(-125,10,-200);
+    node = createShotgun(-150,10,-150);
+
     // GUN - SHOTGUN - RIFLE
     gun = createGun(0,0,0); // Creo el arma inicial del player
     shotgun = createShotgun(-100,10,210);
@@ -62,7 +127,11 @@ void Scene::Init()
     ////////////////////////////////
     //         Enemigos           //
     ////////////////////////////////
-    for(int i=0; i<4; i++){
+    enemyHumanoid = GEInstance->createEnemyHumanoid();
+    enemyHumanoid->setPosition(dwe::vec3f(-200,24,0));
+    m_enemies.push_back(enemyHumanoid);
+
+    /*for(int i=0; i<4; i++){
         enemyHumanoid = GEInstance->createEnemyHumanoid();
         enemyHumanoid->setPosition(dwe::vec3f(500+(i*10),24,-250+(i*80) ));
         //enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
@@ -74,7 +143,7 @@ void Scene::Init()
         enemyHumanoid->setPosition(dwe::vec3f(-300+(i*10),24,-400+(i*80) ));
         //enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
         m_enemies.push_back(enemyHumanoid);
-    }
+    }*/
     ////////////////////////////////
     ////////////////////////////////
     ////////////////////////////////
@@ -132,6 +201,11 @@ if(mainPlayer)
 
 }
 
+NavigationGraph& Scene::getNavGraph()
+{
+    return navGraph;
+}
+
 void Scene::Update()
 {
 
@@ -187,11 +261,10 @@ void Scene::Update()
 
     GEInstance->updateCamera(mainPlayer->getPosition(), moreEnemiesX, moreEnemiesZ);
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
-
     for(int e=0; e<m_enemies.size(); e++) //recorre
+
         if(m_enemies[e])
             m_enemies[e]->update();
-
     // comprobamos si dispara
 
     if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){

@@ -5,7 +5,7 @@
 #include <StateMachine.h>
 #include <HumanoidStates.h>
 #include <iostream>
-
+#include <list>
 
 class Perception;
 class Pathplanning;
@@ -52,5 +52,11 @@ class Humanoid : public Enemy
         PathplanningTask* path;
         PerceptionTask* perc;
         PatrolTask* patrol;
+
+        int currentNode;
+        int nextNode;
+        int finalNode;
+        std::list<int> route;
+        dwe::vec2f movement;
 };
 #endif // HUMANOID_H

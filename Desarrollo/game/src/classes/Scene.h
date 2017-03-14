@@ -22,6 +22,8 @@
 #include "PerceptionTask.h"
 #include "PatrolTask.h"
 
+#include "NavigationGraph.h"
+
 #define NUM_ENTITIES 10
 
 class Projectile;
@@ -61,6 +63,7 @@ class Scene
         void createAmmoGun(float px, float py, float pz);
         void updateConsumables(Player* mainPlayer);
         void updatePlayerWeapons(Player* mainPlayer, Firearm** weapons);
+        NavigationGraph& getNavGraph();
 
         Enemy* getClosestEnemy();
 
@@ -85,6 +88,8 @@ class Scene
         std::vector<Projectile*> m_projectiles;
         std::vector<Consumable*> m_consumables;
         std::vector<Enemy*> m_enemies;
+
+        NavigationGraph navGraph;
 
         float timeLastProjectil;
 

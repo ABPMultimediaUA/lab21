@@ -1,16 +1,13 @@
-#include "Humanoid.h"
-#include "Pathplanning.h"
-#include "Perception.h"
-#include "Selector.h"
-#include "Sequence.h"
-#include "PathplanningTask.h"
-#include "PerceptionTask.h"
-#include "PatrolTask.h"
+
+#include "AStarAlgorithm.h"
+#include "AStarHeuristics.h"
+#include "Scene.h"
+#include <cmath>
 
 Humanoid::Humanoid()
 {
     steps = 19;
-    m_speed = 0.1;
+    m_speed = 0.5;
 
     //set up state machine
     h_pStateMachine = new StateMachine<Humanoid>(this);
@@ -39,6 +36,8 @@ Humanoid::Humanoid()
     sequence1->addChild(perc);
     sequence1->addChild(path);
 
+    currentNode = nextNode = finalNode = 0;
+
 }
 
 void Humanoid::Update()
@@ -49,7 +48,54 @@ void Humanoid::Update()
 
 void Humanoid::update()
 {
-    selector1->run();
+    int target = rand() % 8;
+
+    //selector1->run();
+    NavigationGraph& navGraph = Scene::Instance()->getNavGraph();
+
+    if(currentNode == finalNode){
+        Graph_SearchAStar a(navGraph, currentNode, target);
+        route = a.GetPathToTarget();
+        for (std::list<int>::iterator e = route.begin();
+         e != route.end();
+         ++e)
+            std::cout<<"Iterator "<<*e<<std::endl;
+        if(route.size()>1){
+            nextNode = route.front();
+            route.pop_front();
+            finalNode = route.back();
+        }
+    }
+
+    if(route.size()>0)
+    if(currentNode == nextNode)
+    {
+        nextNode = route.front();
+        route.pop_front();
+        dwe::vec2f v1(navGraph.getNode(currentNode).getPosition());
+        dwe::vec2f v2(navGraph.getNode(nextNode).getPosition());
+        dwe::vec2f vec(v2.x - v1.x, v2.y - v1.y);
+        float length = sqrt(vec.x * vec.x + vec.y * vec.y);
+
+        float angle = (float)  (    acos(       ((double)1*vec.x + (double)0*vec.y)/length     )* 180/M_PI     );
+        if(vec.y>0 && angle<180)
+            angle+=180;
+        setRotation(dwe::vec3f(0, angle, 0));
+        std::cout<<"Angle "<<angle<<std::endl;
+
+        vec.x /= length;
+        vec.y /= length;
+
+        movement = vec;
+    }
+
+    if(currentNode != finalNode)
+    setPosition(dwe::vec3f(getPosition().x+movement.x*m_speed, getPosition().y, getPosition().z+movement.y*m_speed));
+
+    if(abs(getPosition().x - navGraph.getNode(nextNode).getPosition().x) < m_speed && abs(getPosition().z - navGraph.getNode(nextNode).getPosition().y) < m_speed){
+        currentNode = nextNode;
+    }
+
 }
 
 StateMachine<Humanoid>* Humanoid::GetFSM()const

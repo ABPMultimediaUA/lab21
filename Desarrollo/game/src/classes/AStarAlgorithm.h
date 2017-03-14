@@ -1,14 +1,17 @@
 #ifndef ASTARALGORITHM_H
 #define ASTARALGORITHM_H
 
-#include "SparseGraph.h"
+#include <vector>
+#include <list>
 
-template <class graph_type, class heuristic>
+class NavigationGraph;
+class NavGraphEdge;
+
 class Graph_SearchAStar
 {
     private:
 
-        const graph_type& m_Graph;
+        const NavigationGraph& m_Graph;
 
         //indexed into my node. Contains the 'real' accumulative cost to that node
         std::vector<float> m_GCosts;
@@ -18,8 +21,8 @@ class Graph_SearchAStar
         //iPQ indexes into.
         std::vector<float> m_FCosts;
 
-        std::vector<typename graph_type::edge_type*> m_ShortestPathTree;
-        std::vector<typename graph_type::edge_type*> m_SearchFrontier;
+        std::vector<const NavGraphEdge*> m_ShortestPathTree;
+        std::vector<const NavGraphEdge*> m_SearchFrontier;
 
         int m_iSource;
         int m_iTarget;
@@ -29,10 +32,10 @@ class Graph_SearchAStar
 
     public:
 
-        Graph_SearchAStar(graph_type &graph, int source, int target);
+        Graph_SearchAStar(NavigationGraph &graph, int source, int target);
 
         //returns the vector of edges that the algorithm has examined
-        std::vector<typename graph_type::edge_type*> GetSPT()const;
+        std::vector<const NavGraphEdge*> GetSPT()const;
 
         //returns a vector of node indexes that comprise the shortest path
         //from the source to the target

@@ -174,10 +174,6 @@
 		<Unit filename="src/classes/Game.h" />
 		<Unit filename="src/classes/Generator.cpp" />
 		<Unit filename="src/classes/Generator.h" />
-		<Unit filename="src/classes/GraphEdge.cpp" />
-		<Unit filename="src/classes/GraphEdge.h" />
-		<Unit filename="src/classes/GraphNode.cpp" />
-		<Unit filename="src/classes/GraphNode.h" />
 		<Unit filename="src/classes/Grenade.cpp" />
 		<Unit filename="src/classes/Grenade.h" />
 		<Unit filename="src/classes/Guardian.cpp" />
@@ -206,8 +202,12 @@
 		<Unit filename="src/classes/Mother.h" />
 		<Unit filename="src/classes/MotherStates.cpp" />
 		<Unit filename="src/classes/MotherStates.h" />
+		<Unit filename="src/classes/NavGraphEdge.cpp" />
+		<Unit filename="src/classes/NavGraphEdge.h" />
 		<Unit filename="src/classes/NavGraphNode.cpp" />
 		<Unit filename="src/classes/NavGraphNode.h" />
+		<Unit filename="src/classes/NavigationGraph.cpp" />
+		<Unit filename="src/classes/NavigationGraph.h" />
 		<Unit filename="src/classes/Node.cpp" />
 		<Unit filename="src/classes/Node.h" />
 		<Unit filename="src/classes/NodeStates.h" />
@@ -243,8 +243,6 @@
 		<Unit filename="src/classes/Sequence.h" />
 		<Unit filename="src/classes/Shotgun.cpp" />
 		<Unit filename="src/classes/Shotgun.h" />
-		<Unit filename="src/classes/SparseGraph.cpp" />
-		<Unit filename="src/classes/SparseGraph.h" />
 		<Unit filename="src/classes/SpeedBoost.cpp" />
 		<Unit filename="src/classes/SpeedBoost.h" />
 		<Unit filename="src/classes/State.h" />
@@ -257,8 +255,6 @@
 		<Unit filename="src/classes/TriggerGenerator.h" />
 		<Unit filename="src/classes/WalkThroughDoorTask.cpp" />
 		<Unit filename="src/classes/WalkThroughDoorTask.h" />
-		<Unit filename="src/classes/Waypoint.cpp" />
-		<Unit filename="src/classes/Waypoint.h" />
 		<Unit filename="src/classes/Weapon.cpp" />
 		<Unit filename="src/classes/Weapon.h" />
 		<Unit filename="src/classes/WorldInstance.cpp" />
