@@ -98,11 +98,14 @@ namespace tag
             /// \param[in] Posición en el array de luces de la luz a activar o desactivar.
             void setLightOn(const unsigned int light);
 
-            /// \brief Función para calcular la posición de la cámara o de la luz
-            /// \details Es llamada por setActiveCamera y setLightOn.
+            /// \brief Función para calcular la posición y rotación de la cámara o de la luz
+            /// \details Es llamada por setActiveCamera y setLightOn. Busca en los nodos superiores
+            /// los nodos de transformación, los guarda en una pila para luego aplicarlos de manera
+            /// inversa a como se han obtenido.
             /// \param[in] nodo luz/cámara.
             /// \param[in] matriz de posición de luz o cámara (view)
-            void calculateMatrix(GraphicNode* node, glm::mat4 &matrix);
+            /// \param[in] premult Indica si hacemos premultiplicación o no
+            void calculateTransformMatrix(const GraphicNode* node, glm::mat4 &matrix, bool premult=true);
 
             // Handles de los attributes y uniforms
             static int m_aPositionLocation;

@@ -178,8 +178,12 @@ tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const v
 //////////////////////////////////
 tag::GraphicNode* tag::TAGEngine::createPerspectiveCamera(const vec3f position, const vec3f rotation, float fov, float aspect, float near, float far, GraphicNode* parent)
 {
+    // Invertimos posición y rotación ya que la cámara debe funcionar al revés.
+    vec3f pos = vec3f(position.x*-1, position.y*-1, position.z*-1);
+    vec3f rot = vec3f(rotation.x*-1, rotation.y*-1, rotation.z*-1);
+
     // Creamos nodo de cámara
-    GraphicNode* nodoCam = createNodePR(position, rotation, parent);
+    GraphicNode* nodoCam = createNodePR(pos, rot, parent);
 
     // Creamos camara
     ECamera* cam = new ECamera();
@@ -211,9 +215,7 @@ void tag::TAGEngine::setActiveCamera(const unsigned int activeCamera)
 
 
     // Calculamos la matriz Entity::viewMatrix
-    Entity::viewMatrix = glm::mat4();
-    calculateMatrix(nodeCam, Entity::viewMatrix);
-
+    calculateTransformMatrix(nodeCam, Entity::viewMatrix, false);
 }
 
 //////////////////////////////////
@@ -243,16 +245,20 @@ void tag::TAGEngine::setLightOn(const unsigned int light)
 
     // Calculamos lMatrix (posición de la luz)
     glm::mat4 lMatrix;
-    calculateMatrix(nodeLuz, lMatrix);
+    calculateTransformMatrix(nodeLuz, lMatrix);
 
     glUniformMatrix4fv(TAGEngine::m_uLMatrixLocation, 1, GL_FALSE, glm::value_ptr(lMatrix));
 }
 
-void tag::TAGEngine::calculateMatrix(GraphicNode* n, glm::mat4 &matrix)
+/////////////////////
+void tag::TAGEngine::calculateTransformMatrix(const GraphicNode* n, glm::mat4 &matrix, bool premult)
 {
+    // Inicializamos a identidad
+    matrix = glm::mat4();
+
     // Recorremos hasta root guardando todas las transformaciones.
     std::stack<glm::mat4> pila;
-    GraphicNode* node = n;
+    const GraphicNode* node = n;
 
     while ( (node=node->getParent()) )
     {
@@ -266,7 +272,11 @@ void tag::TAGEngine::calculateMatrix(GraphicNode* n, glm::mat4 &matrix)
     // Aplicamos las transformaciones sacando de la pila
     while (pila.size()>0)
     {
-        matrix = pila.top() * matrix;
+        if (premult)
+            matrix = pila.top() * matrix;
+        else
+            matrix = matrix * pila.top();
+
         pila.pop();
     }
 }
