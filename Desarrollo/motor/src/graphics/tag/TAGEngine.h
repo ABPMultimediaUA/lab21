@@ -105,7 +105,7 @@ namespace tag
             /// \param[in] nodo luz/cámara.
             /// \param[in] matriz de posición de luz o cámara (view)
             /// \param[in] premult Indica si hacemos premultiplicación o no
-            void calculateTransformMatrix(const GraphicNode* node, glm::mat4 &matrix, bool premult=true);
+            void calculateTransformMatrix(const GraphicNode* node, glm::mat4 &matrix);
 
             // Handles de los attributes y uniforms
             static int m_aPositionLocation;

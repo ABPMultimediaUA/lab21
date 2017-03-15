@@ -178,12 +178,8 @@ tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const v
 //////////////////////////////////
 tag::GraphicNode* tag::TAGEngine::createPerspectiveCamera(const vec3f position, const vec3f rotation, float fov, float aspect, float near, float far, GraphicNode* parent)
 {
-    // Invertimos posición y rotación ya que la cámara debe funcionar al revés.
-    vec3f pos = vec3f(position.x*-1, position.y*-1, position.z*-1);
-    vec3f rot = vec3f(rotation.x*-1, rotation.y*-1, rotation.z*-1);
-
     // Creamos nodo de cámara
-    GraphicNode* nodoCam = createNodePR(pos, rot, parent);
+    GraphicNode* nodoCam = createNodePR(position, rotation, parent);
 
     // Creamos camara
     ECamera* cam = new ECamera();
@@ -215,7 +211,10 @@ void tag::TAGEngine::setActiveCamera(const unsigned int activeCamera)
 
 
     // Calculamos la matriz Entity::viewMatrix
-    calculateTransformMatrix(nodeCam, Entity::viewMatrix, false);
+    calculateTransformMatrix(nodeCam, Entity::viewMatrix);
+
+    // Invertimos la matriz
+    Entity::viewMatrix = glm::inverse(Entity::viewMatrix);
 }
 
 //////////////////////////////////
@@ -251,7 +250,7 @@ void tag::TAGEngine::setLightOn(const unsigned int light)
 }
 
 /////////////////////
-void tag::TAGEngine::calculateTransformMatrix(const GraphicNode* n, glm::mat4 &matrix, bool premult)
+void tag::TAGEngine::calculateTransformMatrix(const GraphicNode* n, glm::mat4 &matrix)
 {
     // Inicializamos a identidad
     matrix = glm::mat4();
@@ -272,11 +271,7 @@ void tag::TAGEngine::calculateTransformMatrix(const GraphicNode* n, glm::mat4 &m
     // Aplicamos las transformaciones sacando de la pila
     while (pila.size()>0)
     {
-        if (premult)
-            matrix = pila.top() * matrix;
-        else
-            matrix = matrix * pila.top();
-
+        matrix = pila.top() * matrix;
         pila.pop();
     }
 }

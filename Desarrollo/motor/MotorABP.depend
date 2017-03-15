@@ -9003,7 +9003,7 @@
 1488756873 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resource.h
 	<string>
 
-1489479717 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
+1489576462 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"tag/Types.h"
@@ -9289,12 +9289,12 @@
 	"tag/ResourceManager.h"
 	"tag/ResourceMesh.h"
 
-1489395708 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\graphicnode.cpp
+1489480007 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\graphicnode.cpp
 	"tag/GraphicNode.h"
 	"tag/Entity.h"
 	<algorithm>
 
-1489395702 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\graphicnode.h
+1489480007 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\graphicnode.h
 	<vector>
 
 1488022512 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resource.cpp
@@ -9414,7 +9414,7 @@
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/string_cast.hpp>
 
-1489479789 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
+1489576549 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
 	"tag/TAGEngine.h"
 	<stdexcept>
 	<glm/glm.hpp>
