@@ -105,7 +105,25 @@ namespace tag
             /// \param[in] nodo luz/cámara.
             /// \param[in] matriz de posición de luz o cámara (view)
             /// \param[in] premult Indica si hacemos premultiplicación o no
-            void calculateTransformMatrix(const GraphicNode* node, glm::mat4 &matrix, bool premult=true);
+            void calculateTransformMatrix(const GraphicNode* node, glm::mat4 &matrix);
+
+
+            /// \brief Mueve un nodo movement posiciones respecto a su actual posición.
+            /// \details Busca el nodo padre. En un arbol bien construido el nodo padre del nodo a
+            /// mover debe tener una entidad de transformación de posición.
+            /// \param[in] node Nodo que se quiere mover
+            /// \param[in] movement que se quiere añadir al que ya tiene el nodo
+            void moveNodeEntity(GraphicNode* node, const vec3f movement);
+
+
+            /// \brief Rota un nodo rotation grados respecto a su actual rotación.
+            /// \details Busca el nodo padre. En un arbol bien construido el nodo
+            /// padre del padre del nodo a mover debe tener una entidad de
+            /// transformación de rotación.
+            /// \param[in] node Nodo que se quiere mover
+            /// \param[in] rotation que se quiere añadir al que ya tiene el nodo
+            void rotateNodeEntity(GraphicNode* node, const vec3f rotation);
+
 
             // Handles de los attributes y uniforms
             static int m_aPositionLocation;
@@ -135,6 +153,7 @@ namespace tag
             GraphicNode* createNodeRotation(const vec3f rotation, GraphicNode* parent);
             GraphicNode* createNodePosition(const vec3f position, GraphicNode* parent);
             GraphicNode* createNodePR(const vec3f position, const vec3f rotation, GraphicNode* parent);
+            void calculateViewMatrix();
     };
 }
 

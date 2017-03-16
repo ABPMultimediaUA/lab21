@@ -314,11 +314,11 @@ void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition)
 /////////////////////////////
 Player* dwe::GraphicsEngine::createMainPlayer()
 {
-    tag::GraphicNode* cube01 = m_tagEngine.createMesh("media/newcube.obj", vec3f(-2,0,0), vec3f(2,45,1));
+    cube01 = m_tagEngine.createMesh("media/newcube.obj", vec3f(-2,0,0), vec3f(2,45,1));
     tag::GraphicNode* cube02 = m_tagEngine.createMesh("media/newcube.obj", vec3f( 2,0,0), vec3f(0,20,0));
     tag::GraphicNode* cube03 = m_tagEngine.createMesh("media/newcube.obj", vec3f( 0,-2.2,0), vec3f(0,20,0), cube02);
 
-    tag::GraphicNode* camera = m_tagEngine.createPerspectiveCamera(vec3f(0,0,19.0), vec3f(0,10,0), 45.0f, tag::TAGEngine::screenWidth / tag::TAGEngine::screenHeight, 0.1f, 1000.0f);
+    tag::GraphicNode* camera = m_tagEngine.createPerspectiveCamera(vec3f(0,0,9.0), vec3f(0,0,0), 45.0f, tag::TAGEngine::screenWidth / tag::TAGEngine::screenHeight, 0.1f, 1000.0f);
 
     tag::GraphicNode* light  = m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0));
 
@@ -342,4 +342,12 @@ dwe::vec2f dwe::GraphicsEngine::getMousePosition()
 
     return vec2f(x,y);*/
     return vec2f(0,0);
+}
+
+
+//////////////////////////
+void dwe::GraphicsEngine::update()
+{
+    m_tagEngine.moveNodeEntity(cube01, vec3f(0.001,0,0));
+    m_tagEngine.rotateNodeEntity(cube01, vec3f(0,0.1,0));
 }
