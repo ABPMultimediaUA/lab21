@@ -106,21 +106,25 @@ void Scene::Destroy(){
     delete gun;
     delete shotgun;
     delete rifle;
-    for(int i=0; i<m_enemies.size(); i++){
-        enemyHumanoid=(Humanoid*)m_enemies[i];
-        m_enemies.erase(m_enemies.begin()+i);
+    while(m_enemies.size()>0){
+        enemyHumanoid=(Humanoid*)m_enemies.back();
+        m_enemies.pop_back();
         NetInstance->removeNetEnemy(enemyHumanoid);
         delete enemyHumanoid;
     }
-    for(int i=0; i<m_projectiles.size(); i++){
-        m_projectiles.erase(m_projectiles.begin()+i);
+    cout<<"Hasta aqui no peta"<<endl;
+
+    while(m_projectiles.size()>0){
+        m_projectiles.pop_back();
     }
-    for(int i=0; i<m_consumables.size(); i++){
-        m_consumables.erase(m_consumables.begin()+i);
+
+    while(m_consumables.size()>0){
+        m_consumables.pop_back();
     }
+
     delete joint_try;
     delete bjoint;
-    delete camera1;
+    //delete camera1;
     cout<<"DELETE ALL"<<endl;
 }
 
