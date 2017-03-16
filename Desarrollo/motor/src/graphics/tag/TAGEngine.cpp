@@ -88,12 +88,16 @@ void tag::TAGEngine::draw()
     glClearColor(0.0, 0.7, 0.9, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    // El cálculo de la vista (cámara) se realiza en el setActiveCamera.
-
     // Habilitamos el paso de attributes
     glEnableVertexAttribArray(TAGEngine::m_aPositionLocation);
     glEnableVertexAttribArray(TAGEngine::m_aNormalLocation);
     glUseProgram(m_shaderProgram->ReturnProgramID());
+
+    // Cálculo de la vista (cámara)
+    calculateViewMatrix();
+
+    // Cálculo de las luces
+
 
 
     // Dibujar
@@ -199,9 +203,15 @@ tag::GraphicNode* tag::TAGEngine::createPerspectiveCamera(const vec3f position, 
 /////////////////////
 void tag::TAGEngine::setActiveCamera(const unsigned int activeCamera)
 {
-    // TODO controlar si la camara no existe o es cero
-    m_numActiveCamera = activeCamera;
+    if (activeCamera > m_cameras.size())
+        throw std::runtime_error("La cámara que se está pasando en setActiveCamera no es válida.");
 
+    m_numActiveCamera = activeCamera;
+}
+
+/////////////////////
+void tag::TAGEngine::calculateViewMatrix()
+{
     // Obtenemos el nodo
     GraphicNode* nodeCam = m_cameras.at(m_numActiveCamera-1);
 
@@ -276,3 +286,35 @@ void tag::TAGEngine::calculateTransformMatrix(const GraphicNode* n, glm::mat4 &m
     }
 }
 
+/////////////////////
+void tag::TAGEngine::moveNodeEntity(GraphicNode* node, const vec3f movement)
+{
+    // Buscar que el nodo padre sea una transformacion
+    if (node)
+    {
+        ETransform* t = dynamic_cast<ETransform*>(node->getParent()->getEntity());
+        if (t)
+            t->translate(movement);
+        else
+            throw std::runtime_error("moveNodeEntity Error en la forma del arbol. El nodo padre no es de transformación.");
+    }
+    else
+        throw std::runtime_error("moveNodeEntity: el nodo pasado por parámetro está vacio");
+}
+
+
+/////////////////////
+void tag::TAGEngine::rotateNodeEntity(GraphicNode* node, const vec3f rotation)
+{
+    // Buscar que el nodo padre sea una transformacion
+    if (node)
+    {
+        ETransform* t = dynamic_cast<ETransform*>(node->getParent()->getParent()->getEntity());
+        if (t)
+            t->rotate(rotation);
+        else
+            throw std::runtime_error("moveNodeEntity Error en la forma del arbol. El nodo padre del padre no es de transformación.");
+    }
+    else
+        throw std::runtime_error("moveNodeEntity: el nodo pasado por parámetro está vacio");
+}

@@ -182,6 +182,10 @@ namespace dwe
         /// \return vec2f con las coordenadas x y
         vec2f getMousePosition();
 
+        void update();
+
+        tag::GraphicNode* cube01;
+
 
     private:
         sf::RenderWindow*   m_window;
