@@ -13,6 +13,7 @@
 #include "tag/ELight.h"
 #include "tag/ETransform.h"
 #include "tag/EMesh.h"
+#include "tag/EAnimation.h"
 
 int tag::TAGEngine::m_aPositionLocation;
 int tag::TAGEngine::m_aNormalLocation;
@@ -177,6 +178,21 @@ tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const v
     malla->loadMesh(fileName);
 
     return nodoMalla;
+}
+
+////////////////////////////
+tag::GraphicNode* tag::TAGEngine::createAnimation(const std::string fileName, const vec3f position, const vec3f rotation, GraphicNode* parent)
+{
+    // Creamos nodo de animation
+    GraphicNode* nodoAnimation = createNodePR(position, rotation, parent);
+
+    // Creamos malla
+    EAnimation* animation = new EAnimation();
+    animation->createNumAnimations(1);//1 animacion, correr
+    animation->createAnimation(0,9, fileName);//la animacion 1 tendra 9 frames
+    nodoAnimation->setEntity(animation);
+
+    return nodoAnimation;
 }
 
 //////////////////////////////////

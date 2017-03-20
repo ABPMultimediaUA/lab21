@@ -1,7 +1,9 @@
 #include "tag/EAnimation.h"
+#include <sstream>
+#include <iostream>
 
 tag::EAnimation::EAnimation() :
-    m_animations(0)
+    m_animations(0), m_numAnimation(0), m_frame(0), temp(0)
 {
     //ctor
 }
@@ -12,44 +14,62 @@ tag::EAnimation::~EAnimation()
 }
 
 /////////////////
-void tag::EAnimation::beginDraw(int animation, int frame)
+void tag::EAnimation::beginDraw(/*int animation, int frame*/)
 {
+
     if (m_animations!=0)
-        m_animations[animation][frame]->draw();
+        //aqui hariamos el bucle empezando por el frame 0
+        m_animations[getNumAnimation()][m_frame]->draw();
+        temp++;
+        if(temp==60){
+
+            m_frame++;
+            temp=0;
+        }
+        if(m_frame==9)
+            m_frame=0;
+
 }
 
-/////////////////
+////////////////////////
 void tag::EAnimation::endDraw()
 {
 
 }
 
-/////////////////
+////////////////////////
 
-void tag::EAnimation::createAnimation(int numAnimations){
+void tag::EAnimation::createNumAnimations(int numAnimations){
     m_animations = new ResourceMesh**[numAnimations];
 }
 
-void tag::EAnimation::loadAnimation(std::string fileName, int animation, int frames)
-{
-    /*m_animations = new ResourceMesh**[2]; //array q debe ser el numero de animaciones q tenga el obj (podriamos definirlo al principio y asi solo pasariamos animacion a animacion)
-    for(int i = 0; i < 3; i++){
-        m_animations[i] = new ResourceMesh*[5]; //tamanyo de la animacion(numero de frames o meshes)
-    }*/
+////////////////////////
+void tag::EAnimation::createAnimation(int numAnimation, int numFrames, std::string fileName){
 
-    m_animations[animation] = new ResourceMesh*[frames]; //tamanyo de la animacion(numero de frames o meshes)
-    for(int j = 0; j < frames; j++){
-        m_animations[animation][j] = static_cast<ResourceMesh*>(Entity::resourceManager.getResource(fileName));
+
+
+    m_animations[numAnimation] = new ResourceMesh*[numFrames]; //tamanyo de la animacion(numero de frames o meshes)
+    for(int i=0; i<numFrames; i++)
+    {
+        std::stringstream ss;
+        std::string s;
+        ss << i;
+        s = ss.str();
+        std::string file=fileName+s+".obj";
+        m_animations[numAnimation][i] = static_cast<ResourceMesh*>(Entity::resourceManager.getResource(file));
+
     }
-
-}
-tag::ResourceMesh* tag::EAnimation::getFrame(int animation, int frame)
-{
-    return m_animations[animation][frame];
-}
-void tag::EAnimation::setFrame(int animation, int frame, ResourceMesh* resource)
-{
-   m_animations[animation][frame] = resource;
 }
 
+
+////////////////////////
+void tag::EAnimation::setNumAnimation(int animation)
+{
+    m_numAnimation = animation;
+}
+////////////////////////
+int tag::EAnimation::getNumAnimation()
+{
+    return m_numAnimation;
+}
 

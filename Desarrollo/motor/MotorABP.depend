@@ -3278,7 +3278,7 @@
 1487863595 c:\users\sergio\desktop\lab21\desarrollo\motor\src\classes\drawable.h
 	"GraphicsEngine.h"
 
-1488896390 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.h
+1490020980 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.h
 	<GL/glew.h>
 	<SFML/Graphics.hpp>
 	<SFML/OpenGL.hpp>
@@ -4339,7 +4339,7 @@
 
 1487863595 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\appreceiver.cpp
 
-1489338889 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
+1490027789 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"GraphicsEngine.h"
@@ -4354,7 +4354,7 @@
 1487863595 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
 	"GraphicsEngine.h"
 
-1488897473 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\main.cpp
+1489857443 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\main.cpp
 	<GL/glew.h>
 	"Scene.h"
 	"GraphicsEngine.h"
@@ -10039,16 +10039,16 @@
 1488215318 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\types.h
 	<glm/gtc/type_precision.hpp>
 
-1489083422 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
+1490025569 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"tag/Types.h"
 	"tag/GraphicNode.h"
 	"tag/EMesh.h"
+	"tag/EAnimation.h"
 	"Program.h"
 	"ResourceManager.h"
 	"ResourceMesh.h"
-	"tag/EAnimation.h"
 
 1488215325 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.h
 	<vector>
@@ -10095,12 +10095,12 @@
 
 1488215325 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\etransform.h
 
-1488881430 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\graphicnode.cpp
+1489857443 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\graphicnode.cpp
 	"tag/GraphicNode.h"
 	"tag/Entity.h"
 	<algorithm>
 
-1488881430 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\graphicnode.h
+1489857443 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\graphicnode.h
 	<vector>
 
 1488215318 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\resource.cpp
@@ -10121,14 +10121,29 @@
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/string_cast.hpp>
 
-1489081657 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
+1490025109 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
+	"tag/TAGEngine.h"
+	<stdexcept>
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	"Shader.h"
+	"tag/Entity.h"
+	"tag/ResourceMesh.h"
+	"tag/ECamera.h"
+	"tag/ELight.h"
+	"tag/ETransform.h"
+	"tag/EMesh.h"
+	"tag/EAnimation.h"
 
-1489342243 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\eanimation.h
+1490030782 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\eanimation.h
 	"Entity.h"
 	"ResourceMesh.h"
 
-1489083422 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\eanimation.cpp
+1490029473 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\eanimation.cpp
 	"tag/EAnimation.h"
+	<sstream>
+	<iostream>
 
 1488712332 gine.h"
 
