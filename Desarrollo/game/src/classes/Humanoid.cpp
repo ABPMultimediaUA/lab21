@@ -78,10 +78,11 @@ void Humanoid::update()
         float length = sqrt(vec.x * vec.x + vec.y * vec.y);
 
         float angle = (float)  (    acos(       ((double)1*vec.x + (double)0*vec.y)/length     )* 180/M_PI     );
+        std::cout<<"Angle1 "<<angle<<std::endl;
         if(vec.y>0 && angle<180)
             angle+=180;
         setRotation(dwe::vec3f(0, angle, 0));
-        std::cout<<"Angle "<<angle<<std::endl;
+        std::cout<<"Angle2 "<<angle<<std::endl;
 
         vec.x /= length;
         vec.y /= length;
@@ -90,9 +91,10 @@ void Humanoid::update()
     }
 
     if(currentNode != finalNode)
-    setPosition(dwe::vec3f(getPosition().x+movement.x*m_speed, getPosition().y, getPosition().z+movement.y*m_speed));
+    setPosition(dwe::vec3f(movement.x*m_speed, 0, movement.y*m_speed));
 
     if(abs(getPosition().x - navGraph.getNode(nextNode).getPosition().x) < m_speed && abs(getPosition().z - navGraph.getNode(nextNode).getPosition().y) < m_speed){
+        std::cout <<"Llego al nodo "<<nextNode<<std::endl;
         currentNode = nextNode;
     }
 
