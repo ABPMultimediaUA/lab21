@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdexcept>
+#include <iostream>
 
 
 #include "tag/Entity.h"
@@ -17,10 +18,14 @@ tag::ResourceMesh::ResourceMesh() :
     m_vertices(0),
     m_normals(0),
     m_textUV(0),
-    m_verticesIndex(0),
-    m_normalsIndex(0),
-    m_textUVIndex(0),
-    m_numVertices(0)
+    m_verticesIndices(0),
+    m_normalsIndices(0),
+    m_textUVIndices(0),
+    m_numVertices(0),
+    m_vbVertices(0),
+    m_ibVertices(0),
+    m_vbNormals(0),
+    m_ibNormals(0)
 {
     //ctor
 }
@@ -31,9 +36,9 @@ tag::ResourceMesh::~ResourceMesh()
     delete[] m_vertices;
     delete[] m_normals;
     delete[] m_textUV;
-    delete[] m_verticesIndex;
-    delete[] m_normalsIndex;
-    delete[] m_textUVIndex;
+    delete[] m_verticesIndices;
+    delete[] m_normalsIndices;
+    delete[] m_textUVIndices;
     delete[] m_color;
 }
 
@@ -44,30 +49,49 @@ void tag::ResourceMesh::aiVector3DToArrayGLFloat(const aiVector3D &source, GLflo
     dest[2] = source.z;
 }
 
-void tag::ResourceMesh::load(std::string fileName)
+void tag::ResourceMesh::deleteOpenGLBuffers()
 {
-    setName(fileName);
+    glDeleteBuffers(1, &m_vbVertices);
+    glDeleteBuffers(1, &m_ibVertices);
 
-    // No hacer un delete de aiScene, ya se encarga Assimp de dejarlo todo limpito
-    // aiProcess_Triangulate: totalmente necesario. Asumimos 3 caras por vertice.
-    Assimp::Importer importer;
-    const aiScene* scene =  importer.ReadFile(fileName,
-                                aiProcess_Triangulate            |
-                                aiProcess_JoinIdenticalVertices  |
-                                0
-                            );
-    if(!scene)
-    {
-        char msg[255];
-        sprintf(msg, "Error cargando Malla: %s", importer.GetErrorString());
-        throw std::runtime_error(msg);
-    }
+    glDeleteBuffers(1, &m_vbNormals);
+    glDeleteBuffers(1, &m_ibNormals);
+}
 
-    unsigned int vertices = scene->mMeshes[0]->mNumVertices;
-    m_vertices    = new GLfloat[vertices*3];
-    m_normals     = new GLfloat[vertices*3];
-    m_textUV      = new GLfloat[vertices*3];
-    for(unsigned int i=0; i<vertices; i++)
+void tag::ResourceMesh::createOpenGLBuffers()
+{
+    glGenBuffers(1, &m_vbVertices);
+    glGenBuffers(1, &m_ibVertices);
+
+    glGenBuffers(1, &m_vbNormals);
+    glGenBuffers(1, &m_ibNormals);
+}
+
+void tag::ResourceMesh::prepareOpenGLBuffers()
+{
+    deleteOpenGLBuffers();
+    createOpenGLBuffers();
+
+    glBindBuffer(GL_ARRAY_BUFFER, m_vbVertices);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*m_numVertices*3, m_vertices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ARRAY_BUFFER, m_vbNormals);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*m_numVertices*3, m_normals, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibVertices);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*m_numIndices, m_verticesIndices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void tag::ResourceMesh::aiSceneToOpenGLMesh(const aiScene* scene)
+{
+    m_numVertices = scene->mMeshes[0]->mNumVertices;
+    m_vertices    = new GLfloat[m_numVertices*3];
+    m_normals     = new GLfloat[m_numVertices*3];
+    m_textUV      = new GLfloat[m_numVertices*3];
+    for(unsigned int i=0; i<m_numVertices; i++)
     {
         int j = i*3;
 
@@ -82,17 +106,17 @@ void tag::ResourceMesh::load(std::string fileName)
             aiVector3DToArrayGLFloat(scene->mMeshes[0]->mTextureCoords[0][i], &m_textUV[j]);
     }
 
-    m_numVertices = scene->mMeshes[0]->mNumFaces * 3;
-    m_verticesIndex = new GLuint[m_numVertices];
-    m_normalsIndex  = new GLuint[m_numVertices];
-    m_textUVIndex   = new GLuint[m_numVertices];
+    m_numIndices = scene->mMeshes[0]->mNumFaces * 3;
+    m_verticesIndices = new GLuint[m_numIndices];
+    m_normalsIndices  = new GLuint[m_numIndices];
+    m_textUVIndices   = new GLuint[m_numIndices];
 
     unsigned int indicesCount = 0;
     for(unsigned int i=0; i<scene->mMeshes[0]->mNumFaces; i++)
     {
-        for(unsigned int j=0; j<scene->mMeshes[0]->mFaces[i].mNumIndices && indicesCount<m_numVertices; j++)
+        for(unsigned int j=0; j<scene->mMeshes[0]->mFaces[i].mNumIndices && indicesCount<m_numIndices; j++)
         {
-            m_verticesIndex[indicesCount] = scene->mMeshes[0]->mFaces[i].mIndices[j];
+            m_verticesIndices[indicesCount] = scene->mMeshes[0]->mFaces[i].mIndices[j];
             indicesCount++;
         }
     }
@@ -102,6 +126,30 @@ void tag::ResourceMesh::load(std::string fileName)
     m_color[1] = 0.5;
     m_color[2] = 0.5;
     m_color[3] = 1.0;
+
+    prepareOpenGLBuffers();
+}
+
+void tag::ResourceMesh::load(std::string fileName)
+{
+    setName(fileName);
+
+    // No hacer un delete de aiScene, ya se encarga Assimp de dejarlo todo limpito
+    // aiProcess_Triangulate: totalmente necesario. Asumimos 3 vertices por cara.
+    Assimp::Importer importer;
+    const aiScene* scene =  importer.ReadFile(fileName,
+                                aiProcess_Triangulate            |
+                                aiProcess_JoinIdenticalVertices  |
+                                0
+                            );
+    if(!scene)
+    {
+        char msg[255];
+        sprintf(msg, "Error cargando Malla: %s", importer.GetErrorString());
+        throw std::runtime_error(msg);
+    }
+
+    aiSceneToOpenGLMesh(scene);
 }
 
 void tag::ResourceMesh::draw()
@@ -113,14 +161,19 @@ void tag::ResourceMesh::draw()
     // Envía nuestra ModelView al Vertex Shader
     glUniformMatrix4fv(TAGEngine::m_uMVMatrixLocation, 1, GL_FALSE, &modelViewMatrix[0][0]);
 
-    // Pintar
+    // Color
     glUniform4fv(TAGEngine::m_uColorLocation, 1, m_color);
 
     // Asociamos los vértices y sus normales
-    glVertexAttribPointer(TAGEngine::m_aPositionLocation, 3, GL_FLOAT, false, sizeof(GLfloat)*3, m_vertices);
-    glVertexAttribPointer(TAGEngine::m_aNormalLocation, 3, GL_FLOAT, false, sizeof(GLfloat)*3, m_normals);
+    glBindBuffer(GL_ARRAY_BUFFER, m_vbVertices);
+    glVertexAttribPointer(TAGEngine::m_aPositionLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*3, 0);
 
-    glDrawElements(GL_TRIANGLES, m_numVertices, GL_UNSIGNED_INT, m_verticesIndex);
+    glBindBuffer(GL_ARRAY_BUFFER, m_vbNormals);
+    glVertexAttribPointer(TAGEngine::m_aNormalLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*3, 0);
+
+    // Dibjuamos elementos
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibVertices);
+    glDrawElements(GL_TRIANGLES, m_numIndices, GL_UNSIGNED_INT, 0);
 }
 
 

@@ -4,10 +4,6 @@
 #define GLEW_STATIC
 #include<GL/glew.h>
 
-#include <assimp/Importer.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
-
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
 
@@ -24,8 +20,6 @@
 
 
 #define MAX_MESSAGE_LINES 4
-
-
 
 #include "tag/ResourceMesh.h"
 #include "tag/TAGEngine.h"
@@ -188,8 +182,17 @@ namespace dwe
         /// \return vec2f con las coordenadas x y
         vec2f getMousePosition();
 
+        void update();
+
+        tag::GraphicNode* cube01;
+
 
     private:
+        sf::RenderWindow*   m_window;
+        sf::Font            m_font;
+        sf::Text            m_messageLine[MAX_MESSAGE_LINES];
+
+
 
         sf::Clock           m_clock;
         float               m_secondsLastDraw;
@@ -197,26 +200,7 @@ namespace dwe
         std::list<Node*>    m_scenes;
         Assimp::Importer    m_importer;   // OJO tiene que estar aqui, si es local da errores de memoria segmentation fault
 
-        sf::Font            m_font;
-        sf::Text            m_messageLine[MAX_MESSAGE_LINES];
         tag::TAGEngine      m_tagEngine;
-
-
-        // Handles de los attributes y uniforms
-        int m_aPositionLocation;
-        int m_aNormalLocation;
-        int m_uProjectionMatrixLocation;
-        int m_uMVMatrixLocation;
-		int m_uVMatrixLocation;
-		int m_uColorLocation;
-		int m_uLuz0Location;
-
-		glm::mat4 m_projectionMatrix; // Almacena la matriz de proyección
-        glm::mat4 m_viewMatrix;       // Almacena la matriz de la vista (cámara)
-
-        GLfloat m_view_position[3];
-        GLfloat m_view_rotate[16];
-        float m_scale;
 
 
         //scene::IAnimatedMeshSceneNode* createIrrAnimatedMeshSceneNode(std::string meshName);

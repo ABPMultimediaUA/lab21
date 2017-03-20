@@ -17,9 +17,9 @@ namespace tag
             unsigned int removeChild(const GraphicNode* n);
 
             bool setEntity(Entity* e);
-            Entity* getEntity();
+            Entity* getEntity() const;
 
-            GraphicNode* getParent();
+            GraphicNode* getParent() const;
             void setParent(GraphicNode* parent);
 
             void draw();

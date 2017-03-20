@@ -12,7 +12,7 @@
 // Nombre de los uniforms
 #define U_PROJECTIONMATRIX      "u_ProjectionMatrix"
 #define U_MVMATRIX              "u_MVMatrix"
-#define U_VMATRIX               "u_VMatrix"
+#define U_LMATRIX               "u_LMatrix"
 #define U_COLOR                 "u_Color"
 #define U_LUZ0                  "u_Luz0"
 
@@ -20,7 +20,6 @@
 #define GLEW_STATIC
 #include<GL/glew.h>
 
-#include <SFML/Graphics.hpp>
 #include <glm/glm.hpp>
 
 #include "tag/Types.h"
@@ -31,6 +30,7 @@
 #include "Program.h"
 #include "ResourceManager.h"
 #include "ResourceMesh.h"
+#include "tag/EAnimation.h"
 
 namespace tag
 {
@@ -86,6 +86,43 @@ namespace tag
             /// y se establece la Entity::viewMatrix.
             void setActiveCamera(const unsigned int activeCamera);
 
+            /// \brief Crea una luz en el árbol de la escena.
+            /// \details Crea los nodos de transformacion, uno de posicion y otro de rotación. Crea
+            /// el nodo ELight. Activa la luz.
+            /// \param[in] position Posición. Creará un nodo Transform con esos valores
+            /// \param[in] rotation Rotación. Creará un nodo Transform con esos valores
+            /// \param[in] parent Nodo padre. Si es 0 se le asignará el root.
+            GraphicNode* createLight(const vec3f position, const vec3f rotation, GraphicNode* parent=0);
+
+            /// \brief Activa o desactiva una luz.
+            /// \param[in] Posición en el array de luces de la luz a activar o desactivar.
+            void setLightOn(const unsigned int light);
+
+            /// \brief Función para calcular la posición y rotación de la cámara o de la luz
+            /// \details Es llamada por setActiveCamera y setLightOn. Busca en los nodos superiores
+            /// los nodos de transformación, los guarda en una pila para luego aplicarlos de manera
+            /// inversa a como se han obtenido.
+            /// \param[in] nodo luz/cámara.
+            /// \param[in] matriz de posición de luz o cámara (view)
+            /// \param[in] premult Indica si hacemos premultiplicación o no
+            void calculateTransformMatrix(const GraphicNode* node, glm::mat4 &matrix);
+
+
+            /// \brief Mueve un nodo movement posiciones respecto a su actual posición.
+            /// \details Busca el nodo padre. En un arbol bien construido el nodo padre del nodo a
+            /// mover debe tener una entidad de transformación de posición.
+            /// \param[in] node Nodo que se quiere mover
+            /// \param[in] movement que se quiere añadir al que ya tiene el nodo
+            void moveNodeEntity(GraphicNode* node, const vec3f movement);
+
+
+            /// \brief Rota un nodo rotation grados respecto a su actual rotación.
+            /// \details Busca el nodo padre. En un arbol bien construido el nodo
+            /// padre del padre del nodo a mover debe tener una entidad de
+            /// transformación de rotación.
+            /// \param[in] node Nodo que se quiere mover
+            /// \param[in] rotation que se quiere añadir al que ya tiene el nodo
+            void rotateNodeEntity(GraphicNode* node, const vec3f rotation);
 
 
             // Handles de los attributes y uniforms
@@ -93,7 +130,7 @@ namespace tag
             static int m_aNormalLocation;
             static int m_uProjectionMatrixLocation;
             static int m_uMVMatrixLocation;
-            static int m_uVMatrixLocation;
+            static int m_uLMatrixLocation;
             static int m_uColorLocation;
             static int m_uLuz0Location;
 
@@ -101,16 +138,10 @@ namespace tag
             static const float screenWidth  = 800;
 
         private:
-            sf::RenderWindow*   m_window;
             Program*            m_shaderProgram;
 
-            sf::Clock           m_clock;
-            float               m_secondsLastDraw;
-
-            sf::Font            m_font;
-            sf::Text            m_messageLine[MAX_MESSAGE_LINES];
-
             GraphicNode                 m_rootNode;
+            std::vector<GraphicNode*>   m_lights;
             std::vector<GraphicNode*>   m_cameras;
             unsigned int                m_numActiveCamera;
 
@@ -121,6 +152,8 @@ namespace tag
             GraphicNode* createNodeTransform(GraphicNode* parent);
             GraphicNode* createNodeRotation(const vec3f rotation, GraphicNode* parent);
             GraphicNode* createNodePosition(const vec3f position, GraphicNode* parent);
+            GraphicNode* createNodePR(const vec3f position, const vec3f rotation, GraphicNode* parent);
+            void calculateViewMatrix();
     };
 }
 

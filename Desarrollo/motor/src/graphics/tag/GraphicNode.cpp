@@ -20,13 +20,13 @@ tag::GraphicNode::~GraphicNode()
 }
 
 ////////////////////////////////////
-tag::GraphicNode* tag::GraphicNode::getParent() { return m_parent; }
+tag::GraphicNode* tag::GraphicNode::getParent() const { return m_parent; }
 void tag::GraphicNode::setParent(tag::GraphicNode* parent) { m_parent = parent; }
 
 
 ///////////////////////
 bool tag::GraphicNode::setEntity(tag::Entity* e){ m_entity = e; return true; };
-tag::Entity* tag::GraphicNode::getEntity() { return m_entity; }
+tag::Entity* tag::GraphicNode::getEntity() const { return m_entity; }
 
 ///////////////////////////////
 unsigned int tag::GraphicNode::addChild(tag::GraphicNode* n)

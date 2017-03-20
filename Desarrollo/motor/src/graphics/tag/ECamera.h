@@ -30,8 +30,8 @@ namespace tag
 
             bool m_isActive;
             bool m_isPerspective;
-            float m_nearDistance;
-            float m_farDistance;
+            //float m_nearDistance;
+            //float m_farDistance;
             glm::mat4 m_projectionMatrix;
     };
 }

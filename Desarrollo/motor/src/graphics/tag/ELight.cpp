@@ -21,3 +21,6 @@ void tag::ELight::setSpecularIntensity( glm::vec4 intensity ) { m_SpecularIntens
 
 glm::vec4 tag::ELight::getAmbientIntensity() { return m_AmbientIntensity; }
 void tag::ELight::setAmbientIntensity( glm::vec4 intensity ) { m_AmbientIntensity = intensity; }
+
+bool tag::ELight::getIfLightOn() { return m_lightOn; }
+void tag::ELight::setOnOff (bool on) { m_lightOn = on; }
