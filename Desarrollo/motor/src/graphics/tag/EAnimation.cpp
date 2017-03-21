@@ -19,14 +19,14 @@ void tag::EAnimation::beginDraw(/*int animation, int frame*/)
 
     if (m_animations!=0)
         //aqui hariamos el bucle empezando por el frame 0
-        m_animations[getNumAnimation()][m_frame]->draw();
+        m_animations[getNumAnimation()].frames[m_frame]->draw();
         temp++;
-        if(temp==60){
+        if(temp == 30){
 
             m_frame++;
-            temp=0;
+            temp = 0;
         }
-        if(m_frame==9)
+        if(m_frame == m_animations[getNumAnimation()].numFrames)
             m_frame=0;
 
 }
@@ -40,15 +40,14 @@ void tag::EAnimation::endDraw()
 ////////////////////////
 
 void tag::EAnimation::createNumAnimations(int numAnimations){
-    m_animations = new ResourceMesh**[numAnimations];
+    m_animations = new TAnimation[numAnimations];
 }
 
 ////////////////////////
 void tag::EAnimation::createAnimation(int numAnimation, int numFrames, std::string fileName){
 
-
-
-    m_animations[numAnimation] = new ResourceMesh*[numFrames]; //tamanyo de la animacion(numero de frames o meshes)
+    m_animations[numAnimation].frames = new ResourceMesh*[numFrames]; //tamanyo de la animacion(numero de frames o meshes)
+    m_animations[numAnimation].numFrames = numFrames;//ponemos el numero de frames de la animacion
     for(int i=0; i<numFrames; i++)
     {
         std::stringstream ss;
@@ -56,7 +55,7 @@ void tag::EAnimation::createAnimation(int numAnimation, int numFrames, std::stri
         ss << i;
         s = ss.str();
         std::string file=fileName+s+".obj";
-        m_animations[numAnimation][i] = static_cast<ResourceMesh*>(Entity::resourceManager.getResource(file));
+        m_animations[numAnimation].frames[i] = static_cast<ResourceMesh*>(Entity::resourceManager.getResource(file));
 
     }
 }

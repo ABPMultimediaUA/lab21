@@ -22,10 +22,16 @@ namespace tag
             int getNumAnimation();//devolvemos en que animation estamos para el draw
 
         private:
-            ResourceMesh ***m_animations;//va a ser el array de animaciones
+            //ResourceMesh ***m_animations;//va a ser el array de animaciones
             int m_numAnimation;
             int m_frame;
             int temp;
+            //int *m_animationFrames;//para saber cuantos frames tiene cada animacion
+            struct TAnimation{
+                int numFrames;
+                ResourceMesh **frames;
+            };
+            TAnimation *m_animations;
     };
 }
 

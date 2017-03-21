@@ -318,12 +318,9 @@ Player* dwe::GraphicsEngine::createMainPlayer()
     tag::GraphicNode* cube02 = m_tagEngine.createMesh("media/newcube.obj", vec3f( 2,0,0), vec3f(0,20,0));
     tag::GraphicNode* cube03 = m_tagEngine.createMesh("media/newcube.obj", vec3f( 0,-2.2,0), vec3f(0,20,0), cube02);
 
-    tag::GraphicNode* camera = m_tagEngine.createPerspectiveCamera(vec3f(0,0,40.0), vec3f(0,0,0), 45.0f, tag::TAGEngine::screenWidth / tag::TAGEngine::screenHeight, 0.1f, 1000.0f);
+    tag::GraphicNode* camera = m_tagEngine.createPerspectiveCamera(vec3f(0,0,9.0), vec3f(0,0,0), 45.0f, tag::TAGEngine::screenWidth / tag::TAGEngine::screenHeight, 0.1f, 1000.0f);
 
     tag::GraphicNode* light  = m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0));
-
-    tag::GraphicNode* malla = m_tagEngine.createAnimation("media/animations/animation", vec3f(-2,0,0), vec3f(2,45,1));
-
 
     return 0;
 }
