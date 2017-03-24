@@ -49,8 +49,8 @@ void CharacterController::readEvents()
     else                                                    m_speedX = 0.f;
 
     //ANDAR VERTICAL
-    if(GEInstance->receiver.isKeyDown(KEY_KEY_W))           m_speedZ = speed;
-    else if(GEInstance->receiver.isKeyDown(KEY_KEY_S))      m_speedZ = -speed;
+    if(GEInstance->receiver.isKeyDown(KEY_KEY_W))           m_speedZ = -speed;
+    else if(GEInstance->receiver.isKeyDown(KEY_KEY_S))      m_speedZ = speed;
     else                                                    m_speedZ = 0.f;
 
 }

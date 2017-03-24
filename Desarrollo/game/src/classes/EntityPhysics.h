@@ -1,6 +1,7 @@
 #ifndef ENTITYPHYSICS_H
 #define ENTITYPHYSICS_H
 
+#include <irrlicht.h>
 #include "GraphicsEngine.h"
 #include "Drawable.h"
 #include <Box2D/Box2D.h>
@@ -18,8 +19,9 @@ class EntityPhysics
 
 
         // Se crea el tipo de sólido
-        void createDynamicBody(const dwe::vec3f& pos, float32 angle = 0.0, bool bullet = false);
-        void createStaticBody(const dwe::vec3f& pos, float width, float height, float32 angle);
+        void createDynamicBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0, bool bullet = false);
+        void createStaticBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees);
+        void createSensorBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees);
         void createJointBody(const dwe::vec3f& pos);
 
 
@@ -28,23 +30,19 @@ class EntityPhysics
         void setVelocity(dwe::vec3f v);
 
         virtual void onBeginContact(EntityPhysics* otherObject);
-        virtual void onEndContact();
+        virtual void onEndContact(EntityPhysics* otherObject);
 
         void setClassID(int i);
         int getClassID();
 
-        void updatePhysics();
     protected:
 
     private:
         b2PolygonShape      m_shape;
         b2Body*             m_body;
-        IrrlichtDevice*     m_device;
         int                 m_classID;
 
-        irr::core::array<EntityPhysics*>    m_bodies; //ARRAY "BODIES"
-        EntityPhysics*                      m_bwPlayer; //BOX2DPLAYER
-
+        void createBody(b2BodyType type, const dwe::vec3f& pos, float width, float height, float32 angleDegrees, bool bullet, bool isSensor);
 };
 
 #endif // ENTITYPHYSICS_H

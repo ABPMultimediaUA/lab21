@@ -23,6 +23,7 @@
 
 #include "tag/ResourceMesh.h"
 #include "tag/TAGEngine.h"
+#include "tag/GraphicNode.h"
 
 
 
@@ -31,6 +32,7 @@ using namespace std;
 class AppReceiver;
 class Player;
 class Program;
+class Gun;
 
 namespace dwe
 {
@@ -130,11 +132,10 @@ namespace dwe
             //irr: scene::IAnimatedMeshSceneNode* ianim_node;  /**/ // TODO: ¿se puede quitar? No se puede poner algo así en la fachada
     };
 
-    typedef NodeTemplate<const aiScene> Node;
+    typedef NodeTemplate<tag::GraphicNode> Node;
     //irr: typedef NodeTemplate<ISceneNode> Node;
     //irr: typedef NodeTemplate<IAnimatedMeshSceneNode> Node;
 
-    #include "GraphicsEngineTemplates.cpp"  // La implementación de templates se tiene que incluir siempre en el h
 
 
 
@@ -161,14 +162,15 @@ namespace dwe
 
         //////////////////////////
         // Creacion de elementos
-        Player* createMainPlayer();
+        Player* createMainPlayer(Gun* gun);
 
 
         //////////////////////////////
         // Eventos de teclado y ratón
         AppReceiver receiver;
 
-        void updateCamera(const vec3f playerPosition);
+        void createCamera();
+        void updateCamera(const dwe::vec3f playerPosition, int moreEnemiesX, int moreEnemiesZ);
 
         /// \brief Muestra un mensaje en la zona de mensajes
         /// \details Añade un mensaje a los mensajes que ya hay pasando los demás a lineas superiores y añadiendo
@@ -182,9 +184,16 @@ namespace dwe
         /// \return vec2f con las coordenadas x y
         vec2f getMousePosition();
 
+        Gun* createGun(float px, float py, float pz);
+
         void update();
 
         tag::GraphicNode* cube01;
+
+        int get_screenWidth(){return _screenWidth;};
+        int get_screenHeight(){return _screenHeight;};
+
+        tag::TAGEngine* getTagEngine() { return &m_tagEngine; }
 
 
     private:
@@ -200,6 +209,8 @@ namespace dwe
         std::list<Node*>    m_scenes;
         Assimp::Importer    m_importer;   // OJO tiene que estar aqui, si es local da errores de memoria segmentation fault
 
+        tag::GraphicNode*   m_camera;
+
         tag::TAGEngine      m_tagEngine;
 
 
@@ -208,10 +219,15 @@ namespace dwe
         // Camara
         float tarUD;
         float tarLR;
+        float zoomX;
+        float zoomZ;
         static const unsigned short _camera_desviation  = 50;
         static const float          _camera_progression = 0.5f;
         static const int            _camera_y           = 250;
         static const int            _camera_z_offset    = -100;
+
+        static const int _screenWidth  = 1000;
+        static const int _screenHeight = 700;
 
         GraphicsEngine() {};
 
@@ -220,5 +236,7 @@ namespace dwe
 }
 
 #define GEInstance dwe::GraphicsEngine::Instance()
+
+#include "GraphicsEngineTemplates.cpp"  // La implementación de templates se tiene que incluir siempre en el h
 
 #endif // FACHADEDIREENGINE_H

@@ -158,8 +158,10 @@ bool Door::getIsClosing()
 void Door::update()
 {
     if(active)
+    {
         if(isOpening && !isOpened)          openDoor();
         else if (isClosing && isOpened)     closeDoor();
+    }
 }
 
 void Door::render()
@@ -174,7 +176,6 @@ void Door::setNode(dwe::Node* n)
 
     dwe::vec3f s = n->getBoundingBox();
     createStaticBody(getPosition(), s.x, s.z, 0);
-
 }
 
 void Door::setPosition(dwe::vec3f p)

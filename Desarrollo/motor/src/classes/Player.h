@@ -7,7 +7,7 @@
 class Player : public Drawable
 {
     public:
-        Player();
+        Player(Gun* gun);
         virtual ~Player();
 
         void update();

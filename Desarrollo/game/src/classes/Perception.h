@@ -10,7 +10,7 @@ class Perception
     public:
         Perception();
         virtual ~Perception();
-        bool senses(Player* mainPlayer, Humanoid* enemyHumanoid, /*dwe::Node* fovnode,*/ PathplanningTask* p);
+        bool senses(Player* mainPlayer, Humanoid* enemyHumanoid, PathplanningTask* p);
 
     protected:
 

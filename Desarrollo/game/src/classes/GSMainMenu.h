@@ -2,11 +2,6 @@
 #define GSMAINMENU_H
 
 #include "GState.h"
-/**/
-//#include <irrlicht.h>
-
-//using namespace irr;
-/***/
 
 class GSMainMenu : public GState{
 public:

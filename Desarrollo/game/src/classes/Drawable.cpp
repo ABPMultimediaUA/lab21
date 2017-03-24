@@ -15,11 +15,6 @@ Drawable::~Drawable()
     }
 }
 
-
-/////////////////
-float* Drawable::getMesh() { return m_mesh; }
-void Drawable::setMesh(float* m) { m_mesh = m; }
-
 /////////////////////
 dwe::vec3f Drawable::getPosition() { return m_node->getPosition(); }
 void Drawable::setPosition(dwe::vec3f p) { m_node->setPosition(p); }
@@ -31,17 +26,8 @@ void Drawable::setRotation(dwe::vec3f r) { m_node->setRotation(r); }
 ///////////////
 void Drawable::setNode(dwe::Node* n) { m_node = n; }
 dwe::Node* Drawable::getNode() { return m_node; }
+bool Drawable::hasNode() { return (m_node != 0); }
 
-//////////////
-void Drawable::setIAnimNode (scene::IAnimatedMeshSceneNode* n)
-{
-    ianim_node = n;
-}
-
-scene::IAnimatedMeshSceneNode* Drawable::getIAnimNode()
-{
-    return ianim_node;
-}
 
 ///////////////
 void Drawable::removeNode()
@@ -64,3 +50,11 @@ void Drawable::setAnimation(dwe::AnimationType a)
     }
 }
 dwe::AnimationType Drawable::getAnimation() { return m_animation; }
+
+
+///////////////
+/*RMM es mejor utilizar los sensores de box2d
+bool Drawable::intersects(Drawable* d)
+{
+    return m_node->intersects(d->getNode());
+}*/

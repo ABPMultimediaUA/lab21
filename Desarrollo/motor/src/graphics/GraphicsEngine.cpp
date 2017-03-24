@@ -14,6 +14,7 @@
 #include "Program.h"
 
 #include "Player.h"
+#include "Gun.h"
 
 using namespace std;
 // Necesita volver a poner este namespace
@@ -78,13 +79,12 @@ bool dwe::GraphicsEngine::isRunning()
         {
             m_window->close();
         }
-        // TODO faltan eventos de teclado
-        /*else if (event.type == sf::Event::Resized)
+        else if (event.type == sf::Event::Resized)
         {
             glViewport(0, 0, event.size.width, event.size.height);
         }
         else
-            receiver.OnEvent(event);*/
+            receiver.OnEvent(event);
     }
 
     return m_window->isOpen() && m_tagEngine.isRunning();
@@ -225,7 +225,9 @@ void dwe::GraphicsEngine::render()
 ////////////////////////////////
 dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 {
-    // TODO: createNode, no se para que se utiliza
+    tag::GraphicNode* gn = m_tagEngine.createMesh(meshName+".obj", vec3f(0,0,0), vec3f(0,0,0));
+    Node* node = new Node(gn);
+    return node;
 /*	scene::IAnimatedMesh* mesh = m_smgr->getMesh((meshName+".obj").c_str());
 	if (!mesh)
 	{
@@ -249,7 +251,24 @@ dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
     return(player->getTransformedBoundingBox().getExtent());
 }*/
 
+Gun* dwe::GraphicsEngine::createGun(float px, float py, float pz)
+{
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/Gun.obj", vec3f(0,0,0), vec3f(0,0,0));
+    Gun* g = new Gun();
+	g->setNode(new Node(node));
+	g->setPosition(dwe::vec3f(px, py, pz));
 
+	return g;
+
+    /*scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/Gun"); // centrado
+    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/Gun");
+
+    Gun* g = new Gun();
+    g->setNode(new Node(irrnode));
+    g->setPosition(dwe::vec3f(px, py, pz));
+
+    return g;*/
+}
 
 //////////////////////////
 void dwe::GraphicsEngine::yield()
@@ -266,55 +285,127 @@ void dwe::GraphicsEngine::close()
 }
 
 //////////////////////////
-void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition)
+void dwe::GraphicsEngine::createCamera()
 {
-    // TODO: updateCamera
-/*    //update camera target
+    vec3f position(-150,120,-190);
+    m_camera = m_tagEngine.createPerspectiveCamera(position, vec3f(0,0,0), 45.0f, get_screenWidth() / get_screenHeight(), 0.1f, 1000.0f);
+    m_tagEngine.nodeLookAtTarget(m_camera, position, vec3f(0,0,0));
+    m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0));
+}
+
+
+//////////////////////////
+void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition, int moreEnemiesX, int moreEnemiesZ)
+{
+    float cursorX = GEInstance->receiver.getCursorX();
+    float cursorY = GEInstance->receiver.getCursorY();
+    int   width   = GEInstance->get_screenWidth();
+    int   height  = GEInstance->get_screenHeight();
+    int   borderL = width - (width-50);
+    int   borderR = width-50;
+    int   borderU = height - (height-50);
+    int   borderD = height-50;
+
+    //update camera target
     //Desencuadre horizontal
-    if(GEInstance->receiver.getCursorX()<50){
-        if(tarLR > -_camera_desviation)
-            tarLR -= _camera_progression;
-    }else if(GEInstance->receiver.getCursorX()>750){
-        if(tarLR<_camera_desviation)
-            tarLR+=_camera_progression;
+    if(cursorX < borderL){
+        if(tarLR > -_camera_desviation)       tarLR -= _camera_progression;
+    }else if(cursorX > borderR){
+        if(tarLR < _camera_desviation)        tarLR+=_camera_progression;
     }else{
         //Volver a centrar
         if(tarLR!=0)
-            if(tarLR<0)
-                tarLR+=_camera_progression;
-            else
-                tarLR-=_camera_progression;
+            if(tarLR<0)     tarLR+=_camera_progression;
+            else            tarLR-=_camera_progression;
         else
             tarLR = 0;
     }
 
     //Desencuadre vertical
-    if(GEInstance->receiver.getCursorY()<50){
-        if(tarUD<_camera_desviation)
-            tarUD+=_camera_progression;
-    }else if(GEInstance->receiver.getCursorY()>550){
-        if(tarUD>-_camera_desviation)
-            tarUD-=_camera_progression;
+    if(cursorY < borderU){
+        if(tarUD < _camera_desviation)        tarUD+=_camera_progression;
+    }else if(cursorY > borderD){
+        if(tarUD > -_camera_desviation)       tarUD-=_camera_progression;
     }else{
         //Volver a centrar
         if(tarUD!=0)
-            if(tarUD<0)
-                tarUD+=_camera_progression;
-            else
-                tarUD-=_camera_progression;
+            if(tarUD<0)     tarUD+=_camera_progression;
+            else            tarUD-=_camera_progression;
         else
             tarUD = 0;
     }
 
-    m_smgr->getActiveCamera()->setTarget(vector3df(playerPosition.x+tarLR, playerPosition.y, playerPosition.z+tarUD));
-    m_smgr->getActiveCamera()->setPosition(vector3df(playerPosition.x+tarLR, _camera_y, playerPosition.z + _camera_z_offset + tarUD));*/
+
+    int des  = _camera_desviation/2;
+    float prog = 0.25f;
+    //DEPENDE DE LOS ENEMIGOS
+    if(moreEnemiesX!=0 && (moreEnemiesX>2 || moreEnemiesX<-2) ){
+        if(moreEnemiesX>0)
+            if(zoomX < des)      zoomX += prog;
+        if(moreEnemiesX<0)
+            if(zoomX > -des)     zoomX -= prog;
+    }else{
+        if(zoomX!=0)
+            if(zoomX<0)          zoomX += prog;
+            else                 zoomX -= prog;
+        else
+            zoomX = 0;
+    }
+
+    //DEPENDE DE LOS ENEMIGOS
+    if(moreEnemiesZ!=0 && (moreEnemiesZ>2 || moreEnemiesZ<-2) ){
+        if(moreEnemiesZ>0)
+            if(zoomZ < des)      zoomZ += prog;
+        if(moreEnemiesZ<0)
+            if(zoomZ > -des)     zoomZ -= prog;
+    }else{
+        if(zoomZ!=0)
+            if(zoomZ<0)          zoomZ += prog;
+            else                 zoomZ -= prog;
+        else
+            zoomZ = 0;
+    }
+
+    m_tagEngine.nodeLookAtTarget(m_camera,
+            vec3f(playerPosition.x+tarLR + zoomX, _camera_y + abs(zoomX) + abs(zoomZ), (-1)*(playerPosition.z + _camera_z_offset + tarUD)),
+            vec3f(playerPosition.x+ tarLR + zoomX, playerPosition.y, (-1)*(playerPosition.z+tarUD + zoomZ)));
+    //TODOfachada quitar: m_smgr->getActiveCamera()->setTarget(vector3df(playerPosition.x+ tarLR + zoomX, playerPosition.y, playerPosition.z+tarUD + zoomZ));
+    //TODOfachada quitar: m_smgr->getActiveCamera()->setPosition(vector3df(playerPosition.x+tarLR + zoomX, _camera_y + abs(zoomX) + abs(zoomZ), playerPosition.z + _camera_z_offset + tarUD));
 }
 
 
+
 /////////////////////////////
-Player* dwe::GraphicsEngine::createMainPlayer()
+Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 {
-    cube01 = m_tagEngine.createMesh("media/newcube.obj", vec3f(-2,0,0), vec3f(2,45,1));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/sydney.md2", vec3f(0,0,0), vec3f(0,0,0));
+	Player* p = new Player(gun);
+	p->setNode(new Node(node));
+
+	//NetInstance->addNetObject(p);
+	return p;
+   /* tag::GraphicNode* camera = m_tagEngine.createPerspectiveCamera(vec3f(0,0,9), vec3f(0,0,0), 45.0f, tag::TAGEngine::screenWidth / tag::TAGEngine::screenHeight, 0.1f, 1000.0f);
+
+    tag::GraphicNode* light  = m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0));
+
+
+    vec3f v(0,0,0);
+
+    m_tagEngine.nodeLookAtTarget(camera, vec3f(0,0,100), v);
+
+
+
+
+
+
+    cube01 = m_tagEngine.createMesh("media/faerie.md2", vec3f(0,0,0), vec3f(0,0,0));
+
+
+    Player* p = new Player();
+    p->setNode(new Node(cube01));
+    return p;*/
+/*
+
     tag::GraphicNode* cube02 = m_tagEngine.createMesh("media/newcube.obj", vec3f( 2,0,0), vec3f(0,20,0));
     tag::GraphicNode* cube03 = m_tagEngine.createMesh("media/newcube.obj", vec3f( 0,-2.2,0), vec3f(0,20,0), cube02);
 
@@ -322,7 +413,26 @@ Player* dwe::GraphicsEngine::createMainPlayer()
 
     tag::GraphicNode* light  = m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0));
 
-    return 0;
+    return 0;*/
+/*
+    scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/sydney.md2");
+	if (!mesh){
+		m_device->drop();
+		exit(0);
+	}
+	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
+	if (irrnode){
+		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
+		irrnode->setMD2Animation(scene::EMAT_STAND);
+		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/sydney.bmp") );
+	}
+
+	irrnode->setPosition(vector3df(0,24,10));
+
+	Player* p = new Player(gun);
+	p->setNode(new Node(irrnode));
+	NetInstance->addNetObject(p);
+    return p;*/
 }
 
 
@@ -348,6 +458,8 @@ dwe::vec2f dwe::GraphicsEngine::getMousePosition()
 //////////////////////////
 void dwe::GraphicsEngine::update()
 {
-    m_tagEngine.moveNodeEntity(cube01, vec3f(0.001,0,0));
-    m_tagEngine.rotateNodeEntity(cube01, vec3f(0,0.1,0));
+  //  m_tagEngine.moveNodeEntity(cube01, vec3f(0.001,0,0));
+  //  m_tagEngine.rotateNodeEntity(cube01, vec3f(0,0.1,0));
+  //m_tagEngine.setPositionNodeEntity(cube01, vec3f(0,0,0));
+  //m_tagEngine.setRotationNodeEntity(cube01, vec3f(0,0,0));
 }

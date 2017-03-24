@@ -1,11 +1,13 @@
 #include "Consumable.h"
 #include "Player.h"
 #include "NetGame.h"
+#include "WorldInstance.h"
 
-Consumable::Consumable()
+Consumable::Consumable() :
+    m_touchingMainPlayer(false),
+    m_isTaken(false)
 {
     //ctor
-    m_isTaken = false;
 }
 
 Consumable::~Consumable()
@@ -21,9 +23,9 @@ void Consumable::update(Player* mainPlayer)
 {
     if(!m_isTaken)
     {
-        if (this->getNode() != 0)
+        if (this->hasNode())
         {
-            if(mainPlayer->getNode()->intersects(this->getNode()->getNode()))
+            if(m_touchingMainPlayer)
             {
                 NetInstance->sendBroadcast(ID_CONSUMABLE_TAKEN, m_netID);  // enviamos a los demas que lo hemos cogido
                 this->removeNode();
@@ -38,7 +40,7 @@ void Consumable::update(Player* mainPlayer)
 /////////////////
 void Consumable::take()
 {
-    if (this->getNode() != 0)
+    if (this->hasNode())
     {
         this->removeNode();
         m_isTaken = true;
@@ -48,3 +50,39 @@ void Consumable::take()
 
 /////////////////
 void Consumable::setNetID(unsigned int netID) { m_netID = netID; }
+
+
+/////////////////
+void Consumable::setNode(dwe::Node* n)
+{
+    Drawable::setNode(n);
+
+    dwe::vec3f s = n->getBoundingBox();
+    createSensorBody(getPosition(), s.x, s.z, getRotation().y);
+}
+
+/////////////////
+void Consumable::setPosition(dwe::vec3f p)
+{
+    setPosEntity(p, getRotation().y);
+    Drawable::setPosition(p);
+}
+
+/////////////////
+void Consumable::onBeginContact(EntityPhysics* otherObject)
+{
+    if (otherObject && otherObject->getClassID() == CLASS_PLAYER_ID)
+    {
+        m_touchingMainPlayer = true;
+    }
+}
+
+/////////////////
+void Consumable::onEndContact(EntityPhysics* otherObject)
+{
+    if (otherObject && otherObject->getClassID() == CLASS_PLAYER_ID)
+    {
+        m_touchingMainPlayer = false;
+    }
+}
+

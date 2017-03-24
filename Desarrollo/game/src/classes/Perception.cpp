@@ -15,9 +15,8 @@ Perception::~Perception()
 {
     //dtor
 }
-//Pathplanning* pathp = new Pathplanning();//creo el pathplanning para usar luego
 
-bool Perception::senses(Player* mainPlayer, Humanoid* enemyHumanoid, /*dwe::Node* fovnode,*/ PathplanningTask* p)
+bool Perception::senses(Player* mainPlayer, Humanoid* enemyHumanoid, PathplanningTask* p)
 {
     // Buscamos que player o playermate está más cerca para trabajar con él
     Drawable* player;
@@ -41,8 +40,6 @@ bool Perception::senses(Player* mainPlayer, Humanoid* enemyHumanoid, /*dwe::Node
         }
 
 
-    //fovnode->setPosition(enemyHumanoid->getPosition());
-
     if(!following)  //si no estamos siguiendo calculamos la distancia de percepcion
     {
         if(player->getAnimation() == dwe::eAnimRun)//en caso de estar en velocidad normal, la percepcion del npc sera mayor
@@ -56,15 +53,8 @@ bool Perception::senses(Player* mainPlayer, Humanoid* enemyHumanoid, /*dwe::Node
                 following=true;//si esta dentro entonces seguimos al prota
         }
 
-        /*if(fovnode->intersects(player->getNode()->getNode()))
-        {
-            //cout<<"colision"<<endl;
-            following=true;//aunq vayas en sigilo, si te ve, te persigue
-        }*/
     }
     p->setPlayer(player);
     return (following);
-        //pathp->behaviour(player, enemyHumanoid, fovnode, false);
-
 }
 

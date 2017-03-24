@@ -15,11 +15,6 @@ Drawable::~Drawable()
     }
 }
 
-
-/////////////////
-float* Drawable::getMesh() { return m_mesh; }
-void Drawable::setMesh(float* m) { m_mesh = m; }
-
 /////////////////////
 dwe::vec3f Drawable::getPosition() { return m_node->getPosition(); }
 void Drawable::setPosition(dwe::vec3f p) { m_node->setPosition(p); }
@@ -30,7 +25,8 @@ void Drawable::setRotation(dwe::vec3f r) { m_node->setRotation(r); }
 
 ///////////////
 void Drawable::setNode(dwe::Node* n) { m_node = n; }
-dwe::Node* Drawable::getNode() { return m_node; }
+//dwe::Node* Drawable::getNode() { return m_node; }
+bool Drawable::hasNode() { return (m_node != 0); }
 
 
 ///////////////
@@ -54,3 +50,10 @@ void Drawable::setAnimation(dwe::AnimationType a)
     }
 }
 dwe::AnimationType Drawable::getAnimation() { return m_animation; }
+
+
+///////////////
+bool Drawable::intersects(Drawable* d)
+{
+    return false;  // TODO por ahora solo devuelve que no
+}

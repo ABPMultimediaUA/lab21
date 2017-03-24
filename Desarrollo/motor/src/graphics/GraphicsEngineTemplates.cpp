@@ -12,17 +12,19 @@ template<class T>dwe::NodeTemplate<T>::NodeTemplate(T* n)
     m_node = n;
 }
 
+////////////////////////////////////////////
 template<class T>void dwe::NodeTemplate<T>::setNode(T* n)
 {
     m_node = n;
 }
 
+//////////////////////////////////////////
 template<class T>T* dwe::NodeTemplate<T>::getNode()
 {
     return m_node;
 }
 
-
+////////////////////////////////////////////
 template<class T>void dwe::NodeTemplate<T>::setColor(float r, float g, float b, float a)
 {
     m_color[0] = r;
@@ -31,6 +33,7 @@ template<class T>void dwe::NodeTemplate<T>::setColor(float r, float g, float b, 
     m_color[3] = a;
 }
 
+//////////////////////////////////////////////
 template<class T>float* dwe::NodeTemplate<T>::getColor()
 {
     return m_color;
@@ -53,7 +56,7 @@ template<class T>void dwe::NodeTemplate<T>::setIAnimNode (scene::IAnimatedMeshSc
 
 /***/
 
-////////////////
+////////////////////////////////////////////
 template<class T>void dwe::NodeTemplate<T>::remove()
 {
     if (m_node)
@@ -63,34 +66,42 @@ template<class T>void dwe::NodeTemplate<T>::remove()
     }
 }
 
+////////////////////////////////////////////
 template<class T>void dwe::NodeTemplate<T>::move(vec3f v)
 {
+    GEInstance->getTagEngine()->moveNodeEntity(m_node, v);
     m_position.x += v.x;
     m_position.y += v.y;
     m_position.z += v.z;
 }
 
+//////////////////////////////////////////////////
 template<class T>dwe::vec3f dwe::NodeTemplate<T>::getPosition()
 {
-    // Se obtiene la posición de Irrlicht del nodo y se pasa a vector de dwe
     return m_position;
 }
 
+////////////////////////////////////////////
 template<class T>void dwe::NodeTemplate<T>::setPosition(vec3f v)
 {
+    GEInstance->getTagEngine()->setPositionNodeEntity(m_node, v);
     m_position = v;
 }
 
+//////////////////////////////////////////////////
 template<class T>dwe::vec3f dwe::NodeTemplate<T>::getRotation()
 {
     return m_rotation;
 }
 
+////////////////////////////////////////////
 template<class T>void dwe::NodeTemplate<T>::setRotation(dwe::vec3f v)
 {
+    GEInstance->getTagEngine()->setRotationNodeEntity(m_node, v);
     m_rotation = v;
 }
 
+//////////////////////////////////////////////////
 template<class T>dwe::vec3f dwe::NodeTemplate<T>::getBoundingBox()
 {
     // TODO: getBoundingBox
@@ -101,6 +112,7 @@ template<class T>dwe::vec3f dwe::NodeTemplate<T>::getBoundingBox()
     return dwe::vec3f(0,0,0);
 }
 
+////////////////////////////////////////////
 template<class T>void dwe::NodeTemplate<T>::setAnimation(AnimationType a)
 {
     // TODO: setAnimation

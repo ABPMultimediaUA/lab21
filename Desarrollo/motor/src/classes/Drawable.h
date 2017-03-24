@@ -12,10 +12,6 @@ class Drawable
         virtual void update() = 0;
         virtual void render() = 0;
 
-
-        float* getMesh();
-        void setMesh(float* m);
-
         dwe::vec3f getPosition();
         void setPosition(dwe::vec3f p);
 
@@ -23,11 +19,15 @@ class Drawable
         void setRotation(dwe::vec3f r);
 
         virtual void setNode(dwe::Node* n);
-        dwe::Node* getNode();
+        //dwe::Node* getNode();
+        bool hasNode();
         void removeNode();
 
         void setAnimation(dwe::AnimationType a);
         dwe::AnimationType getAnimation();
+
+        bool intersects(Drawable* d);
+
 
     protected:
 

@@ -24,9 +24,6 @@ void DPatrolState::Execute(Dog* pDog)
 
     cout << "\n" << "Dog" << ": " << "Walking";
 
-    io::path str = "media/dogC1.jpg";
-    GEInstance->changeEnemyDogTexture(pDog, str);
-
     if(pDog->getSteps() == 1300)
         pDog->GetFSM()->ChangeState(DLookingForPlayerState::Instance());
 }
@@ -56,9 +53,6 @@ void DLookingForPlayerState::Execute(Dog* pDog)
 {
     cout << "\n" << "Dog" << ": " << "Trying to locate something strange";
 
-    io::path str = "media/dogC3.jpg";
-    GEInstance->changeEnemyDogTexture(pDog, str);
-
     if(pDog->getSteps() == 1000)
         pDog->GetFSM()->ChangeState(DKnockDownState::Instance());
 }
@@ -86,10 +80,6 @@ void DAsleepState::Enter(Dog* pDog)
 void DAsleepState::Execute(Dog* pDog)
 {
     cout << "\n" << "Dog" << ": " << "Dreaming with food";
-
-    io::path str = "media/dogC2.jpg";
-    GEInstance->changeEnemyDogTexture(pDog, str);
-
 
     if(pDog->getSteps() == 1600)
         pDog->GetFSM()->ChangeState(DPatrolState::Instance());
@@ -125,9 +115,6 @@ void DKnockDownState::Execute(Dog* pDog)
 {
     cout << "\n" << "Dog" << ": " << "Knocked down!";
 
-    io::path str = "media/dogC4.jpg";
-    GEInstance->changeEnemyDogTexture(pDog, str);
-
     if(pDog->getSteps() == 700)
         pDog->GetFSM()->ChangeState(DAttackState::Instance());
 }
@@ -156,9 +143,6 @@ void DAttackState::Execute(Dog* pDog)
 {
     cout << "\n" << "Dog" << ": " << "Biting";
 
-    io::path str = "media/dogC5.jpg";
-    GEInstance->changeEnemyDogTexture(pDog, str);
-
     if(pDog->getSteps() == 400)
         pDog->GetFSM()->ChangeState(DRunAwayState::Instance());
 }
@@ -186,9 +170,6 @@ void DRunAwayState::Enter(Dog* pDog)
 void DRunAwayState::Execute(Dog* pDog)
 {
     cout << "\n" << "Dog" << ": " << "Running away";
-
-    io::path str = "media/dogC6.jpg";
-    GEInstance->changeEnemyDogTexture(pDog, str);
 
     if(pDog->getSteps() == 200)
         pDog->GetFSM()->ChangeState(DAsleepState::Instance());

@@ -61,10 +61,17 @@
 		<Unit filename="src/Main.cpp" />
 		<Unit filename="src/classes/Drawable.cpp" />
 		<Unit filename="src/classes/Drawable.h" />
+		<Unit filename="src/classes/Firearm.cpp" />
+		<Unit filename="src/classes/Firearm.h" />
+		<Unit filename="src/classes/Gun.cpp" />
+		<Unit filename="src/classes/Gun.h" />
 		<Unit filename="src/classes/Player.cpp" />
 		<Unit filename="src/classes/Player.h" />
 		<Unit filename="src/classes/Scene.cpp" />
 		<Unit filename="src/classes/Scene.h" />
+		<Unit filename="src/classes/Weapon.cpp" />
+		<Unit filename="src/classes/Weapon.h" />
+		<Unit filename="src/classes/defines.h" />
 		<Unit filename="src/glsl/Program.cpp" />
 		<Unit filename="src/glsl/Program.h" />
 		<Unit filename="src/glsl/Shader.cpp" />

@@ -16,8 +16,6 @@
 #define CLASS_WALL_ID           3
 #define CLASS_ENEMY_ID          4
 
-#define NUM_ENTITIES 3
-
 class Player;
 
 /////////////////////////////////////////////////////////
@@ -41,7 +39,7 @@ class ContactListener : public b2ContactListener
             bodyUserDataB->onBeginContact(bodyUserDataA);
     }
 
-    void EndContact(b2Contact* contact)
+    /*void EndContact(b2Contact* contact)
     {
         void* bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
         if (bodyUserData)
@@ -50,6 +48,18 @@ class ContactListener : public b2ContactListener
         bodyUserData = contact->GetFixtureB()->GetBody()->GetUserData();
         if (bodyUserData)
             static_cast<EntityPhysics*>(bodyUserData)->onEndContact();
+    }*/
+    // TODOrmm nueva forma de hacerlo
+    void EndContact(b2Contact* contact)
+    {
+        EntityPhysics* bodyUserDataA = (EntityPhysics*)contact->GetFixtureA()->GetBody()->GetUserData();
+        EntityPhysics* bodyUserDataB = (EntityPhysics*)contact->GetFixtureB()->GetBody()->GetUserData();
+
+        if (bodyUserDataA)
+            bodyUserDataA->onEndContact(bodyUserDataB);
+
+        if (bodyUserDataB)
+            bodyUserDataB->onEndContact(bodyUserDataA);
     }
 };
 
