@@ -67,6 +67,16 @@ namespace tag
             /// \return puntero al nodo de la malla creada
             GraphicNode* createMesh(const std::string fileName, const vec3f position, const vec3f rotation, GraphicNode* parent=0);
 
+            /// \brief Crea una malla en el arbol.
+            /// \details Crea los nodos de transformacion, uno de posicion y otro de rotación. Crea
+            /// el nodo Animation y le asocia un ResourceMesh con la malla cargada mediante el
+            /// ResourceManager.
+            /// \param[in] fileName Nombre del fichero que contiene la malla
+            /// \param[in] position Posición. Creará un nodo Transform con esos valores
+            /// \param[in] rotation Rotación. Creará un nodo Transform con esos valores
+            /// \param[in] parent Nodo padre. Si es 0 se le asignará el root.
+            /// \return puntero al nodo de la malla creada
+            GraphicNode* createAnimation(const std::string fileName, const vec3f position, const vec3f rotation, GraphicNode* parent=0);
 
             /// \brief Crea una cámara de perspectiva en el arbol.
             /// \details Crea los nodos de transformacion, uno de posicion y otro de rotación. Crea

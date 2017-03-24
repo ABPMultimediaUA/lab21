@@ -15,6 +15,7 @@
 #include "tag/ELight.h"
 #include "tag/ETransform.h"
 #include "tag/EMesh.h"
+#include "tag/EAnimation.h"
 
 int tag::TAGEngine::_aPositionLocation;
 int tag::TAGEngine::_aNormalLocation;
@@ -96,7 +97,7 @@ void tag::TAGEngine::draw()
     glm::mat4 rotateMatrix;
     glm::vec3 positionMatrix;
 
-    glClearColor(0.0, 0.7, 0.9, 1.0);
+    glClearColor(0.0, 0.0, 0.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if (!m_rootNode.isEmptyNode())
@@ -191,6 +192,21 @@ tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const v
     malla->loadMesh(fileName);
 
     return nodoMalla;
+}
+
+////////////////////////////
+tag::GraphicNode* tag::TAGEngine::createAnimation(const std::string fileName, const vec3f position, const vec3f rotation, GraphicNode* parent)
+{
+    // Creamos nodo de animation
+    GraphicNode* nodoAnimation = createNodePR(position, rotation, parent);
+
+    // Creamos malla
+    EAnimation* animation = new EAnimation();
+    animation->createNumAnimations(1);//1 animacion, correr
+    animation->createAnimation(0,9, fileName);//la animacion 1 tendra 9 frames
+    nodoAnimation->setEntity(animation);
+
+    return nodoAnimation;
 }
 
 //////////////////////////////////

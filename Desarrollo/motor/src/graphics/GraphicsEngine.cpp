@@ -43,7 +43,7 @@ void dwe::GraphicsEngine::init()
     contextSettings.depthBits = 24;
     contextSettings.sRgbCapable = false;
 
-    m_window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Lab21", sf::Style::Default, contextSettings);
+    m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", sf::Style::Default, contextSettings);
 
     // Creamos los mensajes de texto, por ahora vacios
     /*if (!m_font.loadFromFile("media/ExoRegular.otf"))
@@ -54,11 +54,11 @@ void dwe::GraphicsEngine::init()
         m_messageLine[i].setFont(m_font);
         m_messageLine[i].setCharacterSize(14);
         m_messageLine[i].setFillColor(sf::Color(255, 255, 255, 255));
-        m_messageLine[i].setPosition(10.f, SCREEN_HEIGHT - (i+1)*16.f);
+        m_messageLine[i].setPosition(10.f, GraphicsEngine::_screenHeight - (i+1)*16.f);
         m_messageLine[i].setString("");
 	}
 
-    m_tagEngine.init();
+    m_tagEngine.init(GraphicsEngine::_screenHeight, GraphicsEngine::_screenWidth);
 
     m_secondsLastDraw = 0;
     m_clock.restart();

@@ -1092,13 +1092,13 @@
 	"GraphicsEngine.h"
 	"Player.h"
 
-1490198225 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\drawable.cpp
+1490354052 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\drawable.cpp
 	"Drawable.h"
 
-1490198197 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\drawable.h
+1490354052 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\drawable.h
 	"GraphicsEngine.h"
 
-1490212119 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.h
+1490355433 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.h
 	<GL/glew.h>
 	<SFML/Graphics.hpp>
 	<SFML/OpenGL.hpp>
@@ -1562,7 +1562,7 @@
 1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\glm\gtc\type_ptr.inl
 	<cstring>
 
-1490259691 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\appreceiver.h
+1490354052 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\appreceiver.h
 	<GraphicsEngine.h>
 	<iostream>
 	<SFML/Graphics.hpp>
@@ -2118,13 +2118,13 @@
 1482322074 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\include\assimp\postprocess.h
 	"types.h"
 
-1490212479 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
+1490354052 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
 	"GraphicsEngine.h"
 
-1490209397 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\player.cpp
+1490354052 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\player.cpp
 	"Player.h"
 
-1490209400 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\player.h
+1490354052 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\player.h
 	"Drawable.h"
 
 1485764323 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\scene.cpp
@@ -2162,7 +2162,7 @@
 
 1485208670 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\appreceiver.cpp
 
-1490259678 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
+1490355347 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"GraphicsEngine.h"
@@ -2175,10 +2175,10 @@
 	"Player.h"
 	"Gun.h"
 
-1490212479 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
+1490354052 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
 	"GraphicsEngine.h"
 
-1490260426 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\main.cpp
+1490355421 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\main.cpp
 	<GL/glew.h>
 	"Scene.h"
 	"GraphicsEngine.h"
@@ -3284,7 +3284,7 @@
 1487863595 c:\users\sergio\desktop\lab21\desarrollo\motor\src\classes\drawable.h
 	"GraphicsEngine.h"
 
-1488896390 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.h
+1490020980 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.h
 	<GL/glew.h>
 	<SFML/Graphics.hpp>
 	<SFML/OpenGL.hpp>
@@ -4345,7 +4345,7 @@
 
 1487863595 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\appreceiver.cpp
 
-1489338889 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
+1490030705 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"GraphicsEngine.h"
@@ -4360,7 +4360,7 @@
 1487863595 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
 	"GraphicsEngine.h"
 
-1488897473 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\main.cpp
+1489857443 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\main.cpp
 	<GL/glew.h>
 	"Scene.h"
 	"GraphicsEngine.h"
@@ -8997,7 +8997,7 @@
 	<glm/glm.hpp>
 	<stack>
 
-1489914760 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.h
+1490354052 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.h
 	<GL/glew.h>
 	<SFML/OpenGL.hpp>
 	<assimp/Importer.hpp>
@@ -9006,10 +9006,10 @@
 	"tag/Resource.h"
 	"tag/Types.h"
 
-1489914746 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resource.h
+1490354052 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resource.h
 	<string>
 
-1490261002 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
+1490354543 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"tag/Types.h"
@@ -9024,7 +9024,7 @@
 1488102581 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\types.h
 	<glm/gtc/type_precision.hpp>
 
-1489914752 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.h
+1490354052 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.h
 	<vector>
 	<string>
 	"Resource.h"
@@ -9034,28 +9034,29 @@
 	<glm/gtc/matrix_transform.hpp>
 	<iostream>
 
-1489914707 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\ecamera.h
+1490354052 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\ecamera.h
 	"Entity.h"
 	"tag/TAGEngine.h"
 
-1489914723 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\entity.h
+1490354052 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\entity.h
 	<string>
 	<stack>
 	<glm/glm.hpp>
 	<stack>
 	"tag/ResourceManager.h"
+	"tag/Types.h"
 
 1488812057 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\elight.cpp
 	"tag/ELight.h"
 
-1489914703 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\elight.h
+1490354052 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\elight.h
 	"Entity.h"
 	"tag/TAGEngine.h"
 
-1488756873 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\emesh.cpp
+1490354052 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\emesh.cpp
 	"tag/EMesh.h"
 
-1489914718 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\emesh.h
+1490354052 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\emesh.h
 	"Entity.h"
 	"ResourceMesh.h"
 
@@ -9296,12 +9297,13 @@
 	"tag/ResourceManager.h"
 	"tag/ResourceMesh.h"
 
-1490260366 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\graphicnode.cpp
+1490354052 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\graphicnode.cpp
 	"tag/GraphicNode.h"
 	"tag/Entity.h"
+	"tag/EMesh.h"
 	<algorithm>
 
-1490211868 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\graphicnode.h
+1490354052 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\graphicnode.h
 	<vector>
 	"tag/Types.h"
 
@@ -9402,7 +9404,7 @@
 	<GL/glew.h>
 	<glm/gtc/matrix_transform.hpp>
 
-1489914733 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\etransform.h
+1490354052 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\etransform.h
 	"Entity.h"
 	<glm/glm.hpp>
 	"tag/Types.h"
@@ -9411,7 +9413,7 @@
 	"tag/ResourceManager.h"
 	"tag/ResourceMesh.h"
 
-1489396762 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.cpp
+1490355554 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.cpp
 	"tag/ResourceMesh.h"
 	<stdio.h>
 	<stdexcept>
@@ -9422,7 +9424,7 @@
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/string_cast.hpp>
 
-1490260394 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
+1490355561 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
 	"tag/TAGEngine.h"
 	<stdexcept>
 	<glm/glm.hpp>
@@ -9436,6 +9438,7 @@
 	"tag/ELight.h"
 	"tag/ETransform.h"
 	"tag/EMesh.h"
+	"tag/EAnimation.h"
 
 1487863593 c:\users\sergio\desktop\lab21\desarrollo\motor\include\glm\gtc\epsilon.inl
 	"quaternion.hpp"
@@ -10048,16 +10051,16 @@
 1488215318 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\types.h
 	<glm/gtc/type_precision.hpp>
 
-1489083422 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
+1490025569 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"tag/Types.h"
 	"tag/GraphicNode.h"
 	"tag/EMesh.h"
+	"tag/EAnimation.h"
 	"Program.h"
 	"ResourceManager.h"
 	"ResourceMesh.h"
-	"tag/EAnimation.h"
 
 1488215325 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.h
 	<vector>
@@ -10104,12 +10107,12 @@
 
 1488215325 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\etransform.h
 
-1488881430 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\graphicnode.cpp
+1489857443 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\graphicnode.cpp
 	"tag/GraphicNode.h"
 	"tag/Entity.h"
 	<algorithm>
 
-1488881430 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\graphicnode.h
+1489857443 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\graphicnode.h
 	<vector>
 
 1488215318 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\resource.cpp
@@ -10130,23 +10133,40 @@
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/string_cast.hpp>
 
-1489081657 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
+1490025109 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
+	"tag/TAGEngine.h"
+	<stdexcept>
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	"Shader.h"
+	"tag/Entity.h"
+	"tag/ResourceMesh.h"
+	"tag/ECamera.h"
+	"tag/ELight.h"
+	"tag/ETransform.h"
+	"tag/EMesh.h"
+	"tag/EAnimation.h"
 
-1489342243 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\eanimation.h
+1490107956 c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\eanimation.h
 	"Entity.h"
 	"ResourceMesh.h"
 
-1489083422 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\eanimation.cpp
+1490108032 source:c:\users\sergio\desktop\lab21\desarrollo\motor\src\graphics\tag\eanimation.cpp
 	"tag/EAnimation.h"
+	<sstream>
+	<iostream>
 
 1488712332 gine.h"
 
-1489914712 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\eanimation.h
+1490354845 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\eanimation.h
 	"Entity.h"
 	"ResourceMesh.h"
 
-1489390967 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\eanimation.cpp
+1490355483 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\eanimation.cpp
 	"tag/EAnimation.h"
+	<sstream>
+	<iostream>
 
 1487958188 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\classes\drawable.cpp
 	"Drawable.h"
@@ -11842,7 +11862,7 @@
 	<vector>
 	<SFML/OpenGL.hpp>
 
-1489313689 c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\eanimation.h
+1489414413 c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\eanimation.h
 	"Entity.h"
 	"ResourceMesh.h"
 
@@ -11912,7 +11932,7 @@
 	"tag/ResourceManager.h"
 	"tag/ResourceMesh.h"
 
-1489315252 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
+1489331030 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"GraphicsEngine.h"
@@ -11924,7 +11944,7 @@
 	"Program.h"
 	"Player.h"
 
-1489313689 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\eanimation.cpp
+1489414413 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\eanimation.cpp
 	"tag/EAnimation.h"
 
 1488896254 source:c:\users\edu\desktop\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
@@ -13792,27 +13812,27 @@
 	"Player.h"
 	"tag/GraphicNode.h"
 
-1488740661 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\firearm.cpp
+1490354052 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\firearm.cpp
 	"Firearm.h"
 	"Player.h"
 
-1488740661 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\firearm.h
+1490354052 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\firearm.h
 	<defines.h>
 	<Weapon.h>
 
-1482307270 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\defines.h
+1490354052 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\defines.h
 
-1488740661 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\weapon.h
+1490354052 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\weapon.h
 	<Drawable.h>
 
-1488740661 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\gun.cpp
+1490354052 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\gun.cpp
 	"Gun.h"
 	"Player.h"
 
-1488740661 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\gun.h
+1490354052 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\gun.h
 	<Firearm.h>
 
-1490198506 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\weapon.cpp
+1490354052 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\weapon.cpp
 	"Weapon.h"
 	"Player.h"
 

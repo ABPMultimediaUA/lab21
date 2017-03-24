@@ -36,7 +36,6 @@ void GSDead::Update(){
     Game::getInstance()->ChangeState(GSMainMenu::getInstance());
     Scene::Instance()->Destroy();
     LoadMap::getInstance()->Destroy();
-    //World->Destroy();
 }
 
 GSDead::~GSDead(){}

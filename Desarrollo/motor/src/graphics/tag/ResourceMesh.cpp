@@ -120,9 +120,9 @@ void tag::ResourceMesh::aiSceneToOpenGLMesh(const aiScene* scene)
             indicesCount++;
         }
     }
-    // TODO el color
+    // TODO el color por ahora gris
     m_color = new GLfloat[4];
-    m_color[0] = 1.0;
+    m_color[0] = 0.5;
     m_color[1] = 0.5;
     m_color[2] = 0.5;
     m_color[3] = 1.0;

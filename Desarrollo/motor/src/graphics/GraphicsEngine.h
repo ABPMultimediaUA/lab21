@@ -27,6 +27,7 @@
 
 
 
+
 using namespace std;
 
 class AppReceiver;
@@ -195,6 +196,9 @@ namespace dwe
 
         tag::TAGEngine* getTagEngine() { return &m_tagEngine; }
 
+        static const int _screenWidth  = 1000;
+        static const int _screenHeight = 700;
+
 
     private:
         sf::RenderWindow*   m_window;
@@ -225,9 +229,6 @@ namespace dwe
         static const float          _camera_progression = 0.5f;
         static const int            _camera_y           = 250;
         static const int            _camera_z_offset    = -100;
-
-        static const int _screenWidth  = 1000;
-        static const int _screenHeight = 700;
 
         GraphicsEngine() {};
 

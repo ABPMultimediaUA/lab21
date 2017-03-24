@@ -19,14 +19,14 @@ void main()
 	float d = length(LightPos.xyz - P);			        // distancia de la luz
 	vec3  L = normalize(LightPos.xyz - P);			    // Vector Luz
 
-	float ambient = 0.15;                               // (15% de int. ambiente)
+	float ambient = 0.25;                               // (25% de int. ambiente)
 	float diffuse = 0.0;
 
 	if (u_Luz0>0) {                                     // Si la luz 0 está encendida se calcula la intesidad difusa de L
         diffuse = max(dot(N, L), 0.0);		            // Cálculo de la int. difusa
         // Cálculo de la atenuación
         //float attenuation = 80.0/(0.25+(0.01*d)+(0.003*d*d));
-        float attenuation = 1;// TODO por ahora sin atenuacion
+        float attenuation = 2.0;// TODO por ahora sin atenuacion
         diffuse = diffuse*attenuation;
 	}
 	v_Color = u_Color * (ambient + diffuse);
