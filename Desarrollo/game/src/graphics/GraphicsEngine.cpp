@@ -258,7 +258,7 @@ Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float p
 	d->setPositionClosed(dwe::vec3f(px, py, pz)); // Localización de la puerta CERRADA
 	d->setPositionOpened(dwe::vec3f(px, py, pz));
 	if(f==1 || f==3)
-        d->setRotation(90);
+        d->setRotation(vec3f(0,90,0));
 
 	NetInstance->addNetEntity(d);
 	return d;

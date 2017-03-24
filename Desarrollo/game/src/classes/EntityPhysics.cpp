@@ -63,7 +63,7 @@ void EntityPhysics::createBody(b2BodyType type, const dwe::vec3f& pos, float wid
     b2BodyDef bodyDef;
     bodyDef.type = type;
     bodyDef.position.Set(pos.x, pos.z);
-    bodyDef.angle = -(angleDegrees*M_PI/180);  // Lo pasamos a radianes
+   // bodyDef.angle = -(angleDegrees*M_PI/180);  // Lo pasamos a radianes
     bodyDef.fixedRotation = (type == b2_dynamicBody);
     bodyDef.bullet = bullet;
 
