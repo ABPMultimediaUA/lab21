@@ -35,8 +35,8 @@ class LoadMap {
         ScenaryElement* wall;
 
         Entity *entities[NUM_MAP_ENTITIES2]; // Array de entidades
-        Entity *sector[1]; // Sector no funcional que se le asigna a un generador
-        Consumable *ammos[2];
+        //Entity *sector[1]; // Sector no funcional que se le asigna a un generador
+        //Consumable *ammos[2];
         TriggerDoor *doorTriggers[NUM_MAP_ENTITIES2]; // Triggers
 };
 
