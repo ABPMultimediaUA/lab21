@@ -91,7 +91,7 @@ void Humanoid::update()
     }
 
     if(currentNode != finalNode)
-    setPosition(dwe::vec3f(movement.x*m_speed, 0, movement.y*m_speed));
+    setPosition(dwe::vec3f(movement.x*m_speed, getPosition().y, movement.y*m_speed));
 
     if(abs(getPosition().x - navGraph.getNode(nextNode).getPosition().x) < m_speed && abs(getPosition().z - navGraph.getNode(nextNode).getPosition().y) < m_speed){
         std::cout <<"Llego al nodo "<<nextNode<<std::endl;
