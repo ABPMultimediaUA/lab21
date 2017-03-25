@@ -32,6 +32,9 @@ class Drawable
         void setIAnimNode (scene::IAnimatedMeshSceneNode* n);
         scene::IAnimatedMeshSceneNode* getIAnimNode();
 
+        void setLevelId (int levelid);
+        int getLevelId ();
+
 
 
     protected:
@@ -41,6 +44,7 @@ class Drawable
         float*              m_mesh;
         dwe::AnimationType  m_animation;
         scene::IAnimatedMeshSceneNode* ianim_node;
+        int m_levelId;
 };
 
 #endif // DRAWABLE_H

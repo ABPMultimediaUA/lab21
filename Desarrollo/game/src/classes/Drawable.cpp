@@ -4,6 +4,7 @@ Drawable::Drawable()
 {
     //ctor
     m_animation = dwe::eAnimNone;
+    m_levelId = -1; //inicializo
 }
 
 Drawable::~Drawable()
@@ -64,3 +65,16 @@ void Drawable::setAnimation(dwe::AnimationType a)
     }
 }
 dwe::AnimationType Drawable::getAnimation() { return m_animation; }
+
+//////////////
+void Drawable::setLevelId(int levelid)
+{
+    m_levelId = levelid;
+}
+
+//////////////
+int Drawable::getLevelId()
+{
+    return m_levelId;
+}
+

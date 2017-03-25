@@ -75,6 +75,11 @@ void LoadMap::Init(){
         const Value& levels = document["levels"]; //Referencia a todos los "levels"
         //cout << "TAMAÑO DE LEVELS = " << levels.Size() << endl;
         for(int i=0; i < levels.Size(); i++){
+
+
+            const int levelid =  levels[i]["level-id"].GetInt();
+            //cout << "LEVEL-ID = " << levelid << endl;
+
             const Value& se = levels[i]["static-elements"]; //Referencia a todos los "static-elements";
             //cout << "TAMAÑO DE SE = " << se.Size() << endl;
             for(int j=0; j < se.Size(); j++){
@@ -93,6 +98,7 @@ void LoadMap::Init(){
                         ScenaryElement* wall = GEInstance->createWall("media/"+next->model);
                         wall->setRotation(dwe::vec3f(rx,ry,rz));
                         wall->setPosition(dwe::vec3f(tx,ty,tz));
+                        wall->setLevelId(levelid);//le metemos la id de la sala
                     };
                     ++next;
                 }
@@ -146,6 +152,7 @@ void LoadMap::Init(){
                         }else if(ry==270 || ry==-90){
                             entities[contDoorIn]=GEInstance->createDoor(3, true, tx, ty, tz);
                         }
+                    entities[contDoorIn]->setLevelId(levelid);//le metemos la id de la sala
                     doorTriggers[contDoorIn]=GEInstance->createTriggerDoor(tx, ty, tz);
                     ++contDoorIn;
                 }
