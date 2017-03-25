@@ -74,14 +74,14 @@ void LoadMap::Init(){
     {
         const Value& levels = document["levels"]; //Referencia a todos los "levels"
         //cout << "TAMAÑO DE LEVELS = " << levels.Size() << endl;
-        for(int i=0; i < levels.Size(); i++){
+        for(size_t i=0; i < levels.Size(); i++){
             const Value& se = levels[i]["static-elements"]; //Referencia a todos los "static-elements";
             //cout << "TAMAÑO DE SE = " << se.Size() << endl;
-            for(int j=0; j < se.Size(); j++){
+            for(size_t j=0; j < se.Size(); j++){
 
                 const Value& e = se[j]; //Recorrer cada "element"
                 std::string id = e["element-id"].GetString();
-                int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = e["position"]["z"].GetDouble();
+                int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = (-1)* e["position"]["z"].GetDouble();
                 int rx = e["rotation"]["x"].GetDouble();    int ry = e["rotation"]["y"].GetDouble();    int rz = e["rotation"]["z"].GetDouble();
                 //cout << e["element-id"].GetString() << endl;
                 //cout << "pos(" << tx << "," << ty << "," << tz << ") ; rot(" <<  rx << ":" <<  ry << ":" <<  rz << ")"<< endl;
@@ -112,11 +112,11 @@ void LoadMap::Init(){
 
             //CONSUMABLES
             const Value& ce = levels[i]["initial-consumable"]; //Referencia a todos los "static-elements";
-            for(int j=0; j < ce.Size(); j++){
+            for(size_t j=0; j < ce.Size(); j++){
 
                 const Value& e = ce[j]; //Recorrer cada "element"
                 std::string id = e["element-id"].GetString();
-                int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = e["position"]["z"].GetDouble();
+                int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = (-1)* e["position"]["z"].GetDouble();
                 if(id=="Bullets"){
                     Scene* s = Scene::Instance();
                     s->createAmmoGun(tx, ty, tz);
@@ -128,14 +128,13 @@ void LoadMap::Init(){
 
             //DOORS
             const Value& de = levels[i]["initial-entity"]; //Referencia a todos los "static-elements";
-            for(int j=0; j < de.Size(); j++){
+            for(size_t j=0; j < de.Size(); j++){
 
                 const Value& e = de[j]; //Recorrer cada "element"
                 std::string id = e["element-id"].GetString();
-                int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = e["position"]["z"].GetDouble();
-                int rx = e["rotation"]["x"].GetDouble();    int ry = e["rotation"]["y"].GetDouble();    int rz = e["rotation"]["z"].GetDouble();
-                //cout << e["element-id"].GetString() << endl;
-                //cout << "pos(" << tx << "," << ty << "," << tz << ") ; rot(" <<  rx << ":" <<  ry << ":" <<  rz << ")"<< endl;
+                int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = (-1)* e["position"]["z"].GetDouble();
+                // SOolo se utiliza rotacion en eje Y    int rx = e["rotation"]["x"].GetDouble();    int rz = e["rotation"]["z"].GetDouble();
+                int ry = e["rotation"]["y"].GetDouble();
                 if(id=="Door"){
                         if(ry==0){
                             entities[contDoorIn]=GEInstance->createDoor(0, true, tx, ty, tz);
@@ -158,12 +157,12 @@ void LoadMap::Init(){
         //SHOTGUN BULLETS
         for(int i=0; i<1; i++){
             Scene* s = Scene::Instance();
-            s->createCShotgun(0, 10, 20*i);
+            s->createCShotgun(0, 10, -20*i);
         }
         //RIFLE BULLETS
         for(int i=0; i<1; i++){
             Scene* s = Scene::Instance();
-            s->createCRifle(20, 10, 20*i);
+            s->createCRifle(20, 10, -20*i);
         }
 
     }
@@ -178,7 +177,7 @@ entities[2]=GEInstance->createGenerator(0, false, -50, 0, -50); // false
 */
 
 void LoadMap::Update(){
-    for(int cont=0; cont<NUM_ENTITIES2; cont++){
+    for(int cont=0; cont<NUM_MAP_ENTITIES2; cont++){
         entities[cont]->update();
         doorTriggers[cont]->update(entities[cont]);
     }
@@ -186,19 +185,13 @@ void LoadMap::Update(){
 }
 
 void LoadMap::Destroy(){
-     for(int i=0; i<NUM_ENTITIES2; i++){
+     for(int i=0; i<NUM_MAP_ENTITIES2; i++){
         delete entities[i];
     }
 
-    delete[] entities;
-     /*for(int i=0; i<1; i++){
-        delete sector[i];
-    }
-    delete[] sector ;*/
-    for(int i=0; i<NUM_ENTITIES2; i++){
+    for(int i=0; i<NUM_MAP_ENTITIES2; i++){
         delete doorTriggers[i];
     }
-    delete[] doorTriggers;
 
     delete suelo; suelo=0;
     delete wall;

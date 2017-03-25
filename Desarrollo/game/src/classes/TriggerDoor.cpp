@@ -34,11 +34,8 @@ void TriggerDoor::render()
 
 void TriggerDoor::update(Entity *e)
 {
-    if(World->getMainPlayer()->getNode()->intersects(getNode()->getNode()))
+    if (m_touchingMainPlayer && GEInstance->receiver.isKeyDown(KEY_SPACE))
     {
-        if(GEInstance->receiver.isKeyDown(KEY_SPACE))
-        {
-            triggered(e);
-        }
+        triggered(e);
     }
 }
