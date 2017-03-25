@@ -12,10 +12,6 @@ class Drawable
         virtual void update() = 0;
         virtual void render() = 0;
 
-
-        float* getMesh();
-        void setMesh(float* m);
-
         dwe::vec3f getPosition();
         void setPosition(dwe::vec3f p);
 
@@ -24,17 +20,13 @@ class Drawable
 
         virtual void setNode(dwe::Node* n);
         dwe::Node* getNode();
+        bool hasNode();
         void removeNode();
 
         void setAnimation(dwe::AnimationType a);
         dwe::AnimationType getAnimation();
 
-        void setIAnimNode (scene::IAnimatedMeshSceneNode* n);
-        scene::IAnimatedMeshSceneNode* getIAnimNode();
-
-        void setLevelId (int levelid);
-        int getLevelId ();
-
+        //RMM es mejor utilizar los sensores de box2d. bool intersects(Drawable* d);
 
 
     protected:
@@ -43,8 +35,6 @@ class Drawable
         dwe::Node*          m_node;
         float*              m_mesh;
         dwe::AnimationType  m_animation;
-        scene::IAnimatedMeshSceneNode* ianim_node;
-        int m_levelId;
 };
 
 #endif // DRAWABLE_H

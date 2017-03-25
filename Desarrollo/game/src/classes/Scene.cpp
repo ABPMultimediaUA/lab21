@@ -30,9 +30,9 @@ void Scene::Init()
     if (NetInstance->isMultiplayer())
     {
         if (NetInstance->isServer())
-            GEInstance->addMessageLine(L"Pulsa intro cuando esten todos los jugadores");
+            GEInstance->addMessageLine("Pulsa intro cuando esten todos los jugadores");
         else
-            GEInstance->addMessageLine(L"Esperando a que el servidor de la partida inicie el juego");
+            GEInstance->addMessageLine("Esperando a que el servidor de la partida inicie el juego");
         // En startGame solo se inicia si es el servidor
         while (!NetInstance->getGameStarted() && GEInstance->isRunning())
         {
@@ -42,7 +42,7 @@ void Scene::Init()
                 NetInstance->startGame();
         }
     }
-    GEInstance->addMessageLine(L"Partida iniciada");
+    GEInstance->addMessageLine("Partida iniciada");
     /**********************************/
     // Llaves
     //llave=GEInstance->createMagnetKey(0, 50, 0, 350);
@@ -50,12 +50,12 @@ void Scene::Init()
 
     // GUN - SHOTGUN - RIFLE
     gun = createGun(0,0,0); // Creo el arma inicial del player
-    shotgun = createShotgun(-100,10,210);
-    rifle = createRifle(-100,10,200);
+    shotgun = createShotgun(-100,10,-210);
+    rifle = createRifle(-100,10,-200);
 
     // Creación de jugador
     mainPlayer = GEInstance->createMainPlayer(gun);
-    mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,-80));
+    mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,80));
     mainPlayer->setHealth(10);
     World->setMainPlayer(mainPlayer);
     cout << "Barra de vida: " << mainPlayer->getHealth() << endl;
@@ -65,13 +65,13 @@ void Scene::Init()
     ////////////////////////////////
     for(int i=0; i<4; i++){
         enemyHumanoid = GEInstance->createEnemyHumanoid();
-        enemyHumanoid->setPosition(dwe::vec3f(500+(i*10),24,-250+(i*80) ));
+        enemyHumanoid->setPosition(dwe::vec3f(500+(i*10),24,250+(i*80) ));
         m_enemies.push_back(enemyHumanoid);
     }
 
     for(int i=0; i<4; i++){
         enemyHumanoid = GEInstance->createEnemyHumanoid();
-        enemyHumanoid->setPosition(dwe::vec3f(-300+(i*10),24,-400+(i*80) ));
+        enemyHumanoid->setPosition(dwe::vec3f(-300+(i*10),24,400+(i*80) ));
         m_enemies.push_back(enemyHumanoid);
     }
     ////////////////////////////////
@@ -84,13 +84,11 @@ void Scene::Init()
 
     //Joint try
     joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
-    joint_try->setPosition(dwe::vec3f(0,10,120));
+    joint_try->setPosition(dwe::vec3f(0,10,-120));
     bjoint = new EntityPhysics();
-    bjoint->createJointBody(dwe::vec3f(0,10,120)); // createJointBody(dwe::vec3f(0,10,120));
+    bjoint->createJointBody(dwe::vec3f(0,10,-120)); // createJointBody(dwe::vec3f(0,10,120));
 
-    //CAMERA (nodo padre, posición, directión)
-    camera1 = GEInstance->getSMGR()->addCameraSceneNode(0,  vector3df(0,0,0), vector3df(mainPlayer->getPosition().x,mainPlayer->getPosition().y,mainPlayer->getPosition().z));
-    GEInstance->getSMGR()->setActiveCamera(camera1); //Activar cámara
+    GEInstance->createCamera();
 
     //rmm Cheat: la primera vez que creo el projectile va muy lento, no se pq
     createProjectile(dwe::vec3f(1.0, 1.0, 1.0), 0.5);
@@ -112,7 +110,6 @@ void Scene::Destroy(){
         NetInstance->removeNetEnemy(enemyHumanoid);
         delete enemyHumanoid;
     }
-    cout<<"Hasta aqui no peta"<<endl;
 
     while(m_projectiles.size()>0){
         m_projectiles.pop_back();
@@ -124,7 +121,6 @@ void Scene::Destroy(){
 
     delete joint_try;
     delete bjoint;
-    //delete camera1;
     cout<<"DELETE ALL"<<endl;
 }
 
@@ -137,7 +133,7 @@ void Scene::Update()
     if(mainPlayer->getHealth()<=0){
         Game::getInstance()->ChangeState(GSDead::getInstance());
     }
-    for(int i=0; i<m_enemies.size(); i++){ //recorre
+    for(size_t i=0; i<m_enemies.size(); i++){ //recorre
             Enemy* enemy=m_enemies.at(i);
             if(enemy && enemy->getHealth()<=0){
                 m_enemies.erase(m_enemies.begin()+i);
@@ -156,8 +152,8 @@ void Scene::Update()
     //PARA CAMARA INTELIGENTE --- La idea es contar cuántos enemigos tenemos a cada extremo y acercar la cámara según el extremo que más haya.
     moreEnemiesX = 0;
     moreEnemiesZ = 0;
-    int dist2player = 0;
-    for(int e=0; e<m_enemies.size(); e++){
+    //int dist2player = 0;
+    for(size_t e=0; e<m_enemies.size(); e++){
         if(m_enemies[e]){
             int playerX = mainPlayer->getPosition().x;      int playerZ = mainPlayer->getPosition().z;
             int enemyX  = m_enemies[e]->getPosition().x;    int enemyZ  = m_enemies[e]->getPosition().z;
@@ -170,8 +166,8 @@ void Scene::Update()
                 else                     moreEnemiesX++; //DER
             }
             if(d2pZ>50 && d2pZ<300){
-                if(enemyZ<playerZ)       moreEnemiesZ--; //DOWN
-                else                     moreEnemiesZ++; //UP
+                if(enemyZ<playerZ)       moreEnemiesZ++; //DOWN
+                else                     moreEnemiesZ--; //UP
             }
         }
     }
@@ -182,7 +178,7 @@ void Scene::Update()
     GEInstance->updateCamera(mainPlayer->getPosition(), moreEnemiesX, moreEnemiesZ);
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
 
-    for(int e=0; e<m_enemies.size(); e++) //recorre
+    for(size_t e=0; e<m_enemies.size(); e++) //recorre
         if(m_enemies[e]){
 
 
@@ -223,7 +219,7 @@ void Scene::Update()
     // Coger la llave
     if(!llaveCogida)
     {
-        if(mainPlayer->getNode()->intersects(llave->getNode()->getNode()))
+        NO SE DEBE USAR INTERSECTS RMM if(mainPlayer->getNode()->intersects(llave->getNode()->getNode()))
         {
             llaveCogida=true;
             mainPlayer->setMKeys(llave->getId());
@@ -309,6 +305,6 @@ void Scene::createAmmoGun(float px, float py, float pz)     { m_consumables.push
 
 //CREATE WEAPONS
 Gun* Scene::createGun(float px, float py, float pz)         {   return GEInstance->createGun(px, py, pz);   }
-Shotgun* Scene::createShotgun(float px, float py, float pz) {   GEInstance->createShotgun(px, py, pz);      }
-Rifle* Scene::createRifle(float px, float py, float pz)     {   GEInstance->createRifle(px, py, pz);        }
+Shotgun* Scene::createShotgun(float px, float py, float pz) {   return GEInstance->createShotgun(px, py, pz);      }
+Rifle* Scene::createRifle(float px, float py, float pz)     {   return GEInstance->createRifle(px, py, pz);        }
 

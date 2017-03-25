@@ -42,7 +42,9 @@ void Player::update(Shotgun* shotgun, Rifle* rifle)
 void Player::setNode(dwe::Node* n)
 {
     Drawable::setNode(n);
-    createDynamicBody(getPosition());
+
+    dwe::vec3f box = n->getBoundingBox();
+    createDynamicBody(getPosition(), box.x, box.z);
 }
 
 /////////////

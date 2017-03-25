@@ -1,3 +1,7 @@
+#define GLEW_STATIC
+#include<GL/glew.h>
+#include <glm/glm.hpp>
+
 #include "GraphicsEngine.h"
 #include "Player.h"
 #include "PlayerMate.h"
@@ -22,8 +26,8 @@
 
 #include "ScenaryElement.h"
 
-#include "iostream"
-#include "cmath"
+#include <iostream>
+#include <cmath>
 
 #include "CShotgun.h"
 #include "CRifle.h"
@@ -34,9 +38,6 @@
 
 
 using namespace std;
-// Necesita volver a poner este namespace
-// para que codeblocks autocomplete bien.
-// Los demás no, si no tampoco autocompleta.
 
 
 ///////////////////////////////////////////////
@@ -51,96 +52,93 @@ dwe::GraphicsEngine* dwe::GraphicsEngine::Instance()
 //////////////////////////
 void dwe::GraphicsEngine::init()
 {
-	m_device = createDevice( video::EDT_OPENGL, irr::core::dimension2d<u32>(_screenWidth, _screenHeight), 16,
-			false, false, false, &receiver);
+    // Importante para que muestre bien el cubo y no haga un mal culling
+    sf::ContextSettings contextSettings;
+    contextSettings.depthBits = 24;
+    contextSettings.sRgbCapable = false;
 
-	m_device->setWindowCaption(L"Lab21");
+    m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", sf::Style::Default, contextSettings);
 
-	// TODO comprobar que m_device existe if !m_device exit()
+    // Creamos los mensajes de texto, por ahora vacios
+    if (!m_font.loadFromFile("media/ExoRegular.otf"))
+        throw std::runtime_error("No se ha podido cargar la fuente de texto");
 
-    /*
-	Get a pointer to the VideoDriver, the SceneManager and the graphical
-	user interface environment, so that we do not always have to write
-	device->getVideoDriver(), device->getSceneManager(), or
-	device->getGUIEnvironment().
-	*/
-	m_driver = m_device->getVideoDriver();
-	m_smgr = m_device->getSceneManager();
-	m_guienv = m_device->getGUIEnvironment();
-
-
-	// Creamos los mensajes de texto, por ahora vacios
 	for(int i=0; i<MAX_MESSAGE_LINES; i++)
 	{
-        m_messageLine[i] = m_guienv->addStaticText(L"", rect<s32>(10, _screenHeight - (i+1)*16, _screenWidth-20, _screenHeight - i*16), false);
-        m_messageLine[i]->setOverrideColor(SColor(255,255,255,255));
+        m_messageLine[i].setFont(m_font);
+        m_messageLine[i].setCharacterSize(14);
+        m_messageLine[i].setFillColor(sf::Color(255, 255, 255, 255));
+        m_messageLine[i].setPosition(10.f, GraphicsEngine::_screenHeight - (i+1)*16.f);
+        m_messageLine[i].setString("");
 	}
-    /****
-	for(int i=0; i<MAX_MESSAGE_LINES; i++)
-	{
-        m_sfmessageLine[i].setFont(m_font);
-        m_sfmessageLine[i].setCharacterSize(14);
-        m_sfmessageLine[i].setFillColor(sf::Color(255, 255, 255, 255));
-        m_sfmessageLine[i].setPosition(10.f, _screenHeight - (i+1)*16.f);
-        m_sfmessageLine[i].setString("");
-	}
-    ****/
-	// Posición de la cámara inicial
-	m_smgr->addCameraSceneNode(0, vector3df(-150,120,190), vector3df(0,0,0));
+
+    m_tagEngine.init(GraphicsEngine::_screenHeight, GraphicsEngine::_screenWidth);
+
+    m_secondsLastDraw = 0;
+    m_clock.restart();
 }
 
 //////////////////////////
 void dwe::GraphicsEngine::release()
 {
-	/*
-	After we are done with the render loop, we have to delete the Irrlicht
-	Device created before with createDevice(). In the Irrlicht Engine, you
-	have to delete all objects you created with a method or function which
-	starts with 'create'. The object is simply deleted by calling ->drop().
-	See the documentation at irr::IReferenceCounted::drop() for more
-	information.
-	*/
-	m_device->drop();
 }
 
 //////////////////////////
 bool dwe::GraphicsEngine::isRunning()
 {
-  	/*
-	Ok, now we have set up the scene, lets draw everything: We run the
-	device in a while() loop, until the device does not want to run any
-	more. This would be when the user closes the window or presses ALT+F4
-	(or whatever keycode closes a window).
-	*/
+    sf::Event event;
+    while (m_window->pollEvent(event))
+    {
+        if (event.type == sf::Event::Closed)
+        {
+            m_window->close();
+        }
+        else if (event.type == sf::Event::Resized)
+        {
+            glViewport(0, 0, event.size.width, event.size.height);
+        }
+        else
+            receiver.OnEvent(event);
+    }
 
-    return m_device->run();
+    return m_window->isOpen() && m_tagEngine.isRunning();
 }
 
 //////////////////////////
 void dwe::GraphicsEngine::draw()
 {
-    /*
-    Anything can be drawn between a beginScene() and an endScene()
-    call. The beginScene() call clears the screen with a color and
-    the depth buffer, if desired. Then we let the Scene Manager and
-    the GUI Environment draw their content. With the endScene()
-    call everything is presented on the screen.
-    */
-    m_driver->beginScene(true, true, SColor(255,0,0,0));  // a,r,g,b
+    m_window->setActive(true);
+    m_tagEngine.draw();
 
-    m_smgr->drawAll();
-    m_guienv->drawAll();
+    m_window->setActive(false);
 
-    m_driver->endScene();
 
-   // wchar_t tmp[255];
-    //swprintf(tmp, L"Lab21 - fps:%d triangles:%d", m_driver->getFPS(), m_driver->getPrimitiveCountDrawn());
-  	//m_device->setWindowCaption(tmp);
+    // Entre pushGLStates y popGLStates dibujamos los sprites
+    m_window->pushGLStates();
+
+    // Lineas de mensaje del jugador
+    for(unsigned int i=0; i<MAX_MESSAGE_LINES; i++)
+        m_window->draw(m_messageLine[i]);
+
+    m_window->popGLStates();
+
+
+    m_window->display();
+
+    char tmp[25];
+    float fps = 1.f / (m_clock.getElapsedTime().asSeconds() - m_secondsLastDraw);
+    m_secondsLastDraw = m_clock.getElapsedTime().asSeconds();
+    sprintf(tmp, "Lab21 - fps:%f", fps);
+    m_window->setTitle(tmp);
 }
 
+//////////////////////////
+void dwe::GraphicsEngine::render()
+{
+}
 
 ////////////////////////////////////////////////////
-scene::IAnimatedMeshSceneNode* dwe::GraphicsEngine::createIrrAnimatedMeshSceneNode(std::string meshName)
+/*scene::IAnimatedMeshSceneNode* dwe::GraphicsEngine::createIrrAnimatedMeshSceneNode(std::string meshName)
 {
 	scene::IAnimatedMesh* mesh = m_smgr->getMesh((meshName+".obj").c_str());
 	if (!mesh)
@@ -157,15 +155,15 @@ scene::IAnimatedMeshSceneNode* dwe::GraphicsEngine::createIrrAnimatedMeshSceneNo
 	}
 
 	return irrnode;
-}
+}*/
 
 /////////////////////////////////////
 ScenaryElement* dwe::GraphicsEngine::createWall(std::string meshName)
 {
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode(meshName);
+    tag::GraphicNode* node = m_tagEngine.createMesh(meshName+".obj", vec3f(0,0,0), vec3f(0,0,0));
 
     ScenaryElement* s = new ScenaryElement();
-    s->setNode(new Node(irrnode));
+    s->setNode(new Node(node));
     return s;
 }
 
@@ -173,50 +171,27 @@ ScenaryElement* dwe::GraphicsEngine::createWall(std::string meshName)
 ////////////////////////////////
 dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 {
-	scene::IAnimatedMesh* mesh = m_smgr->getMesh((meshName+".obj").c_str());
-	if (!mesh)
-	{
-		m_device->drop();
-		exit(0);
-	}
-	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
-	if (irrnode)
-	{
-		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
-		irrnode->setMaterialTexture( 0, m_driver->getTexture((meshName+".png").c_str()) );
-	}
-
-	Node* node = new Node(irrnode);
-
-	return node;
+    tag::GraphicNode* gn = m_tagEngine.createMesh(meshName+".obj", vec3f(0,0,0), vec3f(0,0,0));
+    Node* node = new Node(gn);
+    return node;
 }
 
-vector3df dwe::GraphicsEngine::getTransformedBoundingBox(scene::IAnimatedMeshSceneNode* player){
+/*vector3df dwe::GraphicsEngine::getTransformedBoundingBox(scene::IAnimatedMeshSceneNode* player){
     return(player->getTransformedBoundingBox().getExtent());
-}
+}*/
 
 
 /////////////////////////////
 Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 {
-	scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/sydney.md2");
-	if (!mesh){
-		m_device->drop();
-		exit(0);
-	}
-	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
-	if (irrnode){
-		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
-		irrnode->setMD2Animation(scene::EMAT_STAND);
-		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/sydney.bmp") );
-	}
-
-	irrnode->setPosition(vector3df(0,24,10));
-
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/sydney.md2", vec3f(0,0,0), vec3f(0,0,0));
 	Player* p = new Player(gun);
-	p->setNode(new Node(irrnode));cout<<"-----------------------------"<<endl;
+	p->setNode(new Node(node));
+
 	NetInstance->addNetObject(p);
-    return p;
+	return p;
+
+	// setMaterialTexture( 0, m_driver->getTexture("media/sydney.bmp") );
 }
 
 
@@ -224,29 +199,25 @@ Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 /////////////////////////////////
 PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 {
-	scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/playermate.md2");
-	if (!mesh){
-		m_device->drop();
-		exit(0);
-	}
-
-	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
-	if (irrnode){
-		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
-		irrnode->setMD2Animation(scene::EMAT_STAND);
-		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/playermate.bmp") );
-	}
-
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/playermate.md2", vec3f(0,0,0), vec3f(0,0,0));
 	PlayerMate* p = new PlayerMate();
-	p->setNode(new Node(irrnode));
+	p->setNode(new Node(node));
+
 	NetInstance->addNetObject(p);
-    return p;
+	return p;
 }
 
 ////////////////////////////
 Humanoid* dwe::GraphicsEngine::createEnemyHumanoid()
 {
-    scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/faerie.md2");
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/faerie.md2", vec3f(0,0,0), vec3f(0,0,0));
+    Humanoid* p = new Humanoid();
+	p->setNode(new Node(node));
+
+	NetInstance->addNetEnemy(p);
+	return p;
+
+    /*scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/faerie.md2");
 	if (!mesh)
 	{
 		m_device->drop();
@@ -263,264 +234,182 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid()
 	Humanoid* p = new Humanoid();
 	p->setNode(new Node(irrnode));
 	NetInstance->addNetEnemy(p);
-    return p;
+    return p;*/
 }
 
 ////////////////////////////
 Dog* dwe::GraphicsEngine::createEnemyDog()
 {
-    scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/dog.obj");
-	if (!mesh)
-	{
-		m_device->drop();
-		exit(0);
-	}
-	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
-	if (irrnode)
-	{
-		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
-		irrnode->setMD2Animation(scene::EMAT_STAND);
-		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/dogC1.jpg") );
-		irrnode->setMaterialTexture( 1, m_driver->getTexture("media/dogEyeC1.jpg") );
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/dog.obj", vec3f(0,0,0), vec3f(0,0,0));
+    Dog* p = new Dog();
+	p->setNode(new Node(node));
 
-	}
-
-	Dog* p = new Dog();
-	p->setIAnimNode(irrnode);
-	p->setNode(new Node(irrnode));
 	NetInstance->addNetEnemy(p);
-    return p;
-}
-
-void dwe::GraphicsEngine::changeEnemyDogTexture(Dog* dog,const io::path& text)
-{
-
-    //text = "media/" + text;
-    //cout << text << endl;
-
-    scene::IAnimatedMeshSceneNode* irrnode = dog->getIAnimNode();
-    if (irrnode)
-	{
-		irrnode->setMaterialTexture( 0, m_driver->getTexture(text) );
-
-		irrnode->setMaterialTexture( 1, m_driver->getTexture(text) );
-
-	}
-
+	return p;
 }
 
 Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float pz)
 {
-
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/unityPuerta_50m");
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/unityPuerta_50m.obj", vec3f(0,0,0), vec3f(0,0,0));
     Door* d = new Door(f, a);
-	d->setNode(new Node(irrnode));
+	d->setNode(new Node(node));
 
     d->setPosition(dwe::vec3f(px, py, pz)); // Cerrada
-	//d->setPosition(dwe::vec3f(43.5-70, 36.3, 135.9)); // Abierta
 	d->setPositionClosed(dwe::vec3f(px, py, pz)); // Localización de la puerta CERRADA
 	d->setPositionOpened(dwe::vec3f(px, py, pz));
 	if(f==1 || f==3)
-        d->setRotation(90);
+        d->setRotation(vec3f(0,90,0));
 
-    NetInstance->addNetEntity(d);
-    return d;
+	NetInstance->addNetEntity(d);
+	return d;
 }
 
 Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle)
 {
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/proyectil");
-
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/proyectil.obj", vec3f(0,0,0), vec3f(0,0,0));
     Projectile* p = new Projectile(origin, angle);
-    p->setNode(new Node(irrnode));
-    p->setPosition(origin);
-    return p;
+	p->setNode(new Node(node));
+	p->setPosition(origin);
+	return p;
 }
 
 Generator* dwe::GraphicsEngine::createGenerator(int i, bool b, float px, float py, float pz)
 {
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/generador");
-
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/generador.obj", vec3f(0,0,0), vec3f(0,0,0));
     Generator* g = new Generator(i, b);
-    g->setNode(new Node(irrnode));
-    g->setPosition(dwe::vec3f(px, py, pz));
-
+	g->setNode(new Node(node));
+	g->setPosition(dwe::vec3f(px, py, pz));
     NetInstance->addNetEntity(g);
-    return g;
+	return g;
 }
 
 MagnetKey* dwe::GraphicsEngine::createMagnetKey(int i, float px, float py, float pz)
 {
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/llave");
-
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/llave.obj", vec3f(0,0,0), vec3f(0,0,0));
     MagnetKey* m = new  MagnetKey(i);
-    m->setNode(new Node(irrnode));
-    m->setPosition(dwe::vec3f(px, py, pz));
-    return m;
+	m->setNode(new Node(node));
+	m->setPosition(dwe::vec3f(px, py, pz));
+	return m;
 }
 
 SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(float px, float py, float pz)
 {
-    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/bullet/speed"); // centrado
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/speed/speed"); // no centrado
-
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/speed/speed.obj", vec3f(0,0,0), vec3f(0,0,0));
     SpeedBoost* s = new SpeedBoost();
-    s->setNode(new Node(irrnode));
-    s->setPosition(dwe::vec3f(px, py, pz));
+	s->setNode(new Node(node));
+	s->setPosition(dwe::vec3f(px, py, pz));
 
-    NetInstance->addNetConsumable(s);
-    return s;
+	NetInstance->addNetConsumable(s);
+	return s;
 }
 
 Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
 {
-    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/medkit/medkit"); // no centrado
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/First_Aid_Med_Kit/FirstAidMedKit"); // centrado
-
-
-
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/First_Aid_Med_Kit/FirstAidMedKit.obj", vec3f(0,0,0), vec3f(0,0,0));
     Medkit* h = new Medkit();
-    h->setNode(new Node(irrnode));
-    h->setPosition(dwe::vec3f(px, py, pz));
+	h->setNode(new Node(node));
+	h->setPosition(dwe::vec3f(px, py, pz));
 
-    NetInstance->addNetConsumable(h);
-    return h;
+	NetInstance->addNetConsumable(h);
+	return h;
 }
 
 AmmoGun* dwe::GraphicsEngine::createAmmoGun(float px, float py, float pz)
 {
-    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/AmmoGun/speed"); // centrado
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/gun"); // no centrado
-
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Gun/gun.obj", vec3f(0,0,0), vec3f(0,0,0));
     AmmoGun* a = new AmmoGun();
-    a->setNode(new Node(irrnode));
-    a->setPosition(dwe::vec3f(px, py, pz));
+	a->setNode(new Node(node));
+	a->setPosition(dwe::vec3f(px, py, pz));
 
-    NetInstance->addNetConsumable(a);
-    return a;
+	NetInstance->addNetConsumable(a);
+	return a;
 }
 
 Gun* dwe::GraphicsEngine::createGun(float px, float py, float pz)
 {
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/Gun"); // centrado
-    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/Gun");
-
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/Gun.obj", vec3f(0,0,0), vec3f(0,0,0));
     Gun* g = new Gun();
-    g->setNode(new Node(irrnode));
-    g->setPosition(dwe::vec3f(px, py, pz));
+	g->setNode(new Node(node));
+	g->setPosition(dwe::vec3f(px, py, pz));
 
-    return g;
+	return g;
 }
 
 Shotgun* dwe::GraphicsEngine::createShotgun(float px, float py, float pz)
 {
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/Shotgun"); // centrado
-    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/Gun");
-
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0));
     Shotgun* sg = new Shotgun();
-    sg->setNode(new Node(irrnode));
-    sg->setPosition(dwe::vec3f(px, py, pz));
+	sg->setNode(new Node(node));
+	sg->setPosition(dwe::vec3f(px, py, pz));
 
-    return sg;
+	return sg;
 }
 
 Rifle* dwe::GraphicsEngine::createRifle(float px, float py, float pz)
 {
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/Rifle"); // centrado
-    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/Gun");
-
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0));
     Rifle* r = new Rifle();
-    r->setNode(new Node(irrnode));
-    r->setPosition(dwe::vec3f(px, py, pz));
+	r->setNode(new Node(node));
+	r->setPosition(dwe::vec3f(px, py, pz));
 
-    return r;
+	return r;
 }
 
 CShotgun* dwe::GraphicsEngine::createCShotgun(float px, float py, float pz)
 {
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/Shotgun"); // centrado
-    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/Gun");
-
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0));
     CShotgun* sg = new CShotgun();
-    sg->setNode(new Node(irrnode));
-    sg->setPosition(dwe::vec3f(px, py, pz));
+	sg->setNode(new Node(node));
+	sg->setPosition(dwe::vec3f(px, py, pz));
 
-    NetInstance->addNetConsumable(sg);
-
-    return sg;
+	NetInstance->addNetConsumable(sg);
+	return sg;
 }
 
 CRifle* dwe::GraphicsEngine::createCRifle(float px, float py, float pz)
 {
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/ammm/Rifle"); // centrado
-    //scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/Gun/Gun");
-
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0));
     CRifle* r = new CRifle();
-    r->setNode(new Node(irrnode));
-    r->setPosition(dwe::vec3f(px, py, pz));
+	r->setNode(new Node(node));
+	r->setPosition(dwe::vec3f(px, py, pz));
 
     NetInstance->addNetConsumable(r);
-
-    return r;
+	return r;
 }
-/*
-Trigger* dwe::GraphicsEngine::createTrigger(int type, float px, float py, float pz)
-{
-    Trigger *t;
-    scene::IAnimatedMeshSceneNode* irrnode;
 
-    if(type==0)
-    {
-        irrnode = createIrrAnimatedMeshSceneNode("media/triggerDoor");
-        t = new TriggerDoor();
-    }
-    else if(type==1)
-    {
-        irrnode = createIrrAnimatedMeshSceneNode("media/triggerGenerator");
-        t = new TriggerGenerator();
-    }
-
-    t->setNode(new Node(irrnode));
-    t->setPosition(dwe::vec3f(px, py, pz));
-    return t;
-}
-*/
 TriggerDoor* dwe::GraphicsEngine::createTriggerDoor(float px, float py, float pz)
 {
-    TriggerDoor *t;
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/triggerDoor");
-    t = new TriggerDoor();
-    t->setNode(new Node(irrnode));
-    t->setPosition(dwe::vec3f(px, py, pz));
-    return t;
+    tag::GraphicNode* node = m_tagEngine.createMesh("media/triggerDoor.obj", vec3f(0,0,0), vec3f(0,0,0));
+    TriggerDoor* t = new TriggerDoor();
+	t->setNode(new Node(node));
+	t->setPosition(dwe::vec3f(px, py, pz));
+
+	return t;
 }
 
 TriggerGenerator* dwe::GraphicsEngine::createTriggerGenerator(float px, float py, float pz)
 {
-    TriggerGenerator *t;
-    scene::IAnimatedMeshSceneNode* irrnode = createIrrAnimatedMeshSceneNode("media/triggerGenerator");
-    t = new TriggerGenerator();
-    t->setNode(new Node(irrnode));
-    t->setPosition(dwe::vec3f(px, py, pz));
-    return t;
-}
+    tag::GraphicNode* node = m_tagEngine.createMesh("media/triggerGenerator.obj", vec3f(0,0,0), vec3f(0,0,0));
+    TriggerGenerator* t = new TriggerGenerator();
+	t->setNode(new Node(node));
+	t->setPosition(dwe::vec3f(px, py, pz));
 
-//////////////////////////
-bool dwe::GraphicsEngine::isWindowActive()
-{
-    return m_device->isWindowActive();
-}
-
-//////////////////////////
-void dwe::GraphicsEngine::yield()
-{
-    m_device->yield();
+	return t;
 }
 
 //////////////////////////
 void dwe::GraphicsEngine::close()
 {
-    m_device->closeDevice();
+
+}
+
+//////////////////////////
+void dwe::GraphicsEngine::createCamera()
+{
+    vec3f position(-150,120,-190);
+    m_camera = m_tagEngine.createPerspectiveCamera(position, vec3f(0,0,0), 45.0f, get_screenWidth() / get_screenHeight(), 0.1f, 1000.0f);
+    m_tagEngine.nodeLookAtTarget(m_camera, position, vec3f(0,0,0));
+    m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0));
 }
 
 //////////////////////////
@@ -552,9 +441,9 @@ void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition, int more
 
     //Desencuadre vertical
     if(cursorY < borderU){
-        if(tarUD < _camera_desviation)        tarUD+=_camera_progression;
+        if(tarUD > -_camera_desviation)        tarUD-=_camera_progression;
     }else if(cursorY > borderD){
-        if(tarUD > -_camera_desviation)       tarUD-=_camera_progression;
+        if(tarUD < _camera_desviation)         tarUD+=_camera_progression;
     }else{
         //Volver a centrar
         if(tarUD!=0)
@@ -594,41 +483,17 @@ void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition, int more
         else
             zoomZ = 0;
     }
-    /*
-    cout << "----------------------------------------\n";
-    cout << "mE_X = " << moreEnemiesX << " : mE_Z = " << moreEnemiesZ << endl;
-    cout << "ZOOMX= " << zoomX << " : ZOOMZ= " << zoomZ << endl;
-    */
-    m_smgr->getActiveCamera()->setTarget(vector3df(playerPosition.x+ tarLR + zoomX, playerPosition.y, playerPosition.z+tarUD + zoomZ));
-    m_smgr->getActiveCamera()->setPosition(vector3df(playerPosition.x+tarLR + zoomX, _camera_y + abs(zoomX) + abs(zoomZ), playerPosition.z + _camera_z_offset + tarUD));
+
+    m_tagEngine.nodeLookAtTarget(m_camera,
+            vec3f(playerPosition.x+tarLR + zoomX, _camera_y + abs(zoomX) + abs(zoomZ), (playerPosition.z + _camera_z_offset + tarUD)),
+            vec3f(playerPosition.x+ tarLR + zoomX, playerPosition.y, (playerPosition.z+tarUD + zoomZ)));
 }
 
 //////////////////////////
-void dwe::GraphicsEngine::addMessageLine(std::wstring text)
+void dwe::GraphicsEngine::addMessageLine(std::string text)
 {
     for(int i=MAX_MESSAGE_LINES-1; i>0; i--)
-        m_messageLine[i]->setText(m_messageLine[i-1]->getText());
-    m_messageLine[0]->setText(text.c_str());
-
+        m_messageLine[i].setString(m_messageLine[i-1].getString());
+    m_messageLine[0].setString(text);
 }
-/*******  Metodo a usar para crear botones en fachada ****/
-/*irr::gui::IGUIButton* dwe::GraphicsEngine::createButton(const core::rect<s32>& rectangle)
-{
-    s32 buttonWidth = 128;
-	s32 buttonHeight = 32;
-	irr::gui::IGUIButton*
-    m_guienv->addButton(rectangle);
-    video::ITexture* buttonImage = driver->getTexture("media/playAlone_button.png");
-    core::dimension2d<u32> buttonDim = buttonImage->getSize();
-}*/
-/****
-void dwe::GraphicsEngine::addsfMessageLine(std::string text)
-{
-    for(int i=MAX_MESSAGE_LINES-1; i>0; i--)
-        m_sfmessageLine[i].setString(m_sfmessageLine[i-1].getString());
-    m_sfmessageLine[0].setString(text);
-}
-****/
-
-irr::scene::ISceneManager*  dwe::GraphicsEngine::getSMGR(){return(m_smgr);}
 

@@ -34,7 +34,8 @@ void Enemy::setPosition(dwe::vec3f p)
 void Enemy::setNode(dwe::Node* n)
 {
     Drawable::setNode(n);
-    createDynamicBody(getPosition());
+    dwe::vec3f box = n->getBoundingBox();
+    createDynamicBody(getPosition(), box.x, box.z);
 }
 /////////////
 void Enemy::onBeginContact(EntityPhysics* otherObject)

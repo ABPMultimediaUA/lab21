@@ -22,8 +22,6 @@
 #include "PerceptionTask.h"
 #include "PatrolTask.h"
 
-#define NUM_ENTITIES 10
-
 class Projectile;
 class Consumable;
 class Firearm;
@@ -95,7 +93,6 @@ class Scene
         // Random
         dwe::Node* joint_try;
         EntityPhysics* bjoint;
-        ICameraSceneNode* camera1;
 };
 
 #endif // SCENE_H

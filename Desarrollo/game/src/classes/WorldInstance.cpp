@@ -84,7 +84,7 @@ dwe::vec3f WorldInstance::from2Dto3D(int x2d, int y2d, dwe::vec3f rotation)
 	float denominador   = sqrt( pow(u.x,2) + pow(u.y,2) ) * sqrt( pow(v.x,2) + pow(v.y,2) );
 	float angulo        = acos(numerador/denominador) * (180/M_PI);
 
-	if(y2d<centerY)
+	if(y2d>centerY)
         rotation.y = -angulo;
 	else
         rotation.y = angulo;

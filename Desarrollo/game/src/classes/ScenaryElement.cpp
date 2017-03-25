@@ -30,7 +30,6 @@ void ScenaryElement::setPosition(dwe::vec3f p)
 void ScenaryElement::update()
 {
     // No necesita ya que es fijo
-    //Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
 }
 
 /////////////////////
