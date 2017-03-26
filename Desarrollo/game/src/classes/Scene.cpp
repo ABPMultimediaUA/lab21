@@ -52,17 +52,17 @@ void Scene::Init()
 
     /******************Waypoints*******************/
 
-    NavGraphNode node0(0, dwe::vec2f(-200, 0));
-    NavGraphNode node1(1, dwe::vec2f(-200, -100));
-    NavGraphNode node2(2, dwe::vec2f(-100, -100));
-    NavGraphNode node3(3, dwe::vec2f(-100, 0));
+    NavGraphNode node0(0, dwe::vec2f(-200, 200));
+    NavGraphNode node1(1, dwe::vec2f(-200, 100));
+    NavGraphNode node2(2, dwe::vec2f(-100, 100));
+    NavGraphNode node3(3, dwe::vec2f(-100, 200));
 
-    NavGraphNode node4(4, dwe::vec2f(-150, -50));
+    NavGraphNode node4(4, dwe::vec2f(-150, 150));
 
-    NavGraphNode node5(5, dwe::vec2f(-175, -200));
-    NavGraphNode node6(6, dwe::vec2f(-125, -200));
+    NavGraphNode node5(5, dwe::vec2f(-175, 0));
+    NavGraphNode node6(6, dwe::vec2f(-125, 0));
 
-    NavGraphNode node7(7, dwe::vec2f(-150, -150));
+    NavGraphNode node7(7, dwe::vec2f(-150, 50));
 
     navGraph.addNode(node0);
     navGraph.addNode(node1);
@@ -104,14 +104,14 @@ void Scene::Init()
     navGraph.addEdge(edge75);
     navGraph.addEdge(edge76);
 
-    Shotgun* node = createShotgun(-100,10,-100);
-    node = createShotgun(-100,10,0);
-    node = createShotgun(-200,10,0);
-    node = createShotgun(-200,10,-100);
-    node = createShotgun(-150,10,-50);
-    node = createShotgun(-175,10,-200);
-    node = createShotgun(-125,10,-200);
-    node = createShotgun(-150,10,-150);
+    Shotgun* node = createShotgun(-100,10,100);
+    node = createShotgun(-100,10,200);
+    node = createShotgun(-200,10,200);
+    node = createShotgun(-200,10,100);
+    node = createShotgun(-150,10,150);
+    node = createShotgun(-175,10,0);
+    node = createShotgun(-125,10,0);
+    node = createShotgun(-150,10,50);
 
     // GUN - SHOTGUN - RIFLE
     gun = createGun(0,0,0); // Creo el arma inicial del player
@@ -129,7 +129,7 @@ void Scene::Init()
     //         Enemigos           //
     ////////////////////////////////
     enemyHumanoid = GEInstance->createEnemyHumanoid();
-    enemyHumanoid->setPosition(dwe::vec3f(-200,24,0));
+    enemyHumanoid->setPosition(dwe::vec3f(-200,24,200));
     m_enemies.push_back(enemyHumanoid);
 
     /*for(int i=0; i<4; i++){
@@ -251,7 +251,7 @@ void Scene::Update()
     GEInstance->updateCamera(mainPlayer->getPosition(), moreEnemiesX, moreEnemiesZ);
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
 
-    for(int e=0; e<m_enemies.size(); e++) //recorre
+    for(size_t e=0; e<m_enemies.size(); e++) //recorre
         if(m_enemies[e])
             m_enemies[e]->update();
 

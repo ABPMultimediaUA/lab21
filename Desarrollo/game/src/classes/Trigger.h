@@ -2,8 +2,9 @@
 #define TRIGGER_H
 
 #include "Drawable.h"
-#include "Entity.h"
 #include "EntityPhysics.h"
+
+class Entity;
 
 /******************************************************************************
 Los trigger son los encargados de que se ejecute un evento al ser activados.

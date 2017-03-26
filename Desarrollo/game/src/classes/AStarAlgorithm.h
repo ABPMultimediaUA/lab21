@@ -32,7 +32,7 @@ class Graph_SearchAStar
 
     public:
 
-        Graph_SearchAStar(NavigationGraph &graph, int source, int target);
+        Graph_SearchAStar(const NavigationGraph &graph, int source, int target);
 
         //returns the vector of edges that the algorithm has examined
         std::vector<const NavGraphEdge*> GetSPT()const;

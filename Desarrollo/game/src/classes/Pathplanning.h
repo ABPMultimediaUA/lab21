@@ -3,35 +3,46 @@
 
 #include "GraphicsEngine.h"
 
-class Humanoid;
-class Drawable;
+class Enemy;
+class NavigationGraph;
 
 class Pathplanning
 {
     public:
 
-        Pathplanning(/*Enemy *owner*/);
+        Pathplanning(Enemy *owner);
 
         virtual ~Pathplanning();
 
-        //void CreatePathToPosition(dwe::vec2f TargetPos, std::list<dwe::vec2f& path);
+        void CreatePathToPosition(int target);
 
-        void behaviour(Drawable* mainPlayer, Humanoid* enemyHumanoid, /*dwe::Node* fovnode, */bool danyo);
+        dwe::vec2f Movement();
 
-    protected:
+        bool CheckIfRouteEnd();
+
+        float CalculateAngleYAxis(dwe::vec2f vec);
 
     private:
 
-        //Enemy* m_pOwner;
+        Enemy* m_owner;
 
-        //const NavGraph& m_NavGraph;
+        const NavigationGraph& m_NavGraph;
 
-        //dwe::vec2f targetPosition;
+        int currentNode;
+
+        int nextNode;
+
+        int finalNode;
+
+        dwe::vec2f direction;
+
+        std::list<int> route;
 
         //int GetClosestNodeToPosition(dwe::vec2f pos)const;
 
-
+        void CalculateDirection();
+        bool CheckIfArrived();
+        void Normalize(dwe::vec2f& vec);
 };
-
 
 #endif

@@ -3,7 +3,7 @@
 #include "NavGraphEdge.h"
 #include "PriorityQueue.h"
 
-Graph_SearchAStar::Graph_SearchAStar(NavigationGraph &graph, int source, int target):
+Graph_SearchAStar::Graph_SearchAStar(const NavigationGraph &graph, int source, int target):
                                      m_Graph(graph),
                                      m_GCosts(graph.getNumNodes(), 0.0),
                                      m_FCosts(graph.getNumNodes(), 0.0),
@@ -96,7 +96,8 @@ std::list<int> Graph_SearchAStar::GetPathToTarget()const
 
     int nd = m_iTarget;
 
-    path.push_front(nd);
+    if(m_ShortestPathTree[nd] != 0)
+        path.push_front(nd);
 
     while ((nd != m_iSource) && (m_ShortestPathTree[nd] != 0))
     {

@@ -4,7 +4,7 @@
 #include <iostream>
 using std::cout;
 
-
+/*
 HPatrolState* HPatrolState::Instance()
 {
   static HPatrolState instance;
@@ -35,7 +35,7 @@ void HPatrolState::Exit(Humanoid* pHumanoid)
 }
 
 /*******************/
-
+/*
 HLookingForPlayerState* HLookingForPlayerState::Instance()
 {
   static HLookingForPlayerState instance;
@@ -63,7 +63,7 @@ void HLookingForPlayerState::Exit(Humanoid* pHumanoid)
 }
 
 /*******************/
-
+/*
 HMeleeAttackState* HMeleeAttackState::Instance()
 {
   static HMeleeAttackState instance;
@@ -91,7 +91,7 @@ void HMeleeAttackState::Exit(Humanoid* pHumanoid)
 }
 
 /*******************/
-
+/*
 HRangedAttackState* HRangedAttackState::Instance()
 {
   static HRangedAttackState instance;
@@ -120,7 +120,7 @@ void HRangedAttackState::Exit(Humanoid* pHumanoid)
 
 /*******************/
 
-
+/*
 HRunAwayState* HRunAwayState::Instance()
 {
   static HRunAwayState instance;
@@ -147,3 +147,4 @@ void HRunAwayState::Exit(Humanoid* pHumanoid)
     cout << "\n" << "Humanoid" << ": " << "I think I'm safe now...";
 }
 
+*/

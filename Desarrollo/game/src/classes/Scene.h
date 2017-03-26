@@ -14,14 +14,6 @@
 #include "MagnetKey.h"
 #include "Gun.h"
 
-#include "Pathplanning.h"
-#include "Perception.h"
-#include "Selector.h"
-#include "Sequence.h"
-#include "PathplanningTask.h"
-#include "PerceptionTask.h"
-#include "PatrolTask.h"
-
 #include "NavigationGraph.h"
 
 class Projectile;

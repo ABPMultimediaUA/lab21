@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include "WorldInstance.h"
+#include "Pathplanning.h"
 
 Enemy::Enemy()
 {
@@ -8,6 +9,8 @@ Enemy::Enemy()
     setClassID(CLASS_ENEMY_ID);
     m_health=10;
 
+    m_perception = 0;
+    m_pathplanning = 0;
 }
 
 Enemy::~Enemy()
@@ -32,6 +35,17 @@ void Enemy::setPosition(dwe::vec3f p)
     setPosEntity(newPos, getRotation().y);
     Drawable::setPosition(getPosEntity());
 }
+
+void Enemy::move()
+{
+    dwe::vec2f direction = m_pathplanning->Movement();
+    setRotation(dwe::vec3f(0, m_pathplanning->CalculateAngleYAxis(direction), 0));
+    direction.x = direction.x * m_speed;
+    direction.y = direction.y * m_speed;
+    setVelocity(direction);
+    Drawable::setPosition(getPosEntity());
+}
+
 /////////////
 void Enemy::setNode(dwe::Node* n)
 {
