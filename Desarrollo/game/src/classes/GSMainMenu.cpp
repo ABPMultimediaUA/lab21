@@ -37,7 +37,7 @@ GSMainMenu* GSMainMenu::getInstance()
 
 
 void GSMainMenu::Render(){
-    GEInstance->clearWindow();
+    //GEInstance->clearWindow();
     if(page==0){
         if(!m){
             cout<<"/**************************************************/"<<endl;
@@ -81,7 +81,7 @@ void GSMainMenu::Render(){
         menuOpcionesFondo->draw();
         back2mainMenuButton->draw();
     }
-    GEInstance->displayWindow();
+    //GEInstance->displayWindow();
 }
 
 void GSMainMenu::SetPage(int n){

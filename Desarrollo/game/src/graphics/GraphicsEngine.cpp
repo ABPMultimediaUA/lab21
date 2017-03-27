@@ -121,7 +121,7 @@ void dwe::GraphicsEngine::draw()
 
     m_window->popGLStates();
 
-
+    /*
     m_window->display();
 
     char tmp[25];
@@ -129,6 +129,7 @@ void dwe::GraphicsEngine::draw()
     m_secondsLastDraw = m_clock.getElapsedTime().asSeconds();
     sprintf(tmp, "Lab21 - fps:%f", fps);
     m_window->setTitle(tmp);
+    */
 }
 
 /*******/

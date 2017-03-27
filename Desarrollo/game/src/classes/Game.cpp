@@ -54,9 +54,9 @@ void Game::HandleEvents(){
 }
 
 void Game::Render(){
-    //GEInstance->clearWindow();
+    GEInstance->clearWindow();
     CurrentState->Render();
-    //GEInstance->displayWindow();
+    GEInstance->displayWindow();
 }
 
 
