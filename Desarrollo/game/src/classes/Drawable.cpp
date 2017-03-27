@@ -51,6 +51,17 @@ void Drawable::setAnimation(dwe::AnimationType a)
 }
 dwe::AnimationType Drawable::getAnimation() { return m_animation; }
 
+/*//////////////
+void Drawable::setLevelId(int levelid)
+{
+    m_levelId = levelid;
+}
+
+//////////////
+int Drawable::getLevelId()
+{
+    return m_levelId;
+}*/
 
 ///////////////
 /*RMM es mejor utilizar los sensores de box2d
