@@ -269,8 +269,12 @@
 		<Unit filename="src/glsl/Program.h" />
 		<Unit filename="src/glsl/Shader.cpp" />
 		<Unit filename="src/glsl/Shader.h" />
+		<Unit filename="src/graphics/AchievementsHandler.cpp" />
+		<Unit filename="src/graphics/AchievementsHandler.h" />
 		<Unit filename="src/graphics/AppReceiver.cpp" />
 		<Unit filename="src/graphics/AppReceiver.h" />
+		<Unit filename="src/graphics/GUI.cpp" />
+		<Unit filename="src/graphics/GUI.h" />
 		<Unit filename="src/graphics/GraphicsEngine.cpp" />
 		<Unit filename="src/graphics/GraphicsEngine.h" />
 		<Unit filename="src/graphics/GraphicsEngineTemplates.cpp" />
