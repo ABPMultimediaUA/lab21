@@ -41,7 +41,9 @@ bool Game::getRunning(){
 
 void Game::Quit(){
         //se cierra el motor
-        NetInstance->close();
+        if(NetInstance->getOpened()){
+            NetInstance->close();
+        }
         GEInstance->close();
 }
 
