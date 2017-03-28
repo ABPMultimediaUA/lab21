@@ -3,6 +3,7 @@
 #include "AStarHeuristics.h"
 #include "Scene.h"
 #include "Pathplanning.h"
+#include "Perception.h"
 #include "Selector.h"
 #include "Sequence.h"
 #include "PathplanningTask.h"
@@ -65,7 +66,7 @@ void Humanoid::move()
 Humanoid::~Humanoid()
 {
     //delete h_pStateMachine;
-    delete m_perception;
+    //delete m_perception;
     delete m_pathplanning;
     delete selector1;
     delete sequence1;
