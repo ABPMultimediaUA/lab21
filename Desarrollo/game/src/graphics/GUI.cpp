@@ -20,7 +20,7 @@ dwe::Button::~Button(){};
 
 void dwe::Button::draw()
 {
-    GEInstance->drawText(text);
+    //GEInstance->drawText(text);
 }
 
 int dwe::Button::getXOrigin()
@@ -56,7 +56,7 @@ dwe::Background::~Background(){};
 
 void dwe::Background::draw()
 {
-    GEInstance->drawRectangleShape(rs);
+    //GEInstance->drawRectangleShape(rs);
 }
 /***Fondo FIN***/
 
