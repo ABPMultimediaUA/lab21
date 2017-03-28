@@ -26,6 +26,9 @@ class Drawable
         void setAnimation(dwe::AnimationType a);
         dwe::AnimationType getAnimation();
 
+        /*void setLevelId (int levelid);
+        int getLevelId ();*/
+
         //RMM es mejor utilizar los sensores de box2d. bool intersects(Drawable* d);
 
 
@@ -35,6 +38,7 @@ class Drawable
         dwe::Node*          m_node;
         float*              m_mesh;
         dwe::AnimationType  m_animation;
+        //int m_levelId;
 };
 
 #endif // DRAWABLE_H
