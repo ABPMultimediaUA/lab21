@@ -8,7 +8,6 @@
 #include "Humanoid.h"
 #include "Dog.h"
 #include "NetGame.h"
-#include "AppReceiver.h"
 
 #include "EntityPhysics.h"
 #include "WorldInstance.h"
@@ -122,7 +121,40 @@ void dwe::GraphicsEngine::draw()
 
     m_window->popGLStates();
 
+    /*
+    m_window->display();
 
+    char tmp[25];
+    float fps = 1.f / (m_clock.getElapsedTime().asSeconds() - m_secondsLastDraw);
+    m_secondsLastDraw = m_clock.getElapsedTime().asSeconds();
+    sprintf(tmp, "Lab21 - fps:%f", fps);
+    m_window->setTitle(tmp);
+    */
+}
+
+/*******/
+void dwe::GraphicsEngine::drawRectangleShape(sf::RectangleShape rs)
+{
+    m_window->draw(rs);
+}
+
+void dwe::GraphicsEngine::drawText(sf::Text t)
+{
+    m_window->draw(t);
+}
+
+void dwe::GraphicsEngine::drawSprite(sf::Sprite sp)
+{
+    m_window->draw(sp);
+}
+
+void dwe::GraphicsEngine::clearWindow()
+{
+    m_window->clear();
+}
+
+void dwe::GraphicsEngine::displayWindow()
+{
     m_window->display();
 
     char tmp[25];
@@ -131,6 +163,7 @@ void dwe::GraphicsEngine::draw()
     sprintf(tmp, "Lab21 - fps:%f", fps);
     m_window->setTitle(tmp);
 }
+/*******/
 
 //////////////////////////
 void dwe::GraphicsEngine::render()
@@ -240,7 +273,7 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid()
 ////////////////////////////
 Dog* dwe::GraphicsEngine::createEnemyDog()
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/dog.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/perro.obj", vec3f(0,0,0), vec3f(0,0,0), "media/perro.bmp");
     Dog* p = new Dog();
 	p->setNode(new Node(node));
 

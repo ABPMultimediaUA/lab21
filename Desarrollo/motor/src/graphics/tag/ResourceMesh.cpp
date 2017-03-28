@@ -18,14 +18,12 @@ tag::ResourceMesh::ResourceMesh() :
     m_vertices(0),
     m_normals(0),
     m_textUV(0),
-    m_verticesIndices(0),
-    m_normalsIndices(0),
-    m_textUVIndices(0),
+    m_indices(0),
     m_numVertices(0),
     m_vbVertices(0),
-    m_ibVertices(0),
     m_vbNormals(0),
-    m_ibNormals(0)
+    m_vbTextUV(0),
+    m_ibVertices(0)
 {
     //ctor
 }
@@ -36,9 +34,7 @@ tag::ResourceMesh::~ResourceMesh()
     delete[] m_vertices;
     delete[] m_normals;
     delete[] m_textUV;
-    delete[] m_verticesIndices;
-    delete[] m_normalsIndices;
-    delete[] m_textUVIndices;
+    delete[] m_indices;
     delete[] m_color;
 }
 
@@ -52,19 +48,17 @@ void tag::ResourceMesh::aiVector3DToArrayGLFloat(const aiVector3D &source, GLflo
 void tag::ResourceMesh::deleteOpenGLBuffers()
 {
     glDeleteBuffers(1, &m_vbVertices);
-    glDeleteBuffers(1, &m_ibVertices);
-
     glDeleteBuffers(1, &m_vbNormals);
-    glDeleteBuffers(1, &m_ibNormals);
+    glDeleteBuffers(1, &m_vbTextUV);
+    glDeleteBuffers(1, &m_ibVertices);
 }
 
 void tag::ResourceMesh::createOpenGLBuffers()
 {
     glGenBuffers(1, &m_vbVertices);
-    glGenBuffers(1, &m_ibVertices);
-
     glGenBuffers(1, &m_vbNormals);
-    glGenBuffers(1, &m_ibNormals);
+    glGenBuffers(1, &m_vbTextUV);
+    glGenBuffers(1, &m_ibVertices);
 }
 
 void tag::ResourceMesh::prepareOpenGLBuffers()
@@ -78,8 +72,11 @@ void tag::ResourceMesh::prepareOpenGLBuffers()
     glBindBuffer(GL_ARRAY_BUFFER, m_vbNormals);
     glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*m_numVertices*3, m_normals, GL_STATIC_DRAW);
 
+    glBindBuffer(GL_ARRAY_BUFFER, m_vbTextUV);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*m_numVertices*3, m_textUV, GL_STATIC_DRAW);
+
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibVertices);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*m_numIndices, m_verticesIndices, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*m_numIndices, m_indices, GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -107,25 +104,28 @@ void tag::ResourceMesh::aiSceneToOpenGLMesh(const aiScene* scene)
     }
 
     m_numIndices = scene->mMeshes[0]->mNumFaces * 3;
-    m_verticesIndices = new GLuint[m_numIndices];
-    m_normalsIndices  = new GLuint[m_numIndices];
-    m_textUVIndices   = new GLuint[m_numIndices];
+    m_indices = new GLuint[m_numIndices];
 
     unsigned int indicesCount = 0;
     for(unsigned int i=0; i<scene->mMeshes[0]->mNumFaces; i++)
     {
         for(unsigned int j=0; j<scene->mMeshes[0]->mFaces[i].mNumIndices && indicesCount<m_numIndices; j++)
         {
-            m_verticesIndices[indicesCount] = scene->mMeshes[0]->mFaces[i].mIndices[j];
+            m_indices[indicesCount] = scene->mMeshes[0]->mFaces[i].mIndices[j];
             indicesCount++;
         }
     }
     // TODO el color por ahora gris
     m_color = new GLfloat[4];
-    m_color[0] = 0.5;
+    m_color[0] = 1;
+    m_color[1] = 1;
+    m_color[2] = 1;
+    m_color[3] = 1;
+
+    /*m_color[0] = 0.5;
     m_color[1] = 0.5;
     m_color[2] = 0.5;
-    m_color[3] = 1.0;
+    m_color[3] = 1.0;*/
 
     prepareOpenGLBuffers();
 }
@@ -172,6 +172,9 @@ void tag::ResourceMesh::draw()
 
     glBindBuffer(GL_ARRAY_BUFFER, m_vbNormals);
     glVertexAttribPointer(TAGEngine::_aNormalLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*3, 0);
+
+    glBindBuffer(GL_ARRAY_BUFFER, m_vbTextUV);
+    glVertexAttribPointer(TAGEngine::_aTextureCoordsLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*3, 0);
 
     // Dibjuamos elementos
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibVertices);

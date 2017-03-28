@@ -4,8 +4,9 @@
 #define MAX_MESSAGE_LINES 4
 
 // Nombre de los attributes
-#define A_POSITION  "a_Position"
-#define A_NORMAL    "a_Normal"
+#define A_POSITION      "a_Position"
+#define A_NORMAL        "a_Normal"
+#define A_TEXTURECOORDS "a_TextureCoords"
 
 // Nombre de los uniforms
 #define U_PROJECTIONMATRIX      "u_ProjectionMatrix"
@@ -13,6 +14,8 @@
 #define U_LMATRIX               "u_LMatrix"
 #define U_COLOR                 "u_Color"
 #define U_LUZ0                  "u_Luz0"
+#define U_TEXTURESAMPLER        "u_TextureSampler"
+#define U_HASTEXTURE            "u_HasTexture"
 
 
 #define GLEW_STATIC
@@ -63,9 +66,10 @@ namespace tag
             /// \param[in] fileName Nombre del fichero que contiene la malla
             /// \param[in] position Posición. Creará un nodo Transform con esos valores
             /// \param[in] rotation Rotación. Creará un nodo Transform con esos valores
+            /// \param[in] textureFileName El nombre del fichero de textura. Si es vacio, no se crea textura.
             /// \param[in] parent Nodo padre. Si es 0 se le asignará el root.
             /// \return puntero al nodo de la malla creada
-            GraphicNode* createMesh(const std::string fileName, const vec3f position, const vec3f rotation, GraphicNode* parent=0);
+            GraphicNode* createMesh(const std::string fileName, const vec3f position, const vec3f rotation, const std::string textureFileName="", GraphicNode* parent=0);
 
             /// \brief Crea un array de animaciones.
             /// \param[in] numAnimations Numero de animaciones que tendra el array
@@ -167,11 +171,14 @@ namespace tag
             // Handles de los attributes y uniforms
             static int _aPositionLocation;
             static int _aNormalLocation;
+            static int _aTextureCoordsLocation;
             static int _uProjectionMatrixLocation;
             static int _uMVMatrixLocation;
             static int _uLMatrixLocation;
             static int _uColorLocation;
             static int _uLuz0Location;
+            static int _uTextureSamplerLocation;
+            static int _uHasTexture;
 
             static float _screenHeight;
             static float _screenWidth;

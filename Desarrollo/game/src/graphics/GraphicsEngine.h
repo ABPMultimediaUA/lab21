@@ -20,6 +20,7 @@
 #include <Box2D/Common/b2Math.h>
 
 #include "AppReceiver.h"
+#include "AchievementsHandler.h"
 #include "tag/ResourceMesh.h"
 #include "tag/TAGEngine.h"
 #include "tag/GraphicNode.h"
@@ -140,6 +141,14 @@ namespace dwe
         void close();
         bool isRunning();
         void draw();
+        ///
+        void drawRectangleShape(sf::RectangleShape rs);
+        void drawText(sf::Text t);
+        void drawSprite(sf::Sprite sp);
+
+        void clearWindow();
+        void displayWindow();
+        ///
         Node* createNode(std::string meshName);
 
         // Creacion de personajes
@@ -151,8 +160,9 @@ namespace dwe
         ScenaryElement* createWall(std::string meshName);
 
         //////////////////////////////
-        // Eventos de teclado y ratón
+        // Eventos de teclado y ratón y logros
         AppReceiver receiver;
+        AchievementsHandler achievementsHandler;
 
         void createCamera();
         void updateCamera(const vec3f playerPosition, int moreEnemiesX, int moreEnemiesZ);

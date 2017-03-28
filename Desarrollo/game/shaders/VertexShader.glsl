@@ -1,6 +1,7 @@
 
 attribute vec4 a_Position;	        // in: Posición de cada vértice
 attribute vec3 a_Normal;	        // in: Normal de cada vértice
+attribute vec2 a_TextureCoords;     // in: coordenadas uv de las texturas
 
 uniform mat4 u_ProjectionMatrix; 	// in: Matriz Projection
 uniform mat4 u_MVMatrix;	        // in: Matriz ModelView
@@ -9,6 +10,7 @@ uniform vec4 u_Color;		        // in: Color del objeto
 uniform int u_Luz0;                // in: Indica si la luz 0 está encedida
 
 varying vec4 v_Color;		        // out: Color al fragment shader
+varying vec2 v_TextureCoord;        // out: coordenadas de textura
 
 void main()
 {
@@ -19,16 +21,17 @@ void main()
 	float d = length(LightPos.xyz - P);			        // distancia de la luz
 	vec3  L = normalize(LightPos.xyz - P);			    // Vector Luz
 
-	float ambient = 0.25;                               // (25% de int. ambiente)
+	float ambient = 0.15;                               // (15% de int. ambiente)
 	float diffuse = 0.0;
 
 	if (u_Luz0>0) {                                     // Si la luz 0 está encendida se calcula la intesidad difusa de L
         diffuse = max(dot(N, L), 0.0);		            // Cálculo de la int. difusa
         // Cálculo de la atenuación
         //float attenuation = 80.0/(0.25+(0.01*d)+(0.003*d*d));
-        float attenuation = 2.0;// TODO por ahora sin atenuacion
+        float attenuation = 1;
         diffuse = diffuse*attenuation;
 	}
 	v_Color = u_Color * (ambient + diffuse);
+	v_TextureCoord = a_TextureCoords;
 	gl_Position = u_ProjectionMatrix * vec4(P, 1.0);
 }
