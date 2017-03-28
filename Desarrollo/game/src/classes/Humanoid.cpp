@@ -1,76 +1,78 @@
-#include "Humanoid.h"
+
+#include "AStarAlgorithm.h"
+#include "AStarHeuristics.h"
+#include "Scene.h"
 #include "Pathplanning.h"
 #include "Perception.h"
 #include "Selector.h"
 #include "Sequence.h"
 #include "PathplanningTask.h"
-#include "PerceptionTask.h"
-#include "PatrolTask.h"
+#include "MoveTask.h"
+#include <cmath>
 
 Humanoid::Humanoid()
 {
-    steps = 19;
-    m_speed = 0.1;
+    m_speed = 10;
 
     //set up state machine
-    h_pStateMachine = new StateMachine<Humanoid>(this);
+    //h_pStateMachine = new StateMachine<Humanoid>(this);
 
-    h_pStateMachine->SetCurrentState(HPatrolState::Instance());
+    //h_pStateMachine->SetCurrentState(HPatrolState::Instance());
 
-    //Creación fov
-    //fovnode = GEInstance->createNode("media/fov");
-    //fovnode->setMaterialFlag(EMF_WIREFRAME, true);
-    //fovnode->setPosition(getPosition());
-    //fovnode->setRotation(getRotation());
-    percep = new Perception();
-    pathp = new Pathplanning();
+    //m_perception = new Perception();
+    m_pathplanning = new Pathplanning(this);
+
     /**** Special nodes ****/
     selector1 = new Selector;
     sequence1 = new Sequence;
+
     /**** Tasks ****/
-    path = new PathplanningTask(pathp, this/*, fovnode*/);
-    perc = new PerceptionTask(percep, this, /*fovnode,*/ path);
-    patrol = new PatrolTask(this/*, fovnode*/);
+    path = new PathplanningTask(m_pathplanning, this);
+    movetask = new MoveTask(this);
+    //perc = new PerceptionTask(m_perception, this);
+    //patrol = new PatrolTask(this);
+
     /**** Creating the tree ****/
 
     selector1->addChild(sequence1);
-    selector1->addChild(patrol);
+    //selector1->addChild(patrol);
 
-    sequence1->addChild(perc);
+    //sequence1->addChild(perc);
     sequence1->addChild(path);
+    sequence1->addChild(movetask);
 
 }
 
-void Humanoid::Update()
+/*void Humanoid::Update()
 {
-    steps--;
     h_pStateMachine->Update();
-}
+}*/
 
 void Humanoid::update()
 {
     selector1->run();
 }
 
-StateMachine<Humanoid>* Humanoid::GetFSM()const
+void Humanoid::move()
 {
-    return h_pStateMachine;
+    Enemy::move();
 }
 
-int Humanoid::getSteps ()
+/*StateMachine<Humanoid>* Humanoid::GetFSM()const
 {
-    return steps;
-}
+    return h_pStateMachine;
+}*/
 
 Humanoid::~Humanoid()
 {
-    delete h_pStateMachine;
-    delete percep;
-    delete pathp;
+    //delete h_pStateMachine;
+    //delete m_perception;
+    delete m_pathplanning;
     delete selector1;
     delete sequence1;
     delete path;
-    delete perc;
-    delete patrol;
+    delete movetask;
+    //delete perc;
+    //delete patrol;
     //delete fovnode;
 }

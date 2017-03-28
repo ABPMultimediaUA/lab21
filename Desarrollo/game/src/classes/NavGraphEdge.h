@@ -1,15 +1,14 @@
-#ifndef GRAPHEDGE_H
-#define GRAPHEDGE_H
+#ifndef NAVGRAPHEDGE_H
+#define NAVGRAPHEDGE_H
 
-
-class GraphEdge
+class NavGraphEdge
 {
     public:
 
-        GraphEdge();
-        GraphEdge(int f, int t, float c);
+        NavGraphEdge();
+        NavGraphEdge(int f, int t, float c);
 
-        virtual ~GraphEdge();
+        virtual ~NavGraphEdge();
 
         int getFrom() const;
         void setFrom(int newIndex);
@@ -30,4 +29,4 @@ class GraphEdge
     private:
 };
 
-#endif // GRAPHEDGE_H
+#endif // NAVGRAPHEDGE_H

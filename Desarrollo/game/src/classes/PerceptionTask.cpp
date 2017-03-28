@@ -1,11 +1,9 @@
 #include "PerceptionTask.h"
-#include "WorldInstance.h"
 
-PerceptionTask::PerceptionTask(Perception* p, Humanoid* h, /*dwe::Node* n, */PathplanningTask* pa)
+PerceptionTask::PerceptionTask(Perception* p, Humanoid* h, PathplanningTask* pa)
 {
     //ctor
     per = p;
-    play = World->getMainPlayer();
     hum = h;
     //no = n;
     path = pa;
@@ -19,7 +17,7 @@ PerceptionTask::~PerceptionTask()
 
 States PerceptionTask::run()
 {
-    if(per->senses(play, hum, /*no,*/ path))
+    if(0)
         return success;
     return failure;
 }

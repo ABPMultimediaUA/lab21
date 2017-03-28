@@ -2,32 +2,27 @@
 #define PATHPLANNINGTASK_H
 
 #include "Node.h"
-#include "GraphicsEngine.h"
 
 class Pathplanning;
-class Humanoid;
-class Drawable;
+class Enemy;
 
 class PathplanningTask : public Node
 {
     public:
 
-        PathplanningTask(Pathplanning* p, Humanoid* h/*,  dwe::Node* n*/);
+        PathplanningTask(Pathplanning* p, Enemy* owner);
 
         virtual ~PathplanningTask();
 
         virtual States run();
 
-        void setPlayer(Drawable* pl);
-
     protected:
 
     private:
 
-        Pathplanning* path;
-        Drawable* play;
-        Humanoid* hum;
-        //dwe::Node* no;
+        Pathplanning* m_pathplanning;
+        Enemy* m_owner;
+        int time;
 };
 
 #endif // PATHPLANNINGTASK_H

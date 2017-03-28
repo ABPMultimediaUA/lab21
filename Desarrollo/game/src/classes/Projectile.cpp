@@ -45,7 +45,7 @@ void Projectile::setNode(dwe::Node* n)
     dwe::vec3f box = n->getBoundingBox();
     createDynamicBody(dwe::vec3f(position.x+cos(angle)*25.f,0,position.z+sin(angle)*25.f), box.x, box.z, angle, true);
 
-    setVelocity(dwe::vec3f(speed*cos(angle), 0, speed*sin(angle)));
+    setVelocity(dwe::vec2f(speed*cos(angle), speed*sin(angle)));
     update();
 }
 

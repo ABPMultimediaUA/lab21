@@ -11,8 +11,8 @@ class IndexedPriorityQLow
         std::vector<KeyType>&  m_vecKeys;
         std::vector<int> m_Heap;
         std::vector<int> m_invHeap;
-        int m_iSize;
         int m_iMaxSize;
+        int m_iSize;
 
         void Swap(int a, int b);
         void ReorderUpwards(int nd);
@@ -26,5 +26,7 @@ class IndexedPriorityQLow
         int Pop();
         void ChangePriority(const int idx);
 };
+
+#include "PriorityQueue.cpp"
 
 #endif // PRIORITYQUEUE_H
