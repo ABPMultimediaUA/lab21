@@ -3,33 +3,45 @@
 
 #include "GState.h"
 
+namespace dwe
+{
+    class Button;
+    class Background;
+    class Achievement;
+}
+
 class GSMainMenu : public GState{
 public:
     GSMainMenu();
     ~GSMainMenu();
+    bool buttonCheck(dwe::Button *b);
     void HandleEvents();
     void Update();
     void Render();
-    void MoveUp();
-    void MoveDown();
     void SetPage(int n);
     static GSMainMenu* getInstance();
 
 private:
     int page;
+    int mousePosX, mousePosY;
     bool a; // Controla cosas
     bool m;
 
-    /***int selectedItemIndex;
-    sf::Font *font;
-    sf::Text *textSingleplayer;
-    sf::Text *textMultiplayer;
-    sf::Text *textOptions;
-    sf::Text *textExit;
-    sf::Texture *mainMenuBG
-    sf::Texture *pBackground;
-    sf::RectangleShape *bg;;***/
-    //gui::IGUIButton* playAloneButton;
+    std::string type;
+
+    /**/
+    dwe::Background *menuPrincipalFondo;
+    dwe::Background *menuJugarOnlineFondo;
+    dwe::Background *menuLogrosFondo;
+    dwe::Background *menuOpcionesFondo;
+
+    dwe::Button *playAloneButton;
+    dwe::Button *playOnlineButton;
+    dwe::Button *achievementsButton;
+    dwe::Button *optionsButton;
+    dwe::Button *exitButton;
+    dwe::Button *back2mainMenuButton;
+    /**/
 };
 
 #endif // GSMAINMENU_H
