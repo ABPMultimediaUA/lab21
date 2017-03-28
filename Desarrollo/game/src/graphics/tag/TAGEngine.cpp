@@ -195,20 +195,30 @@ tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const v
 }
 
 ////////////////////////////
-tag::GraphicNode* tag::TAGEngine::createAnimation(const std::string fileName, const vec3f position, const vec3f rotation, GraphicNode* parent)
+tag::EAnimation* tag::TAGEngine::createNumAnimations(int numAnimations)
+{
+    // Creamos malla
+    EAnimation* animations = new EAnimation();
+    animations->createNumAnimations(numAnimations);//num animaciones
+
+    return animations;
+}
+////////////////////////////
+tag::EAnimation* tag::TAGEngine::createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames)
+{
+    animations->createAnimation(numAnimation,numFrames, fileName);//creamos la animacion con sus frames y sus mallas
+    return animations;//la devolvemos
+}
+
+/////////////////////////////
+tag::GraphicNode* tag::TAGEngine::createNodeAnimations(EAnimation* animations, const vec3f position, const vec3f rotation, GraphicNode* parent)
 {
     // Creamos nodo de animation
     GraphicNode* nodoAnimation = createNodePR(position, rotation, parent);
-
-    // Creamos malla
-    EAnimation* animation = new EAnimation();
-    animation->createNumAnimations(1);//1 animacion, correr
-    animation->createAnimation(0,9, fileName);//la animacion 1 tendra 9 frames
-    nodoAnimation->setEntity(animation);
-
+    nodoAnimation->setEntity(animations);//asignamos la animacion al nodo
     return nodoAnimation;
-}
 
+}
 //////////////////////////////////
 tag::GraphicNode* tag::TAGEngine::createPerspectiveCamera(const vec3f position, const vec3f rotation, float fov, float aspect, float near, float far, GraphicNode* parent)
 {
