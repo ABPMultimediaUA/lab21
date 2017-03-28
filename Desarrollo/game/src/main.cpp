@@ -10,8 +10,6 @@ int main()
     GEInstance->init();
     Game::getInstance()->Run();
     //NetInstance->close();
-    //delete GSIngame::getInstance();
-    //delete GSMainMenu::getInstance();
 
 	return 0;
 

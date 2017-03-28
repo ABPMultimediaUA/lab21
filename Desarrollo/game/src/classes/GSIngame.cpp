@@ -56,7 +56,6 @@ void GSIngame::HandleEvents(){
     else if(GEInstance->receiver.isKeyDown(KEY_ESCAPE))
     {
         Game::getInstance()->setRunning(false);
-        cout<<"maafns1ertyujkl1"<<endl;
         //GEInstance=0;
 
         //return 0;

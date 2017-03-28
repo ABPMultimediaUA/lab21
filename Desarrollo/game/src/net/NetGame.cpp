@@ -22,7 +22,7 @@
 using namespace dwn;
 
 
-dwn::NetGame::NetGame()
+dwn::NetGame::NetGame() : m_opened(false)
 {
 
 }
@@ -41,6 +41,7 @@ dwn::NetGame::~NetGame()
 //////////////
 void dwn::NetGame::open(Scene *scene, bool multiplayer)
 {
+    m_opened = true;
     m_connected = false;
     m_connectionFailed = false;
     m_connectionRejected = false;
@@ -192,6 +193,7 @@ void dwn::NetGame::open(Scene *scene, bool multiplayer)
 //////////////
 void NetGame::close()
 {
+    m_opened = false;
     rakPeer->Shutdown(100,0);
 	RakNet::RakPeerInterface::DestroyInstance(rakPeer);
 	m_connected = false;
@@ -680,6 +682,8 @@ unsigned int NetGame::getBitStreamEntityID(Packet *packet)
 bool NetGame::isMultiplayer() { return m_multiplayer; }
 //////////////
 bool NetGame::isServer() { return m_isServer; }
+
+bool NetGame::getOpened() { return m_opened; }
 
 //////////////
 bool NetGame::getConnected() { return m_connected; }

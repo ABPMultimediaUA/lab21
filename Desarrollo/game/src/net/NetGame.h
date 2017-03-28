@@ -59,6 +59,7 @@ namespace dwn
             bool isMultiplayer();
             bool isServer();
             void setMultiplayer(bool m);
+            bool getOpened();
             bool getConnected();
             bool getConnectionFailed();
             bool getConnectionRejected();
@@ -114,6 +115,7 @@ namespace dwn
             static const RakNet::TimeMS     _udp_sleep_timer    = 30;
             static const unsigned int       _time_search_server = 1500;   // Milisegundos de espera buscando servidores
 
+            bool m_opened;
             bool m_multiplayer;
             bool m_connected;
             bool m_connectionFailed;
