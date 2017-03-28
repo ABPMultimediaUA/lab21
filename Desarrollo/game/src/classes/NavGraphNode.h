@@ -1,10 +1,9 @@
 #ifndef NAVGRAPHNODE_H
 #define NAVGRAPHNODE_H
 
-#include "GraphNode.h"
 #include "GraphicsEngine.h"
 
-class NavGraphNode : public GraphNode
+class NavGraphNode
 {
     public:
 
@@ -13,11 +12,14 @@ class NavGraphNode : public GraphNode
 
         virtual ~NavGraphNode();
 
+        int getIndex()const;
+        void setIndex(int newIndex);
         dwe::vec2f getPosition() const;
         void setPosition(dwe::vec2f pos);
 
     protected:
 
+        int index;
         dwe::vec2f position;
 
     private:

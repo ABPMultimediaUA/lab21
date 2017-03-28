@@ -1,122 +1,94 @@
 #include "Pathplanning.h"
 #include "Humanoid.h"
 
+#include "AStarAlgorithm.h"
+#include "AStarHeuristics.h"
 
-Pathplanning::Pathplanning()
+#include "Scene.h"
+
+Pathplanning::Pathplanning(Enemy *owner):m_NavGraph(Scene::Instance()->getNavGraph())
 {
-    //ctor
+    m_owner = owner;
+
+    //m_NavGraph = Scene::Instance()->getNavGraph();
+
+    direction = dwe::vec2f(0,0);
+
+    currentNode = nextNode = finalNode = 0;
 }
 
 Pathplanning::~Pathplanning()
 {
-    //dtor
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void Pathplanning::behaviour(Drawable* mainPlayer, Humanoid* enemyHumanoid, /*dwe::Node* fovnode, */bool danyo)
+void Pathplanning::CreatePathToPosition(int target)
 {
-    float movX = 0.0;
-    float movZ = 0.0;
-    float speed = enemyHumanoid->getSpeed();
-
-    if(!danyo)  //seguimos y no hay danyo
-    {
-        //rotaciones
-        if(enemyHumanoid->getPosition().x<mainPlayer->getPosition().x && (enemyHumanoid->getPosition().z<mainPlayer->getPosition().z+1 && enemyHumanoid->getPosition().z>mainPlayer->getPosition().z-1))
-        {
-            enemyHumanoid->setRotation(dwe::vec3f(0, 0.f, 0));
-            //fovnode->setRotation(enemyHumanoid->getRotation());
-        }
-        else if(enemyHumanoid->getPosition().z<mainPlayer->getPosition().z && (enemyHumanoid->getPosition().x<mainPlayer->getPosition().x+1 && enemyHumanoid->getPosition().x>mainPlayer->getPosition().x-1))
-        {
-            enemyHumanoid->setRotation(dwe::vec3f(0, 270.f, 0));
-            //fovnode->setRotation(enemyHumanoid->getRotation());
-        }
-        else if(enemyHumanoid->getPosition().x>mainPlayer->getPosition().x && (enemyHumanoid->getPosition().z<mainPlayer->getPosition().z+1 && enemyHumanoid->getPosition().z>mainPlayer->getPosition().z-1))
-        {
-            enemyHumanoid->setRotation(dwe::vec3f(0, 180.f, 0));
-            //fovnode->setRotation(enemyHumanoid->getRotation());
-        }
-        else if(enemyHumanoid->getPosition().z>mainPlayer->getPosition().z && (enemyHumanoid->getPosition().x<mainPlayer->getPosition().x+1 && enemyHumanoid->getPosition().x>mainPlayer->getPosition().x-1))
-        {
-            enemyHumanoid->setRotation(dwe::vec3f(0, 90.f, 0));
-            //fovnode->setRotation(enemyHumanoid->getRotation());
-        }
-        //rotaciones diagonal
-        else if(enemyHumanoid->getPosition().x<mainPlayer->getPosition().x && enemyHumanoid->getPosition().z<mainPlayer->getPosition().z){
-            enemyHumanoid->setRotation(dwe::vec3f(0, 315.f, 0));
-            //fovnode->setRotation(enemyHumanoid->getRotation());
-        }
-        else if(enemyHumanoid->getPosition().x>mainPlayer->getPosition().x && enemyHumanoid->getPosition().z>mainPlayer->getPosition().z){
-            enemyHumanoid->setRotation(dwe::vec3f(0, 135.f, 0));
-            //fovnode->setRotation(enemyHumanoid->getRotation());
-        }
-        else if(enemyHumanoid->getPosition().x<mainPlayer->getPosition().x && enemyHumanoid->getPosition().z>mainPlayer->getPosition().z){
-            enemyHumanoid->setRotation(dwe::vec3f(0, 45.f, 0));
-            //fovnode->setRotation(enemyHumanoid->getRotation());
-        }
-        else if(enemyHumanoid->getPosition().x>mainPlayer->getPosition().x && enemyHumanoid->getPosition().z<mainPlayer->getPosition().z){
-            enemyHumanoid->setRotation(dwe::vec3f(0, 225.f, 0));
-            //fovnode->setRotation(enemyHumanoid->getRotation());
-        }
-
-
-
-        //mientras sean menores de que las de destino y no haya danyo avanzamos sumamos
-        if(enemyHumanoid->getPosition().x<mainPlayer->getPosition().x)
-            movX += speed;
-        else if(enemyHumanoid->getPosition().x>mainPlayer->getPosition().x)
-            movX -= speed;
-
-        if(enemyHumanoid->getPosition().z<mainPlayer->getPosition().z)
-            movZ += speed;
-        else if(enemyHumanoid->getPosition().z>mainPlayer->getPosition().z)
-            movZ -= speed;
+    //int target = GetClosestNodeToPosition(TargetPos);
+    //int source = GetClosestNodeToPosition(dwe::vec2f(m_owner->getPosition().x, m_owner->getPosition().z));
+    int source = currentNode;
+    //int target = 4;
+    std::cout<<"TARGET"<<target<<std::endl;
+    Graph_SearchAStar a(m_NavGraph, source, target);
+    route = a.GetPathToTarget();
+    if(route.size()>0){
+        nextNode = route.front();
+        route.pop_front();
+        finalNode = route.back();
+        CalculateDirection();
     }
-    else // si hay daño, seguimos y no hay danyo
-    {
-        //prototipo, huira hasta la posicion de inicio
-        //mientras sean menores de que las de destino y no haya danyo avanzamos sumamos
+}
 
-        if(enemyHumanoid->getPosition().x<0)
-            movX += speed;
-        else if(enemyHumanoid->getPosition().x>0)
-            movX -= speed;
+void Pathplanning::CalculateDirection()
+{
+    dwe::vec2f v1(m_NavGraph.getNode(currentNode).getPosition());
+    dwe::vec2f v2(m_NavGraph.getNode(nextNode).getPosition());
 
-        if(enemyHumanoid->getPosition().z<-70)
-            movZ += speed;
-        else if(enemyHumanoid->getPosition().z>-70)
-            movZ -= speed;
+    dwe::vec2f vec(v2.x - v1.x, v2.y - v1.y);
 
-    }
+    Normalize(vec);
 
-    if (movZ!=0 || movX!= 0)
-    {
-        if (movZ!=0 && movX!=0)  // Movimiento diagonal
-        {
-            movZ = movZ*0.7;  // cos45 = 0.7
-            movX = movX*0.7;
+    direction = vec;
+}
+
+dwe::vec2f Pathplanning::Movement()
+{
+    if(CheckIfArrived()){
+        currentNode = nextNode;
+        if(!CheckIfRouteEnd()){
+            nextNode = route.front();
+            route.pop_front();
+            CalculateDirection();
         }
-
-        enemyHumanoid->setPosition(dwe::vec3f(enemyHumanoid->getPosition().x + movX, enemyHumanoid->getPosition().y, enemyHumanoid->getPosition().z + movZ));
+        else
+            direction.x = direction.y = 0;
     }
+    std::cout<<nextNode<<std::endl;
+    return direction;
+
+}
+
+bool Pathplanning::CheckIfRouteEnd()
+{
+    return (currentNode == finalNode);
+}
+
+bool Pathplanning::CheckIfArrived()
+{
+    dwe::vec3f position = m_owner->getPosition();
+    return ( abs(position.x - m_NavGraph.getNode(nextNode).getPosition().x) < m_owner->getSpeed() && abs(position.z - m_NavGraph.getNode(nextNode).getPosition().y) < m_owner->getSpeed() );
+}
+
+void Pathplanning::Normalize(dwe::vec2f& vec)
+{
+    float length = sqrt(vec.x * vec.x + vec.y * vec.y);
+    vec.x /= length;
+    vec.y /= length;
+}
+
+float Pathplanning::CalculateAngleYAxis(dwe::vec2f vec)
+{
+    float angle = (float)  (    acos(       ((double)1*vec.x + (double)0*vec.y)     )* 180/M_PI     );
+    if(vec.y>0)
+        angle = -angle;
+    return angle;
 }

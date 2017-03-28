@@ -1,7 +1,6 @@
 #ifndef TRIGGERGENERATOR_H
 #define TRIGGERGENERATOR_H
 #include "Trigger.h"
-#include "Generator.h"
 
 class TriggerGenerator: public Trigger
 {

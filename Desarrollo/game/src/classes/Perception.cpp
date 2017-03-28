@@ -54,7 +54,7 @@ bool Perception::senses(Player* mainPlayer, Humanoid* enemyHumanoid, Pathplannin
         }
 
     }
-    p->setPlayer(player);
+    //p->setPlayer(player);
     return (following);
 }
 

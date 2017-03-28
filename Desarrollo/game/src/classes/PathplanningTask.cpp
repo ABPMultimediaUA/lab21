@@ -1,16 +1,12 @@
 #include "PathplanningTask.h"
-#include "WorldInstance.h"
 #include "Pathplanning.h"
-#include "Perception.h"
 
-PathplanningTask::PathplanningTask(Pathplanning* p, Humanoid* h/*, dwe::Node* n*/)
+PathplanningTask::PathplanningTask(Pathplanning* p, Enemy* owner)
 {
-    //ctor
-    path = p;
-    play = World->getMainPlayer();
-    hum = h;
-    //no = n;
+    m_pathplanning = p;
+    m_owner = owner;
     brunning = false;
+    time = 3000;
 }
 
 PathplanningTask::~PathplanningTask()
@@ -20,11 +16,8 @@ PathplanningTask::~PathplanningTask()
 
 States PathplanningTask::run()
 {
-    path->behaviour(play, hum,/* no, */false);
+    if(m_pathplanning->CheckIfRouteEnd()){
+        m_pathplanning->CreatePathToPosition(rand()%8);
+    }
     return success;
-}
-
-void PathplanningTask::setPlayer(Drawable* pl)
-{
-    play = pl;
 }

@@ -1,22 +1,24 @@
-#ifndef SPARSEGRAPH_C
-#define SPARSEGRAPH_C
+#include "NavigationGraph.h"
+#include "NavGraphEdge.h"
+#include "NavGraphNode.h"
 
-#include "SparseGraph.h"
-
-template <class node_type, class edge_type>
-SparseGraph<node_type, edge_type>::SparseGraph(bool di):nextNodeIndex(0), digraph(di), numActiveNodes(0)
+NavigationGraph::NavigationGraph(bool di):nextNodeIndex(0), digraph(di), numActiveNodes(0)
 {
 }
 
-template <class node_type, class edge_type>
-node_type& SparseGraph<node_type, edge_type>::getNode(int idx)const
+NavGraphNode& NavigationGraph::getNode(int idx)
 {
     if(idx < nodes.size() && idx >=0)
         return nodes[idx];
 }
 
-template <class node_type, class edge_type>
-edge_type& SparseGraph<node_type, edge_type>::getEdge(int from, int to)const
+const NavGraphNode& NavigationGraph::getNode(int idx)const
+{
+    if(idx < nodes.size() && idx >=0)
+        return nodes[idx];
+}
+
+NavGraphEdge& NavigationGraph::getEdge(int from, int to)
 {
     if(from < nodes.size() && from >=0 && nodes[from].getIndex() != -1)
     if(to < nodes.size() && to >=0 && nodes[to].getIndex() != -1)
@@ -29,14 +31,25 @@ edge_type& SparseGraph<node_type, edge_type>::getEdge(int from, int to)const
     }
 }
 
-template <class node_type, class edge_type>
-int SparseGraph<node_type, edge_type>::getNextFreeNodeIndex()const
+const NavGraphEdge& NavigationGraph::getEdge(int from, int to)const
+{
+    if(from < nodes.size() && from >=0 && nodes[from].getIndex() != -1)
+    if(to < nodes.size() && to >=0 && nodes[to].getIndex() != -1)
+
+    for (typename EdgeList::const_iterator curEdge = edges[from].begin();
+         curEdge != edges[from].end();
+         ++curEdge)
+    {
+        if (curEdge->getTo() == to) return *curEdge;
+    }
+}
+
+int NavigationGraph::getNextFreeNodeIndex()const
 {
     return nextNodeIndex;
 }
 
-template <class node_type, class edge_type>
-int SparseGraph<node_type, edge_type>::addNode(node_type node)
+int NavigationGraph::addNode(NavGraphNode node)
 {
     if (node.getIndex() < nodes.size())
     {
@@ -52,8 +65,7 @@ int SparseGraph<node_type, edge_type>::addNode(node_type node)
     }
 }
 
-template <class node_type, class edge_type>
-void SparseGraph<node_type, edge_type>::RemoveInvalidEdges()
+void NavigationGraph::RemoveInvalidEdges()
 {
     for (typename EdgeListVector::iterator curEdgeList = edges.begin(); curEdgeList != edges.end(); ++curEdgeList)
     {
@@ -68,8 +80,7 @@ void SparseGraph<node_type, edge_type>::RemoveInvalidEdges()
     }
 }
 
-template <class node_type, class edge_type>
-void SparseGraph<node_type, edge_type>::removeNode(int node)
+void NavigationGraph::removeNode(int node)
 {
     if(node < nodes.size())
     {
@@ -101,8 +112,7 @@ void SparseGraph<node_type, edge_type>::removeNode(int node)
     }
 }
 
-template <class node_type, class edge_type>
-void SparseGraph<node_type, edge_type>::addEdge(edge_type edge)
+void NavigationGraph::addEdge(NavGraphEdge edge)
 {
     if(edge.getFrom() < nextNodeIndex && edge.getTo() < nextNodeIndex)
     {
@@ -117,7 +127,7 @@ void SparseGraph<node_type, edge_type>::addEdge(edge_type edge)
             {
                 if (UniqueEdge(edge.getTo(), edge.getFrom()))
                 {
-                    edge_type newEdge(edge.getTo(), edge.getFrom(), edge.getCost());
+                    NavGraphEdge newEdge(edge.getTo(), edge.getFrom(), edge.getCost());
                     edges[edge.getTo()].push_back(newEdge);
                 }
             }
@@ -125,8 +135,7 @@ void SparseGraph<node_type, edge_type>::addEdge(edge_type edge)
     }
 }
 
-template <class node_type, class edge_type>
-void SparseGraph<node_type, edge_type>::removeEdge(int from, int to)
+void NavigationGraph::removeEdge(int from, int to)
 {
     if(from < nodes.size() && to < nodes.size())
     {
@@ -157,8 +166,7 @@ void SparseGraph<node_type, edge_type>::removeEdge(int from, int to)
     }
 }
 
-template <class node_type, class edge_type>
-bool SparseGraph<node_type, edge_type>::UniqueEdge(int from, int to)
+bool NavigationGraph::UniqueEdge(int from, int to)
 {
     for (typename EdgeList::iterator curEdge = edges[from].begin();
          curEdge != edges[from].end();
@@ -170,8 +178,7 @@ bool SparseGraph<node_type, edge_type>::UniqueEdge(int from, int to)
     return true;
 }
 
-template <class node_type, class edge_type>
-void SparseGraph<node_type, edge_type>::setEdgeCost(int from, int to, float newCost)
+void NavigationGraph::setEdgeCost(int from, int to, float newCost)
 {
     if(from < nodes.size() && to < nodes.size())
     {
@@ -188,20 +195,17 @@ void SparseGraph<node_type, edge_type>::setEdgeCost(int from, int to, float newC
     }
 }
 
-template <class node_type, class edge_type>
-int SparseGraph<node_type, edge_type>::getNumNodes()const
+int NavigationGraph::getNumNodes()const
 {
     return nodes.size();
 }
 
-template <class node_type, class edge_type>
-int SparseGraph<node_type, edge_type>::getNumActiveNodes()const
+int NavigationGraph::getNumActiveNodes()const
 {
     return numActiveNodes;
 }
 
-template <class node_type, class edge_type>
-int SparseGraph<node_type, edge_type>::getNumEdges()const
+int NavigationGraph::getNumEdges()const
 {
     int count = 0;
     for (int e=0; e<edges.size(); ++e)
@@ -209,32 +213,28 @@ int SparseGraph<node_type, edge_type>::getNumEdges()const
     return count;
 }
 
-template <class node_type, class edge_type>
-bool SparseGraph<node_type, edge_type>::isDigraph()const
+bool NavigationGraph::isDigraph()const
 {
     return digraph;
 }
 
-template <class node_type, class edge_type>
-bool SparseGraph<node_type, edge_type>::isEmpty()const
+bool NavigationGraph::isEmpty()const
 {
     return nodes.empty();
 }
 
-template <class node_type, class edge_type>
-bool SparseGraph<node_type, edge_type>::isNodePresent(int node)const
+bool NavigationGraph::isNodePresent(int node)const
 {
     if (node >= nodes.size() || node < 0 || nodes[node].getIndex() == -1)
         return false;
     return true;
 }
 
-template <class node_type, class edge_type>
-bool SparseGraph<node_type, edge_type>::isEdgePresent(int from, int to)const
+bool NavigationGraph::isEdgePresent(int from, int to)const
 {
     if (isNodePresent(from) && isNodePresent(from))
     {
-        for (typename EdgeList::iterator curEdge = edges[from].begin();
+        for (typename EdgeList::const_iterator curEdge = edges[from].begin();
              curEdge != edges[from].end();
              ++curEdge)
         {
@@ -244,35 +244,27 @@ bool SparseGraph<node_type, edge_type>::isEdgePresent(int from, int to)const
     return false;
 }
 
-
 /*****************************************************ITERATORS***************************************************/
 
-template <class node_type, class edge_type>
-SparseGraph<node_type, edge_type>::EdgeIterator::EdgeIterator(SparseGraph<node_type, edge_type>& graph,
-                                                              int node): G(graph), NodeIndex(node)
+NavigationGraph::EdgeIterator::EdgeIterator(const NavigationGraph& graph, int node): G(graph), NodeIndex(node)
 {
     curEdge = G.edges[NodeIndex].begin();
 }
 
-template <class node_type, class edge_type>
-edge_type* SparseGraph<node_type, edge_type>::EdgeIterator::begin()
+const NavGraphEdge* NavigationGraph::EdgeIterator::begin()
 {
     curEdge = G.edges[NodeIndex].begin();
     return &(*curEdge);
 }
 
-template <class node_type, class edge_type>
-edge_type* SparseGraph<node_type, edge_type>::EdgeIterator::next()
+const NavGraphEdge* NavigationGraph::EdgeIterator::next()
 {
     ++curEdge;
     if (end()) return 0;
         return &(*curEdge);
 }
 
-template <class node_type, class edge_type>
-bool SparseGraph<node_type, edge_type>::EdgeIterator::end()
+bool NavigationGraph::EdgeIterator::end()
 {
-    return (curEdge == G.m_Edges[NodeIndex].end());
+    return (curEdge == G.edges[NodeIndex].end());
 }
-
-#endif // SPARSEGRAPH_C

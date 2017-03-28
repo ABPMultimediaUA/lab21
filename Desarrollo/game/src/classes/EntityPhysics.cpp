@@ -35,10 +35,10 @@ void EntityPhysics::setPosEntity(dwe::vec3f position, float rotation)
 }
 
 ////////////////////
-void EntityPhysics::setVelocity(dwe::vec3f v)
+void EntityPhysics::setVelocity(dwe::vec2f v)
 {
     if (m_body)
-        m_body->SetLinearVelocity(b2Vec2(v.x, v.z));
+        m_body->SetLinearVelocity(b2Vec2(v.x, v.y));
     else
         cout << "//////////////////////////////////////\nERROR: No se ha creado m_body con createDynPhyEntity o similar.\n//////////////////////////////////////\n";
 }

@@ -1,5 +1,6 @@
 #include "TriggerGenerator.h"
 #include "WorldInstance.h"
+#include "Player.h"
 
 TriggerGenerator::TriggerGenerator()
 {

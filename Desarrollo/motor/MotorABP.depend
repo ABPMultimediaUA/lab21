@@ -6060,7 +6060,7 @@
 1486145457 c:\users\rafael\desktop\lab21\desarrollo\motor\src\classes\drawable.h
 	"GraphicsEngine.h"
 
-1488060719 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.h
+1489414534 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\graphicsengine.h
 	<GL/glew.h>
 	<assimp/Importer.hpp>
 	<assimp/scene.h>
@@ -9193,7 +9193,7 @@
 	<GL/glew.h>
 	<glm/gtc/matrix_transform.hpp>
 
-1488122881 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.h
+1488803865 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.h
 	<GL/glew.h>
 	"Resource.h"
 	<SFML/OpenGL.hpp>
@@ -9202,14 +9202,16 @@
 	<assimp/postprocess.h>
 	"tag/Types.h"
 
-1488060719 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\resource.h
+1488803865 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\resource.h
 	<string>
 
-1488122881 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
+1489414534 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
 	<GL/glew.h>
 	<SFML/Graphics.hpp>
 	<glm/glm.hpp>
 	"tag/Types.h"
+	"tag/GraphicNode.h"
+	"tag/EMesh.h"
 	"Program.h"
 	"ResourceManager.h"
 	"ResourceMesh.h"
@@ -9228,11 +9230,12 @@
 1488060719 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\ecamera.h
 	"Entity.h"
 
-1488060719 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\entity.h
+1488803865 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\entity.h
 	<string>
 	<stack>
 	<glm/glm.hpp>
 	<stack>
+	"tag/ResourceManager.h"
 
 1488060719 source:c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\elight.cpp
 	"tag/ELight.h"
@@ -9244,8 +9247,9 @@
 	"tag/EMesh.h"
 	<iostream>
 
-1488060719 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\emesh.h
+1488803865 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\emesh.h
 	"Entity.h"
+	"ResourceMesh.h"
 
 1488060719 source:c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\entity.cpp
 	"tag/Entity.h"
@@ -9267,7 +9271,7 @@
 	"tag/Entity.h"
 	<algorithm>
 
-1488060719 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\graphicnode.h
+1488803865 c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\graphicnode.h
 	<vector>
 
 1488060719 source:c:\users\rafael\desktop\lab21\desarrollo\motor\src\graphics\tag\resource.cpp

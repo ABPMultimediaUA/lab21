@@ -1,6 +1,6 @@
 #include "Trigger.h"
 #include "WorldInstance.h"
-
+#include "Entity.h"
 
 Trigger::Trigger():
     m_touchingMainPlayer(false)

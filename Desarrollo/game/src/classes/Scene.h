@@ -14,13 +14,7 @@
 #include "MagnetKey.h"
 #include "Gun.h"
 
-#include "Pathplanning.h"
-#include "Perception.h"
-#include "Selector.h"
-#include "Sequence.h"
-#include "PathplanningTask.h"
-#include "PerceptionTask.h"
-#include "PatrolTask.h"
+#include "NavigationGraph.h"
 
 class Projectile;
 class Consumable;
@@ -59,6 +53,7 @@ class Scene
         void createAmmoGun(float px, float py, float pz);
         void updateConsumables(Player* mainPlayer);
         void updatePlayerWeapons(Player* mainPlayer, Firearm** weapons);
+        NavigationGraph& getNavGraph();
 
         Enemy* getClosestEnemy();
 
@@ -83,6 +78,8 @@ class Scene
         std::vector<Projectile*> m_projectiles;
         std::vector<Consumable*> m_consumables;
         std::vector<Enemy*> m_enemies;
+
+        NavigationGraph navGraph;
 
         float timeLastProjectil;
 

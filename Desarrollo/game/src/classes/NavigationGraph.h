@@ -1,24 +1,26 @@
-#ifndef SPARSEGRAPH_H
-#define SPARSEGRAPH_H
-
-//#include "NavGraphNode.h"
+#ifndef NAVIGATIONGRAPH_H
+#define NAVIGATIONGRAPH_H
 
 #include <vector>
 #include <list>
 
-template <class node_type, class edge_type>
-class SparseGraph
+class NavGraphNode;
+class NavGraphEdge;
+
+class NavigationGraph
 {
     public:
 
-        SparseGraph(bool di);
+        NavigationGraph(bool di);
 
-        node_type& getNode(int idx)const;
-        edge_type& getEdge(int from, int to)const;
+        NavGraphNode& getNode(int idx);
+        const NavGraphNode& getNode(int idx)const;
+        NavGraphEdge& getEdge(int from, int to);
+        const NavGraphEdge& getEdge(int from, int to)const;
         int getNextFreeNodeIndex()const;
-        int addNode(node_type node);
+        int addNode(NavGraphNode node);
         void removeNode(int node);
-        void addEdge(edge_type edge);
+        void addEdge(NavGraphEdge edge);
         void removeEdge(int from, int to);
         void setEdgeCost(int from, int to, float newCost);
         void RemoveInvalidEdges();
@@ -36,8 +38,8 @@ class SparseGraph
 
     private:
 
-        typedef std::vector<node_type>   NodeVector;
-        typedef std::list<edge_type>     EdgeList;
+        typedef std::vector<NavGraphNode>   NodeVector;
+        typedef std::list<NavGraphEdge>     EdgeList;
         typedef std::vector<EdgeList>    EdgeListVector;
 
         NodeVector nodes;
@@ -55,21 +57,19 @@ class SparseGraph
         {
             private:
 
-                typename EdgeList::iterator         curEdge;
-                SparseGraph<node_type, edge_type>&  G;
+                typename EdgeList::const_iterator         curEdge;
+                const NavigationGraph&  G;
                 const int                           NodeIndex;
 
             public:
 
-                EdgeIterator(SparseGraph<node_type, edge_type>& graph, int node);
-                edge_type*  begin();
-                edge_type*  next();
+                EdgeIterator(const NavigationGraph& graph, int node);
+                const NavGraphEdge*  begin();
+                const NavGraphEdge*  next();
                 bool end();
         };
 
     friend class EdgeIterator;
 };
 
-#include "SparseGraph.cpp"
-
-#endif // SPARSEGRAPH_H
+#endif // NAVIGATIONGRAPH_H

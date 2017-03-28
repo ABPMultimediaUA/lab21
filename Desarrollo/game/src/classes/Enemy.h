@@ -4,6 +4,8 @@
 #include "Drawable.h"
 #include "EntityPhysics.h"
 
+class Perception;
+class Pathplanning;
 
 class Enemy : public Drawable, public EntityPhysics
 {
@@ -16,6 +18,7 @@ class Enemy : public Drawable, public EntityPhysics
         void setNetID(unsigned int netID);
 
         virtual void setPosition(dwe::vec3f p);
+        virtual void move();
         virtual void setNode(dwe::Node* n);   // Necesario para EntityPhysicsç
         virtual void onBeginContact(EntityPhysics* otherObject);
 
@@ -26,6 +29,10 @@ class Enemy : public Drawable, public EntityPhysics
         float m_speed;              // Velocidad: hay que actualizarla en el constructor de cada enemigo
         unsigned int m_netID;       // Un ID que debe coincidir con el índice array de entidades que se cree. Se envia junto con cualquier mensaje de red
         int m_health;
+
+        Perception* m_perception;
+        Pathplanning* m_pathplanning;
+
     private:
 };
 

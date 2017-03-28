@@ -138,7 +138,7 @@ void Player::readEvents()
         setAnimation(dwe::eAnimStand);
     }
 
-    setVelocity(dwe::vec3f(getSpeedX(), 0, getSpeedZ()));
+    setVelocity(dwe::vec2f(getSpeedX(), getSpeedZ()));
 
 
     //Calcular rotacion player - con MOUSE
