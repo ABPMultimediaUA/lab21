@@ -240,7 +240,7 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid()
 ////////////////////////////
 Dog* dwe::GraphicsEngine::createEnemyDog()
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/dog.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/perro.obj", vec3f(0,0,0), vec3f(0,0,0), "media/perro.bmp");
     Dog* p = new Dog();
 	p->setNode(new Node(node));
 

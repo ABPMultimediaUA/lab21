@@ -19,13 +19,11 @@ void tag::EMesh::beginDraw()
     {
         if (m_texture)
             m_texture->activateTexture();
-        else
-            ResourceTexture::_deactivateTexture();
 
         m_mesh->draw();
 
         if (m_texture)
-            ResourceTexture::_deactivateTexture();
+            m_texture->deactivateTexture();
     }
 }
 

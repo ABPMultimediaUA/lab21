@@ -23,7 +23,7 @@ void tag::EMesh::beginDraw()
         m_mesh->draw();
 
         if (m_texture)
-            ResourceTexture::_deactivateTexture();
+            m_texture->deactivateTexture();
     }
 }
 

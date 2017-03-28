@@ -17,16 +17,22 @@ namespace tag
             ResourceTexture();
             virtual ~ResourceTexture();
 
+            /// \brief Carga la textura
             virtual void load(std::string fileName);
 
+            /// \brief Activa la textura cargada con load
             void activateTexture() const;
-            static void _deactivateTexture();
+
+            /// \brief Desactiva la textura activa
+            void deactivateTexture() const;
 
         protected:
 
         private:
-            GLushort* m_image;
-            GLuint    m_textureID;
+            static unsigned int _nextTextureID;
+            GLushort*           m_image;
+            GLuint              m_textureID;
+            unsigned int        m_textureIndex;
 
             GLuint loadTexture(Image* image);
     };

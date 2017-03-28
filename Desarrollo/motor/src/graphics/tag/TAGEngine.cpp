@@ -25,6 +25,7 @@ int tag::TAGEngine::_uMVMatrixLocation;
 int tag::TAGEngine::_uLMatrixLocation;
 int tag::TAGEngine::_uColorLocation;
 int tag::TAGEngine::_uTextureSamplerLocation;
+int tag::TAGEngine::_uHasTexture;
 int tag::TAGEngine::_uLuz0Location;
 
 float tag::TAGEngine::_screenHeight;
@@ -89,6 +90,7 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     TAGEngine::_uLMatrixLocation            = m_shaderProgram->uniform(U_LMATRIX);
     TAGEngine::_uColorLocation              = m_shaderProgram->uniform(U_COLOR);
     TAGEngine::_uTextureSamplerLocation     = m_shaderProgram->uniform(U_TEXTURESAMPLER);
+    TAGEngine::_uHasTexture                 = m_shaderProgram->uniform(U_HASTEXTURE);
     TAGEngine::_uLuz0Location               = m_shaderProgram->uniform(U_LUZ0);
 }
 

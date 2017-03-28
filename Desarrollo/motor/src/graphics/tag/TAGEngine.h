@@ -15,6 +15,7 @@
 #define U_COLOR                 "u_Color"
 #define U_LUZ0                  "u_Luz0"
 #define U_TEXTURESAMPLER        "u_TextureSampler"
+#define U_HASTEXTURE            "u_HasTexture"
 
 
 #define GLEW_STATIC
@@ -163,6 +164,7 @@ namespace tag
             static int _uColorLocation;
             static int _uLuz0Location;
             static int _uTextureSamplerLocation;
+            static int _uHasTexture;
 
             static float _screenHeight;
             static float _screenWidth;
