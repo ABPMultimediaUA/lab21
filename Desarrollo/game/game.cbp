@@ -205,11 +205,8 @@
 		<Unit filename="src/classes/Mother.h" />
 		<Unit filename="src/classes/MotherStates.cpp" />
 		<Unit filename="src/classes/MotherStates.h" />
-<<<<<<< HEAD
-=======
 		<Unit filename="src/classes/MoveTask.cpp" />
 		<Unit filename="src/classes/MoveTask.h" />
->>>>>>> master
 		<Unit filename="src/classes/NavGraphEdge.cpp" />
 		<Unit filename="src/classes/NavGraphEdge.h" />
 		<Unit filename="src/classes/NavGraphNode.cpp" />
