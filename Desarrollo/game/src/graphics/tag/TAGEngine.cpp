@@ -19,10 +19,12 @@
 
 int tag::TAGEngine::_aPositionLocation;
 int tag::TAGEngine::_aNormalLocation;
+int tag::TAGEngine::_aTextureCoordsLocation;
 int tag::TAGEngine::_uProjectionMatrixLocation;
 int tag::TAGEngine::_uMVMatrixLocation;
 int tag::TAGEngine::_uLMatrixLocation;
 int tag::TAGEngine::_uColorLocation;
+int tag::TAGEngine::_uTextureSamplerLocation;
 int tag::TAGEngine::_uLuz0Location;
 
 float tag::TAGEngine::_screenHeight;
@@ -55,6 +57,9 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     TAGEngine::_screenHeight = screenHeight;
     TAGEngine::_screenWidth = screenWidth;
 
+    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClearDepth(100.0);
+
     // Habilita el z_buffer
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
@@ -74,14 +79,16 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     glUseProgram(m_shaderProgram->ReturnProgramID());
 
     // Attributes
-    TAGEngine::_aPositionLocation = m_shaderProgram->attrib(A_POSITION);
-    TAGEngine::_aNormalLocation   = m_shaderProgram->attrib(A_NORMAL);
+    TAGEngine::_aPositionLocation       = m_shaderProgram->attrib(A_POSITION);
+    TAGEngine::_aNormalLocation         = m_shaderProgram->attrib(A_NORMAL);
+    TAGEngine::_aTextureCoordsLocation  = m_shaderProgram->attrib(A_TEXTURECOORDS);
 
     // Uniforms
     TAGEngine::_uProjectionMatrixLocation   = m_shaderProgram->uniform(U_PROJECTIONMATRIX);
     TAGEngine::_uMVMatrixLocation           = m_shaderProgram->uniform(U_MVMATRIX);
     TAGEngine::_uLMatrixLocation            = m_shaderProgram->uniform(U_LMATRIX);
     TAGEngine::_uColorLocation              = m_shaderProgram->uniform(U_COLOR);
+    TAGEngine::_uTextureSamplerLocation     = m_shaderProgram->uniform(U_TEXTURESAMPLER);
     TAGEngine::_uLuz0Location               = m_shaderProgram->uniform(U_LUZ0);
 }
 
@@ -97,7 +104,6 @@ void tag::TAGEngine::draw()
     glm::mat4 rotateMatrix;
     glm::vec3 positionMatrix;
 
-    glClearColor(0.0, 0.0, 0.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if (!m_rootNode.isEmptyNode())
@@ -105,6 +111,7 @@ void tag::TAGEngine::draw()
         // Habilitamos el paso de attributes
         glEnableVertexAttribArray(TAGEngine::_aPositionLocation);
         glEnableVertexAttribArray(TAGEngine::_aNormalLocation);
+        glEnableVertexAttribArray(TAGEngine::_aTextureCoordsLocation);
         glUseProgram(m_shaderProgram->ReturnProgramID());
 
         // Cálculo de la vista (cámara)
@@ -120,6 +127,7 @@ void tag::TAGEngine::draw()
 
         glDisableVertexAttribArray(TAGEngine::_aPositionLocation);
         glDisableVertexAttribArray(TAGEngine::_aNormalLocation);
+        glDisableVertexAttribArray(TAGEngine::_aTextureCoordsLocation);
         glUseProgram(0);
     }
 }
@@ -180,8 +188,8 @@ tag::GraphicNode* tag::TAGEngine::createNodePR(const vec3f position, const vec3f
     return nodo;
 }
 
-////////////////////////////
-tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const vec3f position, const vec3f rotation, GraphicNode* parent)
+//////////////////////////////////
+tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const vec3f position, const vec3f rotation, const std::string textureFileName, GraphicNode* parent)
 {
     // Creamos nodo de malla
     GraphicNode* nodoMalla = createNodePR(position, rotation, parent);
@@ -190,6 +198,10 @@ tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const v
     EMesh* malla = new EMesh();
     nodoMalla->setEntity(malla);
     malla->loadMesh(fileName);
+
+    // Cargamos textura
+    if (textureFileName != "")
+        malla->loadTexture(textureFileName);
 
     return nodoMalla;
 }

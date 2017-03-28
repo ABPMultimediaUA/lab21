@@ -294,9 +294,13 @@
 		<Unit filename="src/graphics/tag/ResourceManager.h" />
 		<Unit filename="src/graphics/tag/ResourceMesh.cpp" />
 		<Unit filename="src/graphics/tag/ResourceMesh.h" />
+		<Unit filename="src/graphics/tag/ResourceTexture.cpp" />
+		<Unit filename="src/graphics/tag/ResourceTexture.h" />
 		<Unit filename="src/graphics/tag/TAGEngine.cpp" />
 		<Unit filename="src/graphics/tag/TAGEngine.h" />
 		<Unit filename="src/graphics/tag/Types.h" />
+		<Unit filename="src/graphics/tag/loadBMP.cpp" />
+		<Unit filename="src/graphics/tag/loadBMP.h" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/net/DrawableReplica.cpp" />
 		<Unit filename="src/net/DrawableReplica.h" />

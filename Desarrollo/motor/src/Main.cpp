@@ -44,27 +44,16 @@ int main()
     GEInstance->init();
     TAGEngine* tagEngine = GEInstance->getTagEngine();
 
-    GraphicNode* cube01 = tagEngine->createMesh("media/newcube.obj", vec3f(-2,0,0), vec3f(2,45,1));
-    GraphicNode* cube02 = tagEngine->createMesh("media/newcube.obj", vec3f( 2,0,0), vec3f(0,20,0));
-    GraphicNode* cube03 = tagEngine->createMesh("media/newcube.obj", vec3f( 0,-2.2,0), vec3f(0,0,0), cube02);
+    GraphicNode* perro = tagEngine->createMesh("media/perro.obj", vec3f(0,0,0), vec3f(0,-45,0), "media/perro.bmp");
+    //GraphicNode* perro = tagEngine->createMesh("media/wolf.obj", vec3f(0,0,0), vec3f(0,-45,0), "media/wolf.bmp");
 
-    GraphicNode* camera = tagEngine->createPerspectiveCamera(vec3f(2,0,9.0), vec3f(0,0,0), 45.0f, dwe::GraphicsEngine::_screenWidth / dwe::GraphicsEngine::_screenHeight, 0.1f, 1000.0f);
+    GraphicNode* camera = tagEngine->createPerspectiveCamera(vec3f(2,0,60), vec3f(0,0,0), 45.0f, dwe::GraphicsEngine::_screenWidth / dwe::GraphicsEngine::_screenHeight, 0.1f, 1000.0f);
+    GraphicNode* light  = tagEngine->createLight(vec3f(-10,0,-80), vec3f(0,0,0));
 
-    GraphicNode* light  = tagEngine->createLight(vec3f(-100,100,50), vec3f(0,0,0));
-
-    bool borrado = false;
     while (GEInstance->isRunning())
     {
         GEInstance->update();
 
-        if (!borrado && GEInstance->receiver.isKeyDown(KEY_KEY_A))
-        {
-            // Borramos el cubo con el hijo
-            std::cout << "Empezamos borrado.\n";
-            tagEngine->deleteNode(cube02);
-            borrado = true;
-            std::cout << "Borrado concluido.\n";
-        }
 
         GEInstance->draw();
     }

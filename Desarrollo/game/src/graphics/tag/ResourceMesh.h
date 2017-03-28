@@ -34,17 +34,15 @@ namespace tag
             GLfloat *m_textUV;
             GLfloat *m_color;
 
-            GLuint *m_verticesIndices;
-            GLuint *m_normalsIndices;
-            GLuint *m_textUVIndices;
+            GLuint *m_indices;
 
             GLuint m_numVertices;
             GLuint m_numIndices;
 
             GLuint m_vbVertices;
-            GLuint m_ibVertices;
             GLuint m_vbNormals;
-            GLuint m_ibNormals;
+            GLuint m_vbTextUV;
+            GLuint m_ibVertices;
 
             vec3f   m_boundingBox;
 
