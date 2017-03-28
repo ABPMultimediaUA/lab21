@@ -148,8 +148,8 @@ void Scene::Init()
     ////////////////////////////////
 
     // Creación de enemigo Dog
-    //enemyDog = GEInstance->createEnemyDog();
-    //enemyDog->setPosition(dwe::vec3f(-50,-170,100));
+    enemyDog = GEInstance->createEnemyDog();
+    enemyDog->setPosition(dwe::vec3f(100,24,80));
 
     //Joint try
     joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS

@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <map>
 
 #include "Resource.h"
 
@@ -10,6 +11,8 @@ namespace tag
 {
     class ResourceManager
     {
+        typedef Resource* (ResourceManager::*FunctionPointer)();
+        typedef std::map<std::string, FunctionPointer> ResourceKinds;
         public:
             ResourceManager();
             ~ResourceManager();
@@ -19,7 +22,13 @@ namespace tag
         protected:
 
         private:
-            std::vector<Resource*> m_resources;
+            std::vector<Resource*>  m_resources;
+            ResourceKinds           m_resourceKinds;
+
+            Resource* createResourceMesh();
+            Resource* createResourceTexture();
+            Resource* searchForResource(std::string name);
+            Resource* createResource(std::string name);
     };
 }
 
