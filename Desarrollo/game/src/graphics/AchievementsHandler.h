@@ -15,10 +15,13 @@ class AchievementsHandler
         int pasosCaminados;
 
 	public:
-		AchievementHandler(){
+		AchievementsHandler(){
+		    /*TODO antes no se ejecutaba pq estaba mal llamado, no se ejecutaba el constructor.
+		    Ahora al ejecutarse deja el programa parado....?¿?¿?
+
 		    numAchieved=0;
 		    dwe::ConditionEnemiesKilled* con = new dwe::ConditionEnemiesKilled(50);
-            achievements[0] = new dwe::Achievement("1", 0.1, 0.35, con);
+            achievements[0] = new dwe::Achievement("1", 0.1, 0.35, con);*/
 		}
 
 		void draw(){
