@@ -1,10 +1,15 @@
 #include "Hud.h"
+#include <sstream>
+using namespace std;
 
 
-Hud::Hud(dwe::GraphicsEngine::GETexture* t)
+Hud::Hud()
 {
+    int   width   = GEInstance->get_screenWidth();
+    int   height  = GEInstance->get_screenHeight();
 
-
+    WeaponBox = new dwe::WeaponBox(width/10, height*6.5/8);
+    HealthBox = new dwe::HealthBox (width - width/3, height*6.7/8);
 }
 
 Hud::~Hud()
@@ -14,6 +19,8 @@ Hud::~Hud()
 
 void Hud::draw()
 {
+    WeaponBox->draw();
 
-   GEInstance->addMessageLine("Partida iniciada");
+    HealthBox->draw();
 }
+

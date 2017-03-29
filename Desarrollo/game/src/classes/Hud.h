@@ -11,15 +11,22 @@ class Hud : public Drawable
 {
     public:
 
-        Hud(dwe::GraphicsEngine::GETexture* t);
+        Hud();
         virtual ~Hud();
         virtual void update(){};
         virtual void render(){};
         virtual void draw();
 
+
     protected:
 
     private:
+
+        dwe::WeaponBox *WeaponBox;
+
+        dwe::HealthBox *HealthBox;
+
+
 };
 
 #endif // HUD_H

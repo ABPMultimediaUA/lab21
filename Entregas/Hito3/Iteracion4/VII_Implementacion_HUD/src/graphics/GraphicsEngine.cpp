@@ -416,13 +416,6 @@ void dwe::HudBox::setComponents(std::string str, sf::Sprite *s, sf::Texture *t, 
     s->setPosition(px, py);
 }
 
-void dwe::HudBox::setTextComponents(sf::Text *text, sf::Font font, unsigned int siz, sf::Color color, float px, float py)
-{
-    text->setFont(font);
-    text->setCharacterSize(siz);
-    text->setColor(color);
-    text->setPosition(px, py);
-}
 
 dwe::WeaponBox::WeaponBox( float x, float y)
 {
@@ -444,7 +437,6 @@ dwe::WeaponBox::WeaponBox( float x, float y)
     text_ammo.setCharacterSize(15);
     text_ammo.setColor(sf::Color::White);
     text_ammo.setPosition(s_box.getPosition().x + SCREEN_WIDTH/9, SCREEN_HEIGHT*7.3/8);
-    //setTextComponents(&text_ammo, font, 15, sf::Color::White, s_box.getPosition().x + SCREEN_WIDTH/9, SCREEN_HEIGHT*7.3/8);
 
     std::stringstream sw;
     sw << "x" << grenades;

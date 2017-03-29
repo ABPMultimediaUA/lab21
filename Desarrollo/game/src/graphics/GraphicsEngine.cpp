@@ -119,7 +119,7 @@ void dwe::GraphicsEngine::draw()
     for(unsigned int i=0; i<MAX_MESSAGE_LINES; i++)
         m_window->draw(m_messageLine[i]);
 
-    m_window->popGLStates();
+    //m_window->popGLStates();
 
     /*
     m_window->display();
@@ -130,6 +130,11 @@ void dwe::GraphicsEngine::draw()
     sprintf(tmp, "Lab21 - fps:%f", fps);
     m_window->setTitle(tmp);
     */
+}
+
+void dwe::GraphicsEngine::popGLStates()
+{
+    m_window->popGLStates();
 }
 
 /*******/

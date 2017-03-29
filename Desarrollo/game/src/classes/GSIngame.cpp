@@ -11,6 +11,7 @@ using namespace std;
 
 GSIngame::GSIngame(){
 
+    hud = new Hud();
 }
 
 GSIngame* GSIngame::getInstance()
@@ -69,7 +70,9 @@ void GSIngame::Render(){
             cout<<"Pulsa F10 para pausar el juego"<<endl;
             m=true;
         }
-        GEInstance->draw();
+        //GEInstance->draw();
+        hud->draw();
+        GEInstance->popGLStates();
     }
 }
 GSIngame::~GSIngame(){

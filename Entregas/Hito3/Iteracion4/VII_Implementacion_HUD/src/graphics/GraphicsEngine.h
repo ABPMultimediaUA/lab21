@@ -167,7 +167,6 @@ namespace dwe
             ~HudBox(){};
             virtual void draw(){};
             void setComponents(std::string str, sf::Sprite *s, sf::Texture *t, float px, float py);
-            void setTextComponents(sf::Text *text, sf::Font font, unsigned int siz, sf::Color color, float px, float py);
 
         protected:
             float t;                  // Probar a cambiar de arma, vida, botiquines...
