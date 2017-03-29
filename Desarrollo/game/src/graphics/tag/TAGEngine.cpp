@@ -39,12 +39,10 @@ tag::TAGEngine::TAGEngine() :
     m_cameras(),
     m_numActiveCamera(0)
 {
-    //ctor
 }
 
 tag::TAGEngine::~TAGEngine()
 {
-    //dtor
     if (m_shaderProgram)
     {
         delete m_shaderProgram;
@@ -93,18 +91,6 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     TAGEngine::_uLuz0Location               = m_shaderProgram->uniform(U_LUZ0);
 
     glUseProgram(0);
-}
-
-void tag::TAGEngine::clearProgram()
-{
-    glUseProgram( 0 );
-    /*glActiveTexture( 0 );
-    glBindBuffer( GL_ARRAY_BUFFER, 0 );
-    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
-    glBindTexture( GL_TEXTURE_2D, 0 );
-    glDisableVertexAttribArray( 0 );
-    glDisableVertexAttribArray( 1 );
-    glUseProgram( 0 );*/
 }
 
 /////////////////////

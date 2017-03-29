@@ -167,7 +167,6 @@ namespace tag
             /// hijos. Del primer nodo borrado, se quita de la lista de hijos de su parent.
             void deleteNode(GraphicNode* node);
 
-void clearProgram();
             // Handles de los attributes y uniforms
             static int _aPositionLocation;
             static int _aNormalLocation;

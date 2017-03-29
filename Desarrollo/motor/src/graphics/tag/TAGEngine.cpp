@@ -39,12 +39,10 @@ tag::TAGEngine::TAGEngine() :
     m_cameras(),
     m_numActiveCamera(0)
 {
-    //ctor
 }
 
 tag::TAGEngine::~TAGEngine()
 {
-    //dtor
     if (m_shaderProgram)
     {
         delete m_shaderProgram;
@@ -61,8 +59,10 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glClearDepth(100.0);
 
+    // Habilita el z_buffer
+    glEnable(GL_DEPTH_TEST);
+
     // Inicialización de GLEW
-    glewExperimental = GL_TRUE;
     if(glewInit() != GLEW_OK)
         throw std::runtime_error("glewInit failed");
 
@@ -89,18 +89,8 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     TAGEngine::_uTextureSamplerLocation     = m_shaderProgram->uniform(U_TEXTURESAMPLER);
     TAGEngine::_uHasTexture                 = m_shaderProgram->uniform(U_HASTEXTURE);
     TAGEngine::_uLuz0Location               = m_shaderProgram->uniform(U_LUZ0);
-}
 
-void tag::TAGEngine::clearProgram()
-{
-    glUseProgram( 0 );
-    /*glActiveTexture( 0 );
-    glBindBuffer( GL_ARRAY_BUFFER, 0 );
-    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
-    glBindTexture( GL_TEXTURE_2D, 0 );
-    glDisableVertexAttribArray( 0 );
-    glDisableVertexAttribArray( 1 );
-    glUseProgram( 0 );*/
+    glUseProgram(0);
 }
 
 /////////////////////
@@ -117,10 +107,6 @@ void tag::TAGEngine::draw()
 
     if (!m_rootNode.isEmptyNode())
     {
-        // Habilita el z_buffer
-        glEnable(GL_DEPTH_TEST);
-//        glDepthFunc(GL_LESS);
-
         glUseProgram(m_shaderProgram->ReturnProgramID());
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -149,9 +135,6 @@ void tag::TAGEngine::draw()
         glDisableVertexAttribArray(TAGEngine::_aTextureCoordsLocation);
 
         glUseProgram(0);
-
-        glDisable(GL_DEPTH_TEST);
-        //glDepthFunc(GL_LESS);
     }
 }
 
@@ -214,6 +197,11 @@ tag::GraphicNode* tag::TAGEngine::createNodePR(const vec3f position, const vec3f
 //////////////////////////////////
 tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const vec3f position, const vec3f rotation, const std::string textureFileName, GraphicNode* parent)
 {
+    // Debemos de volver a poner el useProgram
+    // Si entre que se inicia el motor y se cargan los modelos
+    // se dibuja sfml, no carga bien si no hacemos esto.
+    glUseProgram(m_shaderProgram->ReturnProgramID());
+
     // Creamos nodo de malla
     GraphicNode* nodoMalla = createNodePR(position, rotation, parent);
 

@@ -76,7 +76,7 @@ void dwe::GraphicsEngine::init()
 
     m_secondsLastDraw = 0;
     m_clock.restart();
-    std::cout << "init\n";
+    m_window->pushGLStates();
 }
 
 //////////////////////////
@@ -108,48 +108,29 @@ bool dwe::GraphicsEngine::isRunning()
 //////////////////////////
 void dwe::GraphicsEngine::draw()
 {
-    m_window->pushGLStates();
-    m_window->draw(m_messageLine[0]);
-    m_window->popGLStates();
-
-    m_window->pushGLStates();
-    m_window->draw(m_messageLine[1]);
-    m_window->popGLStates();
-
-    //m_window->setActive(true);
+    m_window->popGLStates();   // Antes de este pop hay un push, en init
     m_tagEngine.draw();
-
-    //m_window->setActive(false);
-
-
-    // Entre pushGLStates y popGLStates dibujamos los sprites
     m_window->pushGLStates();
-    //m_window->resetGLStates();
 
     // Lineas de mensaje del jugador
     for(unsigned int i=0; i<MAX_MESSAGE_LINES; i++)
         m_window->draw(m_messageLine[i]);
-
-    m_window->popGLStates();
 }
 
-/*******/
+
 void dwe::GraphicsEngine::drawRectangleShape(sf::RectangleShape rs)
 {
-    //m_window->draw(rs);
+    m_window->draw(rs);
 }
 
 void dwe::GraphicsEngine::drawText(sf::Text t)
 {
-    m_window->pushGLStates();
     m_window->draw(t);
-    m_window->popGLStates();
-    std::cout << "drawText\n";
 }
 
 void dwe::GraphicsEngine::drawSprite(sf::Sprite sp)
 {
-    //m_window->draw(sp);
+    m_window->draw(sp);
 }
 
 void dwe::GraphicsEngine::clearWindow()
@@ -167,32 +148,13 @@ void dwe::GraphicsEngine::displayWindow()
     sprintf(tmp, "Lab21 - fps:%f", fps);
     m_window->setTitle(tmp);
 }
-/*******/
+
 
 //////////////////////////
 void dwe::GraphicsEngine::render()
 {
+
 }
-
-////////////////////////////////////////////////////
-/*scene::IAnimatedMeshSceneNode* dwe::GraphicsEngine::createIrrAnimatedMeshSceneNode(std::string meshName)
-{
-	scene::IAnimatedMesh* mesh = m_smgr->getMesh((meshName+".obj").c_str());
-	if (!mesh)
-	{
-		m_device->drop();
-		exit(0);
-	}
-	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
-
-	if (irrnode)
-	{
-		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
-		irrnode->setMaterialTexture( 0, m_driver->getTexture((meshName+".png").c_str()) );
-	}
-
-	return irrnode;
-}*/
 
 /////////////////////////////////////
 ScenaryElement* dwe::GraphicsEngine::createWall(std::string meshName)
@@ -212,10 +174,6 @@ dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
     Node* node = new Node(gn);
     return node;
 }
-
-/*vector3df dwe::GraphicsEngine::getTransformedBoundingBox(scene::IAnimatedMeshSceneNode* player){
-    return(player->getTransformedBoundingBox().getExtent());
-}*/
 
 
 /////////////////////////////

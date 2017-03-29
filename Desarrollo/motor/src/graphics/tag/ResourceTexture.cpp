@@ -75,9 +75,7 @@ void tag::ResourceTexture::activateTexture() const
 ///////////////////////////
 void tag::ResourceTexture::deactivateTexture() const
 {
+    glActiveTexture(GL_TEXTURE0+m_textureIndex);
     glBindTexture(GL_TEXTURE_2D, 0);
-    //glActiveTexture(GL_TEXTURE0+m_textureIndex);  // TODO si le pongo +m_textureIndex me da error!!
-    glActiveTexture(GL_TEXTURE0);                   // pero en cambio sin esta linea también da error.
-    //glBindTexture(GL_TEXTURE_2D, 0);
     glUniform1i(TAGEngine::_uHasTexture, false);
 }
