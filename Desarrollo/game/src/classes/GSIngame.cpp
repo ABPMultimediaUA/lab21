@@ -24,10 +24,10 @@ void GSIngame::Init(){
     page=0;
     m=false;
     LoadMap::getInstance()->Init();
-    cout<<"Cargado el mapa"<<endl;
     WorldInstance::Instance();
     timeStamp = World->getTimeElapsed();
     Scene::Instance()->Init();
+    cout<<"Ingame cargado"<<endl;
 }
 
 void GSIngame::Update(){

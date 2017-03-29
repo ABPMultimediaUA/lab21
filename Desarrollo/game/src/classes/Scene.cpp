@@ -31,14 +31,16 @@ void Scene::Init()
     /**********************************/
     if (NetInstance->isMultiplayer())
     {
-        if (NetInstance->isServer())
-            GEInstance->addMessageLine("Pulsa intro cuando esten todos los jugadores");
-        else
+        if (NetInstance->isServer()){
+            GEInstance->addMessageLine("Pulsa Intro cuando esten todos los jugadores");
+            cout<<"Pulsa Intro cuando esten todos los jugadores"<<endl;
+        }else{
             GEInstance->addMessageLine("Esperando a que el servidor de la partida inicie el juego");
+        }
         // En startGame solo se inicia si es el servidor
         while (!NetInstance->getGameStarted() && GEInstance->isRunning())
         {
-            GEInstance->draw();
+            //GEInstance->draw(); // Si se dibuja la escena peta
             NetInstance->update();
             if (GEInstance->receiver.isKeyDown(KEY_RETURN))
                 NetInstance->startGame();
@@ -160,7 +162,7 @@ void Scene::Init()
     GEInstance->createCamera();
 
     //rmm Cheat: la primera vez que creo el projectile va muy lento, no se pq
-    createProjectile(dwe::vec3f(1.0, 1.0, 1.0), 0.5);
+    createProjectile(dwe::vec3f(1.0, 1.0, 1.0), 0.5, "gunBullet");
     deleteProjectile(0);
     timeLastProjectil = 0;
 }
@@ -258,11 +260,12 @@ void Scene::Update()
     // comprobamos si dispara
     if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
         NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
-        if (mainPlayer->getCurrentWeaponType() == eGun && mainPlayer->getAmmo(0) > 0) //
+        if (mainPlayer->getAmmo(0) > 0) //
         {
             NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
 
-            createProjectile(mainPlayer->getPosition(), mainPlayer->getRotation().y);
+            mainPlayer->shoot();
+
             timeLastProjectil = World->getTimeElapsed();
 
             mainPlayer->setAmmo(0, mainPlayer->getAmmo(0)-1); //
@@ -270,6 +273,7 @@ void Scene::Update()
     }
 
     //UPDATE
+
     mainPlayer->update(shotgun, rifle); //Posición actualizada de Irrlicht Player
     updateProjectiles();
     updateConsumables(mainPlayer);
@@ -323,9 +327,9 @@ void Scene::deleteProjectile(unsigned int i)
 }
 
 ////////////
-void Scene::createProjectile(dwe::vec3f origin, float angle)
+void Scene::createProjectile(dwe::vec3f origin, float angle, std::string weapon)
 {
-    m_projectiles.push_back(GEInstance->createProjectile(origin, angle));
+    m_projectiles.push_back(GEInstance->createProjectile(origin, angle, weapon));
 }
 
 ////////////

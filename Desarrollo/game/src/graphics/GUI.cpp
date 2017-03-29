@@ -71,7 +71,7 @@ dwe::AchievementInfo::~AchievementInfo(){};
 
 void dwe::AchievementInfo::draw()
 {
-    //GEInstance->drawSprite(sp);
+    GEInstance->drawSprite(sp);
 }
 
 void dwe::AchievementInfo::setPosition()
