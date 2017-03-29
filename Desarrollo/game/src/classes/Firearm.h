@@ -11,7 +11,7 @@ class Firearm : public Weapon
     public:
         Firearm();
         virtual ~Firearm();
-
+int id;
         virtual void shoot(){};
         virtual void reload(){};
 
