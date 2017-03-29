@@ -61,11 +61,8 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glClearDepth(100.0);
 
-    // Habilita el z_buffer
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
-
     // Inicialización de GLEW
+    glewExperimental = GL_TRUE;
     if(glewInit() != GLEW_OK)
         throw std::runtime_error("glewInit failed");
 
@@ -94,6 +91,18 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     TAGEngine::_uLuz0Location               = m_shaderProgram->uniform(U_LUZ0);
 }
 
+void tag::TAGEngine::clearProgram()
+{
+    glUseProgram( 0 );
+    /*glActiveTexture( 0 );
+    glBindBuffer( GL_ARRAY_BUFFER, 0 );
+    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
+    glBindTexture( GL_TEXTURE_2D, 0 );
+    glDisableVertexAttribArray( 0 );
+    glDisableVertexAttribArray( 1 );
+    glUseProgram( 0 );*/
+}
+
 /////////////////////
 bool tag::TAGEngine::isRunning()
 {
@@ -106,15 +115,20 @@ void tag::TAGEngine::draw()
     glm::mat4 rotateMatrix;
     glm::vec3 positionMatrix;
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
     if (!m_rootNode.isEmptyNode())
     {
+        // Habilita el z_buffer
+        glEnable(GL_DEPTH_TEST);
+//        glDepthFunc(GL_LESS);
+
+        glUseProgram(m_shaderProgram->ReturnProgramID());
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
         // Habilitamos el paso de attributes
         glEnableVertexAttribArray(TAGEngine::_aPositionLocation);
         glEnableVertexAttribArray(TAGEngine::_aNormalLocation);
         glEnableVertexAttribArray(TAGEngine::_aTextureCoordsLocation);
-        glUseProgram(m_shaderProgram->ReturnProgramID());
 
         // Cálculo de la vista (cámara)
         calculateViewMatrix();
@@ -126,11 +140,18 @@ void tag::TAGEngine::draw()
         // Dibujar
         renderElements();
 
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        glBindTexture(GL_TEXTURE_2D, 0);
 
         glDisableVertexAttribArray(TAGEngine::_aPositionLocation);
         glDisableVertexAttribArray(TAGEngine::_aNormalLocation);
         glDisableVertexAttribArray(TAGEngine::_aTextureCoordsLocation);
+
         glUseProgram(0);
+
+        glDisable(GL_DEPTH_TEST);
+        //glDepthFunc(GL_LESS);
     }
 }
 
@@ -209,20 +230,30 @@ tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const v
 }
 
 ////////////////////////////
-tag::GraphicNode* tag::TAGEngine::createAnimation(const std::string fileName, const vec3f position, const vec3f rotation, GraphicNode* parent)
+tag::EAnimation* tag::TAGEngine::createNumAnimations(int numAnimations)
+{
+    // Creamos malla
+    EAnimation* animations = new EAnimation();
+    animations->createNumAnimations(numAnimations);//num animaciones
+
+    return animations;
+}
+////////////////////////////
+tag::EAnimation* tag::TAGEngine::createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames)
+{
+    animations->createAnimation(numAnimation,numFrames, fileName);//creamos la animacion con sus frames y sus mallas
+    return animations;//la devolvemos
+}
+
+/////////////////////////////
+tag::GraphicNode* tag::TAGEngine::createNodeAnimations(EAnimation* animations, const vec3f position, const vec3f rotation, GraphicNode* parent)
 {
     // Creamos nodo de animation
     GraphicNode* nodoAnimation = createNodePR(position, rotation, parent);
-
-    // Creamos malla
-    EAnimation* animation = new EAnimation();
-    animation->createNumAnimations(1);//1 animacion, correr
-    animation->createAnimation(0,9, fileName);//la animacion 1 tendra 9 frames
-    nodoAnimation->setEntity(animation);
-
+    nodoAnimation->setEntity(animations);//asignamos la animacion al nodo
     return nodoAnimation;
-}
 
+}
 //////////////////////////////////
 tag::GraphicNode* tag::TAGEngine::createPerspectiveCamera(const vec3f position, const vec3f rotation, float fov, float aspect, float near, float far, GraphicNode* parent)
 {

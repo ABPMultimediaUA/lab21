@@ -57,6 +57,7 @@ void dwe::GraphicsEngine::init()
     contextSettings.sRgbCapable = false;
 
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", sf::Style::Default, contextSettings);
+    m_window->setVerticalSyncEnabled(true);
 
     // Creamos los mensajes de texto, por ahora vacios
     if (!m_font.loadFromFile("media/ExoRegular.otf"))
@@ -75,6 +76,7 @@ void dwe::GraphicsEngine::init()
 
     m_secondsLastDraw = 0;
     m_clock.restart();
+    std::cout << "init\n";
 }
 
 //////////////////////////
@@ -106,46 +108,48 @@ bool dwe::GraphicsEngine::isRunning()
 //////////////////////////
 void dwe::GraphicsEngine::draw()
 {
-    m_window->setActive(true);
+    m_window->pushGLStates();
+    m_window->draw(m_messageLine[0]);
+    m_window->popGLStates();
+
+    m_window->pushGLStates();
+    m_window->draw(m_messageLine[1]);
+    m_window->popGLStates();
+
+    //m_window->setActive(true);
     m_tagEngine.draw();
 
-    m_window->setActive(false);
+    //m_window->setActive(false);
 
 
     // Entre pushGLStates y popGLStates dibujamos los sprites
     m_window->pushGLStates();
+    //m_window->resetGLStates();
 
     // Lineas de mensaje del jugador
     for(unsigned int i=0; i<MAX_MESSAGE_LINES; i++)
         m_window->draw(m_messageLine[i]);
 
     m_window->popGLStates();
-
-    /*
-    m_window->display();
-
-    char tmp[25];
-    float fps = 1.f / (m_clock.getElapsedTime().asSeconds() - m_secondsLastDraw);
-    m_secondsLastDraw = m_clock.getElapsedTime().asSeconds();
-    sprintf(tmp, "Lab21 - fps:%f", fps);
-    m_window->setTitle(tmp);
-    */
 }
 
 /*******/
 void dwe::GraphicsEngine::drawRectangleShape(sf::RectangleShape rs)
 {
-    m_window->draw(rs);
+    //m_window->draw(rs);
 }
 
 void dwe::GraphicsEngine::drawText(sf::Text t)
 {
+    m_window->pushGLStates();
     m_window->draw(t);
+    m_window->popGLStates();
+    std::cout << "drawText\n";
 }
 
 void dwe::GraphicsEngine::drawSprite(sf::Sprite sp)
 {
-    m_window->draw(sp);
+    //m_window->draw(sp);
 }
 
 void dwe::GraphicsEngine::clearWindow()

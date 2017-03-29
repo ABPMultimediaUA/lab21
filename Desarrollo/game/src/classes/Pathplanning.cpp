@@ -62,7 +62,6 @@ dwe::vec2f Pathplanning::Movement()
         else
             direction.x = direction.y = 0;
     }
-    std::cout<<nextNode<<std::endl;
     return direction;
 
 }

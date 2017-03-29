@@ -20,7 +20,7 @@ dwe::Button::~Button(){};
 
 void dwe::Button::draw()
 {
-    //GEInstance->drawText(text);
+    GEInstance->drawText(text);
 }
 
 int dwe::Button::getXOrigin()

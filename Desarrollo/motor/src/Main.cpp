@@ -42,21 +42,20 @@ int main()
     return 0;*/
 
     GEInstance->init();
+    //GEInstance->addMessageLine("Holaaa");
     TAGEngine* tagEngine = GEInstance->getTagEngine();
 
     GraphicNode* perro = tagEngine->createMesh("media/perro.obj", vec3f(-10,0,0), vec3f(0,-45,0));
     GraphicNode* perro2 = tagEngine->createMesh("media/perro.obj", vec3f(10,0,0), vec3f(0,-45,0), "media/perro.bmp");
     GraphicNode* perro3 = tagEngine->createMesh("media/perro.obj", vec3f(15,0,0), vec3f(0,-45,0), "media/perro2.bmp");
-    //GraphicNode* perro3 = tagEngine->createMesh("media/perro.obj", vec3f(0,0,0), vec3f(0,-45,0));
 
     GraphicNode* camera = tagEngine->createPerspectiveCamera(vec3f(2,0,60), vec3f(0,0,0), 45.0f, dwe::GraphicsEngine::_screenWidth / dwe::GraphicsEngine::_screenHeight, 0.1f, 1000.0f);
     GraphicNode* light  = tagEngine->createLight(vec3f(-10,0,-80), vec3f(0,0,0));
 
+    tagEngine->clearProgram();
+
     while (GEInstance->isRunning())
     {
-        GEInstance->update();
-
-
         GEInstance->draw();
     }
 

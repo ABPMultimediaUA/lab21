@@ -44,10 +44,11 @@ void dwe::GraphicsEngine::init()
     contextSettings.sRgbCapable = false;
 
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", sf::Style::Default, contextSettings);
+    m_window->setVerticalSyncEnabled(true);
 
     // Creamos los mensajes de texto, por ahora vacios
-    /*if (!m_font.loadFromFile("media/ExoRegular.otf"))
-        throw std::runtime_error("No se ha podido cargar la fuente de texto");*/
+    if (!m_font.loadFromFile("media/ExoRegular.otf"))
+        throw std::runtime_error("No se ha podido cargar la fuente de texto");
 
 	for(int i=0; i<MAX_MESSAGE_LINES; i++)
 	{
@@ -55,7 +56,7 @@ void dwe::GraphicsEngine::init()
         m_messageLine[i].setCharacterSize(14);
         m_messageLine[i].setFillColor(sf::Color(255, 255, 255, 255));
         m_messageLine[i].setPosition(10.f, GraphicsEngine::_screenHeight - (i+1)*16.f);
-        m_messageLine[i].setString("");
+        m_messageLine[i].setString("asdf");
 	}
 
     m_tagEngine.init(GraphicsEngine::_screenHeight, GraphicsEngine::_screenWidth);
@@ -93,20 +94,18 @@ bool dwe::GraphicsEngine::isRunning()
 //////////////////////////
 void dwe::GraphicsEngine::draw()
 {
-    m_window->setActive(true);
     m_tagEngine.draw();
-
-    m_window->setActive(false);
 
 
     // Entre pushGLStates y popGLStates dibujamos los sprites
-    m_window->pushGLStates();
+    //m_window->pushGLStates();
 
     // Lineas de mensaje del jugador
+    m_window->resetGLStates();
     for(unsigned int i=0; i<MAX_MESSAGE_LINES; i++)
         m_window->draw(m_messageLine[i]);
 
-    m_window->popGLStates();
+    //m_window->popGLStates();
 
 
     m_window->display();
@@ -287,10 +286,10 @@ void dwe::GraphicsEngine::close()
 //////////////////////////
 void dwe::GraphicsEngine::createCamera()
 {
-    vec3f position(-150,120,-190);
+    vec3f position(2,0,60);
     m_camera = m_tagEngine.createPerspectiveCamera(position, vec3f(0,0,0), 45.0f, get_screenWidth() / get_screenHeight(), 0.1f, 1000.0f);
     m_tagEngine.nodeLookAtTarget(m_camera, position, vec3f(0,0,0));
-    m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0));
+    m_tagEngine.createLight(vec3f(-10,0,-80), vec3f(0,0,0));
 }
 
 
@@ -463,3 +462,4 @@ void dwe::GraphicsEngine::update()
   //m_tagEngine.setPositionNodeEntity(cube01, vec3f(0,0,0));
   //m_tagEngine.setRotationNodeEntity(cube01, vec3f(0,0,0));
 }
+

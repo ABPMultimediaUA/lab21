@@ -40,10 +40,12 @@ GLuint tag::ResourceTexture::loadTexture(Image* image)
 
 
 	// Filtros
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    glBindTexture(GL_TEXTURE_2D, 0);
 
 	return textureId;
 }
@@ -73,8 +75,9 @@ void tag::ResourceTexture::activateTexture() const
 ///////////////////////////
 void tag::ResourceTexture::deactivateTexture() const
 {
+    glBindTexture(GL_TEXTURE_2D, 0);
     //glActiveTexture(GL_TEXTURE0+m_textureIndex);  // TODO si le pongo +m_textureIndex me da error!!
     glActiveTexture(GL_TEXTURE0);                   // pero en cambio sin esta linea también da error.
-    glBindTexture(GL_TEXTURE_2D, 0);
+    //glBindTexture(GL_TEXTURE_2D, 0);
     glUniform1i(TAGEngine::_uHasTexture, false);
 }
