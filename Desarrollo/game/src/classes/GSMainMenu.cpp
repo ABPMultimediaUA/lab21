@@ -116,7 +116,7 @@ void GSMainMenu::HandleEvents(){
                 {
                     type="2";
                     enterNet=true;
-                    //page=1;
+                    page=1;
                 }
                 else if(buttonCheck(achievementsButton))
                 {
@@ -178,7 +178,7 @@ void GSMainMenu::Update(){
 
     if(enterNet && !serverSelection)
     {
-        if(buttonCheck(playAloneButton) || GEInstance->receiver.isKeyDown(KEY_KEY_0))
+        if(GEInstance->receiver.isKeyDown(KEY_KEY_0))
         {
             ip="0";
             serverSelection=true;
@@ -214,7 +214,7 @@ void GSMainMenu::Update(){
 
             cout << "//  (1) Crear una nueva partida.\n";
 
-            std::vector<std::string>* gamesIP = NetInstance->getGamesIP();
+            gamesIP = NetInstance->getGamesIP();
             for(unsigned int j=0; j<gamesIP->size(); j++)
                 cout << "//  ("<<j+2<<") Unirse a " << gamesIP->at(j) << "\n";
 

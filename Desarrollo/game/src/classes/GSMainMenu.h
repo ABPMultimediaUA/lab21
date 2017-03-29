@@ -30,7 +30,7 @@ private:
     bool serverInfo;
     bool lobbySelection; // Lobby elegida
 
-
+    std::vector<std::string>* gamesIP;
     std::string type;
     std::string ip;
     std::string lobby;
