@@ -112,9 +112,9 @@ namespace dwe{
         public:
             WeaponBox(float x, float y);
             ~WeaponBox();
-            void swapWeapon(FirearmKind weapon, sf::Texture *tweapon, sf::Text *textammo);
-            void updateWeapon (sf::Texture *tweapon, std::string str, int *ammo, sf::Text *textammo);
-            void draw(FirearmKind weapon);
+            void swapWeapon(FirearmKind weapon, int ammo, sf::Texture *tweapon, sf::Text *textammo);
+            void updateWeapon (sf::Texture *tweapon, std::string str, int ammo, sf::Text *textammo);
+            void draw(FirearmKind weapon, int ammo);
 
         private:
             sf::Sprite s_box;

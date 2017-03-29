@@ -169,7 +169,7 @@ namespace dwe
         void updateCamera(const vec3f playerPosition, int moreEnemiesX, int moreEnemiesZ);
 
         Door* createDoor(int f, bool a, float px, float py, float pz);
-        Projectile* createProjectile(vec3f origin, float angle);
+        Projectile* createProjectile(vec3f origin, float angle, std::string weapon);
         Generator* createGenerator(int i, bool b, float px, float py, float pz);
         MagnetKey* createMagnetKey(int i, float px, float py, float pz);
         SpeedBoost* createSpeedBoost(float px, float py, float pz);

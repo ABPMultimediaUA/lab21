@@ -31,6 +31,7 @@ class Player : public CharacterController, public EntityPhysics
         virtual void setNode(dwe::Node* n);   // Necesario para EntityPhysics
         int getAmmo(int numWeapon);
         void setAmmo(int numWeapon, int ammount);
+        int getCurrentAmmo();
         void addAmmo(int numWeapon, int ammount);
         int getGrenades();
         void setGrenades(int n);

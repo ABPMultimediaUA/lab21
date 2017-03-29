@@ -18,9 +18,9 @@ Player::Player(Gun* gun)
     m_hasRifle = false;
     m_currentWeaponType = eGun;
     m_currentWeapon = m_weapons[0];
-    m_ammo[0] = 10;
-    m_ammo[1] = 0;
-    m_ammo[2] = 0;
+    m_ammo[0] = 15;
+    m_ammo[1] = 10;
+    m_ammo[2] = 5;
     m_health = 80;
     m_maxHealth = 100;
 
@@ -70,8 +70,12 @@ void Player::render()
 /////////////
 void Player::shoot()
 {
-    //TODO
+    cout<<"AAAAAAAAAA"<<endl;
+    cout<<"taipu "<<&m_currentWeapon<<endl;
+    cout<<"ARMA "<<m_currentWeapon->id<<endl;
+    m_currentWeapon->shoot();
 }
+
 
 /////////////
 FirearmKind Player::getCurrentWeaponType() { return m_currentWeaponType; }
@@ -98,18 +102,22 @@ void Player::addWeapon(Consumable* weapon, FirearmKind type)
 /////////////
 void Player::swapCurrentWeapon(int w)
 {
-    if(w==0){               //GUN
+    if(w==1){               //GUN
         m_currentWeapon = m_weapons[0];
         m_currentWeaponType = eGun;
-    }else if(w==1){         //SHOTGUN
+        cout<<"pistola"<<endl;
+    }else if(w==2){         //SHOTGUN
         if (m_hasShotgun){
             m_currentWeapon = m_weapons[1];
             m_currentWeaponType = eShotgun;
+            cout<<"escopeta"<<endl;cout<<&m_currentWeapon<<endl;
         }
-    }else if(w==2){         //RIFLE
+    }else if(w==3){         //RIFLE
+        cout << m_hasRifle << endl;
         if (m_hasRifle){
             m_currentWeapon = m_weapons[2];
             m_currentWeaponType = eRifle;
+            cout<<"rifle"<<endl;
         }
     }
     //cout << "TENGO EL ARMA " << m_currentWeaponType << endl;
@@ -138,7 +146,6 @@ void Player::readEvents()
     {
         setAnimation(dwe::eAnimStand);
     }
-
     setVelocity(dwe::vec2f(getSpeedX(), getSpeedZ()));
 
 
@@ -153,7 +160,7 @@ void Player::readEvents()
 
     /*********/
      // consumir botiquin
-    if(GEInstance->receiver.isKeyDown(KEY_KEY_3) && (World->getTimeElapsed() - m_timeMedkit)> 200)
+    if(GEInstance->receiver.isKeyDown(KEY_KEY_4) && (World->getTimeElapsed() - m_timeMedkit)> 200)
     {
         this->consumeMedkit();
         cout << this->getAmmo(0);
@@ -162,7 +169,7 @@ void Player::readEvents()
 
     /*********/
     PlayerMate* playermate = NetInstance->getPlayerMate(1);
-    if (GEInstance->receiver.isKeyDown(KEY_KEY_4)&& (World->getTimeElapsed() - m_timeGivingStuff) > 200)
+    if (GEInstance->receiver.isKeyDown(KEY_KEY_5)&& (World->getTimeElapsed() - m_timeGivingStuff) > 200)
     {
          //this->giveMedkits(1,playermate);
          this->giveAmmo(0,1, playermate);
@@ -176,13 +183,22 @@ void Player::readEvents()
     }*/
 
     //CAMBIAR ARMA
-    if(GEInstance->receiver.isKeyDown(KEY_KEY_B)){
-        this->swapCurrentWeapon(0);
-    }else if(GEInstance->receiver.isKeyDown(KEY_KEY_N)){
+    if(GEInstance->receiver.isKeyDown(KEY_KEY_1) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && getCurrentWeapon() != m_weapons[0]){
         this->swapCurrentWeapon(1);
-    }else if(GEInstance->receiver.isKeyDown(KEY_KEY_M)){
+        m_timeWeaponSwap = World->getTimeElapsed();
+    }else if(GEInstance->receiver.isKeyDown(KEY_KEY_2) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && getCurrentWeapon() != m_weapons[1]){
         this->swapCurrentWeapon(2);
+        m_timeWeaponSwap = World->getTimeElapsed();
+    }else if(GEInstance->receiver.isKeyDown(KEY_KEY_3) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && getCurrentWeapon() != m_weapons[2]){
+        this->swapCurrentWeapon(3);
+        m_timeWeaponSwap = World->getTimeElapsed();
     }
+
+    //HACER DASH
+     if(GEInstance->receiver.isKeyDown(KEY_SPACE) && World->getTimeElapsed() - m_timeWeaponSwap > 200)
+        this->dash();//evadimos
+
+
 
 
 }
@@ -192,6 +208,10 @@ void Player::readEvents()
 int Player::getAmmo(int numWeapon) { return m_ammo[numWeapon]; }
 void Player::setAmmo(int numWeapon, int ammount) { m_ammo[numWeapon] = ammount; }
 void Player::addAmmo(int numWeapon, int ammount) { m_ammo[numWeapon] += ammount; }
+int Player::getCurrentAmmo() {if(m_currentWeapon == m_weapons[0]) return m_ammo[0];
+                              if(m_currentWeapon == m_weapons[1]) return m_ammo[1];
+                              if(m_currentWeapon == m_weapons[2]) return m_ammo[2];
+                             }
 
 /////////////
 void Player::giveAmmo(int numWeapon, int ammount, PlayerMate* playermate)

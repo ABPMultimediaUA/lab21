@@ -222,7 +222,7 @@ dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 /////////////////////////////
 Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/sydney.md2", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/player.obj", vec3f(0,0,0), vec3f(0,0,0));
 	Player* p = new Player(gun);
 	p->setNode(new Node(node));
 
@@ -302,9 +302,9 @@ Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float p
 	return d;
 }
 
-Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle)
+Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle, std::string weapon)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/proyectil.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/" + weapon + ".obj", vec3f(0,0,0), vec3f(0,0,0));
     Projectile* p = new Projectile(origin, angle);
 	p->setNode(new Node(node));
 	p->setPosition(origin);

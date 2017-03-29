@@ -71,7 +71,7 @@ dwe::AchievementInfo::~AchievementInfo(){};
 
 void dwe::AchievementInfo::draw()
 {
-    //GEInstance->drawSprite(sp);
+    GEInstance->drawSprite(sp);
 }
 
 void dwe::AchievementInfo::setPosition()
@@ -186,34 +186,34 @@ dwe::WeaponBox::WeaponBox( float x, float y)
 
 dwe::WeaponBox::~WeaponBox(){};
 
-void dwe::WeaponBox::draw(FirearmKind weapon)
+void dwe::WeaponBox::draw(FirearmKind weapon, int ammo)
 {
     GEInstance->drawSprite(s_box);
 
-    swapWeapon(weapon, &t_weapon, &text_ammo);
+    swapWeapon(weapon, ammo, &t_weapon, &text_ammo);
 
     GEInstance->drawSprite(s_weapon);
 
     GEInstance->drawText(text_ammo);
 }
 
-void dwe::WeaponBox::swapWeapon(FirearmKind weapon, sf::Texture *tweapon, sf::Text *textammo)
+void dwe::WeaponBox::swapWeapon(FirearmKind weapon, int ammo, sf::Texture *tweapon, sf::Text *textammo)
 {
 
     // Según el arma que haya en el momento, cambiamos la imagen y la cantidad disponible
     //if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1) && (clock() - t)> 200)
     if (weapon == eGun)
-        updateWeapon(tweapon, "media/grenade.png", &grenades, textammo);
+        updateWeapon(tweapon, "media/grenade.png", ammo, textammo);
 
 
     //else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2) && (clock() - t)> 200)
     else if (weapon == eRifle)
-        updateWeapon(tweapon, "media/cosa2.png", &ammoGun, textammo);
+        updateWeapon(tweapon, "media/cosa2.png", ammo, textammo);
 
 
     //else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3) && (clock() - t)> 200)
     else if (weapon == eShotgun)
-        updateWeapon(tweapon, "media/cosa3.png", &ammoRifle, textammo);
+        updateWeapon(tweapon, "media/cosa3.png", ammo, textammo);
 
 
     // Ponmos textura, posicion, etc del arma
@@ -223,11 +223,11 @@ void dwe::WeaponBox::swapWeapon(FirearmKind weapon, sf::Texture *tweapon, sf::Te
 
 }
 
-void dwe::WeaponBox::updateWeapon (sf::Texture *tweapon, std::string str, int *ammo, sf::Text *textammo)
+void dwe::WeaponBox::updateWeapon (sf::Texture *tweapon, std::string str, int ammo, sf::Text *textammo)
 {
     std::stringstream sw;
     tweapon->loadFromFile(str);
-    sw << "x" << *ammo;
+    sw << "x" << ammo;
     textammo->setString(sw.str());
 }
 

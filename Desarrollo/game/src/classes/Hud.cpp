@@ -24,13 +24,15 @@ Hud::~Hud()
 
 void Hud::draw()
 {
+    FirearmKind weapon  = mainPlayer->getCurrentWeaponType();
     int medkits         = mainPlayer->getNumMedkits();
     int health          = mainPlayer->getHealth();
     int maxHealth       = mainPlayer->getMaxHealth();
-    FirearmKind weapon = mainPlayer->getCurrentWeaponType();
-    //std::cout << "TAAAAA" << health << std::endl;
+    int ammo            = mainPlayer->getCurrentAmmo();
 
-    WeaponBox->draw(weapon);
+   // cout << "ADAAAAA" << weapon << "asdad" << ammo << endl;
+
+    WeaponBox->draw(weapon, ammo);
 
     HealthBox->draw(medkits, health, maxHealth);
 }
