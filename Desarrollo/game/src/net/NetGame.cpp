@@ -363,17 +363,17 @@ void dwn::NetGame::update()
 			break;*/
 
 		case ID_DISCONNECTION_NOTIFICATION:
-            std::cout << "\n------------------- ID_DISCONNECTION_NOTIFICATION ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_DISCONNECTION_NOTIFICATION ------------------------\n"; //getline(cin, quitar);
 			PushMessage(RakNet::RakString("Desconectado de ") + targetName + RakNet::RakString("."));
 			break;
 
 		case ID_CONNECTION_LOST:
-            std::cout << "\n------------------- ID_CONNECTION_LOST ------------------------\n"; std::cin >> quitar;
+            std::cout << "\n------------------- ID_CONNECTION_LOST ------------------------\n"; //std::cin >> quitar;
 			PushMessage(RakNet::RakString("Se ha perdido la conexion a ") + targetName + RakNet::RakString("."));
 			break;
 
 		case ID_CONNECTION_REQUEST_ACCEPTED:
-            std::cout << "\n------------------- ID_CONNECTION_REQUEST_ACCEPTED ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_CONNECTION_REQUEST_ACCEPTED ------------------------\n"; //getline(cin, quitar);
             PushMessage(RakNet::RakString("Conexion a ") + targetName + RakNet::RakString(" aceptada."));
             if (packet->systemAddress==facilitatorSystemAddress)
             {
@@ -381,24 +381,24 @@ void dwn::NetGame::update()
                 RakNet::CloudQuery cloudQuery;
                 cloudQuery.keys.Push(RakNet::CloudKey(NET_CLOUD_KEY,0),_FILE_AND_LINE_);
                 cloudClient->Get(&cloudQuery, packet->guid);
-                std::cout << "\n------------------- cloudClient->Get ------------------------\n"; getline(cin, quitar);
+                std::cout << "\n------------------- cloudClient->Get ------------------------\n"; //getline(cin, quitar);
             }
 			break;
 
 		case ID_CONNECTION_ATTEMPT_FAILED:
-            std::cout << "\n------------------- ID_CONNECTION_ATTEMPT_FAILED ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_CONNECTION_ATTEMPT_FAILED ------------------------\n"; //getline(cin, quitar);
             PushMessage(RakNet::RakString("La conexion a ") + targetName + RakNet::RakString(" ha fallado."));
             m_connectionFailed = true;
 			break;
 
 		case ID_NO_FREE_INCOMING_CONNECTIONS:
-            std::cout << "\n------------------- ID_NO_FREE_INCOMING_CONNECTIONS ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_NO_FREE_INCOMING_CONNECTIONS ------------------------\n"; //getline(cin, quitar);
             PushMessage(RakNet::RakString("La partida en el servidor está completa ") + targetName + RakNet::RakString("."));
             m_connectionFailed = true;
 			break;
 
 		case ID_NEW_INCOMING_CONNECTION:
-            std::cout << "\n------------------- ID_NEW_INCOMING_CONNECTION ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_NEW_INCOMING_CONNECTION ------------------------\n"; //getline(cin, quitar);
             if (fullyConnectedMesh2->IsHostSystem())
             {
                 // Cuando es el primer juego que se ha creado y accede un nuevo jugador
@@ -409,7 +409,7 @@ void dwn::NetGame::update()
 
 		case ID_FCM2_VERIFIED_JOIN_START:
 		    {
-            std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_START ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_START ------------------------\n"; //getline(cin, quitar);
                 DataStructures::List<RakNet::SystemAddress> addresses;
                 DataStructures::List<RakNet::RakNetGUID> guids;
                 DataStructures::List<RakNet::BitStream*> userData;
@@ -421,18 +421,18 @@ void dwn::NetGame::update()
                     std::cout << guids[i].ToString();
                 }
             std::cout << "-----\n";
-            getline(cin, quitar);
+            //getline(cin, quitar)
 		    }
 			break;
 
 		case ID_FCM2_VERIFIED_JOIN_FAILED:
-            std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_FAILED ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_FAILED ------------------------\n"; //getline(cin, quitar);
 			PushMessage(RakNet::RakString("Failed to join game session"));
 			break;
 
 		case ID_FCM2_VERIFIED_JOIN_CAPABLE:
 		    {
-            std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_CAPABLE ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_CAPABLE ------------------------\n"; //getline(cin, quitar);
                 // Controlamos que la partida no ha empezado y que no está completa
                 bool aceptar = (getNumPlayerMates() < MAX_PLAYERS  && !m_gameStarted);
                 fullyConnectedMesh2->RespondOnVerifiedJoinCapable(packet, aceptar, 0);
@@ -441,7 +441,7 @@ void dwn::NetGame::update()
 
 		case ID_FCM2_VERIFIED_JOIN_ACCEPTED:
 		    {
-            std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_ACCEPTED ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_ACCEPTED ------------------------\n"; //getline(cin, quitar);
                 DataStructures::List<RakNet::RakNetGUID> systemsAccepted;
                 bool thisSystemAccepted;
                 fullyConnectedMesh2->GetVerifiedJoinAcceptedAdditionalData(packet, &thisSystemAccepted, systemsAccepted, 0);
@@ -458,7 +458,7 @@ void dwn::NetGame::update()
 
 		case ID_FCM2_VERIFIED_JOIN_REJECTED:
 		    {
-            std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_REJECTED ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_REJECTED ------------------------\n"; //getline(cin, quitar);
 		        PushMessage(RakNet::RakString("rejected"));
 		        m_connectionRejected = true;
 		        // desconectar y marcar como no conectado
@@ -466,7 +466,7 @@ void dwn::NetGame::update()
 			break;
 
 		case ID_FCM2_NEW_HOST:
-            std::cout << "\n------------------- ID_FCM2_NEW_HOST ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_FCM2_NEW_HOST ------------------------\n"; //getline(cin, quitar);
 		    if (packet->guid==rakPeer->GetMyGUID())
             {
                 // Original host dropped. I am the new session host. Upload to the cloud so new players join this system.
@@ -478,7 +478,7 @@ void dwn::NetGame::update()
 
 		case ID_CLOUD_GET_RESPONSE:
 		    {
-            std::cout << "\n------------------- ID_CLOUD_GET_RESPONSE ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_CLOUD_GET_RESPONSE ------------------------\n"; //getline(cin, quitar);
                 RakNet::CloudQueryResult cloudQueryResult;
                 cloudClient->OnGetReponse(&cloudQueryResult, packet);
 
@@ -505,41 +505,41 @@ void dwn::NetGame::update()
 			break;
 
 		case ID_NAT_TARGET_NOT_CONNECTED:
-            std::cout << "\n------------------- ID_NAT_TARGET_NOT_CONNECTED ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_NAT_TARGET_NOT_CONNECTED ------------------------\n"; //getline(cin, quitar);
             targetName=getNATTargetName(packet);
             PushMessage(RakNet::RakString("NAT target ") + targetName + RakNet::RakString(" not connected."));
 			break;
 
 		case ID_NAT_TARGET_UNRESPONSIVE:
-            std::cout << "\n------------------- ID_NAT_TARGET_UNRESPONSIVE ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_NAT_TARGET_UNRESPONSIVE ------------------------\n"; //getline(cin, quitar);
             targetName=getNATTargetName(packet);
             PushMessage(RakNet::RakString("NAT target ") + targetName + RakNet::RakString(" unresponsive."));
 			break;
 
 		case ID_NAT_CONNECTION_TO_TARGET_LOST:
-            std::cout << "\n------------------- ID_NAT_CONNECTION_TO_TARGET_LOST ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_NAT_CONNECTION_TO_TARGET_LOST ------------------------\n"; //getline(cin, quitar);
             targetName=getNATTargetName(packet);
             PushMessage(RakNet::RakString("NAT target ") + targetName + RakNet::RakString(" connection to lost."));
 			break;
 
 		case ID_NAT_ALREADY_IN_PROGRESS:
-            std::cout << "\n------------------- ID_NAT_ALREADY_IN_PROGRESS ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_NAT_ALREADY_IN_PROGRESS ------------------------\n"; //getline(cin, quitar);
             targetName=getNATTargetName(packet);
             PushMessage(RakNet::RakString("NAT punchthrough to ") + targetName + RakNet::RakString(" in progress (skipping)."));
 			break;
 
 		case ID_NAT_PUNCHTHROUGH_SUCCEEDED:
-            std::cout << "\n------------------- ID_NAT_PUNCHTHROUGH_SUCCEEDED ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_NAT_PUNCHTHROUGH_SUCCEEDED ------------------------\n"; //getline(cin, quitar);
             if (packet->data[1]==1)  // Si somos los que enviamos el OpenNAT
             {
                 PushMessage(RakNet::RakString("Connecting to existing game instance"));
                 rakPeer->Connect(packet->systemAddress.ToString(false), packet->systemAddress.GetPort(), 0, 0);
-                std::cout << "\n-------------- " << packet->systemAddress.ToString(false) << ":" << packet->systemAddress.GetPort() <<  "\n";getline(cin, quitar);
+                std::cout << "\n-------------- " << packet->systemAddress.ToString(false) << ":" << packet->systemAddress.GetPort() <<  "\n"; //getline(cin, quitar);
             }
 			break;
 
 		case ID_ADVERTISE_SYSTEM:
-            std::cout << "\n------------------- ID_ADVERTISE_SYSTEM ------------------------\n"; getline(cin, quitar);
+            std::cout << "\n------------------- ID_ADVERTISE_SYSTEM ------------------------\n"; //getline(cin, quitar);
 			if (packet->guid!=rakPeer->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS))
 			{
 				char hostIP[32];

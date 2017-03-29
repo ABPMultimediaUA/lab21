@@ -24,10 +24,16 @@ public:
 private:
     int page;
     int mousePosX, mousePosY;
-    bool a; // Controla cosas
-    bool m;
+    bool menuInfo; // Mostrar info de los menus
+    bool enterNet;
+    bool serverSelection; // Servidor elegido
+    bool serverInfo;
+    bool lobbySelection; // Lobby elegida
+
 
     std::string type;
+    std::string ip;
+    std::string lobby;
 
     /**/
     dwe::Background *menuPrincipalFondo;
