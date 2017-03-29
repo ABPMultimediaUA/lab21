@@ -31,14 +31,16 @@ void Scene::Init()
     /**********************************/
     if (NetInstance->isMultiplayer())
     {
-        if (NetInstance->isServer())
-            GEInstance->addMessageLine("Pulsa intro cuando esten todos los jugadores");
-        else
+        if (NetInstance->isServer()){
+            GEInstance->addMessageLine("Pulsa Intro cuando esten todos los jugadores");
+            cout<<"Pulsa Intro cuando esten todos los jugadores"<<endl;
+        }else{
             GEInstance->addMessageLine("Esperando a que el servidor de la partida inicie el juego");
+        }
         // En startGame solo se inicia si es el servidor
         while (!NetInstance->getGameStarted() && GEInstance->isRunning())
         {
-            GEInstance->draw();
+            //GEInstance->draw(); // Si se dibuja la escena peta
             NetInstance->update();
             if (GEInstance->receiver.isKeyDown(KEY_RETURN))
                 NetInstance->startGame();
