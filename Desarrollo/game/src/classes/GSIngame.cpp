@@ -11,7 +11,7 @@ using namespace std;
 
 GSIngame::GSIngame(){
 
-    hud = new Hud();
+
 }
 
 GSIngame* GSIngame::getInstance()
@@ -29,6 +29,7 @@ void GSIngame::Init(){
     WorldInstance::Instance();
     timeStamp = World->getTimeElapsed();
     Scene::Instance()->Init();
+    hud = new Hud();
 }
 
 void GSIngame::Update(){
@@ -72,7 +73,7 @@ void GSIngame::Render(){
         }
         //GEInstance->draw();
         hud->draw();
-        GEInstance->popGLStates();
+        //GEInstance->popGLStates();
     }
 }
 GSIngame::~GSIngame(){

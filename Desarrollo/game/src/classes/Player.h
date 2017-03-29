@@ -35,6 +35,7 @@ class Player : public CharacterController, public EntityPhysics
         int getGrenades();
         void setGrenades(int n);
         int getHealth();
+        int getMaxHealth();
         void setHealth(int n);
         void setMKeys(int id);
         bool getMKey(int n);
@@ -76,7 +77,8 @@ class Player : public CharacterController, public EntityPhysics
         bool        m_hasRifle;
         FirearmKind m_currentWeaponType;
         Firearm*    m_currentWeapon;
-        int m_health;
+        int         m_health;
+        int         m_maxHealth;
 };
 
 #endif // PLAYER_H

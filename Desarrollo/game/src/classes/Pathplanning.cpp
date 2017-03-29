@@ -27,7 +27,6 @@ void Pathplanning::CreatePathToPosition(int target)
     //int source = GetClosestNodeToPosition(dwe::vec2f(m_owner->getPosition().x, m_owner->getPosition().z));
     int source = currentNode;
     //int target = 4;
-    std::cout<<"TARGET"<<target<<std::endl;
     Graph_SearchAStar a(m_NavGraph, source, target);
     route = a.GetPathToTarget();
     if(route.size()>0){
@@ -62,7 +61,6 @@ dwe::vec2f Pathplanning::Movement()
         else
             direction.x = direction.y = 0;
     }
-    std::cout<<nextNode<<std::endl;
     return direction;
 
 }

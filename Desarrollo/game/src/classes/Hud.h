@@ -13,6 +13,7 @@ class Hud : public Drawable
 
         Hud();
         virtual ~Hud();
+
         virtual void update(){};
         virtual void render(){};
         virtual void draw();
@@ -25,6 +26,8 @@ class Hud : public Drawable
         dwe::WeaponBox *WeaponBox;
 
         dwe::HealthBox *HealthBox;
+
+        Player* mainPlayer;
 
 
 };

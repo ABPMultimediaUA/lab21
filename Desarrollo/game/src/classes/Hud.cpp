@@ -1,5 +1,8 @@
 #include "Hud.h"
+#include "WorldInstance.h"
+#include "defines.h"
 #include <sstream>
+
 using namespace std;
 
 
@@ -8,8 +11,10 @@ Hud::Hud()
     int   width   = GEInstance->get_screenWidth();
     int   height  = GEInstance->get_screenHeight();
 
-    WeaponBox = new dwe::WeaponBox(width/10, height*6.5/8);
-    HealthBox = new dwe::HealthBox (width - width/3, height*6.7/8);
+    WeaponBox     = new dwe::WeaponBox(width/10, height*6.5/8);
+    HealthBox     = new dwe::HealthBox (width - width/3, height*6.7/8);
+
+    mainPlayer    = World->getMainPlayer();
 }
 
 Hud::~Hud()
@@ -19,8 +24,14 @@ Hud::~Hud()
 
 void Hud::draw()
 {
-    WeaponBox->draw();
+    int medkits         = mainPlayer->getNumMedkits();
+    int health          = mainPlayer->getHealth();
+    int maxHealth       = mainPlayer->getMaxHealth();
+    FirearmKind weapon = mainPlayer->getCurrentWeaponType();
+    //std::cout << "TAAAAA" << health << std::endl;
 
-    HealthBox->draw();
+    WeaponBox->draw(weapon);
+
+    HealthBox->draw(medkits, health, maxHealth);
 }
 

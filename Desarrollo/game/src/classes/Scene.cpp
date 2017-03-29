@@ -38,7 +38,7 @@ void Scene::Init()
         // En startGame solo se inicia si es el servidor
         while (!NetInstance->getGameStarted() && GEInstance->isRunning())
         {
-            GEInstance->draw();
+            //GEInstance->draw();
             NetInstance->update();
             if (GEInstance->receiver.isKeyDown(KEY_RETURN))
                 NetInstance->startGame();
@@ -121,7 +121,6 @@ void Scene::Init()
     // Creación de jugador
     mainPlayer = GEInstance->createMainPlayer(gun);
     mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,80));
-    mainPlayer->setHealth(10);
     World->setMainPlayer(mainPlayer);
     cout << "Barra de vida: " << mainPlayer->getHealth() << endl;
 

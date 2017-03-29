@@ -2,6 +2,7 @@
 #define GUI_H
 
 #include "string"
+#include "defines.h"
 #include <SFML/Graphics.hpp>
 #include <sstream>
 
@@ -111,9 +112,9 @@ namespace dwe{
         public:
             WeaponBox(float x, float y);
             ~WeaponBox();
-            void swapWeapon(sf::Texture *tweapon, sf::Text *textammo);
+            void swapWeapon(FirearmKind weapon, sf::Texture *tweapon, sf::Text *textammo);
             void updateWeapon (sf::Texture *tweapon, std::string str, int *ammo, sf::Text *textammo);
-            void draw();
+            void draw(FirearmKind weapon);
 
         private:
             sf::Sprite s_box;
@@ -137,9 +138,9 @@ namespace dwe{
             HealthBox(float x, float y);
             ~HealthBox();
 
-            void drawCurrentHealth();
-            void drawNumberOfHeals();
-            void draw();
+            void drawCurrentHealth(int health, int maxHealth);
+            void drawNumberOfMedkits(int medkits);
+            void draw(int medkits, int health, int maxHealth);
 
 
         private:
@@ -168,10 +169,10 @@ namespace dwe{
 
 
             // Variables para probar el HUD al no tenerlo junto al Game
-            int heals;      // Para los botiquines
+            //int heals;      // Para los botiquines
 
-            float health;     // Para la vida actual
-            float max_health; // Para la vida máxima
+            //float health;     // Para la vida actual
+            //float max_health; // Para la vida máxima
 
     };
 

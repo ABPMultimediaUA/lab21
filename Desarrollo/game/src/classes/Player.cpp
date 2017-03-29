@@ -21,7 +21,8 @@ Player::Player(Gun* gun)
     m_ammo[0] = 10;
     m_ammo[1] = 0;
     m_ammo[2] = 0;
-    m_health=10;
+    m_health = 80;
+    m_maxHealth = 100;
 
 }
 
@@ -216,7 +217,7 @@ bool Player::getMKey(int n){ return m_mKeys[n]; }
 ////////////
 int Player::getHealth() { return m_health; }
 void Player::setHealth(int n) { m_health = n; }
-
+int Player::getMaxHealth() { return m_maxHealth; }
 
 /////////////
 int Player::getNumMedkits()
