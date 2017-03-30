@@ -61,6 +61,12 @@ void tag::ResourceMesh::createOpenGLBuffers()
     glGenBuffers(1, &m_ibVertices);
 }
 
+void tag::ResourceMesh::unsetBuffers()
+{
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
 void tag::ResourceMesh::prepareOpenGLBuffers()
 {
     deleteOpenGLBuffers();
@@ -78,8 +84,7 @@ void tag::ResourceMesh::prepareOpenGLBuffers()
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibVertices);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*m_numIndices, m_indices, GL_STATIC_DRAW);
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    unsetBuffers();
 }
 
 void tag::ResourceMesh::aiSceneToOpenGLMesh(const aiScene* scene)

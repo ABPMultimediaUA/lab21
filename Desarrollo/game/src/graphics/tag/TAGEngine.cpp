@@ -39,12 +39,10 @@ tag::TAGEngine::TAGEngine() :
     m_cameras(),
     m_numActiveCamera(0)
 {
-    //ctor
 }
 
 tag::TAGEngine::~TAGEngine()
 {
-    //dtor
     if (m_shaderProgram)
     {
         delete m_shaderProgram;
@@ -63,7 +61,6 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
 
     // Habilita el z_buffer
     glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
 
     // Inicialización de GLEW
     if(glewInit() != GLEW_OK)
@@ -92,6 +89,8 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     TAGEngine::_uTextureSamplerLocation     = m_shaderProgram->uniform(U_TEXTURESAMPLER);
     TAGEngine::_uHasTexture                 = m_shaderProgram->uniform(U_HASTEXTURE);
     TAGEngine::_uLuz0Location               = m_shaderProgram->uniform(U_LUZ0);
+
+    glUseProgram(0);
 }
 
 /////////////////////
@@ -106,15 +105,16 @@ void tag::TAGEngine::draw()
     glm::mat4 rotateMatrix;
     glm::vec3 positionMatrix;
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
     if (!m_rootNode.isEmptyNode())
     {
+        glUseProgram(m_shaderProgram->ReturnProgramID());
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
         // Habilitamos el paso de attributes
         glEnableVertexAttribArray(TAGEngine::_aPositionLocation);
         glEnableVertexAttribArray(TAGEngine::_aNormalLocation);
         glEnableVertexAttribArray(TAGEngine::_aTextureCoordsLocation);
-        glUseProgram(m_shaderProgram->ReturnProgramID());
 
         // Cálculo de la vista (cámara)
         calculateViewMatrix();
@@ -126,10 +126,14 @@ void tag::TAGEngine::draw()
         // Dibujar
         renderElements();
 
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        glBindTexture(GL_TEXTURE_2D, 0);
 
         glDisableVertexAttribArray(TAGEngine::_aPositionLocation);
         glDisableVertexAttribArray(TAGEngine::_aNormalLocation);
         glDisableVertexAttribArray(TAGEngine::_aTextureCoordsLocation);
+
         glUseProgram(0);
     }
 }
@@ -193,6 +197,11 @@ tag::GraphicNode* tag::TAGEngine::createNodePR(const vec3f position, const vec3f
 //////////////////////////////////
 tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const vec3f position, const vec3f rotation, const std::string textureFileName, GraphicNode* parent)
 {
+    // Debemos de volver a poner el useProgram
+    // Si entre que se inicia el motor y se cargan los modelos
+    // se dibuja sfml, no carga bien si no hacemos esto.
+    glUseProgram(m_shaderProgram->ReturnProgramID());
+
     // Creamos nodo de malla
     GraphicNode* nodoMalla = createNodePR(position, rotation, parent);
 
