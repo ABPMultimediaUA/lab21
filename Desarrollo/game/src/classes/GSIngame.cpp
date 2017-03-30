@@ -75,7 +75,7 @@ void GSIngame::Render(){
         }
         GEInstance->draw();
         hud->draw();
-        GEInstance->popGLStates();
+//        GEInstance->popGLStates();
     }
 }
 GSIngame::~GSIngame(){

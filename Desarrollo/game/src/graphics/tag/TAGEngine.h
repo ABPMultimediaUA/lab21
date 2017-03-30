@@ -204,12 +204,6 @@ namespace tag
             /// \brief Obtiene la endiad del deep nodo padre del nodo pasado, lanzando excepciones si el árbol está mal
             /// formado o lo que devuelve no es una entidad de transformación
             ETransform* getTransformNode(GraphicNode* node, uint8_t deep);
-
-            /// \brief Returns the normalized vector of v
-            vec2f normalizeVector(const vec2f v) const;
-
-            /// \brief Returns the angle in degrees of 2 normalized vectors
-            float calculateDegrees(const vec2f normalizedVector1, const vec2f normalizedVector2) const;
     };
 }
 

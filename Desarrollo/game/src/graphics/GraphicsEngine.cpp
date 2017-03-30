@@ -58,7 +58,7 @@ void dwe::GraphicsEngine::init()
     contextSettings.sRgbCapable = false;
 
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", sf::Style::Default, contextSettings);
-    m_window->setVerticalSyncEnabled(true);
+    m_window->setVerticalSyncEnabled(false);
 
     // Creamos los mensajes de texto, por ahora vacios
     if (!m_font.loadFromFile("media/ExoRegular.otf"))
