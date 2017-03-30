@@ -4,13 +4,15 @@
 #include <defines.h>
 #include <CharacterController.h>
 #include <vector>
-#include <Firearm.h>
 #include "EntityPhysics.h"
 #include "PlayerMate.h"
 #include "NetGame.h"
 #include "Gun.h"
 #include "Rifle.h"
 #include "Shotgun.h"
+#include "Grenade.h"
+
+class Firearm;
 
 class Player : public CharacterController, public EntityPhysics
 {
@@ -76,6 +78,7 @@ class Player : public CharacterController, public EntityPhysics
         bool        m_hasRifle;
         FirearmKind m_currentWeaponType;
         Firearm*    m_currentWeapon;
+        Grenade     m_grenadeWeapon;
         int m_health;
 };
 

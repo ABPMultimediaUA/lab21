@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "WorldInstance.h"
+#include "Firearm.h"
 
 Player::Player(Gun* gun)
 {
@@ -22,6 +23,7 @@ Player::Player(Gun* gun)
     m_ammo[1] = 10;
     m_ammo[2] = 10;
     m_health=10;
+    m_grenades=3;
 
 }
 
@@ -54,7 +56,7 @@ void Player::setPosition(dwe::vec3f p)
     Drawable::setPosition(p);
 }
 
-////////////////////
+////////////////////#include <Firearm.h>
 const char* Player::getNetObjectID() const
 {
     return "Player";
@@ -124,7 +126,7 @@ void Player::swapCurrentWeapon(int w)
 /////////////
 void Player::throwGrenade()
 {
-    // TODO
+    m_grenadeWeapon.shoot();
 }
 
 /////////////
@@ -195,7 +197,6 @@ void Player::readEvents()
     //HACER DASH
      if(GEInstance->receiver.isKeyDown(KEY_SPACE) && World->getTimeElapsed() - m_timeWeaponSwap > 200)
         this->dash();//evadimos
-
 
 
 

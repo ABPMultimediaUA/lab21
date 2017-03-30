@@ -14,6 +14,7 @@
 
 #include "Door.h"
 #include "Projectile.h"
+#include "ProjectileGrenade.h"
 #include "Generator.h"
 #include "MagnetKey.h"
 #include "SpeedBoost.h"
@@ -263,6 +264,15 @@ Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle, std
 {
 	tag::GraphicNode* node = m_tagEngine.createMesh("media/" + weapon + ".obj", vec3f(0,0,0), vec3f(0,0,0));
     Projectile* p = new Projectile(origin, angle);
+	p->setNode(new Node(node));
+	p->setPosition(origin);
+	return p;
+}
+
+ProjectileGrenade* dwe::GraphicsEngine::createProjectileGrenade(vec3f origin, float angle)
+{
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/grenade.obj", vec3f(0,0,0), vec3f(0,0,0));
+    ProjectileGrenade* p = new ProjectileGrenade(origin, angle);
 	p->setNode(new Node(node));
 	p->setPosition(origin);
 	return p;

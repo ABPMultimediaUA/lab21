@@ -1,4 +1,6 @@
 #include "Grenade.h"
+#include "Player.h"
+#include "WorldInstance.h"
 
 Grenade::Grenade()
 {
@@ -13,5 +15,5 @@ Grenade::~Grenade()
 //////////////
 void Grenade::shoot()
 {
-    //Scene::Instance()->createGrenade(World->getMainPlayer()->getPosition(), World->getMainPlayer()->getRotation().y, "shotgunBullet");
+    Scene::Instance()->createProjectileGrenade(World->getMainPlayer()->getPosition(), World->getMainPlayer()->getRotation().y);
 }

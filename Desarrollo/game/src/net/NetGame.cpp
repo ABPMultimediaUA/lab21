@@ -597,6 +597,20 @@ void dwn::NetGame::update()
                 m_scene->createProjectile(position, angle, weapon);
                 break;
             }
+            case ID_PROJECTILEGRENADE_CREATE:
+            {
+                dwe::vec3f position;
+                float angle;
+                std::string weapon;
+
+                RakNet::BitStream bsIn(packet->data,packet->length,false);
+                bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+                bsIn.Read(position);
+                bsIn.Read(angle);
+
+                m_scene->createProjectileGrenade(position, angle);
+                break;
+            }
         case ID_CONSUMABLE_TAKEN:
             {
 				unsigned int consumableID = getBitStreamEntityID(packet);

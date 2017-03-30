@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "WorldInstance.h"
 #include "Projectile.h"
+#include "ProjectileGrenade.h"
 #include "SpeedBoost.h"
 #include "Medkit.h"
 #include "Consumable.h"
@@ -163,6 +164,8 @@ void Scene::Init()
 
     //rmm Cheat: la primera vez que creo el projectile va muy lento, no se pq
     createProjectile(dwe::vec3f(1.0, 1.0, 1.0), 0.5, "gunBullet");
+    createProjectileGrenade(dwe::vec3f(1.0, 1.0, 1.0), 0.5);
+    deleteProjectileGrenade(0);
     deleteProjectile(0);
     timeLastProjectil = 0;
 }
@@ -184,6 +187,9 @@ void Scene::Destroy(){
 
     while(m_projectiles.size()>0){
         m_projectiles.pop_back();
+    }
+    while(m_projectilesGrenades.size()>0){
+        m_projectilesGrenades.pop_back();
     }
 
     while(m_consumables.size()>0){
@@ -272,10 +278,26 @@ void Scene::Update()
         }//
     }
 
+       // comprobamos si dispara granadas
+    if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isKeyDown(KEY_KEY_G)){
+        NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectilgrenade
+        if (mainPlayer->getGrenades() > 0) //
+        {
+            NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectilgrenade
+
+            mainPlayer->throwGrenade();
+
+            timeLastProjectil = World->getTimeElapsed();
+
+            mainPlayer->setGrenades(mainPlayer->getGrenades()-1); //
+        }//
+    }
+
     //UPDATE
 
     mainPlayer->update(shotgun, rifle); //Posición actualizada de Irrlicht Player
     updateProjectiles();
+    updateProjectilesGrenade();
     updateConsumables(mainPlayer);
     updatePlayerWeapons(mainPlayer, mainPlayer->getPlayerWeapons());
 
@@ -317,6 +339,21 @@ void Scene::updateProjectiles()
 }
 
 ////////////
+void Scene::updateProjectilesGrenade()
+{
+    unsigned int i=0;
+    while(i<m_projectilesGrenades.size())
+    {
+        m_projectilesGrenades[i]->update();
+        if (m_projectilesGrenades[i]->getCollides())
+        {
+            m_projectilesGrenades[i]->setVelocity(dwe::vec2f(0,0));
+        }
+        i++;
+    }
+}
+
+////////////
 void Scene::deleteProjectile(unsigned int i)
 {
     if (i<m_projectiles.size())
@@ -327,9 +364,25 @@ void Scene::deleteProjectile(unsigned int i)
 }
 
 ////////////
+void Scene::deleteProjectileGrenade(unsigned int i)
+{
+    if (i<m_projectilesGrenades.size())
+    {
+        delete m_projectilesGrenades[i];
+        m_projectilesGrenades.erase(m_projectilesGrenades.begin()+i);
+    }
+}
+
+////////////
 void Scene::createProjectile(dwe::vec3f origin, float angle, std::string weapon)
 {
     m_projectiles.push_back(GEInstance->createProjectile(origin, angle, weapon));
+}
+
+////////////
+void Scene::createProjectileGrenade(dwe::vec3f origin, float angle)
+{
+    m_projectilesGrenades.push_back(GEInstance->createProjectileGrenade(origin, angle));
 }
 
 ////////////
