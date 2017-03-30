@@ -326,6 +326,7 @@ void GSMainMenu::Update(){
         serverSelection=false;
         serverInfo=false;
         lobbySelection=false;
+        page=0;
     }
 }
 
