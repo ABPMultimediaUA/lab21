@@ -77,6 +77,9 @@ void dwe::GraphicsEngine::init()
 
     m_secondsLastDraw = 0;
     m_clock.restart();
+
+    m_camera = 0;
+
     m_window->pushGLStates();
 }
 
@@ -116,6 +119,24 @@ void dwe::GraphicsEngine::draw()
     // Lineas de mensaje del jugador
     for(unsigned int i=0; i<MAX_MESSAGE_LINES; i++)
         m_window->draw(m_messageLine[i]);
+
+
+    //m_window->popGLStates();
+
+    /*
+    m_window->display();
+
+    char tmp[25];
+    float fps = 1.f / (m_clock.getElapsedTime().asSeconds() - m_secondsLastDraw);
+    m_secondsLastDraw = m_clock.getElapsedTime().asSeconds();
+    sprintf(tmp, "Lab21 - fps:%f", fps);
+    m_window->setTitle(tmp);
+    */
+}
+
+void dwe::GraphicsEngine::popGLStates()
+{
+    m_window->popGLStates();
 }
 
 
@@ -411,10 +432,13 @@ void dwe::GraphicsEngine::close()
 //////////////////////////
 void dwe::GraphicsEngine::createCamera()
 {
-    vec3f position(-150,120,-190);
-    m_camera = m_tagEngine.createPerspectiveCamera(position, vec3f(0,0,0), 45.0f, get_screenWidth() / get_screenHeight(), 0.1f, 1000.0f);
-    m_tagEngine.nodeLookAtTarget(m_camera, position, vec3f(0,0,0));
-    m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0));
+    if (!m_camera)
+    {
+        vec3f position(-150,120,-190);
+        m_camera = m_tagEngine.createPerspectiveCamera(position, vec3f(0,0,0), 45.0f, get_screenWidth() / get_screenHeight(), 0.1f, 1000.0f);
+        m_tagEngine.nodeLookAtTarget(m_camera, position, vec3f(0,0,0));
+        m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0));
+    }
 }
 
 //////////////////////////

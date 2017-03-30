@@ -105,6 +105,7 @@ namespace dwn
             void sendBroadcast(unsigned int messageID, RakNet::RakString value);
             void sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle);
             void sendBroadcast(unsigned int messageID, unsigned int objectID, dwe::vec3f position, dwe::vec3f rotation);
+            void sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle, RakNet::RakString value);
 
         protected:
 
@@ -145,6 +146,8 @@ namespace dwn
 
 
             unsigned int getBitStreamEntityID(Packet *packet);
+
+            void sendBroadcastMessage(RakNet::BitStream &bsOut);
 
 
             ///////////////////////////////////////////

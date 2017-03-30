@@ -33,10 +33,12 @@ class Player : public CharacterController, public EntityPhysics
         virtual void setNode(dwe::Node* n);   // Necesario para EntityPhysics
         int getAmmo(int numWeapon);
         void setAmmo(int numWeapon, int ammount);
+        int getCurrentAmmo();
         void addAmmo(int numWeapon, int ammount);
         int getGrenades();
         void setGrenades(int n);
         int getHealth();
+        int getMaxHealth();
         void setHealth(int n);
         void setMKeys(int id);
         bool getMKey(int n);
@@ -78,8 +80,10 @@ class Player : public CharacterController, public EntityPhysics
         bool        m_hasRifle;
         FirearmKind m_currentWeaponType;
         Firearm*    m_currentWeapon;
+        int         m_health;
+        int         m_maxHealth;
         Grenade     m_grenadeWeapon;
-        int m_health;
+
 };
 
 #endif // PLAYER_H

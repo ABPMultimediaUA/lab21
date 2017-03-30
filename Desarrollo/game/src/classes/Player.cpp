@@ -19,10 +19,11 @@ Player::Player(Gun* gun)
     m_hasRifle = false;
     m_currentWeaponType = eGun;
     m_currentWeapon = m_weapons[0];
-    m_ammo[0] = 10;
+    m_ammo[0] = 15;
     m_ammo[1] = 10;
-    m_ammo[2] = 10;
-    m_health=10;
+    m_ammo[2] = 5;
+    m_health = 80;
+    m_maxHealth = 100;
     m_grenades=3;
 
 }
@@ -114,6 +115,7 @@ void Player::swapCurrentWeapon(int w)
             cout<<"escopeta"<<endl;cout<<&m_currentWeapon<<endl;
         }
     }else if(w==3){         //RIFLE
+        cout << m_hasRifle << endl;
         if (m_hasRifle){
             m_currentWeapon = m_weapons[2];
             m_currentWeaponType = eRifle;
@@ -207,6 +209,10 @@ void Player::readEvents()
 int Player::getAmmo(int numWeapon) { return m_ammo[numWeapon]; }
 void Player::setAmmo(int numWeapon, int ammount) { m_ammo[numWeapon] = ammount; }
 void Player::addAmmo(int numWeapon, int ammount) { m_ammo[numWeapon] += ammount; }
+int Player::getCurrentAmmo() {if(m_currentWeapon == m_weapons[0]) return m_ammo[0];
+                              if(m_currentWeapon == m_weapons[1]) return m_ammo[1];
+                              if(m_currentWeapon == m_weapons[2]) return m_ammo[2];
+                             }
 
 /////////////
 void Player::giveAmmo(int numWeapon, int ammount, PlayerMate* playermate)
@@ -232,7 +238,7 @@ bool Player::getMKey(int n){ return m_mKeys[n]; }
 ////////////
 int Player::getHealth() { return m_health; }
 void Player::setHealth(int n) { m_health = n; }
-
+int Player::getMaxHealth() { return m_maxHealth; }
 
 /////////////
 int Player::getNumMedkits()

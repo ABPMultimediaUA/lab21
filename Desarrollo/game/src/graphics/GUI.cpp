@@ -142,3 +142,215 @@ bool dwe::ConditionEnemiesKilled::test()
         return true;
     return false;
 }
+
+
+void dwe::HudBox::setComponents(std::string str, sf::Sprite *s, sf::Texture *t, float px, float py)
+{
+    t->loadFromFile(str);
+    s->setTexture(*t, true);
+
+    s->setOrigin(0,0);
+    s->setPosition(px, py);
+}
+
+
+dwe::WeaponBox::WeaponBox( float x, float y)
+{
+    int   width   = GEInstance->get_screenWidth();
+    int   height  = GEInstance->get_screenHeight();
+
+    t = 2000;
+    /*grenades = 2;
+    ammoGun = 20;
+    ammoRifle = 10;
+    ammoShotgun = 10;*/
+
+    /**** Caja base ****/
+    setComponents("media/CuadroArma.png", &s_box, &t_box, x, y);
+
+    /**** Arma ****/
+    setComponents("media/grenade.png", &s_weapon, &t_weapon, s_box.getPosition().x, s_box.getPosition().y );
+
+    /**** Munición del arma actual ****/
+    font.loadFromFile("media/exoregular.otf");
+    text_ammo.setFont(font);
+    text_ammo.setCharacterSize(15);
+    text_ammo.setColor(sf::Color::White);
+    text_ammo.setPosition(s_box.getPosition().x + 110, s_box.getPosition().y + 60);
+
+    std::stringstream sw;
+    sw << "x" << grenades;
+    text_ammo.setString(sw.str());
+
+}
+
+dwe::WeaponBox::~WeaponBox(){};
+
+void dwe::WeaponBox::draw(FirearmKind weapon, int ammo)
+{
+    GEInstance->drawSprite(s_box);
+
+    swapWeapon(weapon, ammo, &t_weapon, &text_ammo);
+
+    GEInstance->drawSprite(s_weapon);
+
+    GEInstance->drawText(text_ammo);
+}
+
+void dwe::WeaponBox::swapWeapon(FirearmKind weapon, int ammo, sf::Texture *tweapon, sf::Text *textammo)
+{
+
+    // Según el arma que haya en el momento, cambiamos la imagen y la cantidad disponible
+    //if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1) && (clock() - t)> 200)
+    if (weapon == eGun)
+        updateWeapon(tweapon, "media/grenade.png", ammo, textammo);
+
+
+    //else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2) && (clock() - t)> 200)
+    else if (weapon == eRifle)
+        updateWeapon(tweapon, "media/cosa2.png", ammo, textammo);
+
+
+    //else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3) && (clock() - t)> 200)
+    else if (weapon == eShotgun)
+        updateWeapon(tweapon, "media/cosa3.png", ammo, textammo);
+
+
+    // Ponmos textura, posicion, etc del arma
+    s_weapon.setTexture(*tweapon, true);
+    s_weapon.setOrigin(0,0);
+    s_weapon.setPosition(s_box.getPosition().x, s_box.getPosition().y + 2);
+
+}
+
+void dwe::WeaponBox::updateWeapon (sf::Texture *tweapon, std::string str, int ammo, sf::Text *textammo)
+{
+    std::stringstream sw;
+    tweapon->loadFromFile(str);
+    sw << "x" << ammo;
+    textammo->setString(sw.str());
+}
+
+dwe::HealthBox::HealthBox(float x, float y)
+{
+    int   width   = GEInstance->get_screenWidth();
+    int   height  = GEInstance->get_screenHeight();
+
+    //max_health = 100;
+    //health = max_health;
+    //heals = 10;
+
+    t = 2000;
+
+    /**** Caja base ****/
+    setComponents("media/CuadroVida2.png", &s_box, &t_box, x, y);
+
+    /**** Vida perdida ****/
+    setComponents("media/VidaPerdida.png", &s_hplost, &t_hplost, s_box.getPosition().x + 8, s_box.getPosition().y + 6);
+
+    /**** Vida actual ****/
+    t_health.loadFromFile("media/VidaLlena.png");
+    s_health.setTexture(&t_health, true);
+    s_health.setOrigin(0,0);
+    s_health.setPosition(s_box.getPosition().x + 7, s_box.getPosition().y + 6);
+
+    /**** Contorno vida ****/
+    setComponents("media/ContornoVida.png", &s_edge, &t_edge, s_box.getPosition().x + 6, s_box.getPosition().y + 6);
+
+    /**** Botiquines ****/
+    setComponents("media/Botiquines.png", &s_heal, &t_heal, s_box.getPosition().x + 110, s_box.getPosition().y + 33);
+
+    /**** Texto de Vida actual / Vida total ****/
+    font.loadFromFile("media/exoregular.otf");
+    text_health.setFont(font);
+    text_health.setCharacterSize(15);
+    text_health.setColor(sf::Color::White);
+    text_health.setPosition(s_box.getPosition().x + 65, s_box.getPosition().y + 7);
+
+    /**** Texto de Botiquines ****/
+    text_heal.setFont(font);
+    text_heal.setCharacterSize(15);
+    text_heal.setColor(sf::Color::White);
+    text_heal.setPosition(s_box.getPosition().x + 150, s_box.getPosition().y + 35);
+
+}
+
+dwe::HealthBox::~HealthBox() {}
+
+void dwe::HealthBox::draw(int medkits, int health, int maxHealth)
+{
+    // Perder vida
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && (clock() - t)> 200 && health > 0)
+    {
+        health -= 10;
+        t = clock();
+    }
+    // Ganar vida
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && (clock() - t)> 200 && health < 100)
+    {
+        health += 10;
+        t = clock();
+    }
+
+    // Coger botiquin
+   /* else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && (clock() - t)> 200 && heals > 0)
+    {
+        heals -= 1;
+        t = clock();
+    }
+    // Usar botiquín
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::F) && (clock() - t)> 200 && heals < 20)
+    {
+        heals += 1;
+        t = clock();
+    }*/
+
+
+
+    /////////////////////
+
+    GEInstance->drawSprite(s_box);
+
+    GEInstance->drawSprite(s_hplost);
+
+    drawCurrentHealth(health, maxHealth);
+
+    GEInstance->drawSprite(s_edge);
+
+    GEInstance->drawSprite(s_heal);
+
+    drawNumberOfMedkits(medkits);
+}
+
+
+void dwe::HealthBox::drawCurrentHealth(int health, int maxHealth)
+{
+
+    float hpn   = health;
+    float hpmn  = maxHealth;
+
+    // Actualizamos sprite de vida
+    float c     = ((hpn/hpmn) * 100 *1.8) ;
+    s_health.setSize(sf::Vector2f(c , 22));
+    sf::Rect<int> rect = s_health.getTextureRect();
+    rect.width = c;
+    s_health.setTextureRect(rect);
+
+    // Actualizamos texto Vida Actual / Vida Total
+    std::stringstream ss;
+    ss << hpn<<"/"<<hpmn << " HP";
+    text_health.setString(ss.str());
+
+    // Dibujamos
+    GEInstance->drawRectangleShape(s_health);
+    GEInstance->drawText(text_health);
+}
+
+void dwe::HealthBox::drawNumberOfMedkits(int medkits)
+{
+    std::stringstream sh;
+    sh << "x" << medkits;
+    text_heal.setString(sh.str());
+
+    GEInstance->drawText(text_heal);
+}

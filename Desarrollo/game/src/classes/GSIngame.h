@@ -3,6 +3,7 @@
 
 #include "GState.h"
 #include "Game.h"
+#include "Hud.h"
 
 class GSIngame : public GState{
 public:
@@ -19,6 +20,7 @@ private:
     float timeStamp;
     float deltaTime;
     bool m;
+    Hud* hud;
 };
 
 #endif // GSINGAME_H

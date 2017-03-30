@@ -41,7 +41,9 @@ void Scene::Init()
         // En startGame solo se inicia si es el servidor
         while (!NetInstance->getGameStarted() && GEInstance->isRunning())
         {
+
             //GEInstance->draw(); // Si se dibuja la escena peta
+
             NetInstance->update();
             if (GEInstance->receiver.isKeyDown(KEY_RETURN))
                 NetInstance->startGame();
@@ -116,6 +118,10 @@ void Scene::Init()
     node = createShotgun(-125,10,0);
     node = createShotgun(-150,10,50);
 
+
+    // MEDKITS
+    createMedkit(-300, 10, 200);
+
     // GUN - SHOTGUN - RIFLE
     gun = createGun(0,0,0); // Creo el arma inicial del player
     shotgun = createShotgun(-100,10,-210);
@@ -124,7 +130,6 @@ void Scene::Init()
     // Creación de jugador
     mainPlayer = GEInstance->createMainPlayer(gun);
     mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,80));
-    mainPlayer->setHealth(10);
     World->setMainPlayer(mainPlayer);
     cout << "Barra de vida: " << mainPlayer->getHealth() << endl;
 
@@ -198,7 +203,6 @@ void Scene::Destroy(){
 
     delete joint_try;
     delete bjoint;
-    cout<<"DELETE ALL"<<endl;
 }
 
 ///////////////////////////////
@@ -265,11 +269,8 @@ void Scene::Update()
 
     // comprobamos si dispara
     if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
-        NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
         if (mainPlayer->getAmmo(0) > 0) //
         {
-            NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
-
             mainPlayer->shoot();
 
             timeLastProjectil = World->getTimeElapsed();
@@ -348,6 +349,11 @@ void Scene::updateProjectilesGrenade()
         if (m_projectilesGrenades[i]->getCollides())
         {
             m_projectilesGrenades[i]->setVelocity(dwe::vec2f(0,0));
+        }
+        if(m_projectilesGrenades[i]->getVelocity().x==0 && m_projectilesGrenades[i]->getVelocity().y==0){
+            delete m_projectilesGrenades[i];
+            m_projectilesGrenades.erase(m_projectilesGrenades.begin()+i);
+            i--;
         }
         i++;
     }

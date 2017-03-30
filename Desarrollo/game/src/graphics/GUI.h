@@ -2,7 +2,9 @@
 #define GUI_H
 
 #include "string"
+#include "defines.h"
 #include <SFML/Graphics.hpp>
+#include <sstream>
 
 namespace dwe{
 
@@ -91,6 +93,88 @@ namespace dwe{
             Condition* condition;
     };
 
+    class HudBox
+    {
+        public:
+            HudBox(){};
+            ~HudBox(){};
+            virtual void draw(){};
+            void setComponents(std::string str, sf::Sprite *s, sf::Texture *t, float px, float py);
+            void setTextComponents(sf::Text *text, sf::Font font, unsigned int siz, sf::Color color, float px, float py);
+
+        protected:
+            float t;                  // Probar a cambiar de arma, vida, botiquines...
+            sf::Font font;            // Fuente para los textos
+    };
+
+    class WeaponBox : public HudBox
+    {
+        public:
+            WeaponBox(float x, float y);
+            ~WeaponBox();
+            void swapWeapon(FirearmKind weapon, int ammo, sf::Texture *tweapon, sf::Text *textammo);
+            void updateWeapon (sf::Texture *tweapon, std::string str, int ammo, sf::Text *textammo);
+            void draw(FirearmKind weapon, int ammo);
+
+        private:
+            sf::Sprite s_box;
+            sf::Texture t_box;
+
+            sf::Sprite s_weapon;
+            sf::Texture t_weapon;
+
+            sf::Text text_ammo;
+
+            // Variables para probar HUD
+            int ammoGun;        // Para la munición de cada arma
+            int ammoRifle;
+            int ammoShotgun;
+            int grenades;
+    };
+
+    class HealthBox : public HudBox
+    {
+        public:
+            HealthBox(float x, float y);
+            ~HealthBox();
+
+            void drawCurrentHealth(int health, int maxHealth);
+            void drawNumberOfMedkits(int medkits);
+            void draw(int medkits, int health, int maxHealth);
+
+
+        private:
+
+            // Caja base
+            sf::Sprite s_box;
+            sf::Texture t_box;
+
+            // Vida
+            sf::RectangleShape s_health;
+            sf::Texture t_health;
+            sf::Text text_health;
+
+            // Vida perdida
+            sf::Sprite s_hplost;
+            sf::Texture t_hplost;
+
+            // Contorno vida
+            sf::Sprite s_edge;
+            sf::Texture t_edge;
+
+            // Botiquines
+            sf::Sprite s_heal;
+            sf::Texture t_heal;
+            sf::Text text_heal;
+
+
+            // Variables para probar el HUD al no tenerlo junto al Game
+            //int heals;      // Para los botiquines
+
+            //float health;     // Para la vida actual
+            //float max_health; // Para la vida máxima
+
+    };
 
 
 }

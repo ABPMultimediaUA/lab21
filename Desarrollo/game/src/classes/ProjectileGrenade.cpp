@@ -41,6 +41,7 @@ void ProjectileGrenade::update()
             setForce(dwe::vec2f(-getVelocity().x*20,-getVelocity().y*20));
         }
     }
+
 }
 
 void ProjectileGrenade::setNode(dwe::Node* n)

@@ -52,7 +52,7 @@ void dwn::NetGame::open(Scene *scene, bool multiplayer)
     m_numNetConsumables = 0;
     m_numNetEnemies = 0;
     m_netEnemyIndex = 0;
-    m_scene = scene;
+    //m_scene = scene;
     m_multiplayer = multiplayer;
     m_gamesSearched = false;
 
@@ -587,14 +587,15 @@ void dwn::NetGame::update()
             {
                 dwe::vec3f position;
                 float angle;
-                std::string weapon;
-
+                RakNet::RakString value;
                 RakNet::BitStream bsIn(packet->data,packet->length,false);
                 bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
                 bsIn.Read(position);
                 bsIn.Read(angle);
+                bsIn.Read(value);
 
-                m_scene->createProjectile(position, angle, weapon);
+                Scene::Instance()->createProjectile(position, angle, value.C_String());
+
                 break;
             }
             case ID_PROJECTILEGRENADE_CREATE:
@@ -793,45 +794,57 @@ void dwn::NetGame::startGame()
     }
 }
 
+///////////////////
+void dwn::NetGame::sendBroadcastMessage(RakNet::BitStream &bsOut)
+{
+    RakNet::SystemAddress serverAddress(m_serverIP.c_str(), DEFAULT_PT);
+    rakPeer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, serverAddress, true);
+}
 
 ///////////////////
 void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int value)
 {
-    RakNet::SystemAddress serverAddress(m_serverIP.c_str(), DEFAULT_PT);
     RakNet::BitStream bsOut;
     bsOut.Write((RakNet::MessageID)messageID);
     bsOut.Write(value);
-    rakPeer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, serverAddress, true);
+    sendBroadcastMessage(bsOut);
 }
 ///////////////////
 void dwn::NetGame::sendBroadcast(unsigned int messageID, RakNet::RakString  value)
 {
-    RakNet::SystemAddress serverAddress(m_serverIP.c_str(), DEFAULT_PT);
     RakNet::BitStream bsOut;
     bsOut.Write((RakNet::MessageID)messageID);
     bsOut.Write(value);
-    rakPeer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, serverAddress, true);
+    sendBroadcastMessage(bsOut);
 }
 ///////////////////
 void dwn::NetGame::sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle)
 {
-    RakNet::SystemAddress serverAddress(m_serverIP.c_str(), DEFAULT_PT);
     RakNet::BitStream bsOut;
     bsOut.Write((RakNet::MessageID)messageID);
     bsOut.Write(position);
     bsOut.Write(angle);
-    rakPeer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, serverAddress, true);
+    sendBroadcastMessage(bsOut);
 }
 ///////////////////
 void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int objectID, dwe::vec3f position, dwe::vec3f rotation)
 {
-    RakNet::SystemAddress serverAddress(m_serverIP.c_str(), DEFAULT_PT);
     RakNet::BitStream bsOut;
     bsOut.Write((RakNet::MessageID)messageID);
     bsOut.Write(objectID);
     bsOut.Write(position);
     bsOut.Write(rotation);
-    rakPeer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, serverAddress, true);
+    sendBroadcastMessage(bsOut);
+}
+///////////////////
+void dwn::NetGame::sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle, RakNet::RakString value)
+{
+    RakNet::BitStream bsOut;
+    bsOut.Write((RakNet::MessageID)messageID);
+    bsOut.Write(position);
+    bsOut.Write(angle);
+    bsOut.Write(value);
+    sendBroadcastMessage(bsOut);
 }
 
 

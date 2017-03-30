@@ -79,6 +79,7 @@ class Scene
         Gun* gun;
         Shotgun* shotgun;
         Rifle* rifle;
+        Medkit* medkit;
 
         bool a;
 
