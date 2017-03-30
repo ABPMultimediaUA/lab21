@@ -236,6 +236,8 @@
 		<Unit filename="src/classes/PriorityQueue.h" />
 		<Unit filename="src/classes/Projectile.cpp" />
 		<Unit filename="src/classes/Projectile.h" />
+		<Unit filename="src/classes/ProjectileGrenade.cpp" />
+		<Unit filename="src/classes/ProjectileGrenade.h" />
 		<Unit filename="src/classes/Rifle.cpp" />
 		<Unit filename="src/classes/Rifle.h" />
 		<Unit filename="src/classes/ScenaryElement.cpp" />
