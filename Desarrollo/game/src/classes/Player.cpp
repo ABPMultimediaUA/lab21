@@ -19,9 +19,6 @@ Player::Player(Gun* gun)
     m_hasRifle = false;
     m_currentWeaponType = eGun;
     m_currentWeapon = m_weapons[0];
-    m_ammo[0] = 15;
-    m_ammo[1] = 10;
-    m_ammo[2] = 5;
     m_health = 80;
     m_maxHealth = 100;
     m_grenades=3;
@@ -83,6 +80,9 @@ void Player::shoot()
 FirearmKind Player::getCurrentWeaponType() { return m_currentWeaponType; }
 Firearm* Player::getCurrentWeapon() { return m_currentWeapon; }
 Firearm** Player::getPlayerWeapons() { return m_weapons; }
+Weapon* Player::getPlayerGun() { return m_weapons[0]; }
+Weapon* Player::getPlayerShotgun() { return m_weapons[1]; }
+Weapon* Player::getPlayerRifle() { return m_weapons[2]; }
 bool Player::getHasShotgun() { return m_hasShotgun; }
 bool Player::getHasRifle() { return m_hasRifle; }
 
@@ -165,7 +165,7 @@ void Player::readEvents()
     if(GEInstance->receiver.isKeyDown(KEY_KEY_4) && (World->getTimeElapsed() - m_timeMedkit)> 200)
     {
         this->consumeMedkit();
-        cout << this->getAmmo(0);
+
         m_timeMedkit = World->getTimeElapsed();
     }
 
@@ -205,28 +205,19 @@ void Player::readEvents()
 }
 
 
-////////////
-int Player::getAmmo(int numWeapon) { return m_ammo[numWeapon]; }
-void Player::setAmmo(int numWeapon, int ammount) { m_ammo[numWeapon] = ammount; }
-void Player::addAmmo(int numWeapon, int ammount) { m_ammo[numWeapon] += ammount; }
-int Player::getCurrentAmmo() {if(m_currentWeapon == m_weapons[0]) return m_ammo[0];
-                              if(m_currentWeapon == m_weapons[1]) return m_ammo[1];
-                              if(m_currentWeapon == m_weapons[2]) return m_ammo[2];
-                             }
-
 /////////////
 void Player::giveAmmo(int numWeapon, int ammount, PlayerMate* playermate)
 {
     NetInstance->sendBroadcast(ID_SEND_AMMO, playermate->creatingSystemGUID.ToString());
-    m_ammo[numWeapon] -= ammount;
+
+    static_cast<Weapon*>(m_weapons[numWeapon])->setAmmo(ammount - 1);
 
 }
 
 /////////////
 void Player::receiveAmmo(int numWeapon, int ammount)
 {
-    this->addAmmo(numWeapon, ammount);
-
+    static_cast<Weapon*>(m_weapons[numWeapon])->addAmmo(ammount);
 }
 
 ////////////

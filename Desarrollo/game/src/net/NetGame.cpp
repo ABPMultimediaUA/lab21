@@ -660,7 +660,9 @@ void dwn::NetGame::update()
 
                 // Si player coincide con la cadena que manda, añadimos ammo
                 if (value == World->getMainPlayer()->creatingSystemGUID.ToString())
-                    World->getMainPlayer()->addAmmo(0,10);
+                    //World->getMainPlayer()->addAmmo(0,10);
+                    World->getMainPlayer()->getPlayerGun()->addAmmo(10);
+
                 break;
 
             }

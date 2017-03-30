@@ -11,9 +11,10 @@ AmmoShotgun::~AmmoShotgun()
 }
 
 //////////////////
-void AmmoShotgun::onTake()
+void AmmoShotgun::onTake(Player* mainplayer)
 {
     // TODO
+    mainplayer->getPlayerShotgun()->addAmmo(1);
 }
 
 /////////////////////////

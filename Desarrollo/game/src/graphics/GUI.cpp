@@ -160,10 +160,7 @@ dwe::WeaponBox::WeaponBox( float x, float y)
     int   height  = GEInstance->get_screenHeight();
 
     t = 2000;
-    /*grenades = 2;
-    ammoGun = 20;
-    ammoRifle = 10;
-    ammoShotgun = 10;*/
+
 
     /**** Caja base ****/
     setComponents("media/CuadroArma.png", &s_box, &t_box, x, y);

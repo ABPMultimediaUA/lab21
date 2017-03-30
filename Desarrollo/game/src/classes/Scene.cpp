@@ -267,15 +267,27 @@ void Scene::Update()
         if(m_enemies[e])
             m_enemies[e]->update();
 
+
+
     // comprobamos si dispara
     if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
-        if (mainPlayer->getAmmo(0) > 0) //
+
+        Firearm* weapon = mainPlayer->getCurrentWeapon();
+
+        int ammo = static_cast<Weapon*>(weapon)->getAmmo();
+
+        cout << "AAAAAAAAAAAAAAAAAAAAA" << ammo << endl;
+
+
+        if (ammo > 0) //
         {
             mainPlayer->shoot();
 
             timeLastProjectil = World->getTimeElapsed();
 
-            mainPlayer->setAmmo(0, mainPlayer->getAmmo(0)-1); //
+            weapon->setAmmo(ammo-1);
+
+
         }//
     }
 

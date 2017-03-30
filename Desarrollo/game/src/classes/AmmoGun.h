@@ -12,7 +12,7 @@ class AmmoGun : public Ammo
         AmmoGun();
         virtual ~AmmoGun();
 
-        virtual void onTake(Player* mainPlayer);
+        virtual void onTake(Player* mainplayer);
 
 
         // Getters & Setters

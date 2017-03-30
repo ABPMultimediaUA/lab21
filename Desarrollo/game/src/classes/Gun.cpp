@@ -5,7 +5,8 @@
 Gun::Gun()
 {
     //ctor
-    id=0;
+    id = 0;
+    this->Weapon::setAmmo(15);
 }
 
 Gun::~Gun()

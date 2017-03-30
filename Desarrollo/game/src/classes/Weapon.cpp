@@ -5,12 +5,18 @@ Weapon::Weapon()
 {
     //ctor
     m_isTaken = false;
+
 }
 
 Weapon::~Weapon()
 {
     //dtor
 }
+
+////////////
+int Weapon::getAmmo() { return m_ammo; }
+void Weapon::setAmmo(int ammo) { m_ammo = ammo; }
+void Weapon::addAmmo(int ammo) { m_ammo += ammo; }
 
 ////////////
 int Weapon::getDamage() { return m_damage; }
