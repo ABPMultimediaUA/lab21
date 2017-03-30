@@ -13,5 +13,5 @@ Grenade::~Grenade()
 //////////////
 void Grenade::shoot()
 {
-    // TODO
+    //Scene::Instance()->createGrenade(World->getMainPlayer()->getPosition(), World->getMainPlayer()->getRotation().y, "shotgunBullet");
 }
