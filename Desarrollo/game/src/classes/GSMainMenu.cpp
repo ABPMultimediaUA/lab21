@@ -4,6 +4,7 @@
 #include "NetGame.h"
 #include <unistd.h>
 #include <iostream>
+#include <sstream>
 
 #include "GUI.h"
 
@@ -30,7 +31,10 @@ GSMainMenu::GSMainMenu(){
     achievementsButton = new dwe::Button("Achievements", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.51);
     optionsButton = new dwe::Button("Options", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.59);
     exitButton = new dwe::Button("Exit", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.67);
-    back2mainMenuButton = new dwe::Button("Back", GEInstance->get_screenWidth()*0.8, GEInstance->get_screenHeight()*0.8);
+    backButton = new dwe::Button("Back", GEInstance->get_screenWidth()*0.8, GEInstance->get_screenHeight()*0.8);
+    serversButtons = new std::vector<dwe::Button>;
+    lobbysButtons = new std::vector<dwe::Button>;
+    createLobbyButton = new dwe::Button("Create lobby", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.8);
 }
 
 GSMainMenu* GSMainMenu::getInstance()
@@ -58,12 +62,29 @@ void GSMainMenu::Render(){
         if(!menuInfo){
             cout<<"/**************************************************/"<<endl;
             cout<<"Menu Jugar Online"<<endl;
-            cout<<"Aqui aparecera una lista de salas a las que unirte"<<endl; // Array de lobbys?
+            cout<<"Aqui aparecera una lista de servidores a los que unirte"<<endl; // Array de servers
             cout<<"Podras crear tu propia sala"<<endl; // Crear Lobby
             menuInfo=true;
         }
         menuJugarOnlineFondo->draw();
-        back2mainMenuButton->draw();
+        for(unsigned int i=0; i<serversButtons->size(); i++){
+            serversButtons->at(i).draw();
+        }
+        backButton->draw();
+    }else if(page==4){
+        if(!menuInfo){
+            cout<<"/**************************************************/"<<endl;
+            cout<<"Menu Seleccionar Lobby"<<endl;
+            cout<<"Aqui aparecera una lista de lobbys a las que unirte"<<endl; // Array de lobbys?
+            cout<<"Podras crear tu propia sala"<<endl; // Crear Lobby
+            menuInfo=true;
+        }
+        menuJugarOnlineFondo->draw();
+        createLobbyButton->draw();
+        for(unsigned int i=0; i<lobbysButtons->size(); i++){
+            lobbysButtons->at(i).draw();
+        }
+        backButton->draw();
     }else if(page==2){
         if(!menuInfo){
             cout<<"/**************************************************/"<<endl;
@@ -73,7 +94,7 @@ void GSMainMenu::Render(){
             menuInfo=true;
         }
         menuLogrosFondo->draw();
-        back2mainMenuButton->draw();
+        backButton->draw();
         //GEInstance->achievementsHandler.draw();
     }else if(page==3){
         if(!menuInfo){
@@ -83,7 +104,7 @@ void GSMainMenu::Render(){
             menuInfo=true;
         }
         menuOpcionesFondo->draw();
-        back2mainMenuButton->draw();
+        backButton->draw();
     }
     //GEInstance->displayWindow();
 }
@@ -117,6 +138,7 @@ void GSMainMenu::HandleEvents(){
                     type="2";
                     enterNet=true;
                     page=1;
+                    menuInfo=false;
                 }
                 else if(buttonCheck(achievementsButton))
                 {
@@ -133,19 +155,68 @@ void GSMainMenu::HandleEvents(){
                     Game::getInstance()->setRunning(false);
                 }
                 break;
-        case 1: if(buttonCheck(back2mainMenuButton))
+        case 1: for(int i=0; i<serversButtons->size(); i++)
+                {
+                    if(buttonCheck(&serversButtons->at(i)))
+                    {
+                        std::stringstream ss;
+                        std::string s;
+                        ss << i;
+                        s = ss.str();
+                        page=4;
+                        ip=s;
+                        serverSelection=true;
+                        NetInstance->connectToServer(atoi(ip.c_str()));
+                        menuInfo=false;
+                    }
+                }
+                if(buttonCheck(backButton))
                 {
                     page=0;
                     menuInfo=false;
                 }
                 break;
-        case 2: if(buttonCheck(back2mainMenuButton))
+        case 4: for(int i=0; i<gamesIP->size(); i++)
+                {
+                    std::stringstream ss;
+                    std::string s;
+                    ss << i+1;
+                    s = ss.str();
+                    auxButton=new dwe::Button("Lobby "+s, GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35);
+                    lobbysButtons->push_back(*auxButton);
+                }
+                for(int i=0; i<lobbysButtons->size(); i++)
+                {
+                    if(buttonCheck(&lobbysButtons->at(i)))
+                    {
+                        std::stringstream ss;
+                        std::string s;
+                        ss << i+1;
+                        s = ss.str();
+                        lobby=s;
+                        lobbySelection=true;
+                        NetInstance->connectToGame(atoi(lobby.c_str()));
+                    }
+                }
+                if(buttonCheck(createLobbyButton))
+                {
+                    lobby="0";
+                    lobbySelection=true;
+                    NetInstance->connectToGame(atoi(lobby.c_str()));
+                }
+                else if(buttonCheck(backButton))
+                {
+                    page=0; // 1 Pero al registrar en diferentes iteraciones el click pasa de lobby -> online -> mainMenu
+                    menuInfo=false;
+                }
+                break;
+        case 2: if(buttonCheck(backButton))
                 {
                     page=0;
                     menuInfo=false;
                 }
                 break;
-        case 3: if(buttonCheck(back2mainMenuButton))
+        case 3: if(buttonCheck(backButton))
                 {
                     page=0;
                     menuInfo=false;
@@ -169,10 +240,17 @@ void GSMainMenu::Update(){
             cout << "\n//\n//Servidores de partidas disponibles:\n";
             std::vector<std::string>* servers = NetInstance->getServers();
 
-            for(unsigned int i=0; i<servers->size(); i++)
+            for(unsigned int i=0; i<servers->size(); i++){
                 cout << "//  ("<<i<<") " << servers->at(i) << "\n";
+                std::stringstream ss;
+                std::string s;
+                ss << i+1;
+                s = ss.str();
+                auxButton = new dwe::Button("Server "+s, GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35);
+                serversButtons->push_back(*auxButton);
+            }
 
-            cout << "// Seleccione el numero de servidor de partidas [0] por defecto]: ";
+            cout << "// Seleccione el numero de servidor de partidas [0] por defecto";
         }
     }
 
@@ -263,5 +341,6 @@ GSMainMenu::~GSMainMenu(){
     delete achievementsButton;
     delete optionsButton;
     delete exitButton;
-    delete back2mainMenuButton;
+    delete backButton;
+    delete createLobbyButton;
 }

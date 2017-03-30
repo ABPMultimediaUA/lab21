@@ -1,5 +1,6 @@
 #ifndef GSMAINMENU_H
 #define GSMAINMENU_H
+#include <sstream>
 
 #include "GState.h"
 
@@ -19,6 +20,7 @@ public:
     void Update();
     void Render();
     void SetPage(int n);
+    void UpdateLobbys();
     static GSMainMenu* getInstance();
 
 private:
@@ -46,7 +48,14 @@ private:
     dwe::Button *achievementsButton;
     dwe::Button *optionsButton;
     dwe::Button *exitButton;
-    dwe::Button *back2mainMenuButton;
+    dwe::Button *backButton;
+
+    dwe::Button *auxButton;
+
+    std::vector<dwe::Button>* serversButtons;
+    std::vector<dwe::Button>* lobbysButtons;
+
+    dwe::Button *createLobbyButton;
     /**/
 };
 
