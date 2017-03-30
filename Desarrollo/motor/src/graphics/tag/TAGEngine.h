@@ -161,10 +161,11 @@ namespace tag
             void nodeLookAtTarget(GraphicNode* node, const vec3f position, const vec3f target);
 
 
-            /// \brief Borra un nodo, y sus nodos padres transformacion
+            /// \brief Borra un nodo, y sus nodos padres transformacion.
             /// \details Busca todos los padres que sean transformación, hasta llegar a uno que
             /// no lo sea, y borra ese nodo. El destructor del nodo se encarga de borrar los
             /// hijos. Del primer nodo borrado, se quita de la lista de hijos de su parent.
+            /// Realiza los deletes pertinentes.
             void deleteNode(GraphicNode* node);
 
             // Handles de los attributes y uniforms
