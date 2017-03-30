@@ -37,7 +37,7 @@ class Scene
 
         void closestEnemy(Player* mainPlayer, Enemy* enemy);
 
-        void createProjectile(dwe::vec3f origin, float angle);
+        void createProjectile(dwe::vec3f origin, float angle, std::string weapon);
         void deleteProjectile(unsigned int i);
         void updateProjectiles();
 
@@ -74,6 +74,8 @@ class Scene
         Gun* gun;
         Shotgun* shotgun;
         Rifle* rifle;
+
+        bool a;
 
         std::vector<Projectile*> m_projectiles;
         std::vector<Consumable*> m_consumables;

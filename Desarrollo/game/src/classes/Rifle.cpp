@@ -1,9 +1,11 @@
 #include "Rifle.h"
 #include "Player.h"
+#include "WorldInstance.h"
 
 Rifle::Rifle()
 {
     //ctor
+    id=2;
 }
 
 Rifle::~Rifle()
@@ -14,7 +16,7 @@ Rifle::~Rifle()
 ////////////
 void Rifle::shoot()
 {
-    // TODO
+    Scene::Instance()->createProjectile(World->getMainPlayer()->getPosition(), World->getMainPlayer()->getRotation().y, "rifleBullet");
 }
 
 ////////////

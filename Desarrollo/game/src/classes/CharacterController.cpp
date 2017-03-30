@@ -7,6 +7,7 @@ CharacterController::CharacterController()
     m_speedX = 0;
     m_speedZ = 0;
     m_hasSpeedBoost = false;
+    m_isEvading = false;
     m_t = 0;
 }
 
@@ -32,6 +33,14 @@ void CharacterController::readEvents()
         //Cuenta atrás
         if (World->getTimeElapsed() - m_timeSpeedBost > _maxSpeedBostTime)
             m_hasSpeedBoost = false;
+    }
+    //EVADING
+    if (m_isEvading){
+        speed = _speedDash;
+        //Cuenta atrás
+        if (World->getTimeElapsed() - m_timeEvading > _maxEvadingTime){
+            m_isEvading = false;
+        }
     }
 
     //AGACHADO
@@ -71,4 +80,9 @@ void CharacterController::setHealth(int h) { m_health = h; }
 void CharacterController::setSpeedBoost(){
     m_hasSpeedBoost = true;
     m_timeSpeedBost = World->getTimeElapsed();
+}
+//SETTERS
+void CharacterController::dash(){
+    m_isEvading = true;
+    m_timeEvading = World->getTimeElapsed();
 }
