@@ -30,10 +30,13 @@ void Enemy::setNetID(unsigned int netID) { m_netID = netID; }
 /////////////
 void Enemy::setPosition(dwe::vec3f p)
 {
-    dwe::vec3f pos(getPosEntity());
+    /*TODO pq se hace esto asi? hace que no se puedan colocar en y los enemigos
+     dwe::vec3f pos(getPosEntity());
     dwe::vec3f newPos(pos.x + p.x, pos.y + p.y, pos.z + p.z);
     setPosEntity(newPos, getRotation().y);
-    Drawable::setPosition(getPosEntity());
+    Drawable::setPosition(getPosEntity());*/
+    setPosEntity(p, getRotation().y);
+    Drawable::setPosition(p);
 }
 
 void Enemy::move()

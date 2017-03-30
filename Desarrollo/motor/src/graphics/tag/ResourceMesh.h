@@ -52,6 +52,7 @@ namespace tag
             void createOpenGLBuffers();
             void deleteOpenGLBuffers();
             void calculateBoundingBox();
+            void unsetBuffers();
     };
 }
 

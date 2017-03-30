@@ -73,9 +73,9 @@ void GSIngame::Render(){
             cout<<"Pulsa F10 para pausar el juego"<<endl;
             m=true;
         }
-        //GEInstance->draw();
+        GEInstance->draw();
         hud->draw();
-        //GEInstance->popGLStates();
+        GEInstance->popGLStates();
     }
 }
 GSIngame::~GSIngame(){

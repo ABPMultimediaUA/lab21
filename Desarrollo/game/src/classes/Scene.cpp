@@ -117,6 +117,10 @@ void Scene::Init()
     node = createShotgun(-125,10,0);
     node = createShotgun(-150,10,50);
 
+
+    // MEDKITS
+    createMedkit(-300, 10, 200);
+
     // GUN - SHOTGUN - RIFLE
     gun = createGun(0,0,0); // Creo el arma inicial del player
     shotgun = createShotgun(-100,10,-210);

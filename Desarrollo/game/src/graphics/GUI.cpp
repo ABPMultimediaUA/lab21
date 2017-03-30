@@ -20,7 +20,7 @@ dwe::Button::~Button(){};
 
 void dwe::Button::draw()
 {
-    //GEInstance->drawText(text);
+    GEInstance->drawText(text);
 }
 
 int dwe::Button::getXOrigin()
@@ -56,7 +56,7 @@ dwe::Background::~Background(){};
 
 void dwe::Background::draw()
 {
-    //GEInstance->drawRectangleShape(rs);
+    GEInstance->drawRectangleShape(rs);
 }
 /***Fondo FIN***/
 
@@ -243,10 +243,10 @@ dwe::HealthBox::HealthBox(float x, float y)
     t = 2000;
 
     /**** Caja base ****/
-    setComponents("media/CuadroVida.png", &s_box, &t_box, x, y);
+    setComponents("media/CuadroVida2.png", &s_box, &t_box, x, y);
 
     /**** Vida perdida ****/
-    setComponents("media/VidaPerdida.png", &s_hplost, &t_hplost, s_box.getPosition().x + 6, s_box.getPosition().y + 6);
+    setComponents("media/VidaPerdida.png", &s_hplost, &t_hplost, s_box.getPosition().x + 8, s_box.getPosition().y + 6);
 
     /**** Vida actual ****/
     t_health.loadFromFile("media/VidaLlena.png");
