@@ -17,6 +17,7 @@ Gun::~Gun()
 void Gun::shoot()
 {cout<<"disparo pistola"<<endl;
     Scene::Instance()->createProjectile(World->getMainPlayer()->getPosition(), World->getMainPlayer()->getRotation().y, "gunBullet");
+    NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, World->getMainPlayer()->getPosition(), World->getMainPlayer()->getRotation().y, "gunBullet"); // Enviamos mensaje para crear projectil
 }
 
 //////////

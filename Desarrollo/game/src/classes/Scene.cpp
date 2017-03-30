@@ -192,7 +192,6 @@ void Scene::Destroy(){
 
     delete joint_try;
     delete bjoint;
-    cout<<"DELETE ALL"<<endl;
 }
 
 ///////////////////////////////
@@ -259,11 +258,8 @@ void Scene::Update()
 
     // comprobamos si dispara
     if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
-        NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
         if (mainPlayer->getAmmo(0) > 0) //
         {
-            NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectil
-
             mainPlayer->shoot();
 
             timeLastProjectil = World->getTimeElapsed();
