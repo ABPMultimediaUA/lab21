@@ -21,6 +21,7 @@ public:
     void Render();
     void SetPage(int n);
     void UpdateLobbys();
+    void UpdateServers();
     static GSMainMenu* getInstance();
 
 private:
@@ -31,8 +32,10 @@ private:
     bool serverSelection; // Servidor elegido
     bool serverInfo;
     bool lobbySelection; // Lobby elegida
+    bool updatedLobbys;
 
     std::vector<std::string>* gamesIP;
+    std::vector<std::string>* servers;
     std::string type;
     std::string ip;
     std::string lobby;
@@ -49,13 +52,12 @@ private:
     dwe::Button *optionsButton;
     dwe::Button *exitButton;
     dwe::Button *backButton;
-
-    dwe::Button *auxButton;
-
-    std::vector<dwe::Button>* serversButtons;
-    std::vector<dwe::Button>* lobbysButtons;
-
     dwe::Button *createLobbyButton;
+
+    dwe::Button *auxButton; // No hacer delete, se borra al borrar los vectores de abajo
+
+    std::vector<dwe::Button>* serversButtons; // Falta delete
+    std::vector<dwe::Button>* lobbysButtons; // Falta delete
     /**/
 };
 

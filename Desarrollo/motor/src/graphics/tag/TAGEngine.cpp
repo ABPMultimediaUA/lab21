@@ -17,6 +17,8 @@
 #include "tag/EMesh.h"
 #include "tag/EAnimation.h"
 
+#include "dwVectors.h"
+
 int tag::TAGEngine::_aPositionLocation;
 int tag::TAGEngine::_aNormalLocation;
 int tag::TAGEngine::_aTextureCoordsLocation;
@@ -407,25 +409,6 @@ void tag::TAGEngine::setRotationNodeEntity(GraphicNode* node, const vec3f rotati
     t->rotate(rotation);  // Rotamos a rotación dada
 }
 
-/////////////////////////
-tag::vec2f tag::TAGEngine::normalizeVector(const vec2f v) const
-{
-    vec2f normalizedV(0,0);
-    if(v.x || v.y)
-    {
-        float magnitud = sqrt(pow(v.x,2) + pow(v.y,2));
-        normalizedV.x = v.x / magnitud;
-        normalizedV.y = v.y / magnitud;
-    }
-    return normalizedV;
-}
-
-//////////////////////
-float tag::TAGEngine::calculateDegrees(const vec2f normalizedVector1, const vec2f normalizedVector2) const
-{
-    return acos(normalizedVector1.x*normalizedVector2.x + (normalizedVector1.y*normalizedVector2.y)) * (180/M_PI);
-}
-
 /////////////////////
 void tag::TAGEngine::nodeLookAtTarget(GraphicNode* node, const vec3f position, const vec3f target)
 {
@@ -439,14 +422,14 @@ void tag::TAGEngine::nodeLookAtTarget(GraphicNode* node, const vec3f position, c
     vec2f normalized2d;
 
     // Calculamos angulo X, utilizando y z
-    normalized2d = normalizeVector(vec2f(positionToTarget.y, positionToTarget.z));
-    anguloX = calculateDegrees(normalized2d, vec2f(0,-1));
+    normalized2d = dwu::normalizeVector(vec2f(positionToTarget.y, positionToTarget.z));
+    anguloX = dwu::calculateDegrees(normalized2d, vec2f(0,-1));
     if (target.y<position.y)
         anguloX *= (-1);
 
     // Calculamos angulo Y, utilizando x z
-    normalized2d = normalizeVector(vec2f(positionToTarget.x, positionToTarget.z));
-    anguloY = calculateDegrees(normalized2d, vec2f(0,-1));
+    normalized2d = dwu::normalizeVector(vec2f(positionToTarget.x, positionToTarget.z));
+    anguloY = dwu::calculateDegrees(normalized2d, vec2f(0,-1));
     if (target.x>position.x)
         anguloY *= (-1);
 
