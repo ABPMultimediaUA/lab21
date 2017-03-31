@@ -18,6 +18,7 @@ GSMainMenu::GSMainMenu(){
     serverSelection = false;
     serverInfo = false;
     lobbySelection = false;
+    updatedLobbys = false;
 
     /**Fondos**/
     menuPrincipalFondo = new dwe::Background("Principal");
@@ -176,18 +177,9 @@ void GSMainMenu::HandleEvents(){
                     menuInfo=false;
                 }
                 break;
-        case 4: for(int i=0; i<gamesIP->size(); i++)
+        case 4: for(int i=0; i<lobbysButtons->size(); i++)
                 {
-                    std::stringstream ss;
-                    std::string s;
-                    ss << i+1;
-                    s = ss.str();
-                    auxButton=new dwe::Button("Lobby "+s, GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35);
-                    lobbysButtons->push_back(*auxButton);
-                }
-                for(int i=0; i<lobbysButtons->size(); i++)
-                {
-                    if(buttonCheck(&lobbysButtons->at(i)))
+                    if(!lobbySelection && buttonCheck(&lobbysButtons->at(i)))
                     {
                         std::stringstream ss;
                         std::string s;
@@ -198,16 +190,20 @@ void GSMainMenu::HandleEvents(){
                         NetInstance->connectToGame(atoi(lobby.c_str()));
                     }
                 }
-                if(buttonCheck(createLobbyButton))
+                if(!lobbySelection)
                 {
-                    lobby="0";
-                    lobbySelection=true;
-                    NetInstance->connectToGame(atoi(lobby.c_str()));
+                    if(buttonCheck(createLobbyButton))
+                    {
+                        lobby="0";
+                        lobbySelection=true;
+                        NetInstance->connectToGame(atoi(lobby.c_str()));
+                    }
                 }
-                else if(buttonCheck(backButton))
+                if(buttonCheck(backButton))
                 {
                     page=0; // 1 Pero al registrar en diferentes iteraciones el click pasa de lobby -> online -> mainMenu
                     menuInfo=false;
+                    updatedLobbys=false;
                 }
                 break;
         case 2: if(buttonCheck(backButton))
@@ -238,17 +234,9 @@ void GSMainMenu::Update(){
         if(NetInstance->searchForServers())
         {
             cout << "\n//\n//Servidores de partidas disponibles:\n";
-            std::vector<std::string>* servers = NetInstance->getServers();
+            servers = NetInstance->getServers();
 
-            for(unsigned int i=0; i<servers->size(); i++){
-                cout << "//  ("<<i<<") " << servers->at(i) << "\n";
-                std::stringstream ss;
-                std::string s;
-                ss << i+1;
-                s = ss.str();
-                auxButton = new dwe::Button("Server "+s, GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35);
-                serversButtons->push_back(*auxButton);
-            }
+            UpdateServers();
 
             cout << "// Seleccione el numero de servidor de partidas [0] por defecto";
         }
@@ -326,7 +314,37 @@ void GSMainMenu::Update(){
         serverSelection=false;
         serverInfo=false;
         lobbySelection=false;
+        updatedLobbys=false;
         page=0;
+    }
+    if(enterNet && serverSelection && !updatedLobbys)
+        UpdateLobbys();
+}
+
+void GSMainMenu::UpdateLobbys()
+{
+    for(int i=0; i<gamesIP->size(); i++)
+    {
+        std::stringstream ss;
+        std::string s;
+        ss << i+1;
+        s = ss.str();
+        auxButton=new dwe::Button("Lobby "+s, GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35);
+        lobbysButtons->push_back(*auxButton);
+    }
+    updatedLobbys=true;
+}
+
+void GSMainMenu::UpdateServers()
+{
+    for(unsigned int i=0; i<servers->size(); i++){
+        cout << "//  ("<<i<<") " << servers->at(i) << "\n";
+        std::stringstream ss;
+        std::string s;
+        ss << i+1;
+        s = ss.str();
+        auxButton = new dwe::Button("Server "+s, GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35);
+        serversButtons->push_back(*auxButton);
     }
 }
 
