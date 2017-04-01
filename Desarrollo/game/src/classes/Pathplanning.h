@@ -14,7 +14,7 @@ class Pathplanning
 
         virtual ~Pathplanning();
 
-        void CreatePathToPosition(int target);
+        void CreatePathToPosition(dwe::vec2f TargetPos);
 
         dwe::vec2f Movement();
 
@@ -28,20 +28,22 @@ class Pathplanning
 
         const NavigationGraph& m_NavGraph;
 
-        int currentNode;
+        dwe::vec2f nextPosition;
 
-        int nextNode;
-
-        int finalNode;
+        dwe::vec2f finalPosition;
 
         dwe::vec2f direction;
 
-        std::list<int> route;
+        std::list<dwe::vec2f> route;
 
-        //int GetClosestNodeToPosition(dwe::vec2f pos)const;
+        int GetClosestNodeToPosition(dwe::vec2f pos);
 
-        void CalculateDirection();
+        float CalculateQuadraticDistance(dwe::vec2f targetPos, dwe::vec2f nodePos)const;
+
+
+        void CalculateDirection(dwe::vec2f source);
         bool CheckIfArrived();
+        bool CheckIfTargetReached();
         void Normalize(dwe::vec2f& vec);
 };
 

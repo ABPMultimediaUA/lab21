@@ -1,5 +1,7 @@
 #include "PathplanningTask.h"
 #include "Pathplanning.h"
+#include "WorldInstance.h"
+#include "Player.h"
 
 PathplanningTask::PathplanningTask(Pathplanning* p, Enemy* owner)
 {
@@ -16,8 +18,10 @@ PathplanningTask::~PathplanningTask()
 
 States PathplanningTask::run()
 {
-    if(m_pathplanning->CheckIfRouteEnd()){
-        m_pathplanning->CreatePathToPosition(rand()%8);
+    if(m_pathplanning->CheckIfRouteEnd() && time>3000){
+        dwe::vec3f pos(World->getMainPlayer()->getPosition());
+        m_pathplanning->CreatePathToPosition(dwe::vec2f(pos.x, pos.z));
     }
+    time++;
     return success;
 }

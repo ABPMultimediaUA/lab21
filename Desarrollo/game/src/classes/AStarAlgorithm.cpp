@@ -87,9 +87,9 @@ void Graph_SearchAStar::Search()
 }
 
 //-----------------------------------------------------------------------------
-std::list<int> Graph_SearchAStar::GetPathToTarget()const
+std::list<dwe::vec2f> Graph_SearchAStar::GetPathToTarget()const
 {
-    std::list<int> path;
+    std::list<dwe::vec2f> path;
 
     //just return an empty path if no target or no path found
     if (m_iTarget < 0)  return path;
@@ -97,12 +97,12 @@ std::list<int> Graph_SearchAStar::GetPathToTarget()const
     int nd = m_iTarget;
 
     if(m_ShortestPathTree[nd] != 0)
-        path.push_front(nd);
+        path.push_front(m_Graph.getNode(nd).getPosition());
 
     while ((nd != m_iSource) && (m_ShortestPathTree[nd] != 0))
     {
         nd = m_ShortestPathTree[nd]->getFrom();
-        path.push_front(nd);
+        path.push_front(m_Graph.getNode(nd).getPosition());
     }
 
     return path;
