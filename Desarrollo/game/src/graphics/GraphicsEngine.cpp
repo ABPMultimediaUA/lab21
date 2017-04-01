@@ -14,6 +14,7 @@
 
 #include "Door.h"
 #include "Projectile.h"
+#include "ProjectileGrenade.h"
 #include "Generator.h"
 #include "MagnetKey.h"
 #include "SpeedBoost.h"
@@ -57,6 +58,7 @@ void dwe::GraphicsEngine::init()
     contextSettings.sRgbCapable = false;
 
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", sf::Style::Default, contextSettings);
+    m_window->setVerticalSyncEnabled(false);
 
     // Creamos los mensajes de texto, por ahora vacios
     if (!m_font.loadFromFile("media/ExoRegular.otf"))
@@ -75,6 +77,10 @@ void dwe::GraphicsEngine::init()
 
     m_secondsLastDraw = 0;
     m_clock.restart();
+
+    m_camera = 0;
+
+    m_window->pushGLStates();
 }
 
 //////////////////////////
@@ -106,20 +112,16 @@ bool dwe::GraphicsEngine::isRunning()
 //////////////////////////
 void dwe::GraphicsEngine::draw()
 {
-    m_window->setActive(true);
+    m_window->popGLStates();   // Antes de este pop hay un push, en init
     m_tagEngine.draw();
-
-    m_window->setActive(false);
-
-
-    // Entre pushGLStates y popGLStates dibujamos los sprites
     m_window->pushGLStates();
 
     // Lineas de mensaje del jugador
     for(unsigned int i=0; i<MAX_MESSAGE_LINES; i++)
         m_window->draw(m_messageLine[i]);
 
-    m_window->popGLStates();
+
+    //m_window->popGLStates();
 
     /*
     m_window->display();
@@ -132,7 +134,12 @@ void dwe::GraphicsEngine::draw()
     */
 }
 
-/*******/
+void dwe::GraphicsEngine::popGLStates()
+{
+    m_window->popGLStates();
+}
+
+
 void dwe::GraphicsEngine::drawRectangleShape(sf::RectangleShape rs)
 {
     m_window->draw(rs);
@@ -163,32 +170,13 @@ void dwe::GraphicsEngine::displayWindow()
     sprintf(tmp, "Lab21 - fps:%f", fps);
     m_window->setTitle(tmp);
 }
-/*******/
+
 
 //////////////////////////
 void dwe::GraphicsEngine::render()
 {
+
 }
-
-////////////////////////////////////////////////////
-/*scene::IAnimatedMeshSceneNode* dwe::GraphicsEngine::createIrrAnimatedMeshSceneNode(std::string meshName)
-{
-	scene::IAnimatedMesh* mesh = m_smgr->getMesh((meshName+".obj").c_str());
-	if (!mesh)
-	{
-		m_device->drop();
-		exit(0);
-	}
-	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
-
-	if (irrnode)
-	{
-		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
-		irrnode->setMaterialTexture( 0, m_driver->getTexture((meshName+".png").c_str()) );
-	}
-
-	return irrnode;
-}*/
 
 /////////////////////////////////////
 ScenaryElement* dwe::GraphicsEngine::createWall(std::string meshName)
@@ -209,15 +197,11 @@ dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
     return node;
 }
 
-/*vector3df dwe::GraphicsEngine::getTransformedBoundingBox(scene::IAnimatedMeshSceneNode* player){
-    return(player->getTransformedBoundingBox().getExtent());
-}*/
-
 
 /////////////////////////////
 Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/sydney.md2", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/player.obj", vec3f(0,0,0), vec3f(0,0,0));
 	Player* p = new Player(gun);
 	p->setNode(new Node(node));
 
@@ -297,10 +281,19 @@ Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float p
 	return d;
 }
 
-Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle)
+Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle, std::string weapon)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/proyectil.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/" + weapon + ".obj", vec3f(0,0,0), vec3f(0,0,0));
     Projectile* p = new Projectile(origin, angle);
+	p->setNode(new Node(node));
+	p->setPosition(origin);
+	return p;
+}
+
+ProjectileGrenade* dwe::GraphicsEngine::createProjectileGrenade(vec3f origin, float angle)
+{
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/grenade.obj", vec3f(0,0,0), vec3f(0,0,0));
+    ProjectileGrenade* p = new ProjectileGrenade(origin, angle);
 	p->setNode(new Node(node));
 	p->setPosition(origin);
 	return p;
@@ -439,10 +432,13 @@ void dwe::GraphicsEngine::close()
 //////////////////////////
 void dwe::GraphicsEngine::createCamera()
 {
-    vec3f position(-150,120,-190);
-    m_camera = m_tagEngine.createPerspectiveCamera(position, vec3f(0,0,0), 45.0f, get_screenWidth() / get_screenHeight(), 0.1f, 1000.0f);
-    m_tagEngine.nodeLookAtTarget(m_camera, position, vec3f(0,0,0));
-    m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0));
+    if (!m_camera)
+    {
+        vec3f position(-150,120,-190);
+        m_camera = m_tagEngine.createPerspectiveCamera(position, vec3f(0,0,0), 45.0f, get_screenWidth() / get_screenHeight(), 0.1f, 1000.0f);
+        m_tagEngine.nodeLookAtTarget(m_camera, position, vec3f(0,0,0));
+        m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0));
+    }
 }
 
 //////////////////////////

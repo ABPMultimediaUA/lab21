@@ -1,5 +1,6 @@
 #ifndef GSMAINMENU_H
 #define GSMAINMENU_H
+#include <sstream>
 
 #include "GState.h"
 
@@ -19,15 +20,25 @@ public:
     void Update();
     void Render();
     void SetPage(int n);
+    void UpdateLobbys();
+    void UpdateServers();
     static GSMainMenu* getInstance();
 
 private:
     int page;
     int mousePosX, mousePosY;
-    bool a; // Controla cosas
-    bool m;
+    bool menuInfo; // Mostrar info de los menus
+    bool enterNet;
+    bool serverSelection; // Servidor elegido
+    bool serverInfo;
+    bool lobbySelection; // Lobby elegida
+    bool updatedLobbys;
 
+    std::vector<std::string>* gamesIP;
+    std::vector<std::string>* servers;
     std::string type;
+    std::string ip;
+    std::string lobby;
 
     /**/
     dwe::Background *menuPrincipalFondo;
@@ -40,7 +51,13 @@ private:
     dwe::Button *achievementsButton;
     dwe::Button *optionsButton;
     dwe::Button *exitButton;
-    dwe::Button *back2mainMenuButton;
+    dwe::Button *backButton;
+    dwe::Button *createLobbyButton;
+
+    dwe::Button *auxButton; // No hacer delete, se borra al borrar los vectores de abajo
+
+    std::vector<dwe::Button>* serversButtons; // Falta delete
+    std::vector<dwe::Button>* lobbysButtons; // Falta delete
     /**/
 };
 

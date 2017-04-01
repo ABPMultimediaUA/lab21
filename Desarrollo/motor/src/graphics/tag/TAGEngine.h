@@ -71,16 +71,30 @@ namespace tag
             /// \return puntero al nodo de la malla creada
             GraphicNode* createMesh(const std::string fileName, const vec3f position, const vec3f rotation, const std::string textureFileName="", GraphicNode* parent=0);
 
-            /// \brief Crea una malla en el arbol.
+            /// \brief Crea un array de animaciones.
+            /// \param[in] numAnimations Numero de animaciones que tendra el array
+            /// \return array de la animación
+            EAnimation* createNumAnimations(int numAnimations);
+
+            /// \brief Crea una animacion.
+            /// \details Crea una animación en una posición del array con el número de mallas que tiene, leyéndolas
+            /// de un archivo al que se le sumará el número del frame (ej: andando i+1.obj, andando i+2.obj)
+            /// \param[in] animations Array que contiene a las animaciones
+            /// \param[in] fileName El nombre del archivo sobre el que iterará para coger todos los obj.
+            /// \param[in] numAnimation Posición de la animación en el array de animaciones.
+            /// \param[in] numFrames Número de frames que tendrá la animación. Número de mallas.
+            /// \return puntero al nodo de la malla creada
+            EAnimation* createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames);
+
+            /// \brief Crea el nodo del array de animaciones.
             /// \details Crea los nodos de transformacion, uno de posicion y otro de rotación. Crea
-            /// el nodo Animation y le asocia un ResourceMesh con la malla cargada mediante el
-            /// ResourceManager.
-            /// \param[in] fileName Nombre del fichero que contiene la malla
+            /// el nodo nodoAnimation y le asocia el array de animaciones.
+            /// \param[in] animations Array que contiene a las animaciones
             /// \param[in] position Posición. Creará un nodo Transform con esos valores
             /// \param[in] rotation Rotación. Creará un nodo Transform con esos valores
             /// \param[in] parent Nodo padre. Si es 0 se le asignará el root.
-            /// \return puntero al nodo de la malla creada
-            GraphicNode* createAnimation(const std::string fileName, const vec3f position, const vec3f rotation, GraphicNode* parent=0);
+            /// \return puntero al nodo del array de array de mallas.
+            GraphicNode* createNodeAnimations(EAnimation* animations, const vec3f position, const vec3f rotation, GraphicNode* parent=0);
 
             /// \brief Crea una cámara de perspectiva en el arbol.
             /// \details Crea los nodos de transformacion, uno de posicion y otro de rotación. Crea
@@ -147,12 +161,12 @@ namespace tag
             void nodeLookAtTarget(GraphicNode* node, const vec3f position, const vec3f target);
 
 
-            /// \brief Borra un nodo, y sus nodos padres transformacion
+            /// \brief Borra un nodo, y sus nodos padres transformacion.
             /// \details Busca todos los padres que sean transformación, hasta llegar a uno que
             /// no lo sea, y borra ese nodo. El destructor del nodo se encarga de borrar los
             /// hijos. Del primer nodo borrado, se quita de la lista de hijos de su parent.
+            /// Realiza los deletes pertinentes.
             void deleteNode(GraphicNode* node);
-
 
             // Handles de los attributes y uniforms
             static int _aPositionLocation;
@@ -190,12 +204,6 @@ namespace tag
             /// \brief Obtiene la endiad del deep nodo padre del nodo pasado, lanzando excepciones si el árbol está mal
             /// formado o lo que devuelve no es una entidad de transformación
             ETransform* getTransformNode(GraphicNode* node, uint8_t deep);
-
-            /// \brief Returns the normalized vector of v
-            vec2f normalizeVector(const vec2f v) const;
-
-            /// \brief Returns the angle in degrees of 2 normalized vectors
-            float calculateDegrees(const vec2f normalizedVector1, const vec2f normalizedVector2) const;
     };
 }
 

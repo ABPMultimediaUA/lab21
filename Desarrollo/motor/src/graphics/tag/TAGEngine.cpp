@@ -17,6 +17,8 @@
 #include "tag/EMesh.h"
 #include "tag/EAnimation.h"
 
+#include "dwVectors.h"
+
 int tag::TAGEngine::_aPositionLocation;
 int tag::TAGEngine::_aNormalLocation;
 int tag::TAGEngine::_aTextureCoordsLocation;
@@ -39,12 +41,10 @@ tag::TAGEngine::TAGEngine() :
     m_cameras(),
     m_numActiveCamera(0)
 {
-    //ctor
 }
 
 tag::TAGEngine::~TAGEngine()
 {
-    //dtor
     if (m_shaderProgram)
     {
         delete m_shaderProgram;
@@ -63,7 +63,6 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
 
     // Habilita el z_buffer
     glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
 
     // Inicialización de GLEW
     if(glewInit() != GLEW_OK)
@@ -92,6 +91,8 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     TAGEngine::_uTextureSamplerLocation     = m_shaderProgram->uniform(U_TEXTURESAMPLER);
     TAGEngine::_uHasTexture                 = m_shaderProgram->uniform(U_HASTEXTURE);
     TAGEngine::_uLuz0Location               = m_shaderProgram->uniform(U_LUZ0);
+
+    glUseProgram(0);
 }
 
 /////////////////////
@@ -106,15 +107,16 @@ void tag::TAGEngine::draw()
     glm::mat4 rotateMatrix;
     glm::vec3 positionMatrix;
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
     if (!m_rootNode.isEmptyNode())
     {
+        glUseProgram(m_shaderProgram->ReturnProgramID());
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
         // Habilitamos el paso de attributes
         glEnableVertexAttribArray(TAGEngine::_aPositionLocation);
         glEnableVertexAttribArray(TAGEngine::_aNormalLocation);
         glEnableVertexAttribArray(TAGEngine::_aTextureCoordsLocation);
-        glUseProgram(m_shaderProgram->ReturnProgramID());
 
         // Cálculo de la vista (cámara)
         calculateViewMatrix();
@@ -126,10 +128,14 @@ void tag::TAGEngine::draw()
         // Dibujar
         renderElements();
 
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        glBindTexture(GL_TEXTURE_2D, 0);
 
         glDisableVertexAttribArray(TAGEngine::_aPositionLocation);
         glDisableVertexAttribArray(TAGEngine::_aNormalLocation);
         glDisableVertexAttribArray(TAGEngine::_aTextureCoordsLocation);
+
         glUseProgram(0);
     }
 }
@@ -193,6 +199,11 @@ tag::GraphicNode* tag::TAGEngine::createNodePR(const vec3f position, const vec3f
 //////////////////////////////////
 tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const vec3f position, const vec3f rotation, const std::string textureFileName, GraphicNode* parent)
 {
+    // Debemos de volver a poner el useProgram
+    // Si entre que se inicia el motor y se cargan los modelos
+    // se dibuja sfml, no carga bien si no hacemos esto.
+    glUseProgram(m_shaderProgram->ReturnProgramID());
+
     // Creamos nodo de malla
     GraphicNode* nodoMalla = createNodePR(position, rotation, parent);
 
@@ -209,20 +220,30 @@ tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const v
 }
 
 ////////////////////////////
-tag::GraphicNode* tag::TAGEngine::createAnimation(const std::string fileName, const vec3f position, const vec3f rotation, GraphicNode* parent)
+tag::EAnimation* tag::TAGEngine::createNumAnimations(int numAnimations)
+{
+    // Creamos malla
+    EAnimation* animations = new EAnimation();
+    animations->createNumAnimations(numAnimations);//num animaciones
+
+    return animations;
+}
+////////////////////////////
+tag::EAnimation* tag::TAGEngine::createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames)
+{
+    animations->createAnimation(numAnimation,numFrames, fileName);//creamos la animacion con sus frames y sus mallas
+    return animations;//la devolvemos
+}
+
+/////////////////////////////
+tag::GraphicNode* tag::TAGEngine::createNodeAnimations(EAnimation* animations, const vec3f position, const vec3f rotation, GraphicNode* parent)
 {
     // Creamos nodo de animation
     GraphicNode* nodoAnimation = createNodePR(position, rotation, parent);
-
-    // Creamos malla
-    EAnimation* animation = new EAnimation();
-    animation->createNumAnimations(1);//1 animacion, correr
-    animation->createAnimation(0,9, fileName);//la animacion 1 tendra 9 frames
-    nodoAnimation->setEntity(animation);
-
+    nodoAnimation->setEntity(animations);//asignamos la animacion al nodo
     return nodoAnimation;
-}
 
+}
 //////////////////////////////////
 tag::GraphicNode* tag::TAGEngine::createPerspectiveCamera(const vec3f position, const vec3f rotation, float fov, float aspect, float near, float far, GraphicNode* parent)
 {
@@ -388,25 +409,6 @@ void tag::TAGEngine::setRotationNodeEntity(GraphicNode* node, const vec3f rotati
     t->rotate(rotation);  // Rotamos a rotación dada
 }
 
-/////////////////////////
-tag::vec2f tag::TAGEngine::normalizeVector(const vec2f v) const
-{
-    vec2f normalizedV(0,0);
-    if(v.x || v.y)
-    {
-        float magnitud = sqrt(pow(v.x,2) + pow(v.y,2));
-        normalizedV.x = v.x / magnitud;
-        normalizedV.y = v.y / magnitud;
-    }
-    return normalizedV;
-}
-
-//////////////////////
-float tag::TAGEngine::calculateDegrees(const vec2f normalizedVector1, const vec2f normalizedVector2) const
-{
-    return acos(normalizedVector1.x*normalizedVector2.x + (normalizedVector1.y*normalizedVector2.y)) * (180/M_PI);
-}
-
 /////////////////////
 void tag::TAGEngine::nodeLookAtTarget(GraphicNode* node, const vec3f position, const vec3f target)
 {
@@ -420,14 +422,14 @@ void tag::TAGEngine::nodeLookAtTarget(GraphicNode* node, const vec3f position, c
     vec2f normalized2d;
 
     // Calculamos angulo X, utilizando y z
-    normalized2d = normalizeVector(vec2f(positionToTarget.y, positionToTarget.z));
-    anguloX = calculateDegrees(normalized2d, vec2f(0,-1));
+    normalized2d = dwu::normalizeVector(vec2f(positionToTarget.y, positionToTarget.z));
+    anguloX = dwu::calculateDegrees(normalized2d, vec2f(0,-1));
     if (target.y<position.y)
         anguloX *= (-1);
 
     // Calculamos angulo Y, utilizando x z
-    normalized2d = normalizeVector(vec2f(positionToTarget.x, positionToTarget.z));
-    anguloY = calculateDegrees(normalized2d, vec2f(0,-1));
+    normalized2d = dwu::normalizeVector(vec2f(positionToTarget.x, positionToTarget.z));
+    anguloY = dwu::calculateDegrees(normalized2d, vec2f(0,-1));
     if (target.x>position.x)
         anguloY *= (-1);
 

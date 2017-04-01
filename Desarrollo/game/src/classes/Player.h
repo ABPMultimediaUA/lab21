@@ -4,13 +4,15 @@
 #include <defines.h>
 #include <CharacterController.h>
 #include <vector>
-#include <Firearm.h>
 #include "EntityPhysics.h"
 #include "PlayerMate.h"
 #include "NetGame.h"
 #include "Gun.h"
 #include "Rifle.h"
 #include "Shotgun.h"
+#include "Grenade.h"
+
+class Firearm;
 
 class Player : public CharacterController, public EntityPhysics
 {
@@ -29,12 +31,11 @@ class Player : public CharacterController, public EntityPhysics
 
         // Getters & Setters
         virtual void setNode(dwe::Node* n);   // Necesario para EntityPhysics
-        int getAmmo(int numWeapon);
-        void setAmmo(int numWeapon, int ammount);
         void addAmmo(int numWeapon, int ammount);
         int getGrenades();
         void setGrenades(int n);
         int getHealth();
+        int getMaxHealth();
         void setHealth(int n);
         void setMKeys(int id);
         bool getMKey(int n);
@@ -53,6 +54,9 @@ class Player : public CharacterController, public EntityPhysics
         FirearmKind getCurrentWeaponType();
         Firearm* getCurrentWeapon();
         Firearm** getPlayerWeapons();
+        Weapon* getPlayerGun();
+        Weapon* getPlayerShotgun();
+        Weapon* getPlayerRifle();
 
         virtual const char* getNetObjectID() const;
         virtual void setPosition(dwe::vec3f p);
@@ -62,7 +66,7 @@ class Player : public CharacterController, public EntityPhysics
     protected:
 
     private:
-        int         m_ammo[NUM_WEAPONS];
+        //int         m_ammo[NUM_WEAPONS];
         Firearm*    m_weapons[NUM_WEAPONS];
         int         m_grenades;
         int         m_life;
@@ -76,7 +80,10 @@ class Player : public CharacterController, public EntityPhysics
         bool        m_hasRifle;
         FirearmKind m_currentWeaponType;
         Firearm*    m_currentWeapon;
-        int m_health;
+        int         m_health;
+        int         m_maxHealth;
+        Grenade     m_grenadeWeapon;
+
 };
 
 #endif // PLAYER_H

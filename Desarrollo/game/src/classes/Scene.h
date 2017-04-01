@@ -17,6 +17,7 @@
 #include "NavigationGraph.h"
 
 class Projectile;
+class ProjectileGrenade;
 class Consumable;
 class Firearm;
 
@@ -37,9 +38,13 @@ class Scene
 
         void closestEnemy(Player* mainPlayer, Enemy* enemy);
 
-        void createProjectile(dwe::vec3f origin, float angle);
+        void createProjectile(dwe::vec3f origin, float angle, std::string weapon);
         void deleteProjectile(unsigned int i);
         void updateProjectiles();
+
+        void createProjectileGrenade(dwe::vec3f origin, float angle);
+        void deleteProjectileGrenade(unsigned int i);
+        void updateProjectilesGrenade();
 
         void createEnemyHumanoid(dwe::vec3f origin, float angle);
 
@@ -74,8 +79,12 @@ class Scene
         Gun* gun;
         Shotgun* shotgun;
         Rifle* rifle;
+        Medkit* medkit;
+
+        bool a;
 
         std::vector<Projectile*> m_projectiles;
+        std::vector<ProjectileGrenade*> m_projectilesGrenades;
         std::vector<Consumable*> m_consumables;
         std::vector<Enemy*> m_enemies;
 

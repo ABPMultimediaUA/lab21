@@ -38,6 +38,7 @@ class Dog;
 class Entity;
 class Door;
 class Projectile;
+class ProjectileGrenade;
 class Generator;
 class MagnetKey;
 class SpeedBoost;
@@ -141,6 +142,7 @@ namespace dwe
         void close();
         bool isRunning();
         void draw();
+        void popGLStates();
         ///
         void drawRectangleShape(sf::RectangleShape rs);
         void drawText(sf::Text t);
@@ -168,7 +170,8 @@ namespace dwe
         void updateCamera(const vec3f playerPosition, int moreEnemiesX, int moreEnemiesZ);
 
         Door* createDoor(int f, bool a, float px, float py, float pz);
-        Projectile* createProjectile(vec3f origin, float angle);
+        Projectile* createProjectile(vec3f origin, float angle, std::string weapon);
+        ProjectileGrenade* createProjectileGrenade(vec3f origin, float angle);
         Generator* createGenerator(int i, bool b, float px, float py, float pz);
         MagnetKey* createMagnetKey(int i, float px, float py, float pz);
         SpeedBoost* createSpeedBoost(float px, float py, float pz);

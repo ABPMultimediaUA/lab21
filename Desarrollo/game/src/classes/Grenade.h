@@ -1,10 +1,8 @@
 #ifndef GRENADE_H
 #define GRENADE_H
 
-#include <Weapon.h>
 
-
-class Grenade : public Weapon
+class Grenade
 {
     public:
         Grenade();
@@ -13,6 +11,7 @@ class Grenade : public Weapon
         void shoot();
 
     protected:
+
 
     private:
 };

@@ -21,12 +21,16 @@ class Weapon : public Drawable
         // Getters & Setters
         int getDamage();
         void setDamage(int damage);
+        int getAmmo();
+        void setAmmo(int ammo);
+        void addAmmo(int ammo);
 
     protected:
         int m_netID;
     private:
         int m_damage;
         bool m_isTaken;
+        int m_ammo;
 
 };
 

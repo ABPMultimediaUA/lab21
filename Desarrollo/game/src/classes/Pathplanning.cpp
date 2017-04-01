@@ -57,6 +57,9 @@ void Pathplanning::CreatePathToPosition(dwe::vec2f TargetPos)
 {
     dwe::vec2f target(GetClosestNodeToPosition(TargetPos));
     dwe::vec2f source(GetClosestNodeToPosition(dwe::vec2f(m_owner->getPosition().x, m_owner->getPosition().z)));
+    //int target = GetClosestNodeToPosition(TargetPos);
+    //int source = GetClosestNodeToPosition(dwe::vec2f(m_owner->getPosition().x, m_owner->getPosition().z));
+    int source = currentNode;
 
     Graph_SearchAStar a(m_NavGraph, source, target);
     route = a.GetPathToTarget();
@@ -94,6 +97,7 @@ dwe::vec2f Pathplanning::Movement()
                 CalculateDirection(finalPosition);
         }
     }
+
     return direction;
 
 }

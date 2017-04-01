@@ -11,6 +11,7 @@ using namespace std;
 
 GSIngame::GSIngame(){
 
+
 }
 
 GSIngame* GSIngame::getInstance()
@@ -24,10 +25,13 @@ void GSIngame::Init(){
     page=0;
     m=false;
     LoadMap::getInstance()->Init();
-    cout<<"Cargado el mapa"<<endl;
     WorldInstance::Instance();
     timeStamp = World->getTimeElapsed();
     Scene::Instance()->Init();
+    hud = new Hud();
+
+    cout<<"Ingame cargado"<<endl;
+
 }
 
 void GSIngame::Update(){
@@ -56,7 +60,6 @@ void GSIngame::HandleEvents(){
     else if(GEInstance->receiver.isKeyDown(KEY_ESCAPE))
     {
         Game::getInstance()->setRunning(false);
-        cout<<"maafns1ertyujkl1"<<endl;
         //GEInstance=0;
 
         //return 0;
@@ -71,6 +74,8 @@ void GSIngame::Render(){
             m=true;
         }
         GEInstance->draw();
+        hud->draw();
+//        GEInstance->popGLStates();
     }
 }
 GSIngame::~GSIngame(){

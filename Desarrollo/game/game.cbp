@@ -54,6 +54,7 @@
 			<Add directory="src/glm" />
 			<Add directory="src/graphics" />
 			<Add directory="src/net" />
+			<Add directory="src/utils" />
 			<Add directory="include/illricht" />
 			<Add directory="include/RakNet" />
 			<Add directory="include/irrKlang" />
@@ -236,6 +237,8 @@
 		<Unit filename="src/classes/PriorityQueue.h" />
 		<Unit filename="src/classes/Projectile.cpp" />
 		<Unit filename="src/classes/Projectile.h" />
+		<Unit filename="src/classes/ProjectileGrenade.cpp" />
+		<Unit filename="src/classes/ProjectileGrenade.h" />
 		<Unit filename="src/classes/Rifle.cpp" />
 		<Unit filename="src/classes/Rifle.h" />
 		<Unit filename="src/classes/ScenaryElement.cpp" />
@@ -311,6 +314,8 @@
 		<Unit filename="src/net/NetCommon.h" />
 		<Unit filename="src/net/NetGame.cpp" />
 		<Unit filename="src/net/NetGame.h" />
+		<Unit filename="src/utils/dwVectors.cpp" />
+		<Unit filename="src/utils/dwVectors.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

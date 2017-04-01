@@ -27,6 +27,7 @@ enum EKEY_CODE
     KEY_KEY_B       = sf::Keyboard::B,
     KEY_KEY_C       = sf::Keyboard::C,
     KEY_KEY_D       = sf::Keyboard::D,
+    KEY_KEY_G       = sf::Keyboard::G,
     KEY_KEY_M       = sf::Keyboard::M,
     KEY_KEY_N       = sf::Keyboard::N,
     KEY_KEY_P       = sf::Keyboard::P,

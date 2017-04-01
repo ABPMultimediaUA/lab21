@@ -7,9 +7,9 @@
 
 tag::ResourceManager::ResourceManager()
 {
-    m_resourceKinds["obj"] = createResourceMesh;
-    m_resourceKinds["md2"] = createResourceMesh;
-    m_resourceKinds["bmp"] = createResourceTexture;
+    m_resourceKinds["obj"] = &ResourceManager::createResourceMesh;
+    m_resourceKinds["md2"] = &ResourceManager::createResourceMesh;
+    m_resourceKinds["bmp"] = &ResourceManager::createResourceTexture;
 }
 
 tag::ResourceManager::~ResourceManager()

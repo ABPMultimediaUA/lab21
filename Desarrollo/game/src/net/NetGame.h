@@ -59,6 +59,7 @@ namespace dwn
             bool isMultiplayer();
             bool isServer();
             void setMultiplayer(bool m);
+            bool getOpened();
             bool getConnected();
             bool getConnectionFailed();
             bool getConnectionRejected();
@@ -104,6 +105,7 @@ namespace dwn
             void sendBroadcast(unsigned int messageID, RakNet::RakString value);
             void sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle);
             void sendBroadcast(unsigned int messageID, unsigned int objectID, dwe::vec3f position, dwe::vec3f rotation);
+            void sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle, RakNet::RakString value);
 
         protected:
 
@@ -114,6 +116,7 @@ namespace dwn
             static const RakNet::TimeMS     _udp_sleep_timer    = 30;
             static const unsigned int       _time_search_server = 1500;   // Milisegundos de espera buscando servidores
 
+            bool m_opened;
             bool m_multiplayer;
             bool m_connected;
             bool m_connectionFailed;
@@ -143,6 +146,8 @@ namespace dwn
 
 
             unsigned int getBitStreamEntityID(Packet *packet);
+
+            void sendBroadcastMessage(RakNet::BitStream &bsOut);
 
 
             ///////////////////////////////////////////

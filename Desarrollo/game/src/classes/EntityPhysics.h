@@ -28,6 +28,9 @@ class EntityPhysics
         dwe::vec3f getPosEntity();
         void setPosEntity(dwe::vec3f position, float rotation);
         void setVelocity(dwe::vec2f v);
+        dwe::vec2f getVelocity();
+
+        void setForce(dwe::vec2f v);
 
         virtual void onBeginContact(EntityPhysics* otherObject);
         virtual void onEndContact(EntityPhysics* otherObject);

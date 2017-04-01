@@ -43,6 +43,21 @@ void EntityPhysics::setVelocity(dwe::vec2f v)
         cout << "//////////////////////////////////////\nERROR: No se ha creado m_body con createDynPhyEntity o similar.\n//////////////////////////////////////\n";
 }
 
+dwe::vec2f EntityPhysics::getVelocity()
+{
+
+    b2Vec2 vel = m_body->GetLinearVelocity();
+    return dwe::vec2f(vel.x, vel.y);
+}
+////////////////////
+void EntityPhysics::setForce(dwe::vec2f v)
+{
+    if (m_body)
+        m_body->ApplyForceToCenter(b2Vec2(v.x, v.y), true);
+    else
+        cout << "//////////////////////////////////////\nERROR: No se ha creado m_body con createDynPhyEntity o similar.\n//////////////////////////////////////\n";
+}
+
 EntityPhysics::EntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody){
     m_shape = bShape;
     m_body = bBody;
