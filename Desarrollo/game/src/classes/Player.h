@@ -31,9 +31,6 @@ class Player : public CharacterController, public EntityPhysics
 
         // Getters & Setters
         virtual void setNode(dwe::Node* n);   // Necesario para EntityPhysics
-        int getAmmo(int numWeapon);
-        void setAmmo(int numWeapon, int ammount);
-        int getCurrentAmmo();
         void addAmmo(int numWeapon, int ammount);
         int getGrenades();
         void setGrenades(int n);
@@ -57,6 +54,9 @@ class Player : public CharacterController, public EntityPhysics
         FirearmKind getCurrentWeaponType();
         Firearm* getCurrentWeapon();
         Firearm** getPlayerWeapons();
+        Weapon* getPlayerGun();
+        Weapon* getPlayerShotgun();
+        Weapon* getPlayerRifle();
 
         virtual const char* getNetObjectID() const;
         virtual void setPosition(dwe::vec3f p);
@@ -66,7 +66,7 @@ class Player : public CharacterController, public EntityPhysics
     protected:
 
     private:
-        int         m_ammo[NUM_WEAPONS];
+        //int         m_ammo[NUM_WEAPONS];
         Firearm*    m_weapons[NUM_WEAPONS];
         int         m_grenades;
         int         m_life;

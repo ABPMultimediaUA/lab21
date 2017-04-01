@@ -3,6 +3,7 @@
 
 #include <defines.h>
 #include <Ammo.h>
+#include "Player.h"
 
 
 class AmmoRifle : public Ammo
@@ -11,7 +12,7 @@ class AmmoRifle : public Ammo
         AmmoRifle();
         virtual ~AmmoRifle();
 
-        void onTake();
+        void onTake(Player* mainplayer);
 
         // Getters & Setters
         FirearmKind getKind();

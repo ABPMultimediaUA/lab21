@@ -28,9 +28,9 @@ void Hud::draw()
     int medkits         = mainPlayer->getNumMedkits();
     int health          = mainPlayer->getHealth();
     int maxHealth       = mainPlayer->getMaxHealth();
-    int ammo            = mainPlayer->getCurrentAmmo();
+    int ammo            = mainPlayer->getCurrentWeapon()->getAmmo();
 
-   // cout << "ADAAAAA" << weapon << "asdad" << ammo << endl;
+    cout << "ADAAAAA" << weapon  << "asdad" << ammo << endl;
 
     WeaponBox->draw(weapon, ammo);
 
