@@ -16,6 +16,7 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="src/classes" />
+					<Add directory="src" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics-s-d" />
@@ -33,6 +34,7 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add directory="src/classes" />
+					<Add directory="src" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -258,6 +260,12 @@
 		<Unit filename="src/classes/TriggerDoor.h" />
 		<Unit filename="src/classes/TriggerGenerator.cpp" />
 		<Unit filename="src/classes/TriggerGenerator.h" />
+		<Unit filename="src/classes/TriggerRegion.cpp" />
+		<Unit filename="src/classes/TriggerRegion.h" />
+		<Unit filename="src/classes/TriggerRegion_Circle.cpp" />
+		<Unit filename="src/classes/TriggerRegion_Circle.h" />
+		<Unit filename="src/classes/TriggerRegion_Rectangle.cpp" />
+		<Unit filename="src/classes/TriggerRegion_Rectangle.h" />
 		<Unit filename="src/classes/WalkThroughDoorTask.cpp" />
 		<Unit filename="src/classes/WalkThroughDoorTask.h" />
 		<Unit filename="src/classes/Weapon.cpp" />

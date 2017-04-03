@@ -1,5 +1,6 @@
 #ifndef TRIGGER_H
 #define TRIGGER_H
+#include "TriggerRegion.h"
 
 #include "Drawable.h"
 #include "EntityPhysics.h"
