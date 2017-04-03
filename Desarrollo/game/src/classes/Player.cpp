@@ -19,7 +19,7 @@ Player::Player(Gun* gun)
     m_hasRifle = false;
     m_currentWeaponType = eGun;
     m_currentWeapon = m_weapons[0];
-    m_health = 80;
+    m_health = 100;
     m_maxHealth = 100;
     m_grenades=3;
 
