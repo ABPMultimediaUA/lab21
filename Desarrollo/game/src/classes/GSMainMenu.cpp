@@ -158,7 +158,7 @@ void GSMainMenu::HandleEvents(){
                 break;
         case 1: for(int i=0; i<serversButtons->size(); i++)
                 {
-                    if(buttonCheck(&serversButtons->at(i)))
+                    if(!serverSelection && buttonCheck(&serversButtons->at(i)))
                     {
                         std::stringstream ss;
                         std::string s;
@@ -242,16 +242,6 @@ void GSMainMenu::Update(){
         }
     }
 
-    if(enterNet && !serverSelection)
-    {
-        if(GEInstance->receiver.isKeyDown(KEY_KEY_0))
-        {
-            ip="0";
-            serverSelection=true;
-            NetInstance->connectToServer(atoi(ip.c_str()));
-        }
-    }
-
     if(enterNet && serverSelection && !serverInfo)
     {
         if (NetInstance->getConnectionFailed())
@@ -287,22 +277,6 @@ void GSMainMenu::Update(){
             cout << "// Selecciona una lobby: ";
         }
         serverInfo=true;
-    }
-
-    if(enterNet && serverSelection && serverInfo && !lobbySelection)
-    {
-        if(GEInstance->receiver.isKeyDown(KEY_KEY_1)) // Pongo 1 en vez de 0 porque en la misma ejecucion registra la misma tecla
-        {
-            lobby="0";
-            lobbySelection=true;
-            NetInstance->connectToGame(atoi(lobby.c_str()));
-        }
-        if(GEInstance->receiver.isKeyDown(KEY_KEY_2)) // Pongo 1 en vez de 0 porque en la misma ejecucion registra la misma tecla
-        {
-            lobby="1";
-            lobbySelection=true;
-            NetInstance->connectToGame(atoi(lobby.c_str()));
-        }
     }
 
     if(enterNet && serverSelection && serverInfo && lobbySelection)

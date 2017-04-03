@@ -12,6 +12,7 @@ using namespace std;
 GSPause::GSPause(){
     page = 0;
     m = false;
+    m_pausePermission = false;
 }
 
 GSPause* GSPause::getInstance()
@@ -38,9 +39,13 @@ void GSPause::SetPage(int n){
 }
 
 void GSPause::HandleEvents(){
-    if(GEInstance->receiver.isKeyDown(KEY_KEY_P)){
+    if(!m_pausePermission && GEInstance->receiver.isKeyUp(KEY_KEY_P)){
+        m_pausePermission = true;
+    }
+    if(m_pausePermission && GEInstance->receiver.isKeyDown(KEY_KEY_P)){
         Game::getInstance()->ChangeState(GSIngame::getInstance());
         m = false;
+        m_pausePermission = false;
     }
     if(GEInstance->receiver.isKeyDown(KEY_F9)){
         Game::getInstance()->ChangeState(GSMainMenu::getInstance());
@@ -49,10 +54,12 @@ void GSPause::HandleEvents(){
         Scene::Instance()->Destroy();
         LoadMap::getInstance()->Destroy();
         m = false;
+        m_pausePermission = false;
     }
 }
 
 void GSPause::Update(){
      //cin>>page;
 }
+
 GSPause::~GSPause(){}

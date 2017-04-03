@@ -16,6 +16,7 @@ public:
 private:
     int page;
     bool m;
+    bool m_pausePermission; // Booleano para controlar el boton pausa
 };
 
 #endif // GSPAUSE_H
