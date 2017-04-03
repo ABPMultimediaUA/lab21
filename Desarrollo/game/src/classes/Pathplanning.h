@@ -18,6 +18,8 @@ class Pathplanning
 
         dwe::vec2f Movement();
 
+        void CalculateDirection();
+
         bool CheckIfRouteEnd();
 
         float CalculateAngleYAxis(dwe::vec2f vec);
@@ -40,10 +42,7 @@ class Pathplanning
 
         float CalculateQuadraticDistance(dwe::vec2f targetPos, dwe::vec2f nodePos)const;
 
-
-        void CalculateDirection(dwe::vec2f source);
         bool CheckIfArrived();
-        bool CheckIfTargetReached();
         void Normalize(dwe::vec2f& vec);
 };
 

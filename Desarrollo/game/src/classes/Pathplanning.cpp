@@ -12,21 +12,16 @@ Pathplanning::Pathplanning(Enemy *owner):m_NavGraph(Scene::Instance()->getNavGra
 {
     m_owner = owner;
 
-    //m_NavGraph = Scene::Instance()->getNavGraph();
-
     direction = dwe::vec2f(0,0);
-
     finalPosition = dwe::vec2f(0,0);
     nextPosition = dwe::vec2f(0,0);
-
-    //currentNode = nextNode = finalNode = 0;
 }
 
 Pathplanning::~Pathplanning()
 {
 }
 
-dwe::vec2f Pathplanning::GetClosestNodeToPosition(dwe::vec2f targetPos)
+int Pathplanning::GetClosestNodeToPosition(dwe::vec2f targetPos)
 {
     int closestNode = -1;
     float shortestDistance = std::numeric_limits<float>::max();
@@ -55,46 +50,47 @@ float Pathplanning::CalculateQuadraticDistance(dwe::vec2f targetPos, dwe::vec2f 
 
 void Pathplanning::CreatePathToPosition(dwe::vec2f TargetPos)
 {
-    dwe::vec2f target(GetClosestNodeToPosition(TargetPos));
-    dwe::vec2f source(GetClosestNodeToPosition(dwe::vec2f(m_owner->getPosition().x, m_owner->getPosition().z)));
-    //int target = GetClosestNodeToPosition(TargetPos);
-    //int source = GetClosestNodeToPosition(dwe::vec2f(m_owner->getPosition().x, m_owner->getPosition().z));
-    int source = currentNode;
+    int target(GetClosestNodeToPosition(TargetPos));
+    int source(GetClosestNodeToPosition(dwe::vec2f(m_owner->getPosition().x, m_owner->getPosition().z)));
+
+    if(target < 0 || source < 0)
+        return;
+
+    nextPosition = TargetPos;
 
     Graph_SearchAStar a(m_NavGraph, source, target);
     route = a.GetPathToTarget();
+
     if(route.size()>0){
-        nextNode = route.front();
+        nextPosition = route.front();
         route.pop_front();
-        finalNode = route.back();
-        CalculateDirection(dwe::vec2f(m_owner->getPosition().x, m_owner->getPosition().z));
+        route.push_back(TargetPos);
+        finalPosition = TargetPos;
     }
+    CalculateDirection();
 }
 
-void Pathplanning::CalculateDirection(dwe::vec2f v1)
+void Pathplanning::CalculateDirection()
 {
-    dwe::vec2f v2(m_NavGraph.getNode(nextNode).getPosition());
+    dwe::vec3f currentPosition(m_owner->getPosition());
 
-    dwe::vec2f vec(v2.x - v1.x, v2.y - v1.y);
+    dwe::vec2f dir(nextPosition.x - currentPosition.x, nextPosition.y - currentPosition.z);
 
-    Normalize(vec);
+    Normalize(dir);
 
-    direction = vec;
+    direction = dir;
 }
 
 dwe::vec2f Pathplanning::Movement()
 {
     if(CheckIfArrived()){
-        currentNode = nextNode;
-        if(!CheckIfRouteEnd()){
-            nextNode = route.front();
+        if(route.size()){
+            nextPosition = route.front();
             route.pop_front();
-            CalculateDirection(m_NavGraph.getNode(currentNode).getPosition());
+            CalculateDirection();
         }
         else{
             direction.x = direction.y = 0;
-            if(!CheckIfTargetReached())
-                CalculateDirection(finalPosition);
         }
     }
 
@@ -102,21 +98,17 @@ dwe::vec2f Pathplanning::Movement()
 
 }
 
-bool Pathplanning::CheckIfTargetReached()
-{
-    dwe::vec3f position = m_owner->getPosition();
-    return ( abs(position.x - finalPosition.x) < m_owner->getSpeed() && abs(position.z - finalPosition.y) < m_owner->getSpeed() );
-}
-
 bool Pathplanning::CheckIfRouteEnd()
 {
-    return (currentNode == finalNode);
+    if(CheckIfArrived())
+        return !route.size();
+    return false;
 }
 
 bool Pathplanning::CheckIfArrived()
 {
     dwe::vec3f position = m_owner->getPosition();
-    return ( abs(position.x - m_NavGraph.getNode(nextNode).getPosition().x) < m_owner->getSpeed() && abs(position.z - m_NavGraph.getNode(nextNode).getPosition().y) < m_owner->getSpeed() );
+    return ( abs(position.x - nextPosition.x) < m_owner->getSpeed() && abs(position.z - nextPosition.y) < m_owner->getSpeed() );
 }
 
 void Pathplanning::Normalize(dwe::vec2f& vec)
