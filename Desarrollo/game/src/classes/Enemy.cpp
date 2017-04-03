@@ -6,7 +6,7 @@ Enemy::Enemy()
 {
     //ctor
     m_speed = 0.0;
-    setClassID(CLASS_ENEMY_ID);
+    setClassID(EntityPhysics::enemy_id);
     m_health=10;
 
     m_perception = 0;
@@ -54,7 +54,7 @@ void Enemy::setNode(dwe::Node* n)
 /////////////
 void Enemy::onBeginContact(EntityPhysics* otherObject)
 {
-    if((otherObject && otherObject->getClassID()==CLASS_PROJECTILE_ID)){
+    if((otherObject && otherObject->getClassID()==EntityPhysics::projectile_id)){
         m_health-=5;
     }
 }

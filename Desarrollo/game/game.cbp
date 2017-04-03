@@ -45,7 +45,6 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
-			<Add option="-D_IRR_STATIC_LIB_" />
 			<Add option="-DSFML_STATIC" />
 			<Add directory="include" />
 			<Add directory="src/classes" />
@@ -55,7 +54,6 @@
 			<Add directory="src/graphics" />
 			<Add directory="src/net" />
 			<Add directory="src/utils" />
-			<Add directory="include/illricht" />
 			<Add directory="include/RakNet" />
 			<Add directory="include/irrKlang" />
 			<Add directory="include/rapidjson" />
@@ -70,7 +68,6 @@
 			<Add library="opengl32" />
 			<Add library="freetype" />
 			<Add library="jpeg" />
-			<Add library="lib/libIrrlicht.a" />
 			<Add library="lib/libRakNet.a" />
 			<Add library="lib/libbox2DEngine.a" />
 			<Add library="ws2_32" />

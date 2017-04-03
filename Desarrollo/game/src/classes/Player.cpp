@@ -5,7 +5,7 @@
 Player::Player(Gun* gun)
 {
 
-    setClassID(CLASS_PLAYER_ID);
+    setClassID(EntityPhysics::player_id);
     m_mKeys[0]=false;
     m_medkits = 0;
     m_timeMedkit = 2000;
@@ -139,7 +139,7 @@ void Player::readEvents()
     //Animacion del player
     if(getSpeedX()!=0 || getSpeedZ()!=0)
     {
-        if(GEInstance->receiver.isKeyDown(KEY_LSHIFT))
+        if(GEInstance->receiver.isKeyDown(KEY_WALK))
             setAnimation(dwe::eAnimWalk);
         else
             setAnimation(dwe::eAnimRun);
@@ -162,7 +162,7 @@ void Player::readEvents()
 
     /*********/
      // consumir botiquin
-    if(GEInstance->receiver.isKeyDown(KEY_KEY_4) && (World->getTimeElapsed() - m_timeMedkit)> 200)
+    if(GEInstance->receiver.isKeyDown(KEY_CONSUME_MEDKIT) && (World->getTimeElapsed() - m_timeMedkit)> 200)
     {
         this->consumeMedkit();
 
@@ -171,7 +171,7 @@ void Player::readEvents()
 
     /*********/
     PlayerMate* playermate = NetInstance->getPlayerMate(1);
-    if (GEInstance->receiver.isKeyDown(KEY_KEY_5)&& (World->getTimeElapsed() - m_timeGivingStuff) > 200)
+    if (GEInstance->receiver.isKeyDown(KEY_GIVE_AMMO)&& (World->getTimeElapsed() - m_timeGivingStuff) > 200)
     {
          //this->giveMedkits(1,playermate);
          this->giveAmmo(0,1, playermate);
@@ -185,22 +185,20 @@ void Player::readEvents()
     }*/
 
     //CAMBIAR ARMA
-    if(GEInstance->receiver.isKeyDown(KEY_KEY_1) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && getCurrentWeapon() != m_weapons[0]){
+    if(GEInstance->receiver.isKeyDown(KEY_WEAPON_1) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && getCurrentWeapon() != m_weapons[0]){
         this->swapCurrentWeapon(1);
         m_timeWeaponSwap = World->getTimeElapsed();
-    }else if(GEInstance->receiver.isKeyDown(KEY_KEY_2) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && getCurrentWeapon() != m_weapons[1]){
+    }else if(GEInstance->receiver.isKeyDown(KEY_WEAPON_2) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && getCurrentWeapon() != m_weapons[1]){
         this->swapCurrentWeapon(2);
         m_timeWeaponSwap = World->getTimeElapsed();
-    }else if(GEInstance->receiver.isKeyDown(KEY_KEY_3) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && getCurrentWeapon() != m_weapons[2]){
+    }else if(GEInstance->receiver.isKeyDown(KEY_WEAPON_3) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && getCurrentWeapon() != m_weapons[2]){
         this->swapCurrentWeapon(3);
         m_timeWeaponSwap = World->getTimeElapsed();
     }
 
     //HACER DASH
-     if(GEInstance->receiver.isKeyDown(KEY_SPACE) && World->getTimeElapsed() - m_timeWeaponSwap > 200)
+    if(GEInstance->receiver.isKeyDown(KEY_DASH) && World->getTimeElapsed() - m_timeWeaponSwap > 200)
         this->dash();//evadimos
-
-
 
 }
 
@@ -274,7 +272,7 @@ void Player::consumeMedkit()
 /////////////
 void Player::onBeginContact(EntityPhysics* otherObject)
 {
-    if((otherObject && otherObject->getClassID()==CLASS_ENEMY_ID)){
+    if((otherObject && otherObject->getClassID()==EntityPhysics::enemy_id)){
         m_health-=5;
         cout<< "Perdiendo vida: " << m_health <<endl;
     }

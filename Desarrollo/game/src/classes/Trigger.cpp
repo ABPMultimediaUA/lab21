@@ -47,7 +47,7 @@ void Trigger::setPosition(dwe::vec3f p)
 //////////////
 void Trigger::onBeginContact(EntityPhysics* otherObject)
 {
-    if (otherObject && otherObject->getClassID() == CLASS_PLAYER_ID)
+    if (otherObject && otherObject->getClassID() == EntityPhysics::player_id)
     {
         m_touchingMainPlayer = true;
     }
@@ -56,7 +56,7 @@ void Trigger::onBeginContact(EntityPhysics* otherObject)
 //////////////
 void Trigger::onEndContact(EntityPhysics* otherObject)
 {
-    if (otherObject && otherObject->getClassID() == CLASS_PLAYER_ID)
+    if (otherObject && otherObject->getClassID() == EntityPhysics::player_id)
     {
         m_touchingMainPlayer = false;
     }

@@ -9,12 +9,12 @@ using namespace std;
 
 Projectile::Projectile()
 {
-     setClassID(CLASS_PROJECTILE_ID);//rmm
+     setClassID(EntityPhysics::projectile_id);//rmm
 }
 
 Projectile::Projectile(dwe::vec3f origin, float a)
 {
-    setClassID(CLASS_PROJECTILE_ID);//rmm
+    setClassID(EntityPhysics::projectile_id);//rmm
 
     position = origin;
     speed = _velocity;
@@ -52,7 +52,7 @@ void Projectile::setNode(dwe::Node* n)
 //rmm////////////
 void Projectile::onBeginContact(EntityPhysics* otherObject)
 {
-    collides = (otherObject && otherObject->getClassID()!=CLASS_PLAYER_ID);
+    collides = (otherObject && otherObject->getClassID()!=EntityPhysics::player_id);
 }
 
 

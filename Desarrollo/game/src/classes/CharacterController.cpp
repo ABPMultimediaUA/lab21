@@ -24,7 +24,7 @@ void CharacterController::readEvents()
     float speed;
 
     //SIGILO
-    if(GEInstance->receiver.isKeyDown(KEY_LSHIFT))  speed = _speedWalk;
+    if(GEInstance->receiver.isKeyDown(KEY_WALK))  speed = _speedWalk;
     else                                            speed = _speedRun;
 
     //SPEEDBOOST
@@ -44,22 +44,22 @@ void CharacterController::readEvents()
     }
 
     //AGACHADO
-    if(GEInstance->receiver.isKeyDown(KEY_KEY_8))
+    if(GEInstance->receiver.isKeyDown(KEY_DUCK))
         speed = speed/2.f;
 
     //ANDAR DIAGONAL
-    if(     (GEInstance->receiver.isKeyDown(KEY_KEY_D) || GEInstance->receiver.isKeyDown(KEY_KEY_A))
-       &&   (GEInstance->receiver.isKeyDown(KEY_KEY_W) || GEInstance->receiver.isKeyDown(KEY_KEY_S)))
+    if(     (GEInstance->receiver.isKeyDown(KEY_RIGHT) || GEInstance->receiver.isKeyDown(KEY_LEFT))
+       &&   (GEInstance->receiver.isKeyDown(KEY_UP) || GEInstance->receiver.isKeyDown(KEY_DOWN)))
         speed = speed*0.7;  // cos(45) = 0.7...
 
     //ANDAR HORIZONTAL
-    if(GEInstance->receiver.isKeyDown(KEY_KEY_D))           m_speedX = speed;
-    else if(GEInstance->receiver.isKeyDown(KEY_KEY_A))      m_speedX = -speed;
+    if(GEInstance->receiver.isKeyDown(KEY_RIGHT))           m_speedX = speed;
+    else if(GEInstance->receiver.isKeyDown(KEY_LEFT))      m_speedX = -speed;
     else                                                    m_speedX = 0.f;
 
     //ANDAR VERTICAL
-    if(GEInstance->receiver.isKeyDown(KEY_KEY_W))           m_speedZ = -speed;
-    else if(GEInstance->receiver.isKeyDown(KEY_KEY_S))      m_speedZ = speed;
+    if(GEInstance->receiver.isKeyDown(KEY_UP))           m_speedZ = -speed;
+    else if(GEInstance->receiver.isKeyDown(KEY_DOWN))      m_speedZ = speed;
     else                                                    m_speedZ = 0.f;
 
 }

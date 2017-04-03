@@ -45,7 +45,7 @@ void Scene::Init()
             //GEInstance->draw(); // Si se dibuja la escena peta
 
             NetInstance->update();
-            if (GEInstance->receiver.isKeyDown(KEY_RETURN))
+            if (GEInstance->receiver.isKeyDown(KEY_INIT_GAME))
                 NetInstance->startGame();
         }
     }
@@ -160,10 +160,11 @@ void Scene::Init()
     enemyDog->setPosition(dwe::vec3f(100,24,80));
 
     //Joint try
+    /*TODO RMM si queremos mantener esto, hay que crearlo en otro sitio. El createJointBody ahora es protected
     joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
     joint_try->setPosition(dwe::vec3f(0,10,-120));
     bjoint = new EntityPhysics();
-    bjoint->createJointBody(dwe::vec3f(0,10,-120)); // createJointBody(dwe::vec3f(0,10,120));
+    bjoint->createJointBody(dwe::vec3f(0,10,-120)); // createJointBody(dwe::vec3f(0,10,120));*/
 
     GEInstance->createCamera();
 
@@ -292,7 +293,7 @@ void Scene::Update()
     }
 
        // comprobamos si dispara granadas
-    if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isKeyDown(KEY_KEY_G)){
+    if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isKeyDown(KEY_GRENADE)){
         NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectilgrenade
         if (mainPlayer->getGrenades() > 0) //
         {
@@ -315,7 +316,7 @@ void Scene::Update()
     updatePlayerWeapons(mainPlayer, mainPlayer->getPlayerWeapons());
 
     //update box of box2d
-    joint_try->setPosition(dwe::vec3f(bjoint->getPosEntity().x,bjoint->getPosEntity().y,bjoint->getPosEntity().z));
+    //TODO joint_try->setPosition(dwe::vec3f(bjoint->getPosEntity().x,bjoint->getPosEntity().y,bjoint->getPosEntity().z));
 
     /*
     // Coger la llave

@@ -38,11 +38,11 @@ void GSPause::SetPage(int n){
 }
 
 void GSPause::HandleEvents(){
-    if(GEInstance->receiver.isKeyDown(KEY_KEY_P)){
+    if(GEInstance->receiver.isKeyDown(KEY_PAUSE)){
         Game::getInstance()->ChangeState(GSIngame::getInstance());
         m = false;
     }
-    if(GEInstance->receiver.isKeyDown(KEY_F9)){
+    if(GEInstance->receiver.isKeyDown(KEY_DO_DEAD)){
         Game::getInstance()->ChangeState(GSMainMenu::getInstance());
         NetInstance->close();
         Game::getInstance()->ChangeState(GSMainMenu::getInstance());

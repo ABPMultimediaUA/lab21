@@ -10,9 +10,31 @@ using namespace std;
 
 enum EKEY_CODE
 {
-    KEY_ESCAPE      = sf::Keyboard::Escape,
-    KEY_RETURN      = sf::Keyboard::Return,
-    KEY_SPACE       = sf::Keyboard::Space,
+    // Teclas asignadas a acciones
+    KEY_EXIT            = sf::Keyboard::Escape,
+    KEY_INIT_GAME       = sf::Keyboard::Return,
+    KEY_DASH            = sf::Keyboard::Space,
+    KEY_OPEN_DOOR       = sf::Keyboard::E,
+    KEY_WEAPON_1        = sf::Keyboard::Num1,
+    KEY_WEAPON_2        = sf::Keyboard::Num2,
+    KEY_WEAPON_3        = sf::Keyboard::Num3,
+    KEY_CONSUME_MEDKIT  = sf::Keyboard::Num4,
+    KEY_GIVE_AMMO       = sf::Keyboard::Num5,
+    KEY_DUCK            = sf::Keyboard::Num8,
+    KEY_LEFT            = sf::Keyboard::A,
+    KEY_DOWN            = sf::Keyboard::S,
+    KEY_RIGHT           = sf::Keyboard::D,
+    KEY_UP              = sf::Keyboard::W,
+    KEY_GRENADE         = sf::Keyboard::G,
+    KEY_PAUSE           = sf::Keyboard::P,
+    KEY_WALK            = sf::Keyboard::LShift,
+    KEY_DO_DEAD         = sf::Keyboard::F9,
+
+    // Teclas generales. Si son para acciones, crear
+    // nuevas teclas como las de arriba
+    KEY_KEY_ESCAPE  = sf::Keyboard::Escape,
+    KEY_KEY_RETURN  = sf::Keyboard::Return,
+    KEY_KEY_SPACE   = sf::Keyboard::Space,
     KEY_KEY_0       = sf::Keyboard::Num0,
     KEY_KEY_1       = sf::Keyboard::Num1,
     KEY_KEY_2       = sf::Keyboard::Num2,
@@ -27,6 +49,7 @@ enum EKEY_CODE
     KEY_KEY_B       = sf::Keyboard::B,
     KEY_KEY_C       = sf::Keyboard::C,
     KEY_KEY_D       = sf::Keyboard::D,
+    KEY_KEY_E       = sf::Keyboard::E,
     KEY_KEY_G       = sf::Keyboard::G,
     KEY_KEY_M       = sf::Keyboard::M,
     KEY_KEY_N       = sf::Keyboard::N,
@@ -96,74 +119,7 @@ public:
     virtual float getCursorX(){return(cursorX);}
     virtual float getCursorY(){return(cursorY);}
     virtual bool isLeftButtonPressed(){return leftButton;}
+    virtual bool isLeftButtonReleased(){return !leftButton;}
 };
-
-/*#include <irrlicht.h>
-#include <GraphicsEngine.h>
-#include <iostream>
-
-using namespace std;
-
-using namespace irr;
-
-class AppReceiver : public IEventReceiver
-{
-    private:
-        bool KeyDown[KEY_KEY_CODES_COUNT];
-        int cursorX;
-        int cursorY;
-        bool leftButton;
-
-    public:
-    AppReceiver()
-    {
-        for(int i=0; i<KEY_KEY_CODES_COUNT; i++)
-        {
-            KeyDown[i] = false;
-        }
-        leftButton = false;
-        //return 0;
-    }
-
-    virtual bool OnEvent(const SEvent &event)
-    {
-        switch(event.EventType)
-        {
-            case irr::EET_KEY_INPUT_EVENT:
-                KeyDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
-                break;
-            case irr::EET_MOUSE_INPUT_EVENT:
-                switch(event.MouseInput.Event)
-                {
-                    case EMIE_MOUSE_MOVED:
-                        cursorX = event.MouseInput.X;
-                        cursorY = event.MouseInput.Y;
-                        break;
-                    case EMIE_LMOUSE_PRESSED_DOWN:
-                        leftButton = true;
-                        break;
-                    case EMIE_LMOUSE_LEFT_UP:
-                        leftButton = false;
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            default:
-                break;
-        }
-        return false;
-    }
-    virtual bool isKeyDown(EKEY_CODE keyCode) const {
-        return KeyDown[keyCode];
-    }
-    virtual bool isKeyUp(EKEY_CODE keyCode) const {
-        return !KeyDown[keyCode];
-    }
-
-    virtual float getCursorX(){return(cursorX);}
-    virtual float getCursorY(){return(cursorY);}
-    virtual bool isLeftButtonPressed(){return leftButton;}
-};*/
 
 #endif // APPRECEIVER_H

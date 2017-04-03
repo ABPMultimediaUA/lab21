@@ -8,13 +8,7 @@
 
 #define PLAYER_SPEED 50.0f
 #define M_PI 3.14159265358979323846
-#define POS_ERROR 100 // Creado para el ajuste de coordenadas de los muros de blender/irrlicht a box2d
 
-#define CLASS_NO_ID             0
-#define CLASS_PLAYER_ID         1
-#define CLASS_PROJECTILE_ID     2
-#define CLASS_WALL_ID           3
-#define CLASS_ENEMY_ID          4
 
 class Player;
 
@@ -39,17 +33,6 @@ class ContactListener : public b2ContactListener
             bodyUserDataB->onBeginContact(bodyUserDataA);
     }
 
-    /*void EndContact(b2Contact* contact)
-    {
-        void* bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
-        if (bodyUserData)
-            static_cast<EntityPhysics*>(bodyUserData)->onEndContact();
-
-        bodyUserData = contact->GetFixtureB()->GetBody()->GetUserData();
-        if (bodyUserData)
-            static_cast<EntityPhysics*>(bodyUserData)->onEndContact();
-    }*/
-    // TODOrmm nueva forma de hacerlo
     void EndContact(b2Contact* contact)
     {
         EntityPhysics* bodyUserDataA = (EntityPhysics*)contact->GetFixtureA()->GetBody()->GetUserData();
@@ -82,7 +65,12 @@ class WorldInstance
 
         b2Body* createBody(b2BodyDef *bodyDef);
         void destroyBody(b2Body *body);
+
+        /// \brief Se ejecuta el step de Box2D.
+        /// \details Acumula deltaTime y solo llama a step cuando ha pasado el tiempo definido en m_timeStep
+        /// \param[in] deltaTime tiempo que ha pasado desde la última llamada
         void step(float deltaTime);
+
         void clearForces();
 
         b2Vec2 getGravity();
@@ -110,6 +98,8 @@ class WorldInstance
         static ContactListener  m_contactListener;
 
         static Player* m_mainPlayer;
+
+        static float deltaTimeAccum;
 };
 
 #define World WorldInstance::Instance()

@@ -8,11 +8,12 @@ b2Vec2  WorldInstance::m_gravity(0.f, 0.f);
 b2World WorldInstance::m_world(WorldInstance::m_gravity);
 ContactListener WorldInstance::m_contactListener;
 Player* WorldInstance::m_mainPlayer = 0;
+float WorldInstance::deltaTimeAccum = 0;
 
 
-const float   WorldInstance::m_timeStep             = 1.0f / 250.0f;;
-const int     WorldInstance::m_velocityIterations   = 6;
-const int     WorldInstance::m_positionIterations   = 2;
+const float   WorldInstance::m_timeStep             = 1.0f / 60.0f;;
+const int     WorldInstance::m_velocityIterations   = 8;
+const int     WorldInstance::m_positionIterations   = 3;
 
 
 //////////////
@@ -42,8 +43,7 @@ void WorldInstance::Update()
 void WorldInstance::init()
 {
     m_world.SetContactListener(&m_contactListener);
-
-
+    deltaTimeAccum = 0;
 }
 
 ///////////////////////
@@ -61,7 +61,13 @@ void WorldInstance::destroyBody(b2Body *body)
 ////////////////////
 void WorldInstance::step(float deltaTime)
 {
-    m_world.Step(deltaTime * m_timeStep, m_velocityIterations, m_positionIterations);
+    //m_world.Step(deltaTime * m_timeStep, m_velocityIterations, m_positionIterations);
+    deltaTimeAccum += deltaTime;
+    if (deltaTimeAccum >= m_timeStep)
+    {
+        m_world.Step(m_timeStep, m_velocityIterations, m_positionIterations);
+        deltaTimeAccum = 0;
+    }
 }
 
 ////////////////////
