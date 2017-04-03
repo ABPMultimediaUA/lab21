@@ -114,7 +114,8 @@ namespace dwe{
             ~WeaponBox();
             void swapWeapon(FirearmKind weapon, int ammo, sf::Texture *tweapon, sf::Text *textammo);
             void updateWeapon (sf::Texture *tweapon, std::string str, int ammo, sf::Text *textammo);
-            void draw(FirearmKind weapon, int ammo);
+            void draw(FirearmKind weapon, int ammo, int grenades);
+            void setText(sf::Text *text, int num);
 
         private:
             sf::Sprite s_box;
@@ -123,7 +124,11 @@ namespace dwe{
             sf::Sprite s_weapon;
             sf::Texture t_weapon;
 
+            sf::Sprite s_grenade;
+            sf::Texture t_grenade;
+
             sf::Text text_ammo;
+            sf::Text text_grenades;
 
             // Variables para probar HUD
             int ammoGun;        // Para la munición de cada arma
