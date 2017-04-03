@@ -159,31 +159,37 @@ dwe::WeaponBox::WeaponBox( float x, float y)
     int   width   = GEInstance->get_screenWidth();
     int   height  = GEInstance->get_screenHeight();
 
-    t = 2000;
-
 
     /**** Caja base ****/
-    setComponents("media/CuadroArma.png", &s_box, &t_box, x, y);
+    setComponents("media/HUDArma.png", &s_box, &t_box, x, y);
 
     /**** Arma ****/
-    setComponents("media/grenade.png", &s_weapon, &t_weapon, s_box.getPosition().x, s_box.getPosition().y );
+    setComponents("media/Gun.png", &s_weapon, &t_weapon, s_box.getPosition().x + 20, s_box.getPosition().y + 40 );
+    s_weapon.setScale(0.7, 0.7);
+
+    /**** Granada ****/
+    setComponents("media/Grenade.png", &s_grenade, &t_grenade, s_box.getPosition().x + 100, s_box.getPosition().y + 120 );
+    s_grenade.setScale(0.5, 0.5);
 
     /**** Munición del arma actual ****/
     font.loadFromFile("media/exoregular.otf");
     text_ammo.setFont(font);
     text_ammo.setCharacterSize(15);
     text_ammo.setColor(sf::Color::White);
-    text_ammo.setPosition(s_box.getPosition().x + 110, s_box.getPosition().y + 60);
+    text_ammo.setPosition(s_box.getPosition().x + 65, s_box.getPosition().y + 100);
 
-    std::stringstream sw;
-    sw << "x" << grenades;
-    text_ammo.setString(sw.str());
+    /**** Cantidad de granadas ****/
+    text_grenades.setFont(font);
+    text_grenades.setCharacterSize(15);
+    text_grenades.setColor(sf::Color::White);
+    text_grenades.setPosition(s_box.getPosition().x + 150, s_box.getPosition().y + 130);
+
 
 }
 
 dwe::WeaponBox::~WeaponBox(){};
 
-void dwe::WeaponBox::draw(FirearmKind weapon, int ammo)
+void dwe::WeaponBox::draw(FirearmKind weapon, int ammo, int grenades)
 {
     GEInstance->drawSprite(s_box);
 
@@ -192,31 +198,34 @@ void dwe::WeaponBox::draw(FirearmKind weapon, int ammo)
     GEInstance->drawSprite(s_weapon);
 
     GEInstance->drawText(text_ammo);
+
+    setText(&text_grenades, grenades);
+
+    GEInstance->drawText(text_grenades);
+
+    GEInstance->drawSprite(s_grenade);
 }
 
 void dwe::WeaponBox::swapWeapon(FirearmKind weapon, int ammo, sf::Texture *tweapon, sf::Text *textammo)
 {
 
     // Según el arma que haya en el momento, cambiamos la imagen y la cantidad disponible
-    //if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1) && (clock() - t)> 200)
     if (weapon == eGun)
-        updateWeapon(tweapon, "media/grenade.png", ammo, textammo);
+        updateWeapon(tweapon, "media/Gun.png", ammo, textammo);
 
 
-    //else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2) && (clock() - t)> 200)
     else if (weapon == eRifle)
-        updateWeapon(tweapon, "media/cosa2.png", ammo, textammo);
+        updateWeapon(tweapon, "media/Rifle.png", ammo, textammo);
 
 
-    //else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3) && (clock() - t)> 200)
     else if (weapon == eShotgun)
-        updateWeapon(tweapon, "media/cosa3.png", ammo, textammo);
+        updateWeapon(tweapon, "media/Shotgun.png", ammo, textammo);
 
 
     // Ponmos textura, posicion, etc del arma
     s_weapon.setTexture(*tweapon, true);
     s_weapon.setOrigin(0,0);
-    s_weapon.setPosition(s_box.getPosition().x, s_box.getPosition().y + 2);
+    s_weapon.setPosition(s_box.getPosition().x + 20, s_box.getPosition().y + 40);
 
 }
 
@@ -226,6 +235,14 @@ void dwe::WeaponBox::updateWeapon (sf::Texture *tweapon, std::string str, int am
     tweapon->loadFromFile(str);
     sw << "x" << ammo;
     textammo->setString(sw.str());
+}
+
+void dwe::WeaponBox::setText(sf::Text *text, int num)
+{
+    std::stringstream sw;
+    sw << "x" << num;
+    text->setString(sw.str());
+
 }
 
 dwe::HealthBox::HealthBox(float x, float y)
@@ -240,35 +257,36 @@ dwe::HealthBox::HealthBox(float x, float y)
     t = 2000;
 
     /**** Caja base ****/
-    setComponents("media/CuadroVida2.png", &s_box, &t_box, x, y);
+    setComponents("media/HUDVida.png", &s_box, &t_box, x, y);
 
     /**** Vida perdida ****/
-    setComponents("media/VidaPerdida.png", &s_hplost, &t_hplost, s_box.getPosition().x + 8, s_box.getPosition().y + 6);
+    setComponents("media/HUDBarraVidaPerdida.png", &s_hplost, &t_hplost, s_box.getPosition().x + 60, s_box.getPosition().y + 30);
+    s_hplost.setScale(1.04, 0.9);
 
     /**** Vida actual ****/
-    t_health.loadFromFile("media/VidaLlena.png");
+    t_health.loadFromFile("media/HUDBarraVida.png");
     s_health.setTexture(&t_health, true);
     s_health.setOrigin(0,0);
-    s_health.setPosition(s_box.getPosition().x + 7, s_box.getPosition().y + 6);
+    s_health.setPosition(s_box.getPosition().x + 60, s_box.getPosition().y + 30);
 
     /**** Contorno vida ****/
-    setComponents("media/ContornoVida.png", &s_edge, &t_edge, s_box.getPosition().x + 6, s_box.getPosition().y + 6);
+    //setComponents("media/ContornoVida.png", &s_edge, &t_edge, s_box.getPosition().x + 6, s_box.getPosition().y + 6);
 
     /**** Botiquines ****/
-    setComponents("media/Botiquines.png", &s_heal, &t_heal, s_box.getPosition().x + 110, s_box.getPosition().y + 33);
+    setComponents("media/HUDHeal.png", &s_heal, &t_heal, s_box.getPosition().x + 65, s_box.getPosition().y + 5);
 
     /**** Texto de Vida actual / Vida total ****/
     font.loadFromFile("media/exoregular.otf");
     text_health.setFont(font);
-    text_health.setCharacterSize(15);
+    text_health.setCharacterSize(9);
     text_health.setColor(sf::Color::White);
-    text_health.setPosition(s_box.getPosition().x + 65, s_box.getPosition().y + 7);
+    text_health.setPosition(s_box.getPosition().x + 100, s_box.getPosition().y + 30);
 
     /**** Texto de Botiquines ****/
     text_heal.setFont(font);
-    text_heal.setCharacterSize(15);
+    text_heal.setCharacterSize(12);
     text_heal.setColor(sf::Color::White);
-    text_heal.setPosition(s_box.getPosition().x + 150, s_box.getPosition().y + 35);
+    text_heal.setPosition(s_box.getPosition().x + 90, s_box.getPosition().y + 10);
 
 }
 
@@ -312,7 +330,7 @@ void dwe::HealthBox::draw(int medkits, int health, int maxHealth)
 
     drawCurrentHealth(health, maxHealth);
 
-    GEInstance->drawSprite(s_edge);
+    //GEInstance->drawSprite(s_edge);
 
     GEInstance->drawSprite(s_heal);
 
@@ -327,8 +345,8 @@ void dwe::HealthBox::drawCurrentHealth(int health, int maxHealth)
     float hpmn  = maxHealth;
 
     // Actualizamos sprite de vida
-    float c     = ((hpn/hpmn) * 100 *1.8) ;
-    s_health.setSize(sf::Vector2f(c , 22));
+    float c     = ((hpn/hpmn) * 100 *1.2) ;
+    s_health.setSize(sf::Vector2f(c , 10));
     sf::Rect<int> rect = s_health.getTextureRect();
     rect.width = c;
     s_health.setTextureRect(rect);
