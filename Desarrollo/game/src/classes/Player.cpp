@@ -5,7 +5,7 @@
 Player::Player(Gun* gun)
 {
 
-    setClassID(CLASS_PLAYER_ID);
+    setClassID(EntityPhysics::player_id);
     m_mKeys[0]=false;
     m_medkits = 0;
     m_timeMedkit = 2000;
@@ -197,10 +197,9 @@ void Player::readEvents()
     }
 
     //HACER DASH
-     if(GEInstance->receiver.isKeyDown(KEY_SPACE) && World->getTimeElapsed() - m_timeWeaponSwap > 200)
-        this->dash();//evadimos
-
-
+    // TODO no se puede hacer con la misma tecla de abrir puertas
+     //if(GEInstance->receiver.isKeyDown(KEY_SPACE) && World->getTimeElapsed() - m_timeWeaponSwap > 200)
+       // this->dash();//evadimos
 
 }
 
@@ -274,7 +273,7 @@ void Player::consumeMedkit()
 /////////////
 void Player::onBeginContact(EntityPhysics* otherObject)
 {
-    if((otherObject && otherObject->getClassID()==CLASS_ENEMY_ID)){
+    if((otherObject && otherObject->getClassID()==EntityPhysics::enemy_id)){
         m_health-=5;
         cout<< "Perdiendo vida: " << m_health <<endl;
     }

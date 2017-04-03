@@ -160,10 +160,11 @@ void Scene::Init()
     enemyDog->setPosition(dwe::vec3f(100,24,80));
 
     //Joint try
+    /*TODO RMM si queremos mantener esto, hay que crearlo en otro sitio. El createJointBody ahora es protected
     joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
     joint_try->setPosition(dwe::vec3f(0,10,-120));
     bjoint = new EntityPhysics();
-    bjoint->createJointBody(dwe::vec3f(0,10,-120)); // createJointBody(dwe::vec3f(0,10,120));
+    bjoint->createJointBody(dwe::vec3f(0,10,-120)); // createJointBody(dwe::vec3f(0,10,120));*/
 
     GEInstance->createCamera();
 
@@ -315,7 +316,7 @@ void Scene::Update()
     updatePlayerWeapons(mainPlayer, mainPlayer->getPlayerWeapons());
 
     //update box of box2d
-    joint_try->setPosition(dwe::vec3f(bjoint->getPosEntity().x,bjoint->getPosEntity().y,bjoint->getPosEntity().z));
+    //TODO joint_try->setPosition(dwe::vec3f(bjoint->getPosEntity().x,bjoint->getPosEntity().y,bjoint->getPosEntity().z));
 
     /*
     // Coger la llave
