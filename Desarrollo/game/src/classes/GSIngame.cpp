@@ -49,15 +49,15 @@ void GSIngame::Update(){
 }
 
 void GSIngame::HandleEvents(){
-    if(GEInstance->receiver.isKeyDown(KEY_F10)){
+    if(GEInstance->receiver.isKeyDown(KEY_F10)){  //TODO no debe de poner KEY_F10
         Game::getInstance()->ChangeState(GSPause::getInstance());
         m = false;
     }
-    else if(GEInstance->receiver.isKeyDown(KEY_F9)){
+    else if(GEInstance->receiver.isKeyDown(KEY_DO_DEAD)){
         Game::getInstance()->ChangeState(GSDead::getInstance());
         m = false;
     }
-    else if(GEInstance->receiver.isKeyDown(KEY_ESCAPE))
+    else if(GEInstance->receiver.isKeyDown(KEY_EXIT))
     {
         Game::getInstance()->setRunning(false);
         //GEInstance=0;

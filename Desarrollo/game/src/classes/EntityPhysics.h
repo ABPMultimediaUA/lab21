@@ -1,7 +1,6 @@
 #ifndef ENTITYPHYSICS_H
 #define ENTITYPHYSICS_H
 
-#include <irrlicht.h>
 #include "GraphicsEngine.h"
 #include "Drawable.h"
 #include <Box2D/Box2D.h>

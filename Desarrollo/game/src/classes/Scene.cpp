@@ -45,7 +45,7 @@ void Scene::Init()
             //GEInstance->draw(); // Si se dibuja la escena peta
 
             NetInstance->update();
-            if (GEInstance->receiver.isKeyDown(KEY_RETURN))
+            if (GEInstance->receiver.isKeyDown(KEY_INIT_GAME))
                 NetInstance->startGame();
         }
     }
@@ -293,7 +293,7 @@ void Scene::Update()
     }
 
        // comprobamos si dispara granadas
-    if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isKeyDown(KEY_KEY_G)){
+    if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isKeyDown(KEY_GRENADE)){
         NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectilgrenade
         if (mainPlayer->getGrenades() > 0) //
         {
