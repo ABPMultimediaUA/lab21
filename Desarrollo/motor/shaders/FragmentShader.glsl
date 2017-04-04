@@ -9,8 +9,8 @@ varying vec2 v_TextureCoord;    // in: coordenadas de textura
 
 void main()
 {
-    if (textureSize( u_TextureSampler, 0).x > 0)
+    //if (textureSize( u_TextureSampler, 0).x > 0)
         gl_FragColor = v_Color * texture2D(u_TextureSampler, v_TextureCoord);
-    else
-        gl_FragColor = v_Color;
+    //else
+      //  gl_FragColor = v_Color;
 }

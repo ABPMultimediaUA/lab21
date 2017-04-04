@@ -45,7 +45,7 @@ GLuint tag::ResourceTexture::loadTexture(Image* image)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-    glBindTexture(GL_TEXTURE_2D, 0);
+    //glBindTexture(GL_TEXTURE_2D, 0);
 
 	return textureId;
 }
@@ -56,9 +56,9 @@ void tag::ResourceTexture::load(std::string fileName)
     setName(fileName);
 
     Image* image = loadBMP(fileName.c_str());
-
+ResourceTexture::_nextTextureID++;
     m_textureID = loadTexture(image);
-    m_textureIndex = ResourceTexture::_nextTextureID++;  // Despues de asignar, incrementamos
+    m_textureIndex = ResourceTexture::_nextTextureID;  // Despues de asignar, incrementamos
 
     delete image;
 }
@@ -69,13 +69,12 @@ void tag::ResourceTexture::activateTexture() const
     glActiveTexture(GL_TEXTURE0+m_textureIndex);
     glBindTexture(GL_TEXTURE_2D, m_textureID);
     glUniform1i(TAGEngine::_uTextureSamplerLocation, m_textureIndex);
-//    glUniform1i(TAGEngine::_uHasTexture, true);
 }
 
 ///////////////////////////
 void tag::ResourceTexture::deactivateTexture() const
 {
-    glActiveTexture(GL_TEXTURE0+m_textureIndex);
-    glBindTexture(GL_TEXTURE_2D, 0);
-//    glUniform1i(TAGEngine::_uHasTexture, false);
+    glActiveTexture(GL_TEXTURE0);
+    glUniform1i(TAGEngine::_uTextureSamplerLocation, 0);
+    //glBindTexture(GL_TEXTURE_2D, 0);
 }

@@ -47,6 +47,8 @@ TTag2Floor mappingFloor[] = {
 };
 
 void LoadMap::Init(){
+    GEInstance->pop();
+
     const char* json; //Aqui va a ir todo el archivo
     std::string allText = "";
 
@@ -171,6 +173,7 @@ void LoadMap::Init(){
         }
 
     }
+    GEInstance->push();
 }
 
 /*

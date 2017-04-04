@@ -205,6 +205,9 @@ namespace dwe
 
         tag::TAGEngine* getTagEngine() { return &m_tagEngine; }
 
+        void push();
+        void pop();
+
     private:
         sf::RenderWindow*   m_window;
         sf::Font            m_font;
