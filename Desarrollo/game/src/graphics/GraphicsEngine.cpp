@@ -146,6 +146,11 @@ void dwe::GraphicsEngine::drawSprite(sf::Sprite sp)
     m_window->draw(sp);
 }
 
+void dwe::GraphicsEngine::drawAnimatedSprite(AnimatedSprite as)
+{
+    m_window->draw(as);
+}
+
 void dwe::GraphicsEngine::clearWindow()
 {
     m_window->clear();

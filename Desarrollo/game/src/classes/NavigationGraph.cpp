@@ -246,6 +246,8 @@ bool NavigationGraph::isEdgePresent(int from, int to)const
 
 /*****************************************************ITERATORS***************************************************/
 
+/*******************************************EDGES*****************************************/
+
 NavigationGraph::EdgeIterator::EdgeIterator(const NavigationGraph& graph, int node): G(graph), NodeIndex(node)
 {
     curEdge = G.edges[NodeIndex].begin();
@@ -261,10 +263,47 @@ const NavGraphEdge* NavigationGraph::EdgeIterator::next()
 {
     ++curEdge;
     if (end()) return 0;
-        return &(*curEdge);
+    return &(*curEdge);
 }
 
 bool NavigationGraph::EdgeIterator::end()
 {
     return (curEdge == G.edges[NodeIndex].end());
+}
+
+/*******************************************NODES*****************************************/
+
+void NavigationGraph::NodeIterator::GetNextValidNode(typename NodeVector::const_iterator& it)
+{
+    if ( curNode == G.nodes.end() || it->getIndex() != -1) return;
+    while ( (it->getIndex() == -1) )
+    {
+        ++it;
+        if (curNode == G.nodes.end()) break;
+    }
+}
+
+NavigationGraph::NodeIterator::NodeIterator(const NavigationGraph &graph):G(graph)
+{
+    curNode = G.nodes.begin();
+}
+
+const NavGraphNode* NavigationGraph::NodeIterator::begin()
+{
+    curNode = G.nodes.begin();
+    GetNextValidNode(curNode);
+    return &(*curNode);
+}
+
+const NavGraphNode* NavigationGraph::NodeIterator::next()
+{
+    ++curNode;
+    if (end()) return 0;
+    GetNextValidNode(curNode);
+    return &(*curNode);
+}
+
+bool NavigationGraph::NodeIterator::end()
+{
+    return (curNode == G.nodes.end());
 }
