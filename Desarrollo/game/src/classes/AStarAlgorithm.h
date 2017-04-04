@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <list>
+#include "GraphicsEngine.h"
 
 class NavigationGraph;
 class NavGraphEdge;
@@ -39,7 +40,7 @@ class Graph_SearchAStar
 
         //returns a vector of node indexes that comprise the shortest path
         //from the source to the target
-        std::list<int> GetPathToTarget()const;
+        std::list<dwe::vec2f> GetPathToTarget()const;
 
         //returns the total cost to the target
         float GetCostToTarget()const;

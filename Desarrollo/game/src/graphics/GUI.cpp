@@ -48,7 +48,7 @@ int dwe::Button::getHeight()
 dwe::Background::Background(std::string s)
 {
     rs.setSize(sf::Vector2f(GEInstance->get_screenWidth(), GEInstance->get_screenHeight()));
-    texture.loadFromFile("media/menu"+s+".jpg");
+    texture.loadFromFile("media/"+s+".jpg");
     rs.setTexture(&texture, true);
 }
 

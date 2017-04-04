@@ -21,10 +21,10 @@ GSMainMenu::GSMainMenu(){
     updatedLobbys = false;
 
     /**Fondos**/
-    menuPrincipalFondo = new dwe::Background("Principal");
-    menuJugarOnlineFondo = new dwe::Background("JugarOnline");
-    menuLogrosFondo = new dwe::Background("Logros");
-    menuOpcionesFondo = new dwe::Background("Opciones");
+    menuPrincipalFondo = new dwe::Background("menuPrincipal");
+    menuJugarOnlineFondo = new dwe::Background("menuJugarOnline");
+    menuLogrosFondo = new dwe::Background("menuLogros");
+    menuOpcionesFondo = new dwe::Background("menuOpciones");
 
     /**Botones**/
     playAloneButton = new dwe::Button("Play Alone", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35);

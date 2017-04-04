@@ -17,10 +17,10 @@
 #define U_LIGHT_AMBIENT         "u_Light.ambient"
 #define U_LIGHT_DIFFUSE         "u_Light.diffuse"
 #define U_LIGHT_SPECULAR        "u_Light.specular"
-#define U_MATERIAL_HASTEXTURE   "u_Material.hasTexture"
-#define U_MATERIAL_DIFFUSE      "u_Material.diffuse"
-#define U_MATERIAL_SPECULAR     "u_Material.specular"
-#define U_MATERIAL_SHININESS    "u_Material.shininess"
+#define U_MATERIAL_HASTEXTURE   "u_MaterialHasTexture"
+#define U_MATERIAL_DIFFUSE      "u_MaterialDiffuse"
+#define U_MATERIAL_SPECULAR     "u_MaterialSpecular"
+#define U_MATERIAL_SHININESS    "u_MaterialShininess"
 
 
 #define GLEW_STATIC

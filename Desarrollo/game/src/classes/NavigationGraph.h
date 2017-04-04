@@ -70,6 +70,24 @@ class NavigationGraph
         };
 
     friend class EdgeIterator;
+
+    class NodeIterator
+    {
+        private:
+
+            typename NodeVector::const_iterator			curNode;
+            const NavigationGraph& G;
+            void GetNextValidNode(typename NodeVector::const_iterator& it);
+
+        public:
+
+            NodeIterator(const NavigationGraph &graph);
+            const NavGraphNode* begin();
+            const NavGraphNode* next();
+            bool end();
+    };
+
+    friend class ConstNodeIterator;
 };
 
 #endif // NAVIGATIONGRAPH_H
