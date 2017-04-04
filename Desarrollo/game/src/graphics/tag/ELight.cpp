@@ -13,14 +13,14 @@ tag::ELight::~ELight()
 void tag::ELight::beginDraw() {};
 void tag::ELight::endDraw() {};
 
-glm::vec4 tag::ELight::getDiffuseIntensity() { return m_DiffuseIntensity; }
-void tag::ELight::setDiffuseIntensity( glm::vec4 intensity ) { m_DiffuseIntensity = intensity; }
+tag::vec3f tag::ELight::getDiffuseIntensity() { return m_diffuseIntensity; }
+void tag::ELight::setDiffuseIntensity( vec3f intensity ) { m_diffuseIntensity = intensity; }
 
-glm::vec4 tag::ELight::getSpecularIntensity() { return m_SpecularIntensity; }
-void tag::ELight::setSpecularIntensity( glm::vec4 intensity ) { m_SpecularIntensity = intensity; }
+tag::vec3f tag::ELight::getSpecularIntensity() { return m_specularIntensity; }
+void tag::ELight::setSpecularIntensity( vec3f intensity ) { m_specularIntensity = intensity; }
 
-glm::vec4 tag::ELight::getAmbientIntensity() { return m_AmbientIntensity; }
-void tag::ELight::setAmbientIntensity( glm::vec4 intensity ) { m_AmbientIntensity = intensity; }
+tag::vec3f tag::ELight::getAmbientIntensity() { return m_ambientIntensity; }
+void tag::ELight::setAmbientIntensity( vec3f intensity ) { m_ambientIntensity = intensity; }
 
 bool tag::ELight::getIfLightOn() { return m_lightOn; }
 void tag::ELight::setOnOff (bool on) { m_lightOn = on; }

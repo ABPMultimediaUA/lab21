@@ -89,7 +89,7 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     TAGEngine::_uLMatrixLocation            = m_shaderProgram->uniform(U_LMATRIX);
     TAGEngine::_uColorLocation              = m_shaderProgram->uniform(U_COLOR);
     TAGEngine::_uTextureSamplerLocation     = m_shaderProgram->uniform(U_TEXTURESAMPLER);
-    TAGEngine::_uHasTexture                 = m_shaderProgram->uniform(U_HASTEXTURE);
+    //TAGEngine::_uHasTexture                 = m_shaderProgram->uniform(U_HASTEXTURE);
     TAGEngine::_uLuz0Location               = m_shaderProgram->uniform(U_LUZ0);
 
     glUseProgram(0);

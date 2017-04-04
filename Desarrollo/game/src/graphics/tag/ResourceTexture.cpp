@@ -3,20 +3,30 @@
 #include <iostream>
 
 #include "tag/TAGEngine.h"
+#include "tag/TAGError.h"
 
 
-unsigned int tag::ResourceTexture::_nextTextureID = 0;
+int tag::ResourceTexture::_nextTextureID = 0;
 
 tag::ResourceTexture::ResourceTexture() :
     m_image(0),
-    m_textureID(0)
+    m_diffuseTextureID(0),
+    m_specularTextureID(0),
+    m_normalTextureID(0),
+    m_diffuseTextureIndex(-1),
+    m_specularTextureIndex(-1),
+    m_normalTextureIndex(-1)
 {
 }
 
 tag::ResourceTexture::~ResourceTexture()
 {
-    if (m_textureID)
-        glDeleteTextures(1, &m_textureID);
+    if (m_diffuseTextureIndex>=0)
+        glDeleteTextures(1, &m_diffuseTextureID);
+    if (m_specularTextureIndex>=0)
+        glDeleteTextures(1, &m_specularTextureID);
+    if (m_normalTextureIndex>=0)
+        glDeleteTextures(1, &m_normalTextureID);
 }
 
 /////////////////////////////
@@ -50,32 +60,81 @@ GLuint tag::ResourceTexture::loadTexture(Image* image)
 	return textureId;
 }
 
+/////////////////////////////
+Image* tag::ResourceTexture::createBlackImage() const
+{
+    char* pixels = new char[3];  // la clase Image hace el delete de pixels
+    pixels[0] = 0; pixels[1] = 0; pixels[2] = 0;
+
+    return (new Image(pixels, 1, 1));
+}
+
+//////////////////////////////////
+std::string tag::ResourceTexture::getFileName(const std::string fileName, const std::string appendName) const
+{
+    std::string f = fileName.substr(0, fileName.size()-4);
+    f = f + appendName + ".bmp";
+    return f;
+}
+
 ///////////////////////////
 void tag::ResourceTexture::load(std::string fileName)
 {
     setName(fileName);
 
-    Image* image = loadBMP(fileName.c_str());
+    Image* image;
 
-    m_textureID = loadTexture(image);
-    m_textureIndex = ResourceTexture::_nextTextureID++;  // Despues de asignar, incrementamos
-
+    // Textura difusa
+    image = loadBMP(fileName.c_str());
+    if (!image)
+        throw std::runtime_error("No se encuentra el fichero de textura " + fileName);
+    m_diffuseTextureID = loadTexture(image);
+    m_diffuseTextureIndex = ResourceTexture::_nextTextureID++;  // Despues de asignar, incrementamos
     delete image;
+
+
+    // Textura especular
+    image = loadBMP(getFileName(fileName, "specular").c_str());
+    if (!image)  // Si no existe textura especular, genero una textura de 1x1 en negro, sin brillos.
+        image = createBlackImage();
+    m_specularTextureID = loadTexture(image);
+    m_specularTextureIndex = ResourceTexture::_nextTextureID++;  // Despues de asignar, incrementamos
+    delete image;
+
+    // TODO Textura de normales
+    //image = loadBMP(fileName.substr(0, fileName.size()-4) + "normal.bmp");
+    //if (image)
+    //{
+    //    m_normalTextureID = loadTexture(image);
+    //    m_normalTextureIndex = ResourceTexture::_nextTextureID++;  // Despues de asignar, incrementamos
+    //}
+    //delete image;
 }
 
 ///////////////////////////
 void tag::ResourceTexture::activateTexture() const
 {
-    glActiveTexture(GL_TEXTURE0+m_textureIndex);
-    glBindTexture(GL_TEXTURE_2D, m_textureID);
-    glUniform1i(TAGEngine::_uTextureSamplerLocation, m_textureIndex);
-    glUniform1i(TAGEngine::_uHasTexture, true);
+    glUniform1i(TAGEngine::_uMaterialHasTextureLocation, true);
+    glUniform1f(TAGEngine::_uMaterialShininessLocation, 32.0);
+
+    glActiveTexture(GL_TEXTURE0+m_diffuseTextureIndex);
+    glBindTexture(GL_TEXTURE_2D, m_diffuseTextureID);
+    glUniform1i(TAGEngine::_uMaterialDiffuseLocation, m_diffuseTextureIndex);
+
+    glActiveTexture(GL_TEXTURE0+m_specularTextureIndex);
+    glBindTexture(GL_TEXTURE_2D, m_specularTextureID);
+    glUniform1i(TAGEngine::_uMaterialSpecularLocation, m_specularTextureIndex);
 }
 
 ///////////////////////////
 void tag::ResourceTexture::deactivateTexture() const
 {
-    glActiveTexture(GL_TEXTURE0+m_textureIndex);
+    glUniform1i(TAGEngine::_uMaterialHasTextureLocation, false);
+
+    glActiveTexture(GL_TEXTURE0+m_diffuseTextureIndex);
     glBindTexture(GL_TEXTURE_2D, 0);
-    glUniform1i(TAGEngine::_uHasTexture, false);
+
+    // TODO si desactivo también esta textura, me da un problema con el stack de openGL
+    //glActiveTexture(GL_TEXTURE0+m_specularTextureIndex);
+    //glBindTexture(GL_TEXTURE_2D, 0);
 }

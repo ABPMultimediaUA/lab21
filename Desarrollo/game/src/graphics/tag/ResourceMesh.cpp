@@ -8,6 +8,7 @@
 #include "tag/Entity.h"
 #include "tag/TAGEngine.h"
 #include "tag/Types.h"
+#include "tag/TAGError.h"
 
 
 #include <glm/gtc/matrix_transform.hpp>
@@ -35,7 +36,6 @@ tag::ResourceMesh::~ResourceMesh()
     delete[] m_normals;
     delete[] m_textUV;
     delete[] m_indices;
-    delete[] m_color;
 }
 
 void tag::ResourceMesh::aiVector3DToArrayGLFloat(const aiVector3D &source, GLfloat* dest)
@@ -120,17 +120,6 @@ void tag::ResourceMesh::aiSceneToOpenGLMesh(const aiScene* scene)
             indicesCount++;
         }
     }
-    // TODO el color por ahora gris
-    m_color = new GLfloat[4];
-    m_color[0] = 1;
-    m_color[1] = 1;
-    m_color[2] = 1;
-    m_color[3] = 1;
-
-    /*m_color[0] = 0.5;
-    m_color[1] = 0.5;
-    m_color[2] = 0.5;
-    m_color[3] = 1.0;*/
 
     prepareOpenGLBuffers();
 }
@@ -161,22 +150,30 @@ void tag::ResourceMesh::load(std::string fileName)
 
 void tag::ResourceMesh::draw()
 {
-    glm::mat4   modelViewMatrix;
+    glm::mat4 modelViewMatrix;
+    glm::mat4 mvpMatrix;
+    glm::mat3 normalMatrix;
+
+    normalMatrix = glm::mat3(glm::transpose(glm::inverse(Entity::modelMatrix)));
 
     modelViewMatrix = Entity::viewMatrix * Entity::modelMatrix;
+    mvpMatrix = Entity::projectionMatrix * Entity::viewMatrix * Entity::modelMatrix;
 
     // Envía nuestra ModelView al Vertex Shader
     glUniformMatrix4fv(TAGEngine::_uMVMatrixLocation, 1, GL_FALSE, &modelViewMatrix[0][0]);
 
-    // Color
-    glUniform4fv(TAGEngine::_uColorLocation, 1, m_color);
+    // Envía matriz MVP al Vertex Shader
+    glUniformMatrix4fv(TAGEngine::_uMVPLocation, 1, GL_FALSE, &mvpMatrix[0][0]);
+
+    // Envía NormalMatrix Vertex Shader
+    glUniformMatrix3fv(TAGEngine::_uNormalMatrixLocation, 1, GL_FALSE, &normalMatrix[0][0]);
 
     // Asociamos los vértices y sus normales
     glBindBuffer(GL_ARRAY_BUFFER, m_vbVertices);
-    glVertexAttribPointer(TAGEngine::_aPositionLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*3, 0);
+    glVertexAttribPointer(TAGEngine::_aVertexPositionLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*3, 0);
 
     glBindBuffer(GL_ARRAY_BUFFER, m_vbNormals);
-    glVertexAttribPointer(TAGEngine::_aNormalLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*3, 0);
+    glVertexAttribPointer(TAGEngine::_aVertexNormalLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*3, 0);
 
     glBindBuffer(GL_ARRAY_BUFFER, m_vbTextUV);
     glVertexAttribPointer(TAGEngine::_aTextureCoordsLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*3, 0);

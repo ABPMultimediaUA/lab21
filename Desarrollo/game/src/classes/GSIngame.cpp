@@ -52,7 +52,7 @@ void GSIngame::Update(){
 void GSIngame::HandleEvents(){
     if(!m_pausePermission && GEInstance->receiver.isKeyUp(KEY_PAUSE))
         m_pausePermission = true;
-    if(m_pausePermission && GEInstance->receiver.isKeyDown(KEY_PAUSE){
+    if(m_pausePermission && GEInstance->receiver.isKeyDown(KEY_PAUSE)){
         Game::getInstance()->ChangeState(GSPause::getInstance());
         m = false;
         m_pausePermission = false;
@@ -80,7 +80,6 @@ void GSIngame::Render(){
         }
         GEInstance->draw();
         hud->draw();
-//        GEInstance->popGLStates();
     }
 }
 GSIngame::~GSIngame(){
