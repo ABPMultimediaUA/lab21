@@ -142,7 +142,6 @@ namespace dwe
         void close();
         bool isRunning();
         void draw();
-        void popGLStates();
         ///
         void drawRectangleShape(sf::RectangleShape rs);
         void drawText(sf::Text t);

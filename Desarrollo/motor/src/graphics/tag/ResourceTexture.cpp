@@ -69,7 +69,7 @@ void tag::ResourceTexture::activateTexture() const
     glActiveTexture(GL_TEXTURE0+m_textureIndex);
     glBindTexture(GL_TEXTURE_2D, m_textureID);
     glUniform1i(TAGEngine::_uTextureSamplerLocation, m_textureIndex);
-    glUniform1i(TAGEngine::_uHasTexture, true);
+//    glUniform1i(TAGEngine::_uHasTexture, true);
 }
 
 ///////////////////////////
@@ -77,5 +77,5 @@ void tag::ResourceTexture::deactivateTexture() const
 {
     glActiveTexture(GL_TEXTURE0+m_textureIndex);
     glBindTexture(GL_TEXTURE_2D, 0);
-    glUniform1i(TAGEngine::_uHasTexture, false);
+//    glUniform1i(TAGEngine::_uHasTexture, false);
 }

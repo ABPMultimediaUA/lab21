@@ -57,24 +57,7 @@ namespace dwe
     // ====
     //
     ///////////////////////////////////////////////
-    template <class T>
-    class vec2
-    {
-    public:
-        T x;
-        T y;
-
-        // Constructor con xyz a cero
-        vec2() : x(0), y(0) {};
-        // Constructor con el mismo valor para xyz
-        vec2(T _p) : x(_p), y(_p) {};
-        // Constructor con valores xyz
-        vec2(T _x, T _y) : x(_x), y(_y) {};
-        // Constructor con los valores de otro vec2
-        vec2(const vec2<T>& v) : x(v.x), y(v.y) {};
-    };
-    typedef vec2<glm::f32> vec2f;
-    typedef vec2<int> vec2i;
+    typedef tag::vec2f vec2f;
 
 
     ///////////////////////////////////////////////

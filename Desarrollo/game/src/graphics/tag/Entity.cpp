@@ -2,6 +2,7 @@
 
 glm::mat4 tag::Entity::modelMatrix;
 glm::mat4 tag::Entity::viewMatrix;
+glm::mat4 tag::Entity::projectionMatrix;
 std::stack<glm::mat4> tag::Entity::TStack;
 tag::ResourceManager tag::Entity::resourceManager;
 
