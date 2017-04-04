@@ -38,9 +38,13 @@ void GSPause::SetPage(int n){
 }
 
 void GSPause::HandleEvents(){
-    if(GEInstance->receiver.isKeyDown(KEY_PAUSE)){
+    if(!m_pausePermission && GEInstance->receiver.isKeyUp(KEY_PAUSE)){
+        m_pausePermission = true;
+    }
+    if(m_pausePermission && GEInstance->receiver.isKeyDown(KEY_PAUSE)){
         Game::getInstance()->ChangeState(GSIngame::getInstance());
         m = false;
+        m_pausePermission = false;
     }
     if(GEInstance->receiver.isKeyDown(KEY_DO_DEAD)){
         Game::getInstance()->ChangeState(GSMainMenu::getInstance());
@@ -49,10 +53,12 @@ void GSPause::HandleEvents(){
         Scene::Instance()->Destroy();
         LoadMap::getInstance()->Destroy();
         m = false;
+        m_pausePermission = false;
     }
 }
 
 void GSPause::Update(){
      //cin>>page;
 }
+
 GSPause::~GSPause(){}

@@ -11,8 +11,8 @@ Hud::Hud()
     int   width   = GEInstance->get_screenWidth();
     int   height  = GEInstance->get_screenHeight();
 
-    WeaponBox     = new dwe::WeaponBox(width/10, height*6.5/8);
-    HealthBox     = new dwe::HealthBox (width - width/3, height*6.7/8);
+    WeaponBox     = new dwe::WeaponBox(width/30, height*6/8);
+    HealthBox     = new dwe::HealthBox (width - width/4, height*6.7/8);
 
     mainPlayer    = World->getMainPlayer();
 }
@@ -29,10 +29,10 @@ void Hud::draw()
     int health          = mainPlayer->getHealth();
     int maxHealth       = mainPlayer->getMaxHealth();
     int ammo            = mainPlayer->getCurrentWeapon()->getAmmo();
+    int grenades        = mainPlayer->getGrenades();
 
-    cout << "ADAAAAA" << weapon  << "asdad" << ammo << endl;
 
-    WeaponBox->draw(weapon, ammo);
+    WeaponBox->draw(weapon, ammo, grenades);
 
     HealthBox->draw(medkits, health, maxHealth);
 }

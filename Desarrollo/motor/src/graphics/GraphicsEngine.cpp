@@ -63,7 +63,7 @@ void dwe::GraphicsEngine::init()
 
     m_secondsLastDraw = 0;
     m_clock.restart();
-    m_window->pushGLStates();
+   // m_window->pushGLStates();
 }
 
 //////////////////////////
@@ -95,13 +95,13 @@ bool dwe::GraphicsEngine::isRunning()
 //////////////////////////
 void dwe::GraphicsEngine::draw()
 {
-    m_window->popGLStates();   // Antes de este pop hay un push, en init
+    //m_window->popGLStates();   // Antes de este pop hay un push, en init
     m_tagEngine.draw();
-    m_window->pushGLStates();
+    //m_window->pushGLStates();
 
-    // Lineas de mensaje del jugador
+   /* // Lineas de mensaje del jugador
     for(unsigned int i=0; i<MAX_MESSAGE_LINES; i++)
-        m_window->draw(m_messageLine[i]);
+        m_window->draw(m_messageLine[i]);*/
 
 
 

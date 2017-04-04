@@ -4,18 +4,23 @@
 #define MAX_MESSAGE_LINES 4
 
 // Nombre de los attributes
-#define A_POSITION      "a_Position"
-#define A_NORMAL        "a_Normal"
-#define A_TEXTURECOORDS "a_TextureCoords"
+#define A_VERTEXPOSITION    "a_VertexPosition"
+#define A_VERTEXNORMAL      "a_VertexNormal"
+#define A_TEXTURECOORDS     "a_TextureCoords"
 
 // Nombre de los uniforms
-#define U_PROJECTIONMATRIX      "u_ProjectionMatrix"
 #define U_MVMATRIX              "u_MVMatrix"
-#define U_LMATRIX               "u_LMatrix"
-#define U_COLOR                 "u_Color"
-#define U_LUZ0                  "u_Luz0"
-#define U_TEXTURESAMPLER        "u_TextureSampler"
-#define U_HASTEXTURE            "u_HasTexture"
+#define U_NORMALMATRIX          "u_NormalMatrix"
+#define U_PROJECTIONMATRIX      "u_ProjectionMatrix"
+#define U_MVP                   "u_MVP"
+#define U_LIGHT_POSITION        "u_Light.position"
+#define U_LIGHT_AMBIENT         "u_Light.ambient"
+#define U_LIGHT_DIFFUSE         "u_Light.diffuse"
+#define U_LIGHT_SPECULAR        "u_Light.specular"
+#define U_MATERIAL_HASTEXTURE   "u_MaterialHasTexture"
+#define U_MATERIAL_DIFFUSE      "u_MaterialDiffuse"
+#define U_MATERIAL_SPECULAR     "u_MaterialSpecular"
+#define U_MATERIAL_SHININESS    "u_MaterialShininess"
 
 
 #define GLEW_STATIC
@@ -118,8 +123,11 @@ namespace tag
             /// el nodo ELight. Activa la luz.
             /// \param[in] position Posición. Creará un nodo Transform con esos valores
             /// \param[in] rotation Rotación. Creará un nodo Transform con esos valores
+            /// \param[in] ambient  Intensidad que se asigna en los canales RGB de luz ambiente
+            /// \param[in] diffuse  Intensidad que se asigna en los canales RGB de luz difusa
+            /// \param[in] specular Intensidad que se asigna en los canales RGB de luz especular
             /// \param[in] parent Nodo padre. Si es 0 se le asignará el root.
-            GraphicNode* createLight(const vec3f position, const vec3f rotation, GraphicNode* parent=0);
+            GraphicNode* createLight(const vec3f position, const vec3f rotation, const vec3f ambient, const vec3f diffuse, const vec3f specular, GraphicNode* parent=0);
 
             /// \brief Activa o desactiva una luz.
             /// \param[in] Posición en el array de luces de la luz a activar o desactivar.
@@ -169,16 +177,21 @@ namespace tag
             void deleteNode(GraphicNode* node);
 
             // Handles de los attributes y uniforms
-            static int _aPositionLocation;
-            static int _aNormalLocation;
+            static int _aVertexPositionLocation;
+            static int _aVertexNormalLocation;
             static int _aTextureCoordsLocation;
-            static int _uProjectionMatrixLocation;
             static int _uMVMatrixLocation;
-            static int _uLMatrixLocation;
-            static int _uColorLocation;
-            static int _uLuz0Location;
-            static int _uTextureSamplerLocation;
-            static int _uHasTexture;
+            static int _uNormalMatrixLocation;
+            static int _uProjectionMatrixLocation;
+            static int _uMVPLocation;
+            static int _uLightPositionLocation;
+            static int _uLightAmbientLocation;
+            static int _uLightDiffuseLocation;
+            static int _uLightSpecularLocation;
+            static int _uMaterialHasTextureLocation;
+            static int _uMaterialDiffuseLocation;
+            static int _uMaterialSpecularLocation;
+            static int _uMaterialShininessLocation;
 
             static float _screenHeight;
             static float _screenWidth;
@@ -200,6 +213,8 @@ namespace tag
             GraphicNode* createNodePosition(const vec3f position, GraphicNode* parent);
             GraphicNode* createNodePR(const vec3f position, const vec3f rotation, GraphicNode* parent);
             void calculateViewMatrix();
+            glm::vec4 getVectorFromMatrix(glm::mat4 matrix);
+            glm::vec3 fromTagVec3fToGlmVec3(vec3f tagv);
 
             /// \brief Obtiene la endiad del deep nodo padre del nodo pasado, lanzando excepciones si el árbol está mal
             /// formado o lo que devuelve no es una entidad de transformación

@@ -21,10 +21,10 @@ GSMainMenu::GSMainMenu(){
     updatedLobbys = false;
 
     /**Fondos**/
-    menuPrincipalFondo = new dwe::Background("Principal");
-    menuJugarOnlineFondo = new dwe::Background("JugarOnline");
-    menuLogrosFondo = new dwe::Background("Logros");
-    menuOpcionesFondo = new dwe::Background("Opciones");
+    menuPrincipalFondo = new dwe::Background("menuPrincipal");
+    menuJugarOnlineFondo = new dwe::Background("menuJugarOnline");
+    menuLogrosFondo = new dwe::Background("menuLogros");
+    menuOpcionesFondo = new dwe::Background("menuOpciones");
 
     /**Botones**/
     playAloneButton = new dwe::Button("Play Alone", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35);
@@ -158,7 +158,7 @@ void GSMainMenu::HandleEvents(){
                 break;
         case 1: for(int i=0; i<serversButtons->size(); i++)
                 {
-                    if(buttonCheck(&serversButtons->at(i)))
+                    if(!serverSelection && buttonCheck(&serversButtons->at(i)))
                     {
                         std::stringstream ss;
                         std::string s;
@@ -242,16 +242,6 @@ void GSMainMenu::Update(){
         }
     }
 
-    if(enterNet && !serverSelection)
-    {
-        if(GEInstance->receiver.isKeyDown(KEY_KEY_0))
-        {
-            ip="0";
-            serverSelection=true;
-            NetInstance->connectToServer(atoi(ip.c_str()));
-        }
-    }
-
     if(enterNet && serverSelection && !serverInfo)
     {
         if (NetInstance->getConnectionFailed())
@@ -287,22 +277,6 @@ void GSMainMenu::Update(){
             cout << "// Selecciona una lobby: ";
         }
         serverInfo=true;
-    }
-
-    if(enterNet && serverSelection && serverInfo && !lobbySelection)
-    {
-        if(GEInstance->receiver.isKeyDown(KEY_KEY_1)) // Pongo 1 en vez de 0 porque en la misma ejecucion registra la misma tecla
-        {
-            lobby="0";
-            lobbySelection=true;
-            NetInstance->connectToGame(atoi(lobby.c_str()));
-        }
-        if(GEInstance->receiver.isKeyDown(KEY_KEY_2)) // Pongo 1 en vez de 0 porque en la misma ejecucion registra la misma tecla
-        {
-            lobby="1";
-            lobbySelection=true;
-            NetInstance->connectToGame(atoi(lobby.c_str()));
-        }
     }
 
     if(enterNet && serverSelection && serverInfo && lobbySelection)
