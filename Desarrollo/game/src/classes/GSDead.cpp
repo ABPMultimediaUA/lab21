@@ -1,6 +1,5 @@
 #include "GSDead.h"
 #include "GSMainMenu.h"
-#include "GSIngame.h"
 #include "NetGame.h"
 #include "Scene.h"
 #include "LoadMap.h"

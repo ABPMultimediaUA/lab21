@@ -9,15 +9,19 @@ struct TLight {
     vec3 specular;  // "
 };
 
-struct TMaterial {
+/*struct TMaterial {
     bool        hasTexture;
     sampler2D   diffuse;
     sampler2D   specular;
     float       shininess;  // Factor de brillo del material
-};
+};*/
 
+//uniform TMaterial   u_Material;
 uniform TLight      u_Light;
-uniform TMaterial   u_Material;
+uniform bool        u_MaterialHasTexture;
+uniform sampler2D   u_MaterialDiffuse;
+uniform sampler2D   u_MaterialSpecular;
+uniform float       u_MaterialShininess;
 
 vec3 phong()
 {
@@ -28,10 +32,10 @@ vec3 phong()
 
     vec3 texSpec;
     vec3 texDiff;
-    if (u_Material.hasTexture)
+    if (u_MaterialHasTexture)
     {
-        texDiff = vec3(texture2D(u_Material.diffuse, v_TextureCoords));
-        texSpec = vec3(texture2D(u_Material.specular, v_TextureCoords));
+        texDiff = vec3(texture2D(u_MaterialDiffuse, v_TextureCoords));
+        texSpec = vec3(texture2D(u_MaterialSpecular, v_TextureCoords));
     }
     else
     {
@@ -52,7 +56,7 @@ vec3 phong()
     // Componente especular
     vec3 specular =
         u_Light.specular
-        * pow(max(dot(r,v), 0.0), u_Material.shininess)
+        * pow(max(dot(r,v), 0.0), u_MaterialShininess)
         * texSpec;
 
 

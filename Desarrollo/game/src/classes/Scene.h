@@ -38,6 +38,8 @@ class Scene
 
         void closestEnemy(Player* mainPlayer, Enemy* enemy);
 
+        int getNumberEnemies(); /** Control fin de juego */
+
         void createProjectile(dwe::vec3f origin, float angle, std::string weapon);
         void deleteProjectile(unsigned int i);
         void updateProjectiles();
