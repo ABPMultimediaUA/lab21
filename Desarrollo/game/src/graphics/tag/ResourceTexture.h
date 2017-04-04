@@ -29,12 +29,19 @@ namespace tag
         protected:
 
         private:
-            static unsigned int _nextTextureID;
-            GLushort*           m_image;
-            GLuint              m_textureID;
-            unsigned int        m_textureIndex;
+            static int _nextTextureID;
+
+            GLushort*  m_image;
+            GLuint     m_diffuseTextureID;
+            GLuint     m_specularTextureID;
+            GLuint     m_normalTextureID;
+            int        m_diffuseTextureIndex;
+            int        m_specularTextureIndex;
+            int        m_normalTextureIndex;
 
             GLuint loadTexture(Image* image);
+            Image* createBlackImage() const;
+            std::string getFileName(const std::string fileName, const std::string appendName) const;
     };
 }
 

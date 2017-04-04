@@ -47,6 +47,7 @@
 			<Add directory="src/GL" />
 			<Add directory="src/glm" />
 			<Add directory="src/graphics" />
+			<Add directory="src/utils" />
 		</Compiler>
 		<Linker>
 			<Add library="lib/glew32s.lib" />
@@ -112,6 +113,8 @@
 		<Unit filename="src/graphics/tag/Types.h" />
 		<Unit filename="src/graphics/tag/loadBMP.cpp" />
 		<Unit filename="src/graphics/tag/loadBMP.h" />
+		<Unit filename="src/utils/dwVectors.cpp" />
+		<Unit filename="src/utils/dwVectors.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

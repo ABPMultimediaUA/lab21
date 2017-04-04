@@ -71,7 +71,7 @@ void Consumable::setPosition(dwe::vec3f p)
 /////////////////
 void Consumable::onBeginContact(EntityPhysics* otherObject)
 {
-    if (otherObject && otherObject->getClassID() == CLASS_PLAYER_ID)
+    if (otherObject && otherObject->getClassID() == EntityPhysics::player_id)
     {
         m_touchingMainPlayer = true;
     }
@@ -80,7 +80,7 @@ void Consumable::onBeginContact(EntityPhysics* otherObject)
 /////////////////
 void Consumable::onEndContact(EntityPhysics* otherObject)
 {
-    if (otherObject && otherObject->getClassID() == CLASS_PLAYER_ID)
+    if (otherObject && otherObject->getClassID() == EntityPhysics::player_id)
     {
         m_touchingMainPlayer = false;
     }

@@ -22,8 +22,9 @@ GSIngame* GSIngame::getInstance()
 }
 
 void GSIngame::Init(){
-    page=0;
-    m=false;
+    page = 0;
+    m = false;
+    m_pausePermission = false;
     LoadMap::getInstance()->Init();
     WorldInstance::Instance();
     timeStamp = World->getTimeElapsed();
@@ -49,15 +50,19 @@ void GSIngame::Update(){
 }
 
 void GSIngame::HandleEvents(){
-    if(GEInstance->receiver.isKeyDown(KEY_F10)){
+    if(!m_pausePermission && GEInstance->receiver.isKeyUp(KEY_PAUSE))
+        m_pausePermission = true;
+    if(m_pausePermission && GEInstance->receiver.isKeyDown(KEY_PAUSE)){
         Game::getInstance()->ChangeState(GSPause::getInstance());
         m = false;
+        m_pausePermission = false;
     }
-    else if(GEInstance->receiver.isKeyDown(KEY_F9)){
+    else if(GEInstance->receiver.isKeyDown(KEY_DO_DEAD)){
         Game::getInstance()->ChangeState(GSDead::getInstance());
         m = false;
+        m_pausePermission = false;
     }
-    else if(GEInstance->receiver.isKeyDown(KEY_ESCAPE))
+    else if(GEInstance->receiver.isKeyDown(KEY_EXIT))
     {
         Game::getInstance()->setRunning(false);
         //GEInstance=0;
@@ -70,12 +75,11 @@ void GSIngame::Render(){
         if(!m){
             cout<<"Ingame"<<endl;
             cout<<"Pulsa F9 para morir"<<endl;
-            cout<<"Pulsa F10 para pausar el juego"<<endl;
+            cout<<"Pulsa P para pausar el juego"<<endl;
             m=true;
         }
         GEInstance->draw();
         hud->draw();
-//        GEInstance->popGLStates();
     }
 }
 GSIngame::~GSIngame(){

@@ -34,7 +34,7 @@ void TriggerDoor::render()
 
 void TriggerDoor::update(Entity *e)
 {
-    if (m_touchingMainPlayer && GEInstance->receiver.isKeyDown(KEY_SPACE))
+    if (m_touchingMainPlayer && GEInstance->receiver.isKeyDown(KEY_OPEN_DOOR))
     {
         triggered(e);
     }

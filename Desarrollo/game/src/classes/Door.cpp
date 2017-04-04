@@ -1,5 +1,6 @@
 #include "Door.h"
 #include "NetGame.h"
+#include "WorldInstance.h"
 
 Door::Door(int f, bool a)
 {
@@ -45,8 +46,6 @@ void Door::openDoor()
     x = getPosition().x;
     y = getPosition().y;
     z = getPosition().z;
-
-
 
     switch (facing){
         case 0:
@@ -97,6 +96,7 @@ void Door::closeDoor()
                 x-=speed;
 
             setPosition(dwe::vec3f(x,y,z));
+
             isOpened=(x>=cl);
             break;
         case 1:
@@ -175,7 +175,12 @@ void Door::setNode(dwe::Node* n)
     Drawable::setNode(n);
 
     dwe::vec3f s = n->getBoundingBox();
-    createStaticBody(getPosition(), s.x, s.z, 0);
+    //createStaticBody(getPosition(), s.x, s.z, 0);
+
+    float rotation=0;
+    if(facing==1 ||facing ==3)
+        rotation=90;
+    createDoor(getPosition(), s.x, s.z, rotation);
 }
 
 void Door::setPosition(dwe::vec3f p)

@@ -16,19 +16,26 @@
 #include "tag/ETransform.h"
 #include "tag/EMesh.h"
 #include "tag/EAnimation.h"
+#include "tag/TAGError.h"
 
 #include "dwVectors.h"
 
-int tag::TAGEngine::_aPositionLocation;
-int tag::TAGEngine::_aNormalLocation;
+int tag::TAGEngine::_aVertexPositionLocation;
+int tag::TAGEngine::_aVertexNormalLocation;
 int tag::TAGEngine::_aTextureCoordsLocation;
-int tag::TAGEngine::_uProjectionMatrixLocation;
 int tag::TAGEngine::_uMVMatrixLocation;
-int tag::TAGEngine::_uLMatrixLocation;
-int tag::TAGEngine::_uColorLocation;
-int tag::TAGEngine::_uTextureSamplerLocation;
-int tag::TAGEngine::_uHasTexture;
-int tag::TAGEngine::_uLuz0Location;
+int tag::TAGEngine::_uNormalMatrixLocation;
+int tag::TAGEngine::_uProjectionMatrixLocation;
+int tag::TAGEngine::_uMVPLocation;
+int tag::TAGEngine::_uLightPositionLocation;
+int tag::TAGEngine::_uLightAmbientLocation;
+int tag::TAGEngine::_uLightDiffuseLocation;
+int tag::TAGEngine::_uLightSpecularLocation;
+int tag::TAGEngine::_uMaterialHasTextureLocation;
+int tag::TAGEngine::_uMaterialDiffuseLocation;
+int tag::TAGEngine::_uMaterialSpecularLocation;
+int tag::TAGEngine::_uMaterialShininessLocation;
+
 
 float tag::TAGEngine::_screenHeight;
 float tag::TAGEngine::_screenWidth;
@@ -79,18 +86,22 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     glUseProgram(m_shaderProgram->ReturnProgramID());
 
     // Attributes
-    TAGEngine::_aPositionLocation       = m_shaderProgram->attrib(A_POSITION);
-    TAGEngine::_aNormalLocation         = m_shaderProgram->attrib(A_NORMAL);
+    TAGEngine::_aVertexPositionLocation = m_shaderProgram->attrib(A_VERTEXPOSITION);
+    TAGEngine::_aVertexNormalLocation   = m_shaderProgram->attrib(A_VERTEXNORMAL);
     TAGEngine::_aTextureCoordsLocation  = m_shaderProgram->attrib(A_TEXTURECOORDS);
 
     // Uniforms
-    TAGEngine::_uProjectionMatrixLocation   = m_shaderProgram->uniform(U_PROJECTIONMATRIX);
     TAGEngine::_uMVMatrixLocation           = m_shaderProgram->uniform(U_MVMATRIX);
-    TAGEngine::_uLMatrixLocation            = m_shaderProgram->uniform(U_LMATRIX);
-    TAGEngine::_uColorLocation              = m_shaderProgram->uniform(U_COLOR);
-    TAGEngine::_uTextureSamplerLocation     = m_shaderProgram->uniform(U_TEXTURESAMPLER);
-    TAGEngine::_uHasTexture                 = m_shaderProgram->uniform(U_HASTEXTURE);
-    TAGEngine::_uLuz0Location               = m_shaderProgram->uniform(U_LUZ0);
+    TAGEngine::_uNormalMatrixLocation       = m_shaderProgram->uniform(U_NORMALMATRIX);
+    TAGEngine::_uMVPLocation                = m_shaderProgram->uniform(U_MVP);
+    TAGEngine::_uLightPositionLocation      = m_shaderProgram->uniform(U_LIGHT_POSITION);
+    TAGEngine::_uLightAmbientLocation       = m_shaderProgram->uniform(U_LIGHT_AMBIENT);
+    TAGEngine::_uLightDiffuseLocation       = m_shaderProgram->uniform(U_LIGHT_DIFFUSE);
+    TAGEngine::_uLightSpecularLocation      = m_shaderProgram->uniform(U_LIGHT_SPECULAR);
+    TAGEngine::_uMaterialHasTextureLocation = m_shaderProgram->uniform(U_MATERIAL_HASTEXTURE);
+    TAGEngine::_uMaterialDiffuseLocation    = m_shaderProgram->uniform(U_MATERIAL_DIFFUSE);
+    TAGEngine::_uMaterialSpecularLocation   = m_shaderProgram->uniform(U_MATERIAL_SPECULAR);
+    TAGEngine::_uMaterialShininessLocation  = m_shaderProgram->uniform(U_MATERIAL_SHININESS);
 
     glUseProgram(0);
 }
@@ -114,16 +125,12 @@ void tag::TAGEngine::draw()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // Habilitamos el paso de attributes
-        glEnableVertexAttribArray(TAGEngine::_aPositionLocation);
-        glEnableVertexAttribArray(TAGEngine::_aNormalLocation);
+        glEnableVertexAttribArray(TAGEngine::_aVertexPositionLocation);
+        glEnableVertexAttribArray(TAGEngine::_aVertexNormalLocation);
         glEnableVertexAttribArray(TAGEngine::_aTextureCoordsLocation);
 
         // Cálculo de la vista (cámara)
         calculateViewMatrix();
-
-        // TODO Cálculo de las luces
-
-
 
         // Dibujar
         renderElements();
@@ -132,8 +139,8 @@ void tag::TAGEngine::draw()
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
         glBindTexture(GL_TEXTURE_2D, 0);
 
-        glDisableVertexAttribArray(TAGEngine::_aPositionLocation);
-        glDisableVertexAttribArray(TAGEngine::_aNormalLocation);
+        glDisableVertexAttribArray(TAGEngine::_aVertexPositionLocation);
+        glDisableVertexAttribArray(TAGEngine::_aVertexNormalLocation);
         glDisableVertexAttribArray(TAGEngine::_aTextureCoordsLocation);
 
         glUseProgram(0);
@@ -281,9 +288,7 @@ void tag::TAGEngine::calculateViewMatrix()
     GraphicNode* nodeCam = m_cameras.at(m_numActiveCamera-1);
 
     // Estableciendo la matriz de proyección perspectiva
-    glm::mat4 m_projectionMatrix = static_cast<ECamera*>(nodeCam->getEntity())->getProjectionMatrix();
-    glUniformMatrix4fv(TAGEngine::_uProjectionMatrixLocation, 1, GL_FALSE, glm::value_ptr(m_projectionMatrix));
-
+    Entity::projectionMatrix = static_cast<ECamera*>(nodeCam->getEntity())->getProjectionMatrix();
 
     // Calculamos la matriz Entity::viewMatrix
     calculateTransformMatrix(nodeCam, Entity::viewMatrix);
@@ -293,11 +298,15 @@ void tag::TAGEngine::calculateViewMatrix()
 }
 
 //////////////////////////////////
-tag::GraphicNode* tag::TAGEngine::createLight(const vec3f position, const vec3f rotation, GraphicNode* parent)
+tag::GraphicNode* tag::TAGEngine::createLight(const vec3f position, const vec3f rotation, const vec3f ambient, const vec3f diffuse, const vec3f specular, GraphicNode* parent)
 {
     // Creamos nodo de luz
     GraphicNode* nodoLuz = createNodePR(position, rotation, parent);
     ELight* luz = new ELight();
+    luz->setAmbientIntensity(ambient);
+    luz->setDiffuseIntensity(diffuse);
+    luz->setSpecularIntensity(specular);
+
     nodoLuz->setEntity(luz);
 
     // Registramos la luz
@@ -309,19 +318,41 @@ tag::GraphicNode* tag::TAGEngine::createLight(const vec3f position, const vec3f 
     return nodoLuz;
 }
 
+//////////////////////////
+glm::vec4 tag::TAGEngine::getVectorFromMatrix(glm::mat4 matrix)
+{
+    glm::vec4 v;
+    for (uint8 i=0; i<4; i++)
+        v[i] = matrix[3][i];
+    return v;
+}
+
+glm::vec3 tag::TAGEngine::fromTagVec3fToGlmVec3(vec3f tagv)
+{
+    return glm::vec3(tagv.x, tagv.y, tagv.z);
+}
+
 /////////////////////
 void tag::TAGEngine::setLightOn(const unsigned int light)
 {
     // Obtenemos el nodo
     GraphicNode* nodeLuz = m_lights.at(light-1);
-
-    glUniform1i(TAGEngine::_uLuz0Location, true);
+    ELight* luz = static_cast<ELight*>(nodeLuz->getEntity());
 
     // Calculamos lMatrix (posición de la luz)
     glm::mat4 lMatrix;
     calculateTransformMatrix(nodeLuz, lMatrix);
+    glm::vec4 pos = getVectorFromMatrix(lMatrix);
+    glUniform4fv(TAGEngine::_uLightPositionLocation, 1, &pos[0]);
 
-    glUniformMatrix4fv(TAGEngine::_uLMatrixLocation, 1, GL_FALSE, glm::value_ptr(lMatrix));
+    vec3f intensity = luz->getAmbientIntensity();
+    glUniform3f(TAGEngine::_uLightAmbientLocation, intensity.x, intensity.y, intensity.z);
+
+    intensity = luz->getDiffuseIntensity();
+    glUniform3f(TAGEngine::_uLightDiffuseLocation, intensity.x, intensity.y, intensity.z);
+
+    intensity = luz->getSpecularIntensity();
+    glUniform3f(TAGEngine::_uLightSpecularLocation, intensity.x, intensity.y, intensity.z);
 }
 
 /////////////////////

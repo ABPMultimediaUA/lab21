@@ -57,7 +57,7 @@ void ProjectileGrenade::setNode(dwe::Node* n)
 
 void ProjectileGrenade::onBeginContact(EntityPhysics* otherObject)
 {
-    collides = (otherObject && otherObject->getClassID()!=CLASS_PLAYER_ID);
+    collides = (otherObject && otherObject->getClassID()!=EntityPhysics::player_id);
 }
 
 

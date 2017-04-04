@@ -1,4 +1,5 @@
 #include "Program.h"
+#include <iostream>
 
 Program::Program(const std::vector<GLuint> shaders) :
     programID(0)
@@ -61,7 +62,8 @@ GLint Program::attrib(const GLchar* attribName) const
 
     GLint attrib = glGetAttribLocation(programID, attribName);
     if(attrib == -1)
-        throw std::runtime_error(std::string("Program attribute not found: ") + attribName);
+        std::cout << "Program attribute not found: " << attribName << "\n";
+        //throw std::runtime_error(std::string("Program attribute not found: ") + attribName);
 
     return attrib;
 }
@@ -73,7 +75,8 @@ GLint Program::uniform(const GLchar* uniformName) const
 
     GLint uniform = glGetUniformLocation(programID, uniformName);
     if(uniform == -1)
-        throw std::runtime_error(std::string("Program uniform not found: ") + uniformName);
+        std::cout << "Program uniform not found: " << uniformName << "\n";
+        //throw std::runtime_error(std::string("Program uniform not found: ") + uniformName);
 
     return uniform;
 }
