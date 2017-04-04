@@ -159,11 +159,13 @@ dwe::WeaponBox::WeaponBox( float x, float y)
     int   width   = GEInstance->get_screenWidth();
     int   height  = GEInstance->get_screenHeight();
 
+    t = 4;
 
     /**** Caja base ****/
     //setComponents("media/HUDArma.png", &s_box, &t_box, x, y);
-    s_box = AnimatedSprite(sf::seconds(0.2), true, false);
+    s_box = AnimatedSprite(sf::seconds(0.1), true, false);
     s_box.setPosition(x,y);
+    s_box.setScale(0.5,0.5);
 
     t_box.loadFromFile("media/HUDWeaponSpriteSheet.png");
     weaponBoxAnim.setSpriteSheet(t_box);
@@ -199,7 +201,6 @@ dwe::WeaponBox::~WeaponBox(){};
 
 void dwe::WeaponBox::draw(FirearmKind weapon, int ammo, int grenades)
 {
-    frameTime = frameClock.restart();
 
     s_box.update(frameTime);
 
@@ -240,7 +241,23 @@ void dwe::WeaponBox::swapWeapon(FirearmKind weapon, int ammo, sf::Texture *tweap
     s_weapon.setOrigin(0,0);
     s_weapon.setPosition(s_box.getPosition().x + 20, s_box.getPosition().y + 40);
 
-    s_box.play(weaponBoxAnim); /*********************/
+
+    if (( GEInstance->receiver.isKeyDown(KEY_WEAPON_1)
+        || (GEInstance->receiver.isKeyDown(KEY_WEAPON_2)) && (weapon == eShotgun)
+        || (GEInstance->receiver.isKeyDown(KEY_WEAPON_3)) && (weapon == eRifle))
+        && (clock() - t) > 200)
+    {
+        s_box.play(weaponBoxAnim); /*********************/
+        frameTime = frameClock.restart();
+        t = clock();
+
+        if (clock() - t > 4000)
+        {
+            s_box.stop();
+        }
+
+    }
+
 
 }
 

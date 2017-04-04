@@ -141,6 +141,7 @@ namespace dwe{
 
             sf::Clock frameClock; // Para controlar el tiempo de animacion del hud
             sf::Time frameTime;
+            float t;
     };
 
     class HealthBox : public HudBox
