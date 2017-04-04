@@ -165,6 +165,8 @@
 		<Unit filename="src/classes/Flashlight.h" />
 		<Unit filename="src/classes/GSDead.cpp" />
 		<Unit filename="src/classes/GSDead.h" />
+		<Unit filename="src/classes/GSEnd.cpp" />
+		<Unit filename="src/classes/GSEnd.h" />
 		<Unit filename="src/classes/GSIngame.cpp" />
 		<Unit filename="src/classes/GSIngame.h" />
 		<Unit filename="src/classes/GSMainMenu.cpp" />

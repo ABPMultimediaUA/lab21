@@ -4,7 +4,7 @@
 #include "GSPause.h"
 #include "GSDead.h"
 #include "NetGame.h"
-
+#include "GSEnd.h"
 
 #include <iostream>
 using namespace std;
@@ -47,6 +47,13 @@ void GSIngame::Update(){
     World->step(deltaTime);
     World->clearForces();
     NetInstance->update();
+
+    //Fin del juego
+    if(Scene::Instance()->getNumberEnemies()==0){
+        Game::getInstance()->ChangeState(GSEnd::getInstance());
+        GSEnd::getInstance()->Init();
+    }
+
 }
 
 void GSIngame::HandleEvents(){
