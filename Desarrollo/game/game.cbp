@@ -17,6 +17,7 @@
 					<Add option="-g" />
 					<Add directory="src/classes" />
 					<Add directory="src" />
+					<Add directory="src/audio" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics-s-d" />
@@ -34,6 +35,7 @@
 					<Add option="-O2" />
 					<Add directory="src/classes" />
 					<Add directory="src" />
+					<Add directory="src/audio" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -112,6 +114,8 @@
 		<Unit filename="include/rapidjson/writer.h" />
 		<Unit filename="shaders/FragmentShader.glsl" />
 		<Unit filename="shaders/VertexShader.glsl" />
+		<Unit filename="src/audio/AudioEngine.cpp" />
+		<Unit filename="src/audio/AudioEngine.h" />
 		<Unit filename="src/classes/AStarAlgorithm.cpp" />
 		<Unit filename="src/classes/AStarAlgorithm.h" />
 		<Unit filename="src/classes/AStarHeuristics.h" />
