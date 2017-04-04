@@ -214,6 +214,11 @@ NavigationGraph& Scene::getNavGraph()
     return navGraph;
 }
 
+int Scene::getNumberEnemies()
+{
+    return m_enemies.size();
+}
+
 void Scene::Update()
 {
     if(mainPlayer->getHealth()<=0){
@@ -276,9 +281,6 @@ void Scene::Update()
         Firearm* weapon = mainPlayer->getCurrentWeapon();
 
         int ammo = static_cast<Weapon*>(weapon)->getAmmo();
-
-        cout << "AAAAAAAAAAAAAAAAAAAAA" << ammo << endl;
-
 
         if (ammo > 0) //
         {
