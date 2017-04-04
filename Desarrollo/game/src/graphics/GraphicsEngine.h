@@ -24,6 +24,8 @@
 #include "tag/ResourceMesh.h"
 #include "tag/TAGEngine.h"
 #include "tag/GraphicNode.h"
+#include "AnimatedSprite.hpp"
+
 
 #define MAX_MESSAGE_LINES 4
 
@@ -146,6 +148,7 @@ namespace dwe
         void drawRectangleShape(sf::RectangleShape rs);
         void drawText(sf::Text t);
         void drawSprite(sf::Sprite sp);
+        void drawAnimatedSprite(AnimatedSprite as);
 
         void clearWindow();
         void displayWindow();

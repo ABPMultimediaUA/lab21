@@ -161,7 +161,15 @@ dwe::WeaponBox::WeaponBox( float x, float y)
 
 
     /**** Caja base ****/
-    setComponents("media/HUDArma.png", &s_box, &t_box, x, y);
+    //setComponents("media/HUDArma.png", &s_box, &t_box, x, y);
+    s_box = AnimatedSprite(sf::seconds(0.2), true, false);
+    s_box.setPosition(x,y);
+
+    t_box.loadFromFile("media/HUDWeaponSpriteSheet.png");
+    weaponBoxAnim.setSpriteSheet(t_box);
+
+    setWeaponBoxAnimation ();
+
 
     /**** Arma ****/
     setComponents("media/Gun.png", &s_weapon, &t_weapon, s_box.getPosition().x + 20, s_box.getPosition().y + 40 );
@@ -191,7 +199,11 @@ dwe::WeaponBox::~WeaponBox(){};
 
 void dwe::WeaponBox::draw(FirearmKind weapon, int ammo, int grenades)
 {
-    GEInstance->drawSprite(s_box);
+    frameTime = frameClock.restart();
+
+    s_box.update(frameTime);
+
+    GEInstance->drawAnimatedSprite(s_box);
 
     swapWeapon(weapon, ammo, &t_weapon, &text_ammo);
 
@@ -204,6 +216,7 @@ void dwe::WeaponBox::draw(FirearmKind weapon, int ammo, int grenades)
     GEInstance->drawText(text_grenades);
 
     GEInstance->drawSprite(s_grenade);
+
 }
 
 void dwe::WeaponBox::swapWeapon(FirearmKind weapon, int ammo, sf::Texture *tweapon, sf::Text *textammo)
@@ -227,6 +240,8 @@ void dwe::WeaponBox::swapWeapon(FirearmKind weapon, int ammo, sf::Texture *tweap
     s_weapon.setOrigin(0,0);
     s_weapon.setPosition(s_box.getPosition().x + 20, s_box.getPosition().y + 40);
 
+    s_box.play(weaponBoxAnim); /*********************/
+
 }
 
 void dwe::WeaponBox::updateWeapon (sf::Texture *tweapon, std::string str, int ammo, sf::Text *textammo)
@@ -245,16 +260,105 @@ void dwe::WeaponBox::setText(sf::Text *text, int num)
 
 }
 
+void dwe::WeaponBox::setWeaponBoxAnimation()
+{
+    weaponBoxAnim.addFrame(sf::IntRect(0, 0, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(300, 0, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(600, 0, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(900, 0, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(1200, 0, 300, 300));
+
+    weaponBoxAnim.addFrame(sf::IntRect(1500, 0, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(1800, 0, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(2100, 0, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(2400, 0, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(2700, 0, 300, 300));
+
+    weaponBoxAnim.addFrame(sf::IntRect(3000, 0, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(3300, 0, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(3600, 0, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(3900, 0, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(4200, 0, 300, 300));
+
+    weaponBoxAnim.addFrame(sf::IntRect(0, 300, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(300, 300, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(600, 300, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(900, 300, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(1200, 300, 300, 300));
+
+    weaponBoxAnim.addFrame(sf::IntRect(1500, 300, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(1800, 300, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(2100, 300, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(2400, 300, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(2700, 300, 300, 300));
+
+    weaponBoxAnim.addFrame(sf::IntRect(3000, 300, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(3300, 300, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(3600, 300, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(3900, 300, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(4200, 300, 300, 300));
+
+    weaponBoxAnim.addFrame(sf::IntRect(0, 600, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(300, 600, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(600, 600, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(900, 600, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(1200, 600, 300, 300));
+
+    weaponBoxAnim.addFrame(sf::IntRect(1500, 600, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(1800, 600, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(2100, 600, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(2400, 600, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(2700, 600, 300, 300));
+
+    weaponBoxAnim.addFrame(sf::IntRect(3000, 600, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(3300, 600, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(3600, 600, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(3900, 600, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(4200, 600, 300, 300));
+
+    weaponBoxAnim.addFrame(sf::IntRect(0, 900, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(300, 900, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(600, 900, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(900, 900, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(1200, 900, 300, 300));
+
+    weaponBoxAnim.addFrame(sf::IntRect(1500, 900, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(1800, 900, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(2100, 900, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(2400, 900, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(2700, 900, 300, 300));
+
+    weaponBoxAnim.addFrame(sf::IntRect(3000, 900, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(3300, 900, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(3600, 900, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(3900, 900, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(4200, 900, 300, 300));
+
+    weaponBoxAnim.addFrame(sf::IntRect(0, 1200, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(300, 1200, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(600, 1200, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(900, 1200, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(1200, 1200, 300, 300));
+
+    weaponBoxAnim.addFrame(sf::IntRect(1500, 1200, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(1800, 1200, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(2100, 1200, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(2400, 1200, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(2700, 1200, 300, 300));
+
+    weaponBoxAnim.addFrame(sf::IntRect(3000, 1200, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(3300, 1200, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(3600, 1200, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(3900, 1200, 300, 300));
+    weaponBoxAnim.addFrame(sf::IntRect(4200, 1200, 300, 300));
+
+}
+
 dwe::HealthBox::HealthBox(float x, float y)
 {
     int   width   = GEInstance->get_screenWidth();
     int   height  = GEInstance->get_screenHeight();
 
-    //max_health = 100;
-    //health = max_health;
-    //heals = 10;
-
-    t = 2000;
 
     /**** Caja base ****/
     setComponents("media/HUDVida.png", &s_box, &t_box, x, y);
@@ -294,32 +398,6 @@ dwe::HealthBox::~HealthBox() {}
 
 void dwe::HealthBox::draw(int medkits, int health, int maxHealth)
 {
-    // Perder vida
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && (clock() - t)> 200 && health > 0)
-    {
-        health -= 10;
-        t = clock();
-    }
-    // Ganar vida
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && (clock() - t)> 200 && health < 100)
-    {
-        health += 10;
-        t = clock();
-    }
-
-    // Coger botiquin
-   /* else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && (clock() - t)> 200 && heals > 0)
-    {
-        heals -= 1;
-        t = clock();
-    }
-    // Usar botiquín
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::F) && (clock() - t)> 200 && heals < 20)
-    {
-        heals += 1;
-        t = clock();
-    }*/
-
 
 
     /////////////////////

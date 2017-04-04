@@ -278,6 +278,10 @@
 		<Unit filename="src/glsl/Shader.h" />
 		<Unit filename="src/graphics/AchievementsHandler.cpp" />
 		<Unit filename="src/graphics/AchievementsHandler.h" />
+		<Unit filename="src/graphics/AnimatedSprite.cpp" />
+		<Unit filename="src/graphics/AnimatedSprite.hpp" />
+		<Unit filename="src/graphics/Animation.cpp" />
+		<Unit filename="src/graphics/Animation.hpp" />
 		<Unit filename="src/graphics/AppReceiver.cpp" />
 		<Unit filename="src/graphics/AppReceiver.h" />
 		<Unit filename="src/graphics/GUI.cpp" />
