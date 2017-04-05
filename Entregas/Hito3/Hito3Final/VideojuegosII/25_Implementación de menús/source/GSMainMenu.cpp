@@ -127,10 +127,6 @@ bool GSMainMenu::buttonCheck(dwe::Button *b)
 }
 
 void GSMainMenu::HandleEvents(){
-    //Control cerrado de ventana
-    if(GEInstance->getWindowClose())
-        Game::getInstance()->setRunning(false);
-    /***************************************************************************************/
     switch(page){
         case 0: if(buttonCheck(playAloneButton) || GEInstance->receiver.isKeyDown(KEY_KEY_1))
                 {

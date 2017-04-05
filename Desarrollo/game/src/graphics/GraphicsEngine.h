@@ -144,6 +144,7 @@ namespace dwe
         void release();
         void close();
         bool isRunning();
+        bool getWindowClose();
         void draw();
         ///
         void drawRectangleShape(sf::RectangleShape rs);

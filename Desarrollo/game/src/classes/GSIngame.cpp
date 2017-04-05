@@ -70,12 +70,9 @@ void GSIngame::HandleEvents(){
         m = false;
         m_pausePermission = false;
     }
-    else if(GEInstance->receiver.isKeyDown(KEY_EXIT))
+    else if(GEInstance->receiver.isKeyDown(KEY_EXIT) || GEInstance->getWindowClose()) //Control cerrado de ventana
     {
         Game::getInstance()->setRunning(false);
-        //GEInstance=0;
-
-        //return 0;
     }
 }
 void GSIngame::Render(){
