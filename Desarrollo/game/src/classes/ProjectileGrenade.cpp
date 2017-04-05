@@ -34,12 +34,14 @@ void ProjectileGrenade::update()
 {
     setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
     if(!getVelocity().x==0 || !getVelocity().y==0){
-        if(abs(getVelocity().x)>14 || abs(getVelocity().y)>14)
-            setForce(dwe::vec2f(-getVelocity().x*0.1,-getVelocity().y*0.1));
+        if(abs(getVelocity().x)>15 || abs(getVelocity().y)>15)
+            setForce(dwe::vec2f(-getVelocity().x*0.005,-getVelocity().y*0.005));
+        else if(abs(getVelocity().x)>4 && abs(getVelocity().x)<16|| abs(getVelocity().y)>4 && abs(getVelocity().y)<16)
+            setForce(dwe::vec2f(-getVelocity().x*0.5,-getVelocity().y*0.5));
         //if(!getVelocity().x==0 || !getVelocity().y==0)
-        else{
-            setForce(dwe::vec2f(-getVelocity().x*20,-getVelocity().y*20));
-        }
+        else
+            setVelocity(dwe::vec2f(0,0));
+
     }
 
 }
