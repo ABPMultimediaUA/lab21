@@ -216,6 +216,7 @@ tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const v
     if (textureFileName != "")
         malla->loadTexture(textureFileName);
 
+    glUseProgram(0);
     return nodoMalla;
 }
 
@@ -312,16 +313,20 @@ tag::GraphicNode* tag::TAGEngine::createLight(const vec3f position, const vec3f 
 /////////////////////
 void tag::TAGEngine::setLightOn(const unsigned int light)
 {
+    glUseProgram(m_shaderProgram->ReturnProgramID());
+
     // Obtenemos el nodo
     GraphicNode* nodeLuz = m_lights.at(light-1);
 
-    glUniform1i(TAGEngine::_uLuz0Location, true);
+    glUniform1i(TAGEngine::_uLuz0Location, 1);
 
     // Calculamos lMatrix (posición de la luz)
     glm::mat4 lMatrix;
     calculateTransformMatrix(nodeLuz, lMatrix);
 
     glUniformMatrix4fv(TAGEngine::_uLMatrixLocation, 1, GL_FALSE, glm::value_ptr(lMatrix));
+
+    glUseProgram(0);
 }
 
 /////////////////////

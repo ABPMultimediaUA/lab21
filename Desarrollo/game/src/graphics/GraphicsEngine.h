@@ -24,6 +24,8 @@
 #include "tag/ResourceMesh.h"
 #include "tag/TAGEngine.h"
 #include "tag/GraphicNode.h"
+#include "AnimatedSprite.hpp"
+
 
 #define MAX_MESSAGE_LINES 4
 
@@ -147,6 +149,7 @@ namespace dwe
         void drawRectangleShape(sf::RectangleShape rs);
         void drawText(sf::Text t);
         void drawSprite(sf::Sprite sp);
+        void drawAnimatedSprite(AnimatedSprite as);
 
         void clearWindow();
         void displayWindow();
@@ -206,6 +209,9 @@ namespace dwe
         int get_screenHeight(){return _screenHeight;};
 
         tag::TAGEngine* getTagEngine() { return &m_tagEngine; }
+
+        void push();
+        void pop();
 
     private:
         sf::RenderWindow*   m_window;

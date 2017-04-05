@@ -21,6 +21,8 @@
 #define U_MATERIAL_DIFFUSE      "u_MaterialDiffuse"
 #define U_MATERIAL_SPECULAR     "u_MaterialSpecular"
 #define U_MATERIAL_SHININESS    "u_MaterialShininess"
+#define U_HASNORMALTEXTURE      "u_hasNormalTexture"
+#define U_NORMALTEXTURE         "u_normalTexture"
 
 
 #define GLEW_STATIC
@@ -192,6 +194,8 @@ namespace tag
             static int _uMaterialDiffuseLocation;
             static int _uMaterialSpecularLocation;
             static int _uMaterialShininessLocation;
+            static int _uHasNormalTextureLocation;
+            static int _uNormalTextureLocation;
 
             static float _screenHeight;
             static float _screenWidth;

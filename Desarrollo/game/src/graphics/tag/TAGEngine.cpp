@@ -35,6 +35,8 @@ int tag::TAGEngine::_uMaterialHasTextureLocation;
 int tag::TAGEngine::_uMaterialDiffuseLocation;
 int tag::TAGEngine::_uMaterialSpecularLocation;
 int tag::TAGEngine::_uMaterialShininessLocation;
+int tag::TAGEngine::_uHasNormalTextureLocation;
+int tag::TAGEngine::_uNormalTextureLocation;
 
 
 float tag::TAGEngine::_screenHeight;
@@ -102,6 +104,8 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     TAGEngine::_uMaterialDiffuseLocation    = m_shaderProgram->uniform(U_MATERIAL_DIFFUSE);
     TAGEngine::_uMaterialSpecularLocation   = m_shaderProgram->uniform(U_MATERIAL_SPECULAR);
     TAGEngine::_uMaterialShininessLocation  = m_shaderProgram->uniform(U_MATERIAL_SHININESS);
+    TAGEngine::_uHasNormalTextureLocation   = m_shaderProgram->uniform(U_HASNORMALTEXTURE);
+    TAGEngine::_uNormalTextureLocation      = m_shaderProgram->uniform(U_NORMALTEXTURE);
 
     glUseProgram(0);
 }
