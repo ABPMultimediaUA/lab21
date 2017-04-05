@@ -38,6 +38,10 @@ void GSPause::SetPage(int n){
 }
 
 void GSPause::HandleEvents(){
+    //Control cerrado de ventana
+    if(GEInstance->getWindowClose())
+        Game::getInstance()->setRunning(false);
+    /****************************************************************/
     if(!m_pausePermission && GEInstance->receiver.isKeyUp(KEY_PAUSE)){
         m_pausePermission = true;
     }

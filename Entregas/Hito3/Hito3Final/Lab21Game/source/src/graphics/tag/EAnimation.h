@@ -12,9 +12,7 @@ namespace tag
             EAnimation();
             ~EAnimation();
 
-            //cargamos la malla y el frame en el que estara
-
-            void beginDraw(/*int animation, int frame*/);//dibujaremos a partir de la animacion y su frame
+            void beginDraw();
             void endDraw();
             void createNumAnimations(int numAnimations);//creamos el array pasandole un numero de animaciones q tendra
             void createAnimation(int numAnimation, int numFrames, std::string fileName);//creamos la animacion dentro del array(en una posicion), con el numero de frames que tendra
@@ -24,11 +22,9 @@ namespace tag
             vec3f getBoundingBox() { return vec3f(0,0,0); };
 
         private:
-            //ResourceMesh ***m_animations;//va a ser el array de animaciones
             int m_numAnimation;
             int m_frame;
             int temp;
-            //int *m_animationFrames;//para saber cuantos frames tiene cada animacion
             struct TAnimation{
                 int numFrames;
                 ResourceMesh **frames;

@@ -120,6 +120,11 @@ bool dwe::GraphicsEngine::isRunning()
     return m_window->isOpen() && m_tagEngine.isRunning();
 }
 
+bool dwe::GraphicsEngine::getWindowClose()
+{
+     return !m_window->isOpen();
+}
+
 //////////////////////////
 void dwe::GraphicsEngine::draw()
 {

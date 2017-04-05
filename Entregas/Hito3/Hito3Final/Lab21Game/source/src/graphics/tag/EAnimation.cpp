@@ -14,7 +14,7 @@ tag::EAnimation::~EAnimation()
 }
 
 /////////////////
-void tag::EAnimation::beginDraw(/*int animation, int frame*/)
+void tag::EAnimation::beginDraw()
 {
     if (m_animations!=0)
         //aqui hariamos el bucle empezando por el frame 0
