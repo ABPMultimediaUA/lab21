@@ -12006,7 +12006,7 @@
 1490201797 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\drawable.h
 	"GraphicsEngine.h"
 
-1490359897 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.h
+1491381857 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.h
 	<GL/glew.h>
 	<SFML/Graphics.hpp>
 	<SFML/OpenGL.hpp>
@@ -13499,7 +13499,7 @@
 	<GraphicsEngine.h>
 	<iostream>
 
-1490635348 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.h
+1491380274 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.h
 	<GL/glew.h>
 	<SFML/OpenGL.hpp>
 	<assimp/Importer.hpp>
@@ -13661,7 +13661,7 @@
 1488106181 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\types.h
 	<glm/gtc/type_precision.hpp>
 
-1490613853 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
+1491383370 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.h
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"tag/Types.h"
@@ -13682,7 +13682,7 @@
 	"tag/ResourceMesh.h"
 	"tag/ResourceTexture.h"
 
-1490357463 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\entity.h
+1491380179 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\entity.h
 	<string>
 	<stack>
 	<glm/glm.hpp>
@@ -13690,7 +13690,7 @@
 	"tag/ResourceManager.h"
 	"tag/Types.h"
 
-1490610374 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.h
+1490685839 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.h
 	<vector>
 	<string>
 	<map>
@@ -13711,7 +13711,7 @@
 	<vector>
 	<SFML/OpenGL.hpp>
 
-1490216079 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
+1491381801 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
 	"GraphicsEngine.h"
 
 1490212997 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\player.cpp
@@ -13725,8 +13725,9 @@
 
 1485506172 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\scene.h
 
-1485212270 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\glsl\program.cpp
+1491380083 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\glsl\program.cpp
 	"Program.h"
+	<iostream>
 
 1485354737 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\glsl\shader.cpp
 	"Shader.h"
@@ -13740,7 +13741,7 @@
 
 1485212270 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\appreceiver.cpp
 
-1490359897 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
+1491382700 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"GraphicsEngine.h"
@@ -13752,8 +13753,10 @@
 	"Program.h"
 	"Player.h"
 	"Gun.h"
+	"tag/TAGEngine.h"
+	"tag/GraphicNode.h"
 
-1490216079 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
+1491381801 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
 	"GraphicsEngine.h"
 
 1490359897 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\eanimation.cpp
@@ -13770,17 +13773,17 @@
 	"Entity.h"
 	"tag/TAGEngine.h"
 
-1488815657 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\elight.cpp
+1491380106 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\elight.cpp
 	"tag/ELight.h"
 
-1490357436 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\elight.h
+1491380133 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\elight.h
 	"Entity.h"
 	"tag/TAGEngine.h"
 
-1490610716 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\emesh.cpp
+1490691780 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\emesh.cpp
 	"tag/EMesh.h"
 
-1488760473 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\entity.cpp
+1491380167 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\entity.cpp
 	"tag/Entity.h"
 
 1488823255 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\etransform.cpp
@@ -13797,12 +13800,13 @@
 1488026112 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resource.cpp
 	"tag/Resource.h"
 
-1490610824 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.cpp
+1490786881 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemanager.cpp
 	"tag/ResourceManager.h"
+	<stdexcept>
 	"tag/ResourceMesh.h"
 	"tag/ResourceTexture.h"
 
-1490635743 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.cpp
+1491380249 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcemesh.cpp
 	"tag/ResourceMesh.h"
 	<stdio.h>
 	<stdexcept>
@@ -13810,10 +13814,11 @@
 	"tag/Entity.h"
 	"tag/TAGEngine.h"
 	"tag/Types.h"
+	"tag/TAGError.h"
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/string_cast.hpp>
 
-1490614717 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
+1491382836 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
 	"tag/TAGEngine.h"
 	<stdexcept>
 	<glm/glm.hpp>
@@ -13828,8 +13833,10 @@
 	"tag/ETransform.h"
 	"tag/EMesh.h"
 	"tag/EAnimation.h"
+	"tag/TAGError.h"
+	"dwVectors.h"
 
-1490635810 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\main.cpp
+1491382377 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\main.cpp
 	<GL/glew.h>
 	"Scene.h"
 	"GraphicsEngine.h"
@@ -13904,23 +13911,24 @@
 	<fstream>
 	<stdexcept>
 
-1490610796 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcetexture.h
+1491380402 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcetexture.h
 	<GL/glew.h>
 	"tag/Resource.h"
 	"tag/Types.h"
 	"loadBMP.h"
 
-1490608556 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\loadbmp.h
+1490695920 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\loadbmp.h
 
-1490611244 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\loadbmp.cpp
+1491380626 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\loadbmp.cpp
 	"loadBMP.h"
 	<fstream>
 	<stdexcept>
 
-1490615009 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcetexture.cpp
+1491342869 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcetexture.cpp
 	"ResourceTexture.h"
 	<iostream>
 	"tag/TAGEngine.h"
+	"tag/TAGError.h"
 
 1491308547 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\utils\dwvectors.h
 	"GraphicsEngine.h"
@@ -13928,4 +13936,19 @@
 1491308547 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\utils\dwvectors.cpp
 	"dwVectors.h"
 	"GraphicsEngine.h"
+
+1491297868 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagerror.h
+
+1490900291 c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\utils\dwvectors.h
+	"GraphicsEngine.h"
+
+1490900291 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\utils\dwvectors.cpp
+	"dwVectors.h"
+	"GraphicsEngine.h"
+
+1491298032 source:c:\almacen\cygwin\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagerror.cpp
+	"TAGError.h"
+	<GL/glew.h>
+	<string>
+	<iostream>
 

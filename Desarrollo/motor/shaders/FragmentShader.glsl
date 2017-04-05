@@ -1,16 +1,79 @@
+varying vec3 v_Position;            // in: vertices en coordenadas de vista
+varying vec3 v_Normal;              // in: normales en "
+varying vec2 v_TextureCoords;       // in: coordenadas de textura
 
-//precision mediump float;	// Precisión media
+/*struct TLight {
+    vec4 position;
+    vec3 ambient;   // Intensidad
+    vec3 diffuse;   // "
+    vec3 specular;  // "
+};*/
 
-uniform sampler2D   u_TextureSampler;
+/*struct TMaterial {
+    bool        hasTexture;
+    sampler2D   diffuse;
+    sampler2D   specular;
+    float       shininess;  // Factor de brillo del material
+};*/
+
+//uniform TMaterial   u_Material;
+//uniform TLight      u_Light;
+uniform vec4 u_LightPosition;
+uniform vec3 u_LightAmbient;   // Intensidad
+uniform vec3 u_LightDiffuse;   // "
+uniform vec3 u_LightSpecular;  // "
+uniform bool        u_MaterialHasTexture;
+uniform sampler2D   u_MaterialDiffuse;
+uniform sampler2D   u_MaterialSpecular;
+uniform float       u_MaterialShininess;
+uniform bool        u_hasNormalTexture;
+uniform sampler2D   u_normalTexture;
+
+vec3 phong()
+{
+    vec3 n;
+    if (u_hasNormalTexture)
+        n = vec3(normalize(texture2D(u_normalTexture, v_TextureCoords)));
+    else
+        n = normalize(v_Normal);
+    vec3 s = normalize(vec3(u_LightPosition) - v_Position);
+    vec3 v = normalize(vec3(-v_Position));
+    vec3 r = reflect(-s, n);
+
+    vec3 texSpec;
+    vec3 texDiff;
+    if (u_MaterialHasTexture)
+    {
+        texDiff = vec3(texture2D(u_MaterialDiffuse, v_TextureCoords));
+        texSpec = vec3(texture2D(u_MaterialSpecular, v_TextureCoords));
+    }
+    else
+    {
+        texDiff = texSpec = vec3(0.5,0.5,0.5);  // Color gris si no tiene textura
+    }
+
+    // Componente ambiental
+    vec3 ambient =
+        u_LightAmbient
+        * texDiff;
+
+    // Componente difusa
+    vec3 diffuse =
+        u_LightDiffuse
+        * max(dot(s,n), 0.0)     // max para que no sea negativo. Se multiplica por el angulo que forman s y n
+        * texDiff;
+
+    // Componente especular
+    vec3 specular =
+        u_LightSpecular
+        * pow(max(dot(r,v), 0.0), u_MaterialShininess)
+        * texSpec;
 
 
-varying vec4 v_Color;		    // in: color del vertex shader
-varying vec2 v_TextureCoord;    // in: coordenadas de textura
+    return ambient + diffuse + specular;
+}
 
 void main()
 {
-    //if (textureSize( u_TextureSampler, 0).x > 0)
-        gl_FragColor = v_Color * texture2D(u_TextureSampler, v_TextureCoord);
-    //else
-      //  gl_FragColor = v_Color;
+    gl_FragColor = vec4(phong(), 1.0);
 }
