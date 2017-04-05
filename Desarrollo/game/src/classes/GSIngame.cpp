@@ -5,6 +5,7 @@
 #include "GSDead.h"
 #include "NetGame.h"
 #include "GSEnd.h"
+#include "AudioEngine.h"
 
 #include <iostream>
 using namespace std;
@@ -53,7 +54,7 @@ void GSIngame::Update(){
         Game::getInstance()->ChangeState(GSEnd::getInstance());
         GSEnd::getInstance()->Init();
     }
-
+    AEInstance->UpdateListenerPosition(World->getMainPlayer()->getPosition());
 }
 
 void GSIngame::HandleEvents(){

@@ -2,6 +2,7 @@
 #define AUDIOENGINE_H
 
 #include "irrKlang.h"
+#include "GraphicsEngine.h"
 
 namespace dwe
 {
@@ -14,7 +15,10 @@ namespace dwe
             void Create();
             void Drop();
 
-        protected:
+            void UpdateListenerPosition(dwe::vec3f pos);
+
+            void Play2D(const char* fileName);
+            void Play3D(const char* fileName, dwe::vec3f pos);
 
         private:
 

@@ -118,6 +118,7 @@ namespace dwe{
             void draw(FirearmKind weapon, int ammo, int grenades);
             void setText(sf::Text *text, int num);
             void setWeaponBoxAnimation ();
+            void animateWeaponBox();
 
         private:
             AnimatedSprite s_box;
