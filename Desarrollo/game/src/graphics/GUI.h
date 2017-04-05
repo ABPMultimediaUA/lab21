@@ -5,6 +5,7 @@
 #include "defines.h"
 #include <SFML/Graphics.hpp>
 #include <sstream>
+#include "AnimatedSprite.hpp"
 
 namespace dwe{
 
@@ -116,10 +117,12 @@ namespace dwe{
             void updateWeapon (sf::Texture *tweapon, std::string str, int ammo, sf::Text *textammo);
             void draw(FirearmKind weapon, int ammo, int grenades);
             void setText(sf::Text *text, int num);
+            void setWeaponBoxAnimation ();
 
         private:
-            sf::Sprite s_box;
+            AnimatedSprite s_box;
             sf::Texture t_box;
+            Animation weaponBoxAnim;
 
             sf::Sprite s_weapon;
             sf::Texture t_weapon;
@@ -135,6 +138,10 @@ namespace dwe{
             int ammoRifle;
             int ammoShotgun;
             int grenades;
+
+            sf::Clock frameClock; // Para controlar el tiempo de animacion del hud
+            sf::Time frameTime;
+            float t;
     };
 
     class HealthBox : public HudBox

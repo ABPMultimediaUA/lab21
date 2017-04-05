@@ -7,6 +7,8 @@
 #include "PlayerMate.h"
 #include "Humanoid.h"
 #include "Dog.h"
+#include "Bat.h"
+
 #include "NetGame.h"
 
 #include "EntityPhysics.h"
@@ -58,7 +60,6 @@ void dwe::GraphicsEngine::init()
     contextSettings.sRgbCapable = false;
 
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", sf::Style::Default, contextSettings);
-    m_window->setVerticalSyncEnabled(false);
 
     // Creamos los mensajes de texto, por ahora vacios
     if (!m_font.loadFromFile("media/ExoRegular.otf"))
@@ -81,6 +82,16 @@ void dwe::GraphicsEngine::init()
     m_camera = 0;
 
     m_window->pushGLStates();
+}
+//////////////////////////
+void dwe::GraphicsEngine::push()
+{
+    m_window->pushGLStates();
+}
+//////////////////////////
+void dwe::GraphicsEngine::pop()
+{
+    m_window->popGLStates();
 }
 
 //////////////////////////
@@ -114,6 +125,7 @@ void dwe::GraphicsEngine::draw()
 {
     m_window->popGLStates();   // Antes de este pop hay un push, en init
     m_tagEngine.draw();
+
     m_window->pushGLStates();
 
     // Lineas de mensaje del jugador
@@ -134,6 +146,11 @@ void dwe::GraphicsEngine::drawText(sf::Text t)
 void dwe::GraphicsEngine::drawSprite(sf::Sprite sp)
 {
     m_window->draw(sp);
+}
+
+void dwe::GraphicsEngine::drawAnimatedSprite(AnimatedSprite as)
+{
+    m_window->draw(as);
 }
 
 void dwe::GraphicsEngine::clearWindow()
@@ -173,7 +190,11 @@ ScenaryElement* dwe::GraphicsEngine::createWall(std::string meshName)
 ////////////////////////////////
 dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 {
-    tag::GraphicNode* gn = m_tagEngine.createMesh(meshName+".obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::GraphicNode* gn;
+    //if (meshName == "media/unitySuelo_Hall")
+        gn = m_tagEngine.createMesh(meshName+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/unitySuelo_Hall.bmp");
+    //else
+      //  gn = m_tagEngine.createMesh(meshName+".obj", vec3f(0,0,0), vec3f(0,0,0));
     Node* node = new Node(gn);
     return node;
 }
@@ -206,11 +227,12 @@ PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 }
 
 ////////////////////////////
-Humanoid* dwe::GraphicsEngine::createEnemyHumanoid()
+Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 {
 	tag::GraphicNode* node = m_tagEngine.createMesh("media/faerie.md2", vec3f(0,0,0), vec3f(0,0,0));
     Humanoid* p = new Humanoid();
 	p->setNode(new Node(node));
+	p->setPosition(dwe::vec3f(px, py, pz));
 
 	NetInstance->addNetEnemy(p);
 	return p;
@@ -236,14 +258,24 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid()
 }
 
 ////////////////////////////
-Dog* dwe::GraphicsEngine::createEnemyDog()
+Dog* dwe::GraphicsEngine::createEnemyDog(int px, int py, int pz)
 {
 	tag::GraphicNode* node = m_tagEngine.createMesh("media/perro.obj", vec3f(0,0,0), vec3f(0,0,0), "media/perro.bmp");
     Dog* p = new Dog();
 	p->setNode(new Node(node));
-
+    p->setPosition(dwe::vec3f(px, py, pz));
 	NetInstance->addNetEnemy(p);
 	return p;
+}
+
+Bat* dwe::GraphicsEngine::createEnemyBat(int px, int py, int pz)
+{
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/murcielago.obj", vec3f(0,0,0), vec3f(0,0,0));
+    Bat* b = new Bat();
+	b->setNode(new Node(node));
+    b->setPosition(dwe::vec3f(px, py, pz));
+	NetInstance->addNetEnemy(b);
+	return b;
 }
 
 Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float pz)
@@ -418,8 +450,8 @@ void dwe::GraphicsEngine::createCamera()
         vec3f position(-150,120,-190);
         m_camera = m_tagEngine.createPerspectiveCamera(position, vec3f(0,0,0), 45.0f, get_screenWidth() / get_screenHeight(), 0.1f, 1000.0f);
         m_tagEngine.nodeLookAtTarget(m_camera, position, vec3f(0,0,0));
-        float n = 0.8;
-        m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0), vec3f(n,n,n), vec3f(n,n,n), vec3f(n,n,n));
+        float n = 0.4;
+        m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0), vec3f(n,n,n), vec3f(n,n,n), vec3f(n+0.4,n+0.4,n+0.4));
     }
 }
 

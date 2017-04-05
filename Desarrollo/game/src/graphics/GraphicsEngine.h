@@ -24,6 +24,8 @@
 #include "tag/ResourceMesh.h"
 #include "tag/TAGEngine.h"
 #include "tag/GraphicNode.h"
+#include "AnimatedSprite.hpp"
+
 
 #define MAX_MESSAGE_LINES 4
 
@@ -35,6 +37,7 @@ class Player;
 class PlayerMate;
 class Humanoid;
 class Dog;
+class Bat;
 class Entity;
 class Door;
 class Projectile;
@@ -146,6 +149,7 @@ namespace dwe
         void drawRectangleShape(sf::RectangleShape rs);
         void drawText(sf::Text t);
         void drawSprite(sf::Sprite sp);
+        void drawAnimatedSprite(AnimatedSprite as);
 
         void clearWindow();
         void displayWindow();
@@ -155,8 +159,9 @@ namespace dwe
         // Creacion de personajes
         Player* createMainPlayer(Gun* gun);
         PlayerMate* createPlayerMate();
-        Humanoid* createEnemyHumanoid();
-        Dog* createEnemyDog();
+        Humanoid* createEnemyHumanoid(int px, int py, int pz);
+        Dog* createEnemyDog(int px, int py, int pz);
+        Bat* createEnemyBat(int px, int py, int pz);
 
         ScenaryElement* createWall(std::string meshName);
 
@@ -204,6 +209,9 @@ namespace dwe
         int get_screenHeight(){return _screenHeight;};
 
         tag::TAGEngine* getTagEngine() { return &m_tagEngine; }
+
+        void push();
+        void pop();
 
     private:
         sf::RenderWindow*   m_window;

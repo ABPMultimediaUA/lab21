@@ -22,10 +22,16 @@ uniform bool        u_MaterialHasTexture;
 uniform sampler2D   u_MaterialDiffuse;
 uniform sampler2D   u_MaterialSpecular;
 uniform float       u_MaterialShininess;
+uniform bool        u_hasNormalTexture;
+uniform sampler2D   u_normalTexture;
 
 vec3 phong()
 {
-    vec3 n = normalize(v_Normal);
+    vec3 n;
+    if (u_hasNormalTexture)
+        n = vec3(normalize(texture2D(u_normalTexture, v_TextureCoords)));
+    else
+        n = vec3(normalize(v_Normal));
     vec3 s = normalize(vec3(u_Light.position) - v_Position);
     vec3 v = normalize(vec3(-v_Position));
     vec3 r = reflect(-s, n);
