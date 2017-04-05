@@ -58,7 +58,6 @@ void dwe::GraphicsEngine::init()
     contextSettings.sRgbCapable = false;
 
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", sf::Style::Default, contextSettings);
-    m_window->setVerticalSyncEnabled(false);
 
     // Creamos los mensajes de texto, por ahora vacios
     if (!m_font.loadFromFile("media/ExoRegular.otf"))
@@ -81,6 +80,16 @@ void dwe::GraphicsEngine::init()
     m_camera = 0;
 
     m_window->pushGLStates();
+}
+//////////////////////////
+void dwe::GraphicsEngine::push()
+{
+    m_window->pushGLStates();
+}
+//////////////////////////
+void dwe::GraphicsEngine::pop()
+{
+    m_window->popGLStates();
 }
 
 //////////////////////////
@@ -114,6 +123,7 @@ void dwe::GraphicsEngine::draw()
 {
     m_window->popGLStates();   // Antes de este pop hay un push, en init
     m_tagEngine.draw();
+
     m_window->pushGLStates();
 
     // Lineas de mensaje del jugador
@@ -178,7 +188,11 @@ ScenaryElement* dwe::GraphicsEngine::createWall(std::string meshName)
 ////////////////////////////////
 dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 {
-    tag::GraphicNode* gn = m_tagEngine.createMesh(meshName+".obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::GraphicNode* gn;
+    //if (meshName == "media/unitySuelo_Hall")
+        gn = m_tagEngine.createMesh(meshName+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/unitySuelo_Hall.bmp");
+    //else
+      //  gn = m_tagEngine.createMesh(meshName+".obj", vec3f(0,0,0), vec3f(0,0,0));
     Node* node = new Node(gn);
     return node;
 }
@@ -423,8 +437,8 @@ void dwe::GraphicsEngine::createCamera()
         vec3f position(-150,120,-190);
         m_camera = m_tagEngine.createPerspectiveCamera(position, vec3f(0,0,0), 45.0f, get_screenWidth() / get_screenHeight(), 0.1f, 1000.0f);
         m_tagEngine.nodeLookAtTarget(m_camera, position, vec3f(0,0,0));
-        float n = 0.8;
-        m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0), vec3f(n,n,n), vec3f(n,n,n), vec3f(n,n,n));
+        float n = 0.4;
+        m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0), vec3f(n,n,n), vec3f(n,n,n), vec3f(n+0.4,n+0.4,n+0.4));
     }
 }
 
