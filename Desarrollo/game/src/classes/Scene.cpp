@@ -145,16 +145,14 @@ void Scene::Init()
     m_enemies.push_back(enemyHumanoid);
     enemyHumanoid = GEInstance->createEnemyHumanoid(-300,24,150);
     m_enemies.push_back(enemyHumanoid);
-    enemyHumanoid = GEInstance->createEnemyHumanoid(100,24,200);
-    m_enemies.push_back(enemyHumanoid);
 
     // Creacion de enemigo Dog
     enemyDog = GEInstance->createEnemyDog(100,24,80);
-    m_enemies.push_back(enemyDog);
-    enemyDog = GEInstance->createEnemyDog(150,24,130);
-    m_enemies.push_back(enemyDog);
-    enemyDog = GEInstance->createEnemyDog(150,24,80);
-    m_enemies.push_back(enemyDog);
+    //m_enemies.push_back(enemyDog);
+    //enemyDog = GEInstance->createEnemyDog(150,24,130);
+    //m_enemies.push_back(enemyDog);
+    //enemyDog = GEInstance->createEnemyDog(150,24,80);
+    //m_enemies.push_back(enemyDog);
 
     // Creacion de enemigos Bat
 
