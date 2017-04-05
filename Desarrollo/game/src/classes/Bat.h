@@ -18,15 +18,21 @@ class Bat : public Enemy
 
         void Update();
 
+        int getSteps();
+
+        void setSteps(int s);
+
+        virtual void update();
+
+        virtual void render();
+
     protected:
 
     private:
 
+        int steps;
+
         StateMachine<Bat>*  b_pStateMachine;
-
-        //Pathfinding
-
-        //Perception
 };
 
 #endif // BAT_H
