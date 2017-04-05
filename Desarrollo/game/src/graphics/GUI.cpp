@@ -194,7 +194,7 @@ dwe::WeaponBox::WeaponBox( float x, float y)
     text_grenades.setColor(sf::Color::White);
     text_grenades.setPosition(s_box.getPosition().x + 150, s_box.getPosition().y + 130);
 
-
+    s_box.play(weaponBoxAnim);
 }
 
 dwe::WeaponBox::~WeaponBox(){};
@@ -247,7 +247,7 @@ void dwe::WeaponBox::swapWeapon(FirearmKind weapon, int ammo, sf::Texture *tweap
         || (GEInstance->receiver.isKeyDown(KEY_WEAPON_3)) && (weapon == eRifle))
         && (clock() - t) > 200)
     {
-        s_box.play(weaponBoxAnim); /*********************/
+        animateWeaponBox();
         frameTime = frameClock.restart();
         t = clock();
 
@@ -259,6 +259,11 @@ void dwe::WeaponBox::swapWeapon(FirearmKind weapon, int ammo, sf::Texture *tweap
     }
 
 
+}
+
+void dwe::WeaponBox::animateWeaponBox()
+{
+    s_box.play(weaponBoxAnim);
 }
 
 void dwe::WeaponBox::updateWeapon (sf::Texture *tweapon, std::string str, int ammo, sf::Text *textammo)
