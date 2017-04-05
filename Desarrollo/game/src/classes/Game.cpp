@@ -1,9 +1,12 @@
 #include "Game.h"
-#include <GraphicsEngine.h>
+#include "GraphicsEngine.h"
 #include "NetGame.h"
+#include "AudioEngine.h"
 
 Game::Game(){
     running = true;
+    GEInstance->init();
+    AEInstance->Create();
 }
 
 Game* Game::getInstance()
@@ -45,6 +48,7 @@ void Game::Quit(){
             NetInstance->close();
         }
         GEInstance->close();
+        AEInstance->Drop();
 }
 
 void Game::Update(){

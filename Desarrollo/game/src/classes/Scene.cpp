@@ -12,6 +12,7 @@
 #include "GSDead.h"
 #include "NavGraphNode.h"
 #include "NavGraphEdge.h"
+#include "AudioEngine.h"
 
 ///////////////////////////////
 Scene* Scene::Instance()
@@ -136,28 +137,34 @@ void Scene::Init()
     ////////////////////////////////
     //         Enemigos           //
     ////////////////////////////////
-    enemyHumanoid = GEInstance->createEnemyHumanoid();
-    enemyHumanoid->setPosition(dwe::vec3f(-200,24,200));
+    // Creación de enemigo Humanoid
+    enemyHumanoid = GEInstance->createEnemyHumanoid(-200,24,200);
+    m_enemies.push_back(enemyHumanoid);
+    enemyHumanoid = GEInstance->createEnemyHumanoid(-300,24,300);
+    m_enemies.push_back(enemyHumanoid);
+    enemyHumanoid = GEInstance->createEnemyHumanoid(-200,24,400);
+    m_enemies.push_back(enemyHumanoid);
+    enemyHumanoid = GEInstance->createEnemyHumanoid(-300,24,150);
+    m_enemies.push_back(enemyHumanoid);
+    enemyHumanoid = GEInstance->createEnemyHumanoid(100,24,200);
     m_enemies.push_back(enemyHumanoid);
 
-    /*for(int i=0; i<4; i++){
-        enemyHumanoid = GEInstance->createEnemyHumanoid();
-        enemyHumanoid->setPosition(dwe::vec3f(500+(i*10),24,250+(i*80) ));
-        m_enemies.push_back(enemyHumanoid);
-    }
+    // Creacion de enemigo Dog
+    enemyDog = GEInstance->createEnemyDog(100,24,80);
+    m_enemies.push_back(enemyDog);
+    enemyDog = GEInstance->createEnemyDog(150,24,130);
+    m_enemies.push_back(enemyDog);
+    enemyDog = GEInstance->createEnemyDog(150,24,80);
+    m_enemies.push_back(enemyDog);
 
-    for(int i=0; i<4; i++){
-        enemyHumanoid = GEInstance->createEnemyHumanoid();
-        enemyHumanoid->setPosition(dwe::vec3f(-300+(i*10),24,400+(i*80) ));
-        m_enemies.push_back(enemyHumanoid);
-    }*/
-    ////////////////////////////////
-    ////////////////////////////////
-    ////////////////////////////////
+    // Creacion de enemigos Bat
 
-    // Creación de enemigo Dog
-    enemyDog = GEInstance->createEnemyDog();
-    enemyDog->setPosition(dwe::vec3f(100,24,80));
+    enemyBat = GEInstance->createEnemyBat(200, 24, 100);
+    //m_enemies.push_back(enemyBat);
+
+    ////////////////////////////////
+    //          Camara            //
+    ////////////////////////////////
 
     //Joint try
     /*TODO RMM si queremos mantener esto, hay que crearlo en otro sitio. El createJointBody ahora es protected
@@ -290,6 +297,7 @@ void Scene::Update()
 
             weapon->setAmmo(ammo-1);
 
+            AEInstance->Play2D("media/DisparoEscopeta.wav");
 
         }//
     }
