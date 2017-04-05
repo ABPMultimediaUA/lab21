@@ -26,7 +26,7 @@ class ProjectileGrenade: public Entity, public EntityPhysics
     protected:
 
     private:
-        static const float _velocity = 85.f;
+        static const float _velocity = 20.f;
 
         dwe::vec3f position;
         int speed;
