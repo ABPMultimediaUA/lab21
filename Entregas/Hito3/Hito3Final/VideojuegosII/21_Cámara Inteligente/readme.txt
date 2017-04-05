@@ -8,6 +8,3 @@ The Intelligent camera will track the biggest and closest group of enemies near 
 its target position to help the user's game experience.
 
 This functionality is integrated in the game.
-
-------------
-Aaron Colston Avellà Hiles
