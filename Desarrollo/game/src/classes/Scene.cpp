@@ -12,6 +12,7 @@
 #include "GSDead.h"
 #include "NavGraphNode.h"
 #include "NavGraphEdge.h"
+#include "AudioEngine.h"
 
 ///////////////////////////////
 Scene* Scene::Instance()
@@ -290,6 +291,7 @@ void Scene::Update()
 
             weapon->setAmmo(ammo-1);
 
+            AEInstance->Play2D("media/DisparoEscopeta.wav");
 
         }//
     }
