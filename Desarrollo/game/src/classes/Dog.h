@@ -7,7 +7,6 @@
 #include <iostream>
 
 
-
 class Dog : public Enemy
 {
     public:
@@ -26,7 +25,6 @@ class Dog : public Enemy
         virtual void update();
 
         virtual void render();
-
 
     protected:
 
