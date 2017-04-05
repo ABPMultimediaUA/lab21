@@ -7,6 +7,3 @@ In its place, there is a folder with different screenshots of the map.
 
 
 This map level is integrated in the game.
-
-------------
-Aaron Colston Avellà Hiles

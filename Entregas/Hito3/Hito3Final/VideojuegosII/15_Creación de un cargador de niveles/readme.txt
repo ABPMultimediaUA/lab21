@@ -12,5 +12,3 @@ to check the distribution of the creation of the levels.
 
 This functionality is integrated in the game.
 
-------------
-Aaron Colston Avellà Hiles

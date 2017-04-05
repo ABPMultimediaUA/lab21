@@ -9,5 +9,3 @@ its target position to help the user's game experience.
 
 This functionality is integrated in the game.
 
-------------
-Aaron Colston Avellà Hiles
