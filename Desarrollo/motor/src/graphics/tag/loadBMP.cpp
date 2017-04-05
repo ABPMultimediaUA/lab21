@@ -112,7 +112,10 @@ Image* loadBMP(const char* filename) {
 	ifstream input;
 	input.open(filename, ifstream::binary);
 	if (input.fail())
-        throw std::runtime_error("Could not find file");
+    {
+        return 0;
+        //throw std::runtime_error("Could not find file");
+    }
 	char buffer[2];
 	input.read(buffer, 2);
 	if (buffer[0] != 'B' && buffer[1] != 'M')

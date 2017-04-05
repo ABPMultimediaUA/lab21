@@ -135,64 +135,22 @@ namespace dwe
         static GraphicsEngine* Instance();
 
         void init();
-        void release();
-        void close();
-        bool isRunning();
         void draw();
-        Node* createNode(std::string meshName);
-        bool isWindowActive();
-        void yield();
-
-
-        //////////////////////////
-        // Creacion de elementos
-        Player* createMainPlayer(Gun* gun);
-
-
-        //////////////////////////////
-        // Eventos de teclado y ratón
-        AppReceiver receiver;
-
-        void createCamera();
-        void updateCamera(const dwe::vec3f playerPosition, int moreEnemiesX, int moreEnemiesZ);
-
-        /// \brief Muestra un mensaje en la zona de mensajes
-        /// \details Añade un mensaje a los mensajes que ya hay pasando los demás a lineas superiores y añadiendo
-        /// el texto pasado a la línea más baja. Si se supera el número máximo de mensajes el de la fila superior
-        /// se borrar. No admite acentos.
-        /// \param[in] text Texto a mostrar en la lista de mensajes
-        void addMessageLine(std::string text);
-
-
-        /// \brief Devuelve la posición X Y del puntero del ratón
-        /// \return vec2f con las coordenadas x y
-        vec2f getMousePosition();
-
-        Gun* createGun(float px, float py, float pz);
-
-        void update();
-
-        tag::GraphicNode* cube01;
-
-        int get_screenWidth(){return _screenWidth;};
-        int get_screenHeight(){return _screenHeight;};
+        void createElements();
 
         tag::TAGEngine* getTagEngine() { return &m_tagEngine; }
+
 
         static const int _screenWidth  = 1000;
         static const int _screenHeight = 700;
 
+        AppReceiver receiver;
 
     private:
         sf::RenderWindow*   m_window;
         sf::Font            m_font;
         sf::Text            m_messageLine[MAX_MESSAGE_LINES];
 
-
-
-        sf::Clock           m_clock;
-        float               m_secondsLastDraw;
-        std::list<Node*>    m_scenes;
         Assimp::Importer    m_importer;   // OJO tiene que estar aqui, si es local da errores de memoria segmentation fault
 
         tag::GraphicNode*   m_camera;
@@ -200,21 +158,8 @@ namespace dwe
         tag::TAGEngine      m_tagEngine;
 
 
-        //scene::IAnimatedMeshSceneNode* createIrrAnimatedMeshSceneNode(std::string meshName);
-
-        // Camara
-        float tarUD;
-        float tarLR;
-        float zoomX;
-        float zoomZ;
-        static const unsigned short _camera_desviation  = 50;
-        static const float          _camera_progression = 0.5f;
-        static const int            _camera_y           = 250;
-        static const int            _camera_z_offset    = -100;
-
         GraphicsEngine() {};
 
-        void render();
     };
 }
 

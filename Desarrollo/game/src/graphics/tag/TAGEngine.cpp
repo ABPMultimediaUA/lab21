@@ -326,7 +326,7 @@ tag::GraphicNode* tag::TAGEngine::createLight(const vec3f position, const vec3f 
 glm::vec4 tag::TAGEngine::getVectorFromMatrix(glm::mat4 matrix)
 {
     glm::vec4 v;
-    for (uint8 i=0; i<4; i++)
+    for (uint8_t i=0; i<4; i++)
         v[i] = matrix[3][i];
     return v;
 }

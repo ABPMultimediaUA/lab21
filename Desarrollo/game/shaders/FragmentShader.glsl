@@ -29,7 +29,7 @@ vec3 phong()
 {
     vec3 n;
     if (u_hasNormalTexture)
-        n = normalize(texture2D(u_normalTexture, v_TextureCoords));
+        n = vec3(normalize(texture2D(u_normalTexture, v_TextureCoords)));
     else
         n = normalize(v_Normal);
     vec3 s = normalize(vec3(u_Light.position) - v_Position);

@@ -32,7 +32,6 @@ namespace tag
             GLfloat *m_vertices;
             GLfloat *m_normals;
             GLfloat *m_textUV;
-            GLfloat *m_color;
 
             GLuint *m_indices;
 

@@ -54,12 +54,12 @@ void dwe::GraphicsEngine::draw()
 }
 
 //////////////////////////
-void dwe::GraphicsEngine::createCamera()
+void dwe::GraphicsEngine::createElements()
 {
     m_tagEngine.createPerspectiveCamera(vec3f(2,0,60), vec3f(0,0,0), 45.0f, dwe::GraphicsEngine::_screenWidth / dwe::GraphicsEngine::_screenHeight, 0.1f, 1000.0f);
-    m_tagEngine.createLight(vec3f(-10,0,50), vec3f(0,0,0));
+    float n = 0.4;
+    m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0), vec3f(n,n,n), vec3f(n,n,n), vec3f(n+0.4,n+0.4,n+0.4));
 
-    m_tagEngine.createMesh("media/perro.obj", vec3f(-10,0,0), vec3f(0,-45,0));
-    m_tagEngine.createMesh("media/perro.obj", vec3f(10,0,0), vec3f(0,-45,0), "media/perro.bmp");
-    m_tagEngine.createMesh("media/perro.obj", vec3f(15,0,0), vec3f(0,-45,0), "media/perro2.bmp");
+    // Suelo
+    m_tagEngine.createMesh("media/unitySuelo_Hall.obj", vec3f(0,0,0), vec3f(0,0,0), "media/unitySuelo_Hall.bmp");
 }

@@ -61,8 +61,8 @@
 			<Add library="jpeg" />
 			<Add directory="lib" />
 		</Linker>
-		<Unit filename="shaders/FragmentShader.glsl" />
-		<Unit filename="shaders/VertexShader.glsl" />
+		<Unit filename="Shaders/FragmentShader.glsl" />
+		<Unit filename="Shaders/VertexShader.glsl" />
 		<Unit filename="src/Main.cpp" />
 		<Unit filename="src/classes/Drawable.cpp" />
 		<Unit filename="src/classes/Drawable.h" />
@@ -110,6 +110,8 @@
 		<Unit filename="src/graphics/tag/ResourceTexture.h" />
 		<Unit filename="src/graphics/tag/TAGEngine.cpp" />
 		<Unit filename="src/graphics/tag/TAGEngine.h" />
+		<Unit filename="src/graphics/tag/TAGError.cpp" />
+		<Unit filename="src/graphics/tag/TAGError.h" />
 		<Unit filename="src/graphics/tag/Types.h" />
 		<Unit filename="src/graphics/tag/loadBMP.cpp" />
 		<Unit filename="src/graphics/tag/loadBMP.h" />

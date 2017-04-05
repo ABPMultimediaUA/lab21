@@ -17,10 +17,10 @@ int main()
 {
     GEInstance->init();
 
-    GEInstance->createCamera();
+    GEInstance->createElements();
 
     uint32_t i = 0;
-    while (i<4000)
+    while (i<400)
     {
         GEInstance->draw();
         i++;
