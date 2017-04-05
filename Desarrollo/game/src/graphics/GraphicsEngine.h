@@ -35,6 +35,7 @@ class Player;
 class PlayerMate;
 class Humanoid;
 class Dog;
+class Bat;
 class Entity;
 class Door;
 class Projectile;
@@ -155,8 +156,9 @@ namespace dwe
         // Creacion de personajes
         Player* createMainPlayer(Gun* gun);
         PlayerMate* createPlayerMate();
-        Humanoid* createEnemyHumanoid();
-        Dog* createEnemyDog();
+        Humanoid* createEnemyHumanoid(int px, int py, int pz);
+        Dog* createEnemyDog(int px, int py, int pz);
+        Bat* createEnemyBat(int px, int py, int pz);
 
         ScenaryElement* createWall(std::string meshName);
 

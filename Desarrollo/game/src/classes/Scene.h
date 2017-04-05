@@ -75,6 +75,7 @@ class Scene
         Player* mainPlayer;
         Humanoid* enemyHumanoid;
         Dog* enemyDog;
+        Bat* enemyBat;
         /**/
 
         // Objets
