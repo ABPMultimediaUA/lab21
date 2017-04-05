@@ -11,6 +11,3 @@ The main script created for the demo scenary in unity and the scenary itself are
 to check the distribution of the creation of the levels.
 
 This functionality is integrated in the game.
-
-------------
-Aaron Colston Avellà Hiles
