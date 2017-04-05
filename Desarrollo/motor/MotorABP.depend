@@ -1098,7 +1098,7 @@
 1490359897 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\classes\drawable.h
 	"GraphicsEngine.h"
 
-1491290094 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.h
+1491332035 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.h
 	<GL/glew.h>
 	<SFML/Graphics.hpp>
 	<SFML/OpenGL.hpp>
@@ -2162,7 +2162,7 @@
 
 1485212270 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\appreceiver.cpp
 
-1491290469 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
+1491335521 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsengine.cpp
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"GraphicsEngine.h"
@@ -2174,11 +2174,13 @@
 	"Program.h"
 	"Player.h"
 	"Gun.h"
+	"tag/TAGEngine.h"
+	"tag/GraphicNode.h"
 
 1490359897 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\graphicsenginetemplates.cpp
 	"GraphicsEngine.h"
 
-1490834582 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\main.cpp
+1491335380 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\main.cpp
 	<GL/glew.h>
 	"Scene.h"
 	"GraphicsEngine.h"
@@ -9432,7 +9434,7 @@
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/string_cast.hpp>
 
-1491290423 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
+1491335247 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\tagengine.cpp
 	"tag/TAGEngine.h"
 	<stdexcept>
 	<glm/glm.hpp>
@@ -13884,7 +13886,7 @@
 	"Weapon.h"
 	"Player.h"
 
-1491290444 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcetexture.cpp
+1491335504 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\graphics\tag\resourcetexture.cpp
 	"ResourceTexture.h"
 	<iostream>
 	"tag/TAGEngine.h"
@@ -13920,10 +13922,10 @@
 	<iostream>
 	"tag/TAGEngine.h"
 
-1490900291 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\utils\dwvectors.h
+1491308547 c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\utils\dwvectors.h
 	"GraphicsEngine.h"
 
-1490900291 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\utils\dwvectors.cpp
+1491308547 source:c:\users\esrum\dropbox\ingenieria_multimedia\abp\lab21\desarrollo\motor\src\utils\dwvectors.cpp
 	"dwVectors.h"
 	"GraphicsEngine.h"
 
