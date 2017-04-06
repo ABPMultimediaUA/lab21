@@ -14,6 +14,7 @@
 #include "NavGraphEdge.h"
 #include "AudioEngine.h"
 
+
 ///////////////////////////////
 Scene* Scene::Instance()
 {
@@ -150,15 +151,18 @@ void Scene::Init()
     // Creacion de enemigo Dog
     enemyDog = GEInstance->createEnemyDog(100,24,80);
     //m_enemies.push_back(enemyDog);
-    //enemyDog = GEInstance->createEnemyDog(150,24,130);
-    //m_enemies.push_back(enemyDog);
-    //enemyDog = GEInstance->createEnemyDog(150,24,80);
-    //m_enemies.push_back(enemyDog);
 
     // Creacion de enemigos Bat
-
     enemyBat = GEInstance->createEnemyBat(200, 24, 100);
     //m_enemies.push_back(enemyBat);
+
+    // Creacion de enemigos Guardian
+    enemyGuardian = GEInstance->createEnemyGuardian(300, 24, 100);
+    enemyGuardian->setRotation(dwe::vec3f(0, -90.f, 0));
+
+    // Creacion de enemigos Legless
+    enemyLegless = GEInstance->createEnemyLegless(400, 24, 100);
+    enemyLegless->setRotation(dwe::vec3f(0, -90.f, 0));
 
     ////////////////////////////////
     //          Camara            //
@@ -281,23 +285,42 @@ void Scene::Update()
 
 
     // comprobamos si dispara
-    if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
+    weapon = mainPlayer->getCurrentWeapon();
+    if(mainPlayer->getCurrentWeaponType()==eGun || mainPlayer->getCurrentWeaponType()==eShotgun){
+        if((World->getTimeElapsed() - timeLastProjectil)> 1000 && GEInstance->receiver.isLeftButtonPressed()){
 
-        Firearm* weapon = mainPlayer->getCurrentWeapon();
+            int ammo = static_cast<Weapon*>(weapon)->getAmmo();
 
-        int ammo = static_cast<Weapon*>(weapon)->getAmmo();
+            if (ammo > 0) //
+            {
+                mainPlayer->shoot();
 
-        if (ammo > 0) //
-        {
-            mainPlayer->shoot();
+                timeLastProjectil = World->getTimeElapsed();
 
-            timeLastProjectil = World->getTimeElapsed();
+                weapon->setAmmo(ammo-1);
 
-            weapon->setAmmo(ammo-1);
+                AEInstance->Play2D("media/DisparoEscopeta.wav");
 
-            AEInstance->Play2D("media/DisparoEscopeta.wav");
+            }//
+        }
+    }
+    else{
+        if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
 
-        }//
+            int ammo = static_cast<Weapon*>(weapon)->getAmmo();
+
+            if (ammo > 0) //
+            {
+                mainPlayer->shoot();
+
+                timeLastProjectil = World->getTimeElapsed();
+
+                weapon->setAmmo(ammo-1);
+
+                AEInstance->Play2D("media/DisparoEscopeta.wav");
+
+            }//
+        }
     }
 
        // comprobamos si dispara granadas

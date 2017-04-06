@@ -2,6 +2,7 @@
 
 Guardian::Guardian()
 {
+    steps = 2000;
     //set up state machine
     g_pStateMachine = new StateMachine<Guardian>(this);
 
@@ -11,7 +12,28 @@ Guardian::Guardian()
 
 void Guardian::Update()
 {
+    steps--;
     g_pStateMachine->Update();
+}
+
+int Guardian::getSteps ()
+{
+    return steps;
+}
+
+void Guardian::setSteps (int s)
+{
+    steps = s;
+}
+
+void Guardian::update()
+{
+
+}
+
+void Guardian::render()
+{
+
 }
 
 StateMachine<Guardian>* Guardian::GetFSM()const
