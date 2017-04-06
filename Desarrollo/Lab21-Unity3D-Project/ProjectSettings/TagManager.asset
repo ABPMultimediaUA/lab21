@@ -31,6 +31,9 @@ TagManager:
   - Floor_200x150
   - Floor_250x300
   - Floor_400x350
+  - AmmoGun
+  - AmmoShotgun
+  - AmmoRifle
   layers:
   - Default
   - TransparentFX
