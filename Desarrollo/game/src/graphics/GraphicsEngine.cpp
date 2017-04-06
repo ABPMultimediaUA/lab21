@@ -382,7 +382,7 @@ Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
 
 AmmoGun* dwe::GraphicsEngine::createAmmoGun(float px, float py, float pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Gun/gun.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/AmmoGun/AmmoGun.obj", vec3f(0,0,0), vec3f(0,0,0));
     AmmoGun* a = new AmmoGun();
 	a->setNode(new Node(node));
 	a->setPosition(dwe::vec3f(px, py, pz));

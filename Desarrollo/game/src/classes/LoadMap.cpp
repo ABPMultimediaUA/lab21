@@ -123,7 +123,7 @@ void LoadMap::Init(){
                 const Value& e = ce[j]; //Recorrer cada "element"
                 std::string id = e["element-id"].GetString();
                 int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = (-1)* e["position"]["z"].GetDouble();
-                if(id=="Bullets"){
+                if(id=="AmmoGun" || id=="AmmoShotgun" || id=="AmmoRifle"){
                     Scene* s = Scene::Instance();
                     s->createAmmoGun(tx, ty, tz);
                     ++contAmmoIn;
