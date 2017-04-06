@@ -69,9 +69,6 @@ void Player::render()
 /////////////
 void Player::shoot()
 {
-    cout<<"AAAAAAAAAA"<<endl;
-    cout<<"taipu "<<&m_currentWeapon<<endl;
-    cout<<"ARMA "<<m_currentWeapon->id<<endl;
     m_currentWeapon->shoot();
 }
 
@@ -185,19 +182,19 @@ void Player::readEvents()
     }*/
 
     //CAMBIAR ARMA
-    if(GEInstance->receiver.isKeyDown(KEY_WEAPON_1) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && getCurrentWeapon() != m_weapons[0]){
+    if(GEInstance->receiver.isKeyDown(KEY_WEAPON_1) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && m_currentWeapon != m_weapons[0]){
         this->swapCurrentWeapon(1);
         m_timeWeaponSwap = World->getTimeElapsed();
-    }else if(GEInstance->receiver.isKeyDown(KEY_WEAPON_2) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && getCurrentWeapon() != m_weapons[1]){
+    }else if(GEInstance->receiver.isKeyDown(KEY_WEAPON_2) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && m_currentWeapon != m_weapons[1]){
         this->swapCurrentWeapon(2);
         m_timeWeaponSwap = World->getTimeElapsed();
-    }else if(GEInstance->receiver.isKeyDown(KEY_WEAPON_3) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && getCurrentWeapon() != m_weapons[2]){
+    }else if(GEInstance->receiver.isKeyDown(KEY_WEAPON_3) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && m_currentWeapon != m_weapons[2]){
         this->swapCurrentWeapon(3);
         m_timeWeaponSwap = World->getTimeElapsed();
     }
 
     //HACER DASH
-    if(GEInstance->receiver.isKeyDown(KEY_DASH) && World->getTimeElapsed() - m_timeWeaponSwap > 200)
+    if(GEInstance->receiver.isKeyDown(KEY_DASH) && World->getTimeElapsed() > 7000) // Corregir CD Dash
         this->dash();//evadimos
 
 }

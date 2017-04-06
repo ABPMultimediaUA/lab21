@@ -32,6 +32,10 @@ void GSEnd::Init()
 
 void GSEnd::HandleEvents()
 {
+    //Control cerrado de ventana
+    if(GEInstance->getWindowClose())
+        Game::getInstance()->setRunning(false);
+    /********************************************/
     if(GEInstance->receiver.isKeyDown(KEY_EXIT))
     {
         Game::getInstance()->setRunning(false);

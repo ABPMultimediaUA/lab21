@@ -38,6 +38,8 @@ class PlayerMate;
 class Humanoid;
 class Dog;
 class Bat;
+class Guardian;
+class Legless;
 class Entity;
 class Door;
 class Projectile;
@@ -163,6 +165,9 @@ namespace dwe
         Humanoid* createEnemyHumanoid(int px, int py, int pz);
         Dog* createEnemyDog(int px, int py, int pz);
         Bat* createEnemyBat(int px, int py, int pz);
+        Guardian* createEnemyGuardian(int px, int py, int pz);
+        Legless* createEnemyLegless(int px, int py, int pz);
+
 
         ScenaryElement* createWall(std::string meshName);
 

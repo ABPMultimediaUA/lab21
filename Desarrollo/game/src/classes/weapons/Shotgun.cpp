@@ -6,7 +6,7 @@ Shotgun::Shotgun()
 {
     //ctor
     id=1;
-    this->Weapon::setAmmo(3);
+    this->Weapon::setAmmo(1000000);
 }
 
 Shotgun::~Shotgun()
