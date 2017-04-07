@@ -186,7 +186,7 @@ void dwe::GraphicsEngine::render()
 /////////////////////////////////////
 ScenaryElement* dwe::GraphicsEngine::createWall(std::string meshName)
 {
-    tag::GraphicNode* node = m_tagEngine.createMesh(meshName+".obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::GraphicNode* node = m_tagEngine.createMesh(meshName+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/unityPared.bmp");
 
     ScenaryElement* s = new ScenaryElement();
     s->setNode(new Node(node));
@@ -307,7 +307,7 @@ Legless* dwe::GraphicsEngine::createEnemyLegless(int px, int py, int pz)
 
 Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/unityPuerta_50m.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/unityPuerta_50m.obj", vec3f(0,0,0), vec3f(0,0,0), "media/unityPuerta_50m.bmp");
     Door* d = new Door(f, a);
 	d->setNode(new Node(node));
 
