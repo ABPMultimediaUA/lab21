@@ -15,6 +15,7 @@ GSMainMenu::GSMainMenu(){
     page = 0;
     lobby = -1;
     menuInfo = false;
+    m_clickPermission = false;
     enterNet = false;
     serverSelection = false;
     serverInfo = false;
@@ -131,11 +132,17 @@ void GSMainMenu::HandleEvents(){
     if(GEInstance->getWindowClose())
         Game::getInstance()->setRunning(false);
     /***************************************************************************************/
-    switch(page){
+    if(!m_clickPermission && GEInstance->receiver.isLeftButtonReleased()){
+        m_clickPermission = true;
+    }
+    if(m_clickPermission)
+    {
+        switch(page){
         case 0: if(buttonCheck(playAloneButton) || GEInstance->receiver.isKeyDown(KEY_KEY_1))
                 {
                     NetInstance->open(Scene::Instance(), false);  // Inicializar motor de red
                     menuInfo=false;
+                    m_clickPermission=false;
                     Game::getInstance()->ChangeState(GSIngame::getInstance());
                     GSIngame::getInstance()->Init();
                 }
@@ -145,16 +152,19 @@ void GSMainMenu::HandleEvents(){
                     enterNet=true;
                     page=1;
                     menuInfo=false;
+                    m_clickPermission=false;
                 }
                 else if(buttonCheck(achievementsButton))
                 {
                     page=2;
                     menuInfo=false;
+                    m_clickPermission=false;
                 }
                 else if(buttonCheck(optionsButton))
                 {
                     page=3;
                     menuInfo=false;
+                    m_clickPermission=false;
                 }
                 else if(buttonCheck(exitButton))
                 {
@@ -174,12 +184,14 @@ void GSMainMenu::HandleEvents(){
                         serverSelection=true;
                         NetInstance->connectToServer(atoi(ip.c_str()));
                         menuInfo=false;
+                        m_clickPermission=false;
                     }
                 }
                 if(buttonCheck(backButton))
                 {
                     page=0;
                     menuInfo=false;
+                    m_clickPermission=false;
                 }
                 break;
         case 4: for(int i=0; i<lobbysButtons->size(); i++)
@@ -193,6 +205,8 @@ void GSMainMenu::HandleEvents(){
                         lobby=s;
                         lobbySelection=true;
                         NetInstance->connectToGame(atoi(lobby.c_str()));
+                        menuInfo=false;
+                        m_clickPermission=false;
                     }
                 }
                 if(!lobbySelection)
@@ -209,20 +223,24 @@ void GSMainMenu::HandleEvents(){
                     page=0; // 1 Pero al registrar en diferentes iteraciones el click pasa de lobby -> online -> mainMenu
                     menuInfo=false;
                     updatedLobbys=false;
+                    m_clickPermission=false;
                 }
                 break;
         case 2: if(buttonCheck(backButton))
                 {
                     page=0;
                     menuInfo=false;
+                    m_clickPermission=false;
                 }
                 break;
         case 3: if(buttonCheck(backButton))
                 {
                     page=0;
                     menuInfo=false;
+                    m_clickPermission=false;
                 }
                 break;
+        }
     }
 }
 
