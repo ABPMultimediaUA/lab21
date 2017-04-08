@@ -6,6 +6,9 @@
 
 #include "Dog.h"
 #include "Humanoid.h"
+#include "Guardian.h"
+#include "Legless.h"
+#include "Bat.h"
 
 #include "TriggerDoor.h"
 #include "TriggerGenerator.h"
@@ -76,7 +79,11 @@ class Scene
         Humanoid* enemyHumanoid;
         Dog* enemyDog;
         Bat* enemyBat;
+        Guardian* enemyGuardian;
+        Legless* enemyLegless;
         /**/
+
+        Firearm* weapon;
 
         // Objets
         Gun* gun;

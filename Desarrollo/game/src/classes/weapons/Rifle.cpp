@@ -6,7 +6,7 @@ Rifle::Rifle()
 {
     //ctor
     id=2;
-    this->Weapon::setAmmo(5);
+    this->Weapon::setAmmo(1000000);
 }
 
 Rifle::~Rifle()

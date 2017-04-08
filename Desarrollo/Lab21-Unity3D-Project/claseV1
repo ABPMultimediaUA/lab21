@@ -1,0 +1,27 @@
+void Pathfinding::astar() {
+int pos = listM.front();
+
+if(first == 0){
+posPrev = getPos();
+}
+
+if(first == 0 && pos == 3 && m->getC(((int)))getPS()->getPos().X()/2), ((int))getPS()->getPos().Z / 2)+1) != 0) {
+list.erase(listM.begin());
+list.insert(listM.begin(), 4);
+list.insert(listM.begin() + 1, 2);
+pos = listM.front();
+}else if (first == 0 && pos == 3 && m->getC(((int)))getPS()->getPos().X()/2), ((int))getPS()->getPos().Z / 2)+1) != 0) {
+list.erase(listM.begin());
+list.insert(listM.begin(), 4);
+list.insert(listM.begin() + 1, 2);
+pos = listM.front();
+)
+}
+
+
+///////////////////////////////
+
+
+void Pathfinding::astar() {
+
+}

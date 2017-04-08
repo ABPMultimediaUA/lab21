@@ -190,19 +190,19 @@ void Player::readEvents()
     }*/
 
     //CAMBIAR ARMA
-    if(GEInstance->receiver.isKeyDown(KEY_WEAPON_1) && World->getTimeElapsed() - m_timeWeaponSwap > offsetTime && getCurrentWeapon() != m_weapons[0]){
+    if(GEInstance->receiver.isKeyDown(KEY_WEAPON_1) && World->getTimeElapsed() - m_timeWeaponSwap > offsetTime && m_currentWeapon != m_weapons[0]){
         this->swapCurrentWeapon(1);
         m_timeWeaponSwap = World->getTimeElapsed();
-    }else if(GEInstance->receiver.isKeyDown(KEY_WEAPON_2) && World->getTimeElapsed() - m_timeWeaponSwap > offsetTime && getCurrentWeapon() != m_weapons[1]){
+    }else if(GEInstance->receiver.isKeyDown(KEY_WEAPON_2) && World->getTimeElapsed() - m_timeWeaponSwap > offsetTime && m_currentWeapon != m_weapons[1]){
         this->swapCurrentWeapon(2);
         m_timeWeaponSwap = World->getTimeElapsed();
-    }else if(GEInstance->receiver.isKeyDown(KEY_WEAPON_3) && World->getTimeElapsed() - m_timeWeaponSwap > offsetTime && getCurrentWeapon() != m_weapons[2]){
+    }else if(GEInstance->receiver.isKeyDown(KEY_WEAPON_3) && World->getTimeElapsed() - m_timeWeaponSwap > offsetTime && m_currentWeapon != m_weapons[2]){
         this->swapCurrentWeapon(3);
         m_timeWeaponSwap = World->getTimeElapsed();
     }
 
     //HACER DASH
-    if(GEInstance->receiver.isKeyDown(KEY_DASH) && World->getTimeElapsed() - m_timeWeaponSwap > offsetTime)
+    if(GEInstance->receiver.isKeyDown(KEY_DASH) && World->getTimeElapsed() > 7.0) // Corregir CD Dash
         this->dash();//evadimos
 
 }

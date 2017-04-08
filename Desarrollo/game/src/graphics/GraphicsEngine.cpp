@@ -8,6 +8,8 @@
 #include "Humanoid.h"
 #include "Dog.h"
 #include "Bat.h"
+#include "Guardian.h"
+#include "Legless.h"
 
 #include "NetGame.h"
 
@@ -204,7 +206,7 @@ void dwe::GraphicsEngine::render()
 /////////////////////////////////////
 ScenaryElement* dwe::GraphicsEngine::createWall(std::string meshName)
 {
-    tag::GraphicNode* node = m_tagEngine.createMesh(meshName+".obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::GraphicNode* node = m_tagEngine.createMesh(meshName+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/unityPared.bmp");
 
     ScenaryElement* s = new ScenaryElement();
     s->setNode(new Node(node));
@@ -243,7 +245,7 @@ Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 /////////////////////////////////
 PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/playermate.md2", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/player.obj", vec3f(0,0,0), vec3f(0,0,0));
 	PlayerMate* p = new PlayerMate();
 	p->setNode(new Node(node));
 
@@ -254,7 +256,7 @@ PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 ////////////////////////////
 Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/faerie.md2", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/humanoide.obj", vec3f(0,0,0), vec3f(0,0,0));
     Humanoid* p = new Humanoid();
 	p->setNode(new Node(node));
 	p->setPosition(dwe::vec3f(px, py, pz));
@@ -303,9 +305,29 @@ Bat* dwe::GraphicsEngine::createEnemyBat(int px, int py, int pz)
 	return b;
 }
 
+Guardian* dwe::GraphicsEngine::createEnemyGuardian(int px, int py, int pz)
+{
+    tag::GraphicNode* node = m_tagEngine.createMesh("media/grande.obj", vec3f(0,0,0), vec3f(0,0,0));
+    Guardian* g = new Guardian();
+	g->setNode(new Node(node));
+    g->setPosition(dwe::vec3f(px, py, pz));
+	NetInstance->addNetEnemy(g);
+	return g;
+}
+
+Legless* dwe::GraphicsEngine::createEnemyLegless(int px, int py, int pz)
+{
+    tag::GraphicNode* node = m_tagEngine.createMesh("media/sinpiernas.obj", vec3f(0,0,0), vec3f(0,0,0));
+    Legless* l = new Legless();
+	l->setNode(new Node(node));
+    l->setPosition(dwe::vec3f(px, py, pz));
+	NetInstance->addNetEnemy(l);
+	return l;
+}
+
 Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/unityPuerta_50m.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/unityPuerta_50m.obj", vec3f(0,0,0), vec3f(0,0,0), "media/unityPuerta_50m.bmp");
     Door* d = new Door(f, a);
 	d->setNode(new Node(node));
 
