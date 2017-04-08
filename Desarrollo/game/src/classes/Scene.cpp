@@ -284,46 +284,16 @@ void Scene::Update()
 
 
     // comprobamos si dispara
-    weapon = mainPlayer->getCurrentWeapon();
-    if(mainPlayer->getCurrentWeaponType()==eGun || mainPlayer->getCurrentWeaponType()==eShotgun){
-        if((World->getTimeElapsed() - timeLastProjectil)> 1.0 && GEInstance->receiver.isLeftButtonPressed()){
-
-            int ammo = static_cast<Weapon*>(weapon)->getAmmo();
-
-            if (ammo > 0) //
-            {
-                mainPlayer->shoot();
-
-                timeLastProjectil = World->getTimeElapsed();
-
-                weapon->setAmmo(ammo-1);
-
-                AEInstance->Play2D("media/DisparoEscopeta.wav");
-
-            }//
-        }
+    if (   GEInstance->receiver.isLeftButtonPressed()
+        && mainPlayer->shoot(World->getTimeElapsed() - timeLastProjectil) )
+    {
+        timeLastProjectil = World->getTimeElapsed();
+        AEInstance->Play2D("media/DisparoEscopeta.wav");
     }
-    else{
-        if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
 
-            int ammo = static_cast<Weapon*>(weapon)->getAmmo();
-
-            if (ammo > 0) //
-            {
-                mainPlayer->shoot();
-
-                timeLastProjectil = World->getTimeElapsed();
-
-                weapon->setAmmo(ammo-1);
-
-                AEInstance->Play2D("media/DisparoEscopeta.wav");
-
-            }//
-        }
-    }
 
        // comprobamos si dispara granadas
-    if((World->getTimeElapsed() - timeLastProjectil)> 0.2 && GEInstance->receiver.isKeyDown(KEY_GRENADE)){
+    if(GEInstance->receiver.isKeyDown(KEY_GRENADE) && (World->getTimeElapsed() - timeLastProjectil)> 0.2 ){
         NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectilgrenade
         if (mainPlayer->getGrenades() > 0) //
         {
