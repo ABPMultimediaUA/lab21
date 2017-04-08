@@ -77,6 +77,10 @@ void dwe::GraphicsEngine::init()
     m_tagEngine.init(GraphicsEngine::_screenHeight, GraphicsEngine::_screenWidth);
 
     m_secondsLastDraw = 0;
+    m_drawsCount = 0;
+    m_timeIniDraw = 0;
+    m_timeAccumDraw = 0;
+
     m_clock.restart();
 
     m_camera = 0;
@@ -102,6 +106,8 @@ void dwe::GraphicsEngine::release()
 //////////////////////////
 bool dwe::GraphicsEngine::isRunning()
 {
+    m_timeIniDraw = m_clock.getElapsedTime().asSeconds();
+
     sf::Event event;
     while (m_window->pollEvent(event))
     {
@@ -167,11 +173,25 @@ void dwe::GraphicsEngine::displayWindow()
 {
     m_window->display();
 
-    char tmp[25];
-    float fps = 1.f / (m_clock.getElapsedTime().asSeconds() - m_secondsLastDraw);
-    m_secondsLastDraw = m_clock.getElapsedTime().asSeconds();
-    sprintf(tmp, "Lab21 - fps:%f", fps);
-    m_window->setTitle(tmp);
+    m_drawsCount++;
+    m_timeAccumDraw += m_clock.getElapsedTime().asSeconds() - m_timeIniDraw;
+
+    float timeElapsed = m_clock.getElapsedTime().asSeconds() - m_secondsLastDraw;
+
+    // Dibujamos fps y tiempo de dibujo cada segundo
+    if ( timeElapsed > 1.0 )
+    {
+        m_secondsLastDraw = m_clock.getElapsedTime().asSeconds();
+        float fps = m_drawsCount / timeElapsed;
+        float fpsDibujado = 1.0 / (m_timeAccumDraw / m_drawsCount);  // Los fps que podría tener
+
+        char tmp[40];
+        sprintf(tmp, "Lab21 - fps:%f    draw:%f", fps, fpsDibujado);
+        m_window->setTitle(tmp);
+
+        m_drawsCount=0;
+        m_timeAccumDraw=0;
+    }
 }
 
 

@@ -8,9 +8,12 @@ Player::Player(Gun* gun)
     setClassID(EntityPhysics::player_id);
     m_mKeys[0]=false;
     m_medkits = 0;
-    m_timeMedkit = 2000;
-    m_timeGivingStuff = 1000;
-    m_timeWeaponSwap = 1000;
+
+    // En segundos
+    m_timeMedkit        = 2.0;
+    m_timeGivingStuff   = 1.0;
+    m_timeWeaponSwap    = 1.0;
+
     m_hasGun = true;
     m_weapons[0] = gun;
     m_weapons[1] = 0;
@@ -134,6 +137,8 @@ void Player::throwGrenade()
 /////////////
 void Player::readEvents()
 {
+    const float offsetTime = 0.2;
+
     CharacterController::readEvents();
 
     //Animacion del player
@@ -162,7 +167,7 @@ void Player::readEvents()
 
     /*********/
      // consumir botiquin
-    if(GEInstance->receiver.isKeyDown(KEY_CONSUME_MEDKIT) && (World->getTimeElapsed() - m_timeMedkit)> 200)
+    if(GEInstance->receiver.isKeyDown(KEY_CONSUME_MEDKIT) && (World->getTimeElapsed() - m_timeMedkit)> offsetTime)
     {
         this->consumeMedkit();
 
@@ -171,7 +176,7 @@ void Player::readEvents()
 
     /*********/
     PlayerMate* playermate = NetInstance->getPlayerMate(1);
-    if (GEInstance->receiver.isKeyDown(KEY_GIVE_AMMO)&& (World->getTimeElapsed() - m_timeGivingStuff) > 200)
+    if (GEInstance->receiver.isKeyDown(KEY_GIVE_AMMO)&& (World->getTimeElapsed() - m_timeGivingStuff) > offsetTime)
     {
          //this->giveMedkits(1,playermate);
          this->giveAmmo(0,1, playermate);
@@ -179,25 +184,25 @@ void Player::readEvents()
     }
 
 
-    /*if(GEInstance->receiver.isKeyDown(KEY_KEY_5) && World->getTimeElapsed() - m_timeWeaponSwap > 200){
+    /*if(GEInstance->receiver.isKeyDown(KEY_KEY_5) && World->getTimeElapsed() - m_timeWeaponSwap > offsetTime){
         this->swapCurrentWeapon(3);
         m_timeWeaponSwap = World->getTimeElapsed();
     }*/
 
     //CAMBIAR ARMA
-    if(GEInstance->receiver.isKeyDown(KEY_WEAPON_1) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && getCurrentWeapon() != m_weapons[0]){
+    if(GEInstance->receiver.isKeyDown(KEY_WEAPON_1) && World->getTimeElapsed() - m_timeWeaponSwap > offsetTime && getCurrentWeapon() != m_weapons[0]){
         this->swapCurrentWeapon(1);
         m_timeWeaponSwap = World->getTimeElapsed();
-    }else if(GEInstance->receiver.isKeyDown(KEY_WEAPON_2) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && getCurrentWeapon() != m_weapons[1]){
+    }else if(GEInstance->receiver.isKeyDown(KEY_WEAPON_2) && World->getTimeElapsed() - m_timeWeaponSwap > offsetTime && getCurrentWeapon() != m_weapons[1]){
         this->swapCurrentWeapon(2);
         m_timeWeaponSwap = World->getTimeElapsed();
-    }else if(GEInstance->receiver.isKeyDown(KEY_WEAPON_3) && World->getTimeElapsed() - m_timeWeaponSwap > 200 && getCurrentWeapon() != m_weapons[2]){
+    }else if(GEInstance->receiver.isKeyDown(KEY_WEAPON_3) && World->getTimeElapsed() - m_timeWeaponSwap > offsetTime && getCurrentWeapon() != m_weapons[2]){
         this->swapCurrentWeapon(3);
         m_timeWeaponSwap = World->getTimeElapsed();
     }
 
     //HACER DASH
-    if(GEInstance->receiver.isKeyDown(KEY_DASH) && World->getTimeElapsed() - m_timeWeaponSwap > 200)
+    if(GEInstance->receiver.isKeyDown(KEY_DASH) && World->getTimeElapsed() - m_timeWeaponSwap > offsetTime)
         this->dash();//evadimos
 
 }

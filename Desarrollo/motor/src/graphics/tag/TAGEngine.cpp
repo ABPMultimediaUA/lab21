@@ -304,6 +304,8 @@ void tag::TAGEngine::calculateViewMatrix()
 //////////////////////////////////
 tag::GraphicNode* tag::TAGEngine::createLight(const vec3f position, const vec3f rotation, const vec3f ambient, const vec3f diffuse, const vec3f specular, GraphicNode* parent)
 {
+    glUseProgram(m_shaderProgram->ReturnProgramID());
+
     // Creamos nodo de luz
     GraphicNode* nodoLuz = createNodePR(position, rotation, parent);
     ELight* luz = new ELight();
@@ -342,17 +344,18 @@ void tag::TAGEngine::setLightOn(const unsigned int light)
     glm::mat4 lMatrix;
     calculateTransformMatrix(nodeLuz, lMatrix);
     glm::vec4 pos = getVectorFromMatrix(lMatrix);
-    glUniform4fv(TAGEngine::_uLightPositionLocation, 1, glm::ptrnull(pos));
+    glUniform4fv(TAGEngine::_uLightPositionLocation, 1, &pos[0]);
     check_gl_error();
 
+
     vec3f intensity = luz->getAmbientIntensity();
-    //glUniform3f(TAGEngine::_uLightAmbientLocation, intensity.x, intensity.y, intensity.z);
+    glUniform3f(TAGEngine::_uLightAmbientLocation, intensity.x, intensity.y, intensity.z);
 
     intensity = luz->getDiffuseIntensity();
-    //glUniform3f(TAGEngine::_uLightDiffuseLocation, intensity.x, intensity.y, intensity.z);
+    glUniform3f(TAGEngine::_uLightDiffuseLocation, intensity.x, intensity.y, intensity.z);
 
     intensity = luz->getSpecularIntensity();
-    //glUniform3f(TAGEngine::_uLightSpecularLocation, intensity.x, intensity.y, intensity.z);
+    glUniform3f(TAGEngine::_uLightSpecularLocation, intensity.x, intensity.y, intensity.z);
 }
 
 /////////////////////

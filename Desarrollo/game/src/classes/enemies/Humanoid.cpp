@@ -12,7 +12,7 @@
 
 Humanoid::Humanoid()
 {
-    m_speed = 10;
+    m_speed = 2.0; // m/s
 
     //set up state machine
     //h_pStateMachine = new StateMachine<Humanoid>(this);

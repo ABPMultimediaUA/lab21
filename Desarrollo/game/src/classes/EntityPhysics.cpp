@@ -50,19 +50,19 @@ void EntityPhysics::setPosEntity(dwe::vec3f position, float rotation)
 }
 
 ////////////////////
-void EntityPhysics::setVelocity(dwe::vec2f v)
+void EntityPhysics::setVelocity(dwe::vec2f velocity)
 {
     if (m_body)
     {
-        //m_body->SetLinearVelocity(b2Vec2(v.x*_ratio, v.y*_ratio));  // TODO se tiendrá que pasar la velocidad en m/s por lo que se quitará la multiplicacion
-        b2Vec2 vel = m_body->GetLinearVelocity();
-        float velX = v.x*_ratio - vel.x;
+        m_body->SetLinearVelocity(b2Vec2(velocity.x, velocity.y));  // Se pasa velocidad en m/s
+        /*b2Vec2 vel = m_body->GetLinearVelocity();
+        float velX = velocity.x - vel.x;
         float impulseX = m_body->GetMass() * velX;
 
-        float velY = v.y*_ratio - vel.y;
+        float velY = velocity.y - vel.y;
         float impulseY = m_body->GetMass() * velY;
 
-        m_body->ApplyLinearImpulse(b2Vec2(impulseX, impulseY), m_body->GetWorldCenter(), true);
+        m_body->ApplyLinearImpulse(b2Vec2(impulseX, impulseY), m_body->GetWorldCenter(), true);*/
     }
     else
         cout << "//////////////////////////////////////\nERROR: No se ha creado m_body con createDynPhyEntity o similar.\n//////////////////////////////////////\n";

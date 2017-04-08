@@ -38,14 +38,12 @@ void GSIngame::Init(){
 
 void GSIngame::Update(){
     // Esperamos conexion de los demas jugadores
-    deltaTime = World->getTimeElapsed() - timeStamp;
-    timeStamp = World->getTimeElapsed();
     Scene::Instance()->Update();
 
     LoadMap::getInstance()->Update();
 
     // Actualizamos físicas box2d
-    World->step(deltaTime);
+    World->step();
     World->clearForces();
     NetInstance->update();
 

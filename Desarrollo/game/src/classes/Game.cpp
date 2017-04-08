@@ -2,6 +2,7 @@
 #include "GraphicsEngine.h"
 #include "NetGame.h"
 #include "AudioEngine.h"
+#include "WorldInstance.h"
 
 Game::Game(){
     running = true;
@@ -19,15 +20,26 @@ Game* Game::getInstance()
 Game::~Game(){
 }
 
-void Game::Run(){
+void Game::Run()
+{
+    float timeStamp = World->getTimeElapsed();
+    float frameRate = 1.0/60.0;
+    float deltaTime;
 
-     while(running){
-        GEInstance->isRunning();
-        Update();
-        HandleEvents();
-        Render();
-    }
-    Quit();
+    while(running)
+    {
+        deltaTime = World->getTimeElapsed() - timeStamp;
+
+        if (deltaTime >= frameRate)
+        {
+            timeStamp = World->getTimeElapsed();
+            GEInstance->isRunning();
+            Update();
+            HandleEvents();
+            Render();
+        }
+   }
+   Quit();
 }
 
 void Game::ChangeState(GState *newState){

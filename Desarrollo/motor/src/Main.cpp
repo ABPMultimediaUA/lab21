@@ -20,7 +20,7 @@ int main()
     GEInstance->createElements();
 
     uint32_t i = 0;
-    while (i<400)
+    while (i<1000)
     {
         GEInstance->draw();
         i++;

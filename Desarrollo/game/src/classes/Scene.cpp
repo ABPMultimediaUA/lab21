@@ -281,7 +281,7 @@ void Scene::Update()
 
 
     // comprobamos si dispara
-    if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isLeftButtonPressed()){
+    if((World->getTimeElapsed() - timeLastProjectil)> 0.2 && GEInstance->receiver.isLeftButtonPressed()){
 
         Firearm* weapon = mainPlayer->getCurrentWeapon();
 
@@ -301,7 +301,7 @@ void Scene::Update()
     }
 
        // comprobamos si dispara granadas
-    if((World->getTimeElapsed() - timeLastProjectil)> 200 && GEInstance->receiver.isKeyDown(KEY_GRENADE)){
+    if((World->getTimeElapsed() - timeLastProjectil)> 0.2 && GEInstance->receiver.isKeyDown(KEY_GRENADE)){
         NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectilgrenade
         if (mainPlayer->getGrenades() > 0) //
         {

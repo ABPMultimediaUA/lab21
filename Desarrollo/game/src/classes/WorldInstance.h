@@ -5,8 +5,8 @@
 #include "EntityPhysics.h"
 #include <Box2D/Box2D.h>
 #include <Box2D/Common/b2Math.h>
+#include <SFML/System.hpp>
 
-#define PLAYER_SPEED 50.0f
 #define M_PI 3.14159265358979323846
 
 
@@ -66,10 +66,8 @@ class WorldInstance
         b2Body* createBody(b2BodyDef *bodyDef);
         void destroyBody(b2Body *body);
 
-        /// \brief Se ejecuta el step de Box2D.
-        /// \details Acumula deltaTime y solo llama a step cuando ha pasado el tiempo definido en m_timeStep
-        /// \param[in] deltaTime tiempo que ha pasado desde la última llamada
-        void step(float deltaTime);
+        /// \brief Se ejecuta el step de Box2D con un ratio fijo _timeStep.
+        void step();
 
         void clearForces();
 
@@ -89,9 +87,9 @@ class WorldInstance
     private:
         static WorldInstance* pinstance;
 
-        static const float  m_timeStep;
-        static const int    m_velocityIterations;
-        static const int    m_positionIterations;
+        static const float   _timeStep              = 1.0/60.0;
+        static const uint8_t _velocityIterations    = 8;
+        static const uint8_t _positionIterations    = 3;
 
         static b2Vec2           m_gravity;
         static b2World          m_world;
@@ -100,6 +98,7 @@ class WorldInstance
         static Player* m_mainPlayer;
 
         static float deltaTimeAccum;
+        static sf::Clock m_clock;
 };
 
 #define World WorldInstance::Instance()

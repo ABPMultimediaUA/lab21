@@ -19,7 +19,10 @@ class EntityPhysics
 
         dwe::vec3f getPosEntity();
         void setPosEntity(dwe::vec3f position, float rotation);
-        void setVelocity(dwe::vec2f v);
+
+        /// \param[in] velocity Velocidad en m/s
+        void setVelocity(dwe::vec2f velocity);
+
         dwe::vec2f getVelocity();
 
         void setForce(dwe::vec2f v);

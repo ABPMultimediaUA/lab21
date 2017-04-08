@@ -222,6 +222,9 @@ namespace dwe
 
         sf::Clock           m_clock;
         float               m_secondsLastDraw;
+        uint16_t            m_drawsCount;
+        float               m_timeIniDraw;
+        float               m_timeAccumDraw;
         Program*            m_shaderProgram;
         std::list<Node*>    m_scenes;
         Assimp::Importer    m_importer;   // OJO tiene que estar aqui, si es local da errores de memoria segmentation fault

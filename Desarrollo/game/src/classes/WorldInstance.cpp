@@ -2,6 +2,7 @@
 #include "WorldInstance.h"
 #include "Player.h"
 
+
 WorldInstance* WorldInstance::pinstance = 0;
 
 b2Vec2  WorldInstance::m_gravity(0.f, 0.f);
@@ -9,12 +10,7 @@ b2World WorldInstance::m_world(WorldInstance::m_gravity);
 ContactListener WorldInstance::m_contactListener;
 Player* WorldInstance::m_mainPlayer = 0;
 float WorldInstance::deltaTimeAccum = 0;
-
-
-const float   WorldInstance::m_timeStep             = 1.0f / 60.0f;;
-const int     WorldInstance::m_velocityIterations   = 8;
-const int     WorldInstance::m_positionIterations   = 3;
-
+sf::Clock WorldInstance::m_clock;
 
 //////////////
 WorldInstance* WorldInstance::Instance()
@@ -43,7 +39,8 @@ void WorldInstance::Update()
 void WorldInstance::init()
 {
     m_world.SetContactListener(&m_contactListener);
-    deltaTimeAccum = 0;
+    deltaTimeAccum = 0.0;
+    m_clock.restart();
 }
 
 ///////////////////////
@@ -59,15 +56,9 @@ void WorldInstance::destroyBody(b2Body *body)
 }
 
 ////////////////////
-void WorldInstance::step(float deltaTime)
+void WorldInstance::step()
 {
-    //m_world.Step(deltaTime * m_timeStep, m_velocityIterations, m_positionIterations);
-    deltaTimeAccum += deltaTime;
-    if (deltaTimeAccum >= m_timeStep)
-    {
-        m_world.Step(m_timeStep, m_velocityIterations, m_positionIterations);
-        deltaTimeAccum = 0;
-    }
+    m_world.Step(_timeStep, _velocityIterations, _positionIterations);
 }
 
 ////////////////////
@@ -101,7 +92,7 @@ dwe::vec3f WorldInstance::from2Dto3D(int x2d, int y2d, dwe::vec3f rotation)
 /////////////////////
 float WorldInstance::getTimeElapsed()
 {
-    return clock();
+    return m_clock.getElapsedTime().asSeconds();
 }
 
 //////////////////////
