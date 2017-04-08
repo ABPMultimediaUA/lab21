@@ -16,8 +16,7 @@ class Firearm : public Weapon
         virtual void reload(){};
 
         // Getters & setters
-        int getCadence();
-        void setCadence(int c);
+        float getCadence();
         int getBulletsPerShot();
         void setBulletsPerShot(int b);
         int getClipSize();
@@ -27,10 +26,10 @@ class Firearm : public Weapon
         //virtual void update(Player* mainPlayer);
 
     protected:
+        float m_cadence;
 
     private:
         FirearmKind m_kind;
-        int m_cadence;
         int m_bulletsPerShot;
         int m_clipSize;
 };

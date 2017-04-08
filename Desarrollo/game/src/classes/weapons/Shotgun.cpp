@@ -6,7 +6,8 @@ Shotgun::Shotgun()
 {
     //ctor
     id=1;
-    this->Weapon::setAmmo(1000000);
+    this->Weapon::setAmmo(100);
+    m_cadence = 0.2;
 }
 
 Shotgun::~Shotgun()
@@ -16,7 +17,7 @@ Shotgun::~Shotgun()
 
 //////////////
 void Shotgun::shoot()
-{cout << "disparo escopeta" << endl;
+{
     Scene::Instance()->createProjectile(World->getMainPlayer()->getPosition(), World->getMainPlayer()->getRotation().y, "shotgunBullet");
     NetInstance->sendBroadcast(ID_PROJECTILE_CREATE,World->getMainPlayer()->getPosition(), World->getMainPlayer()->getRotation().y, "shotgunBullet"); // Enviamos mensaje para crear projectil
 }

@@ -12,8 +12,7 @@ Firearm::~Firearm()
 }
 
 /////////////
-int Firearm::getCadence() { return m_cadence; }
-void Firearm::setCadence(int c) { m_cadence = c; }
+float Firearm::getCadence() { return m_cadence; }
 
 /////////////
 int Firearm::getBulletsPerShot() { return m_bulletsPerShot; }

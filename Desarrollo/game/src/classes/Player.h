@@ -23,7 +23,13 @@ class Player : public CharacterController, public EntityPhysics
         void update(){};
         void update(Shotgun* shotgun, Rifle* rifle);
         void render();
-        void shoot();
+
+        /// \brief Dispara el arma actual
+        /// \details Tiene en cuenta si el tiempo que ha pasado es el correcto segun la
+        /// cadencia del arma activa.
+        /// \return Devuelve si ha podido disparar o no
+        bool shoot(float timeSinceLastShoot);
+
         void throwGrenade();
 
         virtual void readEvents();

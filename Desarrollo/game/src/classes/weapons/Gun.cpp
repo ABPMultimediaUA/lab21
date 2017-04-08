@@ -6,7 +6,8 @@ Gun::Gun()
 {
     //ctor
     id = 0;
-    this->Weapon::setAmmo(1000000); // 15
+    this->Weapon::setAmmo(100); // 15
+    m_cadence = 0.1;
 }
 
 Gun::~Gun()
@@ -16,7 +17,7 @@ Gun::~Gun()
 
 //////////
 void Gun::shoot()
-{cout<<"disparo pistola"<<endl;
+{
     Scene::Instance()->createProjectile(World->getMainPlayer()->getPosition(), World->getMainPlayer()->getRotation().y, "gunBullet");
     NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, World->getMainPlayer()->getPosition(), World->getMainPlayer()->getRotation().y, "gunBullet"); // Enviamos mensaje para crear projectil
 }
