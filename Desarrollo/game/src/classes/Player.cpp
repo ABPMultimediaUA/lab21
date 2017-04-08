@@ -70,12 +70,15 @@ void Player::render()
 }
 
 /////////////
-void Player::shoot()
+bool Player::shoot(float timeSinceLastShoot)
 {
-    cout<<"AAAAAAAAAA"<<endl;
-    cout<<"taipu "<<&m_currentWeapon<<endl;
-    cout<<"ARMA "<<m_currentWeapon->id<<endl;
-    m_currentWeapon->shoot();
+    if (timeSinceLastShoot > m_currentWeapon->getCadence() && m_currentWeapon->getAmmo() > 0)
+    {
+        m_currentWeapon->shoot();
+        m_currentWeapon->addAmmo(-1);
+        return true;
+    }
+    return false;
 }
 
 
