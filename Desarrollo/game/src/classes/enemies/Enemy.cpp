@@ -40,8 +40,12 @@ void Enemy::move()
     setRotation(dwe::vec3f(0, m_pathplanning->CalculateAngleYAxis(direction), 0));
     direction.x = direction.x * m_speed;
     direction.y = direction.y * m_speed;
-    setVelocity(direction);
-    Drawable::setPosition(getPosEntity());
+
+    dwe::vec3f pos = EntityPhysics::getPosEntity();
+    pos.y = getPosition().y;
+
+    EntityPhysics::setVelocity(direction);
+    Drawable::setPosition(pos);
 }
 
 /////////////
