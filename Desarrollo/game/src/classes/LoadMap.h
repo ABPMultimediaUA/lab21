@@ -4,7 +4,9 @@
 #include "GraphicsEngine.h"
 #include "Entity.h"
 #include "TriggerDoor.h"
+#include "TriggerGenerator.h"
 #include "Door.h"
+#include "Generator.h"
 #include "Scene.h"
 
 #include <vector>
@@ -35,6 +37,7 @@ class LoadMap {
         ScenaryElement* wall;
 
         Entity *entities[NUM_MAP_ENTITIES2]; // Array de entidades
+        Generator *generator;
         //Entity *sector[1]; // Sector no funcional que se le asigna a un generador
         //Consumable *ammos[2];
         TriggerDoor *doorTriggers[NUM_MAP_ENTITIES2]; // Triggers
