@@ -10,10 +10,6 @@
 #include "Legless.h"
 #include "Bat.h"
 
-#include "TriggerDoor.h"
-#include "TriggerGenerator.h"
-#include "Door.h"
-#include "Generator.h"
 #include "MagnetKey.h"
 #include "Gun.h"
 

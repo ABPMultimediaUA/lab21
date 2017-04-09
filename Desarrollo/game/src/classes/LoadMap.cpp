@@ -159,6 +159,9 @@ void LoadMap::Init(){
 
         }
 
+        // Generadores
+        generator=GEInstance->createGenerator(0, false, 600, 24, 100);
+
 
         ////////// HACIENDO PRUEBAS CON OTRO TIPO DE BALAS
         //SHOTGUN BULLETS
@@ -200,7 +203,7 @@ void LoadMap::Destroy(){
     for(int i=0; i<NUM_MAP_ENTITIES2; i++){
         delete doorTriggers[i];
     }
-
+    delete generator;
     delete suelo; suelo=0;
     delete wall;
 }

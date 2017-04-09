@@ -12,6 +12,12 @@ using namespace std;
 GSPause::GSPause(){
     page = 0;
     m = false;
+    m_clickPermission=false;
+    m_pausePermission=false;
+    menuPausaFondo = new dwe::Background("menuPausa");
+    resumeGameButton = new dwe::Button("Resume game", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35);
+    helpOptionsButton = new dwe::Button("Help & options", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.43);
+    exitToMainMenuButton = new dwe::Button("Exit to main menu", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.51);
 }
 
 GSPause* GSPause::getInstance()
@@ -27,14 +33,28 @@ void GSPause::Render(){
         if(!m){
             cout<<"Pause"<<endl;
             cout<<"Pulsa P para volver al juego"<<endl;
-            cout<<"Pulsa F9 para volver al menu"<<endl;
             m = true;
         }
     }
+    menuPausaFondo->draw();
+    resumeGameButton->draw();
+    helpOptionsButton->draw();
+    exitToMainMenuButton->draw();
 }
 
 void GSPause::SetPage(int n){
     page = n;
+}
+
+bool GSPause::buttonCheck(dwe::Button *b)
+{
+    if(GEInstance->receiver.isLeftButtonPressed()
+       &&(mousePosX>b->getXOrigin()
+       && mousePosY>b->getYOrigin()
+       && mousePosX<b->getWidth()
+       && mousePosY<b->getHeight())
+    ){return true;}
+    return false;
 }
 
 void GSPause::HandleEvents(){
@@ -45,24 +65,50 @@ void GSPause::HandleEvents(){
     if(!m_pausePermission && GEInstance->receiver.isKeyUp(KEY_PAUSE)){
         m_pausePermission = true;
     }
+    if(!m_clickPermission && GEInstance->receiver.isLeftButtonReleased()){
+        m_clickPermission = true;
+    }
+    /**/
     if(m_pausePermission && GEInstance->receiver.isKeyDown(KEY_PAUSE)){
-        Game::getInstance()->ChangeState(GSIngame::getInstance());
-        m = false;
-        m_pausePermission = false;
+        resumeGame();
+    }else if(m_clickPermission && buttonCheck(resumeGameButton)){
+        resumeGame();
     }
-    if(GEInstance->receiver.isKeyDown(KEY_DO_DEAD)){
-        Game::getInstance()->ChangeState(GSMainMenu::getInstance());
-        NetInstance->close();
-        Game::getInstance()->ChangeState(GSMainMenu::getInstance());
-        Scene::Instance()->Destroy();
-        LoadMap::getInstance()->Destroy();
-        m = false;
-        m_pausePermission = false;
+    if(m_clickPermission && buttonCheck(exitToMainMenuButton)){
+        backToMainMenu();
     }
 }
 
-void GSPause::Update(){
-     //cin>>page;
+void GSPause::Update()
+{
+    mousePosX=GEInstance->receiver.getCursorX();
+    mousePosY=GEInstance->receiver.getCursorY();
 }
 
-GSPause::~GSPause(){}
+GSPause::~GSPause()
+{
+    delete menuPausaFondo;
+    delete resumeGameButton;
+    delete helpOptionsButton;
+    delete exitToMainMenuButton;
+}
+
+void GSPause::resumeGame()
+{
+    Game::getInstance()->ChangeState(GSIngame::getInstance());
+    m = false;
+    m_clickPermission = false;
+    m_pausePermission = false;
+}
+
+void GSPause::backToMainMenu()
+{
+    Game::getInstance()->ChangeState(GSMainMenu::getInstance());
+    NetInstance->close();
+    Game::getInstance()->ChangeState(GSMainMenu::getInstance());
+    Scene::Instance()->Destroy();
+    LoadMap::getInstance()->Destroy();
+    m = false;
+    m_pausePermission = false;
+    m_clickPermission = false;
+}

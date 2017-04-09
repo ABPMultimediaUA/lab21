@@ -361,7 +361,7 @@ ProjectileGrenade* dwe::GraphicsEngine::createProjectileGrenade(vec3f origin, fl
 
 Generator* dwe::GraphicsEngine::createGenerator(int i, bool b, float px, float py, float pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/generador.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/generador.obj", vec3f(0,0,0), vec3f(0,0,0), "media/generador.bmp");
     Generator* g = new Generator(i, b);
 	g->setNode(new Node(node));
 	g->setPosition(dwe::vec3f(px, py, pz));

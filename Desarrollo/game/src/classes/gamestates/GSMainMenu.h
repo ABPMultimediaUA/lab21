@@ -28,6 +28,7 @@ private:
     int page;
     int mousePosX, mousePosY;
     bool menuInfo; // Mostrar info de los menus
+    bool m_clickPermission;
     bool enterNet;
     bool serverSelection; // Servidor elegido
     bool serverInfo;
