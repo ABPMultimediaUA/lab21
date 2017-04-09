@@ -5,6 +5,7 @@
 #include "Entity.h"
 #include "TriggerDoor.h"
 #include "TriggerGenerator.h"
+#include "MagnetKey.h"
 #include "Door.h"
 #include "Generator.h"
 #include "Scene.h"
@@ -16,7 +17,7 @@
 /////
 #include "Entity.h"
 #define NUM_MAP_ENTITIES 100
-#define NUM_MAP_ENTITIES2 53
+#define NUM_MAP_ENTITIES2 57
 
 class LoadMap {
     public:
@@ -37,10 +38,14 @@ class LoadMap {
         ScenaryElement* wall;
 
         Entity *entities[NUM_MAP_ENTITIES2]; // Array de entidades
-        Generator *generator;
-        //Entity *sector[1]; // Sector no funcional que se le asigna a un generador
+        Generator *generator[3];
+        MagnetKey *MKAux;
+        std::vector<MagnetKey*> *magnetKeys;
         //Consumable *ammos[2];
         TriggerDoor *doorTriggers[NUM_MAP_ENTITIES2]; // Triggers
+        TriggerGenerator *generatorTriggers[3];
+
+        bool cheats;
 };
 
 #endif // LOADMAP_H

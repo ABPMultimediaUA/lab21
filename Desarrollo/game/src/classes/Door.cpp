@@ -21,6 +21,7 @@ Door::~Door()
 }
 
 void Door::setActive()  {   active=true;      }
+void Door::setInactive()  {   active=false;      }
 bool Door::getActive()  {   return active;    }
 bool Door::getIfOpened(){   return isOpened;  }
 
