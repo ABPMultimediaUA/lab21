@@ -22,24 +22,24 @@ Humanoid::Humanoid()
     //m_perception = new Perception();
     m_pathplanning = new Pathplanning(this);
 
-    /**** Special nodes ****/
+    //////// Special nodes ////////
     selector1 = new Selector;
     sequence1 = new Sequence;
 
-    /**** Tasks ****/
+    ////// Tasks //////
     path = new PathplanningTask(m_pathplanning, this);
     movetask = new MoveTask(this);
     //perc = new PerceptionTask(m_perception, this);
     //patrol = new PatrolTask(this);
 
-    /**** Creating the tree ****/
+    ////// Creating the tree //////
 
     selector1->addChild(sequence1);
     //selector1->addChild(patrol);
 
     //sequence1->addChild(perc);
     sequence1->addChild(path);
-    sequence1->addChild(movetask);
+    //TODO rmm volver a poner sequence1->addChild(movetask);
 
 }
 

@@ -1,5 +1,6 @@
 #include "Generator.h"
 #include "NetGame.h"
+#include "Door.h"
 
 Generator::Generator(int n, bool b)
 {

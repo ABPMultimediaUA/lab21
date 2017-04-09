@@ -110,14 +110,14 @@ void Scene::Init()
     navGraph.addEdge(edge75);
     navGraph.addEdge(edge76);
 
-    Shotgun* node = createShotgun(-100,10,100);
-    node = createShotgun(-100,10,200);
-    node = createShotgun(-200,10,200);
-    node = createShotgun(-200,10,100);
-    node = createShotgun(-150,10,150);
-    node = createShotgun(-175,10,0);
-    node = createShotgun(-125,10,0);
-    node = createShotgun(-150,10,50);
+    createShotgun(-100,10,100);
+    createShotgun(-100,10,200);
+    createShotgun(-200,10,200);
+    createShotgun(-200,10,100);
+    createShotgun(-150,10,150);
+    createShotgun(-175,10,0);
+    createShotgun(-125,10,0);
+    createShotgun(-150,10,50);
 
 
     // MEDKITS
@@ -343,7 +343,6 @@ void Scene::updateProjectiles()
         m_projectiles[i]->update();
         if (m_projectiles[i]->getCollides())
         {
-            cout<<"colision"<<endl;
             delete m_projectiles[i];
             m_projectiles.erase(m_projectiles.begin()+i);
         }

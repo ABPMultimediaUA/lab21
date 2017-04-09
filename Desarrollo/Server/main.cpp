@@ -38,14 +38,27 @@ static int DEFAULT_RAKPEER_PORT=61111;
 ///////////////////////////
 int main(int argc, char **argv)
 {
+	printf("Servidor Lab21 v0.2\n");
+
 	RakNet::RakPeerInterface *rakPeer=RakNet::RakPeerInterface::GetInstance();
+
+	// Buscamos las redes locales
+	std::string aux;
+	uint8_t ipIndex = 0;
+	uint8_t numLocalIPs = rakPeer->GetNumberOfAddresses();
+	if (numLocalIPs>1)
+    {
+        printf("Seleccione la red local a usar:\n");
+        for (uint8_t i=0; i<numLocalIPs; i++)
+            printf("  <%i> %s\n", i, rakPeer->GetLocalIP(i));
+        getline(std::cin, aux);
+        ipIndex = atoi(aux.c_str());
+    }
 
 	RakNet::SocketDescriptor sd;
 	sd.port = DEFAULT_RAKPEER_PORT;
-	//strcpy(sd.hostAddress,"127.0.0.1");  // Forzamos a red local
-
-//	printf("Using IP: %s port: %i\n", sd.hostAddress, sd.port);
-
+	sd.socketFamily=AF_INET; // Only IPV4 supports broadcast on 255.255.255.255
+	strcpy(sd.hostAddress, rakPeer->GetLocalIP(ipIndex));
 
 	if (rakPeer->Startup(8096,&sd,1)!=RakNet::RAKNET_STARTED)
 	{
@@ -56,7 +69,7 @@ int main(int argc, char **argv)
 	rakPeer->SetTimeoutTime(5000, UNASSIGNED_SYSTEM_ADDRESS);
 	rakPeer->SetMaximumIncomingConnections(MAX_CONNECTIONS);
 
-	printf("Using IP: %s port: %i\n", rakPeer->GetLocalIP(0), sd.port);
+	printf("Using IP: %s port: %i\n", rakPeer->GetLocalIP(ipIndex), sd.port);
 
 
     // NatPunchthroughServer /////////////////////////////

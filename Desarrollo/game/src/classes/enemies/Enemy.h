@@ -1,13 +1,12 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-#include "Drawable.h"
-#include "EntityPhysics.h"
+#include "DrawablePhysics.h"
 
 class Perception;
 class Pathplanning;
 
-class Enemy : public Drawable, public EntityPhysics
+class Enemy : public DrawablePhysics
 {
     public:
         Enemy();

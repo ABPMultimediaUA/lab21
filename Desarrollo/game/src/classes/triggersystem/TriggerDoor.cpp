@@ -16,7 +16,6 @@ TriggerDoor::~TriggerDoor()
 
 void TriggerDoor::triggered(Entity *e)
 {
-    cout<<((Door*)e)->getIfOpened()<<endl;
     if(((Door*)e)->getIfOpened())
     {
         ((Door*)e)->setIsClosing();

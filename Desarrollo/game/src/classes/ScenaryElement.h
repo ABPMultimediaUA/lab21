@@ -1,11 +1,9 @@
 #ifndef SCENARYELEMENT_H
 #define SCENARYELEMENT_H
 
-#include "Drawable.h"
-#include "EntityPhysics.h"
+#include "DrawablePhysics.h"
 
-
-class ScenaryElement : public Drawable, public EntityPhysics
+class ScenaryElement : public DrawablePhysics
 {
     public:
         ScenaryElement();

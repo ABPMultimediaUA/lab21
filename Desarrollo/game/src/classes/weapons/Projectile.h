@@ -2,14 +2,13 @@
 #define PROJECTILE_H
 
 #include "Entity.h"
-#include "EntityPhysics.h"
 
 /******************************************************************************
 Los proyectiles son los elementos que viajan de una posicion a otra del espacio
 y haran una funcion diferente dependiendo del tipo de proyectil que sea.
 *******************************************************************************/
 
-class Projectile: public Entity, public EntityPhysics
+class Projectile: public Entity
 {
     public:
         Projectile();

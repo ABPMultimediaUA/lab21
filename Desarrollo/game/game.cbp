@@ -122,6 +122,8 @@
 		<Unit filename="include/rapidjson/writer.h" />
 		<Unit filename="shaders/FragmentShader.glsl" />
 		<Unit filename="shaders/VertexShader.glsl" />
+		<Unit filename="src/DrawablePhysics.cpp" />
+		<Unit filename="src/DrawablePhysics.h" />
 		<Unit filename="src/audio/AudioEngine.cpp" />
 		<Unit filename="src/audio/AudioEngine.h" />
 		<Unit filename="src/classes/CharacterController.cpp" />

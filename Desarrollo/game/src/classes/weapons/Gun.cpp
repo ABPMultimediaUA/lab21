@@ -7,7 +7,7 @@ Gun::Gun()
     //ctor
     id = 0;
     this->Weapon::setAmmo(100); // 15
-    m_cadence = 0.1;
+    m_cadence = 0.6;
 }
 
 Gun::~Gun()
