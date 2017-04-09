@@ -7,6 +7,8 @@ Player::Player(Gun* gun)
 
     setClassID(EntityPhysics::player_id);
     m_mKeys[0]=false;
+    m_mKeys[1]=false;
+    m_mKeys[2]=false;
     m_medkits = 0;
 
     // En segundos
@@ -57,6 +59,13 @@ void Player::setPosition(dwe::vec3f p)
     Drawable::setPosition(p);
 }
 
+/***/
+void Player::sayPosition()
+{
+    cout<<"X: "<<getPosition().x<<" Z: "<<getPosition().z<<endl;
+}
+/***/
+
 ////////////////////#include <Firearm.h>
 const char* Player::getNetObjectID() const
 {
@@ -91,6 +100,7 @@ Weapon* Player::getPlayerShotgun() { return m_weapons[1]; }
 Weapon* Player::getPlayerRifle() { return m_weapons[2]; }
 bool Player::getHasShotgun() { return m_hasShotgun; }
 bool Player::getHasRifle() { return m_hasRifle; }
+
 
 /////////////
 void Player::addWeapon(Consumable* weapon, FirearmKind type)
@@ -229,7 +239,7 @@ void Player::receiveAmmo(int numWeapon, int ammount)
 ////////////
 int Player::getGrenades() { return m_grenades; }
 void Player::setGrenades(int n) { m_grenades = n; }
-void Player::setMKeys(int id){  m_mKeys[id]=true; }
+void Player::setMKeys(int id){  m_mKeys[id]=true; cout<<"Tengo llave del generador "<<id<<endl;}
 bool Player::getMKey(int n){ return m_mKeys[n]; }
 
 ////////////

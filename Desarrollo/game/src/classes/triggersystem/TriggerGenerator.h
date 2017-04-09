@@ -8,10 +8,10 @@ class TriggerGenerator: public Trigger
     public:
         TriggerGenerator();
         virtual ~TriggerGenerator();
-        virtual void triggered(Entity *e);
+        virtual void triggered(Generator *g);
 
         virtual void render();
-        void update(Entity *e);
+        void update(Generator *g);
 
     protected:
 

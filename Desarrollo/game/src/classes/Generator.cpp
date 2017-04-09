@@ -11,7 +11,7 @@ Generator::Generator(int n, bool b)
 
 Generator::~Generator()
 {
-    delete[] sector;
+
 }
 
 void Generator::setSector(Entity **s, int e)

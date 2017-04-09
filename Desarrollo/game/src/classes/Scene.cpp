@@ -8,6 +8,7 @@
 #include "AmmoGun.h"
 #include "CShotgun.h"
 #include "CRifle.h"
+#include "MagnetKey.h"
 #include "Game.h"
 #include "GSDead.h"
 #include "NavGraphNode.h"
@@ -51,10 +52,6 @@ void Scene::Init()
         }
     }
     GEInstance->addMessageLine("Partida iniciada");
-    /**********************************/
-    // Llaves
-    //llave=GEInstance->createMagnetKey(0, 50, 0, 350);
-    //llaveCogida=false;
 
     /******************Waypoints*******************/
 
@@ -123,6 +120,11 @@ void Scene::Init()
     // MEDKITS
     createMedkit(-300, 10, 200);
 
+    // LLAVES
+    createMagnetKey(0, 105, 0, 1345);
+    createMagnetKey(1, 785, 0, 1045);
+    createMagnetKey(2, 2255, 0, 505);
+
     // GUN - SHOTGUN - RIFLE
     gun = createGun(0,0,0); // Creo el arma inicial del player
     shotgun = createShotgun(-100,10,-210);
@@ -132,7 +134,6 @@ void Scene::Init()
     mainPlayer = GEInstance->createMainPlayer(gun);
     mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,80));
     World->setMainPlayer(mainPlayer);
-    cout << "Barra de vida: " << mainPlayer->getHealth() << endl;
 
     ////////////////////////////////
     //         Enemigos           //
@@ -317,20 +318,6 @@ void Scene::Update()
 
     //update box of box2d
     //TODO joint_try->setPosition(dwe::vec3f(bjoint->getPosEntity().x,bjoint->getPosEntity().y,bjoint->getPosEntity().z));
-
-    /*
-    // Coger la llave
-    if(!llaveCogida)
-    {
-        NO SE DEBE USAR INTERSECTS RMM if(mainPlayer->getNode()->intersects(llave->getNode()->getNode()))
-        {
-            llaveCogida=true;
-            mainPlayer->setMKeys(llave->getId());
-            delete llave;
-            llave = 0;
-        }
-    }
-    */
 }
 
 
@@ -436,11 +423,12 @@ void Scene::updatePlayerWeapons(Player* mainplayer, Firearm** weapons)
 ////////////////////////////
 
 //CREATE CONSUMABLES
-void Scene::createSpeedBoost(float px, float py, float pz)  { m_consumables.push_back(GEInstance->createSpeedBoost(px, py, pz));    }
-void Scene::createMedkit(float px, float py, float pz)      { m_consumables.push_back(GEInstance->createMedkit(px, py, pz));        }
-void Scene::createCShotgun(float px, float py, float pz)    { m_consumables.push_back(GEInstance->createCShotgun(px, py, pz));      }
-void Scene::createCRifle(float px, float py, float pz)      { m_consumables.push_back(GEInstance->createCRifle(px, py, pz));        }
-void Scene::createAmmoGun(float px, float py, float pz)     { m_consumables.push_back(GEInstance->createAmmoGun(px, py, pz));       }
+void Scene::createSpeedBoost(float px, float py, float pz)          { m_consumables.push_back(GEInstance->createSpeedBoost(px, py, pz));    }
+void Scene::createMedkit(float px, float py, float pz)              { m_consumables.push_back(GEInstance->createMedkit(px, py, pz));        }
+void Scene::createCShotgun(float px, float py, float pz)            { m_consumables.push_back(GEInstance->createCShotgun(px, py, pz));      }
+void Scene::createCRifle(float px, float py, float pz)              { m_consumables.push_back(GEInstance->createCRifle(px, py, pz));        }
+void Scene::createAmmoGun(float px, float py, float pz)             { m_consumables.push_back(GEInstance->createAmmoGun(px, py, pz));       }
+void Scene::createMagnetKey(int id, float px, float py, float pz)   { m_consumables.push_back(GEInstance->createMagnetKey(id, px, py, pz)); }
 
 //CREATE WEAPONS
 Gun* Scene::createGun(float px, float py, float pz)         {   return GEInstance->createGun(px, py, pz);   }

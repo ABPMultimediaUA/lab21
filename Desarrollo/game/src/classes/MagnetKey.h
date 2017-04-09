@@ -1,17 +1,21 @@
 #ifndef MAGNETKEY_H
 #define MAGNETKEY_H
-#include "Entity.h"
+
+#include "Consumable.h"
+#include "Player.h"
 
 
-class MagnetKey: public Entity
+class MagnetKey: public Consumable
 {
     public:
         MagnetKey(int i);
         virtual ~MagnetKey();
+
+        virtual void onTake(Player* mainPlayer);
         int getId();
 
-        virtual void render();
-        virtual void update();
+        virtual void render() {};
+        virtual void update() {};
 
     protected:
 

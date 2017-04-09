@@ -159,9 +159,44 @@ void LoadMap::Init(){
 
         }
 
-        // Generadores
-        generator=GEInstance->createGenerator(0, false, 600, 24, 100);
+        // DEMO
+        // Puertas MADRE
+        entities[53]=GEInstance->createDoor(2, false, -50, 0, -100);
+        doorTriggers[53]=GEInstance->createTriggerDoor(-29, 0, -100);
+        entities[54]=GEInstance->createDoor(0, false, 50, 0, -100);
+        doorTriggers[54]=GEInstance->createTriggerDoor(29, 0, -100);
+        entities[55]=GEInstance->createDoor(2, true, -50, 0, -1895);
+        doorTriggers[55]=GEInstance->createTriggerDoor(-29, 0, -1895);
+        entities[56]=GEInstance->createDoor(0, true, 50, 0, -1895);
+        doorTriggers[56]=GEInstance->createTriggerDoor(29, 0, -1895);
 
+        ((Door*)entities[2])->setInactive();
+        ((Door*)entities[11])->setInactive();
+        ((Door*)entities[12])->setInactive();
+        ((Door*)entities[51])->setInactive();
+        ((Door*)entities[52])->setInactive();
+
+        // Generadores
+        generator[0]=GEInstance->createGenerator(0, false, -350, 24, -300); // 1 Derecha Habitaciones
+        generatorTriggers[0]=GEInstance->createTriggerGenerator(-360, 0, -300);
+        generator[0]->setRotation(dwe::vec3f(0, 180, 0));
+        generator[1]=GEInstance->createGenerator(1, false, -745, 24, -300); // 2 Izquierda
+        generatorTriggers[1]=GEInstance->createTriggerGenerator(-725, 0, -300);
+        generator[2]=GEInstance->createGenerator(2, false, -680, 24, -491); // 3 Arriba Mother
+        generatorTriggers[2]=GEInstance->createTriggerGenerator(-660, 0, -491);
+
+        // Asignamos puertas a generadores
+        Entity **sector = new Entity*[1];
+        ((Door*)entities[5])->setInactive();
+        sector[0]=entities[5];
+        generator[0]->setSector(sector, 1);
+        ((Door*)entities[4])->setInactive();
+        sector[0]=entities[4];
+        generator[1]->setSector(sector, 1);
+        sector = new Entity*[2];
+        sector[0]=entities[53];
+        sector[1]=entities[54];
+        generator[2]->setSector(sector, 2);
 
         ////////// HACIENDO PRUEBAS CON OTRO TIPO DE BALAS
         //SHOTGUN BULLETS
@@ -179,31 +214,36 @@ void LoadMap::Init(){
     GEInstance->push();
 }
 
-/*
-// Creacion de Mundo
-sector[0]=entities[1];
-// Generadores
-entities[2]=GEInstance->createGenerator(0, false, -50, 0, -50); // false
-((Generator*)entities[2])->setSector(sector, 1);
-*/
-
 void LoadMap::Update(){
     for(int cont=0; cont<NUM_MAP_ENTITIES2; cont++){
         entities[cont]->update();
         doorTriggers[cont]->update(entities[cont]);
     }
+    for(int cont=0; cont<3; cont++){
+        generatorTriggers[cont]->update(generator[cont]);
+    }
+    if(GEInstance->receiver.isKeyDown(KEY_KEY_C) && !cheats){
+        for(int cont=0; cont<NUM_MAP_ENTITIES2; cont++){
+            ((Door*)entities[cont])->setActive();
+        }
+        cout<<"CHEAT PUERTAS ABIERTAS"<<endl;
+        cheats=true;
+    }
+
     //Scene::updateConsumables(mainPlayer);
 }
 
 void LoadMap::Destroy(){
      for(int i=0; i<NUM_MAP_ENTITIES2; i++){
         delete entities[i];
-    }
-
-    for(int i=0; i<NUM_MAP_ENTITIES2; i++){
         delete doorTriggers[i];
     }
-    delete generator;
+    for(int i=0; i<3; i++){
+        delete generator[i];
+        delete generatorTriggers[i];
+    }
+    delete[] generator;
+    delete[] generatorTriggers;
     delete suelo; suelo=0;
     delete wall;
 }
