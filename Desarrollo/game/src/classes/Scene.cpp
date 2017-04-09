@@ -59,7 +59,7 @@ void Scene::Init()
     /******************Waypoints*******************/
 
     NavGraphNode node0(0, dwe::vec2f(-200, 200));
-    NavGraphNode node1(1, dwe::vec2f(-200, 100));
+    /*NavGraphNode node1(1, dwe::vec2f(-200, 100));
     NavGraphNode node2(2, dwe::vec2f(-100, 100));
     NavGraphNode node3(3, dwe::vec2f(-100, 200));
 
@@ -68,10 +68,10 @@ void Scene::Init()
     NavGraphNode node5(5, dwe::vec2f(-175, 0));
     NavGraphNode node6(6, dwe::vec2f(-125, 0));
 
-    NavGraphNode node7(7, dwe::vec2f(-150, 50));
+    NavGraphNode node7(7, dwe::vec2f(-150, 50));*/
 
     navGraph.addNode(node0);
-    navGraph.addNode(node1);
+    /*navGraph.addNode(node1);
     navGraph.addNode(node2);
     navGraph.addNode(node3);
     navGraph.addNode(node4);
@@ -108,16 +108,16 @@ void Scene::Init()
     navGraph.addEdge(edge26);
     navGraph.addEdge(edge34);
     navGraph.addEdge(edge75);
-    navGraph.addEdge(edge76);
+    navGraph.addEdge(edge76);*/
 
-    Shotgun* node = createShotgun(-100,10,100);
-    node = createShotgun(-100,10,200);
-    node = createShotgun(-200,10,200);
-    node = createShotgun(-200,10,100);
+    /*Shotgun* node = createShotgun(-100,10,100);
+    node = createShotgun(-100,10,200);*/
+    Shotgun* node = createShotgun(-200,10,200);
+    /*node = createShotgun(-200,10,100);
     node = createShotgun(-150,10,150);
     node = createShotgun(-175,10,0);
     node = createShotgun(-125,10,0);
-    node = createShotgun(-150,10,50);
+    node = createShotgun(-150,10,50);*/
 
 
     // MEDKITS

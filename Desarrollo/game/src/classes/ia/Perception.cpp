@@ -1,14 +1,14 @@
 #include "Perception.h"
-#include "Pathplanning.h"
-#include <GraphicsEngine.h>
+//#include "GraphicsEngine.h"
 #include "NetGame.h"
 #include "PlayerMate.h"
-#include "Humanoid.h"
-#include "PathplanningTask.h"
+#include "WorldInstance.h"
 
-Perception::Perception()
+#include "dwVectors.h"
+
+Perception::Perception(Enemy *owner)
 {
-    following = false;//al principio no te ha detectado y no te sigue
+    m_owner = owner;
 }
 
 Perception::~Perception()
@@ -16,45 +16,58 @@ Perception::~Perception()
     //dtor
 }
 
-bool Perception::senses(Player* mainPlayer, Humanoid* enemyHumanoid, PathplanningTask* p)
+bool Perception::Sense()
 {
-    // Buscamos que player o playermate está más cerca para trabajar con él
-    Drawable* player;
+    Drawable* player = World->getMainPlayer();
 
-    float enemyX = enemyHumanoid->getPosition().x;
-    float enemyZ = enemyHumanoid->getPosition().z;
-    float distance = fabs(enemyX - mainPlayer->getPosition().x) + fabs(enemyZ - mainPlayer->getPosition().z);
-    player = mainPlayer;
+    float distance = GetDistanceClosestPlayer(player);
 
+    if(player->getAnimation() == dwe::eAnimRun)//en caso de estar en velocidad normal, la percepcion del npc sera mayor
+    {
+        if(distance<=81633){ //10 metros
+            m_owner->SetTargetPosition(dwe::vec2f(player->getPosition().x, player->getPosition().z));
+            return true;
+        }
+    }
+    else if(player->getAnimation() == dwe::eAnimWalk)//si estamos en sigilo, el radio sera menor
+    {
+        if(distance<=40000){ //7 metros
+            m_owner->SetTargetPosition(dwe::vec2f(player->getPosition().x, player->getPosition().z));
+            return true;
+        }
+    }
+    else if(player->getAnimation() == dwe::eAnimStand)
+    {
+        if(distance<=7347){ //3 metros
+            m_owner->SetTargetPosition(dwe::vec2f(player->getPosition().x, player->getPosition().z));
+            return true;
+        }
+    }
+
+    return false;
+}
+
+float Perception::GetDistanceClosestPlayer(Drawable*& pl)
+{
+    dwe::vec3f enemyPos(m_owner->getPosition());                    dwe::vec2f ePos(enemyPos.x, enemyPos.y);
+    dwe::vec3f playerPos(World->getMainPlayer()->getPosition());    dwe::vec2f pPos(playerPos.x, playerPos.y);
+
+    float distance = dwu::calculateSquaredDistance(ePos, pPos);
     float distanceAux;
-    for(int i=0; i<NetInstance->getNumPlayerMates(); i++)
 
-        if (NetInstance->getPlayerMate(i) != 0)
+    for(int i=0; i<NetInstance->getNumPlayerMates(); i++){
+        Drawable *playerMate = NetInstance->getPlayerMate(i);
+        if (playerMate != 0)
         {
-            distanceAux = fabs(enemyX - NetInstance->getPlayerMate(i)->getPosition().x) + fabs(enemyZ - NetInstance->getPlayerMate(i)->getPosition().z);
+            dwe::vec3f playerPos(playerMate->getPosition());     dwe::vec2f pPos(playerPos.x, playerPos.y);
+            distanceAux = dwu::calculateSquaredDistance(ePos, pPos);
             if (distanceAux < distance)
             {
-                player = NetInstance->getPlayerMate(i);
+                pl = playerMate;
                 distance = distanceAux;
             }
         }
-
-
-    if(!following)  //si no estamos siguiendo calculamos la distancia de percepcion
-    {
-        if(player->getAnimation() == dwe::eAnimRun)//en caso de estar en velocidad normal, la percepcion del npc sera mayor
-        {
-            if((sqrt (pow(enemyHumanoid->getPosition().x-player->getPosition().x, 2) + pow(enemyHumanoid->getPosition().z-player->getPosition().z, 2)))<=200)//ponemos 50 como distancia de percepcion
-                following=true;//si esta dentro entonces seguimos al prota
-        }
-        else if(player->getAnimation() == dwe::eAnimWalk)//si estamos en sigilo, el radio sera menor
-        {
-            if((sqrt (pow(enemyHumanoid->getPosition().x-player->getPosition().x, 2) + pow(enemyHumanoid->getPosition().z-player->getPosition().z, 2)))<=100)//ponemos 20 como distancia de percepcion
-                following=true;//si esta dentro entonces seguimos al prota
-        }
-
     }
-    //p->setPlayer(player);
-    return (following);
+    return distance;
 }
 
