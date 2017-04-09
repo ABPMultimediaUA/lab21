@@ -343,7 +343,7 @@ void Scene::updateProjectiles()
         m_projectiles[i]->update();
         if (m_projectiles[i]->getCollides())
         {
-            cout<<"colision"<<endl;
+            //cout<<"colision"<<endl;
             delete m_projectiles[i];
             m_projectiles.erase(m_projectiles.begin()+i);
         }

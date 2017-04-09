@@ -113,19 +113,19 @@ void Player::swapCurrentWeapon(int w)
     if(w==1){               //GUN
         m_currentWeapon = m_weapons[0];
         m_currentWeaponType = eGun;
-        cout<<"pistola"<<endl;
+        //cout<<"pistola"<<endl;
     }else if(w==2){         //SHOTGUN
         if (m_hasShotgun){
             m_currentWeapon = m_weapons[1];
             m_currentWeaponType = eShotgun;
-            cout<<"escopeta"<<endl;cout<<&m_currentWeapon<<endl;
+            //cout<<"escopeta"<<endl;cout<<&m_currentWeapon<<endl;
         }
     }else if(w==3){         //RIFLE
-        cout << m_hasRifle << endl;
+        //cout << m_hasRifle << endl;
         if (m_hasRifle){
             m_currentWeapon = m_weapons[2];
             m_currentWeaponType = eRifle;
-            cout<<"rifle"<<endl;
+            //cout<<"rifle"<<endl;
         }
     }
     //cout << "TENGO EL ARMA " << m_currentWeaponType << endl;
