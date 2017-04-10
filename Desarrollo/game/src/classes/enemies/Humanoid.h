@@ -1,20 +1,13 @@
 #ifndef HUMANOID_H
 #define HUMANOID_H
 
-#include <Enemy.h>
-#include <StateMachine.h>
-#include <HumanoidStates.h>
-#include <iostream>
-#include <list>
+#include "Enemy.h"
 
-class Perception;
-class Pathplanning;
 class Selector;
 class Sequence;
 class PathplanningTask;
 class PerceptionTask;
 class MoveTask;
-
 
 class Humanoid : public Enemy
 {
@@ -26,7 +19,7 @@ class Humanoid : public Enemy
 
         void update();
 
-        virtual void render() {};
+        void render(){};
 
     protected:
 
