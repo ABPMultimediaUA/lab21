@@ -30,7 +30,7 @@ Humanoid::Humanoid()
 
     sequence1->addChild(perc);
     sequence1->addChild(path);
-    //TODO rmm volver a poner sequence1->addChild(movetask);
+    sequence1->addChild(movetask);
 
     targetPosition = dwe::vec2f(0,0);
 

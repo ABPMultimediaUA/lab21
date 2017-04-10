@@ -66,7 +66,7 @@ void dwe::GraphicsEngine::init()
         style = sf::Style::Fullscreen;
     else
         style = sf::Style::Default;
-
+style = sf::Style::Default; // TODO
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", style, contextSettings);
 
     // Creamos los mensajes de texto, por ahora vacios
@@ -247,8 +247,6 @@ Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 
 	NetInstance->addNetObject(p);
 	return p;
-
-	// setMaterialTexture( 0, m_driver->getTexture("media/sydney.bmp") );
 }
 
 
@@ -256,7 +254,12 @@ Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 /////////////////////////////////
 PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/player.obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(2);
+    m_tagEngine.createAnimation(anim, "media/playerStand/playerStand", 0, 1);//posicion 0 sera estar parado
+    m_tagEngine.createAnimation(anim, "media/playerRun/playerRun", 1, 8);//posicion 0 sera correr
+    anim->setNumAnimation(0);
+
+    tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
 	PlayerMate* p = new PlayerMate();
 	p->setNode(new Node(node));
 

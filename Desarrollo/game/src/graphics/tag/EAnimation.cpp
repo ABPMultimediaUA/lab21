@@ -20,7 +20,7 @@ void tag::EAnimation::beginDraw()
         //aqui hariamos el bucle empezando por el frame 0
         m_animations[getNumAnimation()].frames[m_frame]->draw();
         temp++;
-        if(temp == 30){
+        if(temp == 10){
 
             m_frame++;
             temp = 0;
