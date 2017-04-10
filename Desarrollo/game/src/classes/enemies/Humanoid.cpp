@@ -37,6 +37,7 @@ Humanoid::Humanoid()
 
     sequence1->addChild(perc);
     sequence1->addChild(path);
+    sequence1->addChild(movetask);
     //TODO rmm volver a poner sequence1->addChild(movetask);
 
     targetPosition = dwe::vec2f(0,0);
@@ -72,7 +73,7 @@ Humanoid::~Humanoid()
     delete sequence1;
     delete path;
     delete movetask;
-    //delete perc;
+    delete perc;
     //delete patrol;
     //delete fovnode;
 }
