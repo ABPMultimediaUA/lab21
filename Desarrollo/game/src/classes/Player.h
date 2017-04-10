@@ -45,12 +45,14 @@ class Player : public CharacterController, public EntityPhysics
         void setHealth(int n);
         void setMKeys(int id);
         bool getMKey(int n);
+        void addSpeedBoost();
         int getNumMedkits();
         void setNumMedkits(int ammount);
         void addMedkits(int ammount);
         void giveMedkits(int ammount, PlayerMate* playermate);
         void receiveMedkits(int ammount);
         void consumeMedkit();
+        void consumeSpeedBoost();
         void giveAmmo(int numWeapon, int ammo, PlayerMate* playermate);
         void receiveAmmo(int numWeapon, int ammo);
         void addWeapon(Consumable* weapon, FirearmKind type);
@@ -81,7 +83,9 @@ class Player : public CharacterController, public EntityPhysics
         int         m_life;
         bool        m_mKeys[3];
         int         m_medkits;
+        int         m_speedBoosts;
         float       m_timeMedkit;
+        float       m_timeToSpeedBoost;
         float       m_timeGivingStuff;
         float       m_timeWeaponSwap;
         bool        m_hasGun;

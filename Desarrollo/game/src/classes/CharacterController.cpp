@@ -29,9 +29,9 @@ void CharacterController::readEvents()
 
     //SPEEDBOOST
     if (m_hasSpeedBoost){
-        speed = speed*2.f;
+        speed = speed*3.f;
         //Cuenta atrás
-        if (World->getTimeElapsed() - m_timeSpeedBost > _maxSpeedBostTime)
+        if (World->getTimeElapsed() - m_timeSpeedBoost > _maxSpeedBoostTime)
             m_hasSpeedBoost = false;
     }
     //EVADING
@@ -79,7 +79,7 @@ void CharacterController::setHealth(int h) { m_health = h; }
 //SETTERS
 void CharacterController::setSpeedBoost(){
     m_hasSpeedBoost = true;
-    m_timeSpeedBost = World->getTimeElapsed();
+    m_timeSpeedBoost = World->getTimeElapsed();
 }
 //SETTERS
 void CharacterController::dash(){
