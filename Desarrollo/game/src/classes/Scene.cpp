@@ -150,7 +150,7 @@ void Scene::Init()
     m_enemies.push_back(enemyHumanoid);
     enemyHumanoid = GEInstance->createEnemyHumanoid(530,24,390);
     m_enemies.push_back(enemyHumanoid);
-    /*enemyHumanoid = GEInstance->createEnemyHumanoid(475,24,90);
+    enemyHumanoid = GEInstance->createEnemyHumanoid(475,24,90);
     m_enemies.push_back(enemyHumanoid);
     enemyHumanoid = GEInstance->createEnemyHumanoid(-310,24,100);
     m_enemies.push_back(enemyHumanoid);
@@ -169,7 +169,7 @@ void Scene::Init()
     m_enemies.push_back(enemyHumanoid);
 
     enemyHumanoid = GEInstance->createEnemyHumanoid(1970,24,230);
-    m_enemies.push_back(enemyHumanoid);*/
+    m_enemies.push_back(enemyHumanoid);
 
     // Creacion de enemigo Dog
     enemyDog = GEInstance->createEnemyDog(100,24,80);
