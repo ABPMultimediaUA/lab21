@@ -56,6 +56,10 @@ void GSIngame::Update(){
 }
 
 void GSIngame::HandleEvents(){
+    /***
+    if(GEInstance->receiver.isKeyDown(KEY_KEY_G))
+        World->getMainPlayer()->sayPosition();
+    ***/
     if(!m_pausePermission && GEInstance->receiver.isKeyUp(KEY_PAUSE))
         m_pausePermission = true;
     if(m_pausePermission && GEInstance->receiver.isKeyDown(KEY_PAUSE)){

@@ -1,12 +1,11 @@
 #ifndef CONSUMABLE_H
 #define CONSUMABLE_H
 
-#include "Drawable.h"
-#include "EntityPhysics.h"
+#include "DrawablePhysics.h"
 
 class Player;
 
-class Consumable : public Drawable, public EntityPhysics
+class Consumable : public DrawablePhysics
 {
     public:
         Consumable();

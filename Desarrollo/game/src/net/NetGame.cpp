@@ -61,13 +61,17 @@ void dwn::NetGame::open(Scene *scene, bool multiplayer)
 
 	// Buscamos un puerto válido. Using fixed port so we can use AdvertiseSystem and connect on the LAN if the server is not available.
 	RakNet::SocketDescriptor sd(1234,0);
+	unsigned int numLocalIPs = rakPeer->GetNumberOfAddresses();
+	strcpy(sd.hostAddress, rakPeer->GetLocalIP(numLocalIPs-1));
+
 	sd.socketFamily=AF_INET; // Only IPV4 supports broadcast on 255.255.255.255
 	while (RakNet::IRNS2_Berkley::IsPortInUse(sd.port, sd.hostAddress, sd.socketFamily, SOCK_DGRAM)==true)
 		sd.port++;
 
 	// StartupResult solo sirve para hacer el assert y comprobar que ha ido bien
 	if (m_multiplayer)
-        rakPeer->Startup(_max_players+1,&sd,1);// +1 is for the connection to the NAT punchthrough server
+        rakPeer->Startup(_max_players+1, &sd, 1);// +1 is for the connection to the NAT punchthrough server
+    std::cout << "Usando red: " << sd.hostAddress << "\n";
 
 	// Configuraciones de RakPeerInterface
 	rakPeer->SetMaximumIncomingConnections(_max_players);
@@ -102,92 +106,6 @@ void dwn::NetGame::open(Scene *scene, bool multiplayer)
 	fullyConnectedMesh2->SetAutoparticipateConnections(false);
 	fullyConnectedMesh2->SetConnectOnNewRemoteConnection(false, "");
 	rakPeer->AttachPlugin(fullyConnectedMesh2);
-
-
-    // Buscar servidores disponibles
-    /*if (m_multiplayer)
-    {
-        RakNet::TimeMS quitTime;
-        RakNet::Packet* p;
-        std::vector<std::string> dirs;
-
-        quitTime = RakNet::GetTimeMS() + _time_search_server;  // milisegundos de espera
-        cout << "//\n// Buscando servidores ";
-
-        rakPeer->Ping("255.255.255.255", DEFAULT_PT, false);
-        while (RakNet::GetTimeMS() < quitTime)
-        {
-            cout << ".";
-            p = rakPeer->Receive();
-
-            if (p==0)
-            {
-                RakSleep(60);
-                continue;
-            }
-
-            if (p->data[0]==ID_UNCONNECTED_PONG)
-            {
-                RakNet::TimeMS time;
-                RakNet::BitStream bsIn(p->data,p->length,false);
-                bsIn.IgnoreBytes(1);
-                bsIn.Read(time);
-                dirs.push_back(p->systemAddress.ToString());
-                //printf("Got pong from %s with time %i\n", p->systemAddress.ToString(), RakNet::GetTimeMS() - time);
-            }
-            rakPeer->DeallocatePacket(p);
-
-            RakSleep(60);
-        }
-
-        if (dirs.size()>0)
-        {
-            cout << "\n//\n//Servidores de partidas disponibles:\n";
-
-            for(unsigned int i=0; i<dirs.size(); i++)
-                cout << "//  ("<<i<<") " << dirs[i] << "\n";
-
-            cout << "// Seleccione el numero de servidor de partidas [0] por defecto]: ";
-
-            getline(cin, m_IP);
-            m_IP = dirs[atoi(m_IP.c_str())];  // Si no es valido, o es "", atoi devuelve 0
-        }
-        else
-        {
-            cout << "\n// No hay servidores disponibles. Se inicia en modo un jugador. Presione una tecla para continuar.\n";
-            getchar();
-            m_multiplayer = false;
-        }
-    }
-
-
-	// Connect to the NAT punchthrough server
-	if (m_multiplayer)
-       rakPeer->Connect(m_IP.c_str(), DEFAULT_PT,0,0);
-
-    // Esperamos a conectar
-    if (m_multiplayer)
-    {
-        cout << "// Conectando...\n";
-        while (!m_connected && !m_connectionFailed && !m_connectionRejected)
-        {
-            usleep(40000);
-            update();
-        }
-    }
-    if (m_connectionFailed)
-    {
-        cout << "No se encuentra el servidor " << m_IP << ", se inicia el juego en modo 1 jugador.\n";
-        cout << "Presione intro para continuar. ";
-        getchar();
-    }
-    else if (m_connectionRejected)
-    {
-        m_multiplayer = false;
-        cout << "No se puede acceder a la partida seleccionada. Partida llena o empezada, se inicia el juego en modo 1 jugador.\n";
-        cout << "Presione intro para continuar. ";
-        getchar();
-    }*/
 }
 
 //////////////
