@@ -4,7 +4,6 @@
 #include <defines.h>
 #include <CharacterController.h>
 #include <vector>
-#include "EntityPhysics.h"
 #include "PlayerMate.h"
 #include "NetGame.h"
 #include "Gun.h"
@@ -14,7 +13,7 @@
 
 class Firearm;
 
-class Player : public CharacterController, public EntityPhysics
+class Player : public CharacterController
 {
     public:
         Player(Gun* gun);

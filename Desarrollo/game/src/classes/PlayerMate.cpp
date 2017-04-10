@@ -9,9 +9,11 @@ PlayerMate::~PlayerMate()
 {
     //dtor
 }
+
+/////////////////
 void PlayerMate::update()
 {
-
+    Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
 }
 
 void PlayerMate::render()
@@ -34,7 +36,6 @@ void PlayerMate::setPosition(dwe::vec3f p)
     setPosEntity(p, getRotation().y);
     Drawable::setPosition(p);
 }
-
 
 ///////////////////////
 dwe::vec3f PlayerMate::getShift() { return m_shift; }

@@ -153,7 +153,7 @@ void Scene::Init()
     m_enemies.push_back(enemyHumanoid);
 
     // Creacion de enemigo Dog
-    enemyDog = GEInstance->createEnemyDog(100,24,80);
+    enemyDog = GEInstance->createEnemyDog(500,24,100);
     //m_enemies.push_back(enemyDog);
 
     // Creacion de enemigos Bat
@@ -293,7 +293,6 @@ void Scene::Update()
         && mainPlayer->shoot(World->getTimeElapsed() - timeLastProjectil) )
     {
         timeLastProjectil = World->getTimeElapsed();
-        AEInstance->Play2D("media/DisparoEscopeta.wav");
     }
 
 
@@ -315,6 +314,16 @@ void Scene::Update()
     //UPDATE
 
     mainPlayer->update(shotgun, rifle); //Posición actualizada de Irrlicht Player
+
+    // Actualizamos los playermates
+    int num = NetInstance->getNumPlayerMates();
+    for(int i=0; i<num; i++)
+    {
+        PlayerMate* p = NetInstance->getPlayerMate(i);
+        p->update();
+    }
+
+
     updateProjectiles();
     updateProjectilesGrenade();
     updateConsumables(mainPlayer);
@@ -386,6 +395,7 @@ void Scene::deleteProjectileGrenade(unsigned int i)
 void Scene::createProjectile(dwe::vec3f origin, float angle, std::string weapon)
 {
     m_projectiles.push_back(GEInstance->createProjectile(origin, angle, weapon));
+    AEInstance->Play2D("media/DisparoEscopeta.wav");
 }
 
 ////////////

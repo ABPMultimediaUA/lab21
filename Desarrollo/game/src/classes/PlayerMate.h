@@ -4,10 +4,9 @@
 #include "DrawableReplica.h"
 #include "GraphicsEngine.h"
 #include "Player.h"
-#include "EntityPhysics.h"
 
 
-class PlayerMate : public dwn::DrawableReplica, public EntityPhysics
+class PlayerMate : public dwn::DrawableReplica
 {
     public:
         PlayerMate();
