@@ -14,7 +14,7 @@ AmmoRifle::~AmmoRifle()
 void AmmoRifle::onTake(Player* mainplayer)
 {
     // TODO
-    mainplayer->getPlayerRifle()->addAmmo(4);
+    mainplayer->getPlayerRifle()->addAmmoBag(30);
 }
 
 /////////////////////////

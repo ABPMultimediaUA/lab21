@@ -13,8 +13,10 @@ Player::Player(Gun* gun)
 
     // En segundos
     m_timeMedkit        = 2.0;
+    m_timeToSpeedBoost  = 2.0;
     m_timeGivingStuff   = 1.0;
     m_timeWeaponSwap    = 1.0;
+    m_timeReload        = 1.0;
 
     m_hasGun = true;
     m_weapons[0] = gun;
@@ -100,6 +102,13 @@ Weapon* Player::getPlayerShotgun() { return m_weapons[1]; }
 Weapon* Player::getPlayerRifle() { return m_weapons[2]; }
 bool Player::getHasShotgun() { return m_hasShotgun; }
 bool Player::getHasRifle() { return m_hasRifle; }
+
+//////////////////
+void Player::reloadWeapon()
+{
+    m_currentWeapon->reload();
+
+}
 
 
 /////////////
@@ -187,6 +196,20 @@ void Player::readEvents()
         m_timeMedkit = World->getTimeElapsed();
     }
 
+     // consumir adrenalina
+    if(GEInstance->receiver.isKeyDown(KEY_CONSUME_SPEED) && (World->getTimeElapsed() - m_timeToSpeedBoost)> offsetTime)
+    {
+        this->consumeSpeedBoost();
+
+        m_timeToSpeedBoost = World->getTimeElapsed();
+    }
+
+    // recargar armo
+    if(GEInstance->receiver.isKeyDown(KEY_RELOADWEAPON) && (World->getTimeElapsed() - m_timeReload)> offsetTime)
+    {
+        reloadWeapon();
+        m_timeReload = World->getTimeElapsed();
+    }
     /*********/
     PlayerMate* playermate = NetInstance->getPlayerMate(1);
     if (GEInstance->receiver.isKeyDown(KEY_GIVE_AMMO)&& (World->getTimeElapsed() - m_timeGivingStuff) > offsetTime)
@@ -243,6 +266,9 @@ void Player::setMKeys(int id){  m_mKeys[id]=true; cout<<"Tengo llave del generad
 bool Player::getMKey(int n){ return m_mKeys[n]; }
 
 ////////////
+void Player::addSpeedBoost() { m_speedBoosts += 1;}
+
+////////////
 int Player::getHealth() { return m_health; }
 void Player::setHealth(int n) { m_health = n; }
 int Player::getMaxHealth() { return m_maxHealth; }
@@ -286,6 +312,16 @@ void Player::consumeMedkit()
     }
 
     cout << m_medkits << endl;
+}
+
+/////////////
+void Player::consumeSpeedBoost()
+{
+    if (m_speedBoosts > 0){
+        m_speedBoosts -= 1;
+        setSpeedBoost();
+    }
+
 }
 /////////////
 void Player::onBeginContact(EntityPhysics* otherObject)

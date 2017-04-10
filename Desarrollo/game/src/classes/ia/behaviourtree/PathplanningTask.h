@@ -3,14 +3,13 @@
 
 #include "Node.h"
 
-class Pathplanning;
 class Enemy;
 
 class PathplanningTask : public Node
 {
     public:
 
-        PathplanningTask(Pathplanning* p, Enemy* owner);
+        PathplanningTask(Enemy* owner);
 
         virtual ~PathplanningTask();
 
@@ -20,9 +19,8 @@ class PathplanningTask : public Node
 
     private:
 
-        Pathplanning* m_pathplanning;
         Enemy* m_owner;
-        int time;
+        float lastTime;
 };
 
 #endif // PATHPLANNINGTASK_H

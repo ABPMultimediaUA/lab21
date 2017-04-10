@@ -1,21 +1,26 @@
 #ifndef PERCEPTION_H
 #define PERCEPTION_H
-#include "Player.h"
 
-class Humanoid;
-class PathplanningTask;
+class Enemy;
+class Drawable;
 
 class Perception
 {
     public:
-        Perception();
+
+        Perception(Enemy *owner);
+
         virtual ~Perception();
-        bool senses(Player* mainPlayer, Humanoid* enemyHumanoid, PathplanningTask* p);
+
+        bool Sense();
 
     protected:
 
     private:
-        bool following;
+
+        Enemy *m_owner;
+
+        float GetDistanceClosestPlayer(Drawable*& pl);
 
 };
 

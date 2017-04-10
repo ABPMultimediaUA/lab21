@@ -6,7 +6,9 @@ Rifle::Rifle()
 {
     //ctor
     id=2;
-    this->Weapon::setAmmo(1000);
+    this->Weapon::setAmmo(30);
+    this->Weapon::setAmmoClip(30);
+    this->Weapon::setAmmoBag(90);
     m_cadence = 0.08;
 }
 

@@ -28,8 +28,6 @@ SIN HACER
 -VI.Sistema de percepción sensorial (vista, oído, olfato, canales…)
 NO EVALUADO
 
--VII.Formato propio para la definición de los niveles (documento con la especificación del formato)
-PREGUNTAR A AARON SI LO HA HECHO
 
 -VII.Mecánicas de acción
 ACABARLAS

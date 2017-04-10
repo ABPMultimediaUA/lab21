@@ -44,12 +44,14 @@ class Player : public CharacterController
         void setHealth(int n);
         void setMKeys(int id);
         bool getMKey(int n);
+        void addSpeedBoost();
         int getNumMedkits();
         void setNumMedkits(int ammount);
         void addMedkits(int ammount);
         void giveMedkits(int ammount, PlayerMate* playermate);
         void receiveMedkits(int ammount);
         void consumeMedkit();
+        void consumeSpeedBoost();
         void giveAmmo(int numWeapon, int ammo, PlayerMate* playermate);
         void receiveAmmo(int numWeapon, int ammo);
         void addWeapon(Consumable* weapon, FirearmKind type);
@@ -62,6 +64,8 @@ class Player : public CharacterController
         Weapon* getPlayerGun();
         Weapon* getPlayerShotgun();
         Weapon* getPlayerRifle();
+        ///////////
+        void reloadWeapon();
 
         virtual const char* getNetObjectID() const;
         virtual void setPosition(dwe::vec3f p);
@@ -80,9 +84,12 @@ class Player : public CharacterController
         int         m_life;
         bool        m_mKeys[3];
         int         m_medkits;
+        int         m_speedBoosts;
         float       m_timeMedkit;
+        float       m_timeToSpeedBoost;
         float       m_timeGivingStuff;
         float       m_timeWeaponSwap;
+        float       m_timeReload;
         bool        m_hasGun;
         bool        m_hasShotgun;
         bool        m_hasRifle;
