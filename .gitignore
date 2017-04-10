@@ -6,6 +6,10 @@ Desarrollo/irrlicht-1.8.4/source/Irrlicht/libIrrlicht.a
 Desarrollo/irrlicht-1.8.4/bin/Linux/**
 !Desarrollo/irrlicht-1.8.4/bin/Linux/readme.txt
 Desarrollo/game/bin/**/*
+!Desarrollo/game/bin/Debug/irrKlang.dll
+!Desarrollo/game/bin/Debug/libassimp.dll
+!Desarrollo/game/bin/Release/irrKlang.dll
+!Desarrollo/game/bin/Release/libassimp.dll
 Desarrollo/game/obj/
 Desarrollo/game/obj/**/*
 Desarrollo/irrlicht-1.8.4/**/.objs/
