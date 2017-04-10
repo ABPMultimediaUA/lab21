@@ -52,7 +52,9 @@ void Projectile::setNode(dwe::Node* n)
 //rmm////////////
 void Projectile::onBeginContact(EntityPhysics* otherObject)
 {
-    collides = (otherObject && otherObject->getClassID()!=EntityPhysics::player_id);
+    collides = (otherObject
+                && (otherObject->getClassID()!=EntityPhysics::player_id
+                    || otherObject->getClassID()!=EntityPhysics::playermate_id) );
 }
 
 

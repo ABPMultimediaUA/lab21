@@ -4,9 +4,10 @@
 #include "DrawableReplica.h"
 #include "GraphicsEngine.h"
 #include "Player.h"
+#include "EntityPhysics.h"
 
 
-class PlayerMate : public dwn::DrawableReplica
+class PlayerMate : public dwn::DrawableReplica, public EntityPhysics
 {
     public:
         PlayerMate();
@@ -15,7 +16,10 @@ class PlayerMate : public dwn::DrawableReplica
         virtual void update();
         virtual void render();
 
+        virtual void setPosition(dwe::vec3f p);
+
         // Getters, Setters
+        virtual void setNode(dwe::Node* n);   // Necesario para EntityPhysics
         virtual dwe::vec3f getShift();
         virtual void setShift(dwe::vec3f s);
         virtual unsigned short int getHealth();

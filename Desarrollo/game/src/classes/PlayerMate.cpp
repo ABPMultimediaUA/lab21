@@ -2,7 +2,7 @@
 
 PlayerMate::PlayerMate()
 {
-    //ctor
+    setClassID(EntityPhysics::playermate_id);
 }
 
 PlayerMate::~PlayerMate()
@@ -19,7 +19,24 @@ void PlayerMate::render()
 
 }
 
+/////////////
+void PlayerMate::setNode(dwe::Node* n)
+{
+    Drawable::setNode(n);
 
+    dwe::vec3f box = n->getBoundingBox();
+    createDynamicBody(getPosition(), box.x, box.z);
+}
+
+/////////////////
+void PlayerMate::setPosition(dwe::vec3f p)
+{
+    setPosEntity(p, getRotation().y);
+    Drawable::setPosition(p);
+}
+
+
+///////////////////////
 dwe::vec3f PlayerMate::getShift() { return m_shift; }
 void PlayerMate::setShift(dwe::vec3f s) { m_shift = s;}
 unsigned short int PlayerMate::getHealth() { return m_health; }
