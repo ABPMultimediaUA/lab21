@@ -72,8 +72,11 @@ bool tag::GraphicNode::isEmptyNode() const
 tag::vec3f tag::GraphicNode::getBoundingBox()
 {
     EMesh* mesh;
+    EAnimation* anim;
     if (m_entity && (mesh = dynamic_cast<EMesh*>(m_entity)))
         return mesh->getBoundingBox();
+    else if (m_entity && (anim = dynamic_cast<EAnimation*>(m_entity)))
+        return anim->getBoundingBox();
     else
         return vec3f(0,0,0);
 }

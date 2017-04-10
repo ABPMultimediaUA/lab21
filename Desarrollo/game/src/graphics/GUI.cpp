@@ -186,7 +186,7 @@ dwe::WeaponBox::WeaponBox( float x, float y)
     text_ammo.setFont(font);
     text_ammo.setCharacterSize(15);
     text_ammo.setColor(sf::Color::White);
-    text_ammo.setPosition(s_box.getPosition().x + 65, s_box.getPosition().y + 100);
+    text_ammo.setPosition(s_box.getPosition().x + 55, s_box.getPosition().y + 100);
 
     /**** Cantidad de granadas ****/
     text_grenades.setFont(font);
@@ -199,14 +199,14 @@ dwe::WeaponBox::WeaponBox( float x, float y)
 
 dwe::WeaponBox::~WeaponBox(){};
 
-void dwe::WeaponBox::draw(FirearmKind weapon, int ammo, int grenades)
+void dwe::WeaponBox::draw(FirearmKind weapon, int ammo, int ammoBag, int grenades)
 {
 
     s_box.update(frameTime);
 
     GEInstance->drawAnimatedSprite(s_box);
 
-    swapWeapon(weapon, ammo, &t_weapon, &text_ammo);
+    swapWeapon(weapon, ammo, ammoBag, &t_weapon, &text_ammo);
 
     GEInstance->drawSprite(s_weapon);
 
@@ -220,20 +220,20 @@ void dwe::WeaponBox::draw(FirearmKind weapon, int ammo, int grenades)
 
 }
 
-void dwe::WeaponBox::swapWeapon(FirearmKind weapon, int ammo, sf::Texture *tweapon, sf::Text *textammo)
+void dwe::WeaponBox::swapWeapon(FirearmKind weapon, int ammo, int ammoBag, sf::Texture *tweapon, sf::Text *textammo)
 {
 
     // Según el arma que haya en el momento, cambiamos la imagen y la cantidad disponible
     if (weapon == eGun)
-        updateWeapon(tweapon, "media/Gun.png", ammo, textammo);
+        updateWeapon(tweapon, "media/Gun.png", ammo, ammoBag, textammo);
 
 
     else if (weapon == eRifle)
-        updateWeapon(tweapon, "media/Rifle.png", ammo, textammo);
+        updateWeapon(tweapon, "media/Rifle.png", ammo, ammoBag, textammo);
 
 
     else if (weapon == eShotgun)
-        updateWeapon(tweapon, "media/Shotgun.png", ammo, textammo);
+        updateWeapon(tweapon, "media/Shotgun.png", ammo, ammoBag, textammo);
 
 
     // Ponmos textura, posicion, etc del arma
@@ -266,11 +266,11 @@ void dwe::WeaponBox::animateWeaponBox()
     s_box.play(weaponBoxAnim);
 }
 
-void dwe::WeaponBox::updateWeapon (sf::Texture *tweapon, std::string str, int ammo, sf::Text *textammo)
+void dwe::WeaponBox::updateWeapon (sf::Texture *tweapon, std::string str, int ammo, int ammoBag, sf::Text *textammo)
 {
     std::stringstream sw;
     tweapon->loadFromFile(str);
-    sw << "x" << ammo;
+    sw << ammo << "/" << ammoBag;
     textammo->setString(sw.str());
 }
 

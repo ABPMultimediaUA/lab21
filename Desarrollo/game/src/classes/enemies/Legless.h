@@ -3,13 +3,18 @@
 
 #include <Enemy.h>
 #include <StateMachine.h>
-#include <LeglessStates.h>
 #include <iostream>
 
+class Selector;
+class Sequence;
+class PathplanningTask;
+class PerceptionTask;
+class MoveTask;
 
 class Legless : public Enemy
 {
     public:
+
         Legless();
 
         ~Legless();
@@ -18,21 +23,23 @@ class Legless : public Enemy
 
         void Update();
 
-        int getSteps();
+        void update();
 
-        void setSteps(int s);
-
-        virtual void update();
-
-        virtual void render();
+        void render(){};
 
     protected:
 
     private:
 
-        int steps;
-
         StateMachine<Legless>*  l_pStateMachine;
+
+        Selector* selector1;
+        Sequence *sequence1;
+
+        PathplanningTask* path;
+        PerceptionTask* perc;
+
+        MoveTask* movetask;
 };
 
 #endif // LEGLESS_H

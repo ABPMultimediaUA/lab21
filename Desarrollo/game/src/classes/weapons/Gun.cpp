@@ -6,7 +6,9 @@ Gun::Gun()
 {
     //ctor
     id = 0;
-    this->Weapon::setAmmo(100); // 15
+    this->Weapon::setAmmo(12); //12
+    this->Weapon::setAmmoClip(12);
+    this->Weapon::setAmmoBag(24);
     m_cadence = 0.6;
 }
 

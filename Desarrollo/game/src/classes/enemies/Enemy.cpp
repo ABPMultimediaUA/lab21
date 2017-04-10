@@ -1,6 +1,8 @@
 #include "Enemy.h"
 #include "WorldInstance.h"
 #include "Pathplanning.h"
+#include "Perception.h"
+#include "dwVectors.h"
 
 Enemy::Enemy()
 {
@@ -37,7 +39,7 @@ void Enemy::setPosition(dwe::vec3f p)
 void Enemy::move()
 {
     dwe::vec2f direction = m_pathplanning->Movement();
-    setRotation(dwe::vec3f(0, m_pathplanning->CalculateAngleYAxis(direction), 0));
+    setRotation(dwe::vec3f(0, dwu::calculateAngleYAxis(direction), 0));
     direction.x = direction.x * m_speed;
     direction.y = direction.y * m_speed;
 
@@ -46,6 +48,21 @@ void Enemy::move()
 
     EntityPhysics::setVelocity(direction);
     Drawable::setPosition(pos);
+}
+
+bool Enemy::Sense()
+{
+    return m_perception->Sense();
+}
+
+void Enemy::PlanPath()
+{
+    m_pathplanning->CreatePathToPosition(targetPosition);
+}
+
+void Enemy::SetTargetPosition(dwe::vec2f target)
+{
+    targetPosition = target;
 }
 
 /////////////

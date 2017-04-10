@@ -160,13 +160,13 @@ namespace dwe
         Node* createNode(std::string meshName);
 
         // Creacion de personajes
-        Player* createMainPlayer(Gun* gun);
+        Player*     createMainPlayer(Gun* gun);
         PlayerMate* createPlayerMate();
-        Humanoid* createEnemyHumanoid(int px, int py, int pz);
-        Dog* createEnemyDog(int px, int py, int pz);
-        Bat* createEnemyBat(int px, int py, int pz);
-        Guardian* createEnemyGuardian(int px, int py, int pz);
-        Legless* createEnemyLegless(int px, int py, int pz);
+        Humanoid*   createEnemyHumanoid(int px, int py, int pz);
+        Dog*        createEnemyDog(int px, int py, int pz);
+        Bat*        createEnemyBat(int px, int py, int pz);
+        Guardian*   createEnemyGuardian(int px, int py, int pz);
+        Legless*    createEnemyLegless(int px, int py, int pz);
 
 
         ScenaryElement* createWall(std::string meshName);
@@ -179,21 +179,21 @@ namespace dwe
         void createCamera();
         void updateCamera(const vec3f playerPosition, int moreEnemiesX, int moreEnemiesZ);
 
-        Door* createDoor(int f, bool a, float px, float py, float pz);
-        Projectile* createProjectile(vec3f origin, float angle, std::string weapon);
-        ProjectileGrenade* createProjectileGrenade(vec3f origin, float angle);
-        Generator* createGenerator(int i, bool b, float px, float py, float pz);
-        MagnetKey* createMagnetKey(int i, float px, float py, float pz);
-        SpeedBoost* createSpeedBoost(float px, float py, float pz);
-        Medkit* createMedkit(float px, float py, float pz);
-        TriggerDoor* createTriggerDoor(float px, float py, float pz);
-        TriggerGenerator* createTriggerGenerator(float px, float py, float pz);
-        AmmoGun* createAmmoGun(float px, float py, float pz);
-        CShotgun* createCShotgun(float px, float py, float pz);
-        CRifle* createCRifle(float px, float py, float pz);
-        Gun* createGun(float px, float py, float pz);
-        Shotgun* createShotgun(float px, float py, float pz);
-        Rifle* createRifle(float px, float py, float pz);
+        Door*               createDoor(int f, bool a, float px, float py, float pz);
+        Projectile*         createProjectile(vec3f origin, float angle, std::string weapon);
+        ProjectileGrenade*  createProjectileGrenade(vec3f origin, float angle);
+        Generator*          createGenerator(int i, bool b, float px, float py, float pz);
+        MagnetKey*          createMagnetKey(int i, float px, float py, float pz);
+        SpeedBoost*         createSpeedBoost(float px, float py, float pz);
+        Medkit*             createMedkit(float px, float py, float pz);
+        TriggerDoor*        createTriggerDoor(float px, float py, float pz);
+        TriggerGenerator*   createTriggerGenerator(float px, float py, float pz);
+        AmmoGun*            createAmmoGun(float px, float py, float pz);
+        CShotgun*           createCShotgun(float px, float py, float pz);
+        CRifle*             createCRifle(float px, float py, float pz);
+        Gun*                createGun(float px, float py, float pz);
+        Shotgun*            createShotgun(float px, float py, float pz);
+        Rifle*              createRifle(float px, float py, float pz);
 
 
         /// \brief Muestra un mensaje en la zona de mensajes
@@ -238,12 +238,12 @@ namespace dwe
         tag::GraphicNode*   m_camera;
 
 #ifndef LAB21_DEBUG
-        static const int _screenWidth   = 800;
-        static const int _screenHeight  = 600;
+        static const int _screenWidth   = 1024;
+        static const int _screenHeight  = 768;
         static const bool _fullScreen   = true;
 #else
-        static const int _screenWidth   = 800;
-        static const int _screenHeight  = 600;
+        static const int _screenWidth   = 1024;
+        static const int _screenHeight  = 768;
         static const bool _fullScreen   = false;
 #endif
         // Camara

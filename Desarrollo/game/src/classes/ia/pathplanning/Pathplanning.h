@@ -15,14 +15,9 @@ class Pathplanning
         virtual ~Pathplanning();
 
         void CreatePathToPosition(dwe::vec2f TargetPos);
-
         dwe::vec2f Movement();
-
         void CalculateDirection();
-
-        bool CheckIfRouteEnd();
-
-        float CalculateAngleYAxis(dwe::vec2f vec);
+        //bool CheckIfRouteEnd();
 
     private:
 
@@ -31,19 +26,13 @@ class Pathplanning
         const NavigationGraph& m_NavGraph;
 
         dwe::vec2f nextPosition;
-
         dwe::vec2f finalPosition;
-
         dwe::vec2f direction;
 
         std::list<dwe::vec2f> route;
 
         int GetClosestNodeToPosition(dwe::vec2f pos);
-
-        float CalculateQuadraticDistance(dwe::vec2f targetPos, dwe::vec2f nodePos)const;
-
         bool CheckIfArrived();
-        void Normalize(dwe::vec2f& vec);
 };
 
 #endif
