@@ -65,6 +65,8 @@ class Player : public CharacterController, public EntityPhysics
         Weapon* getPlayerGun();
         Weapon* getPlayerShotgun();
         Weapon* getPlayerRifle();
+        ///////////
+        void reloadWeapon();
 
         virtual const char* getNetObjectID() const;
         virtual void setPosition(dwe::vec3f p);
@@ -88,6 +90,7 @@ class Player : public CharacterController, public EntityPhysics
         float       m_timeToSpeedBoost;
         float       m_timeGivingStuff;
         float       m_timeWeaponSwap;
+        float       m_timeReload;
         bool        m_hasGun;
         bool        m_hasShotgun;
         bool        m_hasRifle;

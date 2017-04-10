@@ -26,6 +26,7 @@ enum EKEY_CODE
     KEY_RIGHT           = sf::Keyboard::D,
     KEY_UP              = sf::Keyboard::W,
     KEY_CONSUME_SPEED   = sf::Keyboard::F,
+    KEY_RELOADWEAPON    = sf::Keyboard::R,
     KEY_GRENADE         = sf::Keyboard::G,
     KEY_PAUSE           = sf::Keyboard::P,
     KEY_WALK            = sf::Keyboard::LShift,

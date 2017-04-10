@@ -14,7 +14,7 @@ AmmoGun::~AmmoGun()
 void AmmoGun::onTake(Player* mainplayer)
 {
     //mainplayer->addAmmo(0,10);
-    mainplayer->getPlayerGun()->addAmmo(10);
+    mainplayer->getPlayerGun()->addAmmoBag(12);
 }
 
 /////////////////////
