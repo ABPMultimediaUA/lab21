@@ -201,11 +201,11 @@ void Scene::Init()
 
     GEInstance->createCamera();
 
-    //rmm Cheat: la primera vez que creo el projectile va muy lento, no se pq
-    createProjectile(dwe::vec3f(1.0, 1.0, 1.0), 0.5, "gunBullet");
+    //TODO quitar que creo que ya no hace falta        rmm Cheat: la primera vez que creo el projectile va muy lento, no se pq
+/*    createProjectile(dwe::vec3f(1.0, 1.0, 1.0), 0.5, "gunBullet");
     createProjectileGrenade(dwe::vec3f(1.0, 1.0, 1.0), 0.5);
     deleteProjectileGrenade(0);
-    deleteProjectile(0);
+    deleteProjectile(0);*/
     timeLastProjectil = 0;
 }
 
@@ -447,13 +447,17 @@ void Scene::updateConsumables(Player* mainPlayer)
 void Scene::updatePlayerWeapons(Player* mainplayer, Firearm** weapons)
 {
     //cout << "- "<< mainplayer->getCurrentWeaponType() << ":" << eRifle << endl;
-    if  (mainplayer->getCurrentWeaponType() == eGun){
+    // TODO dibujar bien y solo la actual
+    for (uint8_t i=0; i<3; i++)
+        if (weapons[i])
+            weapons[i]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
+    /*if  (mainplayer->getCurrentWeaponType() == eGun){
         weapons[0]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
     }else if (mainplayer->getCurrentWeaponType() == eShotgun){
         weapons[1]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
     }else if (mainplayer->getCurrentWeaponType() == eRifle){
         weapons[2]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
-    }
+    }*/
 }
 
 ////////////////////////////
