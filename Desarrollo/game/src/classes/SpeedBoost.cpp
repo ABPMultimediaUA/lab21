@@ -13,5 +13,5 @@ SpeedBoost::~SpeedBoost()
 
 void SpeedBoost::onTake(Player* mainPlayer)
 {
-    mainPlayer->setSpeedBoost();
+    mainPlayer->addSpeedBoost();
 }

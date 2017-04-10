@@ -122,7 +122,10 @@ void Scene::Init()
 
 
     // MEDKITS
-    createMedkit(-300, 10, 200);
+    //createMedkit(-300, 10, 200);
+
+    // SPEEDBOOST
+    createSpeedBoost(-300, 10, 200);
 
     // LLAVES
     createMagnetKey(0, 105, 0, 1345);
