@@ -237,10 +237,15 @@ namespace dwe
         tag::TAGEngine      m_tagEngine;
         tag::GraphicNode*   m_camera;
 
-
-        static const int _screenWidth  = 1000;
-        static const int _screenHeight = 700;
-
+#ifndef LAB21_DEBUG
+        static const int _screenWidth   = 800;
+        static const int _screenHeight  = 600;
+        static const bool _fullScreen   = true;
+#else
+        static const int _screenWidth   = 800;
+        static const int _screenHeight  = 600;
+        static const bool _fullScreen   = false;
+#endif
         // Camara
         float tarUD;
         float tarLR;
