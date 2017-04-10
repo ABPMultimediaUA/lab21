@@ -9,7 +9,7 @@ Los proyectiles son los elementos que viajan de una posicion a otra del espacio
 y haran una funcion diferente dependiendo del tipo de proyectil que sea.
 *******************************************************************************/
 
-class ProjectileGrenade: public Entity, public EntityPhysics
+class ProjectileGrenade: public Entity
 {
     public:
         ProjectileGrenade();

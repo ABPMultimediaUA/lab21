@@ -90,8 +90,7 @@ namespace tag
             /// \param[in] fileName El nombre del archivo sobre el que iterará para coger todos los obj.
             /// \param[in] numAnimation Posición de la animación en el array de animaciones.
             /// \param[in] numFrames Número de frames que tendrá la animación. Número de mallas.
-            /// \return puntero al nodo de la malla creada
-            EAnimation* createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames);
+            void createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames);
 
             /// \brief Crea el nodo del array de animaciones.
             /// \details Crea los nodos de transformacion, uno de posicion y otro de rotación. Crea

@@ -39,7 +39,7 @@
 #include "Shotgun.h"
 #include "Rifle.h"
 #include "AmmoGun.h"
-
+#include "tag/EAnimation.h"
 
 using namespace std;
 
@@ -61,7 +61,13 @@ void dwe::GraphicsEngine::init()
     contextSettings.depthBits = 24;
     contextSettings.sRgbCapable = false;
 
-    m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", sf::Style::Default, contextSettings);
+    sf::Uint32 style;
+    if (_fullScreen)
+        style = sf::Style::Fullscreen;
+    else
+        style = sf::Style::Default;
+
+    m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", style, contextSettings);
 
     // Creamos los mensajes de texto, por ahora vacios
     if (!m_font.loadFromFile("media/ExoRegular.otf"))
@@ -230,7 +236,12 @@ dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 /////////////////////////////
 Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/player.obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(2);
+    m_tagEngine.createAnimation(anim, "media/playerStand/playerStand", 0, 1);//posicion 0 sera estar parado
+    m_tagEngine.createAnimation(anim, "media/playerRun/playerRun", 1, 8);//posicion 0 sera correr
+    anim->setNumAnimation(0);
+
+    tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
 	Player* p = new Player(gun);
 	p->setNode(new Node(node));
 
@@ -288,6 +299,7 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 Dog* dwe::GraphicsEngine::createEnemyDog(int px, int py, int pz)
 {
 	tag::GraphicNode* node = m_tagEngine.createMesh("media/perro.obj", vec3f(0,0,0), vec3f(0,0,0), "media/perro.bmp");
+//	tag::GraphicNode* node = m_tagEngine.createMesh("media/perro.obj", vec3f(0,0,0), vec3f(0,0,0));
     Dog* p = new Dog();
 	p->setNode(new Node(node));
     p->setPosition(dwe::vec3f(px, py, pz));
@@ -362,6 +374,7 @@ ProjectileGrenade* dwe::GraphicsEngine::createProjectileGrenade(vec3f origin, fl
 Generator* dwe::GraphicsEngine::createGenerator(int i, bool b, float px, float py, float pz)
 {
 	tag::GraphicNode* node = m_tagEngine.createMesh("media/generador.obj", vec3f(0,0,0), vec3f(0,0,0), "media/generador.bmp");
+//	tag::GraphicNode* node = m_tagEngine.createMesh("media/generador.obj", vec3f(0,0,0), vec3f(0,0,0));
     Generator* g = new Generator(i, b);
 	g->setNode(new Node(node));
 	g->setPosition(dwe::vec3f(px, py, pz));

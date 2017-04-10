@@ -70,3 +70,11 @@ int tag::EAnimation::getNumAnimation()
     return m_numAnimation;
 }
 
+tag::vec3f tag::EAnimation::getBoundingBox()
+{
+    if (m_animations)
+        return m_animations[getNumAnimation()].frames[0]->getBoundingBox();
+    else
+        return vec3f(0,0,0);
+}
+

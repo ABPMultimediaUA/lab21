@@ -66,6 +66,9 @@ class Player : public CharacterController, public EntityPhysics
 
         virtual const char* getNetObjectID() const;
         virtual void setPosition(dwe::vec3f p);
+        /***/
+        void sayPosition();
+        /***/
 
         virtual void onBeginContact(EntityPhysics* otherObject);
 
@@ -76,7 +79,7 @@ class Player : public CharacterController, public EntityPhysics
         Firearm*    m_weapons[NUM_WEAPONS];
         int         m_grenades;
         int         m_life;
-        bool        m_mKeys[1];
+        bool        m_mKeys[3];
         int         m_medkits;
         float       m_timeMedkit;
         float       m_timeGivingStuff;

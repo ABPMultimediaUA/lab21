@@ -2,7 +2,6 @@
 #define DOOR_H
 
 #include "Entity.h"
-#include "EntityPhysics.h"
 
 /******************************************************************************
 Las puertas bloquean el acceso a una zona. Pueden abrirse o no dependiendo de
@@ -12,14 +11,15 @@ Una vez se termina de abrir la puerta, esta es borrada del juego para ahorrar
 memoria y que el juego sea mas eficiente.
 *******************************************************************************/
 
-class Door: public Entity, public EntityPhysics
+class Door: public Entity
 {
     public:
         Door(int f, bool a);
         virtual ~Door();
         void setActive();
+        void setInactive(); // DEMO
         bool getActive();
-        void openDoor(); // Llamado desde sector
+        void openDoor();
         void closeDoor();
         bool getIfOpened();
         void setIsOpening();

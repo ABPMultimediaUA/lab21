@@ -7,6 +7,8 @@ Player::Player(Gun* gun)
 
     setClassID(EntityPhysics::player_id);
     m_mKeys[0]=false;
+    m_mKeys[1]=false;
+    m_mKeys[2]=false;
     m_medkits = 0;
 
     // En segundos
@@ -47,7 +49,7 @@ void Player::setNode(dwe::Node* n)
     Drawable::setNode(n);
 
     dwe::vec3f box = n->getBoundingBox();
-    createDynamicBody(getPosition(), box.x, box.z);
+    createDynamicBody(getPosition(), 10, 10);
 }
 
 /////////////
@@ -56,6 +58,13 @@ void Player::setPosition(dwe::vec3f p)
     setPosEntity(p, getRotation().y);
     Drawable::setPosition(p);
 }
+
+/***/
+void Player::sayPosition()
+{
+    cout<<"X: "<<getPosition().x<<" Z: "<<getPosition().z<<endl;
+}
+/***/
 
 ////////////////////#include <Firearm.h>
 const char* Player::getNetObjectID() const
@@ -92,6 +101,7 @@ Weapon* Player::getPlayerRifle() { return m_weapons[2]; }
 bool Player::getHasShotgun() { return m_hasShotgun; }
 bool Player::getHasRifle() { return m_hasRifle; }
 
+
 /////////////
 void Player::addWeapon(Consumable* weapon, FirearmKind type)
 {
@@ -113,19 +123,19 @@ void Player::swapCurrentWeapon(int w)
     if(w==1){               //GUN
         m_currentWeapon = m_weapons[0];
         m_currentWeaponType = eGun;
-        cout<<"pistola"<<endl;
+        //cout<<"pistola"<<endl;
     }else if(w==2){         //SHOTGUN
         if (m_hasShotgun){
             m_currentWeapon = m_weapons[1];
             m_currentWeaponType = eShotgun;
-            cout<<"escopeta"<<endl;cout<<&m_currentWeapon<<endl;
+            //cout<<"escopeta"<<endl;cout<<&m_currentWeapon<<endl;
         }
     }else if(w==3){         //RIFLE
-        cout << m_hasRifle << endl;
+        //cout << m_hasRifle << endl;
         if (m_hasRifle){
             m_currentWeapon = m_weapons[2];
             m_currentWeaponType = eRifle;
-            cout<<"rifle"<<endl;
+            //cout<<"rifle"<<endl;
         }
     }
     //cout << "TENGO EL ARMA " << m_currentWeaponType << endl;
@@ -229,7 +239,7 @@ void Player::receiveAmmo(int numWeapon, int ammount)
 ////////////
 int Player::getGrenades() { return m_grenades; }
 void Player::setGrenades(int n) { m_grenades = n; }
-void Player::setMKeys(int id){  m_mKeys[id]=true; }
+void Player::setMKeys(int id){  m_mKeys[id]=true; cout<<"Tengo llave del generador "<<id<<endl;}
 bool Player::getMKey(int n){ return m_mKeys[n]; }
 
 ////////////

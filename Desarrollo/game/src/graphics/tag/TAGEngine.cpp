@@ -239,11 +239,11 @@ tag::EAnimation* tag::TAGEngine::createNumAnimations(int numAnimations)
 
     return animations;
 }
+
 ////////////////////////////
-tag::EAnimation* tag::TAGEngine::createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames)
+void tag::TAGEngine::createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames)
 {
     animations->createAnimation(numAnimation,numFrames, fileName);//creamos la animacion con sus frames y sus mallas
-    return animations;//la devolvemos
 }
 
 /////////////////////////////

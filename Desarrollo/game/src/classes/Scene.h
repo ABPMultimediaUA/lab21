@@ -10,7 +10,6 @@
 #include "Legless.h"
 #include "Bat.h"
 
-#include "MagnetKey.h"
 #include "Gun.h"
 
 #include "NavigationGraph.h"
@@ -54,6 +53,7 @@ class Scene
         void createCShotgun(float px, float py, float pz);
         void createCRifle(float px, float py, float pz);
         Gun* createGun(float px, float py, float pz);
+        void createMagnetKey(int id, float px, float py, float pz);
         Shotgun* createShotgun(float px, float py, float pz);
         Rifle* createRifle(float px, float py, float pz);
         void createAmmoGun(float px, float py, float pz);
@@ -66,10 +66,6 @@ class Scene
     protected:
 
     private:
-
-        MagnetKey *llave;
-        bool llaveCogida;
-
         // NPcs
         Player* mainPlayer;
         Humanoid* enemyHumanoid;
@@ -85,7 +81,6 @@ class Scene
         Gun* gun;
         Shotgun* shotgun;
         Rifle* rifle;
-        Medkit* medkit;
 
         bool a;
 

@@ -224,7 +224,7 @@
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "PlayerStart",
 				"position": { "x":120, "y":10, "z":50.5 },
-				"rotation": { "x":0, "y":18, "z":0 }}
+				"rotation": { "x":0, "y":18.00001, "z":0 }}
 		]
 	},
 	{

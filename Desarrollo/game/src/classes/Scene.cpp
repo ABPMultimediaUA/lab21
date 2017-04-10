@@ -8,6 +8,7 @@
 #include "AmmoGun.h"
 #include "CShotgun.h"
 #include "CRifle.h"
+#include "MagnetKey.h"
 #include "Game.h"
 #include "GSDead.h"
 #include "NavGraphNode.h"
@@ -110,18 +111,23 @@ void Scene::Init()
     navGraph.addEdge(edge75);
     navGraph.addEdge(edge76);
 
-    Shotgun* node = createShotgun(-100,10,100);
-    node = createShotgun(-100,10,200);
-    node = createShotgun(-200,10,200);
-    node = createShotgun(-200,10,100);
-    node = createShotgun(-150,10,150);
-    node = createShotgun(-175,10,0);
-    node = createShotgun(-125,10,0);
-    node = createShotgun(-150,10,50);
+    createShotgun(-100,10,100);
+    createShotgun(-100,10,200);
+    createShotgun(-200,10,200);
+    createShotgun(-200,10,100);
+    createShotgun(-150,10,150);
+    createShotgun(-175,10,0);
+    createShotgun(-125,10,0);
+    createShotgun(-150,10,50);
 
 
     // MEDKITS
     createMedkit(-300, 10, 200);
+
+    // LLAVES
+    createMagnetKey(0, 105, 0, 1345);
+    createMagnetKey(1, 785, 0, 1045);
+    createMagnetKey(2, 2255, 0, 505);
 
     // GUN - SHOTGUN - RIFLE
     gun = createGun(0,0,0); // Creo el arma inicial del player
@@ -132,7 +138,6 @@ void Scene::Init()
     mainPlayer = GEInstance->createMainPlayer(gun);
     mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,80));
     World->setMainPlayer(mainPlayer);
-    cout << "Barra de vida: " << mainPlayer->getHealth() << endl;
 
     ////////////////////////////////
     //         Enemigos           //
@@ -317,20 +322,6 @@ void Scene::Update()
 
     //update box of box2d
     //TODO joint_try->setPosition(dwe::vec3f(bjoint->getPosEntity().x,bjoint->getPosEntity().y,bjoint->getPosEntity().z));
-
-    /*
-    // Coger la llave
-    if(!llaveCogida)
-    {
-        NO SE DEBE USAR INTERSECTS RMM if(mainPlayer->getNode()->intersects(llave->getNode()->getNode()))
-        {
-            llaveCogida=true;
-            mainPlayer->setMKeys(llave->getId());
-            delete llave;
-            llave = 0;
-        }
-    }
-    */
 }
 
 
@@ -343,7 +334,6 @@ void Scene::updateProjectiles()
         m_projectiles[i]->update();
         if (m_projectiles[i]->getCollides())
         {
-            cout<<"colision"<<endl;
             delete m_projectiles[i];
             m_projectiles.erase(m_projectiles.begin()+i);
         }
@@ -436,11 +426,12 @@ void Scene::updatePlayerWeapons(Player* mainplayer, Firearm** weapons)
 ////////////////////////////
 
 //CREATE CONSUMABLES
-void Scene::createSpeedBoost(float px, float py, float pz)  { m_consumables.push_back(GEInstance->createSpeedBoost(px, py, pz));    }
-void Scene::createMedkit(float px, float py, float pz)      { m_consumables.push_back(GEInstance->createMedkit(px, py, pz));        }
-void Scene::createCShotgun(float px, float py, float pz)    { m_consumables.push_back(GEInstance->createCShotgun(px, py, pz));      }
-void Scene::createCRifle(float px, float py, float pz)      { m_consumables.push_back(GEInstance->createCRifle(px, py, pz));        }
-void Scene::createAmmoGun(float px, float py, float pz)     { m_consumables.push_back(GEInstance->createAmmoGun(px, py, pz));       }
+void Scene::createSpeedBoost(float px, float py, float pz)          { m_consumables.push_back(GEInstance->createSpeedBoost(px, py, pz));    }
+void Scene::createMedkit(float px, float py, float pz)              { m_consumables.push_back(GEInstance->createMedkit(px, py, pz));        }
+void Scene::createCShotgun(float px, float py, float pz)            { m_consumables.push_back(GEInstance->createCShotgun(px, py, pz));      }
+void Scene::createCRifle(float px, float py, float pz)              { m_consumables.push_back(GEInstance->createCRifle(px, py, pz));        }
+void Scene::createAmmoGun(float px, float py, float pz)             { m_consumables.push_back(GEInstance->createAmmoGun(px, py, pz));       }
+void Scene::createMagnetKey(int id, float px, float py, float pz)   { m_consumables.push_back(GEInstance->createMagnetKey(id, px, py, pz)); }
 
 //CREATE WEAPONS
 Gun* Scene::createGun(float px, float py, float pz)         {   return GEInstance->createGun(px, py, pz);   }

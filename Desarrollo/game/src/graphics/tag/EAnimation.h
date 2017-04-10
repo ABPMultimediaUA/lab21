@@ -19,7 +19,7 @@ namespace tag
             void setNumAnimation(int animation);//establecemos en que animation estamos para el draw
             int getNumAnimation();//devolvemos en que animation estamos para el draw
 
-            vec3f getBoundingBox() { return vec3f(0,0,0); };
+            vec3f getBoundingBox();
 
         private:
             int m_numAnimation;

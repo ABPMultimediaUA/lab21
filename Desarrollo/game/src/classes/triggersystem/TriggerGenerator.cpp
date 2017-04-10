@@ -1,6 +1,9 @@
 #include "TriggerGenerator.h"
 #include "WorldInstance.h"
 #include "Player.h"
+#include <iostream>
+
+using namespace std;
 
 TriggerGenerator::TriggerGenerator()
 {
@@ -12,9 +15,13 @@ TriggerGenerator::~TriggerGenerator()
     //dtor
 }
 
-void TriggerGenerator::triggered(Entity *e)
+void TriggerGenerator::triggered(Generator *g)
 {
-    ((Generator*)e)->activateGenerator();
+    if(!g->getIsActive())
+    {
+        g->activateGenerator();
+        cout<<"GENERATOR "<<g->getNum()<<" ACTIVATED"<<endl;
+    }
 }
 
 void TriggerGenerator::render()
@@ -22,8 +29,8 @@ void TriggerGenerator::render()
 
 }
 
-void TriggerGenerator::update(Entity *e)
+void TriggerGenerator::update(Generator *g)
 {
-    if(World->getMainPlayer()->getMKey(((Generator*)e)->getNum()))
-        triggered(e);
+    if(m_touchingMainPlayer && World->getMainPlayer()->getMKey(g->getNum()) && GEInstance->receiver.isKeyDown(KEY_OPEN_DOOR))
+        triggered(g);
 }
