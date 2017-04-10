@@ -304,12 +304,18 @@ Dog* dwe::GraphicsEngine::createEnemyDog(int px, int py, int pz)
 
 Bat* dwe::GraphicsEngine::createEnemyBat(int px, int py, int pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/murcielago.obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(1);
+    m_tagEngine.createAnimation(anim, "media/Bat/BatRun/murcielago", 0, 16);//posicion 0 sera estar parado
+    anim->setNumAnimation(0);
+
+    tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
     Bat* b = new Bat();
-	b->setNode(new Node(node));
+    b->setNode(new Node(node));
     b->setPosition(dwe::vec3f(px, py, pz));
-	NetInstance->addNetEnemy(b);
-	return b;
+
+    NetInstance->addNetEnemy(b);
+    return b;
+
 }
 
 Guardian* dwe::GraphicsEngine::createEnemyGuardian(int px, int py, int pz)
@@ -324,12 +330,17 @@ Guardian* dwe::GraphicsEngine::createEnemyGuardian(int px, int py, int pz)
 
 Legless* dwe::GraphicsEngine::createEnemyLegless(int px, int py, int pz)
 {
-    tag::GraphicNode* node = m_tagEngine.createMesh("media/sinpiernas.obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(1);
+    m_tagEngine.createAnimation(anim, "media/Legless/LeglessRun/sinpiernas", 0, 9);//posicion 0 sera estar parado
+    anim->setNumAnimation(0);
+
+    tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
     Legless* l = new Legless();
-	l->setNode(new Node(node));
+    l->setNode(new Node(node));
     l->setPosition(dwe::vec3f(px, py, pz));
-	NetInstance->addNetEnemy(l);
-	return l;
+
+    NetInstance->addNetEnemy(l);
+    return l;
 }
 
 Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float pz)
