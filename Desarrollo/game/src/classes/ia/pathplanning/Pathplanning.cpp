@@ -6,6 +6,8 @@
 
 #include "Scene.h"
 
+#include "dwVectors.h"
+
 #include <limits>
 
 Pathplanning::Pathplanning(Enemy *owner):m_NavGraph(Scene::Instance()->getNavGraph())
@@ -31,21 +33,13 @@ int Pathplanning::GetClosestNodeToPosition(dwe::vec2f targetPos)
 
     for (const NavGraphNode* pN=NodeItr.begin(); !NodeItr.end(); pN=NodeItr.next())
     {
-        distance = CalculateQuadraticDistance(targetPos, dwe::vec2f(pN->getPosition()));
+        distance = dwu::calculateSquaredDistance(targetPos, dwe::vec2f(pN->getPosition()));
         if(distance < shortestDistance){
             shortestDistance = distance;
             closestNode = pN->getIndex();
         }
     }
     return closestNode;
-}
-
-float Pathplanning::CalculateQuadraticDistance(dwe::vec2f targetPos, dwe::vec2f nodePos) const
-{
-    float x = targetPos.x - nodePos.x;
-    float y = targetPos.y - nodePos.y;
-
-    return x*x + y*y;
 }
 
 void Pathplanning::CreatePathToPosition(dwe::vec2f TargetPos)
@@ -76,9 +70,8 @@ void Pathplanning::CalculateDirection()
 
     dwe::vec2f dir(nextPosition.x - currentPosition.x, nextPosition.y - currentPosition.z);
 
-    Normalize(dir);
+    direction = dwu::normalizeVector(dir);
 
-    direction = dir;
 }
 
 dwe::vec2f Pathplanning::Movement()
@@ -98,30 +91,15 @@ dwe::vec2f Pathplanning::Movement()
 
 }
 
-bool Pathplanning::CheckIfRouteEnd()
+/*bool Pathplanning::CheckIfRouteEnd()
 {
     if(CheckIfArrived())
         return !route.size();
     return false;
-}
+}*/
 
 bool Pathplanning::CheckIfArrived()
 {
     dwe::vec3f position = m_owner->getPosition();
     return ( abs(position.x - nextPosition.x) < m_owner->getSpeed() && abs(position.z - nextPosition.y) < m_owner->getSpeed() );
-}
-
-void Pathplanning::Normalize(dwe::vec2f& vec)
-{
-    float length = sqrt(vec.x * vec.x + vec.y * vec.y);
-    vec.x /= length;
-    vec.y /= length;
-}
-
-float Pathplanning::CalculateAngleYAxis(dwe::vec2f vec)
-{
-    float angle = (float)  (    acos(       ((double)1*vec.x + (double)0*vec.y)     )* 180/M_PI     );
-    if(vec.y>0)
-        angle = -angle;
-    return angle;
 }

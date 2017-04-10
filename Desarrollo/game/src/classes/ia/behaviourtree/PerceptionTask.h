@@ -2,17 +2,14 @@
 #define PERCEPTIONTASK_H
 
 #include "Node.h"
-#include "GraphicsEngine.h"
 
-class Perception;
-class Humanoid;
-class PathplanningTask;
+class Enemy;
 
 class PerceptionTask : public Node
 {
     public:
 
-        PerceptionTask(Perception* p, Humanoid* h, /*dwe::Node* n, */PathplanningTask* pa);
+        PerceptionTask(Enemy* owner);
 
         virtual ~PerceptionTask();
 
@@ -22,11 +19,7 @@ class PerceptionTask : public Node
 
     private:
 
-        Perception* per;
-        Player* play;
-        Humanoid* hum;
-        //dwe::Node* no;
-        PathplanningTask* path;
+        Enemy* m_owner;
 };
 
 #endif // PERCEPTIONTASK_H

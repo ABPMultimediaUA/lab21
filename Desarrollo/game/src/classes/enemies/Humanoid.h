@@ -28,9 +28,6 @@ class Humanoid : public Enemy
 
         virtual void render() {};
 
-        void move();
-
-
     protected:
 
     private:

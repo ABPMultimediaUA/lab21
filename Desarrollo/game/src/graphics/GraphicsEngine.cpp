@@ -505,7 +505,7 @@ void dwe::GraphicsEngine::createCamera()
         vec3f position(-150,120,-190);
         m_camera = m_tagEngine.createPerspectiveCamera(position, vec3f(0,0,0), 45.0f, get_screenWidth() / get_screenHeight(), 0.1f, 1000.0f);
         m_tagEngine.nodeLookAtTarget(m_camera, position, vec3f(0,0,0));
-        float n = 0.4;
+        float n = 0.8;
         m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0), vec3f(n,n,n), vec3f(n,n,n), vec3f(n+0.4,n+0.4,n+0.4));
     }
 }

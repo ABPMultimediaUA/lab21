@@ -1,12 +1,9 @@
 #include "PerceptionTask.h"
+#include "Enemy.h"
 
-PerceptionTask::PerceptionTask(Perception* p, Humanoid* h, PathplanningTask* pa)
+PerceptionTask::PerceptionTask(Enemy* owner)
 {
-    //ctor
-    per = p;
-    hum = h;
-    //no = n;
-    path = pa;
+    m_owner = owner;
     brunning = false;
 }
 
@@ -17,7 +14,9 @@ PerceptionTask::~PerceptionTask()
 
 States PerceptionTask::run()
 {
-    if(0)
+    if(m_owner->Sense())
         return success;
-    return failure;
+    dwe::vec2f pos(m_owner->getPosition().x, m_owner->getPosition().z);
+    m_owner->SetTargetPosition(dwe::vec2f(pos.x+rand()%101-50, pos.y+rand()%101-50));
+    return success;
 }
