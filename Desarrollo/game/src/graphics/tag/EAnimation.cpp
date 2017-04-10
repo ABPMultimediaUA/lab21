@@ -63,6 +63,7 @@ void tag::EAnimation::createAnimation(int numAnimation, int numFrames, std::stri
 void tag::EAnimation::setNumAnimation(int animation)
 {
     m_numAnimation = animation;
+    m_frame = 0;
 }
 ////////////////////////
 int tag::EAnimation::getNumAnimation()

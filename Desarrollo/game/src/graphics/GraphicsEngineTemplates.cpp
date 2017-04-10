@@ -143,8 +143,10 @@ template<class T>void dwe::NodeTemplate<T>::setAnimation(AnimationType a)
     switch(a)
     {
     case eAnimStand:
+        GEInstance->getTagEngine()->setAnimation(m_node, 0);
         break;
     case eAnimRun:
+        GEInstance->getTagEngine()->setAnimation(m_node, 1);
         break;
     case eAnimWalk:
         break;

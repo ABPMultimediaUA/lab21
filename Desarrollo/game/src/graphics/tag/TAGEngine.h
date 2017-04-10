@@ -102,6 +102,12 @@ namespace tag
             /// \return puntero al nodo del array de array de mallas.
             GraphicNode* createNodeAnimations(EAnimation* animations, const vec3f position, const vec3f rotation, GraphicNode* parent=0);
 
+            /// \brief Asigna el numero de animacion al nodo.
+            /// \details Asigna el numero de animacion al nodo.
+            /// \param[in] El nodo.
+            /// \param[in] El numero de la animacion en curso.
+            void setAnimation(GraphicNode* nodoAnimation, int numAnimation);
+
             /// \brief Crea una cámara de perspectiva en el arbol.
             /// \details Crea los nodos de transformacion, uno de posicion y otro de rotación. Crea
             /// el nodo ECamera y le asigna los parametros de Perspectiva. Si es la primera cámara que

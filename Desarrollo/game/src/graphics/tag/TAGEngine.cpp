@@ -256,6 +256,14 @@ tag::GraphicNode* tag::TAGEngine::createNodeAnimations(EAnimation* animations, c
 
 }
 //////////////////////////////////
+
+void tag::TAGEngine::setAnimation(GraphicNode* nodoAnimation, int numAnimation)
+{
+    EAnimation* animation = nodoAnimation->getAnimation();
+    animation->setNumAnimation(numAnimation);
+
+}
+////////////////////////////
 tag::GraphicNode* tag::TAGEngine::createPerspectiveCamera(const vec3f position, const vec3f rotation, float fov, float aspect, float near, float far, GraphicNode* parent)
 {
     // Creamos nodo de cámara

@@ -2,6 +2,7 @@
 
 #include "tag/Entity.h"
 #include "tag/EMesh.h"
+#include "tag/EAnimation.h"
 
 #include <algorithm>
 
@@ -77,6 +78,14 @@ tag::vec3f tag::GraphicNode::getBoundingBox()
         return vec3f(0,0,0);
 }
 
+/////////////////////////////
+tag::EAnimation* tag::GraphicNode::getAnimation()
+{
+    EAnimation* anim;
+    if (m_entity && (anim = dynamic_cast<EAnimation*>(m_entity)))
+        return anim;
+    return 0;
+}
 
 
 
