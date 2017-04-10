@@ -238,12 +238,12 @@ namespace dwe
         tag::GraphicNode*   m_camera;
 
 #ifndef LAB21_DEBUG
-        static const int _screenWidth   = 800;
-        static const int _screenHeight  = 600;
+        static const int _screenWidth   = 1024;
+        static const int _screenHeight  = 768;
         static const bool _fullScreen   = true;
 #else
-        static const int _screenWidth   = 800;
-        static const int _screenHeight  = 600;
+        static const int _screenWidth   = 1024;
+        static const int _screenHeight  = 768;
         static const bool _fullScreen   = false;
 #endif
         // Camara
