@@ -613,4 +613,3 @@ void dwe::GraphicsEngine::addMessageLine(std::string text)
         m_messageLine[i].setString(m_messageLine[i-1].getString());
     m_messageLine[0].setString(text);
 }
-
