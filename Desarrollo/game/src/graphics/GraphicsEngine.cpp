@@ -66,7 +66,7 @@ void dwe::GraphicsEngine::init()
         style = sf::Style::Fullscreen;
     else
         style = sf::Style::Default;
-style = sf::Style::Default; // TODO
+    //style = sf::Style::Default; // TODO
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", style, contextSettings);
 
     // Creamos los mensajes de texto, por ahora vacios
@@ -429,7 +429,7 @@ Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
 
 AmmoGun* dwe::GraphicsEngine::createAmmoGun(float px, float py, float pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Gun/gun.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/AmmoGun.obj", vec3f(0,0,0), vec3f(0,0,0));
     AmmoGun* a = new AmmoGun();
 	a->setNode(new Node(node));
 	a->setPosition(dwe::vec3f(px, py, pz));
