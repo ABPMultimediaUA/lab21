@@ -1,3 +1,6 @@
+-VII.Implementación de cámara inteligente que ajuste ángulo y zoom
+NO FUNCIONA BIEN, y arreglar disparo
+
 -VI.Documento de diseño de mecánicas de los NPCs
 MEJORAR
 
@@ -27,7 +30,6 @@ SIN HACER
 
 -VI.Sistema de percepción sensorial (vista, oído, olfato, canales…)
 NO EVALUADO
-
 
 -VII.Mecánicas de acción
 ACABARLAS
@@ -70,9 +72,6 @@ SIN HACER
 
 -VII.Oclusiones mediante portales/PVS (sistema de depuración para ver oclusiones, comparativa de FPS con/sin oclusiones)
 SIN HACER
-
--VII.Implementación de cámara inteligente que ajuste ángulo y zoom
-NO FUNCIONA BIEN
 
 -VII.Implementación de un sistema multi-cámara
 SIN HACER

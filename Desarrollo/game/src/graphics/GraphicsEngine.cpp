@@ -66,7 +66,6 @@ void dwe::GraphicsEngine::init()
         style = sf::Style::Fullscreen;
     else
         style = sf::Style::Default;
-style = sf::Style::Default; // TODO
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", style, contextSettings);
 
     // Creamos los mensajes de texto, por ahora vacios
@@ -613,4 +612,3 @@ void dwe::GraphicsEngine::addMessageLine(std::string text)
         m_messageLine[i].setString(m_messageLine[i-1].getString());
     m_messageLine[0].setString(text);
 }
-

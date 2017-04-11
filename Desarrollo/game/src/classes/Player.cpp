@@ -179,7 +179,9 @@ void Player::readEvents()
 
 
     //Calcular rotacion player - con MOUSE
-    if(GEInstance->receiver.getCursorX()>=0 && GEInstance->receiver.getCursorY()>=0){
+    if(GEInstance->receiver.getCursorX()>=0 && GEInstance->receiver.getCursorY()>=0)
+    {
+        //GEInstance->rotateNodeToCursor(getNode());
         setRotation(
             World->from2Dto3D(GEInstance->receiver.getCursorX(),
                               GEInstance->receiver.getCursorY(),

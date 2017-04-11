@@ -482,6 +482,15 @@ void tag::TAGEngine::nodeLookAtTarget(GraphicNode* node, const vec3f position, c
 }
 
 /////////////////////
+void tag::TAGEngine::nodeLookAtScreenCoords(GraphicNode* node, const vec3f position, const vec3f screenCoords)
+{
+    calculateViewMatrix();
+    glm::vec4 viewport = glm::vec4(0.0f, 0.0f, 1024.0f, 768.0f);
+    glm::vec3 unCoords = glm::unProject(glm::vec3(screenCoords.x, screenCoords.y, screenCoords.z), Entity::viewMatrix, Entity::projectionMatrix, viewport);
+
+}
+
+/////////////////////
 void tag::TAGEngine::deleteNode(GraphicNode* node)
 {
     // Buscamos el nodo con transformación más lejano hacia arriba
