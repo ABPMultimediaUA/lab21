@@ -31,7 +31,7 @@ class CharacterController : public dwn::DrawableReplica
         static const float _speedRun = 2.f;  // en m/s
         static const float _speedWalk = 1.f;
         static const float _speedDash = 8.f;
-        static const float _maxSpeedBostTime = 5.0;   // en segundos
+        static const float _maxSpeedBoostTime = 5.0;   // en segundos
         static const float _maxEvadingTime = 1.0;   // en segundos
 
         int m_strength;
@@ -43,7 +43,7 @@ class CharacterController : public dwn::DrawableReplica
 
 
         bool m_hasSpeedBoost;
-        float m_timeSpeedBost;
+        float m_timeSpeedBoost;
         bool m_isEvading;
         float m_timeEvading;
 

@@ -1,7 +1,7 @@
 #ifndef DRAWABLEREPLICA_H
 #define DRAWABLEREPLICA_H
 
-#include <Drawable.h>
+#include "DrawablePhysics.h"
 
 #include "RakPeerInterface.h"
 #include "ReplicaManager3.h"
@@ -14,7 +14,7 @@
 
 namespace dwn
 {
-    class DrawableReplica : public Drawable, public RakNet::Replica3
+    class DrawableReplica : public DrawablePhysics, public RakNet::Replica3
     {
         public:
             DrawableReplica();
@@ -29,9 +29,11 @@ namespace dwn
         protected:
 
         private:
+            dwe::vec2f          m_remoteVel;
             dwe::vec3f          m_remotePos;
             dwe::vec3f          m_remoteRot;
             dwe::AnimationType  m_remoteAnim;
+            RakNet::TimeMS      m_lastPosUpdate;
 
             // Puestas en private para no heredar
             virtual void SerializeConstruction(RakNet::BitStream *constructionBitstream, RakNet::Connection_RM3 *destinationConnection);

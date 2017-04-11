@@ -13,7 +13,6 @@ class Firearm : public Weapon
         virtual ~Firearm();
         int id;
         virtual void shoot(){};
-        virtual void reload(){};
 
         // Getters & setters
         float getCadence();

@@ -72,7 +72,7 @@ void EntityPhysics::setVelocity(dwe::vec2f velocity)
 dwe::vec2f EntityPhysics::getVelocity()
 {
     b2Vec2 vel = m_body->GetLinearVelocity();
-    return dwe::vec2f(vel.x/_ratio, vel.y/_ratio);
+    return dwe::vec2f(vel.x, vel.y);
 }
 
 ////////////////////

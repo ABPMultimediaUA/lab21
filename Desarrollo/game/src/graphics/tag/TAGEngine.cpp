@@ -239,11 +239,11 @@ tag::EAnimation* tag::TAGEngine::createNumAnimations(int numAnimations)
 
     return animations;
 }
+
 ////////////////////////////
-tag::EAnimation* tag::TAGEngine::createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames)
+void tag::TAGEngine::createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames)
 {
     animations->createAnimation(numAnimation,numFrames, fileName);//creamos la animacion con sus frames y sus mallas
-    return animations;//la devolvemos
 }
 
 /////////////////////////////
@@ -256,6 +256,15 @@ tag::GraphicNode* tag::TAGEngine::createNodeAnimations(EAnimation* animations, c
 
 }
 //////////////////////////////////
+
+void tag::TAGEngine::setAnimation(GraphicNode* nodoAnimation, int numAnimation)
+{
+    EAnimation* animation = nodoAnimation->getAnimation();
+    if (animation)
+        animation->setNumAnimation(numAnimation);
+}
+
+////////////////////////////
 tag::GraphicNode* tag::TAGEngine::createPerspectiveCamera(const vec3f position, const vec3f rotation, float fov, float aspect, float near, float far, GraphicNode* parent)
 {
     // Creamos nodo de cámara

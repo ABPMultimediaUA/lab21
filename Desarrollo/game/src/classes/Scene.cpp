@@ -122,7 +122,15 @@ void Scene::Init()
 
 
     // MEDKITS
-    createMedkit(-300, 10, 200);
+    //createMedkit(-300, 10, 200);
+
+    // SPEEDBOOST
+    createSpeedBoost(-300, 10, 200);
+
+    // LLAVES
+    createMagnetKey(0, 105, 0, 1345);
+    createMagnetKey(1, 785, 0, 1045);
+    createMagnetKey(2, 2255, 0, 505);
 
     // LLAVES
     createMagnetKey(0, 105, 0, 1345);
@@ -145,15 +153,31 @@ void Scene::Init()
     // Creación de enemigo Humanoid
     enemyHumanoid = GEInstance->createEnemyHumanoid(-200,24,200);
     m_enemies.push_back(enemyHumanoid);
-    enemyHumanoid = GEInstance->createEnemyHumanoid(-300,24,300);
+    enemyHumanoid = GEInstance->createEnemyHumanoid(530,24,390);
     m_enemies.push_back(enemyHumanoid);
-    enemyHumanoid = GEInstance->createEnemyHumanoid(-200,24,400);
+    enemyHumanoid = GEInstance->createEnemyHumanoid(475,24,90);
     m_enemies.push_back(enemyHumanoid);
-    enemyHumanoid = GEInstance->createEnemyHumanoid(-300,24,150);
+    enemyHumanoid = GEInstance->createEnemyHumanoid(-310,24,100);
+    m_enemies.push_back(enemyHumanoid);
+    enemyHumanoid = GEInstance->createEnemyHumanoid(-630,24,410);
+    m_enemies.push_back(enemyHumanoid);
+    enemyHumanoid = GEInstance->createEnemyHumanoid(-300,24,570);
+    m_enemies.push_back(enemyHumanoid);
+
+    enemyHumanoid = GEInstance->createEnemyHumanoid(1470,24,330);
+    m_enemies.push_back(enemyHumanoid);
+
+    enemyHumanoid = GEInstance->createEnemyHumanoid(1350,24,180);
+    m_enemies.push_back(enemyHumanoid);
+
+    enemyHumanoid = GEInstance->createEnemyHumanoid(1860,24,130);
+    m_enemies.push_back(enemyHumanoid);
+
+    enemyHumanoid = GEInstance->createEnemyHumanoid(1970,24,230);
     m_enemies.push_back(enemyHumanoid);
 
     // Creacion de enemigo Dog
-    enemyDog = GEInstance->createEnemyDog(100,24,80);
+    enemyDog = GEInstance->createEnemyDog(500,24,100);
     //m_enemies.push_back(enemyDog);
 
     // Creacion de enemigos Bat
@@ -167,6 +191,7 @@ void Scene::Init()
     // Creacion de enemigos Legless
     enemyLegless = GEInstance->createEnemyLegless(400, 24, 100);
     enemyLegless->setRotation(dwe::vec3f(0, -90.f, 0));
+    //m_enemies.push_back(enemyLegless);
 
     ////////////////////////////////
     //          Camara            //
@@ -181,11 +206,11 @@ void Scene::Init()
 
     GEInstance->createCamera();
 
-    //rmm Cheat: la primera vez que creo el projectile va muy lento, no se pq
-    createProjectile(dwe::vec3f(1.0, 1.0, 1.0), 0.5, "gunBullet");
+    //TODO quitar que creo que ya no hace falta        rmm Cheat: la primera vez que creo el projectile va muy lento, no se pq
+/*    createProjectile(dwe::vec3f(1.0, 1.0, 1.0), 0.5, "gunBullet");
     createProjectileGrenade(dwe::vec3f(1.0, 1.0, 1.0), 0.5);
     deleteProjectileGrenade(0);
-    deleteProjectile(0);
+    deleteProjectile(0);*/
     timeLastProjectil = 0;
 }
 
@@ -197,12 +222,15 @@ void Scene::Destroy(){
     delete gun;
     delete shotgun;
     delete rifle;
-    while(m_enemies.size()>0){
-        enemyHumanoid=(Humanoid*)m_enemies.back();
+    while(m_enemies.size()>1){
+        enemyHumanoid =(Humanoid*)m_enemies.back();
         m_enemies.pop_back();
         NetInstance->removeNetEnemy(enemyHumanoid);
         delete enemyHumanoid;
     }
+    //m_enemies.pop_back();
+    //NetInstance->removeNetEnemy(enemyLegless);
+    delete enemyLegless;
 
     while(m_projectiles.size()>0){
         m_projectiles.pop_back();
@@ -293,7 +321,6 @@ void Scene::Update()
         && mainPlayer->shoot(World->getTimeElapsed() - timeLastProjectil) )
     {
         timeLastProjectil = World->getTimeElapsed();
-        AEInstance->Play2D("media/DisparoEscopeta.wav");
     }
 
 
@@ -315,6 +342,16 @@ void Scene::Update()
     //UPDATE
 
     mainPlayer->update(shotgun, rifle); //Posición actualizada de Irrlicht Player
+
+    // Actualizamos los playermates
+    int num = NetInstance->getNumPlayerMates();
+    for(int i=0; i<num; i++)
+    {
+        PlayerMate* p = NetInstance->getPlayerMate(i);
+        p->update();
+    }
+
+
     updateProjectiles();
     updateProjectilesGrenade();
     updateConsumables(mainPlayer);
@@ -386,6 +423,7 @@ void Scene::deleteProjectileGrenade(unsigned int i)
 void Scene::createProjectile(dwe::vec3f origin, float angle, std::string weapon)
 {
     m_projectiles.push_back(GEInstance->createProjectile(origin, angle, weapon));
+    AEInstance->Play2D("media/DisparoEscopeta.wav");
 }
 
 ////////////
@@ -414,13 +452,17 @@ void Scene::updateConsumables(Player* mainPlayer)
 void Scene::updatePlayerWeapons(Player* mainplayer, Firearm** weapons)
 {
     //cout << "- "<< mainplayer->getCurrentWeaponType() << ":" << eRifle << endl;
-    if  (mainplayer->getCurrentWeaponType() == eGun){
+    // TODO dibujar bien y solo la actual
+    for (uint8_t i=0; i<3; i++)
+        if (weapons[i])
+            weapons[i]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
+    /*if  (mainplayer->getCurrentWeaponType() == eGun){
         weapons[0]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
     }else if (mainplayer->getCurrentWeaponType() == eShotgun){
         weapons[1]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
     }else if (mainplayer->getCurrentWeaponType() == eRifle){
         weapons[2]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
-    }
+    }*/
 }
 
 ////////////////////////////

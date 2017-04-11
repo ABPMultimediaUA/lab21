@@ -24,13 +24,22 @@ class Weapon : public Drawable
         int getAmmo();
         void setAmmo(int ammo);
         void addAmmo(int ammo);
+        int getAmmoClip();
+        void setAmmoClip(int ammo);
+        void addAmmoClip(int ammo);
+        int getAmmoBag();
+        void setAmmoBag(int ammo);
+        void addAmmoBag(int ammo);
+        void reload();
 
     protected:
         int m_netID;
     private:
         int m_damage;
         bool m_isTaken;
-        int m_ammo;
+        int m_bagAmmo;      // Munición en tu mochila
+        int m_ammo;         // Actual cargada
+        int m_ammoClip;     // Máxima que puedes tener cargada
 
 };
 

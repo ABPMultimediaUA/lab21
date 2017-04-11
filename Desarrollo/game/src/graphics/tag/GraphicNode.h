@@ -7,6 +7,7 @@
 namespace tag
 {
     class Entity;
+    class EAnimation;
 
     class GraphicNode
     {
@@ -28,6 +29,7 @@ namespace tag
             void draw();
 
             vec3f getBoundingBox();
+            EAnimation* getAnimation();
 
         private:
             Entity*                     m_entity;

@@ -261,7 +261,6 @@ void dwn::NetGame::update()
     std::string quitar;
 	RakNet::SystemAddress facilitatorSystemAddress(m_serverIP.c_str(), DEFAULT_PT);
 	RakNet::Packet *packet;
-	RakNet::TimeMS curTime = RakNet::GetTimeMS();
 	RakNet::RakString targetName;
 	for (packet=rakPeer->Receive(); packet; rakPeer->DeallocatePacket(packet), packet=rakPeer->Receive())
 	{
@@ -588,7 +587,10 @@ void dwn::NetGame::update()
 		}
 	}
 
-	// Actualizamos las posiciones de los objetos replicables replicamanager3
+
+	RakNet::TimeMS curTime = RakNet::GetTimeMS();
+
+    // Actualizamos las posiciones de los objetos replicables replicamanager3
 	unsigned int idx;
 	for (idx=0; idx < replicaManager3->GetReplicaCount(); idx++)
 		((DrawableReplica*)(replicaManager3->GetReplicaAtIndex(idx)))->update(curTime);

@@ -39,7 +39,7 @@
 #include "Shotgun.h"
 #include "Rifle.h"
 #include "AmmoGun.h"
-
+#include "tag/EAnimation.h"
 
 using namespace std;
 
@@ -66,7 +66,7 @@ void dwe::GraphicsEngine::init()
         style = sf::Style::Fullscreen;
     else
         style = sf::Style::Default;
-
+style = sf::Style::Default; // TODO
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", style, contextSettings);
 
     // Creamos los mensajes de texto, por ahora vacios
@@ -236,14 +236,17 @@ dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 /////////////////////////////
 Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/player.obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(2);
+    m_tagEngine.createAnimation(anim, "media/playerStand/playerStand", 0, 1);//posicion 0 sera estar parado
+    m_tagEngine.createAnimation(anim, "media/playerRun/playerRun", 1, 8);//posicion 0 sera correr
+    anim->setNumAnimation(0);
+
+    tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
 	Player* p = new Player(gun);
 	p->setNode(new Node(node));
 
 	NetInstance->addNetObject(p);
 	return p;
-
-	// setMaterialTexture( 0, m_driver->getTexture("media/sydney.bmp") );
 }
 
 
@@ -251,7 +254,12 @@ Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 /////////////////////////////////
 PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/player.obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(2);
+    m_tagEngine.createAnimation(anim, "media/playerStand/playerStand", 0, 1);//posicion 0 sera estar parado
+    m_tagEngine.createAnimation(anim, "media/playerRun/playerRun", 1, 8);//posicion 0 sera correr
+    anim->setNumAnimation(0);
+
+    tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
 	PlayerMate* p = new PlayerMate();
 	p->setNode(new Node(node));
 
@@ -304,12 +312,18 @@ Dog* dwe::GraphicsEngine::createEnemyDog(int px, int py, int pz)
 
 Bat* dwe::GraphicsEngine::createEnemyBat(int px, int py, int pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/murcielago.obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(1);
+    m_tagEngine.createAnimation(anim, "media/Bat/BatRun/murcielago", 0, 16);//posicion 0 sera estar parado
+    anim->setNumAnimation(0);
+
+    tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
     Bat* b = new Bat();
-	b->setNode(new Node(node));
+    b->setNode(new Node(node));
     b->setPosition(dwe::vec3f(px, py, pz));
-	NetInstance->addNetEnemy(b);
-	return b;
+
+    NetInstance->addNetEnemy(b);
+    return b;
+
 }
 
 Guardian* dwe::GraphicsEngine::createEnemyGuardian(int px, int py, int pz)
@@ -324,12 +338,17 @@ Guardian* dwe::GraphicsEngine::createEnemyGuardian(int px, int py, int pz)
 
 Legless* dwe::GraphicsEngine::createEnemyLegless(int px, int py, int pz)
 {
-    tag::GraphicNode* node = m_tagEngine.createMesh("media/sinpiernas.obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(1);
+    m_tagEngine.createAnimation(anim, "media/Legless/LeglessRun/sinpiernas", 0, 9);//posicion 0 sera estar parado
+    anim->setNumAnimation(0);
+
+    tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
     Legless* l = new Legless();
-	l->setNode(new Node(node));
+    l->setNode(new Node(node));
     l->setPosition(dwe::vec3f(px, py, pz));
-	NetInstance->addNetEnemy(l);
-	return l;
+
+    NetInstance->addNetEnemy(l);
+    return l;
 }
 
 Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float pz)

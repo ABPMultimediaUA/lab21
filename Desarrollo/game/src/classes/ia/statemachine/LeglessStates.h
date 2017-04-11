@@ -37,7 +37,6 @@ class LLookingForPlayerState : public State<Legless>
 {
     private:
 
-
         LLookingForPlayerState(){}
 
         //copy ctor and assignment should be private
@@ -62,7 +61,6 @@ class LLookingForPlayerState : public State<Legless>
 class LAttackState : public State<Legless>
 {
     private:
-
 
         LAttackState(){}
 

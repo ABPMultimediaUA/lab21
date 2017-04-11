@@ -6,7 +6,9 @@ Shotgun::Shotgun()
 {
     //ctor
     id=1;
-    this->Weapon::setAmmo(100);
+    this->Weapon::setAmmo(7);
+    this->Weapon::setAmmoClip(7);
+    this->Weapon::setAmmoBag(32);
     m_cadence = 1.0;
 }
 

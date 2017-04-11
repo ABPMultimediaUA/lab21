@@ -90,8 +90,8 @@ namespace tag
             /// \param[in] fileName El nombre del archivo sobre el que iterará para coger todos los obj.
             /// \param[in] numAnimation Posición de la animación en el array de animaciones.
             /// \param[in] numFrames Número de frames que tendrá la animación. Número de mallas.
-            /// \return puntero al nodo de la malla creada
-            EAnimation* createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames);
+
+            void createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames);
 
             /// \brief Crea el nodo del array de animaciones.
             /// \details Crea los nodos de transformacion, uno de posicion y otro de rotación. Crea
@@ -102,6 +102,12 @@ namespace tag
             /// \param[in] parent Nodo padre. Si es 0 se le asignará el root.
             /// \return puntero al nodo del array de array de mallas.
             GraphicNode* createNodeAnimations(EAnimation* animations, const vec3f position, const vec3f rotation, GraphicNode* parent=0);
+
+            /// \brief Asigna el numero de animacion al nodo.
+            /// \details Asigna el numero de animacion al nodo.
+            /// \param[in] El nodo.
+            /// \param[in] El numero de la animacion en curso.
+            void setAnimation(GraphicNode* nodoAnimation, int numAnimation);
 
             /// \brief Crea una cámara de perspectiva en el arbol.
             /// \details Crea los nodos de transformacion, uno de posicion y otro de rotación. Crea

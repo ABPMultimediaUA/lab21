@@ -31,6 +31,7 @@ void Consumable::update(Player* mainPlayer)
                 this->removeNode();
 
                 m_isTaken = true;
+
                 onTake(mainPlayer);
             }
         }

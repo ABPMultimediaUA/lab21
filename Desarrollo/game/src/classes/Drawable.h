@@ -13,7 +13,7 @@ class Drawable
         virtual void render() = 0;
 
         dwe::vec3f getPosition();
-        void setPosition(dwe::vec3f p);
+        virtual void setPosition(dwe::vec3f p);
 
         dwe::vec3f getRotation();
         void setRotation(dwe::vec3f r);

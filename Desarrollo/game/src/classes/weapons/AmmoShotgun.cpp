@@ -14,7 +14,7 @@ AmmoShotgun::~AmmoShotgun()
 void AmmoShotgun::onTake(Player* mainplayer)
 {
     // TODO
-    mainplayer->getPlayerShotgun()->addAmmo(1);
+    mainplayer->getPlayerShotgun()->addAmmoBag(8);
 }
 
 /////////////////////////

@@ -20,7 +20,7 @@ void tag::EAnimation::beginDraw()
         //aqui hariamos el bucle empezando por el frame 0
         m_animations[getNumAnimation()].frames[m_frame]->draw();
         temp++;
-        if(temp == 30){
+        if(temp == 10){
 
             m_frame++;
             temp = 0;
@@ -63,10 +63,19 @@ void tag::EAnimation::createAnimation(int numAnimation, int numFrames, std::stri
 void tag::EAnimation::setNumAnimation(int animation)
 {
     m_numAnimation = animation;
+    m_frame = 0;
 }
 ////////////////////////
 int tag::EAnimation::getNumAnimation()
 {
     return m_numAnimation;
+}
+
+tag::vec3f tag::EAnimation::getBoundingBox()
+{
+    if (m_animations)
+        return m_animations[getNumAnimation()].frames[0]->getBoundingBox();
+    else
+        return vec3f(0,0,0);
 }
 
