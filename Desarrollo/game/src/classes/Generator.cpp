@@ -1,6 +1,7 @@
 #include "Generator.h"
 #include "NetGame.h"
 #include "Door.h"
+#include "AudioEngine.h"
 
 Generator::Generator(int n, bool b)
 {
@@ -29,6 +30,7 @@ void Generator::activateGenerator()
     Door *d;
     if(!active)
     {
+        AEInstance->Play2D("media/AccesoDenegado.wav");
         NetInstance->sendBroadcast(ID_GENERATOR_ACTIVE, m_netID);
 
         active=true;
@@ -61,7 +63,7 @@ void Generator::render()
 void Generator::update()
 {
     if(active){
-        //Hacer ruidos y cosas
+
     }
 }
 
