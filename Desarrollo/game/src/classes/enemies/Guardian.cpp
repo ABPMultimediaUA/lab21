@@ -10,12 +10,6 @@ Guardian::Guardian()
 
 }
 
-void Guardian::Update()
-{
-    steps--;
-    g_pStateMachine->Update();
-}
-
 int Guardian::getSteps ()
 {
     return steps;
@@ -28,7 +22,8 @@ void Guardian::setSteps (int s)
 
 void Guardian::update()
 {
-
+    steps--;
+    g_pStateMachine->Update();
 }
 
 void Guardian::render()

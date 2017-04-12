@@ -139,22 +139,7 @@ template<class T>dwe::vec3f dwe::NodeTemplate<T>::getBoundingBox()
 ////////////////////////////////////////////
 template<class T>void dwe::NodeTemplate<T>::setAnimation(AnimationType a)
 {
-    // TODO: setAnimation
-    switch(a)
-    {
-    case eAnimStand:
-        GEInstance->getTagEngine()->setAnimation(m_node, 0);
-        break;
-    case eAnimRun:
-        GEInstance->getTagEngine()->setAnimation(m_node, 1);
-        break;
-    case eAnimWalk:
-        break;
-    case eAnimAttack:
-        break;
-    case eAnimNone:
-        break;
-    }
+    GEInstance->getTagEngine()->setAnimation(m_node, a);
 }
 
 #endif // FACHADEDIREENGINETEMPLATES_H

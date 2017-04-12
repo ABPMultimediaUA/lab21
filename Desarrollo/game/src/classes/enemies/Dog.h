@@ -16,8 +16,6 @@ class Dog : public Enemy
 
         StateMachine<Dog>* GetFSM()const;
 
-        void Update();
-
         int getSteps();
 
         void setSteps(int s);

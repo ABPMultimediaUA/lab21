@@ -16,8 +16,6 @@ class Bat : public Enemy
 
         StateMachine<Bat>* GetFSM()const;
 
-        void Update();
-
         int getSteps();
 
         void setSteps(int s);

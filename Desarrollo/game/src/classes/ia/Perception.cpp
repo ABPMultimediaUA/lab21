@@ -22,21 +22,21 @@ bool Perception::Sense()
 
     float distance = GetDistanceClosestPlayer(player);
 
-    if(player->getAnimation() == dwe::eAnimRun)//en caso de estar en velocidad normal, la percepcion del npc sera mayor
+    if(player->getAnimation() == dwe::eAnimPlayerRun)//en caso de estar en velocidad normal, la percepcion del npc sera mayor
     {
         if(distance<=81633){ //10 metros
             m_owner->SetTargetPosition(dwe::vec2f(player->getPosition().x, player->getPosition().z));
             return true;
         }
     }
-    else if(player->getAnimation() == dwe::eAnimWalk)//si estamos en sigilo, el radio sera menor
+    else if(player->getAnimation() == dwe::eAnimPlayerStealth)//si estamos en sigilo, el radio sera menor
     {
         if(distance<=40000){ //7 metros
             m_owner->SetTargetPosition(dwe::vec2f(player->getPosition().x, player->getPosition().z));
             return true;
         }
     }
-    else if(player->getAnimation() == dwe::eAnimStand)
+    else if(player->getAnimation() == dwe::eAnimPlayerStand)
     {
         if(distance<=7347){ //3 metros
             m_owner->SetTargetPosition(dwe::vec2f(player->getPosition().x, player->getPosition().z));

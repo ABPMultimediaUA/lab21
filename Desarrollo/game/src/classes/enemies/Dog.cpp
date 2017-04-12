@@ -10,10 +10,9 @@ Dog::Dog()
 
 }
 
-void Dog::Update()
+Dog::~Dog()
 {
-    steps--;
-    d_pStateMachine->Update();
+    delete d_pStateMachine;
 }
 
 StateMachine<Dog>* Dog::GetFSM()const
@@ -33,7 +32,8 @@ void Dog::setSteps (int s)
 
 void Dog::update()
 {
-
+    steps--;
+    d_pStateMachine->Update();
 }
 
 void Dog::render()
@@ -41,7 +41,3 @@ void Dog::render()
 
 }
 
-Dog::~Dog()
-{
-    delete d_pStateMachine;
-}

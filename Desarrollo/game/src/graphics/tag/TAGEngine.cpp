@@ -261,7 +261,7 @@ void tag::TAGEngine::setAnimation(GraphicNode* nodoAnimation, int numAnimation)
 {
     EAnimation* animation = nodoAnimation->getAnimation();
     if (animation)
-        animation->setNumAnimation(numAnimation);
+        animation->setActiveAnimation(numAnimation);
 }
 
 ////////////////////////////

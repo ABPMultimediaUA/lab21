@@ -10,12 +10,6 @@ Bat::Bat()
 
 }
 
-void Bat::Update()
-{
-    steps--;
-    b_pStateMachine->Update();
-}
-
 StateMachine<Bat>* Bat::GetFSM()const
 {
     return b_pStateMachine;
@@ -33,7 +27,8 @@ void Bat::setSteps (int s)
 
 void Bat::update()
 {
-
+    steps--;
+    b_pStateMachine->Update();
 }
 
 void Bat::render()

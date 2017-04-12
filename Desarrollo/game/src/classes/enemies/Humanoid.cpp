@@ -9,7 +9,7 @@
 
 Humanoid::Humanoid()
 {
-    m_speed = 2.0; // m/s
+    m_speed = 2.0;   // m/s
 
     m_perception = new Perception(this);
     m_pathplanning = new Pathplanning(this);
@@ -33,7 +33,6 @@ Humanoid::Humanoid()
     sequence1->addChild(movetask);
 
     targetPosition = dwe::vec2f(0,0);
-
 }
 
 void Humanoid::update()

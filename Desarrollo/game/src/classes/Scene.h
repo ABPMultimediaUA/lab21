@@ -19,6 +19,14 @@ class ProjectileGrenade;
 class Consumable;
 class Firearm;
 
+struct TEnemy
+{
+    bool active;
+    Enemy* enemy;
+
+    TEnemy() : active(true), enemy(0) {};
+};
+
 
 class Scene
 {
@@ -66,6 +74,16 @@ class Scene
     protected:
 
     private:
+        TEnemy* m_enemies;
+        uint8_t m_numEnemies;
+        uint8_t m_numActiveEnemies;
+        float   m_timeLastEnemyActive;   // Tiempo de la última activación de un enemigo
+        float   m_timeEnemyActive;       // Tiempo que pasa entre activaciones de enemigos
+        uint8_t m_moreEnemiesX;
+        uint8_t m_moreEnemiesZ;
+
+        dwe::vec3f m_posMother;
+
         // NPcs
         Player* mainPlayer;
         Humanoid* enemyHumanoid;
@@ -87,19 +105,21 @@ class Scene
         std::vector<Projectile*> m_projectiles;
         std::vector<ProjectileGrenade*> m_projectilesGrenades;
         std::vector<Consumable*> m_consumables;
-        std::vector<Enemy*> m_enemies;
+        //std::vector<Enemy*> m_enemies;
 
         NavigationGraph navGraph;
 
         float timeLastProjectil;
 
 
-        int moreEnemiesX;
-        int moreEnemiesZ;
 
         // Random
         dwe::Node* joint_try;
         EntityPhysics* bjoint;
+
+        void createEnemies();
+        void updateEnemies();
+        void deleteEnemies();
 };
 
 #endif // SCENE_H

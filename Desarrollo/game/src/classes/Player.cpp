@@ -167,13 +167,13 @@ void Player::readEvents()
     if(getSpeedX()!=0 || getSpeedZ()!=0)
     {
         if(GEInstance->receiver.isKeyDown(KEY_WALK))
-            setAnimation(dwe::eAnimWalk);
+            setAnimation(dwe::eAnimPlayerStealth);
         else
-            setAnimation(dwe::eAnimRun);
+            setAnimation(dwe::eAnimPlayerRun);
     }
     else
     {
-        setAnimation(dwe::eAnimStand);
+        setAnimation(dwe::eAnimPlayerStand);
     }
     setVelocity(dwe::vec2f(getSpeedX(), getSpeedZ()));
 

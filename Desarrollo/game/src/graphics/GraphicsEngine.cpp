@@ -10,6 +10,7 @@
 #include "Bat.h"
 #include "Guardian.h"
 #include "Legless.h"
+#include "Mother.h"
 
 #include "NetGame.h"
 
@@ -237,9 +238,9 @@ dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 {
     tag::EAnimation* anim = m_tagEngine.createNumAnimations(2);
-    m_tagEngine.createAnimation(anim, "media/playerStand/playerStand", 0, 1);//posicion 0 sera estar parado
-    m_tagEngine.createAnimation(anim, "media/playerRun/playerRun", 1, 8);//posicion 0 sera correr
-    anim->setNumAnimation(0);
+    m_tagEngine.createAnimation(anim, "media/playerStand/playerStand",  eAnimPlayerStand,   1);
+    m_tagEngine.createAnimation(anim, "media/playerRun/playerRun",      eAnimPlayerRun,     8);
+    anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
 	Player* p = new Player(gun);
@@ -255,9 +256,9 @@ Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
 PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 {
     tag::EAnimation* anim = m_tagEngine.createNumAnimations(2);
-    m_tagEngine.createAnimation(anim, "media/playerStand/playerStand", 0, 1);//posicion 0 sera estar parado
-    m_tagEngine.createAnimation(anim, "media/playerRun/playerRun", 1, 8);//posicion 0 sera correr
-    anim->setNumAnimation(0);
+    m_tagEngine.createAnimation(anim, "media/playerStand/playerStand",  eAnimPlayerStand,   1);
+    m_tagEngine.createAnimation(anim, "media/playerRun/playerRun",      eAnimPlayerRun,     8);
+    anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
 	PlayerMate* p = new PlayerMate();
@@ -277,32 +278,23 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 
 	NetInstance->addNetEnemy(p);
 	return p;
+}
 
-    /*scene::IAnimatedMesh* mesh = m_smgr->getMesh("media/faerie.md2");
-	if (!mesh)
-	{
-		m_device->drop();
-		exit(0);
-	}
-	scene::IAnimatedMeshSceneNode* irrnode = m_smgr->addAnimatedMeshSceneNode( mesh );
-	if (irrnode)
-	{
-		irrnode->setMaterialFlag(EMF_LIGHTING, false);  // Desactivamos iluminacion, solo para pruebas
-		irrnode->setMD2Animation(scene::EMAT_STAND);
-		irrnode->setMaterialTexture( 0, m_driver->getTexture("media/faerie.bmp") );
-	}
+////////////////////////////
+Mother* dwe::GraphicsEngine::createEnemyMother(int px, int py, int pz)
+{
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/madre.obj", vec3f(0,0,0), vec3f(0,0,0));
+    Mother* p = new Mother();
+	p->setNode(new Node(node));
+	p->setPosition(dwe::vec3f(px, py, pz));
 
-	Humanoid* p = new Humanoid();
-	p->setNode(new Node(irrnode));
-	NetInstance->addNetEnemy(p);
-    return p;*/
+	return p;
 }
 
 ////////////////////////////
 Dog* dwe::GraphicsEngine::createEnemyDog(int px, int py, int pz)
 {
 	tag::GraphicNode* node = m_tagEngine.createMesh("media/perro.obj", vec3f(0,0,0), vec3f(0,0,0), "media/perro.bmp");
-//	tag::GraphicNode* node = m_tagEngine.createMesh("media/perro.obj", vec3f(0,0,0), vec3f(0,0,0));
     Dog* p = new Dog();
 	p->setNode(new Node(node));
     p->setPosition(dwe::vec3f(px, py, pz));
@@ -314,7 +306,7 @@ Bat* dwe::GraphicsEngine::createEnemyBat(int px, int py, int pz)
 {
     tag::EAnimation* anim = m_tagEngine.createNumAnimations(1);
     m_tagEngine.createAnimation(anim, "media/Bat/BatRun/murcielago", 0, 16);//posicion 0 sera estar parado
-    anim->setNumAnimation(0);
+    anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
     Bat* b = new Bat();
@@ -340,7 +332,7 @@ Legless* dwe::GraphicsEngine::createEnemyLegless(int px, int py, int pz)
 {
     tag::EAnimation* anim = m_tagEngine.createNumAnimations(1);
     m_tagEngine.createAnimation(anim, "media/Legless/LeglessRun/sinpiernas", 0, 9);//posicion 0 sera estar parado
-    anim->setNumAnimation(0);
+    anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
     Legless* l = new Legless();
@@ -388,7 +380,6 @@ ProjectileGrenade* dwe::GraphicsEngine::createProjectileGrenade(vec3f origin, fl
 Generator* dwe::GraphicsEngine::createGenerator(int i, bool b, float px, float py, float pz)
 {
 	tag::GraphicNode* node = m_tagEngine.createMesh("media/generador.obj", vec3f(0,0,0), vec3f(0,0,0), "media/generador.bmp");
-//	tag::GraphicNode* node = m_tagEngine.createMesh("media/generador.obj", vec3f(0,0,0), vec3f(0,0,0));
     Generator* g = new Generator(i, b);
 	g->setNode(new Node(node));
 	g->setPosition(dwe::vec3f(px, py, pz));

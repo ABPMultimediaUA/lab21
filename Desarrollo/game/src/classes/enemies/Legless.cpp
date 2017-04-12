@@ -42,11 +42,6 @@ Legless::Legless()
 
 }
 
-void Legless::Update()
-{
-    l_pStateMachine->Update();
-}
-
 StateMachine<Legless>* Legless::GetFSM()const
 {
     return l_pStateMachine;
@@ -54,6 +49,7 @@ StateMachine<Legless>* Legless::GetFSM()const
 
 void Legless::update()
 {
+    l_pStateMachine->Update();
     selector1->run();
 }
 

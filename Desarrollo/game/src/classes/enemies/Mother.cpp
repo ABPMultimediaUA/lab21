@@ -11,7 +11,13 @@ Mother::Mother()
 
 }
 
-void Mother::Update()
+
+Mother::~Mother()
+{
+    delete m_pStateMachine;
+}
+
+void Mother::update()
 {
     TimeBetweenCreations ++;
     m_pStateMachine->Update();
@@ -32,7 +38,11 @@ int Mother::getTimeBetweenCreations()
     return TimeBetweenCreations;
 }
 
-Mother::~Mother()
+
+/////////////
+void Mother::setNode(dwe::Node* n)
 {
-    delete m_pStateMachine;
+    Drawable::setNode(n);
+    dwe::vec3f box = n->getBoundingBox();
+    createStaticBody(getPosition(), box.x, box.z);
 }

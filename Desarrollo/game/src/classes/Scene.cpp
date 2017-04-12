@@ -31,6 +31,12 @@ Scene::Scene() : navGraph(false)
 ///////////////////////////////
 void Scene::Init()
 {
+    timeLastProjectil       = 0;
+    m_timeLastEnemyActive   = 0;
+    m_timeEnemyActive       = 5.0;  // En segundos
+    m_posMother             = dwe::vec3f(0,62.0,-1617.0);
+
+
     /**********************************/
     if (NetInstance->isMultiplayer())
     {
@@ -144,96 +150,54 @@ void Scene::Init()
 
     // Creación de jugador
     mainPlayer = GEInstance->createMainPlayer(gun);
-    mainPlayer->setPosition(dwe::vec3f(-1205-((NetInstance->getParticipantOrder()-1)*30),24,1150));
+    //TODO he puesto posicion para pruebas mainPlayer->setPosition(dwe::vec3f(-1205-((NetInstance->getParticipantOrder()-1)*30),24,1150));
+                mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,80));
     World->setMainPlayer(mainPlayer);
 
-    ////////////////////////////////
-    //         Enemigos           //
-    ////////////////////////////////
-    // Creación de enemigo Humanoid
-    enemyHumanoid = GEInstance->createEnemyHumanoid(-200,24,200);
-    m_enemies.push_back(enemyHumanoid);
-    enemyHumanoid = GEInstance->createEnemyHumanoid(530,24,390);
-    m_enemies.push_back(enemyHumanoid);
-    enemyHumanoid = GEInstance->createEnemyHumanoid(475,24,90);
-    m_enemies.push_back(enemyHumanoid);
-    enemyHumanoid = GEInstance->createEnemyHumanoid(-310,24,100);
-    m_enemies.push_back(enemyHumanoid);
-    enemyHumanoid = GEInstance->createEnemyHumanoid(-630,24,410);
-    m_enemies.push_back(enemyHumanoid);
 
-    enemyHumanoid = GEInstance->createEnemyHumanoid(300,24,1150);
-    m_enemies.push_back(enemyHumanoid);
-
-    enemyHumanoid = GEInstance->createEnemyHumanoid(-300,24,570);
-    m_enemies.push_back(enemyHumanoid);
-
-    enemyHumanoid = GEInstance->createEnemyHumanoid(1470,24,330);
-    m_enemies.push_back(enemyHumanoid);
-
-    enemyHumanoid = GEInstance->createEnemyHumanoid(1350,24,180);
-    m_enemies.push_back(enemyHumanoid);
-
-    enemyHumanoid = GEInstance->createEnemyHumanoid(1860,24,130);
-    m_enemies.push_back(enemyHumanoid);
-
-    enemyHumanoid = GEInstance->createEnemyHumanoid(1970,24,230);
-    m_enemies.push_back(enemyHumanoid);
-
-    // Creacion de enemigo Dog
-    enemyDog = GEInstance->createEnemyDog(500,24,100);
-    //m_enemies.push_back(enemyDog);
-
-    // Creacion de enemigos Bat
-    enemyBat = GEInstance->createEnemyBat(200, 24, 100);
-    //m_enemies.push_back(enemyBat);
-
-    // Creacion de enemigos Guardian
-    enemyGuardian = GEInstance->createEnemyGuardian(300, 24, 100);
-    enemyGuardian->setRotation(dwe::vec3f(0, -90.f, 0));
-
-    // Creacion de enemigos Legless
-    enemyLegless = GEInstance->createEnemyLegless(400, 24, 100);
-    enemyLegless->setRotation(dwe::vec3f(0, -90.f, 0));
-    //m_enemies.push_back(enemyLegless);
-
-    ////////////////////////////////
-    //          Camara            //
-    ////////////////////////////////
-
-    //Joint try
-    /*TODO RMM si queremos mantener esto, hay que crearlo en otro sitio. El createJointBody ahora es protected
-    joint_try = GEInstance->createNode("media/the101010box");   //ESTAS SON LAS BUENAS
-    joint_try->setPosition(dwe::vec3f(0,10,-120));
-    bjoint = new EntityPhysics();
-    bjoint->createJointBody(dwe::vec3f(0,10,-120)); // createJointBody(dwe::vec3f(0,10,120));*/
+    createEnemies();
 
     GEInstance->createCamera();
+}
 
-    //TODO quitar que creo que ya no hace falta        rmm Cheat: la primera vez que creo el projectile va muy lento, no se pq
-/*    createProjectile(dwe::vec3f(1.0, 1.0, 1.0), 0.5, "gunBullet");
-    createProjectileGrenade(dwe::vec3f(1.0, 1.0, 1.0), 0.5);
-    deleteProjectileGrenade(0);
-    deleteProjectile(0);*/
-    timeLastProjectil = 0;
+void Scene::createEnemies()
+{
+    m_numEnemies = m_numActiveEnemies = 11;
+    m_enemies = new TEnemy[m_numEnemies];
+    m_enemies[ 0].enemy = GEInstance->createEnemyHumanoid(-200,24,200);
+    m_enemies[ 1].enemy = GEInstance->createEnemyDog(530,24,390);
+    m_enemies[ 2].enemy = GEInstance->createEnemyBat(475,24,90);
+    m_enemies[ 3].enemy = GEInstance->createEnemyGuardian(-310,24,100);
+    m_enemies[ 4].enemy = GEInstance->createEnemyLegless(-630,24,410);
+    m_enemies[ 5].enemy = GEInstance->createEnemyHumanoid(300,24,1150);
+    m_enemies[ 6].enemy = GEInstance->createEnemyHumanoid(-300,24,570);
+    m_enemies[ 7].enemy = GEInstance->createEnemyHumanoid(1470,24,330);
+    m_enemies[ 8].enemy = GEInstance->createEnemyHumanoid(1350,24,180);
+    m_enemies[ 9].enemy = GEInstance->createEnemyHumanoid(1860,24,130);
+    m_enemies[10].enemy = GEInstance->createEnemyHumanoid(1970,24,230);
+
+    GEInstance->createEnemyMother(m_posMother.x, m_posMother.y, m_posMother.z);
+}
+
+void Scene::deleteEnemies()
+{
+    for (uint8_t i=0; i<m_numEnemies; i++)
+        delete m_enemies[i].enemy;
+    delete[] m_enemies;
+    m_enemies = 0;
 }
 
 ///////////////////////////////
 void Scene::Destroy(){
-    //delete llave;
-    //delete enemyDog;
-    delete mainPlayer; mainPlayer=0;
+    delete mainPlayer;
+    mainPlayer=0;
+
     delete gun;
     delete shotgun;
     delete rifle;
-    while(m_enemies.size()>1){
-        enemyHumanoid =(Humanoid*)m_enemies.back();
-        m_enemies.pop_back();
-        NetInstance->removeNetEnemy(enemyHumanoid);
-        delete enemyHumanoid;
-    }
-    //m_enemies.pop_back();
-    //NetInstance->removeNetEnemy(enemyLegless);
+
+    deleteEnemies();
+
     delete enemyLegless;
 
     while(m_projectiles.size()>0){
@@ -261,7 +225,80 @@ NavigationGraph& Scene::getNavGraph()
 
 int Scene::getNumberEnemies()
 {
-    return m_enemies.size();
+    //return m_enemies.size();
+    return m_numActiveEnemies;
+}
+
+void Scene::updateEnemies()
+{
+    m_moreEnemiesX = 0;
+    m_moreEnemiesZ = 0;
+    for(uint8_t i=0; i<m_numEnemies; i++)
+    {
+        if (!m_enemies[i].enemy)
+            continue;
+
+        if (!m_enemies[i].active)
+        {
+            //Enemigo inactivo
+            if (World->getTimeElapsed() - m_timeLastEnemyActive > m_timeEnemyActive)
+            {
+                // Si ha pasado suficiente tiempo, lo activamos
+                dwe::vec3f pos = m_posMother;
+                pos.z += 150;
+                m_enemies[i].enemy->setPosition(pos);
+                m_enemies[i].enemy->resetHealth();
+                m_enemies[i].enemy->setPhysicsActive(true);
+                m_enemies[i].active = true;
+                m_numActiveEnemies++;
+                m_timeLastEnemyActive = World->getTimeElapsed();
+                std::cout << "Activado\n";
+            }
+        }
+        else
+        {
+            //Enemigo activo
+            // Borrado de enemigos (desactivacion)
+            if (m_enemies[i].enemy->getHealth()<=0)
+            {
+                m_enemies[i].active = false;
+                m_enemies[i].enemy->setPhysicsActive(false);
+
+                // Si estaban todos los enemigos activos, reinicio contador
+                if (m_numEnemies == m_numActiveEnemies)
+                    m_timeLastEnemyActive = World->getTimeElapsed();
+
+                m_numActiveEnemies--;
+                // TODO desactivar nodo
+                NetInstance->removeNetEnemy(m_enemies[i].enemy);
+            }
+            else
+            {
+                // Actualización de enemigos
+                m_enemies[i].enemy->update();
+
+                // Parametros para la camara inteligente
+                int playerX = mainPlayer->getPosition().x;
+                int playerZ = mainPlayer->getPosition().z;
+                int enemyX  = m_enemies[i].enemy->getPosition().x;
+                int enemyZ  = m_enemies[i].enemy->getPosition().z;
+                int d2pX    = abs(playerX - enemyX);  //distance to player
+                int d2pZ    = abs(playerZ - enemyZ);  //distance to player
+
+                //CERCAR --- SOLO CALCULAR LOS ENEMIGOS CERCANOS (pero no demasiado cerca)
+                //VER EN QUE CUADRANTE ESTA EL ENEMIGO CON RESPECTO AL JUGADOR
+                if(d2pX>50 && d2pX<300){
+                    if(enemyX<playerX)       m_moreEnemiesX--; //IZQ
+                    else                     m_moreEnemiesX++; //DER
+                }
+                if(d2pZ>50 && d2pZ<300){
+                    if(enemyZ<playerZ)       m_moreEnemiesZ++; //DOWN
+                    else                     m_moreEnemiesZ--; //UP
+                }
+            }
+
+        }
+    }
 }
 
 void Scene::Update()
@@ -269,55 +306,11 @@ void Scene::Update()
     if(mainPlayer->getHealth()<=0){
         Game::getInstance()->ChangeState(GSDead::getInstance());
     }
-    for(size_t i=0; i<m_enemies.size(); i++){ //recorre
-            Enemy* enemy=m_enemies.at(i);
-            if(enemy && enemy->getHealth()<=0){
-                m_enemies.erase(m_enemies.begin()+i);
 
-                NetInstance->removeNetEnemy(enemy);
-                delete enemy;
-                enemy=0;
-                enemyHumanoid = 0;
-            }
-    }
+    updateEnemies();  // Devuelve los parametros para la camara inteligente m_moreEnemiesX , m_moreEnemiesZ
+    GEInstance->updateCamera(mainPlayer->getPosition(), m_moreEnemiesX, m_moreEnemiesZ);
 
-
-    //////////////////////////////////////////
-    //         CAMARA INTELIGENTE           //
-    //////////////////////////////////////////
-    //PARA CAMARA INTELIGENTE --- La idea es contar cuántos enemigos tenemos a cada extremo y acercar la cámara según el extremo que más haya.
-    moreEnemiesX = 0;
-    moreEnemiesZ = 0;
-    //int dist2player = 0;
-    for(size_t e=0; e<m_enemies.size(); e++){
-        if(m_enemies[e]){
-            int playerX = mainPlayer->getPosition().x;      int playerZ = mainPlayer->getPosition().z;
-            int enemyX  = m_enemies[e]->getPosition().x;    int enemyZ  = m_enemies[e]->getPosition().z;
-            int d2pX    = abs(playerX - enemyX);            int d2pZ    = abs(playerZ - enemyZ);  //distance 2 player
-
-            //CERCAR --- SOLO CALCULAR LOS ENEMIGOS CERCANOS (pero no demasiado cerca)
-            //VER EN QUE CUADRANTE ESTA EL ENEMIGO CON RESPECTO AL JUGADOR
-            if(d2pX>50 && d2pX<300){
-                if(enemyX<playerX)       moreEnemiesX--; //IZQ
-                else                     moreEnemiesX++; //DER
-            }
-            if(d2pZ>50 && d2pZ<300){
-                if(enemyZ<playerZ)       moreEnemiesZ++; //DOWN
-                else                     moreEnemiesZ--; //UP
-            }
-        }
-    }
-    //////////////////////////////////////////
-    //////////////////////////////////////////
-    //////////////////////////////////////////
-
-    GEInstance->updateCamera(mainPlayer->getPosition(), moreEnemiesX, moreEnemiesZ);
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
-
-    for(size_t e=0; e<m_enemies.size(); e++) //recorre
-        if(m_enemies[e])
-            m_enemies[e]->update();
-
 
 
     // comprobamos si dispara
@@ -328,7 +321,7 @@ void Scene::Update()
     }
 
 
-       // comprobamos si dispara granadas
+    // comprobamos si dispara granadas
     if(GEInstance->receiver.isKeyDown(KEY_GRENADE) && (World->getTimeElapsed() - timeLastProjectil)> 0.2 ){
         NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectilgrenade
         if (mainPlayer->getGrenades() > 0) //
@@ -360,9 +353,6 @@ void Scene::Update()
     updateProjectilesGrenade();
     updateConsumables(mainPlayer);
     updatePlayerWeapons(mainPlayer, mainPlayer->getPlayerWeapons());
-
-    //update box of box2d
-    //TODO joint_try->setPosition(dwe::vec3f(bjoint->getPosEntity().x,bjoint->getPosEntity().y,bjoint->getPosEntity().z));
 }
 
 

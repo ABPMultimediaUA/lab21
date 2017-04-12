@@ -183,5 +183,5 @@ EntityPhysics::EPClassID EntityPhysics::getClassID() { return m_classID; }
 
 void EntityPhysics::setPhysicsActive(bool active)
 {
-    m_body->SetType(b2_dynamicBody);
+    m_body->SetActive(active);
 }

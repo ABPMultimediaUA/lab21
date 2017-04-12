@@ -21,8 +21,6 @@ class Legless : public Enemy
 
         StateMachine<Legless>* GetFSM()const;
 
-        void Update();
-
         void update();
 
         void render(){};

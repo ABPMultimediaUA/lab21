@@ -33,17 +33,18 @@ class EntityPhysics
         void setClassID(EPClassID i);
         EPClassID getClassID();
 
+        void setPhysicsActive(bool active);
+
     protected:
         // Se crea el tipo de sólido
         void createDynamicBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0, bool bullet = false);
-        void createStaticBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees);
-        void createSensorBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees);
+        void createStaticBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
+        void createSensorBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
         void createJointBody(const dwe::vec3f& pos);
 
 
         void createDoor(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
 
-        void setPhysicsActive(bool active);
 
     private:
         b2PolygonShape  m_shape;

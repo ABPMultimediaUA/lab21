@@ -16,8 +16,6 @@ class Guardian : public Enemy
 
         StateMachine<Guardian>* GetFSM()const;
 
-        void Update();
-
         int getSteps();
 
         void setSteps(int s);

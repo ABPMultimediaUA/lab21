@@ -17,9 +17,9 @@ class Humanoid : public Enemy
 
         ~Humanoid();
 
-        void update();
+        virtual void update();
 
-        void render(){};
+        virtual void render(){};
 
     protected:
 

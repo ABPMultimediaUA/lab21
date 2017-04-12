@@ -16,11 +16,14 @@ class Mother : public Enemy
 
         StateMachine<Mother>* GetFSM()const;
 
-        void Update();
+        virtual void update();
+        virtual void render() {};
 
         int getTimeBetweenCreations();
 
         void setTimeBetweenCreations(int);
+
+        virtual void setNode(dwe::Node* n);
 
     protected:
 

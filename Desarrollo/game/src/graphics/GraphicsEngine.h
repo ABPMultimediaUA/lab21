@@ -40,6 +40,7 @@ class Dog;
 class Bat;
 class Guardian;
 class Legless;
+class Mother;
 class Entity;
 class Door;
 class Projectile;
@@ -68,11 +69,10 @@ namespace dwe
     // =============
     ///////////////////////////////////////////////
     enum AnimationType {
-        eAnimNone,
-        eAnimStand,
-        eAnimWalk,
-        eAnimRun,
-        eAnimAttack
+        eAnimNone           =-1,
+        eAnimPlayerStand    = 0,
+        eAnimPlayerRun      = 1,
+        eAnimPlayerStealth  = 2    // Sigilo
     };
 
 
@@ -167,6 +167,7 @@ namespace dwe
         Bat*        createEnemyBat(int px, int py, int pz);
         Guardian*   createEnemyGuardian(int px, int py, int pz);
         Legless*    createEnemyLegless(int px, int py, int pz);
+        Mother*     createEnemyMother(int px, int py, int pz);
 
 
         ScenaryElement* createWall(std::string meshName);

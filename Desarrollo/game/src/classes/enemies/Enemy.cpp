@@ -4,15 +4,14 @@
 #include "Perception.h"
 #include "dwVectors.h"
 
-Enemy::Enemy()
+Enemy::Enemy() :
+    m_speed(0.0),
+    m_maxHealth(10),
+    m_health(m_maxHealth),
+    m_perception(0),
+    m_pathplanning(0)
 {
-    //ctor
-    m_speed = 0.0;
     setClassID(EntityPhysics::enemy_id);
-    m_health=10;
-
-    m_perception = 0;
-    m_pathplanning = 0;
 }
 
 Enemy::~Enemy()
@@ -24,6 +23,8 @@ Enemy::~Enemy()
 float Enemy::getSpeed() { return m_speed; }
 /////////////
 int Enemy::getHealth() { return m_health; }
+/////////////
+void Enemy::resetHealth() { m_health = m_maxHealth; }
 
 
 ////////////
