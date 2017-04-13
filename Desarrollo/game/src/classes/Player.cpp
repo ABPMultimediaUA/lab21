@@ -240,7 +240,7 @@ void Player::readEvents()
     }
 
     //HACER DASH
-    if(GEInstance->receiver.isKeyDown(KEY_DASH) && World->getTimeElapsed() > 7.0) // Corregir CD Dash
+    if(GEInstance->receiver.isKeyDown(KEY_DASH))
         this->dash();//evadimos
 
 }
