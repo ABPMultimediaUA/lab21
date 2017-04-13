@@ -241,9 +241,9 @@ tag::EAnimation* tag::TAGEngine::createNumAnimations(int numAnimations)
 }
 
 ////////////////////////////
-void tag::TAGEngine::createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames)
+void tag::TAGEngine::createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames, bool loop)
 {
-    animations->createAnimation(numAnimation,numFrames, fileName);//creamos la animacion con sus frames y sus mallas
+    animations->createAnimation(numAnimation,numFrames, fileName, loop);//creamos la animacion con sus frames y sus mallas
 }
 
 /////////////////////////////

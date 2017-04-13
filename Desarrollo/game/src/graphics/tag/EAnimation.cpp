@@ -54,8 +54,10 @@ void tag::EAnimation::createNumAnimations(uint8_t numAnimations){
 ////////////////////////
 void tag::EAnimation::createAnimation(uint8_t animationIndex, uint8_t numFrames, std::string fileName, bool loop){
 
-    m_animations[animationIndex].frames = new ResourceMesh*[numFrames]; //tamanyo de la animacion(numero de frames o meshes)
-    m_animations[animationIndex].numFrames = numFrames;//ponemos el numero de frames de la animacion
+    m_animations[animationIndex].frames     = new ResourceMesh*[numFrames]; //tamanyo de la animacion(numero de frames o meshes)
+    m_animations[animationIndex].numFrames  = numFrames;                    //ponemos el numero de frames de la animacion
+    m_animations[animationIndex].loop       = loop;
+
     for(int i=0; i<numFrames; i++)
     {
         std::stringstream ss;
