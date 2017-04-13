@@ -527,10 +527,10 @@ void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition, int more
     float cursorY = GEInstance->receiver.getCursorY();
     int   width   = GEInstance->get_screenWidth();
     int   height  = GEInstance->get_screenHeight();
-    int   borderL = width - (width-50);
-    int   borderR = width-50;
-    int   borderU = height - (height-50);
-    int   borderD = height-50;
+    int   borderL = width - (width-_camera_border);
+    int   borderR = width-_camera_border;
+    int   borderU = height - (height-_camera_border);
+    int   borderD = height-_camera_border;
 
     //update camera target
     //Desencuadre horizontal

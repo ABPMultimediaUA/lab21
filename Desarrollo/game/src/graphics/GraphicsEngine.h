@@ -252,10 +252,11 @@ namespace dwe
         float tarLR;
         float zoomX;
         float zoomZ;
-        static const unsigned short _camera_desviation  = 50;
-        static const float          _camera_progression = 0.5f;
-        static const int            _camera_y           = 350;
-        static const int            _camera_z_offset    = 100;
+        static const uint8_t    _camera_desviation  = 50;
+        static const uint8_t    _camera_progression = 1;
+        static const uint8_t    _camera_border      = 50;
+        static const uint16_t   _camera_y           = 350;
+        static const uint16_t   _camera_z_offset    = 100;
 
         GraphicsEngine() {};
 

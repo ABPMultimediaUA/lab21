@@ -1,6 +1,3 @@
--VII.Implementación de cámara inteligente que ajuste ángulo y zoom
-NO FUNCIONA BIEN, y arreglar disparo
-
 -VI.Documento de diseño de mecánicas de los NPCs
 MEJORAR
 
@@ -43,9 +40,6 @@ SIN HACER
 -PM.Aplicar el modelo EVA en Project
 SIN HACER
 
--VI.Multijugador  en tiempo real (Motor de red)
-SIN TERMINAR
-
 -VII.Power-ups y elementos adicionales
 SIN HACER
 
@@ -64,9 +58,6 @@ SIN HACER
 -VI.Sistema de control de movimiento con Steering Behaviours
 SIN HACER
 
--VI.Sistema de predicción de movimiento multijugador en tiempo real
-SIN HACER
-
 -VII.Implementación de clipping (comparativa de FPS con/sin oclusiones)
 SIN HACER
 
@@ -81,3 +72,15 @@ SIN TERMINAR
 
 -PD.HUD / Imágenes menús
 FALTAN MENUS
+
+----------------------------------------
+HECHO
+----------------------------------------
+-VII.Implementación de cámara inteligente que ajuste ángulo y zoom
+Ruben: Funcionaba bien, se ha ajustado para que vaya más rapida
+
+-VI.Multijugador  en tiempo real (Motor de red)
+Ruben: se retoca y se da por terminado
+
+-VI.Sistema de predicción de movimiento multijugador en tiempo real
+Ruben: se envian los valores de velocidad. Cada x tiempo se sincroniza posición
