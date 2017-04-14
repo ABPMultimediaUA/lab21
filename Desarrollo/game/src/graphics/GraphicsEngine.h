@@ -111,6 +111,7 @@ namespace dwe
             float* getColor();
 
             void setNode(T* n);
+            T* getNode();
             void remove();
 
             bool intersects(Node* n);
@@ -121,6 +122,8 @@ namespace dwe
 
             vec3f getTransformedBoundingBox();
             void setTransformedBoundingBox(vec3f v);
+
+            void setActive(bool active);
 
         private:
             T* m_node;
@@ -160,7 +163,7 @@ namespace dwe
         Node* createNode(std::string meshName);
 
         // Creacion de personajes
-        Player*     createMainPlayer(Gun* gun);
+        Player*     createMainPlayer();
         PlayerMate* createPlayerMate();
         Humanoid*   createEnemyHumanoid(int px, int py, int pz);
         Dog*        createEnemyDog(int px, int py, int pz);
@@ -192,9 +195,11 @@ namespace dwe
         AmmoGun*            createAmmoGun(float px, float py, float pz);
         CShotgun*           createCShotgun(float px, float py, float pz);
         CRifle*             createCRifle(float px, float py, float pz);
-        Gun*                createGun(float px, float py, float pz);
-        Shotgun*            createShotgun(float px, float py, float pz);
-        Rifle*              createRifle(float px, float py, float pz);
+
+        // weapons
+        Gun*                createGun(Player* player);
+        Shotgun*            createShotgun(Player* player);
+        Rifle*              createRifle(Player* player);
 
 
         /// \brief Muestra un mensaje en la zona de mensajes

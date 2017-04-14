@@ -90,8 +90,7 @@ namespace tag
             /// \param[in] fileName El nombre del archivo sobre el que iterará para coger todos los obj.
             /// \param[in] numAnimation Posición de la animación en el array de animaciones.
             /// \param[in] numFrames Número de frames que tendrá la animación. Número de mallas.
-            /// \return puntero al nodo de la malla creada
-            EAnimation* createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames);
+            void createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames, bool loop = true);
 
             /// \brief Crea el nodo del array de animaciones.
             /// \details Crea los nodos de transformacion, uno de posicion y otro de rotación. Crea
@@ -102,6 +101,12 @@ namespace tag
             /// \param[in] parent Nodo padre. Si es 0 se le asignará el root.
             /// \return puntero al nodo del array de array de mallas.
             GraphicNode* createNodeAnimations(EAnimation* animations, const vec3f position, const vec3f rotation, GraphicNode* parent=0);
+
+            /// \brief Asigna el numero de animacion al nodo.
+            /// \details Asigna el numero de animacion al nodo.
+            /// \param[in] El nodo.
+            /// \param[in] El numero de la animacion en curso.
+            void setAnimation(GraphicNode* nodoAnimation, int numAnimation);
 
             /// \brief Crea una cámara de perspectiva en el arbol.
             /// \details Crea los nodos de transformacion, uno de posicion y otro de rotación. Crea
@@ -170,6 +175,8 @@ namespace tag
             /// \param[in] target to calculate the rotation from position
             void nodeLookAtTarget(GraphicNode* node, const vec3f position, const vec3f target);
 
+            // TODO nodeLookAtScreenCoords
+            void nodeLookAtScreenCoords(GraphicNode* node, const vec3f position, const vec3f screenCoords);
 
             /// \brief Borra un nodo, y sus nodos padres transformacion.
             /// \details Busca todos los padres que sean transformación, hasta llegar a uno que
@@ -201,6 +208,8 @@ namespace tag
             static float _screenWidth;
 
         private:
+            enum ENodeTransformOrder { eNodeTranslation=2, eNodeRotation=1 };
+
             Program*                    m_shaderProgram;
 
             GraphicNode                 m_rootNode;
@@ -214,14 +223,15 @@ namespace tag
 
             GraphicNode* createNodeTransform(GraphicNode* parent);
             GraphicNode* createNodeRotation(const vec3f rotation, GraphicNode* parent);
-            GraphicNode* createNodePosition(const vec3f position, GraphicNode* parent);
+            GraphicNode* createNodeTranslation(const vec3f position, GraphicNode* parent);
             GraphicNode* createNodePR(const vec3f position, const vec3f rotation, GraphicNode* parent);
             void calculateViewMatrix();
             glm::vec4 getVectorFromMatrix(glm::mat4 matrix);
+            glm::vec3 fromTagVec3fToGlmVec3(vec3f tagv);
 
             /// \brief Obtiene la endiad del deep nodo padre del nodo pasado, lanzando excepciones si el árbol está mal
             /// formado o lo que devuelve no es una entidad de transformación
-            ETransform* getTransformNode(GraphicNode* node, uint8_t deep);
+            ETransform* getTransformNode(GraphicNode* node, ENodeTransformOrder deep);
     };
 }
 

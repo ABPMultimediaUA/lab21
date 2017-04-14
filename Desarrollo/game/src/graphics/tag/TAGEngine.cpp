@@ -179,7 +179,7 @@ tag::GraphicNode* tag::TAGEngine::createNodeRotation(const vec3f rotation, Graph
 }
 
 //////////////////////////////////
-tag::GraphicNode* tag::TAGEngine::createNodePosition(const vec3f position, GraphicNode* parent)
+tag::GraphicNode* tag::TAGEngine::createNodeTranslation(const vec3f position, GraphicNode* parent)
 {
     GraphicNode* nodoPosition = createNodeTransform(parent);
     static_cast<ETransform*>(nodoPosition->getEntity())->translate(position);
@@ -198,7 +198,7 @@ tag::GraphicNode* tag::TAGEngine::createNodePR(const vec3f position, const vec3f
     GraphicNode* nodoRotacion = createNodeRotation(rotation, parent);
 
     // Creamos nodo de traslación (posición)
-    GraphicNode* nodoTraslacion = createNodePosition(position, nodoRotacion);
+    GraphicNode* nodoTraslacion = createNodeTranslation(position, nodoRotacion);
 
     // Cremamos nodo final
     GraphicNode* nodo = new GraphicNode();
@@ -352,6 +352,8 @@ void tag::TAGEngine::setLightOn(const unsigned int light)
     GraphicNode* nodeLuz = m_lights.at(light-1);
     ELight* luz = static_cast<ELight*>(nodeLuz->getEntity());
 
+    glUseProgram(m_shaderProgram->ReturnProgramID());
+
     // Calculamos lMatrix (posición de la luz)
     glm::mat4 lMatrix;
     calculateTransformMatrix(nodeLuz, lMatrix);
@@ -396,7 +398,7 @@ void tag::TAGEngine::calculateTransformMatrix(const GraphicNode* n, glm::mat4 &m
 }
 
 /////////////////////////////////
-tag::ETransform* tag::TAGEngine::getTransformNode(GraphicNode* node, uint8_t deep)
+tag::ETransform* tag::TAGEngine::getTransformNode(GraphicNode* node, ENodeTransformOrder deep)
 {
     if (node)
     {
@@ -425,14 +427,14 @@ tag::ETransform* tag::TAGEngine::getTransformNode(GraphicNode* node, uint8_t dee
 void tag::TAGEngine::moveNodeEntity(GraphicNode* node, const vec3f movement)
 {
     // Pasamos 1, ya que el nodo padre debe ser una transformación de traslación
-    getTransformNode(node, 1)->translate(movement);
+    getTransformNode(node, eNodeTranslation)->translate(movement);
 }
 
 /////////////////////
 void tag::TAGEngine::setPositionNodeEntity(GraphicNode* node, const vec3f movement)
 {
     // Pasamos 1, ya que el nodo padre debe ser una transformación de traslación
-    ETransform* t = getTransformNode(node, 1);
+    ETransform* t = getTransformNode(node, eNodeTranslation);
     t->identity();  // Ponemos a cero
     t->translate(movement);  // Movemos a posición dada
 }
@@ -441,14 +443,14 @@ void tag::TAGEngine::setPositionNodeEntity(GraphicNode* node, const vec3f moveme
 void tag::TAGEngine::rotateNodeEntity(GraphicNode* node, const vec3f rotation)
 {
     // Pasamos 2, ya que el nodo padre del padre debe ser una transformación de rotación
-    getTransformNode(node, 2)->rotate(rotation);
+    getTransformNode(node, eNodeRotation)->rotate(rotation);
 }
 
 /////////////////////
 void tag::TAGEngine::setRotationNodeEntity(GraphicNode* node, const vec3f rotation)
 {
     // Pasamos 2, ya que el nodo padre del padre debe ser una transformación de rotación
-    ETransform* t = getTransformNode(node, 2);
+    ETransform* t = getTransformNode(node, eNodeRotation);
     t->identity();  // Ponemos a cero
     t->rotate(rotation);  // Rotamos a rotación dada
 }

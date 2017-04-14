@@ -12,25 +12,23 @@ namespace tag
             EAnimation();
             ~EAnimation();
 
-            //cargamos la malla y el frame en el que estara
-
-            void beginDraw(/*int animation, int frame*/);//dibujaremos a partir de la animacion y su frame
+            void beginDraw();
             void endDraw();
-            void createNumAnimations(int numAnimations);//creamos el array pasandole un numero de animaciones q tendra
-            void createAnimation(int numAnimation, int numFrames, std::string fileName);//creamos la animacion dentro del array(en una posicion), con el numero de frames que tendra
-            void setNumAnimation(int animation);//establecemos en que animation estamos para el draw
-            int getNumAnimation();//devolvemos en que animation estamos para el draw
+            void createNumAnimations(uint8_t numAnimations);//creamos el array pasandole un numero de animaciones q tendra
+            void createAnimation(uint8_t animationIndex, uint8_t numFrames, std::string fileName, bool loop = true);//creamos la animacion dentro del array(en una posicion), con el numero de frames que tendra
+            void setActiveAnimation(uint8_t animationIndex);//establecemos en que animation estamos para el draw
+            uint8_t getActiveAnimation();//devolvemos en que animation estamos para el draw
 
-            vec3f getBoundingBox() { return vec3f(0,0,0); };
+            vec3f getBoundingBox();
 
         private:
-            //ResourceMesh ***m_animations;//va a ser el array de animaciones
-            int m_numAnimation;
-            int m_frame;
-            int temp;
-            //int *m_animationFrames;//para saber cuantos frames tiene cada animacion
+            uint8_t m_activeAnimation;
+            uint8_t m_numAnimations;
+            uint8_t m_frame;
+            uint8_t temp;
             struct TAnimation{
-                int numFrames;
+                uint8_t numFrames;
+                bool    loop;
                 ResourceMesh **frames;
             };
             TAnimation *m_animations;

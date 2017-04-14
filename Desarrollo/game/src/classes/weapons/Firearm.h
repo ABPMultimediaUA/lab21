@@ -22,7 +22,9 @@ class Firearm : public Weapon
         void setClipSize(int c);
 
         virtual void render() {};
-        //virtual void update(Player* mainPlayer);
+
+        virtual void setPut() = 0;   // Enfundada
+        virtual void setDraw() = 0;  // Desenfundada
 
     protected:
         float m_cadence;

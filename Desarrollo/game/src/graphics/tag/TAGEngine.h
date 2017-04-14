@@ -208,6 +208,8 @@ namespace tag
             static float _screenWidth;
 
         private:
+            enum ENodeTransformOrder { eNodeRotation=2, eNodeTranslation=1 };
+
             Program*                    m_shaderProgram;
 
             GraphicNode                 m_rootNode;
@@ -221,7 +223,7 @@ namespace tag
 
             GraphicNode* createNodeTransform(GraphicNode* parent);
             GraphicNode* createNodeRotation(const vec3f rotation, GraphicNode* parent);
-            GraphicNode* createNodePosition(const vec3f position, GraphicNode* parent);
+            GraphicNode* createNodeTranslation(const vec3f position, GraphicNode* parent);
             GraphicNode* createNodePR(const vec3f position, const vec3f rotation, GraphicNode* parent);
             void calculateViewMatrix();
             glm::vec4 getVectorFromMatrix(glm::mat4 matrix);
@@ -229,7 +231,7 @@ namespace tag
 
             /// \brief Obtiene la endiad del deep nodo padre del nodo pasado, lanzando excepciones si el árbol está mal
             /// formado o lo que devuelve no es una entidad de transformación
-            ETransform* getTransformNode(GraphicNode* node, uint8_t deep);
+            ETransform* getTransformNode(GraphicNode* node, ENodeTransformOrder deep);
     };
 }
 

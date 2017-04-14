@@ -51,21 +51,9 @@ void Drawable::setAnimation(dwe::AnimationType a)
 }
 dwe::AnimationType Drawable::getAnimation() { return m_animation; }
 
-/*//////////////
-void Drawable::setLevelId(int levelid)
-{
-    m_levelId = levelid;
-}
-
-//////////////
-int Drawable::getLevelId()
-{
-    return m_levelId;
-}*/
-
 ///////////////
-/*RMM es mejor utilizar los sensores de box2d
-bool Drawable::intersects(Drawable* d)
+void Drawable::setActive(bool active)
 {
-    return m_node->intersects(d->getNode());
-}*/
+    if (m_node)
+        m_node->setActive(active);
+}

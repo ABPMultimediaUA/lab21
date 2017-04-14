@@ -235,7 +235,7 @@ dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
 
 
 /////////////////////////////
-Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
+Player* dwe::GraphicsEngine::createMainPlayer()
 {
     tag::EAnimation* anim = m_tagEngine.createNumAnimations(2);
     m_tagEngine.createAnimation(anim, "media/playerStand/playerStand",  eAnimPlayerStand,   1);
@@ -243,7 +243,7 @@ Player* dwe::GraphicsEngine::createMainPlayer(Gun* gun)
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
-	Player* p = new Player(gun);
+	Player* p = new Player();
 	p->setNode(new Node(node));
 
 	NetInstance->addNetObject(p);
@@ -429,32 +429,29 @@ AmmoGun* dwe::GraphicsEngine::createAmmoGun(float px, float py, float pz)
 	return a;
 }
 
-Gun* dwe::GraphicsEngine::createGun(float px, float py, float pz)
+Gun* dwe::GraphicsEngine::createGun(Player* player)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/Gun.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/Gun.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
     Gun* g = new Gun();
 	g->setNode(new Node(node));
-	g->setPosition(dwe::vec3f(px, py, pz));
 
 	return g;
 }
 
-Shotgun* dwe::GraphicsEngine::createShotgun(float px, float py, float pz)
+Shotgun* dwe::GraphicsEngine::createShotgun(Player* player)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
     Shotgun* sg = new Shotgun();
 	sg->setNode(new Node(node));
-	sg->setPosition(dwe::vec3f(px, py, pz));
 
 	return sg;
 }
 
-Rifle* dwe::GraphicsEngine::createRifle(float px, float py, float pz)
+Rifle* dwe::GraphicsEngine::createRifle(Player* player)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
     Rifle* r = new Rifle();
 	r->setNode(new Node(node));
-	r->setPosition(dwe::vec3f(px, py, pz));
 
 	return r;
 }
@@ -516,7 +513,9 @@ void dwe::GraphicsEngine::createCamera()
         m_camera = m_tagEngine.createPerspectiveCamera(position, vec3f(0,0,0), 45.0f, get_screenWidth() / get_screenHeight(), 0.1f, 1000.0f);
         m_tagEngine.nodeLookAtTarget(m_camera, position, vec3f(0,0,0));
         float n = 0.8;
-        m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0), vec3f(n,n,n), vec3f(n,n,n), vec3f(n+0.4,n+0.4,n+0.4));
+        //m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0), vec3f(n,n,n), vec3f(n,n,n), vec3f(n+0.4,n+0.4,n+0.4));
+        m_tagEngine.createLight(dwe::vec3f(140,24,80), vec3f(0,0,0), vec3f(n,n,n), vec3f(n,n,n), vec3f(n+0.4,n+0.4,n+0.4));
+
     }
 }
 

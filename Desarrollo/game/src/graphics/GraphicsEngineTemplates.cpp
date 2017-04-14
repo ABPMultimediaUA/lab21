@@ -19,6 +19,12 @@ template<class T>void dwe::NodeTemplate<T>::setNode(T* n)
 }
 
 ////////////////////////////////////////////
+template<class T>T* dwe::NodeTemplate<T>::getNode()
+{
+    return m_node;
+}
+
+////////////////////////////////////////////
 template<class T>bool dwe::NodeTemplate<T>::intersects(Node* n)
 {
     if (m_node)
@@ -74,6 +80,12 @@ template<class T>void dwe::NodeTemplate<T>::setColor(float r, float g, float b, 
     m_color[1] = g;
     m_color[2] = b;
     m_color[3] = a;
+}
+
+////////////////////////////////////////////
+template<class T>void dwe::NodeTemplate<T>::setActive(bool active)
+{
+    m_node->setActive(active);
 }
 
 //////////////////////////////////////////////

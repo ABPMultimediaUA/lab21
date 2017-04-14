@@ -13,7 +13,7 @@ CRifle::~CRifle()
 ///////////////
 void CRifle::onTake(Player* mainplayer)
 {
-    mainplayer->addWeapon(this, eRifle);
+    mainplayer->addWeapon(eRifle);
 }
 
 ////////////////////

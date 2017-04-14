@@ -31,10 +31,13 @@ namespace tag
             vec3f getBoundingBox();
             EAnimation* getAnimation();
 
+            bool setActive(bool active);
+
         private:
             Entity*                     m_entity;
             std::vector<GraphicNode*>   m_childs;
             GraphicNode*                m_parent;
+            bool                        m_active;
     };
 }
 

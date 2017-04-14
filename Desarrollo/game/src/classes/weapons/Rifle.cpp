@@ -4,9 +4,7 @@
 
 Rifle::Rifle()
 {
-    //ctor
-    id=2;
-
+    id=eRifle;
     this->Weapon::setAmmo(30);
     this->Weapon::setAmmoClip(30);
     this->Weapon::setAmmoBag(90);
@@ -29,4 +27,16 @@ void Rifle::shoot()
 void Rifle::reload()
 {
     // TODO
+}
+
+////////////
+void Rifle::setPut()
+{
+    this->setActive(false);
+}
+
+////////////
+void Rifle::setDraw()
+{
+    this->setActive(true);
 }

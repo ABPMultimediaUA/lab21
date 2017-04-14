@@ -1,12 +1,12 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-#define NUM_WEAPONS 3
-
 enum FirearmKind {
-    eGun,
+    eNone=-1,
+    eGun=0,
     eShotgun,
-    eRifle
+    eRifle,
+    eNumWeapons
 };
 
 #endif

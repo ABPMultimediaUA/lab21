@@ -27,14 +27,15 @@ uniform sampler2D   u_normalTexture;
 
 vec3 phong()
 {
-    vec3 n;
+    vec3 normal;
     if (u_hasNormalTexture)
-        n = normalize(vec3(texture2D(u_normalTexture, v_TextureCoords)));
+        normal = vec3(normalize(texture2D(u_normalTexture, v_TextureCoords)));
     else
-        n = normalize(v_Normal);
-    vec3 s = normalize(vec3(u_Light.position) - v_Position);
-    vec3 v = normalize(vec3(-v_Position));
-    vec3 r = reflect(-s, n);
+        normal = vec3(normalize(v_Normal));
+
+    vec3 lightDir = normalize(vec3(u_Light.position) - v_Position);
+    vec3 viewDir  = normalize(vec3(-v_Position));
+    vec3 r        = reflect(-lightDir, normal);
 
     vec3 texSpec;
     vec3 texDiff;
@@ -56,13 +57,13 @@ vec3 phong()
     // Componente difusa
     vec3 diffuse =
         u_Light.diffuse
-        * max(dot(s,n), 0.0)     // max para que no sea negativo. Se multiplica por el angulo que forman s y n
+        * max(dot(lightDir, normal), 0.0)     // max para que no sea negativo. Se multiplica por el angulo que forman s y n
         * texDiff;
 
     // Componente especular
     vec3 specular =
         u_Light.specular
-        * pow(max(dot(r,v), 0.0), u_MaterialShininess)
+        * pow(max(dot(r, viewDir), 0.0), u_MaterialShininess)
         * texSpec;
 
 
@@ -73,4 +74,3 @@ void main()
 {
     gl_FragColor = vec4(phong(), 1.0);
 }
-

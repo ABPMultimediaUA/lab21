@@ -10,7 +10,8 @@
 tag::GraphicNode::GraphicNode() :
     m_entity(0),
     m_childs(),
-    m_parent(0)
+    m_parent(0),
+    m_active(true)
 {
     //ctor
 }
@@ -52,14 +53,17 @@ unsigned int tag::GraphicNode::removeChild(const tag::GraphicNode* n)
 ///////////////////////
 void tag::GraphicNode::draw()
 {
-    if (m_entity != 0)
-        m_entity->beginDraw();
+    if (m_active)
+    {
+        if (m_entity != 0)
+            m_entity->beginDraw();
 
-    for(std::vector<GraphicNode*>::iterator it = m_childs.begin(); it != m_childs.end(); it++)
-        (*it)->draw();
+        for(std::vector<GraphicNode*>::iterator it = m_childs.begin(); it != m_childs.end(); it++)
+            (*it)->draw();
 
-    if (m_entity != 0)
-        m_entity->endDraw();
+        if (m_entity != 0)
+            m_entity->endDraw();
+    }
 }
 
 ///////////////////////
@@ -90,6 +94,11 @@ tag::EAnimation* tag::GraphicNode::getAnimation()
     return 0;
 }
 
+///////////////////////
+bool tag::GraphicNode::setActive(bool active)
+{
+    m_active = active;
+}
 
 
 

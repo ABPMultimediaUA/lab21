@@ -13,8 +13,9 @@ class Gun : public Firearm
 
         void shoot();
         void reload();
-        //void update(Player* mainPlayer);
-        //void render();
+
+        virtual void setPut();   // Enfundada
+        virtual void setDraw();  // Desenfundada
 
     protected:
 

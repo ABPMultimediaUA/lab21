@@ -1,35 +1,17 @@
--VI.Documento de diseño de mecánicas de los NPCs
-MEJORAR
-
--VI.Documento de diseño de sistemas de toma de decisión
-NO EVALUADO
-
--VI.Documento de diseño técnico de la arquitectura de la IA
-NO EVALUADO
-
 -VI.Gestión de estados de la IA con Máquinas de Estados
 INTEGRAR EN EL JUEGO
 
 -VI.Sistema de toma de decisión con Behaviur Trees
 INTEGRAR EN EL JUEGO
 
--VI.Sistema de gestión de eventos (Trigger System/Event Manager)
-NO EVALUADO
-
 -VII.Uso de trazado de rayos y otros tests de las físicas
 RAFA JUNTO CON PATHPLANNING
-
--VII.Utilización de joints en las mecánicas jugables
-SIN HACER
 
 -VI.Comunicación simulada básica entre NPCs (Blackboard)
 SIN HACER
 
 -VI.Sistema de percepción sensorial (vista, oído, olfato, canales…)
 NO EVALUADO
-
--VII.Mecánicas de acción
-ACABARLAS
 
 -VII.Diseño e implementación de la arquitectura basada en objetos (diagrama de clases e implementación)
 ACTUALIZAR DIAGRAMA
@@ -52,9 +34,6 @@ SIN HACER
 -VII.Diseño y creación de niveles
 SIN ACABAR
 
--RV.Animación de los personajes
-SIN HACER
-
 -VI.Sistema de control de movimiento con Steering Behaviours
 SIN HACER
 
@@ -72,6 +51,30 @@ SIN TERMINAR
 
 -PD.HUD / Imágenes menús
 FALTAN MENUS
+
+----------------------------------------
+ASIGNADO
+----------------------------------------
+-VII.Utilización de joints en las mecánicas jugables
+Rubén: SIN HACER
+
+-VII.Mecánicas de acción
+Rubén: ACABARLAS: granada, al recargar dejar un tiempo sin poder disparar
+
+-VI.Sistema de gestión de eventos (Trigger System/Event Manager)
+Rafa: NO EVALUADO
+
+-RV.Animación de los personajes
+Marina, Sergio: SIN HACER
+
+-VI.Documento de diseño de mecánicas de los NPCs
+Edu: MEJORAR
+
+-VI.Documento de diseño de sistemas de toma de decisión
+Edu: NO EVALUADO
+
+-VI.Documento de diseño técnico de la arquitectura de la IA
+Edu: NO EVALUADO
 
 ----------------------------------------
 HECHO

@@ -179,7 +179,7 @@ tag::GraphicNode* tag::TAGEngine::createNodeRotation(const vec3f rotation, Graph
 }
 
 //////////////////////////////////
-tag::GraphicNode* tag::TAGEngine::createNodePosition(const vec3f position, GraphicNode* parent)
+tag::GraphicNode* tag::TAGEngine::createNodeTranslation(const vec3f position, GraphicNode* parent)
 {
     GraphicNode* nodoPosition = createNodeTransform(parent);
     static_cast<ETransform*>(nodoPosition->getEntity())->translate(position);
@@ -194,15 +194,16 @@ tag::GraphicNode* tag::TAGEngine::createNodePR(const vec3f position, const vec3f
     if (parent==0)
         parent = &m_rootNode;
 
-    // Creamos nodo de Rotación
-    GraphicNode* nodoRotacion = createNodeRotation(rotation, parent);
 
     // Creamos nodo de traslación (posición)
-    GraphicNode* nodoTraslacion = createNodePosition(position, nodoRotacion);
+    GraphicNode* nodoTraslacion = createNodeTranslation(position, parent);
+
+    // Creamos nodo de Rotación
+    GraphicNode* nodoRotacion = createNodeRotation(rotation, nodoTraslacion);
 
     // Cremamos nodo final
     GraphicNode* nodo = new GraphicNode();
-    nodoTraslacion->addChild(nodo);
+    nodoRotacion->addChild(nodo);
 
     return nodo;
 }
@@ -239,11 +240,11 @@ tag::EAnimation* tag::TAGEngine::createNumAnimations(int numAnimations)
 
     return animations;
 }
+
 ////////////////////////////
-tag::EAnimation* tag::TAGEngine::createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames)
+void tag::TAGEngine::createAnimation(EAnimation* animations, const std::string fileName, int numAnimation, int numFrames, bool loop)
 {
-    animations->createAnimation(numAnimation,numFrames, fileName);//creamos la animacion con sus frames y sus mallas
-    return animations;//la devolvemos
+    animations->createAnimation(numAnimation,numFrames, fileName, loop);//creamos la animacion con sus frames y sus mallas
 }
 
 /////////////////////////////
@@ -256,6 +257,15 @@ tag::GraphicNode* tag::TAGEngine::createNodeAnimations(EAnimation* animations, c
 
 }
 //////////////////////////////////
+
+void tag::TAGEngine::setAnimation(GraphicNode* nodoAnimation, int numAnimation)
+{
+    EAnimation* animation = nodoAnimation->getAnimation();
+    if (animation)
+        animation->setActiveAnimation(numAnimation);
+}
+
+////////////////////////////
 tag::GraphicNode* tag::TAGEngine::createPerspectiveCamera(const vec3f position, const vec3f rotation, float fov, float aspect, float near, float far, GraphicNode* parent)
 {
     // Creamos nodo de cámara
@@ -304,8 +314,6 @@ void tag::TAGEngine::calculateViewMatrix()
 //////////////////////////////////
 tag::GraphicNode* tag::TAGEngine::createLight(const vec3f position, const vec3f rotation, const vec3f ambient, const vec3f diffuse, const vec3f specular, GraphicNode* parent)
 {
-    glUseProgram(m_shaderProgram->ReturnProgramID());
-
     // Creamos nodo de luz
     GraphicNode* nodoLuz = createNodePR(position, rotation, parent);
     ELight* luz = new ELight();
@@ -333,6 +341,11 @@ glm::vec4 tag::TAGEngine::getVectorFromMatrix(glm::mat4 matrix)
     return v;
 }
 
+glm::vec3 tag::TAGEngine::fromTagVec3fToGlmVec3(vec3f tagv)
+{
+    return glm::vec3(tagv.x, tagv.y, tagv.z);
+}
+
 /////////////////////
 void tag::TAGEngine::setLightOn(const unsigned int light)
 {
@@ -340,13 +353,13 @@ void tag::TAGEngine::setLightOn(const unsigned int light)
     GraphicNode* nodeLuz = m_lights.at(light-1);
     ELight* luz = static_cast<ELight*>(nodeLuz->getEntity());
 
+    glUseProgram(m_shaderProgram->ReturnProgramID());
+
     // Calculamos lMatrix (posición de la luz)
     glm::mat4 lMatrix;
     calculateTransformMatrix(nodeLuz, lMatrix);
     glm::vec4 pos = getVectorFromMatrix(lMatrix);
     glUniform4fv(TAGEngine::_uLightPositionLocation, 1, &pos[0]);
-    check_gl_error();
-
 
     vec3f intensity = luz->getAmbientIntensity();
     glUniform3f(TAGEngine::_uLightAmbientLocation, intensity.x, intensity.y, intensity.z);
@@ -386,7 +399,7 @@ void tag::TAGEngine::calculateTransformMatrix(const GraphicNode* n, glm::mat4 &m
 }
 
 /////////////////////////////////
-tag::ETransform* tag::TAGEngine::getTransformNode(GraphicNode* node, uint8_t deep)
+tag::ETransform* tag::TAGEngine::getTransformNode(GraphicNode* node, ENodeTransformOrder deep)
 {
     if (node)
     {
@@ -415,14 +428,14 @@ tag::ETransform* tag::TAGEngine::getTransformNode(GraphicNode* node, uint8_t dee
 void tag::TAGEngine::moveNodeEntity(GraphicNode* node, const vec3f movement)
 {
     // Pasamos 1, ya que el nodo padre debe ser una transformación de traslación
-    getTransformNode(node, 1)->translate(movement);
+    getTransformNode(node, eNodeTranslation)->translate(movement);
 }
 
 /////////////////////
 void tag::TAGEngine::setPositionNodeEntity(GraphicNode* node, const vec3f movement)
 {
     // Pasamos 1, ya que el nodo padre debe ser una transformación de traslación
-    ETransform* t = getTransformNode(node, 1);
+    ETransform* t = getTransformNode(node, eNodeTranslation);
     t->identity();  // Ponemos a cero
     t->translate(movement);  // Movemos a posición dada
 }
@@ -431,14 +444,14 @@ void tag::TAGEngine::setPositionNodeEntity(GraphicNode* node, const vec3f moveme
 void tag::TAGEngine::rotateNodeEntity(GraphicNode* node, const vec3f rotation)
 {
     // Pasamos 2, ya que el nodo padre del padre debe ser una transformación de rotación
-    getTransformNode(node, 2)->rotate(rotation);
+    getTransformNode(node, eNodeRotation)->rotate(rotation);
 }
 
 /////////////////////
 void tag::TAGEngine::setRotationNodeEntity(GraphicNode* node, const vec3f rotation)
 {
     // Pasamos 2, ya que el nodo padre del padre debe ser una transformación de rotación
-    ETransform* t = getTransformNode(node, 2);
+    ETransform* t = getTransformNode(node, eNodeRotation);
     t->identity();  // Ponemos a cero
     t->rotate(rotation);  // Rotamos a rotación dada
 }
@@ -469,6 +482,15 @@ void tag::TAGEngine::nodeLookAtTarget(GraphicNode* node, const vec3f position, c
 
 
     setRotationNodeEntity(node, vec3f(anguloX, anguloY, 0));
+}
+
+/////////////////////
+void tag::TAGEngine::nodeLookAtScreenCoords(GraphicNode* node, const vec3f position, const vec3f screenCoords)
+{
+    calculateViewMatrix();
+    glm::vec4 viewport = glm::vec4(0.0f, 0.0f, 1024.0f, 768.0f);
+    glm::vec3 unCoords = glm::unProject(glm::vec3(screenCoords.x, screenCoords.y, screenCoords.z), Entity::viewMatrix, Entity::projectionMatrix, viewport);
+
 }
 
 /////////////////////

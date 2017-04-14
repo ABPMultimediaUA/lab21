@@ -157,7 +157,7 @@ void tag::ResourceMesh::draw()
     normalMatrix = glm::mat3(glm::transpose(glm::inverse(Entity::modelMatrix)));
 
     modelViewMatrix = Entity::viewMatrix * Entity::modelMatrix;
-    mvpMatrix = Entity::projectionMatrix * Entity::viewMatrix * Entity::modelMatrix;
+    mvpMatrix = Entity::projectionMatrix * modelViewMatrix;
 
     // Envía nuestra ModelView al Vertex Shader
     glUniformMatrix4fv(TAGEngine::_uMVMatrixLocation, 1, GL_FALSE, &modelViewMatrix[0][0]);

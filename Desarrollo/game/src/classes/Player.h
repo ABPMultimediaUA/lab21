@@ -16,11 +16,10 @@ class Firearm;
 class Player : public CharacterController
 {
     public:
-        Player(Gun* gun);
+        Player();
         virtual ~Player();
 
-        void update(){};
-        void update(Shotgun* shotgun, Rifle* rifle);
+        void update();
         void render();
 
         /// \brief Dispara el arma actual
@@ -54,10 +53,9 @@ class Player : public CharacterController
         void consumeSpeedBoost();
         void giveAmmo(int numWeapon, int ammo, PlayerMate* playermate);
         void receiveAmmo(int numWeapon, int ammo);
-        void addWeapon(Consumable* weapon, FirearmKind type);
         bool getHasShotgun();
         bool getHasRifle();
-        void swapCurrentWeapon(int w);
+        void swapCurrentWeapon(FirearmKind weaponKind);
         FirearmKind getCurrentWeaponType();
         Firearm* getCurrentWeapon();
         Firearm** getPlayerWeapons();
@@ -69,17 +67,24 @@ class Player : public CharacterController
 
         virtual const char* getNetObjectID() const;
         virtual void setPosition(dwe::vec3f p);
-        /***/
+
         void sayPosition();
-        /***/
+
+        void addWeapon(FirearmKind type);
 
         virtual void onBeginContact(EntityPhysics* otherObject);
 
     protected:
 
     private:
-        //int         m_ammo[NUM_WEAPONS];
-        Firearm*    m_weapons[NUM_WEAPONS];
+        static const float _changeOffsetTime = 0.2;
+        struct TPlayerWeaponKey {
+            EKEY_CODE   key;
+            FirearmKind weapon;
+        };
+        TPlayerWeaponKey m_playerWeaponKey[eNumWeapons];
+
+        Firearm*    m_weapons[eNumWeapons];
         int         m_grenades;
         int         m_life;
         bool        m_mKeys[3];
@@ -90,15 +95,13 @@ class Player : public CharacterController
         float       m_timeGivingStuff;
         float       m_timeWeaponSwap;
         float       m_timeReload;
-        bool        m_hasGun;
-        bool        m_hasShotgun;
-        bool        m_hasRifle;
         FirearmKind m_currentWeaponType;
         Firearm*    m_currentWeapon;
         int         m_health;
         int         m_maxHealth;
         Grenade     m_grenadeWeapon;
 
+        void deleteWeapons();
 };
 
 #endif // PLAYER_H

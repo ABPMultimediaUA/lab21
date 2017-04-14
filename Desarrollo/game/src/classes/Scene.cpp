@@ -25,7 +25,6 @@ Scene* Scene::Instance()
 
 Scene::Scene() : navGraph(false)
 {
-    cout<<"IN Scene constructor"<<endl;
     //ctor
 }
 ///////////////////////////////
@@ -37,7 +36,7 @@ void Scene::Init()
     m_posMother             = dwe::vec3f(0,62.0,-1617.0);
 
 
-    /**********************************/
+    ///////////////////////////////////
     if (NetInstance->isMultiplayer())
     {
         if (NetInstance->isServer()){
@@ -58,73 +57,10 @@ void Scene::Init()
         }
     }
     GEInstance->addMessageLine("Partida iniciada");
-    /**********************************/
-    // Llaves
-    //llave=GEInstance->createMagnetKey(0, 50, 0, 350);
-    //llaveCogida=false;
 
-    /******************Waypoints*******************/
-
+    /////////////// Waypoints ///////////////////////
     NavGraphNode node0(0, dwe::vec2f(-200, 200));
-    /*NavGraphNode node1(1, dwe::vec2f(-200, 100));
-    NavGraphNode node2(2, dwe::vec2f(-100, 100));
-    NavGraphNode node3(3, dwe::vec2f(-100, 200));
-
-    NavGraphNode node4(4, dwe::vec2f(-150, 150));
-
-    NavGraphNode node5(5, dwe::vec2f(-175, 0));
-    NavGraphNode node6(6, dwe::vec2f(-125, 0));
-
-    NavGraphNode node7(7, dwe::vec2f(-150, 50));*/
-
     navGraph.addNode(node0);
-    /*navGraph.addNode(node1);
-    navGraph.addNode(node2);
-    navGraph.addNode(node3);
-    navGraph.addNode(node4);
-    navGraph.addNode(node5);
-    navGraph.addNode(node6);
-    navGraph.addNode(node7);
-
-    NavGraphEdge edge01(0, 1, 100);
-    NavGraphEdge edge03(0, 3, 100);
-    NavGraphEdge edge04(0, 4, 70.710678);
-
-    NavGraphEdge edge12(1, 2, 100);
-    NavGraphEdge edge14(1, 4, 70.710678);
-    NavGraphEdge edge15(1, 5, 103.07764);
-
-    NavGraphEdge edge23(2, 3, 100);
-    NavGraphEdge edge24(2, 4, 70.710678);
-    NavGraphEdge edge26(2, 6, 103.07764);
-
-    NavGraphEdge edge34(3, 4, 70.710678);
-
-    NavGraphEdge edge75(7, 5, 55.901699);
-    NavGraphEdge edge76(7, 6, 55.901699);
-
-
-    navGraph.addEdge(edge01);
-    navGraph.addEdge(edge03);
-    navGraph.addEdge(edge04);
-    navGraph.addEdge(edge12);
-    navGraph.addEdge(edge14);
-    navGraph.addEdge(edge15);
-    navGraph.addEdge(edge23);
-    navGraph.addEdge(edge24);
-    navGraph.addEdge(edge26);
-    navGraph.addEdge(edge34);
-    navGraph.addEdge(edge75);
-    navGraph.addEdge(edge76);*/
-
-    /*Shotgun* node = createShotgun(-100,10,100);
-    node = createShotgun(-100,10,200);*/
-    Shotgun* node = createShotgun(-200,10,200);
-    /*node = createShotgun(-200,10,100);
-    node = createShotgun(-150,10,150);
-    node = createShotgun(-175,10,0);
-    node = createShotgun(-125,10,0);
-    node = createShotgun(-150,10,50);*/
 
 
     // MEDKITS
@@ -143,17 +79,14 @@ void Scene::Init()
     createMagnetKey(1, 785, 0, 1045);
     createMagnetKey(2, 2255, 0, 505);
 
-    // GUN - SHOTGUN - RIFLE
-    gun = createGun(0,0,0); // Creo el arma inicial del player
-    shotgun = createShotgun(-100,10,-210);
-    rifle = createRifle(-100,10,-200);
 
     // Creación de jugador
-    mainPlayer = GEInstance->createMainPlayer(gun);
+    mainPlayer = GEInstance->createMainPlayer();
     //TODO he puesto posicion para pruebas mainPlayer->setPosition(dwe::vec3f(-1205-((NetInstance->getParticipantOrder()-1)*30),24,1150));
                 mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,80));
     World->setMainPlayer(mainPlayer);
 
+    mainPlayer->addWeapon(eGun);  // Por defecto tiene la pistola
 
     createEnemies();
 
@@ -225,7 +158,6 @@ NavigationGraph& Scene::getNavGraph()
 
 int Scene::getNumberEnemies()
 {
-    //return m_enemies.size();
     return m_numActiveEnemies;
 }
 
@@ -245,8 +177,7 @@ void Scene::updateEnemies()
             {
                 // Si ha pasado suficiente tiempo, lo activamos
                 dwe::vec3f pos = m_posMother;
-                pos.z += 150;
-                m_enemies[i].enemy->setPosition(pos);
+                m_enemies[i].enemy->setPosition(dwe::vec3f(pos.x, m_enemies[i].enemy->getPosition().y, pos.z+150));
                 m_enemies[i].enemy->resetHealth();
                 m_enemies[i].enemy->setPhysicsActive(true);
                 m_enemies[i].active = true;
@@ -338,7 +269,7 @@ void Scene::Update()
 
     //UPDATE
 
-    mainPlayer->update(shotgun, rifle); //Posición actualizada de Irrlicht Player
+    mainPlayer->update(); //Posición actualizada de Irrlicht Player
 
     // Actualizamos los playermates
     int num = NetInstance->getNumPlayerMates();
@@ -352,7 +283,6 @@ void Scene::Update()
     updateProjectiles();
     updateProjectilesGrenade();
     updateConsumables(mainPlayer);
-    updatePlayerWeapons(mainPlayer, mainPlayer->getPlayerWeapons());
 }
 
 
@@ -447,9 +377,9 @@ void Scene::updatePlayerWeapons(Player* mainplayer, Firearm** weapons)
 {
     //cout << "- "<< mainplayer->getCurrentWeaponType() << ":" << eRifle << endl;
     // TODO dibujar bien y solo la actual
-    for (uint8_t i=0; i<3; i++)
-        if (weapons[i])
-            weapons[i]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
+    //for (uint8_t i=0; i<3; i++)
+    //    if (weapons[i])
+    //        weapons[i]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
     /*if  (mainplayer->getCurrentWeaponType() == eGun){
         weapons[0]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
     }else if (mainplayer->getCurrentWeaponType() == eShotgun){
@@ -468,9 +398,3 @@ void Scene::createCShotgun(float px, float py, float pz)            { m_consumab
 void Scene::createCRifle(float px, float py, float pz)              { m_consumables.push_back(GEInstance->createCRifle(px, py, pz));        }
 void Scene::createAmmoGun(float px, float py, float pz)             { m_consumables.push_back(GEInstance->createAmmoGun(px, py, pz));       }
 void Scene::createMagnetKey(int id, float px, float py, float pz)   { m_consumables.push_back(GEInstance->createMagnetKey(id, px, py, pz)); }
-
-//CREATE WEAPONS
-Gun* Scene::createGun(float px, float py, float pz)         {   return GEInstance->createGun(px, py, pz);   }
-Shotgun* Scene::createShotgun(float px, float py, float pz) {   return GEInstance->createShotgun(px, py, pz);      }
-Rifle* Scene::createRifle(float px, float py, float pz)     {   return GEInstance->createRifle(px, py, pz);        }
-

@@ -13,7 +13,7 @@ CShotgun::~CShotgun()
 ///////////////
 void CShotgun::onTake(Player* mainplayer)
 {
-    mainplayer->addWeapon(this, eShotgun);
+    mainplayer->addWeapon(eShotgun);
 }
 
 //////////////////////

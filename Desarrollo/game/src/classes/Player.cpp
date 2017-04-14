@@ -2,7 +2,8 @@
 #include "WorldInstance.h"
 #include "Firearm.h"
 
-Player::Player(Gun* gun)
+Player::Player() :
+    m_currentWeaponType(eNone), m_currentWeapon(0)
 {
 
     setClassID(EntityPhysics::player_id);
@@ -18,31 +19,44 @@ Player::Player(Gun* gun)
     m_timeWeaponSwap    = 1.0;
     m_timeReload        = 1.0;
 
-    m_hasGun = true;
-    m_weapons[0] = gun;
-    m_weapons[1] = 0;
-    m_weapons[2] = 0;
-    m_hasShotgun = false;
-    m_hasRifle = false;
-    m_currentWeaponType = eGun;
-    m_currentWeapon = m_weapons[0];
+    m_weapons[eGun]     = 0;
+    m_weapons[eShotgun] = 0;
+    m_weapons[eRifle]   = 0;
+
     m_health = 100;
     m_maxHealth = 100;
     m_grenades=3;
 
+    m_playerWeaponKey[eGun].key         = KEY_WEAPON_1;
+    m_playerWeaponKey[eGun].weapon      = eGun;
+    m_playerWeaponKey[eShotgun].key     = KEY_WEAPON_2;
+    m_playerWeaponKey[eShotgun].weapon  = eShotgun;
+    m_playerWeaponKey[eRifle].key       = KEY_WEAPON_3;
+    m_playerWeaponKey[eRifle].weapon    = eRifle;
 }
 
 Player::~Player()
 {
-    //dtor
+    deleteWeapons();
+}
+
+void Player::deleteWeapons()
+{
+    for(uint8_t i=0; i<eNumWeapons; i++)
+    {
+        if (m_weapons[i])
+        {
+            delete m_weapons[i];
+            m_weapons[i] = 0;
+        }
+    }
 }
 
 /////////////
-void Player::update(Shotgun* shotgun, Rifle* rifle)
+void Player::update()
 {
+    // Actualizamos la posición del box2d en el modelo
     Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
-    if (m_hasShotgun)   {   m_weapons[1] = shotgun; }
-    if (m_hasRifle)     {   m_weapons[2] = rifle;   }
 }
 
 /////////////
@@ -68,7 +82,7 @@ void Player::sayPosition()
 }
 /***/
 
-////////////////////#include <Firearm.h>
+////////////////////
 const char* Player::getNetObjectID() const
 {
     return "Player";
@@ -97,57 +111,54 @@ bool Player::shoot(float timeSinceLastShoot)
 FirearmKind Player::getCurrentWeaponType() { return m_currentWeaponType; }
 Firearm* Player::getCurrentWeapon() { return m_currentWeapon; }
 Firearm** Player::getPlayerWeapons() { return m_weapons; }
-Weapon* Player::getPlayerGun() { return m_weapons[0]; }
-Weapon* Player::getPlayerShotgun() { return m_weapons[1]; }
-Weapon* Player::getPlayerRifle() { return m_weapons[2]; }
-bool Player::getHasShotgun() { return m_hasShotgun; }
-bool Player::getHasRifle() { return m_hasRifle; }
+
+Weapon* Player::getPlayerGun()      { return m_weapons[eGun]; }
+Weapon* Player::getPlayerShotgun()  { return m_weapons[eShotgun]; }
+Weapon* Player::getPlayerRifle()    { return m_weapons[eRifle]; }
 
 //////////////////
 void Player::reloadWeapon()
 {
     m_currentWeapon->reload();
-
-}
-
-
-/////////////
-void Player::addWeapon(Consumable* weapon, FirearmKind type)
-{
-    if (!m_hasShotgun && type == eShotgun){
-
-        m_hasShotgun = true;
-        cout << "TENGO SHOTGUN" << endl;
-    }
-
-    if (!m_hasRifle && type == eRifle){
-        m_hasRifle = true;
-        cout << "TENGO RIFLE" << endl;
-    }
 }
 
 /////////////
-void Player::swapCurrentWeapon(int w)
+void Player::addWeapon(FirearmKind type)
 {
-    if(w==1){               //GUN
-        m_currentWeapon = m_weapons[0];
-        m_currentWeaponType = eGun;
-        //cout<<"pistola"<<endl;
-    }else if(w==2){         //SHOTGUN
-        if (m_hasShotgun){
-            m_currentWeapon = m_weapons[1];
-            m_currentWeaponType = eShotgun;
-            //cout<<"escopeta"<<endl;cout<<&m_currentWeapon<<endl;
+    if (!m_weapons[type])
+    {
+        switch(type)
+        {
+        case eGun:      m_weapons[eGun]     = GEInstance->createGun(this);       break;
+        case eShotgun:  m_weapons[eShotgun] = GEInstance->createShotgun(this);   break;
+        case eRifle:    m_weapons[eRifle]   = GEInstance->createRifle(this);     break;
+        default:  break;
         }
-    }else if(w==3){         //RIFLE
-        //cout << m_hasRifle << endl;
-        if (m_hasRifle){
-            m_currentWeapon = m_weapons[2];
-            m_currentWeaponType = eRifle;
-            //cout<<"rifle"<<endl;
-        }
+        swapCurrentWeapon(type);
     }
-    //cout << "TENGO EL ARMA " << m_currentWeaponType << endl;
+}
+
+/////////////
+void Player::swapCurrentWeapon(FirearmKind weaponKind)
+{
+    if( weaponKind!=m_currentWeaponType && weaponKind!=eNone && weaponKind<eNumWeapons
+       && !(weaponKind==eShotgun && !m_weapons[eShotgun])
+       && !(weaponKind==eRifle   && !m_weapons[eRifle])
+       && (World->getTimeElapsed() - m_timeWeaponSwap > _changeOffsetTime) )
+    {
+        // Pongo el arma anterior en su posición de guardado
+        if (m_currentWeapon)
+            m_currentWeapon->setPut();
+
+        m_currentWeapon = m_weapons[weaponKind];
+
+        // Pongo el arma nueva en su posición de ataque
+        if (m_currentWeapon)
+            m_currentWeapon->setDraw();
+
+        m_currentWeaponType = weaponKind;
+        m_timeWeaponSwap    = World->getTimeElapsed();
+    }
 }
 
 /////////////
@@ -159,8 +170,6 @@ void Player::throwGrenade()
 /////////////
 void Player::readEvents()
 {
-    const float offsetTime = 0.2;
-
     CharacterController::readEvents();
 
     //Animacion del player
@@ -191,7 +200,7 @@ void Player::readEvents()
 
     /*********/
      // consumir botiquin
-    if(GEInstance->receiver.isKeyDown(KEY_CONSUME_MEDKIT) && (World->getTimeElapsed() - m_timeMedkit)> offsetTime)
+    if(GEInstance->receiver.isKeyDown(KEY_CONSUME_MEDKIT) && (World->getTimeElapsed() - m_timeMedkit)> _changeOffsetTime)
     {
         this->consumeMedkit();
 
@@ -199,7 +208,7 @@ void Player::readEvents()
     }
 
      // consumir adrenalina
-    if(GEInstance->receiver.isKeyDown(KEY_CONSUME_SPEED) && (World->getTimeElapsed() - m_timeToSpeedBoost)> offsetTime)
+    if(GEInstance->receiver.isKeyDown(KEY_CONSUME_SPEED) && (World->getTimeElapsed() - m_timeToSpeedBoost)> _changeOffsetTime)
     {
         this->consumeSpeedBoost();
 
@@ -207,14 +216,14 @@ void Player::readEvents()
     }
 
     // recargar armo
-    if(GEInstance->receiver.isKeyDown(KEY_RELOADWEAPON) && (World->getTimeElapsed() - m_timeReload)> offsetTime)
+    if(GEInstance->receiver.isKeyDown(KEY_RELOADWEAPON) && (World->getTimeElapsed() - m_timeReload)> _changeOffsetTime)
     {
         reloadWeapon();
         m_timeReload = World->getTimeElapsed();
     }
     /*********/
     PlayerMate* playermate = NetInstance->getPlayerMate(1);
-    if (GEInstance->receiver.isKeyDown(KEY_GIVE_AMMO)&& (World->getTimeElapsed() - m_timeGivingStuff) > offsetTime)
+    if (GEInstance->receiver.isKeyDown(KEY_GIVE_AMMO)&& (World->getTimeElapsed() - m_timeGivingStuff) > _changeOffsetTime)
     {
          //this->giveMedkits(1,playermate);
          this->giveAmmo(0,1, playermate);
@@ -222,27 +231,14 @@ void Player::readEvents()
     }
 
 
-    /*if(GEInstance->receiver.isKeyDown(KEY_KEY_5) && World->getTimeElapsed() - m_timeWeaponSwap > offsetTime){
-        this->swapCurrentWeapon(3);
-        m_timeWeaponSwap = World->getTimeElapsed();
-    }*/
-
     //CAMBIAR ARMA
-    if(GEInstance->receiver.isKeyDown(KEY_WEAPON_1) && World->getTimeElapsed() - m_timeWeaponSwap > offsetTime && m_currentWeapon != m_weapons[0]){
-        this->swapCurrentWeapon(1);
-        m_timeWeaponSwap = World->getTimeElapsed();
-    }else if(GEInstance->receiver.isKeyDown(KEY_WEAPON_2) && World->getTimeElapsed() - m_timeWeaponSwap > offsetTime && m_currentWeapon != m_weapons[1]){
-        this->swapCurrentWeapon(2);
-        m_timeWeaponSwap = World->getTimeElapsed();
-    }else if(GEInstance->receiver.isKeyDown(KEY_WEAPON_3) && World->getTimeElapsed() - m_timeWeaponSwap > offsetTime && m_currentWeapon != m_weapons[2]){
-        this->swapCurrentWeapon(3);
-        m_timeWeaponSwap = World->getTimeElapsed();
-    }
+    for(uint8_t i=0; i<eNumWeapons; i++)
+        if (GEInstance->receiver.isKeyDown(m_playerWeaponKey[i].key))
+            swapCurrentWeapon(m_playerWeaponKey[i].weapon);
 
     //HACER DASH
     if(GEInstance->receiver.isKeyDown(KEY_DASH))
         this->dash();//evadimos
-
 }
 
 
@@ -323,13 +319,12 @@ void Player::consumeSpeedBoost()
         m_speedBoosts -= 1;
         setSpeedBoost();
     }
-
 }
+
 /////////////
 void Player::onBeginContact(EntityPhysics* otherObject)
 {
     if((otherObject && otherObject->getClassID()==EntityPhysics::enemy_id)){
         m_health-=5;
-        cout<< "Perdiendo vida: " << m_health <<endl;
     }
 }

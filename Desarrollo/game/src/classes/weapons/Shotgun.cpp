@@ -4,8 +4,7 @@
 
 Shotgun::Shotgun()
 {
-    //ctor
-    id=1;
+    id=eShotgun;
     this->Weapon::setAmmo(7);
     this->Weapon::setAmmoClip(7);
     this->Weapon::setAmmoBag(32);
@@ -28,4 +27,16 @@ void Shotgun::shoot()
 void Shotgun::reload()
 {
     // TODO
+}
+
+//////////////
+void Shotgun::setPut()
+{
+    this->setActive(false);
+}
+
+//////////////
+void Shotgun::setDraw()
+{
+    this->setActive(true);
 }

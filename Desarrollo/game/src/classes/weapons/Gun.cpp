@@ -4,9 +4,8 @@
 
 Gun::Gun()
 {
-    //ctor
-    id = 0;
-    this->Weapon::setAmmo(12); //12
+    id = eGun;
+    this->Weapon::setAmmo(12);
     this->Weapon::setAmmoClip(12);
     this->Weapon::setAmmoBag(24);
     m_cadence = 0.6;
@@ -28,4 +27,16 @@ void Gun::shoot()
 void Gun::reload()
 {
     // TODO
+}
+
+//////////
+void Gun::setPut()
+{
+    this->setActive(false);
+}
+
+//////////
+void Gun::setDraw()
+{
+    this->setActive(true);
 }
