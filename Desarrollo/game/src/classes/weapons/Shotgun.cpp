@@ -1,6 +1,7 @@
 #include "Shotgun.h"
 #include "Player.h"
 #include "WorldInstance.h"
+#include "Scene.h"
 
 Shotgun::Shotgun()
 {

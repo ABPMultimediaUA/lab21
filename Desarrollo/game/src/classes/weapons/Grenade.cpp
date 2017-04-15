@@ -1,6 +1,7 @@
 #include "Grenade.h"
 #include "Player.h"
 #include "WorldInstance.h"
+#include "Scene.h"
 
 Grenade::Grenade()
 {

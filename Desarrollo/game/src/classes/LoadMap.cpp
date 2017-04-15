@@ -152,7 +152,7 @@ void LoadMap::Init(){
                             entities[contDoorIn]=GEInstance->createDoor(3, true, tx, ty, tz);
                         }
                     //entities[contDoorIn]->setLevelId(levelid);
-                    doorTriggers[contDoorIn]=GEInstance->createTriggerDoor(tx, ty, tz);
+                    //doorTriggers[contDoorIn]=GEInstance->createTriggerDoor(tx, ty, tz);
                     ++contDoorIn;
                 }
             }
@@ -162,13 +162,13 @@ void LoadMap::Init(){
         // DEMO
         // Puertas MADRE
         entities[53]=GEInstance->createDoor(2, false, -50, 0, -100);
-        doorTriggers[53]=GEInstance->createTriggerDoor(-29, 0, -100);
+        //doorTriggers[53]=GEInstance->createTriggerDoor(-29, 0, -100);
         entities[54]=GEInstance->createDoor(0, false, 50, 0, -100);
-        doorTriggers[54]=GEInstance->createTriggerDoor(29, 0, -100);
+        //doorTriggers[54]=GEInstance->createTriggerDoor(29, 0, -100);
         entities[55]=GEInstance->createDoor(2, true, -50, 0, -1895);
-        doorTriggers[55]=GEInstance->createTriggerDoor(-29, 0, -1895);
+        //doorTriggers[55]=GEInstance->createTriggerDoor(-29, 0, -1895);
         entities[56]=GEInstance->createDoor(0, true, 50, 0, -1895);
-        doorTriggers[56]=GEInstance->createTriggerDoor(29, 0, -1895);
+        //doorTriggers[56]=GEInstance->createTriggerDoor(29, 0, -1895);
 
         ((Door*)entities[2])->setInactive();
         ((Door*)entities[11])->setInactive();
@@ -178,12 +178,12 @@ void LoadMap::Init(){
 
         // Generadores
         generator[0]=GEInstance->createGenerator(0, false, -350, 24, -300); // 1 Derecha Habitaciones
-        generatorTriggers[0]=GEInstance->createTriggerGenerator(-360, 0, -300);
+        //generatorTriggers[0]=GEInstance->createTriggerGenerator(-360, 0, -300);
         generator[0]->setRotation(dwe::vec3f(0, 180, 0));
         generator[1]=GEInstance->createGenerator(1, false, -745, 24, -300); // 2 Izquierda
-        generatorTriggers[1]=GEInstance->createTriggerGenerator(-725, 0, -300);
+        //generatorTriggers[1]=GEInstance->createTriggerGenerator(-725, 0, -300);
         generator[2]=GEInstance->createGenerator(2, false, -680, 24, -491); // 3 Arriba Mother
-        generatorTriggers[2]=GEInstance->createTriggerGenerator(-660, 0, -491);
+        //generatorTriggers[2]=GEInstance->createTriggerGenerator(-660, 0, -491);
 
         // Asignamos puertas a generadores
         Entity **sector = new Entity*[1];
@@ -215,7 +215,7 @@ void LoadMap::Init(){
 }
 
 void LoadMap::Update(){
-    for(int cont=0; cont<NUM_MAP_ENTITIES2; cont++){
+    /*for(int cont=0; cont<NUM_MAP_ENTITIES2; cont++){
         entities[cont]->update();
         doorTriggers[cont]->update(entities[cont]);
     }
@@ -230,7 +230,7 @@ void LoadMap::Update(){
         cheats=true;
     }
 
-    //Scene::updateConsumables(mainPlayer);
+    //Scene::updateConsumables(mainPlayer);*/
 }
 
 void LoadMap::Destroy(){

@@ -2,7 +2,6 @@
 #define ENTITYPHYSICS_H
 
 #include "GraphicsEngine.h"
-#include "Drawable.h"
 #include <Box2D/Box2D.h>
 #include <Box2D/Common/b2Math.h>
 
@@ -39,7 +38,8 @@ class EntityPhysics
         // Se crea el tipo de sólido
         void createDynamicBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0, bool bullet = false);
         void createStaticBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
-        void createSensorBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
+        void createDynamicSensorBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
+        void createStaticSensorBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
         void createJointBody(const dwe::vec3f& pos);
 
 

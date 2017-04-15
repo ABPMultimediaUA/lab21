@@ -1,8 +1,5 @@
 #include "EntityPhysics.h"
 #include "WorldInstance.h"
-#include "ScenaryElement.h"
-
-#include "GraphicsEngine.h"
 
 #include <iostream>
 #include <cmath>
@@ -154,7 +151,12 @@ void EntityPhysics::createStaticBody(const dwe::vec3f& pos, float width, float h
 }
 
 ////////////////////
-void EntityPhysics::createSensorBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees)
+void EntityPhysics::createDynamicSensorBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees)
+{
+    createBody(b2_dynamicBody, pos, width, height, angleDegrees, false, true);
+}
+
+void EntityPhysics::createStaticSensorBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees)
 {
     createBody(b2_staticBody, pos, width, height, angleDegrees, false, true);
 }

@@ -1,34 +1,37 @@
 #ifndef CONSUMABLE_H
 #define CONSUMABLE_H
 
-#include "DrawablePhysics.h"
+#include "Drawable.h"
 
 class Player;
+class TriggerConsumable;
 
-class Consumable : public DrawablePhysics
+class Consumable : public Drawable
 {
     public:
+
         Consumable();
+
         virtual ~Consumable();
 
         virtual void onTake(Player* mainPlayer) = 0;
 
         bool getIsTaken();
-        virtual void update(Player* mainPlayer);
+        virtual void Take();
+        void update(Player* mainPlayer){};
         void take();   // Marca como ya cogido y quita nodo como en update
         void setNetID(unsigned int netID);
 
         virtual void setNode(dwe::Node* n);
         virtual void setPosition(dwe::vec3f p);
 
-        virtual void onBeginContact(EntityPhysics* otherObject);
-        virtual void onEndContact(EntityPhysics* otherObject);
-
     protected:
+
         int m_netID;
-        bool m_touchingMainPlayer;
 
     private:
+
+        TriggerConsumable* m_trigger;
         bool m_isTaken;
 };
 

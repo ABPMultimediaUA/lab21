@@ -1,6 +1,7 @@
 #include "Gun.h"
 #include "Player.h"
 #include "WorldInstance.h"
+#include "Scene.h"
 
 Gun::Gun()
 {

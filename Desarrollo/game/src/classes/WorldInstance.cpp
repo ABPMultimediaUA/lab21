@@ -1,6 +1,31 @@
 #include <time.h>
 #include "WorldInstance.h"
+#include "EntityPhysics.h"
 #include "Player.h"
+
+void ContactListener::BeginContact(b2Contact* contact)
+{
+    EntityPhysics* bodyUserDataA = (EntityPhysics*)contact->GetFixtureA()->GetBody()->GetUserData();
+    EntityPhysics* bodyUserDataB = (EntityPhysics*)contact->GetFixtureB()->GetBody()->GetUserData();
+
+    if (bodyUserDataA)
+        bodyUserDataA->onBeginContact(bodyUserDataB);
+
+    if (bodyUserDataB)
+        bodyUserDataB->onBeginContact(bodyUserDataA);
+}
+
+void ContactListener::EndContact(b2Contact* contact)
+{
+    EntityPhysics* bodyUserDataA = (EntityPhysics*)contact->GetFixtureA()->GetBody()->GetUserData();
+    EntityPhysics* bodyUserDataB = (EntityPhysics*)contact->GetFixtureB()->GetBody()->GetUserData();
+
+    if (bodyUserDataA)
+        bodyUserDataA->onEndContact(bodyUserDataB);
+
+    if (bodyUserDataB)
+        bodyUserDataB->onEndContact(bodyUserDataA);
+}
 
 
 WorldInstance* WorldInstance::pinstance = 0;

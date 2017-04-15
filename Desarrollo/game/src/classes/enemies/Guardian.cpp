@@ -23,7 +23,7 @@ void Guardian::setSteps (int s)
 void Guardian::update()
 {
     steps--;
-    g_pStateMachine->Update();
+    //g_pStateMachine->Update();
 }
 
 void Guardian::render()

@@ -223,6 +223,11 @@ NavigationGraph& Scene::getNavGraph()
     return navGraph;
 }
 
+TriggerSystem& Scene::getTriggerSystem()
+{
+    return m_triggerSystem;
+}
+
 int Scene::getNumberEnemies()
 {
     //return m_enemies.size();
@@ -353,6 +358,7 @@ void Scene::Update()
     updateProjectilesGrenade();
     updateConsumables(mainPlayer);
     updatePlayerWeapons(mainPlayer, mainPlayer->getPlayerWeapons());
+    m_triggerSystem.Update();
 }
 
 

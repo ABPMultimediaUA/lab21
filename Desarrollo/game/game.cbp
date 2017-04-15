@@ -19,6 +19,7 @@
 					<Add directory="src/classes" />
 					<Add directory="src" />
 					<Add directory="src/audio" />
+					<Add directory="src/classes/triggersystem" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics-s-d" />
@@ -37,6 +38,7 @@
 					<Add directory="src/classes" />
 					<Add directory="src" />
 					<Add directory="src/audio" />
+					<Add directory="src/classes/triggersystem" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -248,16 +250,14 @@
 		<Unit filename="src/classes/ia/statemachine/MotherStates.h" />
 		<Unit filename="src/classes/triggersystem/Trigger.cpp" />
 		<Unit filename="src/classes/triggersystem/Trigger.h" />
+		<Unit filename="src/classes/triggersystem/TriggerConsumable.cpp" />
+		<Unit filename="src/classes/triggersystem/TriggerConsumable.h" />
 		<Unit filename="src/classes/triggersystem/TriggerDoor.cpp" />
 		<Unit filename="src/classes/triggersystem/TriggerDoor.h" />
 		<Unit filename="src/classes/triggersystem/TriggerGenerator.cpp" />
 		<Unit filename="src/classes/triggersystem/TriggerGenerator.h" />
-		<Unit filename="src/classes/triggersystem/TriggerRegion.cpp" />
-		<Unit filename="src/classes/triggersystem/TriggerRegion.h" />
-		<Unit filename="src/classes/triggersystem/TriggerRegion_Circle.cpp" />
-		<Unit filename="src/classes/triggersystem/TriggerRegion_Circle.h" />
-		<Unit filename="src/classes/triggersystem/TriggerRegion_Rectangle.cpp" />
-		<Unit filename="src/classes/triggersystem/TriggerRegion_Rectangle.h" />
+		<Unit filename="src/classes/triggersystem/TriggerSystem.cpp" />
+		<Unit filename="src/classes/triggersystem/TriggerSystem.h" />
 		<Unit filename="src/classes/weapons/Ammo.cpp" />
 		<Unit filename="src/classes/weapons/Ammo.h" />
 		<Unit filename="src/classes/weapons/AmmoGrenade.cpp" />
