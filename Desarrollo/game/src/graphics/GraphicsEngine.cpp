@@ -371,9 +371,9 @@ Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle, std
 ProjectileGrenade* dwe::GraphicsEngine::createProjectileGrenade(vec3f origin, float angle)
 {
 	tag::GraphicNode* node = m_tagEngine.createMesh("media/grenade.obj", vec3f(0,0,0), vec3f(0,0,0));
-    ProjectileGrenade* p = new ProjectileGrenade(origin, angle);
+    ProjectileGrenade* p = new ProjectileGrenade(vec3f(origin.x, 0, origin.z), angle);
 	p->setNode(new Node(node));
-	p->setPosition(origin);
+	p->setPosition(vec3f(origin.x, 0, origin.z));
 	return p;
 }
 
