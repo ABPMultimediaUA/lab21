@@ -64,7 +64,6 @@ class Scene
         void createMagnetKey(int id, float px, float py, float pz);
         void createAmmoGun(float px, float py, float pz);
         void updateConsumables(Player* mainPlayer);
-        void updatePlayerWeapons(Player* mainPlayer, Firearm** weapons);
         NavigationGraph& getNavGraph();
         TriggerSystem& getTriggerSystem();
 
@@ -90,7 +89,6 @@ class Scene
         Bat* enemyBat;
         Guardian* enemyGuardian;
         Legless* enemyLegless;
-        /**/
 
         Firearm* weapon;
 
@@ -108,11 +106,6 @@ class Scene
 
         NavigationGraph navGraph;
         TriggerSystem m_triggerSystem;
-
-        float timeLastProjectil;
-        float timeLastGrenade;
-
-
 
         // Random
         dwe::Node* joint_try;

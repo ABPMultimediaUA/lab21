@@ -30,8 +30,6 @@ Scene::Scene() : navGraph(false)
 ///////////////////////////////
 void Scene::Init()
 {
-    timeLastProjectil       = 0;
-    timeLastGrenade         = 0;
     m_timeLastEnemyActive   = 0;
     m_timeEnemyActive       = 5.0;  // En segundos
     m_posMother             = dwe::vec3f(0,62.0,-1617.0);
@@ -249,24 +247,6 @@ void Scene::Update()
 
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
 
-
-    // comprobamos si dispara
-    if (   GEInstance->receiver.isLeftButtonPressed()
-        && mainPlayer->shoot(World->getTimeElapsed() - timeLastProjectil) )
-    {
-        timeLastProjectil = World->getTimeElapsed();
-    }
-    else
-        // comprobamos si dispara granadas
-        if(GEInstance->receiver.isKeyDown(KEY_GRENADE)
-           && mainPlayer->throwGrenade(World->getTimeElapsed() - timeLastGrenade) )
-        {
-            NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectilgrenade
-            timeLastGrenade = World->getTimeElapsed();
-        }
-
-    //UPDATE
-
     mainPlayer->update(); //Posición actualizada de Irrlicht Player
 
     // Actualizamos los playermates
@@ -368,22 +348,6 @@ void Scene::updateConsumables(Player* mainPlayer)
         else
             i++;
     }
-}
-
-void Scene::updatePlayerWeapons(Player* mainplayer, Firearm** weapons)
-{
-    //cout << "- "<< mainplayer->getCurrentWeaponType() << ":" << eRifle << endl;
-    // TODO dibujar bien y solo la actual
-    //for (uint8_t i=0; i<3; i++)
-    //    if (weapons[i])
-    //        weapons[i]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
-    /*if  (mainplayer->getCurrentWeaponType() == eGun){
-        weapons[0]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
-    }else if (mainplayer->getCurrentWeaponType() == eShotgun){
-        weapons[1]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
-    }else if (mainplayer->getCurrentWeaponType() == eRifle){
-        weapons[2]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
-    }*/
 }
 
 ////////////////////////////
