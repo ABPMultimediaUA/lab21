@@ -110,6 +110,7 @@ class Scene
         TriggerSystem m_triggerSystem;
 
         float timeLastProjectil;
+        float timeLastGrenade;
 
 
 

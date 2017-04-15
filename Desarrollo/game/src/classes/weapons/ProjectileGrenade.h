@@ -8,6 +8,7 @@
 Los proyectiles son los elementos que viajan de una posicion a otra del espacio
 y haran una funcion diferente dependiendo del tipo de proyectil que sea.
 *******************************************************************************/
+class GrenadeExplosion;
 
 class ProjectileGrenade: public Entity
 {
@@ -26,15 +27,24 @@ class ProjectileGrenade: public Entity
 
         virtual void setPosition(dwe::vec3f p);
 
+        bool getExploded();
+
     protected:
 
     private:
         static const float _impulse = 0.3;
+        static const float _timeExplosion = 2.0;
+
+        bool m_exploding;   // En explosion
+        bool m_exploded;    // Explotada
+        float m_timeInitExplosion;
 
         dwe::vec3f  m_position;
         int         m_speed;
         float       m_angle;
         bool        m_collides;
+
+        GrenadeExplosion* m_grenadeExplosion;
 
 };
 

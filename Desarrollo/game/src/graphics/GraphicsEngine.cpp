@@ -38,6 +38,7 @@
 #include "Shotgun.h"
 #include "Rifle.h"
 #include "AmmoGun.h"
+#include "GrenadeExplosion.h"
 #include "tag/EAnimation.h"
 
 using namespace std;
@@ -374,6 +375,15 @@ ProjectileGrenade* dwe::GraphicsEngine::createProjectileGrenade(vec3f origin, fl
 	p->setNode(new Node(node));
 	p->setPosition(origin);
 	return p;
+}
+
+GrenadeExplosion* dwe::GraphicsEngine::createGrenadeExplosion(vec3f origin)
+{
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/explosion.obj", vec3f(0,0,0), vec3f(0,0,0));
+    GrenadeExplosion* g = new GrenadeExplosion();
+	g->setNode(new Node(node));
+	g->setPosition(vec3f(origin.x, 0, origin.z));
+	return g;
 }
 
 Generator* dwe::GraphicsEngine::createGenerator(int i, bool b, float px, float py, float pz)

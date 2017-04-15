@@ -276,6 +276,8 @@
 		<Unit filename="src/classes/weapons/Firearm.h" />
 		<Unit filename="src/classes/weapons/Grenade.cpp" />
 		<Unit filename="src/classes/weapons/Grenade.h" />
+		<Unit filename="src/classes/weapons/GrenadeExplosion.cpp" />
+		<Unit filename="src/classes/weapons/GrenadeExplosion.h" />
 		<Unit filename="src/classes/weapons/Gun.cpp" />
 		<Unit filename="src/classes/weapons/Gun.h" />
 		<Unit filename="src/classes/weapons/Projectile.cpp" />

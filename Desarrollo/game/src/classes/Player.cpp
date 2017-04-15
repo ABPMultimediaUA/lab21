@@ -5,7 +5,6 @@
 Player::Player() :
     m_currentWeaponType(eNone), m_currentWeapon(0)
 {
-
     setClassID(EntityPhysics::player_id);
     m_mKeys[0]=false;
     m_mKeys[1]=false;
@@ -103,6 +102,17 @@ bool Player::shoot(float timeSinceLastShoot)
     return false;
 }
 
+/////////////
+bool Player::throwGrenade(float timeSinceLastGrenade)
+{
+    if (timeSinceLastGrenade > m_grenadeWeapon.getCadence() && m_grenades > 0)
+    {
+        m_grenadeWeapon.shoot();
+        m_grenades--;
+        return true;
+    }
+    return false;
+}
 
 /////////////
 FirearmKind Player::getCurrentWeaponType() { return m_currentWeaponType; }
@@ -156,12 +166,6 @@ void Player::swapCurrentWeapon(FirearmKind weaponKind)
         m_currentWeaponType = weaponKind;
         m_timeWeaponSwap    = World->getTimeElapsed();
     }
-}
-
-/////////////
-void Player::throwGrenade()
-{
-    m_grenadeWeapon.shoot();
 }
 
 /////////////

@@ -28,7 +28,11 @@ class Player : public CharacterController
         /// \return Devuelve si ha podido disparar o no
         bool shoot(float timeSinceLastShoot);
 
-        void throwGrenade();
+        /// \brief Lanza una granaad
+        /// \details Tiene en cuenta si el tiempo que ha pasado es el correcto segun la
+        /// cadencia de la granada.
+        /// \return Devuelve si ha podido disparar o no
+        bool throwGrenade(float timeSinceLastGrenade);
 
         virtual void readEvents();
 

@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "WorldInstance.h"
+#include "GrenadeExplosion.h"
 
 using namespace std;
 
@@ -13,13 +14,19 @@ ProjectileGrenade::ProjectileGrenade()
 }
 
 ProjectileGrenade::ProjectileGrenade(dwe::vec3f origin, float a) :
-    m_position(origin), m_angle(-a*M_PI/180), m_collides(false)
+    m_position(origin), m_angle(-a*M_PI/180)
 {
     init();
 }
 
 void ProjectileGrenade::init()
 {
+    m_exploding = false;
+    m_exploded  = false;
+    m_grenadeExplosion = 0;
+    m_timeInitExplosion = 0;
+    m_collides = false;
+
     // Parámetros de físicas
     m_damping   = 4.0f;
     m_bullet    = true;
@@ -29,6 +36,11 @@ void ProjectileGrenade::init()
 ProjectileGrenade::~ProjectileGrenade()
 {
     //dtor
+    if (m_grenadeExplosion)
+    {
+        delete m_grenadeExplosion;
+        m_grenadeExplosion = 0;
+    }
 }
 
 bool ProjectileGrenade::getCollides(){return m_collides;}
@@ -37,7 +49,23 @@ void ProjectileGrenade::render(){};
 
 void ProjectileGrenade::update()
 {
-    setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
+    if (!m_exploding)
+    {
+        setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
+        if (m_collides || (getVelocity().x == 0.0 && getVelocity().y == 0.0))
+        {
+            // Crear objeto explosion
+            m_grenadeExplosion = GEInstance->createGrenadeExplosion(getPosition());
+            m_exploding = true;
+            m_timeInitExplosion = World->getTimeElapsed();
+        }
+    }
+    else if (!m_exploded)
+    {
+        // Explotando
+        if (World->getTimeElapsed() - m_timeInitExplosion > _timeExplosion)
+            m_exploded = true;
+    }
 }
 
 void ProjectileGrenade::setNode(dwe::Node* n)
@@ -63,3 +91,8 @@ void ProjectileGrenade::setPosition(dwe::vec3f p)
     Drawable::setPosition(p);
 }
 
+////////////////////////
+bool ProjectileGrenade::getExploded()
+{
+    return m_exploded;
+}

@@ -45,6 +45,7 @@ class Entity;
 class Door;
 class Projectile;
 class ProjectileGrenade;
+class GrenadeExplosion;
 class Generator;
 class MagnetKey;
 class SpeedBoost;
@@ -186,6 +187,7 @@ namespace dwe
         Door*               createDoor(int f, bool a, float px, float py, float pz);
         Projectile*         createProjectile(vec3f origin, float angle, std::string weapon);
         ProjectileGrenade*  createProjectileGrenade(vec3f origin, float angle);
+        GrenadeExplosion*   createGrenadeExplosion(vec3f origin);
         Generator*          createGenerator(int i, bool b, float px, float py, float pz);
         MagnetKey*          createMagnetKey(int i, float px, float py, float pz);
         SpeedBoost*         createSpeedBoost(float px, float py, float pz);

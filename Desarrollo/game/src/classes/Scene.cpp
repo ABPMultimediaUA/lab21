@@ -31,6 +31,7 @@ Scene::Scene() : navGraph(false)
 void Scene::Init()
 {
     timeLastProjectil       = 0;
+    timeLastGrenade         = 0;
     m_timeLastEnemyActive   = 0;
     m_timeEnemyActive       = 5.0;  // En segundos
     m_posMother             = dwe::vec3f(0,62.0,-1617.0);
@@ -255,22 +256,14 @@ void Scene::Update()
     {
         timeLastProjectil = World->getTimeElapsed();
     }
-
-
-    // comprobamos si dispara granadas
-    if(GEInstance->receiver.isKeyDown(KEY_GRENADE) && (World->getTimeElapsed() - timeLastProjectil)> 0.2 ){
-        NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectilgrenade
-        if (mainPlayer->getGrenades() > 0) //
+    else
+        // comprobamos si dispara granadas
+        if(GEInstance->receiver.isKeyDown(KEY_GRENADE)
+           && mainPlayer->throwGrenade(World->getTimeElapsed() - timeLastGrenade) )
         {
             NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectilgrenade
-
-            mainPlayer->throwGrenade();
-
-            timeLastProjectil = World->getTimeElapsed();
-
-            mainPlayer->setGrenades(mainPlayer->getGrenades()-1); //
-        }//
-    }
+            timeLastGrenade = World->getTimeElapsed();
+        }
 
     //UPDATE
 
@@ -316,15 +309,13 @@ void Scene::updateProjectilesGrenade()
     while(i<m_projectilesGrenades.size())
     {
         m_projectilesGrenades[i]->update();
-        /*if (m_projectilesGrenades[i]->getCollides())
+        if (m_projectilesGrenades[i]->getExploded())
         {
-            m_projectilesGrenades[i]->setVelocity(dwe::vec2f(0,0));
-        }
-        if(m_projectilesGrenades[i]->getVelocity().x==0 && m_projectilesGrenades[i]->getVelocity().y==0){
+            // Borramos granada
             delete m_projectilesGrenades[i];
             m_projectilesGrenades.erase(m_projectilesGrenades.begin()+i);
             i--;
-        }*/
+        }
         i++;
     }
 }
