@@ -310,7 +310,7 @@ void Scene::updateProjectilesGrenade()
     while(i<m_projectilesGrenades.size())
     {
         m_projectilesGrenades[i]->update();
-        if (m_projectilesGrenades[i]->getCollides())
+        /*if (m_projectilesGrenades[i]->getCollides())
         {
             m_projectilesGrenades[i]->setVelocity(dwe::vec2f(0,0));
         }
@@ -318,7 +318,7 @@ void Scene::updateProjectilesGrenade()
             delete m_projectilesGrenades[i];
             m_projectilesGrenades.erase(m_projectilesGrenades.begin()+i);
             i--;
-        }
+        }*/
         i++;
     }
 }

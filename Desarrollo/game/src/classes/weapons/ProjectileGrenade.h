@@ -28,10 +28,10 @@ class ProjectileGrenade: public Entity
     private:
         static const float _velocity = 5.f;  // m/s
 
-        dwe::vec3f position;
-        int speed;
-        float angle;
-        bool collides;
+        dwe::vec3f  m_position;
+        int         m_speed;
+        float       m_angle;
+        bool        m_collides;
 
 };
 

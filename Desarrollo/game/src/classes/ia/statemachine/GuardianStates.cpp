@@ -17,21 +17,21 @@ GPatrolState* GPatrolState::Instance()
 
 void GPatrolState::Enter(Guardian* pGuardian)
 {
-    cout << "\n" << "Guardian" << ": " << "Let's patrol";
+  //  cout << "\n" << "Guardian" << ": " << "Let's patrol";
 }
 
 
 void GPatrolState::Execute(Guardian* pGuardian)
 {
 
-    cout << "\n" << "Guardian" << ": " << "Patrolling here... Nobody can get our things";
+   // cout << "\n" << "Guardian" << ": " << "Patrolling here... Nobody can get our things";
 
 }
 
 
 void GPatrolState::Exit(Guardian* pGuardian)
 {
-  cout << "\n" << "Guardian" << ": " << "What...?";
+ // cout << "\n" << "Guardian" << ": " << "What...?";
 }
 
 /*******************/
@@ -45,19 +45,19 @@ GLookingForPlayerState* GLookingForPlayerState::Instance()
 
 void GLookingForPlayerState::Enter(Guardian* pGuardian)
 {
-    cout << "\n" << "Guardian" << ": " << "I heard something";
+ //   cout << "\n" << "Guardian" << ": " << "I heard something";
 }
 
 
 void GLookingForPlayerState::Execute(Guardian* pGuardian)
 {
-    cout << "\n" << "Guardian" << ": " << "Hey, what are you doing here?";
+  //  cout << "\n" << "Guardian" << ": " << "Hey, what are you doing here?";
 }
 
 void GLookingForPlayerState::Exit(Guardian* pGuardian)
 {
 
-    cout << "\n" << "Guardian" << ": " << "Go away!";
+  //  cout << "\n" << "Guardian" << ": " << "Go away!";
 }
 
 /*******************/
@@ -71,20 +71,20 @@ GRangedAttackState* GRangedAttackState::Instance()
 
 void GRangedAttackState::Enter(Guardian* pGuardian)
 {
-    cout << "\n" << "Guardian" << ": " << "I'll attack you with my acid";
+ //   cout << "\n" << "Guardian" << ": " << "I'll attack you with my acid";
 }
 
 
 void GRangedAttackState::Execute(Guardian* pGuardian)
 {
-    cout << "\n" << "Guardian" << ": " << "GHHHHHHHSSSS";
+  //  cout << "\n" << "Guardian" << ": " << "GHHHHHHHSSSS";
 
 }
 
 void GRangedAttackState::Exit(Guardian* pGuardian)
 {
 
-    cout << "\n" << "Guardian" << ": " << "Do you want more?";
+ //   cout << "\n" << "Guardian" << ": " << "Do you want more?";
 }
 
 /*******************/
@@ -98,19 +98,19 @@ GMeleeAttackState* GMeleeAttackState::Instance()
 
 void GMeleeAttackState::Enter(Guardian* pGuardian)
 {
-    cout << "\n" << "Guardian" << ": " << "Do you really think you can fight me?";
+  //  cout << "\n" << "Guardian" << ": " << "Do you really think you can fight me?";
 }
 
 
 void GMeleeAttackState::Execute(Guardian* pGuardian)
 {
-    cout << "\n" << "Guardian" << ": " << "'PUNCH!'";
+ //   cout << "\n" << "Guardian" << ": " << "'PUNCH!'";
 
 }
 
 void GMeleeAttackState::Exit(Guardian* pGuardian)
 {
 
-    cout << "\n" << "Guardian" << ": " << "Are you tired?";
+ //   cout << "\n" << "Guardian" << ": " << "Are you tired?";
 }
 

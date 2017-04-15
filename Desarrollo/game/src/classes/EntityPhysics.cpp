@@ -76,10 +76,19 @@ dwe::vec2f EntityPhysics::getVelocity()
 }
 
 ////////////////////
-void EntityPhysics::setForce(dwe::vec2f v)
+void EntityPhysics::setForce(dwe::vec2f f)
 {
     if (m_body)
-        m_body->ApplyForceToCenter(b2Vec2(v.x*_ratio, v.y*_ratio), true); // TODO se tiendrá que pasar la velocidad en m/s por lo que se quitará la multiplicacion
+        m_body->ApplyForceToCenter(b2Vec2(f.x, f.y), true);
+    else
+        cout << "//////////////////////////////////////\nERROR: No se ha creado m_body con createDynPhyEntity o similar.\n//////////////////////////////////////\n";
+}
+
+////////////////////
+void EntityPhysics::setImpulse(dwe::vec2f impulse)
+{
+    if (m_body)
+        m_body->ApplyLinearImpulseToCenter(b2Vec2(impulse.x, impulse.y), true);
     else
         cout << "//////////////////////////////////////\nERROR: No se ha creado m_body con createDynPhyEntity o similar.\n//////////////////////////////////////\n";
 }

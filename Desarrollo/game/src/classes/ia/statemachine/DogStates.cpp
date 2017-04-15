@@ -15,14 +15,14 @@ DPatrolState* DPatrolState::Instance()
 
 void DPatrolState::Enter(Dog* pDog)
 {
-    cout << "\n" << "Dog" << ": " << "Going for a walk";
+  //  cout << "\n" << "Dog" << ": " << "Going for a walk";
 }
 
 
 void DPatrolState::Execute(Dog* pDog)
 {
 
-    cout << "\n" << "Dog" << ": " << "Walking";
+   // cout << "\n" << "Dog" << ": " << "Walking";
 
     if(pDog->getSteps() == 1300)
         pDog->GetFSM()->ChangeState(DLookingForPlayerState::Instance());
@@ -31,7 +31,7 @@ void DPatrolState::Execute(Dog* pDog)
 
 void DPatrolState::Exit(Dog* pDog)
 {
-  cout << "\n" << "Dog" << ": " << "!";
+ // cout << "\n" << "Dog" << ": " << "!";
 }
 
 /*******************/
@@ -45,13 +45,13 @@ DLookingForPlayerState* DLookingForPlayerState::Instance()
 
 void DLookingForPlayerState::Enter(Dog* pDog)
 {
-    cout << "\n" << "Dog" << ": " << "I detected something";
+   // cout << "\n" << "Dog" << ": " << "I detected something";
 }
 
 
 void DLookingForPlayerState::Execute(Dog* pDog)
 {
-    cout << "\n" << "Dog" << ": " << "Trying to locate something strange";
+ //   cout << "\n" << "Dog" << ": " << "Trying to locate something strange";
 
     if(pDog->getSteps() == 1000)
         pDog->GetFSM()->ChangeState(DKnockDownState::Instance());
@@ -59,7 +59,7 @@ void DLookingForPlayerState::Execute(Dog* pDog)
 
 void DLookingForPlayerState::Exit(Dog* pDog)
 {
-    cout << "\n" << "Dog" << ": " << "Locating...";
+ //   cout << "\n" << "Dog" << ": " << "Locating...";
 }
 
 /*******************/
@@ -73,13 +73,13 @@ DAsleepState* DAsleepState::Instance()
 
 void DAsleepState::Enter(Dog* pDog)
 {
-    cout << "\n" << "Dog" << ": " << "Going to sleep a bit";
+//    cout << "\n" << "Dog" << ": " << "Going to sleep a bit";
 }
 
 
 void DAsleepState::Execute(Dog* pDog)
 {
-    cout << "\n" << "Dog" << ": " << "Dreaming with food";
+//    cout << "\n" << "Dog" << ": " << "Dreaming with food";
 
     if(pDog->getSteps() == 1600)
         pDog->GetFSM()->ChangeState(DPatrolState::Instance());
@@ -93,7 +93,7 @@ void DAsleepState::Execute(Dog* pDog)
 
 void DAsleepState::Exit(Dog* pDog)
 {
-    cout << "\n" << "Dog" << ": " << "Waking up and yawning";
+//    cout << "\n" << "Dog" << ": " << "Waking up and yawning";
 }
 
 /*******************/
@@ -107,13 +107,13 @@ DKnockDownState* DKnockDownState::Instance()
 
 void DKnockDownState::Enter(Dog* pDog)
 {
-    cout << "\n" << "Dog" << ": " << "Jumping";
+//    cout << "\n" << "Dog" << ": " << "Jumping";
 }
 
 
 void DKnockDownState::Execute(Dog* pDog)
 {
-    cout << "\n" << "Dog" << ": " << "Knocked down!";
+//    cout << "\n" << "Dog" << ": " << "Knocked down!";
 
     if(pDog->getSteps() == 700)
         pDog->GetFSM()->ChangeState(DAttackState::Instance());
@@ -121,7 +121,7 @@ void DKnockDownState::Execute(Dog* pDog)
 
 void DKnockDownState::Exit(Dog* pDog)
 {
-    cout << "\n" << "Dog" << ": " << "Grr...";
+  //  cout << "\n" << "Dog" << ": " << "Grr...";
 }
 
 /*******************/
@@ -135,13 +135,13 @@ DAttackState* DAttackState::Instance()
 
 void DAttackState::Enter(Dog* pDog)
 {
-    cout << "\n" << "Dog" << ": " << "I'll bite you";
+  //  cout << "\n" << "Dog" << ": " << "I'll bite you";
 }
 
 
 void DAttackState::Execute(Dog* pDog)
 {
-    cout << "\n" << "Dog" << ": " << "Biting";
+  //  cout << "\n" << "Dog" << ": " << "Biting";
 
     if(pDog->getSteps() == 400)
         pDog->GetFSM()->ChangeState(DRunAwayState::Instance());
@@ -149,7 +149,7 @@ void DAttackState::Execute(Dog* pDog)
 
 void DAttackState::Exit(Dog* pDog)
 {
-    cout << "\n" << "Dog" << ": " << "It hurts!";
+  //  cout << "\n" << "Dog" << ": " << "It hurts!";
 }
 
 /*******************/
@@ -163,13 +163,13 @@ DRunAwayState* DRunAwayState::Instance()
 
 void DRunAwayState::Enter(Dog* pDog)
 {
-    cout << "\n" << "Dog" << ": " << "I'm scared";
+  //  cout << "\n" << "Dog" << ": " << "I'm scared";
 }
 
 
 void DRunAwayState::Execute(Dog* pDog)
 {
-    cout << "\n" << "Dog" << ": " << "Running away";
+  //  cout << "\n" << "Dog" << ": " << "Running away";
 
     if(pDog->getSteps() == 200)
         pDog->GetFSM()->ChangeState(DAsleepState::Instance());
@@ -177,6 +177,6 @@ void DRunAwayState::Execute(Dog* pDog)
 
 void DRunAwayState::Exit(Dog* pDog)
 {
-    cout << "\n" << "Dog" << ": " << "Bye!";
+  //  cout << "\n" << "Dog" << ": " << "Bye!";
 }
 

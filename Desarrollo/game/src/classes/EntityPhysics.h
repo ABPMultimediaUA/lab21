@@ -25,7 +25,11 @@ class EntityPhysics
 
         dwe::vec2f getVelocity();
 
-        void setForce(dwe::vec2f v);
+        /// \param[in] f fuerza en m/s
+        void setForce(dwe::vec2f f);
+
+        /// \param[in] impulse impulso en m/s
+        void setImpulse(dwe::vec2f impulse);
 
         virtual void onBeginContact(EntityPhysics* otherObject);
         virtual void onEndContact(EntityPhysics* otherObject);
