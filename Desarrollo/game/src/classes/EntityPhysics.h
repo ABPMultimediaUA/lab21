@@ -45,6 +45,7 @@ class EntityPhysics
         bool        m_bullet;
         float32     m_density;
         float32     m_friction;
+        float32     m_damping;
 
 
         // Se crea el tipo de sólido

@@ -8,7 +8,7 @@ using namespace std;
 
 ///////////////
 EntityPhysics::EntityPhysics() :
-    m_fixedRotation(true), m_isSensor(false), m_bullet(false), m_density(1.0f), m_friction(0.3f),
+    m_fixedRotation(true), m_isSensor(false), m_bullet(false), m_density(1.0f), m_friction(0.3f), m_damping(0.0f),
     m_body(0),
     m_classID(EntityPhysics::no_id)
 {
@@ -94,6 +94,8 @@ void EntityPhysics::createBody(b2BodyType type, const dwe::vec3f& pos, float wid
     bodyDef.angle           = -(angleDegrees*M_PI/180);  // Lo pasamos a radianes
     bodyDef.fixedRotation   = m_fixedRotation;
     bodyDef.bullet          = m_bullet;
+    bodyDef.angularDamping  = m_damping;
+    bodyDef.linearDamping   = m_damping;
 
     m_body = World->createBody(&bodyDef);
     m_body->SetUserData(this);  // Sin esta linea no funcionan los callbacks

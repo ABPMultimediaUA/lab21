@@ -23,9 +23,9 @@ Player::Player() :
     m_weapons[eShotgun] = 0;
     m_weapons[eRifle]   = 0;
 
-    m_health = 100;
+    m_health    = 100;
     m_maxHealth = 100;
-    m_grenades=3;
+    m_grenades  = 6;
 
     m_playerWeaponKey[eGun].key         = KEY_WEAPON_1;
     m_playerWeaponKey[eGun].weapon      = eGun;
