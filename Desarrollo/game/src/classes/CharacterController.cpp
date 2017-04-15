@@ -27,7 +27,10 @@ void CharacterController::readEvents()
         // La velocidad se calcula cuando se llama a dash()
         // Cuenta atrás
         if (World->getTimeElapsed() - m_timeEvading > _maxEvadingTime)
+        {
             m_isEvading = false;
+            m_speedX = m_speedZ = 0;
+        }
     }
     else
     {
