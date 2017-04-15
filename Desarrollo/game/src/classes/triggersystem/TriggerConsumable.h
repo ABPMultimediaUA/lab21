@@ -1,17 +1,17 @@
-#ifndef TRIGGERDOOR_H
-#define TRIGGERDOOR_H
+#ifndef TRIGGERCONSUMABLE_H
+#define TRIGGERCONSUMABLE_H
 
 #include "Trigger.h"
 
-class Door;
+class Consumable;
 
-class TriggerDoor: public Trigger
+class TriggerConsumable : public Trigger
 {
     public:
 
-        TriggerDoor(Door* owner);
+        TriggerConsumable(Consumable* owner);
 
-        virtual ~TriggerDoor();
+        virtual ~TriggerConsumable();
 
         void Update();
 
@@ -25,8 +25,8 @@ class TriggerDoor: public Trigger
 
     private:
 
-        Door* m_owner;
+        Consumable* m_owner;
         bool m_touchingMainPlayer;
 };
 
-#endif // TRIGGERDOOR_H
+#endif // TRIGGERCONSUMABLE_H

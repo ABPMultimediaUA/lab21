@@ -2,7 +2,6 @@
 #define ENTITYPHYSICS_H
 
 #include "GraphicsEngine.h"
-#include "Drawable.h"
 #include <Box2D/Box2D.h>
 #include <Box2D/Common/b2Math.h>
 

@@ -1,8 +1,5 @@
 #include "EntityPhysics.h"
 #include "WorldInstance.h"
-#include "ScenaryElement.h"
-
-#include "GraphicsEngine.h"
 
 #include <iostream>
 #include <cmath>

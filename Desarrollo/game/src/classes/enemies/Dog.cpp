@@ -33,7 +33,7 @@ void Dog::setSteps (int s)
 void Dog::update()
 {
     steps--;
-    d_pStateMachine->Update();
+    //d_pStateMachine->Update();
 }
 
 void Dog::render()

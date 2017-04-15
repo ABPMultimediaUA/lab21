@@ -1,43 +1,33 @@
 #include "Consumable.h"
-#include "Player.h"
-#include "NetGame.h"
 #include "WorldInstance.h"
+#include "NetGame.h"
+#include "TriggerConsumable.h"
 
 Consumable::Consumable() :
-    m_touchingMainPlayer(false),
     m_isTaken(false)
 {
-    // Parámetros de físicas
-    m_isSensor = true;
-
-    setClassID(EntityPhysics::consumable_id);
+    m_trigger = new TriggerConsumable(this);
 }
 
 Consumable::~Consumable()
 {
-    //dtor
+    delete m_trigger;
 }
 
 /////////////////
 bool Consumable::getIsTaken() { return m_isTaken; }
 
 /////////////////
-void Consumable::update(Player* mainPlayer)
+void Consumable::Take()
 {
-    if(!m_isTaken)
+    if (hasNode())
     {
-        if (this->hasNode())
-        {
-            if(m_touchingMainPlayer)
-            {
-                NetInstance->sendBroadcast(ID_CONSUMABLE_TAKEN, m_netID);  // enviamos a los demas que lo hemos cogido
-                this->removeNode();
+        NetInstance->sendBroadcast(ID_CONSUMABLE_TAKEN, m_netID);  // enviamos a los demas que lo hemos cogido
+        removeNode();
 
-                m_isTaken = true;
+        m_isTaken = true;
 
-                onTake(mainPlayer);
-            }
-        }
+        onTake(World->getMainPlayer());
     }
 }
 
@@ -60,27 +50,11 @@ void Consumable::setNetID(unsigned int netID) { m_netID = netID; }
 void Consumable::setNode(dwe::Node* n)
 {
     Drawable::setNode(n);
-
-    dwe::vec3f s = n->getBoundingBox();
-
-    createKinematicBody(getPosition(), s.x, s.z, getRotation().y);
+    m_trigger->SetSensor();
 }
 
 /////////////////
-void Consumable::onBeginContact(EntityPhysics* otherObject)
+void Consumable::setPosition(dwe::vec3f p)
 {
-    if (otherObject && otherObject->getClassID() == EntityPhysics::player_id)
-    {
-        m_touchingMainPlayer = true;
-    }
+    Drawable::setPosition(p);
 }
-
-/////////////////
-void Consumable::onEndContact(EntityPhysics* otherObject)
-{
-    if (otherObject && otherObject->getClassID() == EntityPhysics::player_id)
-    {
-        m_touchingMainPlayer = false;
-    }
-}
-

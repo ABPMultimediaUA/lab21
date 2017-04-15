@@ -1,5 +1,5 @@
 #include "Perception.h"
-//#include "GraphicsEngine.h"
+#include "Enemy.h"
 #include "NetGame.h"
 #include "PlayerMate.h"
 #include "WorldInstance.h"

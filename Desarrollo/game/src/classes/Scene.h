@@ -13,6 +13,7 @@
 #include "Gun.h"
 
 #include "NavigationGraph.h"
+#include "TriggerSystem.h"
 
 class Projectile;
 class ProjectileGrenade;
@@ -65,6 +66,7 @@ class Scene
         void updateConsumables(Player* mainPlayer);
         void updatePlayerWeapons(Player* mainPlayer, Firearm** weapons);
         NavigationGraph& getNavGraph();
+        TriggerSystem& getTriggerSystem();
 
         Enemy* getClosestEnemy();
 
@@ -105,6 +107,7 @@ class Scene
         //std::vector<Enemy*> m_enemies;
 
         NavigationGraph navGraph;
+        TriggerSystem m_triggerSystem;
 
         float timeLastProjectil;
 

@@ -1,8 +1,7 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-#include "Scene.h"
-#include "EntityPhysics.h"
+#include "GraphicsEngine.h"
 #include <Box2D/Box2D.h>
 #include <Box2D/Common/b2Math.h>
 #include <SFML/System.hpp>
@@ -11,6 +10,7 @@
 
 
 class Player;
+class EntityPhysics;
 
 /////////////////////////////////////////////////////////
 // Clase que se encarga de obtener los eventos de las
@@ -21,29 +21,9 @@ class Player;
 /////////////////////////////////////////////////////////
 class ContactListener : public b2ContactListener
 {
-    void BeginContact(b2Contact* contact)
-    {
-        EntityPhysics* bodyUserDataA = (EntityPhysics*)contact->GetFixtureA()->GetBody()->GetUserData();
-        EntityPhysics* bodyUserDataB = (EntityPhysics*)contact->GetFixtureB()->GetBody()->GetUserData();
-
-        if (bodyUserDataA)
-            bodyUserDataA->onBeginContact(bodyUserDataB);
-
-        if (bodyUserDataB)
-            bodyUserDataB->onBeginContact(bodyUserDataA);
-    }
-
-    void EndContact(b2Contact* contact)
-    {
-        EntityPhysics* bodyUserDataA = (EntityPhysics*)contact->GetFixtureA()->GetBody()->GetUserData();
-        EntityPhysics* bodyUserDataB = (EntityPhysics*)contact->GetFixtureB()->GetBody()->GetUserData();
-
-        if (bodyUserDataA)
-            bodyUserDataA->onEndContact(bodyUserDataB);
-
-        if (bodyUserDataB)
-            bodyUserDataB->onEndContact(bodyUserDataA);
-    }
+    public:
+        void BeginContact(b2Contact* contact);
+        void EndContact(b2Contact* contact);
 };
 
 

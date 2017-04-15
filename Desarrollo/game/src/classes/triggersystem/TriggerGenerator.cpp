@@ -31,6 +31,6 @@ void TriggerGenerator::render()
 
 void TriggerGenerator::update(Generator *g)
 {
-    if(m_touchingMainPlayer && World->getMainPlayer()->getMKey(g->getNum()) && GEInstance->receiver.isKeyDown(KEY_OPEN_DOOR))
-        triggered(g);
+    /*if(m_touchingMainPlayer && World->getMainPlayer()->getMKey(g->getNum()) && GEInstance->receiver.isKeyDown(KEY_OPEN_DOOR))
+        triggered(g);*/
 }

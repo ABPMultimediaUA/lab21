@@ -24,14 +24,14 @@ StillState* StillState::Instance()
 void StillState::Enter(Mother* pMother)
 {
     pMother->setTimeBetweenCreations(0);
-    cout << "\n" << "Mother" << ": " << "Im going to rest a bit";
+    //cout << "\n" << "Mother" << ": " << "Im going to rest a bit";
 }
 
 
 void StillState::Execute(Mother* pMother)
 {
 
-    cout << "\n" << "Mother" << ": " << "ZZzzZzZzZ...";
+    //cout << "\n" << "Mother" << ": " << "ZZzzZzZzZ...";
 
     if(pMother->getTimeBetweenCreations() == 4)
         pMother->GetFSM()->ChangeState(CreatingState::Instance());
@@ -40,7 +40,7 @@ void StillState::Execute(Mother* pMother)
 
 void StillState::Exit(Mother* pMother)
 {
-  cout << "\n" << "Mother" << ": " << "I woke up because that guy is trying to attack me";
+  //cout << "\n" << "Mother" << ": " << "I woke up because that guy is trying to attack me";
 }
 
 /*******************/
@@ -54,13 +54,13 @@ CreatingState* CreatingState::Instance()
 
 void CreatingState::Enter(Mother* pMother)
 {
-    cout << "\n" << "Mother" << ": " << "Gonna create a few more children to fight him";
+    //cout << "\n" << "Mother" << ": " << "Gonna create a few more children to fight him";
 }
 
 
 void CreatingState::Execute(Mother* pMother)
 {
-    cout << "\n" << "Mother" << ": " << "NNNNNNNNFFFF";
+    //cout << "\n" << "Mother" << ": " << "NNNNNNNNFFFF";
 
     if(pMother->getTimeBetweenCreations() == 8)
         pMother->GetFSM()->ChangeState(StillState::Instance());
@@ -69,5 +69,5 @@ void CreatingState::Execute(Mother* pMother)
 void CreatingState::Exit(Mother* pMother)
 {
 
-    cout << "\n" << "Mother" << ": " << "Go kid go!";
+    //cout << "\n" << "Mother" << ": " << "Go kid go!";
 }

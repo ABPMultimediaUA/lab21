@@ -14,7 +14,6 @@
 
 #include "NetGame.h"
 
-#include "EntityPhysics.h"
 #include "WorldInstance.h"
 
 #include "Door.h"
@@ -25,7 +24,6 @@
 #include "SpeedBoost.h"
 #include "Medkit.h"
 
-#include "Trigger.h"
 #include "TriggerDoor.h"
 #include "TriggerGenerator.h"
 
@@ -350,6 +348,7 @@ Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float p
 	d->setNode(new Node(node));
 
     d->setPosition(dwe::vec3f(px, py, pz)); // Cerrada
+    d->SetSensor();
 	d->setPositionClosed(dwe::vec3f(px, py, pz)); // Localización de la puerta CERRADA
 	d->setPositionOpened(dwe::vec3f(px, py, pz));
 	if(f==1 || f==3)
@@ -478,7 +477,7 @@ CRifle* dwe::GraphicsEngine::createCRifle(float px, float py, float pz)
 	return r;
 }
 
-TriggerDoor* dwe::GraphicsEngine::createTriggerDoor(float px, float py, float pz)
+/*TriggerDoor* dwe::GraphicsEngine::createTriggerDoor(float px, float py, float pz)
 {
     tag::GraphicNode* node = m_tagEngine.createMesh("media/triggerDoor.obj", vec3f(0,0,0), vec3f(0,0,0));
     TriggerDoor* t = new TriggerDoor();
@@ -486,9 +485,9 @@ TriggerDoor* dwe::GraphicsEngine::createTriggerDoor(float px, float py, float pz
 	t->setPosition(dwe::vec3f(px, py, pz));
 
 	return t;
-}
+}*/
 
-TriggerGenerator* dwe::GraphicsEngine::createTriggerGenerator(float px, float py, float pz)
+/*TriggerGenerator* dwe::GraphicsEngine::createTriggerGenerator(float px, float py, float pz)
 {
     tag::GraphicNode* node = m_tagEngine.createMesh("media/triggerGenerator.obj", vec3f(0,0,0), vec3f(0,0,0));
     TriggerGenerator* t = new TriggerGenerator();
@@ -496,7 +495,7 @@ TriggerGenerator* dwe::GraphicsEngine::createTriggerGenerator(float px, float py
 	t->setPosition(dwe::vec3f(px, py, pz));
 
 	return t;
-}
+}*/
 
 //////////////////////////
 void dwe::GraphicsEngine::close()

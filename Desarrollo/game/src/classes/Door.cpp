@@ -1,6 +1,8 @@
 #include "Door.h"
 #include "NetGame.h"
-#include "WorldInstance.h"
+#include "TriggerDoor.h"
+#include "TriggerSystem.h"
+#include "Scene.h"
 
 Door::Door(int f, bool a)
 {
@@ -13,11 +15,13 @@ Door::Door(int f, bool a)
     cl=0;
     isOpening = false;
     isClosing = false;
+    m_trigger = new TriggerDoor(this);
+    Scene::Instance()->getTriggerSystem().Add(m_trigger);
 }
 
 Door::~Door()
 {
-    //dtor
+    delete m_trigger;
 }
 
 void Door::setActive()  {   active=true;      }
@@ -190,4 +194,9 @@ void Door::setPosition(dwe::vec3f p)
         rotation=90;
 
     DrawablePhysics::setPosition(p);
+}
+
+void Door::SetSensor()
+{
+    m_trigger->SetSensor();
 }

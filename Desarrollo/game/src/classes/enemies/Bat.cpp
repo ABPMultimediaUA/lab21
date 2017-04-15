@@ -28,7 +28,7 @@ void Bat::setSteps (int s)
 void Bat::update()
 {
     steps--;
-    b_pStateMachine->Update();
+    //b_pStateMachine->Update();
 }
 
 void Bat::render()

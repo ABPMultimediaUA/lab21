@@ -3,6 +3,8 @@
 
 #include "Entity.h"
 
+class Trigger;
+
 /******************************************************************************
 Las puertas bloquean el acceso a una zona. Pueden abrirse o no dependiendo de
 si a esa zona le llega energia de un generador o si funcionan desde un principio.
@@ -34,6 +36,8 @@ class Door: public Entity
         virtual void setNode(dwe::Node* n);
         virtual void setPosition(dwe::vec3f p);
 
+        void SetSensor();
+
     protected:
 
     private:
@@ -46,6 +50,7 @@ class Door: public Entity
         bool isClosing;
         bool isOpened;
         float speed; // Velocidad de apertura y cierre
+        TriggerDoor* m_trigger;
 
 };
 

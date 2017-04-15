@@ -1,9 +1,10 @@
 #include "TriggerDoor.h"
-#include "WorldInstance.h"
+#include "Door.h"
 
-TriggerDoor::TriggerDoor()
+TriggerDoor::TriggerDoor(Door* owner)
 {
-    //ctor
+    m_owner = owner;
+    m_touchingMainPlayer = false;
 }
 
 TriggerDoor::~TriggerDoor()
@@ -11,25 +12,35 @@ TriggerDoor::~TriggerDoor()
     //dtor
 }
 
-void TriggerDoor::triggered(Entity *e)
+void TriggerDoor::SetSensor()
 {
-    if(((Door*)e)->getIfOpened())
-    {
-        ((Door*)e)->setIsClosing();
+    dwe::vec3f s = m_owner->getNode()->getBoundingBox();
+    createStaticBody(m_owner->getPosition(), s.x*2, s.z*2, m_owner->getRotation().y);
+}
+
+void TriggerDoor::Update()
+{
+    if (m_touchingMainPlayer && GEInstance->receiver.isKeyDown(KEY_OPEN_DOOR)){
+        if(m_owner->getIfOpened())
+            m_owner->setIsClosing();
+        else
+            m_owner->setIsOpening();
     }
-    else
+    m_owner->update();
+}
+
+void TriggerDoor::onBeginContact(EntityPhysics* otherObject)
+{
+    if (otherObject && otherObject->getClassID() == EntityPhysics::player_id)
     {
-        ((Door*)e)->setIsOpening();
+        m_touchingMainPlayer = true;
     }
 }
 
-void TriggerDoor::render()
+void TriggerDoor::onEndContact(EntityPhysics* otherObject)
 {
-
-}
-
-void TriggerDoor::update(Entity *e)
-{
-    if (m_touchingMainPlayer && GEInstance->receiver.isKeyDown(KEY_OPEN_DOOR))
-        triggered(e);
+    if (otherObject && otherObject->getClassID() == EntityPhysics::player_id)
+    {
+        m_touchingMainPlayer = false;
+    }
 }
