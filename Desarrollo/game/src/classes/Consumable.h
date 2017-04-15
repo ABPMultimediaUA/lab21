@@ -19,7 +19,6 @@ class Consumable : public DrawablePhysics
         void setNetID(unsigned int netID);
 
         virtual void setNode(dwe::Node* n);
-        virtual void setPosition(dwe::vec3f p);
 
         virtual void onBeginContact(EntityPhysics* otherObject);
         virtual void onEndContact(EntityPhysics* otherObject);

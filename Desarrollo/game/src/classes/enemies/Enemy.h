@@ -16,7 +16,6 @@ class Enemy : public DrawablePhysics
 
         void setNetID(unsigned int netID);
 
-        virtual void setPosition(dwe::vec3f p);
         void move();
         bool Sense();
         void PlanPath();

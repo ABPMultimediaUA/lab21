@@ -9,6 +9,8 @@ Generator::Generator(int n, bool b)
     active=b;
     entities=0;
     sector=new Entity*[entities];
+
+    // Parámetros de físicas por defecto
 }
 
 Generator::~Generator()
@@ -48,23 +50,12 @@ bool Generator::getIsActive(){ return active; }
 
 void Generator::render()
 {
-    if(!active)
-    {
-        //Generador desactivado
-        //Dibujar nodo
-    }
-    else
-    {
-        //Generador activado
-        //Dibujar nodo
-    }
+
 }
 
 void Generator::update()
 {
-    if(active){
 
-    }
 }
 
 void Generator::setNode(dwe::Node* n)
@@ -75,8 +66,3 @@ void Generator::setNode(dwe::Node* n)
     createStaticBody(getPosition(), s.x, s.z, 90);
 }
 
-void Generator::setPosition(dwe::vec3f p)
-{
-    setPosEntity(p, getRotation().y);
-    Drawable::setPosition(p);
-}

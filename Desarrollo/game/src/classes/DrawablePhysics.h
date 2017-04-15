@@ -11,6 +11,8 @@ class DrawablePhysics : public Drawable, public EntityPhysics
         DrawablePhysics();
         virtual ~DrawablePhysics();
 
+        virtual void setPosition(dwe::vec3f p);
+
     protected:
 
     private:

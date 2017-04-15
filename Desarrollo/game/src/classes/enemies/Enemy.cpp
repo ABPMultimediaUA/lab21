@@ -12,6 +12,8 @@ Enemy::Enemy() :
     m_pathplanning(0)
 {
     setClassID(EntityPhysics::enemy_id);
+
+    // Parámetros de físicas por defecto
 }
 
 Enemy::~Enemy()
@@ -30,12 +32,6 @@ void Enemy::resetHealth() { m_health = m_maxHealth; }
 ////////////
 void Enemy::setNetID(unsigned int netID) { m_netID = netID; }
 
-/////////////
-void Enemy::setPosition(dwe::vec3f p)
-{
-    setPosEntity(p, getRotation().y);
-    Drawable::setPosition(p);
-}
 
 void Enemy::move()
 {

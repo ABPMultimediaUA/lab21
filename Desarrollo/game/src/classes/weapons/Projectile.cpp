@@ -10,6 +10,9 @@ using namespace std;
 Projectile::Projectile()
 {
      setClassID(EntityPhysics::projectile_id);//rmm
+
+     // Parámetros de físicas
+     m_bullet = true;
 }
 
 Projectile::Projectile(dwe::vec3f origin, float a)
@@ -34,7 +37,7 @@ void Projectile::render(){};
 
 void Projectile::update()
 {
-    setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));//rmm
+    Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));//rmm
 }
 
 //rmm////////////
@@ -43,7 +46,7 @@ void Projectile::setNode(dwe::Node* n)
     Drawable::setNode(n);
 
     dwe::vec3f box = n->getBoundingBox();
-    createDynamicBody(dwe::vec3f(position.x+cos(angle)*25.f,0,position.z+sin(angle)*25.f), box.x, box.z, angle, true);
+    createDynamicBody(dwe::vec3f(position.x+cos(angle)*25.f,0,position.z+sin(angle)*25.f), box.x, box.z, angle);
 
     setVelocity(dwe::vec2f(speed*cos(angle), speed*sin(angle)));
     update();
@@ -53,8 +56,16 @@ void Projectile::setNode(dwe::Node* n)
 void Projectile::onBeginContact(EntityPhysics* otherObject)
 {
     collides = (otherObject
-                && (otherObject->getClassID()!=EntityPhysics::player_id
-                    || otherObject->getClassID()!=EntityPhysics::playermate_id) );
+                && otherObject->getClassID()!=EntityPhysics::player_id
+                && otherObject->getClassID()!=EntityPhysics::playermate_id
+                && otherObject->getClassID()!=EntityPhysics::trigger_id
+                && otherObject->getClassID()!=EntityPhysics::consumable_id );
+}
+
+/////////////////
+void Projectile::setPosition(dwe::vec3f p)
+{
+    Drawable::setPosition(p);
 }
 
 

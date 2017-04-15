@@ -3,6 +3,8 @@
 PlayerMate::PlayerMate()
 {
     setClassID(EntityPhysics::playermate_id);
+
+    // Parametros de físicas por defecto
 }
 
 PlayerMate::~PlayerMate()
@@ -28,13 +30,6 @@ void PlayerMate::setNode(dwe::Node* n)
 
     dwe::vec3f box = n->getBoundingBox();
     createDynamicBody(getPosition(), box.x, box.z);
-}
-
-/////////////////
-void PlayerMate::setPosition(dwe::vec3f p)
-{
-    setPosEntity(p, getRotation().y);
-    Drawable::setPosition(p);
 }
 
 ///////////////////////

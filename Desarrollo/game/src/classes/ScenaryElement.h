@@ -13,7 +13,6 @@ class ScenaryElement : public DrawablePhysics
         void render();
 
         virtual void setNode(dwe::Node* n);
-        virtual void setPosition(dwe::vec3f p);
 
     protected:
 

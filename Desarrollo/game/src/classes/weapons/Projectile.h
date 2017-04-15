@@ -23,6 +23,8 @@ class Projectile: public Entity
 
         virtual void onBeginContact(EntityPhysics* otherObject);
 
+        virtual void setPosition(dwe::vec3f p);
+
     protected:
 
     private:

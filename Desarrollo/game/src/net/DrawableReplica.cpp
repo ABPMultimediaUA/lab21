@@ -47,8 +47,8 @@ void dwn::DrawableReplica::PostDeserializeConstruction(RakNet::BitStream* constr
 	// del host, ya que es 1a persona.
 	// Por ejemplo se puede crear en el hud los datos del modelo remoto creado
 	// y la posicion inicial
-	setPosition(m_remotePos);
 	setRotation(m_remoteRot);
+	DrawablePhysics::setPosition(m_remotePos);
 }
 
 ///////////////////////////
@@ -99,7 +99,7 @@ void dwn::DrawableReplica::update(RakNet::TimeMS curTime)
         setAnimation(m_remoteAnim);
         if (curTime - m_lastPosUpdate> 200)
         {
-            setPosition(m_remotePos);
+            DrawablePhysics::setPosition(m_remotePos);
             m_lastPosUpdate = curTime;
         }
     }

@@ -20,7 +20,6 @@ class Generator: public Entity
         virtual void update();
 
         virtual void setNode(dwe::Node* n);
-        virtual void setPosition(dwe::vec3f p);
 
     protected:
 

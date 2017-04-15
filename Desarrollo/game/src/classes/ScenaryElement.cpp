@@ -2,7 +2,7 @@
 
 ScenaryElement::ScenaryElement()
 {
-    //ctor
+    // Parámetros de físicas por defecto
 }
 
 ScenaryElement::~ScenaryElement()
@@ -17,13 +17,6 @@ void ScenaryElement::setNode(dwe::Node* n)
 
     dwe::vec3f s = n->getBoundingBox();
     createStaticBody(getPosition(), s.x, s.z, getRotation().y);
-}
-
-/////////////////////
-void ScenaryElement::setPosition(dwe::vec3f p)
-{
-    setPosEntity(p, getRotation().y);
-    Drawable::setPosition(p);
 }
 
 /////////////////////

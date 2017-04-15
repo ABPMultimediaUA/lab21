@@ -9,13 +9,15 @@ using namespace std;
 
 ProjectileGrenade::ProjectileGrenade()
 {
-
+     // Parámetros de físicas
+     m_bullet = true;
 }
 
 ProjectileGrenade::ProjectileGrenade(dwe::vec3f origin, float a) :
     m_position(origin), m_angle(-a*M_PI/180), m_collides(false)
 {
-
+     // Parámetros de físicas
+     m_bullet = true;
 }
 
 
@@ -49,11 +51,13 @@ void ProjectileGrenade::setNode(dwe::Node* n)
     Drawable::setNode(n);
 
     dwe::vec3f box = n->getBoundingBox();
-    createDynamicBody(dwe::vec3f(m_position.x+cos(m_angle)*25.f,0,m_position.z+sin(m_angle)*25.f), box.x, box.z, m_angle, true);
+    createDynamicBody(dwe::vec3f(m_position.x+cos(m_angle)*25.f,0,m_position.z+sin(m_angle)*25.f), box.x, box.z, m_angle);
 
     //setVelocity(dwe::vec2f(_velocity*cos(m_angle), _velocity*sin(m_angle)));
     //setForce(dwe::vec2f(_velocity*cos(m_angle)*200.0, _velocity*sin(m_angle)*200.0));
-    setForce(dwe::vec2f(20, 0));
+    m_friction = 0.1;
+    m_density = 0.1;
+    setForce(dwe::vec2f(4.0, 0));
     update();
 }
 

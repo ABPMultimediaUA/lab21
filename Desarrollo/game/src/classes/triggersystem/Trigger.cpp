@@ -5,7 +5,10 @@
 Trigger::Trigger():
     m_touchingMainPlayer(false)
 {
+    // Parámetros de físicas
+    m_isSensor = true;
 
+    setClassID(EntityPhysics::trigger_id);
 }
 
 Trigger::~Trigger()
@@ -34,7 +37,7 @@ void Trigger::setNode(dwe::Node* n)
     Drawable::setNode(n);
 
     dwe::vec3f s = n->getBoundingBox();
-    createSensorBody(getPosition(), s.x, s.z, getRotation().y);
+    createKinematicBody(getPosition(), s.x, s.z, getRotation().y);
 }
 
 //////////////

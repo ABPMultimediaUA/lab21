@@ -33,6 +33,9 @@ Player::Player() :
     m_playerWeaponKey[eShotgun].weapon  = eShotgun;
     m_playerWeaponKey[eRifle].key       = KEY_WEAPON_3;
     m_playerWeaponKey[eRifle].weapon    = eRifle;
+
+
+    // Parámetros de físicas por defecto
 }
 
 Player::~Player()
@@ -68,12 +71,6 @@ void Player::setNode(dwe::Node* n)
     createDynamicBody(getPosition(), box.x, box.z);
 }
 
-/////////////
-void Player::setPosition(dwe::vec3f p)
-{
-    setPosEntity(p, getRotation().y);
-    Drawable::setPosition(p);
-}
 
 /***/
 void Player::sayPosition()

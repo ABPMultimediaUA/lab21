@@ -66,7 +66,6 @@ class Player : public CharacterController
         void reloadWeapon();
 
         virtual const char* getNetObjectID() const;
-        virtual void setPosition(dwe::vec3f p);
 
         void sayPosition();
 

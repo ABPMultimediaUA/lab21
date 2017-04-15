@@ -172,16 +172,15 @@ void Door::render()
 
 void Door::setNode(dwe::Node* n)
 {
-
     Drawable::setNode(n);
 
     dwe::vec3f s = n->getBoundingBox();
-    //createStaticBody(getPosition(), s.x, s.z, 0);
 
     float rotation=0;
     if(facing==1 ||facing ==3)
         rotation=90;
-    createDoor(getPosition(), s.x, s.z, rotation);
+    createStaticBody(getPosition(), s.x, s.z, rotation);
+    setRotation(dwe::vec3f(0, rotation, 0));
 }
 
 void Door::setPosition(dwe::vec3f p)
@@ -189,6 +188,6 @@ void Door::setPosition(dwe::vec3f p)
     int rotation=0;
     if(facing==1 ||facing ==3)
         rotation=90;
-    setPosEntity(p, rotation);
-    Drawable::setPosition(p);
+
+    DrawablePhysics::setPosition(p);
 }

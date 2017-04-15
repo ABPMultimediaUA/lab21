@@ -9,7 +9,7 @@
 class EntityPhysics
 {
     public:
-        enum EPClassID { no_id = 0, player_id, playermate_id, projectile_id, wall_id, enemy_id };
+        enum EPClassID { no_id = 0, player_id, playermate_id, projectile_id, wall_id, enemy_id, consumable_id, trigger_id };
 
         EntityPhysics();
         virtual ~EntityPhysics();
@@ -40,15 +40,19 @@ class EntityPhysics
         void setPhysicsActive(bool active);
 
     protected:
+        // Variables para configurar en el constructor sobre el tipo de sólido
+        bool        m_fixedRotation;
+        bool        m_isSensor;
+        bool        m_bullet;
+        float32     m_density;
+        float32     m_friction;
+
+
         // Se crea el tipo de sólido
-        void createDynamicBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0, bool bullet = false);
+        void createDynamicBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
         void createStaticBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
-        void createSensorBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
+        void createKinematicBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
         void createJointBody(const dwe::vec3f& pos);
-
-
-        void createDoor(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
-
 
     private:
         b2PolygonShape  m_shape;
@@ -57,7 +61,7 @@ class EntityPhysics
 
         static const float _ratio = 0.035;
 
-        void createBody(b2BodyType type, const dwe::vec3f& pos, float width, float height, float32 angleDegrees, bool bullet, bool isSensor);
+        void createBody(b2BodyType type, const dwe::vec3f& pos, float width, float height, float32 angleDegrees);
 };
 
 #endif // ENTITYPHYSICS_H

@@ -7,7 +7,10 @@ Consumable::Consumable() :
     m_touchingMainPlayer(false),
     m_isTaken(false)
 {
-    //ctor
+    // Parámetros de físicas
+    m_isSensor = true;
+
+    setClassID(EntityPhysics::consumable_id);
 }
 
 Consumable::~Consumable()
@@ -59,14 +62,8 @@ void Consumable::setNode(dwe::Node* n)
     Drawable::setNode(n);
 
     dwe::vec3f s = n->getBoundingBox();
-    createSensorBody(getPosition(), s.x, s.z, getRotation().y);
-}
 
-/////////////////
-void Consumable::setPosition(dwe::vec3f p)
-{
-    setPosEntity(p, getRotation().y);
-    Drawable::setPosition(p);
+    createKinematicBody(getPosition(), s.x, s.z, getRotation().y);
 }
 
 /////////////////
