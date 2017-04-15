@@ -123,8 +123,6 @@
 		<Unit filename="include/rapidjson/writer.h" />
 		<Unit filename="shaders/FragmentShader.glsl" />
 		<Unit filename="shaders/VertexShader.glsl" />
-		<Unit filename="src/DrawablePhysics.cpp" />
-		<Unit filename="src/DrawablePhysics.h" />
 		<Unit filename="src/audio/AudioEngine.cpp" />
 		<Unit filename="src/audio/AudioEngine.h" />
 		<Unit filename="src/classes/CharacterController.cpp" />
@@ -135,6 +133,8 @@
 		<Unit filename="src/classes/Door.h" />
 		<Unit filename="src/classes/Drawable.cpp" />
 		<Unit filename="src/classes/Drawable.h" />
+		<Unit filename="src/classes/DrawablePhysics.cpp" />
+		<Unit filename="src/classes/DrawablePhysics.h" />
 		<Unit filename="src/classes/Entity.cpp" />
 		<Unit filename="src/classes/Entity.h" />
 		<Unit filename="src/classes/EntityPhysics.cpp" />
