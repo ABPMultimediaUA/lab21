@@ -1,21 +1,32 @@
 #ifndef TRIGGERGENERATOR_H
 #define TRIGGERGENERATOR_H
+
 #include "Trigger.h"
-#include "Generator.h"
+
+class Generator;
 
 class TriggerGenerator: public Trigger
 {
     public:
-        TriggerGenerator();
-        virtual ~TriggerGenerator();
-        virtual void triggered(Generator *g);
 
-        virtual void render();
-        void update(Generator *g);
+        TriggerGenerator(Generator* owner);
+
+        virtual ~TriggerGenerator();
+
+        void Update();
+
+        void SetSensor();
+
+        void onBeginContact(EntityPhysics* otherObject);
+
+        void onEndContact(EntityPhysics* otherObject);
 
     protected:
 
     private:
+
+        Generator* m_owner;
+        bool m_touchingMainPlayer;
 };
 
 #endif // TRIGGERGENERATOR_H

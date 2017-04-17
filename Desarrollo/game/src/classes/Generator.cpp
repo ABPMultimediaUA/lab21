@@ -1,5 +1,8 @@
 #include "Generator.h"
 #include "NetGame.h"
+#include "TriggerGenerator.h"
+#include "TriggerSystem.h"
+#include "Scene.h"
 #include "Door.h"
 #include "AudioEngine.h"
 
@@ -9,6 +12,8 @@ Generator::Generator(int n, bool b)
     active=b;
     entities=0;
     sector=new Entity*[entities];
+    m_trigger = new TriggerGenerator(this);
+    Scene::Instance()->getTriggerSystem().Add(m_trigger);
 
     // Parámetros de físicas por defecto
 }
@@ -64,5 +69,10 @@ void Generator::setNode(dwe::Node* n)
 
     dwe::vec3f s = n->getBoundingBox();
     createStaticBody(getPosition(), s.x, s.z, 90);
+}
+
+void Generator::SetSensor()
+{
+    m_trigger->SetSensor();
 }
 

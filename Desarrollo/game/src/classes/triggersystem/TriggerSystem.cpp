@@ -21,9 +21,9 @@ void TriggerSystem::Update()
         t->Update();
         if(t->IsToBeRemoved()){
             Remove(i);
-            i--;
         }
-        i++;
+        else
+            i++;
     }
 }
 

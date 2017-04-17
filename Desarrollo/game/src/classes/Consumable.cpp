@@ -2,11 +2,13 @@
 #include "WorldInstance.h"
 #include "NetGame.h"
 #include "TriggerConsumable.h"
+#include "Scene.h"
 
 Consumable::Consumable() :
     m_isTaken(false)
 {
     m_trigger = new TriggerConsumable(this);
+    Scene::Instance()->getTriggerSystem().Add(m_trigger);
 }
 
 Consumable::~Consumable()
@@ -50,11 +52,11 @@ void Consumable::setNetID(unsigned int netID) { m_netID = netID; }
 void Consumable::setNode(dwe::Node* n)
 {
     Drawable::setNode(n);
-    m_trigger->SetSensor();
 }
 
 /////////////////
 void Consumable::setPosition(dwe::vec3f p)
 {
     Drawable::setPosition(p);
+    m_trigger->SetSensor();
 }

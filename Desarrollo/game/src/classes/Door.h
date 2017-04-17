@@ -3,7 +3,7 @@
 
 #include "Entity.h"
 
-class Trigger;
+class TriggerDoor;
 
 /******************************************************************************
 Las puertas bloquean el acceso a una zona. Pueden abrirse o no dependiendo de

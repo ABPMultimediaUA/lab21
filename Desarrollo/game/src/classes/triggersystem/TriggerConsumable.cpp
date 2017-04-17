@@ -20,8 +20,10 @@ void TriggerConsumable::SetSensor()
 
 void TriggerConsumable::Update()
 {
-    if (m_touchingMainPlayer)
+    if (m_touchingMainPlayer){
         m_owner->Take();
+        ToBeRemoved = true;
+    }
 }
 
 void TriggerConsumable::onBeginContact(EntityPhysics* otherObject)
