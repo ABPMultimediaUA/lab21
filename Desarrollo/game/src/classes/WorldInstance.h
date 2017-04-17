@@ -52,7 +52,7 @@ class WorldInstance
         void clearForces();
 
         b2Vec2 getGravity();
-        b2World getWorld();
+        b2World* getWorld();
 
         float getTimeElapsed();
 
@@ -61,6 +61,12 @@ class WorldInstance
 
 
         dwe::vec3f from2Dto3D(int x2d, int y2d, dwe::vec3f rotation);
+
+        void startDebugPhysics();
+        void drawDebugPhysics(dwe::vec3f cameraPosition);
+        void stopDebugPhysics();
+
+        void setActiveDebugPhysics(bool active);
 
     protected:
 
@@ -74,6 +80,8 @@ class WorldInstance
         static b2Vec2           m_gravity;
         static b2World          m_world;
         static ContactListener  m_contactListener;
+
+        static bool m_debuggingPhysics;
 
         static Player* m_mainPlayer;
 

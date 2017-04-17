@@ -32,6 +32,10 @@ void GSIngame::Init(){
     Scene::Instance()->Init();
     hud = new Hud();
 
+#ifdef LAB21_DEBUG
+    World->startDebugPhysics();
+#endif // LAB21_DEBUG
+
     cout<<"Ingame cargado"<<endl;
 
 }
@@ -55,11 +59,8 @@ void GSIngame::Update(){
     AEInstance->UpdateListenerPosition(World->getMainPlayer()->getPosition());
 }
 
-void GSIngame::HandleEvents(){
-    /***
-    if(GEInstance->receiver.isKeyDown(KEY_KEY_G))
-        World->getMainPlayer()->sayPosition();
-    /***/
+void GSIngame::HandleEvents()
+{
     if(!m_pausePermission && GEInstance->receiver.isKeyUp(KEY_PAUSE))
         m_pausePermission = true;
     if(m_pausePermission && GEInstance->receiver.isKeyDown(KEY_PAUSE)){
@@ -74,8 +75,17 @@ void GSIngame::HandleEvents(){
     }
     else if(GEInstance->receiver.isKeyDown(KEY_EXIT) || GEInstance->getWindowClose()) //Control cerrado de ventana
     {
+#ifdef LAB21_DEBUG
+        World->stopDebugPhysics();
+#endif // LAB21_DEBUG
         Game::getInstance()->setRunning(false);
     }
+#ifdef LAB21_DEBUG
+    if(GEInstance->receiver.isKeyDown(KEY_BEGIN_DEBUG_PHYSICS))
+        World->setActiveDebugPhysics(true);
+    else if(GEInstance->receiver.isKeyDown(KEY_STOP_DEBUG_PHYSICS))
+        World->setActiveDebugPhysics(false);
+#endif // LAB21_DEBUG
 }
 void GSIngame::Render(){
     if(page==0){
@@ -86,6 +96,11 @@ void GSIngame::Render(){
             m=true;
         }
         GEInstance->draw();
+
+#ifdef LAB21_DEBUG
+        World->drawDebugPhysics(GEInstance->getCameraPosition());
+#endif // LAB21_DEBUG
+
         hud->draw();
     }
 }

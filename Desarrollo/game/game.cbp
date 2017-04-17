@@ -131,6 +131,8 @@
 		<Unit filename="src/classes/CharacterController.h" />
 		<Unit filename="src/classes/Consumable.cpp" />
 		<Unit filename="src/classes/Consumable.h" />
+		<Unit filename="src/classes/DebugPhysicsDraw.cpp" />
+		<Unit filename="src/classes/DebugPhysicsDraw.h" />
 		<Unit filename="src/classes/Door.cpp" />
 		<Unit filename="src/classes/Door.h" />
 		<Unit filename="src/classes/Drawable.cpp" />

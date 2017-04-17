@@ -518,13 +518,12 @@ void dwe::GraphicsEngine::createCamera()
 {
     if (!m_camera)
     {
-        vec3f position(-150,120,-190);
-        m_camera = m_tagEngine.createPerspectiveCamera(position, vec3f(0,0,0), 45.0f, get_screenWidth() / get_screenHeight(), 0.1f, 1000.0f);
-        m_tagEngine.nodeLookAtTarget(m_camera, position, vec3f(0,0,0));
-        float n = 0.8;
-        //m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0), vec3f(n,n,n), vec3f(n,n,n), vec3f(n+0.4,n+0.4,n+0.4));
-        m_tagEngine.createLight(dwe::vec3f(140,24,80), vec3f(0,0,0), vec3f(n,n,n), vec3f(n,n,n), vec3f(n+0.4,n+0.4,n+0.4));
+        m_cameraPosition = vec3f(-150,120,-190);
+        m_camera = m_tagEngine.createPerspectiveCamera(m_cameraPosition, vec3f(0,0,0), 45.0f, get_screenWidth() / get_screenHeight(), 0.1f, 1000.0f);
+        m_tagEngine.nodeLookAtTarget(m_camera, m_cameraPosition, vec3f(0,0,0));
 
+        float n = 0.8;
+        m_tagEngine.createLight(dwe::vec3f(140,24,80), vec3f(0,0,0), vec3f(n,n,n), vec3f(n,n,n), vec3f(n+0.4,n+0.4,n+0.4));
     }
 }
 
@@ -600,9 +599,9 @@ void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition, int more
             zoomZ = 0;
     }
 
-    m_tagEngine.nodeLookAtTarget(m_camera,
-            vec3f(playerPosition.x+tarLR + zoomX, _camera_y + abs(zoomX) + abs(zoomZ), (playerPosition.z + _camera_z_offset + tarUD)),
-            vec3f(playerPosition.x+ tarLR + zoomX, playerPosition.y, (playerPosition.z+tarUD + zoomZ)));
+    m_cameraPosition = vec3f(playerPosition.x+tarLR + zoomX, _camera_y + abs(zoomX) + abs(zoomZ), (playerPosition.z + _camera_z_offset + tarUD));
+    m_tagEngine.nodeLookAtTarget(m_camera, m_cameraPosition,
+            vec3f(playerPosition.x+ tarLR + zoomX, playerPosition.y, (playerPosition.z+tarUD + zoomZ)));  // target position
 }
 
 //////////////////////////
@@ -611,4 +610,10 @@ void dwe::GraphicsEngine::addMessageLine(std::string text)
     for(int i=MAX_MESSAGE_LINES-1; i>0; i--)
         m_messageLine[i].setString(m_messageLine[i-1].getString());
     m_messageLine[0].setString(text);
+}
+
+////////////////////////////////
+dwe::vec3f dwe::GraphicsEngine::getCameraPosition()
+{
+    return m_cameraPosition;
 }

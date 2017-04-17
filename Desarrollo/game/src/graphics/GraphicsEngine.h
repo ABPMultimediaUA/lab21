@@ -183,6 +183,7 @@ namespace dwe
 
         void createCamera();
         void updateCamera(const vec3f playerPosition, int moreEnemiesX, int moreEnemiesZ);
+        vec3f getCameraPosition();
 
         Door*               createDoor(int f, bool a, float px, float py, float pz);
         Projectile*         createProjectile(vec3f origin, float angle, std::string weapon);
@@ -244,6 +245,7 @@ namespace dwe
 
         tag::TAGEngine      m_tagEngine;
         tag::GraphicNode*   m_camera;
+        vec3f               m_cameraPosition;
 
 #ifndef LAB21_DEBUG
         static const int _screenWidth   = 1024;

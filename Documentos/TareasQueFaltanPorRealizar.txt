@@ -16,9 +16,6 @@ NO EVALUADO
 -VII.Diseño e implementación de la arquitectura basada en objetos (diagrama de clases e implementación)
 ACTUALIZAR DIAGRAMA
 
--VII.Sistema de depuración visual de las físicas
-SIN HACER
-
 -PM.Aplicar el modelo EVA en Project
 SIN HACER
 
@@ -79,6 +76,9 @@ Edu: NO EVALUADO
 ----------------------------------------
 HECHO
 ----------------------------------------
+-VII.Sistema de depuración visual de las físicas
+Ruben: f11 inicia depuración, f12 finaliza depuración
+
 -VII.Implementación de cámara inteligente que ajuste ángulo y zoom
 Ruben: Funcionaba bien, se ha ajustado para que vaya más rapida
 
