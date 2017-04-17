@@ -221,7 +221,7 @@ void LoadMap::Update(){
     }
     for(int cont=0; cont<3; cont++){
         generatorTriggers[cont]->update(generator[cont]);
-    }
+    }*/
     if(GEInstance->receiver.isKeyDown(KEY_KEY_C) && !cheats){
         for(int cont=0; cont<NUM_MAP_ENTITIES2; cont++){
             ((Door*)entities[cont])->setActive();
@@ -230,7 +230,7 @@ void LoadMap::Update(){
         cheats=true;
     }
 
-    //Scene::updateConsumables(mainPlayer);*/
+    //Scene::updateConsumables(mainPlayer);
 }
 
 void LoadMap::Destroy(){

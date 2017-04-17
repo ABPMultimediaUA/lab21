@@ -7,17 +7,11 @@ INTEGRAR EN EL JUEGO
 -VII.Uso de trazado de rayos y otros tests de las físicas
 RAFA JUNTO CON PATHPLANNING
 
--VI.Comunicación simulada básica entre NPCs (Blackboard)
-SIN HACER
-
 -VI.Sistema de percepción sensorial (vista, oído, olfato, canales…)
 NO EVALUADO
 
 -VII.Diseño e implementación de la arquitectura basada en objetos (diagrama de clases e implementación)
 ACTUALIZAR DIAGRAMA
-
--VII.Sistema de depuración visual de las físicas
-SIN HACER
 
 -PM.Aplicar el modelo EVA en Project
 SIN HACER
@@ -27,6 +21,9 @@ SIN HACER
 
 -VII.Implementación de menús
 FALTA LOGROS, OPCIONES Y EL MENU PAUSA
+
+-PD.HUD / Imágenes menús
+FALTAN MENUS
 
 -VI.Gestión de recursos de IA con Level-of-Detail (LoD)
 SIN HACER
@@ -49,17 +46,14 @@ SIN HACER
 -TDS.Biblioteca de sonidos (Completa)
 SIN TERMINAR
 
--PD.HUD / Imágenes menús
-FALTAN MENUS
-
 ----------------------------------------
 ASIGNADO
 ----------------------------------------
 -VII.Utilización de joints en las mecánicas jugables
 Rubén: SIN HACER
 
--VII.Mecánicas de acción
-Rubén: ACABARLAS: granada, al recargar dejar un tiempo sin poder disparar
+-VI.Comunicación simulada básica entre NPCs (Blackboard)
+Ruben: SIN HACER
 
 -VI.Sistema de gestión de eventos (Trigger System/Event Manager)
 Rafa: NO EVALUADO
@@ -79,6 +73,12 @@ Edu: NO EVALUADO
 ----------------------------------------
 HECHO
 ----------------------------------------
+-VII.Mecánicas de acción
+Rubén: ACABARLAS: granada, al recargar dejar un tiempo sin poder disparar
+
+-VII.Sistema de depuración visual de las físicas
+Ruben: f11 inicia depuración, f12 finaliza depuración
+
 -VII.Implementación de cámara inteligente que ajuste ángulo y zoom
 Ruben: Funcionaba bien, se ha ajustado para que vaya más rapida
 

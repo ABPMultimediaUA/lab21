@@ -38,6 +38,7 @@
 #include "Shotgun.h"
 #include "Rifle.h"
 #include "AmmoGun.h"
+#include "GrenadeExplosion.h"
 #include "tag/EAnimation.h"
 
 using namespace std;
@@ -269,7 +270,12 @@ PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 ////////////////////////////
 Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/humanoide.obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(2);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/Stand/humanoide",         eAnimHumanoidStand,   1);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/Death/humanoideDeath",    eAnimHumanoidDeath,   8, false);
+    anim->setActiveAnimation(0);
+
+    tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
     Humanoid* p = new Humanoid();
 	p->setNode(new Node(node));
 	p->setPosition(dwe::vec3f(px, py, pz));
@@ -328,8 +334,10 @@ Guardian* dwe::GraphicsEngine::createEnemyGuardian(int px, int py, int pz)
 
 Legless* dwe::GraphicsEngine::createEnemyLegless(int px, int py, int pz)
 {
-    tag::EAnimation* anim = m_tagEngine.createNumAnimations(1);
-    m_tagEngine.createAnimation(anim, "media/Legless/LeglessRun/sinpiernas", 0, 9);//posicion 0 sera estar parado
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(3);
+    m_tagEngine.createAnimation(anim, "media/Legless/Stand/leglessStand",   eAnimLeglessStand,  1);
+    m_tagEngine.createAnimation(anim, "media/Legless/Run/leglessRun",       eAnimLeglessRun,    9);
+    m_tagEngine.createAnimation(anim, "media/Legless/Death/leglessDeath",   eAnimLeglessDeath,  7, false);
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
@@ -370,10 +378,19 @@ Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle, std
 ProjectileGrenade* dwe::GraphicsEngine::createProjectileGrenade(vec3f origin, float angle)
 {
 	tag::GraphicNode* node = m_tagEngine.createMesh("media/grenade.obj", vec3f(0,0,0), vec3f(0,0,0));
-    ProjectileGrenade* p = new ProjectileGrenade(origin, angle);
+    ProjectileGrenade* p = new ProjectileGrenade(vec3f(origin.x, 0, origin.z), angle);
 	p->setNode(new Node(node));
-	p->setPosition(origin);
+	p->setPosition(vec3f(origin.x, 0, origin.z));
 	return p;
+}
+
+GrenadeExplosion* dwe::GraphicsEngine::createGrenadeExplosion(vec3f origin)
+{
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/explosion.obj", vec3f(0,0,0), vec3f(0,0,0));
+    GrenadeExplosion* g = new GrenadeExplosion();
+	g->setNode(new Node(node));
+	g->setPosition(vec3f(origin.x, 0, origin.z));
+	return g;
 }
 
 Generator* dwe::GraphicsEngine::createGenerator(int i, bool b, float px, float py, float pz)
@@ -489,13 +506,12 @@ void dwe::GraphicsEngine::createCamera()
 {
     if (!m_camera)
     {
-        vec3f position(-150,120,-190);
-        m_camera = m_tagEngine.createPerspectiveCamera(position, vec3f(0,0,0), 45.0f, get_screenWidth() / get_screenHeight(), 0.1f, 1000.0f);
-        m_tagEngine.nodeLookAtTarget(m_camera, position, vec3f(0,0,0));
-        float n = 0.8;
-        //m_tagEngine.createLight(vec3f(-100,100,50), vec3f(0,0,0), vec3f(n,n,n), vec3f(n,n,n), vec3f(n+0.4,n+0.4,n+0.4));
-        m_tagEngine.createLight(dwe::vec3f(140,24,80), vec3f(0,0,0), vec3f(n,n,n), vec3f(n,n,n), vec3f(n+0.4,n+0.4,n+0.4));
+        m_cameraPosition = vec3f(-150,120,-190);
+        m_camera = m_tagEngine.createPerspectiveCamera(m_cameraPosition, vec3f(0,0,0), 45.0f, get_screenWidth() / get_screenHeight(), 0.1f, 1000.0f);
+        m_tagEngine.nodeLookAtTarget(m_camera, m_cameraPosition, vec3f(0,0,0));
 
+        float n = 0.8;
+        m_tagEngine.createLight(dwe::vec3f(140,24,80), vec3f(0,0,0), vec3f(n,n,n), vec3f(n,n,n), vec3f(n+0.4,n+0.4,n+0.4));
     }
 }
 
@@ -571,9 +587,9 @@ void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition, int more
             zoomZ = 0;
     }
 
-    m_tagEngine.nodeLookAtTarget(m_camera,
-            vec3f(playerPosition.x+tarLR + zoomX, _camera_y + abs(zoomX) + abs(zoomZ), (playerPosition.z + _camera_z_offset + tarUD)),
-            vec3f(playerPosition.x+ tarLR + zoomX, playerPosition.y, (playerPosition.z+tarUD + zoomZ)));
+    m_cameraPosition = vec3f(playerPosition.x+tarLR + zoomX, _camera_y + abs(zoomX) + abs(zoomZ), (playerPosition.z + _camera_z_offset + tarUD));
+    m_tagEngine.nodeLookAtTarget(m_camera, m_cameraPosition,
+            vec3f(playerPosition.x+ tarLR + zoomX, playerPosition.y, (playerPosition.z+tarUD + zoomZ)));  // target position
 }
 
 //////////////////////////
@@ -582,4 +598,10 @@ void dwe::GraphicsEngine::addMessageLine(std::string text)
     for(int i=MAX_MESSAGE_LINES-1; i>0; i--)
         m_messageLine[i].setString(m_messageLine[i-1].getString());
     m_messageLine[0].setString(text);
+}
+
+////////////////////////////////
+dwe::vec3f dwe::GraphicsEngine::getCameraPosition()
+{
+    return m_cameraPosition;
 }

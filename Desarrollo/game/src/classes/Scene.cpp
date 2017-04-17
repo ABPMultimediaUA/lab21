@@ -30,7 +30,6 @@ Scene::Scene() : navGraph(false)
 ///////////////////////////////
 void Scene::Init()
 {
-    timeLastProjectil       = 0;
     m_timeLastEnemyActive   = 0;
     m_timeEnemyActive       = 5.0;  // En segundos
     m_posMother             = dwe::vec3f(0,62.0,-1617.0);
@@ -183,6 +182,9 @@ void Scene::updateEnemies()
                 m_enemies[i].active = true;
                 m_numActiveEnemies++;
                 m_timeLastEnemyActive = World->getTimeElapsed();
+
+                // activar animacion parado
+                m_enemies[i].enemy->setAnimation(dwe::eAnimHumanoidStand);
                 std::cout << "Activado\n";
             }
         }
@@ -199,8 +201,10 @@ void Scene::updateEnemies()
                 if (m_numEnemies == m_numActiveEnemies)
                     m_timeLastEnemyActive = World->getTimeElapsed();
 
+                // activar animacion de morir
+                m_enemies[i].enemy->setAnimation(dwe::eAnimHumanoidDeath);
+
                 m_numActiveEnemies--;
-                // TODO desactivar nodo
                 NetInstance->removeNetEnemy(m_enemies[i].enemy);
             }
             else
@@ -242,32 +246,6 @@ void Scene::Update()
     GEInstance->updateCamera(mainPlayer->getPosition(), m_moreEnemiesX, m_moreEnemiesZ);
 
     mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
-
-
-    // comprobamos si dispara
-    if (   GEInstance->receiver.isLeftButtonPressed()
-        && mainPlayer->shoot(World->getTimeElapsed() - timeLastProjectil) )
-    {
-        timeLastProjectil = World->getTimeElapsed();
-    }
-
-
-    // comprobamos si dispara granadas
-    if(GEInstance->receiver.isKeyDown(KEY_GRENADE) && (World->getTimeElapsed() - timeLastProjectil)> 0.2 ){
-        NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectilgrenade
-        if (mainPlayer->getGrenades() > 0) //
-        {
-            NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, mainPlayer->getPosition(), mainPlayer->getRotation().y); // Enviamos mensaje para crear projectilgrenade
-
-            mainPlayer->throwGrenade();
-
-            timeLastProjectil = World->getTimeElapsed();
-
-            mainPlayer->setGrenades(mainPlayer->getGrenades()-1); //
-        }//
-    }
-
-    //UPDATE
 
     mainPlayer->update(); //Posición actualizada de Irrlicht Player
 
@@ -311,15 +289,13 @@ void Scene::updateProjectilesGrenade()
     while(i<m_projectilesGrenades.size())
     {
         m_projectilesGrenades[i]->update();
-        /*if (m_projectilesGrenades[i]->getCollides())
+        if (m_projectilesGrenades[i]->getExploded())
         {
-            m_projectilesGrenades[i]->setVelocity(dwe::vec2f(0,0));
-        }
-        if(m_projectilesGrenades[i]->getVelocity().x==0 && m_projectilesGrenades[i]->getVelocity().y==0){
+            // Borramos granada
             delete m_projectilesGrenades[i];
             m_projectilesGrenades.erase(m_projectilesGrenades.begin()+i);
             i--;
-        }*/
+        }
         i++;
     }
 }
@@ -372,22 +348,6 @@ void Scene::updateConsumables(Player* mainPlayer)
         else
             i++;
     }
-}
-
-void Scene::updatePlayerWeapons(Player* mainplayer, Firearm** weapons)
-{
-    //cout << "- "<< mainplayer->getCurrentWeaponType() << ":" << eRifle << endl;
-    // TODO dibujar bien y solo la actual
-    //for (uint8_t i=0; i<3; i++)
-    //    if (weapons[i])
-    //        weapons[i]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
-    /*if  (mainplayer->getCurrentWeaponType() == eGun){
-        weapons[0]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
-    }else if (mainplayer->getCurrentWeaponType() == eShotgun){
-        weapons[1]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
-    }else if (mainplayer->getCurrentWeaponType() == eRifle){
-        weapons[2]->setPosition(dwe::vec3f(mainplayer->getPosition().x , 20 , mainplayer->getPosition().z + 10));
-    }*/
 }
 
 ////////////////////////////

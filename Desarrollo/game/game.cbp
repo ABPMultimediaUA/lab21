@@ -131,6 +131,8 @@
 		<Unit filename="src/classes/CharacterController.h" />
 		<Unit filename="src/classes/Consumable.cpp" />
 		<Unit filename="src/classes/Consumable.h" />
+		<Unit filename="src/classes/DebugPhysicsDraw.cpp" />
+		<Unit filename="src/classes/DebugPhysicsDraw.h" />
 		<Unit filename="src/classes/Door.cpp" />
 		<Unit filename="src/classes/Door.h" />
 		<Unit filename="src/classes/Drawable.cpp" />
@@ -276,6 +278,8 @@
 		<Unit filename="src/classes/weapons/Firearm.h" />
 		<Unit filename="src/classes/weapons/Grenade.cpp" />
 		<Unit filename="src/classes/weapons/Grenade.h" />
+		<Unit filename="src/classes/weapons/GrenadeExplosion.cpp" />
+		<Unit filename="src/classes/weapons/GrenadeExplosion.h" />
 		<Unit filename="src/classes/weapons/Gun.cpp" />
 		<Unit filename="src/classes/weapons/Gun.h" />
 		<Unit filename="src/classes/weapons/Projectile.cpp" />

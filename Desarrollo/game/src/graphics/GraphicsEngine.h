@@ -45,6 +45,7 @@ class Entity;
 class Door;
 class Projectile;
 class ProjectileGrenade;
+class GrenadeExplosion;
 class Generator;
 class MagnetKey;
 class SpeedBoost;
@@ -67,9 +68,17 @@ namespace dwe
     ///////////////////////////////////////////////
     enum AnimationType {
         eAnimNone           =-1,
+
         eAnimPlayerStand    = 0,
         eAnimPlayerRun      = 1,
-        eAnimPlayerStealth  = 2    // Sigilo
+        eAnimPlayerStealth  = 2,    // Sigilo
+
+        eAnimHumanoidStand  = 0,
+        eAnimHumanoidDeath  = 1,
+
+        eAnimLeglessStand   = 0,
+        eAnimLeglessRun     = 1,
+        eAnimLeglessDeath   = 2,
     };
 
 
@@ -179,10 +188,12 @@ namespace dwe
 
         void createCamera();
         void updateCamera(const vec3f playerPosition, int moreEnemiesX, int moreEnemiesZ);
+        vec3f getCameraPosition();
 
         Door*               createDoor(int f, bool a, float px, float py, float pz);
         Projectile*         createProjectile(vec3f origin, float angle, std::string weapon);
         ProjectileGrenade*  createProjectileGrenade(vec3f origin, float angle);
+        GrenadeExplosion*   createGrenadeExplosion(vec3f origin);
         Generator*          createGenerator(int i, bool b, float px, float py, float pz);
         MagnetKey*          createMagnetKey(int i, float px, float py, float pz);
         SpeedBoost*         createSpeedBoost(float px, float py, float pz);
@@ -237,6 +248,7 @@ namespace dwe
 
         tag::TAGEngine      m_tagEngine;
         tag::GraphicNode*   m_camera;
+        vec3f               m_cameraPosition;
 
 #ifndef LAB21_DEBUG
         static const int _screenWidth   = 1024;

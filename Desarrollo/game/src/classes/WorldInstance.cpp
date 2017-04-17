@@ -3,6 +3,10 @@
 #include "EntityPhysics.h"
 #include "Player.h"
 
+#ifdef LAB21_DEBUG
+#include "DebugPhysicsDraw.h"
+#endif // LAB21_DEBUG
+
 void ContactListener::BeginContact(b2Contact* contact)
 {
     EntityPhysics* bodyUserDataA = (EntityPhysics*)contact->GetFixtureA()->GetBody()->GetUserData();
@@ -37,6 +41,8 @@ Player* WorldInstance::m_mainPlayer = 0;
 float WorldInstance::deltaTimeAccum = 0;
 sf::Clock WorldInstance::m_clock;
 
+bool WorldInstance::m_debuggingPhysics;
+
 //////////////
 WorldInstance* WorldInstance::Instance()
 {
@@ -49,10 +55,8 @@ WorldInstance* WorldInstance::Instance()
     return pinstance;
 }
 
-WorldInstance::WorldInstance(){
-
-    // Puertas
-
+WorldInstance::WorldInstance()
+{
 }
 
 void WorldInstance::Update()
@@ -63,6 +67,7 @@ void WorldInstance::Update()
 ////////////////////
 void WorldInstance::init()
 {
+    m_debuggingPhysics = false;
     m_world.SetContactListener(&m_contactListener);
     deltaTimeAccum = 0.0;
     m_clock.restart();
@@ -124,7 +129,7 @@ float WorldInstance::getTimeElapsed()
 b2Vec2 WorldInstance::getGravity(){return(m_gravity);}
 
 ///////////////////////
-b2World WorldInstance::getWorld(){return(m_world);}
+b2World* WorldInstance::getWorld(){return(&m_world);}
 
 ///////////////////////
 void WorldInstance::setMainPlayer(Player* p) { m_mainPlayer = p; }
@@ -137,4 +142,42 @@ Player* WorldInstance::getMainPlayer()
     }
     else
         return m_mainPlayer;
+}
+
+////////////////////
+void WorldInstance::startDebugPhysics()
+{
+    g_debugDraw.Create();
+    m_world.SetDebugDraw(&g_debugDraw);
+	uint32 flags = 0;
+	flags += b2Draw::e_shapeBit;
+	flags += b2Draw::e_jointBit;
+	flags += b2Draw::e_aabbBit;
+	flags += b2Draw::e_centerOfMassBit;
+	g_debugDraw.SetFlags(flags);
+}
+
+////////////////////
+void WorldInstance::stopDebugPhysics()
+{
+    g_debugDraw.Destroy();
+}
+
+////////////////////
+void WorldInstance::drawDebugPhysics(dwe::vec3f cameraPosition)
+{
+    if (m_debuggingPhysics)
+    {
+        GEInstance->pop();
+        g_camera.m_center = b2Vec2(cameraPosition.x*0.035, -cameraPosition.z*0.035);
+        m_world.DrawDebugData();
+        g_debugDraw.Flush();
+        GEInstance->push();
+    }
+}
+
+////////////////////
+void WorldInstance::setActiveDebugPhysics(bool active)
+{
+    m_debuggingPhysics = active;
 }

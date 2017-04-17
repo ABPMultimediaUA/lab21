@@ -5,7 +5,6 @@
 Player::Player() :
     m_currentWeaponType(eNone), m_currentWeapon(0)
 {
-
     setClassID(EntityPhysics::player_id);
     m_mKeys[0]=false;
     m_mKeys[1]=false;
@@ -18,14 +17,16 @@ Player::Player() :
     m_timeGivingStuff   = 1.0;
     m_timeWeaponSwap    = 1.0;
     m_timeReload        = 1.0;
+    m_timeLastGrenade   = 0;
+    m_timeLastProjectil = 0;
 
     m_weapons[eGun]     = 0;
     m_weapons[eShotgun] = 0;
     m_weapons[eRifle]   = 0;
 
-    m_health = 100;
+    m_health    = 100;
     m_maxHealth = 100;
-    m_grenades=3;
+    m_grenades  = 6;
 
     m_playerWeaponKey[eGun].key         = KEY_WEAPON_1;
     m_playerWeaponKey[eGun].weapon      = eGun;
@@ -103,6 +104,17 @@ bool Player::shoot(float timeSinceLastShoot)
     return false;
 }
 
+/////////////
+bool Player::throwGrenade(float timeSinceLastGrenade)
+{
+    if (timeSinceLastGrenade > m_grenadeWeapon.getCadence() && m_grenades > 0)
+    {
+        m_grenadeWeapon.shoot();
+        m_grenades--;
+        return true;
+    }
+    return false;
+}
 
 /////////////
 FirearmKind Player::getCurrentWeaponType() { return m_currentWeaponType; }
@@ -159,14 +171,10 @@ void Player::swapCurrentWeapon(FirearmKind weaponKind)
 }
 
 /////////////
-void Player::throwGrenade()
-{
-    m_grenadeWeapon.shoot();
-}
-
-/////////////
 void Player::readEvents()
 {
+    float timeElapsed = World->getTimeElapsed();
+
     CharacterController::readEvents();
 
     //Animacion del player
@@ -194,37 +202,52 @@ void Player::readEvents()
                               getRotation()));
     }
 
+    // comprobamos si dispara
+    if (GEInstance->receiver.isLeftButtonPressed()
+        && (timeElapsed - m_timeReload)> _reloadOffsetTime   // Si ha recargado, dejar pasar un tiempo
+        && shoot(timeElapsed - m_timeLastProjectil))
+    {
+        m_timeLastProjectil = timeElapsed;
+    }
+    else
+        // comprobamos si dispara granadas
+        if(GEInstance->receiver.isKeyDown(KEY_GRENADE)
+           && throwGrenade(timeElapsed - m_timeLastGrenade) )
+        {
+            NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, getPosition(), getRotation().y); // Enviamos mensaje para crear projectilgrenade
+            m_timeLastGrenade = timeElapsed;
+        }
 
-    /*********/
+
      // consumir botiquin
-    if(GEInstance->receiver.isKeyDown(KEY_CONSUME_MEDKIT) && (World->getTimeElapsed() - m_timeMedkit)> _changeOffsetTime)
+    if(GEInstance->receiver.isKeyDown(KEY_CONSUME_MEDKIT) && (timeElapsed - m_timeMedkit)> _changeOffsetTime)
     {
         this->consumeMedkit();
 
-        m_timeMedkit = World->getTimeElapsed();
+        m_timeMedkit = timeElapsed;
     }
 
      // consumir adrenalina
-    if(GEInstance->receiver.isKeyDown(KEY_CONSUME_SPEED) && (World->getTimeElapsed() - m_timeToSpeedBoost)> _changeOffsetTime)
+    if(GEInstance->receiver.isKeyDown(KEY_CONSUME_SPEED) && (timeElapsed - m_timeToSpeedBoost)> _changeOffsetTime)
     {
         this->consumeSpeedBoost();
 
-        m_timeToSpeedBoost = World->getTimeElapsed();
+        m_timeToSpeedBoost = timeElapsed;
     }
 
     // recargar armo
-    if(GEInstance->receiver.isKeyDown(KEY_RELOADWEAPON) && (World->getTimeElapsed() - m_timeReload)> _changeOffsetTime)
+    if(GEInstance->receiver.isKeyDown(KEY_RELOADWEAPON) && (timeElapsed - m_timeReload)> _changeOffsetTime)
     {
         reloadWeapon();
-        m_timeReload = World->getTimeElapsed();
+        m_timeReload = timeElapsed;
     }
-    /*********/
+
     PlayerMate* playermate = NetInstance->getPlayerMate(1);
-    if (GEInstance->receiver.isKeyDown(KEY_GIVE_AMMO)&& (World->getTimeElapsed() - m_timeGivingStuff) > _changeOffsetTime)
+    if (GEInstance->receiver.isKeyDown(KEY_GIVE_AMMO)&& (timeElapsed - m_timeGivingStuff) > _changeOffsetTime)
     {
          //this->giveMedkits(1,playermate);
          this->giveAmmo(0,1, playermate);
-         m_timeGivingStuff = World->getTimeElapsed();
+         m_timeGivingStuff = timeElapsed;
     }
 
 

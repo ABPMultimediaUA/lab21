@@ -72,8 +72,11 @@ void tag::EAnimation::createAnimation(uint8_t animationIndex, uint8_t numFrames,
 ////////////////////////
 void tag::EAnimation::setActiveAnimation(uint8_t animationIndex)
 {
-    m_activeAnimation = animationIndex;
-    m_frame = 0;
+    if (animationIndex < m_numAnimations)
+    {
+        m_activeAnimation = animationIndex;
+        m_frame = 0;
+    }
 }
 
 /////////////////////////

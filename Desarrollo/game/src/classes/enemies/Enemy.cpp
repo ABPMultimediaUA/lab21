@@ -72,7 +72,17 @@ void Enemy::setNode(dwe::Node* n)
 /////////////
 void Enemy::onBeginContact(EntityPhysics* otherObject)
 {
-    if((otherObject && otherObject->getClassID()==EntityPhysics::projectile_id)){
-        m_health-=5;
+    if (otherObject)
+    {
+        EPClassID clase = otherObject->getClassID();
+        switch (clase)
+        {
+        case EntityPhysics::projectile_id:
+            m_health-=5;
+            break;
+        case EntityPhysics::grenadeExplosion_id:
+            m_health-=10;
+            break;
+        }
     }
 }
