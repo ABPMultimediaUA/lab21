@@ -187,6 +187,9 @@ void Scene::updateEnemies()
                 m_enemies[i].active = true;
                 m_numActiveEnemies++;
                 m_timeLastEnemyActive = World->getTimeElapsed();
+
+                // activar animacion parado
+                m_enemies[i].enemy->setAnimation(dwe::eAnimHumanoidStand);
                 std::cout << "Activado\n";
             }
         }
@@ -203,8 +206,10 @@ void Scene::updateEnemies()
                 if (m_numEnemies == m_numActiveEnemies)
                     m_timeLastEnemyActive = World->getTimeElapsed();
 
+                // activar animacion de morir
+                m_enemies[i].enemy->setAnimation(dwe::eAnimHumanoidDeath);
+
                 m_numActiveEnemies--;
-                // TODO desactivar nodo
                 NetInstance->removeNetEnemy(m_enemies[i].enemy);
             }
             else

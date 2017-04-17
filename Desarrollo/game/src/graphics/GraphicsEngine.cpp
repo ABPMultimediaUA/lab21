@@ -270,7 +270,12 @@ PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 ////////////////////////////
 Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/humanoide.obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(2);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/Stand/humanoide",         eAnimHumanoidStand,   1);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/Death/humanoideDeath",    eAnimHumanoidDeath,   8, false);
+    anim->setActiveAnimation(0);
+
+    tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
     Humanoid* p = new Humanoid();
 	p->setNode(new Node(node));
 	p->setPosition(dwe::vec3f(px, py, pz));
@@ -329,8 +334,10 @@ Guardian* dwe::GraphicsEngine::createEnemyGuardian(int px, int py, int pz)
 
 Legless* dwe::GraphicsEngine::createEnemyLegless(int px, int py, int pz)
 {
-    tag::EAnimation* anim = m_tagEngine.createNumAnimations(1);
-    m_tagEngine.createAnimation(anim, "media/Legless/LeglessRun/sinpiernas", 0, 9);//posicion 0 sera estar parado
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(3);
+    m_tagEngine.createAnimation(anim, "media/Legless/Stand/leglessStand",   eAnimLeglessStand,  1);
+    m_tagEngine.createAnimation(anim, "media/Legless/Run/leglessRun",       eAnimLeglessRun,    9);
+    m_tagEngine.createAnimation(anim, "media/Legless/Death/leglessDeath",   eAnimLeglessDeath,  7, false);
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));

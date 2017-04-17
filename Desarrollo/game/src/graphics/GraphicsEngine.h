@@ -71,9 +71,17 @@ namespace dwe
     ///////////////////////////////////////////////
     enum AnimationType {
         eAnimNone           =-1,
+
         eAnimPlayerStand    = 0,
         eAnimPlayerRun      = 1,
-        eAnimPlayerStealth  = 2    // Sigilo
+        eAnimPlayerStealth  = 2,    // Sigilo
+
+        eAnimHumanoidStand  = 0,
+        eAnimHumanoidDeath  = 1,
+
+        eAnimLeglessStand   = 0,
+        eAnimLeglessRun     = 1,
+        eAnimLeglessDeath   = 2,
     };
 
 
