@@ -399,6 +399,7 @@ Generator* dwe::GraphicsEngine::createGenerator(int i, bool b, float px, float p
     Generator* g = new Generator(i, b);
 	g->setNode(new Node(node));
 	g->setPosition(dwe::vec3f(px, py, pz));
+	g->SetSensor();
     NetInstance->addNetEntity(g);
 	return g;
 }
@@ -493,26 +494,6 @@ CRifle* dwe::GraphicsEngine::createCRifle(float px, float py, float pz)
     NetInstance->addNetConsumable(r);
 	return r;
 }
-
-/*TriggerDoor* dwe::GraphicsEngine::createTriggerDoor(float px, float py, float pz)
-{
-    tag::GraphicNode* node = m_tagEngine.createMesh("media/triggerDoor.obj", vec3f(0,0,0), vec3f(0,0,0));
-    TriggerDoor* t = new TriggerDoor();
-	t->setNode(new Node(node));
-	t->setPosition(dwe::vec3f(px, py, pz));
-
-	return t;
-}*/
-
-/*TriggerGenerator* dwe::GraphicsEngine::createTriggerGenerator(float px, float py, float pz)
-{
-    tag::GraphicNode* node = m_tagEngine.createMesh("media/triggerGenerator.obj", vec3f(0,0,0), vec3f(0,0,0));
-    TriggerGenerator* t = new TriggerGenerator();
-	t->setNode(new Node(node));
-	t->setPosition(dwe::vec3f(px, py, pz));
-
-	return t;
-}*/
 
 //////////////////////////
 void dwe::GraphicsEngine::close()

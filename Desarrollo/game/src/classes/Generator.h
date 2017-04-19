@@ -1,6 +1,9 @@
 #ifndef GENERATOR_H
 #define GENERATOR_H
+
 #include "Entity.h"
+
+class TriggerGenerator;
 
 /******************************************************************************
 Los generadores se encargan de suministrar energia a las luces y puertas de
@@ -21,6 +24,8 @@ class Generator: public Entity
 
         virtual void setNode(dwe::Node* n);
 
+        void SetSensor();
+
     protected:
 
     private:
@@ -28,6 +33,7 @@ class Generator: public Entity
         bool active;
         int entities; // A cuantas entidades esta relacionado
         Entity **sector; // Array de entidades
+        TriggerGenerator* m_trigger;
 };
 
 #endif // GENERATOR_H

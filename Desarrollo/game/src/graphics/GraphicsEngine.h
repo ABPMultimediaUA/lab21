@@ -51,9 +51,6 @@ class MagnetKey;
 class SpeedBoost;
 class Medkit;
 class ScenaryElement;
-class Trigger;
-class TriggerDoor;
-class TriggerGenerator;
 class CShotgun;
 class CRifle;
 class Gun;
@@ -201,8 +198,6 @@ namespace dwe
         MagnetKey*          createMagnetKey(int i, float px, float py, float pz);
         SpeedBoost*         createSpeedBoost(float px, float py, float pz);
         Medkit*             createMedkit(float px, float py, float pz);
-        TriggerDoor*        createTriggerDoor(float px, float py, float pz);
-        TriggerGenerator*   createTriggerGenerator(float px, float py, float pz);
         AmmoGun*            createAmmoGun(float px, float py, float pz);
         CShotgun*           createCShotgun(float px, float py, float pz);
         CRifle*             createCRifle(float px, float py, float pz);

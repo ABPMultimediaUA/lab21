@@ -14,17 +14,17 @@ TriggerSystem::~TriggerSystem()
 
 void TriggerSystem::Update()
 {
-    unsigned int i=0;
+    /*unsigned int i=0;
     while(i<m_triggers.size())
     {
         Trigger* t = m_triggers[i];
         t->Update();
         if(t->IsToBeRemoved()){
             Remove(i);
-            i--;
         }
-        i++;
-    }
+        else
+            i++;
+    }*/
 }
 
 void TriggerSystem::Add(Trigger* newTrigger)

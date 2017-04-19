@@ -1,13 +1,12 @@
 #include "TriggerGenerator.h"
+#include "Generator.h"
 #include "WorldInstance.h"
 #include "Player.h"
-#include <iostream>
 
-using namespace std;
-
-TriggerGenerator::TriggerGenerator()
+TriggerGenerator::TriggerGenerator(Generator* owner)
 {
-    //ctor
+    m_owner = owner;
+    m_touchingMainPlayer = false;
 }
 
 TriggerGenerator::~TriggerGenerator()
@@ -15,22 +14,36 @@ TriggerGenerator::~TriggerGenerator()
     //dtor
 }
 
-void TriggerGenerator::triggered(Generator *g)
+void TriggerGenerator::SetSensor()
 {
-    if(!g->getIsActive())
+    dwe::vec3f s = m_owner->getNode()->getBoundingBox();
+    createStaticBody(m_owner->getPosition(), s.x*2, s.z*2, m_owner->getRotation().y);
+}
+
+void TriggerGenerator::Update()
+{
+    if(m_touchingMainPlayer && World->getMainPlayer()->getMKey(m_owner->getNum()) && GEInstance->receiver.isKeyDown(KEY_OPEN_DOOR))
     {
-        g->activateGenerator();
-        cout<<"GENERATOR "<<g->getNum()<<" ACTIVATED"<<endl;
+        if(!m_owner->getIsActive())
+        {
+            m_owner->activateGenerator();
+            std::cout<<"GENERATOR "<<m_owner->getNum()<<" ACTIVATED"<<std::endl;
+        }
     }
 }
 
-void TriggerGenerator::render()
+void TriggerGenerator::onBeginContact(EntityPhysics* otherObject)
 {
-
+    if (otherObject && otherObject->getClassID() == EntityPhysics::player_id)
+    {
+        m_touchingMainPlayer = true;
+    }
 }
 
-void TriggerGenerator::update(Generator *g)
+void TriggerGenerator::onEndContact(EntityPhysics* otherObject)
 {
-    /*if(m_touchingMainPlayer && World->getMainPlayer()->getMKey(g->getNum()) && GEInstance->receiver.isKeyDown(KEY_OPEN_DOOR))
-        triggered(g);*/
+    if (otherObject && otherObject->getClassID() == EntityPhysics::player_id)
+    {
+        m_touchingMainPlayer = false;
+    }
 }

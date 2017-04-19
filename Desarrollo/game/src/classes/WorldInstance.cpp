@@ -147,6 +147,7 @@ Player* WorldInstance::getMainPlayer()
 ////////////////////
 void WorldInstance::startDebugPhysics()
 {
+#ifdef LAB21_DEBUG
     g_debugDraw.Create();
     m_world.SetDebugDraw(&g_debugDraw);
 	uint32 flags = 0;
@@ -155,17 +156,21 @@ void WorldInstance::startDebugPhysics()
 	flags += b2Draw::e_aabbBit;
 	flags += b2Draw::e_centerOfMassBit;
 	g_debugDraw.SetFlags(flags);
+#endif // LAB21_DEBUG
 }
 
 ////////////////////
 void WorldInstance::stopDebugPhysics()
 {
+#ifdef LAB21_DEBUG
     g_debugDraw.Destroy();
+#endif // LAB21_DEBUG
 }
 
 ////////////////////
 void WorldInstance::drawDebugPhysics(dwe::vec3f cameraPosition)
 {
+#ifdef LAB21_DEBUG
     if (m_debuggingPhysics)
     {
         GEInstance->pop();
@@ -174,6 +179,7 @@ void WorldInstance::drawDebugPhysics(dwe::vec3f cameraPosition)
         g_debugDraw.Flush();
         GEInstance->push();
     }
+#endif // LAB21_DEBUG
 }
 
 ////////////////////
