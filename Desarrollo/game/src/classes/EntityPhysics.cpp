@@ -14,7 +14,7 @@ EntityPhysics::EntityPhysics() :
 {
 }
 EntityPhysics::EntityPhysics(const b2PolygonShape& bShape, b2Body* const bBody) :
-    m_fixedRotation(true), m_isSensor(false), m_bullet(false), m_density(1.0f), m_friction(0.3f),
+    m_fixedRotation(true), m_isSensor(false), m_bullet(false), m_density(1.0f), m_friction(0.3f), m_damping(0.0f),
     m_shape(bShape),
     m_body(bBody),
     m_classID(EntityPhysics::no_id)

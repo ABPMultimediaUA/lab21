@@ -5,7 +5,7 @@
 
 
 dwn::DrawableReplica::DrawableReplica():
-    m_lastPosUpdate(0)
+    m_lastPosUpdate(0), m_updatedPosition(false)
 {
 
 }
@@ -61,46 +61,55 @@ void dwn::DrawableReplica::PreDestruction(RakNet::Connection_RM3* sourceConnecti
 /////////////////////////////////////////////////////
 RakNet::RM3SerializationResult dwn::DrawableReplica::Serialize(RakNet::SerializeParameters* serializeParameters)
 {
-    //std::cout << "SSSSSSSerialize.................\n";
+    unsigned char data;
 
 	serializeParameters->outputBitstream[0].Write(getVelocity());
-	serializeParameters->outputBitstream[0].Write(getPosition());
 	serializeParameters->outputBitstream[0].Write(getRotation());
 	serializeParameters->outputBitstream[0].Write(getAnimation());
+	if(RakNet::GetTime() - m_lastPosUpdate > _timeUpdatePosition)
+    {
+        data = 0b1;
+        serializeParameters->outputBitstream[0].WriteBits(&data, 1);  // Marca de que enviamos position
+        serializeParameters->outputBitstream[0].Write(getPosition());
+        m_lastPosUpdate = RakNet::GetTime();
+    }
+    else
+    {
+        data = 0b0;
+        serializeParameters->outputBitstream[0].WriteBits(&data, 1);  // Marca de que no enviamos position
+    }
+
 	return RakNet::RM3SR_BROADCAST_IDENTICALLY;
 }
 
 ///////////////////////////
 void dwn::DrawableReplica::Deserialize(RakNet::DeserializeParameters* deserializeParameters)
 {
-    //std::cout << "DDDDDDDeserialize.................\n";
-
 	deserializeParameters->serializationBitstream[0].Read(m_remoteVel);
-	deserializeParameters->serializationBitstream[0].Read(m_remotePos);
 	deserializeParameters->serializationBitstream[0].Read(m_remoteRot);
 	deserializeParameters->serializationBitstream[0].Read(m_remoteAnim);
-	// Aqui no podemos hacer setPosition, no va bien. Es solo para coger los parametros
+	if (deserializeParameters->serializationBitstream[0].ReadBit())  // Si ha enviado posición
+    {
+        deserializeParameters->serializationBitstream[0].Read(m_remotePos);
+        m_updatedPosition = true;
+    }
+	// Aqui no podemos hacer setPosition. Es solo para coger los parametros
 	// y en el update mover
 }
 
 ///////////////////////////
 void dwn::DrawableReplica::update(RakNet::TimeMS curTime)
 {
-    // ¿Es objeto local?
-	if (NetInstance->isLocalObject(creatingSystemGUID))
-	{
-	    // Objeto creado localmente
-	}
-	else
+	if (!NetInstance->isLocalObject(creatingSystemGUID))
     {
         // Objeto creado por red
         setVelocity(m_remoteVel);
         setRotation(m_remoteRot);
         setAnimation(m_remoteAnim);
-        if (curTime - m_lastPosUpdate> 200)
+        if (m_updatedPosition)
         {
             DrawablePhysics::setPosition(m_remotePos);
-            m_lastPosUpdate = curTime;
+            m_updatedPosition = false;
         }
     }
 }
