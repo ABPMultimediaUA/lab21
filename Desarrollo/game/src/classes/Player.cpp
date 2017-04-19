@@ -1,6 +1,9 @@
 #include "Player.h"
 #include "WorldInstance.h"
 #include "Firearm.h"
+#include "TriggerSound.h"
+#include "Scene.h"
+#include "AudioEngine.h"
 
 Player::Player() :
     m_currentWeaponType(eNone), m_currentWeapon(0)
@@ -35,6 +38,9 @@ Player::Player() :
     m_playerWeaponKey[eRifle].key       = KEY_WEAPON_3;
     m_playerWeaponKey[eRifle].weapon    = eRifle;
 
+    m_triggerSound = 0;
+    removeTrigger = 0;
+
 
     // Parámetros de físicas por defecto
 }
@@ -42,6 +48,8 @@ Player::Player() :
 Player::~Player()
 {
     deleteWeapons();
+    if(m_triggerSound)
+        delete m_triggerSound;
 }
 
 void Player::deleteWeapons()
@@ -61,6 +69,14 @@ void Player::update()
 {
     // Actualizamos la posición del box2d en el modelo
     Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
+    if(removeTrigger < 3)
+        removeTrigger++;
+    else if(removeTrigger > 2)
+    {
+        delete m_triggerSound;
+        m_triggerSound = 0;
+        removeTrigger = 0;
+    }
 }
 
 /////////////
@@ -97,6 +113,9 @@ bool Player::shoot(float timeSinceLastShoot)
 {
     if (timeSinceLastShoot > m_currentWeapon->getCadence() && m_currentWeapon->getAmmo() > 0)
     {
+        m_triggerSound = new TriggerSound(getPosition(), 20);
+        removeTrigger = 1;
+        AEInstance->Play2D("media/DisparoEscopeta.wav");
         m_currentWeapon->shoot();
         m_currentWeapon->addAmmo(-1);
         return true;

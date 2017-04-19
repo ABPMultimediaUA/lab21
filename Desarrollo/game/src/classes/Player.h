@@ -12,6 +12,7 @@
 #include "Grenade.h"
 
 class Firearm;
+class TriggerSound;
 
 class Player : public CharacterController
 {
@@ -106,6 +107,8 @@ class Player : public CharacterController
         int         m_health;
         int         m_maxHealth;
         Grenade     m_grenadeWeapon;
+        TriggerSound* m_triggerSound;
+        int removeTrigger;
 
         void deleteWeapons();
 };

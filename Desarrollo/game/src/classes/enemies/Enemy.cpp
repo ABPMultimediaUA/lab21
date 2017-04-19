@@ -18,7 +18,6 @@ Enemy::Enemy() :
 
 Enemy::~Enemy()
 {
-    //dtor
 }
 
 /////////////
@@ -52,9 +51,19 @@ bool Enemy::Sense()
     return m_perception->Sense();
 }
 
+void Enemy::Hear(dwe::vec3f pos)
+{
+    m_perception->Hear(pos);
+}
+
 void Enemy::PlanPath()
 {
     m_pathplanning->CreatePathToPosition(targetPosition);
+}
+
+bool Enemy::RouteEnd()
+{
+    return m_pathplanning->CheckIfRouteEnd();
 }
 
 void Enemy::SetTargetPosition(dwe::vec2f target)
@@ -82,6 +91,9 @@ void Enemy::onBeginContact(EntityPhysics* otherObject)
             break;
         case EntityPhysics::grenadeExplosion_id:
             m_health-=10;
+            break;
+        case EntityPhysics::triggerSound_id:
+            Hear(otherObject->getPosEntity());
             break;
         }
     }

@@ -45,6 +45,7 @@ Humanoid::~Humanoid()
 {
     delete m_perception;
     delete m_pathplanning;
+
     delete selector1;
     delete sequence1;
     delete path;

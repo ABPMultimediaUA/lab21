@@ -198,12 +198,6 @@
 		<Unit filename="src/classes/gamestates/StateMachine.h" />
 		<Unit filename="src/classes/ia/Perception.cpp" />
 		<Unit filename="src/classes/ia/Perception.h" />
-		<Unit filename="src/classes/ia/behaviourtree/ApproachDoorTask.cpp" />
-		<Unit filename="src/classes/ia/behaviourtree/ApproachDoorTask.h" />
-		<Unit filename="src/classes/ia/behaviourtree/CheckIfDoorIsOpenTask.cpp" />
-		<Unit filename="src/classes/ia/behaviourtree/CheckIfDoorIsOpenTask.h" />
-		<Unit filename="src/classes/ia/behaviourtree/CloseDoorTask.cpp" />
-		<Unit filename="src/classes/ia/behaviourtree/CloseDoorTask.h" />
 		<Unit filename="src/classes/ia/behaviourtree/CompositeNode.cpp" />
 		<Unit filename="src/classes/ia/behaviourtree/CompositeNode.h" />
 		<Unit filename="src/classes/ia/behaviourtree/MoveTask.cpp" />
@@ -211,8 +205,6 @@
 		<Unit filename="src/classes/ia/behaviourtree/Node.cpp" />
 		<Unit filename="src/classes/ia/behaviourtree/Node.h" />
 		<Unit filename="src/classes/ia/behaviourtree/NodeStates.h" />
-		<Unit filename="src/classes/ia/behaviourtree/OpenDoorTask.cpp" />
-		<Unit filename="src/classes/ia/behaviourtree/OpenDoorTask.h" />
 		<Unit filename="src/classes/ia/behaviourtree/PathplanningTask.cpp" />
 		<Unit filename="src/classes/ia/behaviourtree/PathplanningTask.h" />
 		<Unit filename="src/classes/ia/behaviourtree/PatrolTask.cpp" />
@@ -223,8 +215,6 @@
 		<Unit filename="src/classes/ia/behaviourtree/Selector.h" />
 		<Unit filename="src/classes/ia/behaviourtree/Sequence.cpp" />
 		<Unit filename="src/classes/ia/behaviourtree/Sequence.h" />
-		<Unit filename="src/classes/ia/behaviourtree/WalkThroughDoorTask.cpp" />
-		<Unit filename="src/classes/ia/behaviourtree/WalkThroughDoorTask.h" />
 		<Unit filename="src/classes/ia/pathplanning/AStarAlgorithm.cpp" />
 		<Unit filename="src/classes/ia/pathplanning/AStarAlgorithm.h" />
 		<Unit filename="src/classes/ia/pathplanning/AStarHeuristics.h" />
@@ -258,6 +248,8 @@
 		<Unit filename="src/classes/triggersystem/TriggerDoor.h" />
 		<Unit filename="src/classes/triggersystem/TriggerGenerator.cpp" />
 		<Unit filename="src/classes/triggersystem/TriggerGenerator.h" />
+		<Unit filename="src/classes/triggersystem/TriggerSound.cpp" />
+		<Unit filename="src/classes/triggersystem/TriggerSound.h" />
 		<Unit filename="src/classes/triggersystem/TriggerSystem.cpp" />
 		<Unit filename="src/classes/triggersystem/TriggerSystem.h" />
 		<Unit filename="src/classes/weapons/Ammo.cpp" />

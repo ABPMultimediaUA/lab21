@@ -8,7 +8,7 @@
 class EntityPhysics
 {
     public:
-        enum EPClassID { no_id = 0, player_id, playermate_id, projectile_id, wall_id, enemy_id, consumable_id, trigger_id, grenadeExplosion_id };
+        enum EPClassID { no_id = 0, player_id, playermate_id, projectile_id, wall_id, enemy_id, consumable_id, trigger_id, triggerSound_id, grenadeExplosion_id };
 
         EntityPhysics();
         virtual ~EntityPhysics();
@@ -49,6 +49,7 @@ class EntityPhysics
 
 
         // Se crea el tipo de sólido
+        void createCircularBody(const dwe::vec3f& pos, float radius);
         void createDynamicBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
         void createStaticBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
         void createKinematicBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);

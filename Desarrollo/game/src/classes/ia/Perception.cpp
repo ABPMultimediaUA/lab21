@@ -9,6 +9,7 @@
 Perception::Perception(Enemy *owner)
 {
     m_owner = owner;
+    m_hearing = false;
 }
 
 Perception::~Perception()
@@ -16,9 +17,18 @@ Perception::~Perception()
     //dtor
 }
 
+void Perception::Hear(dwe::vec3f pos)
+{
+    m_hearing = true;
+    m_soundPosition = dwe::vec2f(pos.x, pos.z);
+}
+
 bool Perception::Sense()
 {
     Drawable* player = World->getMainPlayer();
+
+    if(m_hearing)
+        m_owner->SetTargetPosition(m_soundPosition);
 
     float distance = GetDistanceClosestPlayer(player);
 
@@ -44,7 +54,7 @@ bool Perception::Sense()
         }
     }
 
-    return false;
+    return m_hearing;
 }
 
 float Perception::GetDistanceClosestPlayer(Drawable*& pl)
@@ -70,4 +80,3 @@ float Perception::GetDistanceClosestPlayer(Drawable*& pl)
     }
     return distance;
 }
-

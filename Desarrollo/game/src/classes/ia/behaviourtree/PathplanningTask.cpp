@@ -16,7 +16,7 @@ PathplanningTask::~PathplanningTask()
 
 States PathplanningTask::run()
 {
-    if(World->getTimeElapsed() - lastTime >= 1){
+    if(m_owner->RouteEnd() || World->getTimeElapsed() - lastTime >= 1){
         m_owner->PlanPath();
         lastTime = World->getTimeElapsed();
     }

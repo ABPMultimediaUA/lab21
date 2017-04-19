@@ -18,10 +18,12 @@ class Enemy : public DrawablePhysics
 
         void move();
         bool Sense();
+        void Hear(dwe::vec3f pos);
         void PlanPath();
+        bool RouteEnd();
         void SetTargetPosition(dwe::vec2f target);
 
-        virtual void setNode(dwe::Node* n);   // Necesario para EntityPhysicsç
+        virtual void setNode(dwe::Node* n);   // Necesario para EntityPhysics
         virtual void onBeginContact(EntityPhysics* otherObject);
 
         int getHealth();
@@ -34,6 +36,7 @@ class Enemy : public DrawablePhysics
         int m_maxHealth;
         int m_health;
 
+        dwe::vec2f memoryPosition;
         dwe::vec2f targetPosition;  //Siguiente lugar al que va a dirigirse. Se usa para darle una posición al pathplanning. Cambiará en función de a quién perseguir o a dónde ir
 
         Perception* m_perception;
