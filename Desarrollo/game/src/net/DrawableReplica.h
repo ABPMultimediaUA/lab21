@@ -29,11 +29,14 @@ namespace dwn
         protected:
 
         private:
+            static const RakNet::TimeMS _timeUpdatePosition = 200; // ms
+
             dwe::vec2f          m_remoteVel;
             dwe::vec3f          m_remotePos;
             dwe::vec3f          m_remoteRot;
             dwe::AnimationType  m_remoteAnim;
             RakNet::TimeMS      m_lastPosUpdate;
+            bool                m_updatedPosition;
 
             // Puestas en private para no heredar
             virtual void SerializeConstruction(RakNet::BitStream *constructionBitstream, RakNet::Connection_RM3 *destinationConnection);
