@@ -13,14 +13,13 @@ class PathplanningTask : public Node
 
         virtual ~PathplanningTask();
 
-        virtual States run();
+        States run();
 
     protected:
 
     private:
 
         Enemy* m_owner;
-        float lastTime;
 };
 
 #endif // PATHPLANNINGTASK_H

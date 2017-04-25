@@ -3,11 +3,7 @@
 
 #include "Enemy.h"
 
-class Selector;
-class Sequence;
-class PathplanningTask;
-class PerceptionTask;
-class MoveTask;
+class BTreeHumanoid;
 
 class Humanoid : public Enemy
 {
@@ -25,15 +21,7 @@ class Humanoid : public Enemy
 
     private:
 
-        Selector* selector1;
-        Sequence *sequence1;
-
-        PathplanningTask* path;
-        PerceptionTask* perc;
-
-        MoveTask* movetask;
-
-        //PatrolTask* patrol;
+        BTreeHumanoid* m_behaviourTree;
 
 };
 #endif // HUMANOID_H

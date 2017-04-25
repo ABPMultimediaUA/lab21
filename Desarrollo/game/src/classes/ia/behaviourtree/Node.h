@@ -6,12 +6,17 @@
 class Node
 {
    public:
-        Node();
-        virtual ~Node();
-        virtual States run();
-        bool getRunning();
+
+        Node(){};
+
+        virtual ~Node(){};
+
+        virtual States run(){return success;};
+
+        bool getRunning(){return brunning;};
 
     protected:
+
         bool brunning;
 
 };

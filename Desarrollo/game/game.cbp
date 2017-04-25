@@ -20,6 +20,9 @@
 					<Add directory="src" />
 					<Add directory="src/audio" />
 					<Add directory="src/classes/triggersystem" />
+					<Add directory="src/classes/ia/behaviourtree" />
+					<Add directory="src/classes/ia/behaviourtree/trees" />
+					<Add directory="src/classes/ia/behaviourtree/tasks" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics-s-d" />
@@ -39,6 +42,9 @@
 					<Add directory="src" />
 					<Add directory="src/audio" />
 					<Add directory="src/classes/triggersystem" />
+					<Add directory="src/classes/ia/behaviourtree" />
+					<Add directory="src/classes/ia/behaviourtree/trees" />
+					<Add directory="src/classes/ia/behaviourtree/tasks" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -71,6 +77,8 @@
 			<Add directory="src/classes/triggersystem" />
 			<Add directory="src/classes/weapons" />
 			<Add directory="src/classes/ia" />
+			<Add directory="src/classes/ia/behaviourtree/tasks" />
+			<Add directory="src/classes/ia/behaviourtree/trees" />
 		</Compiler>
 		<Linker>
 			<Add library="lib/glew32s.lib" />
@@ -200,21 +208,35 @@
 		<Unit filename="src/classes/ia/Perception.h" />
 		<Unit filename="src/classes/ia/behaviourtree/CompositeNode.cpp" />
 		<Unit filename="src/classes/ia/behaviourtree/CompositeNode.h" />
-		<Unit filename="src/classes/ia/behaviourtree/MoveTask.cpp" />
-		<Unit filename="src/classes/ia/behaviourtree/MoveTask.h" />
-		<Unit filename="src/classes/ia/behaviourtree/Node.cpp" />
 		<Unit filename="src/classes/ia/behaviourtree/Node.h" />
 		<Unit filename="src/classes/ia/behaviourtree/NodeStates.h" />
-		<Unit filename="src/classes/ia/behaviourtree/PathplanningTask.cpp" />
-		<Unit filename="src/classes/ia/behaviourtree/PathplanningTask.h" />
-		<Unit filename="src/classes/ia/behaviourtree/PatrolTask.cpp" />
-		<Unit filename="src/classes/ia/behaviourtree/PatrolTask.h" />
-		<Unit filename="src/classes/ia/behaviourtree/PerceptionTask.cpp" />
-		<Unit filename="src/classes/ia/behaviourtree/PerceptionTask.h" />
 		<Unit filename="src/classes/ia/behaviourtree/Selector.cpp" />
 		<Unit filename="src/classes/ia/behaviourtree/Selector.h" />
 		<Unit filename="src/classes/ia/behaviourtree/Sequence.cpp" />
 		<Unit filename="src/classes/ia/behaviourtree/Sequence.h" />
+		<Unit filename="src/classes/ia/behaviourtree/Succeeder.cpp" />
+		<Unit filename="src/classes/ia/behaviourtree/Succeeder.h" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/AttackRangeCondition.cpp" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/AttackRangeCondition.h" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/AttackTask.cpp" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/AttackTask.h" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/ElapsedTimeCondition.cpp" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/ElapsedTimeCondition.h" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/MemoryCondition.cpp" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/MemoryCondition.h" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/MoveTask.cpp" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/MoveTask.h" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/PathplanningTask.cpp" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/PathplanningTask.h" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/PatrolCondition.cpp" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/PatrolCondition.h" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/PatrolTask.cpp" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/PatrolTask.h" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/PerceptionTask.cpp" />
+		<Unit filename="src/classes/ia/behaviourtree/tasks/PerceptionTask.h" />
+		<Unit filename="src/classes/ia/behaviourtree/trees/BTreeHumanoid.cpp" />
+		<Unit filename="src/classes/ia/behaviourtree/trees/BTreeHumanoid.h" />
+		<Unit filename="src/classes/ia/behaviourtree/trees/BehaviourTree.h" />
 		<Unit filename="src/classes/ia/pathplanning/AStarAlgorithm.cpp" />
 		<Unit filename="src/classes/ia/pathplanning/AStarAlgorithm.h" />
 		<Unit filename="src/classes/ia/pathplanning/AStarHeuristics.h" />

@@ -4,15 +4,19 @@
 #include "Perception.h"
 #include "dwVectors.h"
 
+#include <limits>
+
 Enemy::Enemy() :
     m_speed(0.0),
     m_maxHealth(10),
     m_health(m_maxHealth),
     m_perception(0),
-    m_pathplanning(0)
+    m_pathplanning(0),
+    attacking(false),
+    memory(false)
 {
     setClassID(EntityPhysics::enemy_id);
-
+    closestPlayer = 0;
     // Parámetros de físicas por defecto
 }
 
@@ -56,6 +60,45 @@ void Enemy::Hear(dwe::vec3f pos)
     m_perception->Hear(pos);
 }
 
+void Enemy::SetClosestPlayer(Drawable* closest)
+{
+    closestPlayer = closest;
+}
+
+void Enemy::SetInAttackRange(bool b)
+{
+    attackRange = b;
+}
+
+bool Enemy::IsInAttackRange()
+{
+    return attackRange;
+}
+
+bool Enemy::Attack()
+{
+    Drawable::setPosition(EntityPhysics::getPosEntity());
+    if(!attacking){
+        attackTime = World->getTimeElapsed();
+        setAnimation(dwe::eAnimHumanoidStand);
+        attacking = true;
+        EntityPhysics::setVelocity(dwe::vec2f(0,0));
+
+    }
+    if(World->getTimeElapsed() - attackTime >= 0.5f){
+        ///Crear trigger de daño
+        std::cout<<"Hago daño"<<std::endl;
+    }
+
+    if(World->getTimeElapsed() - attackTime >= 1){
+        std::cout<<"Fin del ataque"<<std::endl;
+        setAnimation(dwe::eAnimHumanoidStand);
+        attacking = false;
+    }
+
+    return attacking;
+}
+
 void Enemy::PlanPath()
 {
     m_pathplanning->CreatePathToPosition(targetPosition);
@@ -64,6 +107,26 @@ void Enemy::PlanPath()
 bool Enemy::RouteEnd()
 {
     return m_pathplanning->CheckIfRouteEnd();
+}
+
+void Enemy::SetMemory(bool b)
+{
+    memory = b;
+}
+
+bool Enemy::HasMemory()
+{
+    return memory;
+}
+
+void Enemy::SetMemoryPosition(dwe::vec2f target)
+{
+    memoryPosition = target;
+}
+
+dwe::vec2f Enemy::GetMemoryPosition()
+{
+    return memoryPosition;
 }
 
 void Enemy::SetTargetPosition(dwe::vec2f target)
