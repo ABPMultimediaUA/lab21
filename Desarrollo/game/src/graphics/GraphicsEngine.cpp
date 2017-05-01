@@ -17,6 +17,7 @@
 #include "WorldInstance.h"
 
 #include "Door.h"
+#include "DoorRotate.h"
 #include "Projectile.h"
 #include "ProjectileGrenade.h"
 #include "Generator.h"
@@ -363,6 +364,18 @@ Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float p
         d->setRotation(vec3f(0,90,0));
 
 	NetInstance->addNetEntity(d);
+	return d;
+}
+
+DoorRotate* dwe::GraphicsEngine::createDoorRotate(int f, bool a, float px, float py, float pz)
+{
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/unityPuerta_50m.obj", vec3f(0,0,0), vec3f(0,0,0), "media/unityPuerta_50m.bmp");
+    DoorRotate* d = new DoorRotate(f, a);
+	d->setNode(new Node(node));
+    d->setPosition(dwe::vec3f(px, py, pz));
+	if(f==1 || f==3)
+        d->setRotation(vec3f(0,90,0));
+
 	return d;
 }
 

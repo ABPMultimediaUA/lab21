@@ -61,6 +61,7 @@ void Player::update()
 {
     // Actualizamos la posición del box2d en el modelo
     Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
+    std::cout << "pos: " << getPosEntity().x << " " << getPosEntity().z << "\n";
 }
 
 /////////////

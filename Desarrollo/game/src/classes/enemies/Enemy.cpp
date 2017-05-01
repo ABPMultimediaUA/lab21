@@ -83,6 +83,7 @@ void Enemy::onBeginContact(EntityPhysics* otherObject)
         case EntityPhysics::grenadeExplosion_id:
             m_health-=10;
             break;
+        default: break;
         }
     }
 }

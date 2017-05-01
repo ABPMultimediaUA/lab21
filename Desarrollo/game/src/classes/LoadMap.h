@@ -7,6 +7,7 @@
 #include "TriggerGenerator.h"
 #include "MagnetKey.h"
 #include "Door.h"
+#include "DoorRotate.h"
 #include "Generator.h"
 #include "Scene.h"
 
@@ -16,8 +17,9 @@
 
 /////
 #include "Entity.h"
-#define NUM_MAP_ENTITIES 100
-#define NUM_MAP_ENTITIES2 57
+#define NUM_MAP_ENTITIES    100
+#define NUM_MAP_ENTITIES2   56
+#define NUM_MAP_DOORROTATE  1
 
 class LoadMap {
     public:
@@ -44,6 +46,8 @@ class LoadMap {
         //Consumable *ammos[2];
         TriggerDoor *doorTriggers[NUM_MAP_ENTITIES2]; // Triggers
         TriggerGenerator *generatorTriggers[3];
+
+        DoorRotate* entitiesDoorRotate[NUM_MAP_DOORROTATE];
 
         bool cheats;
 };

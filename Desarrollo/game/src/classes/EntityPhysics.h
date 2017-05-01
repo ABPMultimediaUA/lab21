@@ -19,6 +19,8 @@ class EntityPhysics
         dwe::vec3f getPosEntity();
         void setPosEntity(dwe::vec3f position, float rotation);
 
+        float getRotEntity();
+
         /// \param[in] velocity Velocidad en m/s
         void setVelocity(dwe::vec2f velocity);
 
@@ -52,12 +54,17 @@ class EntityPhysics
         void createDynamicBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
         void createStaticBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
         void createKinematicBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
-        void createJointBody(const dwe::vec3f& pos);
+        void createJointBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
+
 
     private:
         b2PolygonShape  m_shape;
         b2Body*         m_body;
+        b2PolygonShape  m_shapeJoint;
+        b2Body*         m_bodyJoint;
         EPClassID       m_classID;
+
+        b2RevoluteJoint*    m_revoluteJoint;
 
         static const float _ratio = 0.035;
 
