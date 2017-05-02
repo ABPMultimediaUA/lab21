@@ -49,9 +49,6 @@ SIN TERMINAR
 ----------------------------------------
 ASIGNADO
 ----------------------------------------
--VII.Utilización de joints en las mecánicas jugables
-Rubén: SIN HACER
-
 -VI.Comunicación simulada básica entre NPCs (Blackboard)
 Ruben: SIN HACER
 
@@ -73,6 +70,9 @@ Edu: NO EVALUADO
 ----------------------------------------
 HECHO
 ----------------------------------------
+-VII.Utilización de joints en las mecánicas jugables
+Rubén: SIN HACER
+
 -VII.Mecánicas de acción
 Rubén: ACABARLAS: granada, al recargar dejar un tiempo sin poder disparar
 
