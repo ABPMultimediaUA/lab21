@@ -43,6 +43,7 @@ class Legless;
 class Mother;
 class Entity;
 class Door;
+class DoorRotate;
 class Projectile;
 class ProjectileGrenade;
 class GrenadeExplosion;
@@ -191,6 +192,7 @@ namespace dwe
         vec3f getCameraPosition();
 
         Door*               createDoor(int f, bool a, float px, float py, float pz);
+        DoorRotate*         createDoorRotate(int f, bool a, float px, float py, float pz);
         Projectile*         createProjectile(vec3f origin, float angle, std::string weapon);
         ProjectileGrenade*  createProjectileGrenade(vec3f origin, float angle);
         GrenadeExplosion*   createGrenadeExplosion(vec3f origin);

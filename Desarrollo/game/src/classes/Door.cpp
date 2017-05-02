@@ -22,6 +22,7 @@ Door::Door(int f, bool a)
 Door::~Door()
 {
     delete m_trigger;
+    m_trigger = 0;
 }
 
 void Door::setActive()  {   active=true;      }
@@ -189,10 +190,6 @@ void Door::setNode(dwe::Node* n)
 
 void Door::setPosition(dwe::vec3f p)
 {
-    int rotation=0;
-    if(facing==1 ||facing ==3)
-        rotation=90;
-
     DrawablePhysics::setPosition(p);
 }
 

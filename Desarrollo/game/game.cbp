@@ -143,6 +143,8 @@
 		<Unit filename="src/classes/DebugPhysicsDraw.h" />
 		<Unit filename="src/classes/Door.cpp" />
 		<Unit filename="src/classes/Door.h" />
+		<Unit filename="src/classes/DoorRotate.cpp" />
+		<Unit filename="src/classes/DoorRotate.h" />
 		<Unit filename="src/classes/Drawable.cpp" />
 		<Unit filename="src/classes/Drawable.h" />
 		<Unit filename="src/classes/DrawablePhysics.cpp" />

@@ -70,6 +70,7 @@ void LoadMap::Init(){
 
     int contDoorIn = 0; //Se necesita para que el array no se sobreescriba
     int contAmmoIn = 0; //Se necesita para que el array no se sobreescriba
+    uint8_t contDoorRotate = 0;
 
     //RECORRIDO
     if (document.Parse(json).HasParseError() == false) //coger el json y ver si es correcto
@@ -141,40 +142,37 @@ void LoadMap::Init(){
                 int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = (-1)* e["position"]["z"].GetDouble();
                 // SOolo se utiliza rotacion en eje Y    int rx = e["rotation"]["x"].GetDouble();    int rz = e["rotation"]["z"].GetDouble();
                 int ry = e["rotation"]["y"].GetDouble();
+                uint8_t face = ry / 90; // 0->0, 90->1, 180->2, 270->3
                 if(id=="Door"){
-                        if(ry==0){
-                            entities[contDoorIn]=GEInstance->createDoor(0, true, tx, ty, tz);
-                        }else if(ry==90){
-                            entities[contDoorIn]=GEInstance->createDoor(1, true, tx, ty, tz);
-                        }else if(ry==180){
-                            entities[contDoorIn]=GEInstance->createDoor(2, true, tx, ty, tz);
-                        }else if(ry==270 || ry==-90){
-                            entities[contDoorIn]=GEInstance->createDoor(3, true, tx, ty, tz);
-                        }
+                    entities[contDoorIn]=GEInstance->createDoor(face, true, tx, ty, tz);
                     //entities[contDoorIn]->setLevelId(levelid);
                     //doorTriggers[contDoorIn]=GEInstance->createTriggerDoor(tx, ty, tz);
                     ++contDoorIn;
+                }else if(id=="DoorRotate"){ // Puerta giratoria
+                    entitiesDoorRotate[contDoorRotate]=GEInstance->createDoorRotate(face, true, tx, ty, tz);
+                    ++contDoorRotate;
                 }
             }
+
 
         }
 
         // DEMO
         // Puertas MADRE
-        entities[53]=GEInstance->createDoor(2, false, -50, 0, -100);
+        entities[52]=GEInstance->createDoor(2, false, -50, 0, -100);
         //doorTriggers[53]=GEInstance->createTriggerDoor(-29, 0, -100);
-        entities[54]=GEInstance->createDoor(0, false, 50, 0, -100);
+        entities[53]=GEInstance->createDoor(0, false, 50, 0, -100);
         //doorTriggers[54]=GEInstance->createTriggerDoor(29, 0, -100);
-        entities[55]=GEInstance->createDoor(2, true, -50, 0, -1895);
+        entities[54]=GEInstance->createDoor(2, true, -50, 0, -1895);
         //doorTriggers[55]=GEInstance->createTriggerDoor(-29, 0, -1895);
-        entities[56]=GEInstance->createDoor(0, true, 50, 0, -1895);
+        entities[55]=GEInstance->createDoor(0, true, 50, 0, -1895);
         //doorTriggers[56]=GEInstance->createTriggerDoor(29, 0, -1895);
 
         ((Door*)entities[2])->setInactive();
         ((Door*)entities[11])->setInactive();
         ((Door*)entities[12])->setInactive();
+        ((Door*)entities[50])->setInactive();
         ((Door*)entities[51])->setInactive();
-        ((Door*)entities[52])->setInactive();
 
         // Generadores
         generator[0]=GEInstance->createGenerator(0, false, -350, 24, -300); // 1 Derecha Habitaciones
@@ -230,6 +228,9 @@ void LoadMap::Update(){
         cheats=true;
     }
 
+    for(uint8_t i=0; i < NUM_MAP_DOORROTATE; i++)
+        entitiesDoorRotate[i]->update();  // TODOjoint
+
     //Scene::updateConsumables(mainPlayer);
 }
 
@@ -242,8 +243,6 @@ void LoadMap::Destroy(){
         delete generator[i];
         delete generatorTriggers[i];
     }
-    delete[] generator;
-    delete[] generatorTriggers;
     delete suelo; suelo=0;
     delete wall;
 }

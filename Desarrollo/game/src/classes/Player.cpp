@@ -77,6 +77,7 @@ void Player::update()
         m_triggerSound = 0;
         removeTrigger = 0;
     }
+    std::cout << "pos: " << getPosEntity().x << " " << getPosEntity().z << "\n";
 }
 
 /////////////

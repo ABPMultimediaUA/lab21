@@ -158,6 +158,7 @@ void Enemy::onBeginContact(EntityPhysics* otherObject)
         case EntityPhysics::triggerSound_id:
             Hear(otherObject->getPosEntity());
             break;
+        default: break;
         }
     }
 }
