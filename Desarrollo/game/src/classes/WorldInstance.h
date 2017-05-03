@@ -46,6 +46,9 @@ class WorldInstance
         b2Body* createBody(b2BodyDef *bodyDef);
         void destroyBody(b2Body *body);
 
+        b2Joint* createJoint(const b2JointDef *jointDef);
+        void destroyJoint(b2Joint *joint);
+
         /// \brief Se ejecuta el step de Box2D con un ratio fijo _timeStep.
         void step();
 

@@ -85,6 +85,18 @@ void WorldInstance::destroyBody(b2Body *body)
     return m_world.DestroyBody(body);
 }
 
+///////////////////////
+b2Joint* WorldInstance::createJoint(const b2JointDef *jointDef)
+{
+    return m_world.CreateJoint(jointDef);
+}
+
+///////////////////////
+void WorldInstance::destroyJoint(b2Joint *joint)
+{
+    return m_world.DestroyJoint(joint);
+}
+
 ////////////////////
 void WorldInstance::step()
 {

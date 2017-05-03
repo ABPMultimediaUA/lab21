@@ -43,6 +43,7 @@ class Legless;
 class Mother;
 class Entity;
 class Door;
+class DoorRotate;
 class Projectile;
 class ProjectileGrenade;
 class GrenadeExplosion;
@@ -73,12 +74,11 @@ namespace dwe
         eAnimPlayerRun      = 1,
         eAnimPlayerStealth  = 2,    // Sigilo
 
-        eAnimHumanoidStand  = 0,
-        eAnimHumanoidDeath  = 1,
-
-        eAnimLeglessStand   = 0,
-        eAnimLeglessRun     = 1,
-        eAnimLeglessDeath   = 2,
+        eAnimEnemyStand     = 0,
+        eAnimEnemyDeath     = 1,
+        eAnimEnemyRun       = 2,
+        eAnimEnemyAttack    = 3,
+        eAnimEnemyWalk      = 4
     };
 
 
@@ -191,6 +191,7 @@ namespace dwe
         vec3f getCameraPosition();
 
         Door*               createDoor(int f, bool a, float px, float py, float pz);
+        DoorRotate*         createDoorRotate(int f, bool a, float px, float py, float pz);
         Projectile*         createProjectile(vec3f origin, float angle, std::string weapon);
         ProjectileGrenade*  createProjectileGrenade(vec3f origin, float angle);
         GrenadeExplosion*   createGrenadeExplosion(vec3f origin);

@@ -17,6 +17,7 @@
 #include "WorldInstance.h"
 
 #include "Door.h"
+#include "DoorRotate.h"
 #include "Projectile.h"
 #include "ProjectileGrenade.h"
 #include "Generator.h"
@@ -271,8 +272,8 @@ PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 {
     tag::EAnimation* anim = m_tagEngine.createNumAnimations(2);
-    m_tagEngine.createAnimation(anim, "media/Humanoid/Stand/humanoide",         eAnimHumanoidStand,   1);
-    m_tagEngine.createAnimation(anim, "media/Humanoid/Death/humanoideDeath",    eAnimHumanoidDeath,   8, false);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/Stand/humanoide",         eAnimEnemyStand,   1);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/Death/humanoideDeath",    eAnimEnemyDeath,   8, false);
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
@@ -335,9 +336,9 @@ Guardian* dwe::GraphicsEngine::createEnemyGuardian(int px, int py, int pz)
 Legless* dwe::GraphicsEngine::createEnemyLegless(int px, int py, int pz)
 {
     tag::EAnimation* anim = m_tagEngine.createNumAnimations(3);
-    m_tagEngine.createAnimation(anim, "media/Legless/Stand/leglessStand",   eAnimLeglessStand,  1);
-    m_tagEngine.createAnimation(anim, "media/Legless/Run/leglessRun",       eAnimLeglessRun,    9);
-    m_tagEngine.createAnimation(anim, "media/Legless/Death/leglessDeath",   eAnimLeglessDeath,  7, false);
+    m_tagEngine.createAnimation(anim, "media/Legless/Stand/leglessStand",   eAnimEnemyStand,  1);
+    m_tagEngine.createAnimation(anim, "media/Legless/Run/leglessRun",       eAnimEnemyRun,    9);
+    m_tagEngine.createAnimation(anim, "media/Legless/Death/leglessDeath",   eAnimEnemyDeath,  7, false);
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
@@ -363,6 +364,18 @@ Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float p
         d->setRotation(vec3f(0,90,0));
 
 	NetInstance->addNetEntity(d);
+	return d;
+}
+
+DoorRotate* dwe::GraphicsEngine::createDoorRotate(int f, bool a, float px, float py, float pz)
+{
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/unityPuerta_50m.obj", vec3f(0,0,0), vec3f(0,0,0), "media/unityPuerta_50m.bmp");
+    DoorRotate* d = new DoorRotate(f, a);
+	d->setNode(new Node(node));
+    d->setPosition(dwe::vec3f(px, py, pz));
+	if(f==1 || f==3)
+        d->setRotation(vec3f(0,90,0));
+
 	return d;
 }
 
