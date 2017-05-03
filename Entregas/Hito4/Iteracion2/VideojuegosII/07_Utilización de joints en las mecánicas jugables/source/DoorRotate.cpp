@@ -21,7 +21,9 @@ bool DoorRotate::getActive()  {   return active;    }
 void DoorRotate::update()
 {
     dwe::vec3f rot = getRotation();
+    dwe::vec3f pos = getPosEntity();
     Drawable::setRotation(dwe::vec3f(rot.x, getRotEntity(), rot.z));
+    Drawable::setPosition(dwe::vec3f(pos.x, getPosition().y, pos.z));
 }
 
 void DoorRotate::render()
