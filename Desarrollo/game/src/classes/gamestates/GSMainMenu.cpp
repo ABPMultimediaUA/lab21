@@ -23,21 +23,21 @@ GSMainMenu::GSMainMenu(){
     updatedLobbys = false;
 
     /**Fondos**/
-    menuPrincipalFondo = new dwe::Background("menuPrincipal");
-    menuJugarOnlineFondo = new dwe::Background("menuJugarOnline");
-    menuLogrosFondo = new dwe::Background("menuLogros");
-    menuOpcionesFondo = new dwe::Background("menuOpciones");
+    menuBackground = new dwe::Background("menuBackground");
+
+    /**Decoracion**/
+    mainMenuDecoration = new dwe::Sprite("mainMenuDecoration", GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.25-7);
 
     /**Botones**/
-    playAloneButton = new dwe::Button("Play Alone", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35);
-    playOnlineButton = new dwe::Button("Play Online", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.43);
-    achievementsButton = new dwe::Button("Achievements", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.51);
-    optionsButton = new dwe::Button("Options", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.59);
-    exitButton = new dwe::Button("Exit", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.67);
-    backButton = new dwe::Button("Back", GEInstance->get_screenWidth()*0.8, GEInstance->get_screenHeight()*0.8);
+    playAloneButton = new dwe::Button("Play Alone", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35, true);
+    playOnlineButton = new dwe::Button("Play Online", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.43, true);
+    achievementsButton = new dwe::Button("Achievements", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.51, true);
+    optionsButton = new dwe::Button("Options", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.59, true);
+    exitButton = new dwe::Button("Exit", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.67, true);
+    backButton = new dwe::Button("Back", GEInstance->get_screenWidth()*0.8, GEInstance->get_screenHeight()*0.8, false);
     serversButtons = new std::vector<dwe::Button>;
     lobbysButtons = new std::vector<dwe::Button>;
-    createLobbyButton = new dwe::Button("Create lobby", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.8);
+    createLobbyButton = new dwe::Button("Create lobby", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.8, false);
 }
 
 GSMainMenu* GSMainMenu::getInstance()
@@ -55,12 +55,13 @@ void GSMainMenu::Render(){
             cout<<"Menu Principal"<<endl;
             menuInfo=true;
         }
-        menuPrincipalFondo->draw();
+        menuBackground->draw();
         playAloneButton->draw();
         playOnlineButton->draw();
         achievementsButton->draw();
         optionsButton->draw();
         exitButton->draw();
+        mainMenuDecoration->draw();
     }else if(page==1){
         if(!menuInfo){
             cout<<"/**************************************************/"<<endl;
@@ -69,7 +70,7 @@ void GSMainMenu::Render(){
             cout<<"Podras crear tu propia sala"<<endl; // Crear Lobby
             menuInfo=true;
         }
-        menuJugarOnlineFondo->draw();
+        menuBackground->draw();
         for(unsigned int i=0; i<serversButtons->size(); i++){
             serversButtons->at(i).draw();
         }
@@ -82,7 +83,7 @@ void GSMainMenu::Render(){
             cout<<"Podras crear tu propia sala"<<endl; // Crear Lobby
             menuInfo=true;
         }
-        menuJugarOnlineFondo->draw();
+        menuBackground->draw();
         createLobbyButton->draw();
         for(unsigned int i=0; i<lobbysButtons->size(); i++){
             lobbysButtons->at(i).draw();
@@ -96,7 +97,7 @@ void GSMainMenu::Render(){
             cout<<"Podras ver informacion de cada logro"<<endl;
             menuInfo=true;
         }
-        menuLogrosFondo->draw();
+        menuBackground->draw();
         backButton->draw();
         //GEInstance->achievementsHandler.draw();
     }else if(page==3){
@@ -106,25 +107,13 @@ void GSMainMenu::Render(){
             cout<<"Aqui se modificaran las opciones de juego"<<endl;
             menuInfo=true;
         }
-        menuOpcionesFondo->draw();
+        menuBackground->draw();
         backButton->draw();
     }
-    //GEInstance->displayWindow();
 }
 
 void GSMainMenu::SetPage(int n){
     page = n;
-}
-
-bool GSMainMenu::buttonCheck(dwe::Button *b)
-{
-    if(GEInstance->receiver.isLeftButtonPressed()
-       &&(mousePosX>b->getXOrigin()
-       && mousePosY>b->getYOrigin()
-       && mousePosX<b->getWidth()
-       && mousePosY<b->getHeight())
-    ){return true;}
-    return false;
 }
 
 void GSMainMenu::HandleEvents(){
@@ -138,7 +127,7 @@ void GSMainMenu::HandleEvents(){
     if(m_clickPermission)
     {
         switch(page){
-        case 0: if(buttonCheck(playAloneButton) || GEInstance->receiver.isKeyDown(KEY_KEY_1))
+        case 0: if(playAloneButton->buttonCheck(mousePosX, mousePosY) || GEInstance->receiver.isKeyDown(KEY_KEY_1))
                 {
                     NetInstance->open(Scene::Instance(), false);  // Inicializar motor de red
                     menuInfo=false;
@@ -146,7 +135,7 @@ void GSMainMenu::HandleEvents(){
                     Game::getInstance()->ChangeState(GSIngame::getInstance());
                     GSIngame::getInstance()->Init();
                 }
-                else if(buttonCheck(playOnlineButton) || GEInstance->receiver.isKeyDown(KEY_KEY_2))
+                else if(playOnlineButton->buttonCheck(mousePosX, mousePosY) || GEInstance->receiver.isKeyDown(KEY_KEY_2))
                 {
                     type="2";
                     enterNet=true;
@@ -154,26 +143,26 @@ void GSMainMenu::HandleEvents(){
                     menuInfo=false;
                     m_clickPermission=false;
                 }
-                else if(buttonCheck(achievementsButton))
+                else if(achievementsButton->buttonCheck(mousePosX, mousePosY))
                 {
                     page=2;
                     menuInfo=false;
                     m_clickPermission=false;
                 }
-                else if(buttonCheck(optionsButton))
+                else if(optionsButton->buttonCheck(mousePosX, mousePosY))
                 {
                     page=3;
                     menuInfo=false;
                     m_clickPermission=false;
                 }
-                else if(buttonCheck(exitButton))
+                else if(exitButton->buttonCheck(mousePosX, mousePosY))
                 {
                     Game::getInstance()->setRunning(false);
                 }
                 break;
         case 1: for(int i=0; i<serversButtons->size(); i++)
                 {
-                    if(!serverSelection && buttonCheck(&serversButtons->at(i)))
+                    if(!serverSelection && serversButtons->at(i).buttonCheck(mousePosX, mousePosY))
                     {
                         std::stringstream ss;
                         std::string s;
@@ -187,7 +176,7 @@ void GSMainMenu::HandleEvents(){
                         m_clickPermission=false;
                     }
                 }
-                if(buttonCheck(backButton))
+                if(backButton->buttonCheck(mousePosX, mousePosY))
                 {
                     page=0;
                     menuInfo=false;
@@ -196,7 +185,7 @@ void GSMainMenu::HandleEvents(){
                 break;
         case 4: for(int i=0; i<lobbysButtons->size(); i++)
                 {
-                    if(!lobbySelection && buttonCheck(&lobbysButtons->at(i)))
+                    if(!lobbySelection && lobbysButtons->at(i).buttonCheck(mousePosX, mousePosY))
                     {
                         std::stringstream ss;
                         std::string s;
@@ -211,14 +200,14 @@ void GSMainMenu::HandleEvents(){
                 }
                 if(!lobbySelection)
                 {
-                    if(buttonCheck(createLobbyButton))
+                    if(createLobbyButton->buttonCheck(mousePosX, mousePosY))
                     {
                         lobby="0";
                         lobbySelection=true;
                         NetInstance->connectToGame(atoi(lobby.c_str()));
                     }
                 }
-                if(buttonCheck(backButton))
+                if(backButton->buttonCheck(mousePosX, mousePosY))
                 {
                     page=0; // 1 Pero al registrar en diferentes iteraciones el click pasa de lobby -> online -> mainMenu
                     menuInfo=false;
@@ -226,14 +215,14 @@ void GSMainMenu::HandleEvents(){
                     m_clickPermission=false;
                 }
                 break;
-        case 2: if(buttonCheck(backButton))
+        case 2: if(backButton->buttonCheck(mousePosX, mousePosY))
                 {
                     page=0;
                     menuInfo=false;
                     m_clickPermission=false;
                 }
                 break;
-        case 3: if(buttonCheck(backButton))
+        case 3: if(backButton->buttonCheck(mousePosX, mousePosY))
                 {
                     page=0;
                     menuInfo=false;
@@ -326,7 +315,7 @@ void GSMainMenu::UpdateLobbys()
         std::string s;
         ss << i+1;
         s = ss.str();
-        auxButton=new dwe::Button("Lobby "+s, GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35);
+        auxButton=new dwe::Button("Lobby "+s, GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35, true);
         lobbysButtons->push_back(*auxButton);
     }
     updatedLobbys=true;
@@ -340,17 +329,16 @@ void GSMainMenu::UpdateServers()
         std::string s;
         ss << i+1;
         s = ss.str();
-        auxButton = new dwe::Button("Server "+s, GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35);
+        auxButton = new dwe::Button("Server "+s, GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35, true);
         serversButtons->push_back(*auxButton);
     }
 }
 
 GSMainMenu::~GSMainMenu(){
     /**Borrar Fondos**/
-    delete menuPrincipalFondo;
-    delete menuJugarOnlineFondo;
-    delete menuLogrosFondo;
-    delete menuOpcionesFondo;
+    delete menuBackground;
+    /**Borrar Decoraciones**/
+    delete mainMenuDecoration;
     /**Borrar Botones**/
     delete playAloneButton;
     delete playOnlineButton;
