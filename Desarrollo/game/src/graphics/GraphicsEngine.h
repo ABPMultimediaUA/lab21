@@ -76,9 +76,9 @@ namespace dwe
 
         eAnimEnemyStand     = 0,
         eAnimEnemyDeath     = 1,
-        eAnimEnemyRun       = 2,
+        eAnimEnemyWalk      = 2,
         eAnimEnemyAttack    = 3,
-        eAnimEnemyWalk      = 4
+        eAnimEnemyRun       = 4
     };
 
 

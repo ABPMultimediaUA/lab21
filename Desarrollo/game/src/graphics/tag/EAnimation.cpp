@@ -7,22 +7,33 @@ tag::EAnimation::EAnimation() :
     m_numAnimations(0),
     m_frame(0),
     temp(0),
-    m_animations(0)
+    m_animations(0),
+    m_texture(0)
 {
     //ctor
 }
 
 tag::EAnimation::~EAnimation()
 {
-    //dtor
+    if (m_texture)
+    {
+        delete m_texture;
+        m_texture = 0;
+    }
 }
 
 /////////////////
 void tag::EAnimation::beginDraw()
 {
     if (m_animations!=0)
+        if (m_texture)
+            m_texture->activateTexture();
+
         //aqui hariamos el bucle empezando por el frame 0
         m_animations[m_activeAnimation].frames[m_frame]->draw();
+
+        if (m_texture)
+            m_texture->deactivateTexture();
         temp++;
         if(temp == 10)
         {
@@ -91,5 +102,12 @@ tag::vec3f tag::EAnimation::getBoundingBox()
         return m_animations[m_activeAnimation].frames[0]->getBoundingBox();
     else
         return vec3f(0,0,0);
+}
+
+
+//////////////////////
+void tag::EAnimation::loadTexture(std::string fileName)
+{
+    m_texture = static_cast<ResourceTexture*>(Entity::resourceManager.getResource(fileName));
 }
 

@@ -9,7 +9,16 @@ tag::EMesh::EMesh() :
 
 tag::EMesh::~EMesh()
 {
-    //dtor
+    if (m_texture)
+    {
+        delete m_texture;
+        m_texture = 0;
+    }
+    if (m_mesh)
+    {
+        delete m_mesh;
+        m_mesh = 0;
+    }
 }
 
 /////////////////
