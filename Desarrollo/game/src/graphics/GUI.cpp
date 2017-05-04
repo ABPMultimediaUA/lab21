@@ -1,25 +1,41 @@
 #include "GUI.h"
 
 #include "GraphicsEngine.h"
+#include "AudioEngine.h"
 
 /*************Fachada SFML*******************/
 /***Boton INI***/
-dwe::Button::Button(std::string t, int x, int y)
+dwe::Button::Button(std::string t, int x, int y, bool bg)
 {
     this->x=x;
     this->y=y;
-    font.loadFromFile("media/8bit.ttf"); // La fuente se puede modificar en cualquier momento
+    this->bg=bg;
+    font.loadFromFile("media/defused.ttf"); // La fuente se puede modificar en cualquier momento
     text.setFont(font);
     text.setString(t);
-    text.setCharacterSize(18);
-    text.setColor(sf::Color::White);
-    text.setPosition(x, y); // 200, 150
+    text.setCharacterSize(15);
+    text.setColor(sf::Color(255,255,255, 128));
+    text.setPosition(x, y);
+    if(bg){
+        bgx=x-67;
+        bgy=y-7;
+        texture.loadFromFile("media/buttonBackground.png");
+        sp.setTexture(texture, true);
+        sp.setPosition(bgx, bgy);
+    }else{
+        bgx=x-7;
+        bgy=y-10;
+        texture.loadFromFile("media/backButtonBackground.png");
+        sp.setTexture(texture, true);
+        sp.setPosition(bgx, bgy);
+    }
 }
 
 dwe::Button::~Button(){};
 
 void dwe::Button::draw()
 {
+    GEInstance->drawSprite(sp);
     GEInstance->drawText(text);
 }
 
@@ -42,7 +58,72 @@ int dwe::Button::getHeight()
 {
     return y+text.getGlobalBounds().height;
 }
+
+bool dwe::Button::buttonCheck(int mx, int my)
+{
+    if(mx>bgx && my>bgy && mx<bgx+sp.getGlobalBounds().width && my<bgy+sp.getGlobalBounds().height)
+    {
+        hover();
+        if(GEInstance->receiver.isLeftButtonPressed())
+        {
+            clicked();
+            return true;
+        }
+
+    }
+    else
+        unhover();
+    return false;
+}
+
+void dwe::Button::hover()
+{
+    if(bg){
+        texture.loadFromFile("media/buttonBackgroundHover.png");
+        sp.setTexture(texture, true);
+        sp.setPosition(bgx, bgy);
+    }else{
+        texture.loadFromFile("media/backButtonBackgroundHover.png");
+        sp.setTexture(texture, true);
+        sp.setPosition(bgx, bgy);
+    }
+    text.setColor(sf::Color(255,255,255, 255));
+}
+
+void dwe::Button::unhover()
+{
+   if(bg){
+        texture.loadFromFile("media/buttonBackground.png");
+        sp.setTexture(texture, true);
+    }else{
+        texture.loadFromFile("media/backButtonBackground.png");
+        sp.setTexture(texture, true);
+    }
+    text.setColor(sf::Color(255,255,255, 128));
+}
+
+void dwe::Button::clicked()
+{
+    AEInstance->Play2D("media/AccesoDenegado.wav");
+}
 /***Boton FIN***/
+
+/*** SPRITE INI***/
+dwe::Sprite::Sprite(std::string s, int x, int y)
+{
+    texture.loadFromFile("media/"+s+".png");
+    sp.setTexture(texture, true);
+    sp.setPosition(x, y);
+}
+
+dwe::Sprite::~Sprite(){};
+
+void dwe::Sprite::draw()
+{
+    GEInstance->drawSprite(sp);
+}
+
+/*** SPRITE FIN***/
 
 /**Fondo INI***/
 dwe::Background::Background(std::string s)
