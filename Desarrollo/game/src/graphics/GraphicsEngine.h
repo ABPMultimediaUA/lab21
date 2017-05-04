@@ -74,12 +74,11 @@ namespace dwe
         eAnimPlayerRun      = 1,
         eAnimPlayerStealth  = 2,    // Sigilo
 
-        eAnimHumanoidStand  = 0,
-        eAnimHumanoidDeath  = 1,
-
-        eAnimLeglessStand   = 0,
-        eAnimLeglessRun     = 1,
-        eAnimLeglessDeath   = 2,
+        eAnimEnemyStand     = 0,
+        eAnimEnemyDeath     = 1,
+        eAnimEnemyRun       = 2,
+        eAnimEnemyAttack    = 3,
+        eAnimEnemyWalk      = 4
     };
 
 
