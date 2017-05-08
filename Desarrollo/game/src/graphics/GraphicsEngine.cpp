@@ -272,8 +272,8 @@ PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 {
     tag::EAnimation* anim = m_tagEngine.createNumAnimations(2);
-    m_tagEngine.createAnimation(anim, "media/Humanoid/Stand/humanoide",         eAnimHumanoidStand,   1);
-    m_tagEngine.createAnimation(anim, "media/Humanoid/Death/humanoideDeath",    eAnimHumanoidDeath,   8, false);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/Stand/humanoide",         eAnimEnemyStand,   1);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/Death/humanoideDeath",    eAnimEnemyDeath,   8, false);
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
@@ -288,7 +288,7 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 ////////////////////////////
 Mother* dwe::GraphicsEngine::createEnemyMother(int px, int py, int pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/madre.obj", vec3f(0,0,0), vec3f(0,0,0));
+tag::GraphicNode* node = m_tagEngine.createMesh("media/madre.obj", vec3f(0,0,0), vec3f(0,0,0));
     Mother* p = new Mother();
 	p->setNode(new Node(node));
 	p->setPosition(dwe::vec3f(px, py, pz));
@@ -299,7 +299,16 @@ Mother* dwe::GraphicsEngine::createEnemyMother(int px, int py, int pz)
 ////////////////////////////
 Dog* dwe::GraphicsEngine::createEnemyDog(int px, int py, int pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/perro.obj", vec3f(0,0,0), vec3f(0,0,0), "media/perro.bmp");
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(5, "media/Dog/dog.bmp");
+    m_tagEngine.createAnimation(anim, "media/Dog/Stand/dogStand",   eAnimEnemyStand,   1);
+    m_tagEngine.createAnimation(anim, "media/Dog/Death/dogDeath",   eAnimEnemyDeath,   9, false);
+    m_tagEngine.createAnimation(anim, "media/Dog/Walk/dogWalk",     eAnimEnemyWalk,   11);
+    m_tagEngine.createAnimation(anim, "media/Dog/Attack/dogAttack", eAnimEnemyAttack,  5);
+    m_tagEngine.createAnimation(anim, "media/Dog/Run/dogRun",       eAnimEnemyAttack, 11);
+    anim->setActiveAnimation(0);
+
+    tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
+
     Dog* p = new Dog();
 	p->setNode(new Node(node));
     p->setPosition(dwe::vec3f(px, py, pz));
@@ -310,7 +319,7 @@ Dog* dwe::GraphicsEngine::createEnemyDog(int px, int py, int pz)
 Bat* dwe::GraphicsEngine::createEnemyBat(int px, int py, int pz)
 {
     tag::EAnimation* anim = m_tagEngine.createNumAnimations(1);
-    m_tagEngine.createAnimation(anim, "media/Bat/BatRun/murcielago", 0, 16);//posicion 0 sera estar parado
+    m_tagEngine.createAnimation(anim, "media/Bat/BatRun/murcielago", eAnimEnemyStand, 16);//posicion 0 sera estar parado
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
@@ -325,20 +334,29 @@ Bat* dwe::GraphicsEngine::createEnemyBat(int px, int py, int pz)
 
 Guardian* dwe::GraphicsEngine::createEnemyGuardian(int px, int py, int pz)
 {
-    tag::GraphicNode* node = m_tagEngine.createMesh("media/grande.obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(4, "media/Grande/grande.bmp");
+    m_tagEngine.createAnimation(anim, "media/Grande/Stand/grandeStand",   eAnimEnemyStand,   1);
+    m_tagEngine.createAnimation(anim, "media/Grande/Death/grandeDeath",   eAnimEnemyDeath,  17, false);
+    m_tagEngine.createAnimation(anim, "media/Grande/Walk/grandeWalk",     eAnimEnemyWalk,    9);
+    m_tagEngine.createAnimation(anim, "media/Grande/Attack/grandeAttack", eAnimEnemyAttack, 17);
+    anim->setActiveAnimation(0);
+
+    tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
     Guardian* g = new Guardian();
 	g->setNode(new Node(node));
     g->setPosition(dwe::vec3f(px, py, pz));
+
 	NetInstance->addNetEnemy(g);
 	return g;
 }
 
 Legless* dwe::GraphicsEngine::createEnemyLegless(int px, int py, int pz)
 {
-    tag::EAnimation* anim = m_tagEngine.createNumAnimations(3);
-    m_tagEngine.createAnimation(anim, "media/Legless/Stand/leglessStand",   eAnimLeglessStand,  1);
-    m_tagEngine.createAnimation(anim, "media/Legless/Run/leglessRun",       eAnimLeglessRun,    9);
-    m_tagEngine.createAnimation(anim, "media/Legless/Death/leglessDeath",   eAnimLeglessDeath,  7, false);
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(4, "media/Legless/legless.bmp");
+    m_tagEngine.createAnimation(anim, "media/Legless/Stand/leglessStand",   eAnimEnemyStand,  1);
+    m_tagEngine.createAnimation(anim, "media/Legless/Death/leglessDeath",   eAnimEnemyDeath,  7, false);
+    m_tagEngine.createAnimation(anim, "media/Legless/Walk/leglessWalk",     eAnimEnemyWalk,   9);
+    m_tagEngine.createAnimation(anim, "media/Legless/Attack/leglessAttack", eAnimEnemyAttack,15);
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
@@ -523,7 +541,7 @@ void dwe::GraphicsEngine::createCamera()
         m_camera = m_tagEngine.createPerspectiveCamera(m_cameraPosition, vec3f(0,0,0), 45.0f, get_screenWidth() / get_screenHeight(), 0.1f, 1000.0f);
         m_tagEngine.nodeLookAtTarget(m_camera, m_cameraPosition, vec3f(0,0,0));
 
-        float n = 0.8;
+        float n = 0.6;
         m_tagEngine.createLight(dwe::vec3f(140,24,80), vec3f(0,0,0), vec3f(n,n,n), vec3f(n,n,n), vec3f(n+0.4,n+0.4,n+0.4));
     }
 }

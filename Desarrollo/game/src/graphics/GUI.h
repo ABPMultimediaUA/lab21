@@ -13,18 +13,26 @@ namespace dwe{
     // ==============
     class Button{
         public:
-            Button(std::string t, int x, int y);
+            Button(std::string t, int x, int y, bool bg);
             ~Button();
             void draw();
             int getXOrigin();
             int getYOrigin();
             int getWidth();
             int getHeight();
-            bool buttonCheck(dwe::Button *b);
+            bool buttonCheck(int mx, int my);
+            void hover();
+            void unhover();
+            void clicked();
+
         private:
             int x, y;
+            int bgx, bgy;
+            bool bg;
             sf::Font font;
             sf::Text text;
+            sf::Texture texture;
+            sf::Sprite sp;
     };
 
     class Background{
@@ -35,6 +43,16 @@ namespace dwe{
         private:
             sf::Texture texture;
             sf::RectangleShape rs;
+    };
+
+    class Sprite{
+        public:
+            Sprite(std::string s, int x, int y);
+            ~Sprite();
+            void draw();
+        private:
+            sf::Texture texture;
+            sf::Sprite sp;
     };
 
     class AchievementInfo{

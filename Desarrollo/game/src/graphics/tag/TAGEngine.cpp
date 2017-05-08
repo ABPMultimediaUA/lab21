@@ -231,11 +231,15 @@ tag::GraphicNode* tag::TAGEngine::createMesh(const std::string fileName, const v
 }
 
 ////////////////////////////
-tag::EAnimation* tag::TAGEngine::createNumAnimations(int numAnimations)
+tag::EAnimation* tag::TAGEngine::createNumAnimations(int numAnimations, const std::string textureFileName)
 {
     // Creamos malla
     EAnimation* animations = new EAnimation();
     animations->createNumAnimations(numAnimations);//num animaciones
+
+    // Cargamos textura
+    if (textureFileName != "")
+        animations->loadTexture(textureFileName);
 
     return animations;
 }

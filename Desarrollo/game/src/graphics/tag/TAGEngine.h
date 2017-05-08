@@ -80,8 +80,9 @@ namespace tag
 
             /// \brief Crea un array de animaciones.
             /// \param[in] numAnimations Numero de animaciones que tendra el array
+            /// \param[in] textureFileName Nombre del ficero de textura
             /// \return array de la animación
-            EAnimation* createNumAnimations(int numAnimations);
+            EAnimation* createNumAnimations(int numAnimations, const std::string textureFileName = "");
 
             /// \brief Crea una animacion.
             /// \details Crea una animación en una posición del array con el número de mallas que tiene, leyéndolas

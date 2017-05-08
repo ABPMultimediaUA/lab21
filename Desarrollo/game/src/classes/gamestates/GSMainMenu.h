@@ -15,7 +15,6 @@ class GSMainMenu : public GState{
 public:
     GSMainMenu();
     ~GSMainMenu();
-    bool buttonCheck(dwe::Button *b);
     void HandleEvents();
     void Update();
     void Render();
@@ -42,10 +41,9 @@ private:
     std::string lobby;
 
     /**/
-    dwe::Background *menuPrincipalFondo;
-    dwe::Background *menuJugarOnlineFondo;
-    dwe::Background *menuLogrosFondo;
-    dwe::Background *menuOpcionesFondo;
+    dwe::Background *menuBackground;
+
+    dwe::Sprite *mainMenuDecoration;
 
     dwe::Button *playAloneButton;
     dwe::Button *playOnlineButton;

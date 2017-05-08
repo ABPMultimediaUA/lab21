@@ -3,6 +3,7 @@
 
 #include "Entity.h"
 #include "ResourceMesh.h"
+#include "tag/ResourceTexture.h"
 
 namespace tag
 {
@@ -18,6 +19,7 @@ namespace tag
             void createAnimation(uint8_t animationIndex, uint8_t numFrames, std::string fileName, bool loop = true);//creamos la animacion dentro del array(en una posicion), con el numero de frames que tendra
             void setActiveAnimation(uint8_t animationIndex);//establecemos en que animation estamos para el draw
             uint8_t getActiveAnimation();//devolvemos en que animation estamos para el draw
+            void loadTexture(std::string fileName);
 
             vec3f getBoundingBox();
 
@@ -32,6 +34,7 @@ namespace tag
                 ResourceMesh **frames;
             };
             TAnimation *m_animations;
+            ResourceTexture* m_texture;
     };
 }
 
