@@ -80,7 +80,7 @@ bool Enemy::Attack()
     Drawable::setPosition(EntityPhysics::getPosEntity());
     if(!attacking){
         attackTime = World->getTimeElapsed();
-        setAnimation(dwe::eAnimHumanoidStand);
+        setAnimation(dwe::eAnimEnemyStand);
         attacking = true;
         EntityPhysics::setVelocity(dwe::vec2f(0,0));
 
@@ -92,7 +92,7 @@ bool Enemy::Attack()
 
     if(World->getTimeElapsed() - attackTime >= 1){
         std::cout<<"Fin del ataque"<<std::endl;
-        setAnimation(dwe::eAnimHumanoidStand);
+        setAnimation(dwe::eAnimEnemyStand);
         attacking = false;
     }
 
