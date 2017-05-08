@@ -1,6 +1,9 @@
 #include "Player.h"
 #include "WorldInstance.h"
 #include "Firearm.h"
+#include "TriggerSound.h"
+#include "Scene.h"
+#include "AudioEngine.h"
 
 Player::Player() :
     m_currentWeaponType(eNone), m_currentWeapon(0)
@@ -35,7 +38,6 @@ Player::Player() :
     m_playerWeaponKey[eRifle].key       = KEY_WEAPON_3;
     m_playerWeaponKey[eRifle].weapon    = eRifle;
 
-
     // Parámetros de físicas por defecto
 }
 
@@ -59,8 +61,11 @@ void Player::deleteWeapons()
 /////////////
 void Player::update()
 {
+    readEvents(); // Read keyboard and mouse inputs for de player
+
     // Actualizamos la posición del box2d en el modelo
     Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
+
 }
 
 /////////////
@@ -97,6 +102,9 @@ bool Player::shoot(float timeSinceLastShoot)
 {
     if (timeSinceLastShoot > m_currentWeapon->getCadence() && m_currentWeapon->getAmmo() > 0)
     {
+        TriggerSound* triggerSound = new TriggerSound(getPosition(), 20);
+        Scene::Instance()->getTriggerSystem().Add(triggerSound);
+        AEInstance->Play2D("media/DisparoEscopeta.wav");
         m_currentWeapon->shoot();
         m_currentWeapon->addAmmo(-1);
         return true;
@@ -236,7 +244,7 @@ void Player::readEvents()
     }
 
     // recargar armo
-    if(GEInstance->receiver.isKeyDown(KEY_RELOADWEAPON) && (timeElapsed - m_timeReload)> _changeOffsetTime)
+    if(GEInstance->receiver.isKeyDown(KEY_RELOADWEAPON) && (timeElapsed - m_timeReload)> _reloadOffsetTime)
     {
         reloadWeapon();
         m_timeReload = timeElapsed;

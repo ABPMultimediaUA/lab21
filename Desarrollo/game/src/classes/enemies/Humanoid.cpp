@@ -1,11 +1,7 @@
 #include "Humanoid.h"
 #include "Pathplanning.h"
 #include "Perception.h"
-#include "Selector.h"
-#include "Sequence.h"
-#include "PathplanningTask.h"
-#include "PerceptionTask.h"
-#include "MoveTask.h"
+#include "BTreeHumanoid.h"
 
 Humanoid::Humanoid()
 {
@@ -14,30 +10,14 @@ Humanoid::Humanoid()
     m_perception = new Perception(this);
     m_pathplanning = new Pathplanning(this);
 
-    selector1 = new Selector;
-    sequence1 = new Sequence;
+    m_behaviourTree = new BTreeHumanoid(this);
 
-    perc = new PerceptionTask(this);
-    path = new PathplanningTask(this);
-    movetask = new MoveTask(this);
-
-    //patrol = new PatrolTask(this);
-
-    ////// Creating the tree //////
-
-    selector1->addChild(sequence1);
-    //selector1->addChild(patrol);
-
-    sequence1->addChild(perc);
-    sequence1->addChild(path);
-    sequence1->addChild(movetask);
-
-    targetPosition = dwe::vec2f(0,0);
+    targetPosition = dwe::vec2f(-200,200);
 }
 
 void Humanoid::update()
 {
-    selector1->run();
+    m_behaviourTree->Run();
 }
 
 
@@ -45,10 +25,4 @@ Humanoid::~Humanoid()
 {
     delete m_perception;
     delete m_pathplanning;
-    delete selector1;
-    delete sequence1;
-    delete path;
-    delete movetask;
-    delete perc;
-    //delete patrol;
 }

@@ -14,6 +14,7 @@
 #include "NavGraphNode.h"
 #include "NavGraphEdge.h"
 #include "AudioEngine.h"
+#include "TriggerSound.h"
 
 ///////////////////////////////
 Scene* Scene::Instance()
@@ -92,7 +93,7 @@ void Scene::createEnemies()
     m_numEnemies = m_numActiveEnemies = 11;
     m_enemies = new TEnemy[m_numEnemies];
     m_enemies[ 0].enemy = GEInstance->createEnemyHumanoid(-200,24,200);
-    m_enemies[ 1].enemy = GEInstance->createEnemyDog(530,24,390);
+    /*m_enemies[ 1].enemy = GEInstance->createEnemyDog(530,24,390);
     m_enemies[ 2].enemy = GEInstance->createEnemyBat(475,24,90);
     m_enemies[ 3].enemy = GEInstance->createEnemyGuardian(-310,24,100);
     m_enemies[ 4].enemy = GEInstance->createEnemyLegless(-630,24,410);
@@ -101,7 +102,7 @@ void Scene::createEnemies()
     m_enemies[ 7].enemy = GEInstance->createEnemyHumanoid(1470,24,330);
     m_enemies[ 8].enemy = GEInstance->createEnemyHumanoid(1350,24,180);
     m_enemies[ 9].enemy = GEInstance->createEnemyHumanoid(1860,24,130);
-    m_enemies[10].enemy = GEInstance->createEnemyHumanoid(1970,24,230);
+    m_enemies[10].enemy = GEInstance->createEnemyHumanoid(1970,24,230);*/
 
     GEInstance->createEnemyMother(m_posMother.x, m_posMother.y, m_posMother.z);
 }
@@ -245,8 +246,6 @@ void Scene::Update()
     updateEnemies();  // Devuelve los parametros para la camara inteligente m_moreEnemiesX , m_moreEnemiesZ
     GEInstance->updateCamera(mainPlayer->getPosition(), m_moreEnemiesX, m_moreEnemiesZ);
 
-    mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
-
     mainPlayer->update(); //Posición actualizada de Irrlicht Player
 
     // Actualizamos los playermates
@@ -256,7 +255,6 @@ void Scene::Update()
         PlayerMate* p = NetInstance->getPlayerMate(i);
         p->update();
     }
-
 
     updateProjectiles();
     updateProjectilesGrenade();
@@ -324,7 +322,6 @@ void Scene::deleteProjectileGrenade(unsigned int i)
 void Scene::createProjectile(dwe::vec3f origin, float angle, std::string weapon)
 {
     m_projectiles.push_back(GEInstance->createProjectile(origin, angle, weapon));
-    AEInstance->Play2D("media/DisparoEscopeta.wav");
 }
 
 ////////////

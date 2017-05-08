@@ -12,6 +12,7 @@
 #include "Grenade.h"
 
 class Firearm;
+class TriggerSound;
 
 class Player : public CharacterController
 {
@@ -81,7 +82,7 @@ class Player : public CharacterController
 
     private:
         static const float _changeOffsetTime = 0.2;
-        static const float _reloadOffsetTime = 1.0;
+        static const float _reloadOffsetTime = 2.0;
         struct TPlayerWeaponKey {
             EKEY_CODE   key;
             FirearmKind weapon;

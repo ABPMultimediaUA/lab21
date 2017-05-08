@@ -59,6 +59,7 @@ void Projectile::onBeginContact(EntityPhysics* otherObject)
                 && otherObject->getClassID()!=EntityPhysics::player_id
                 && otherObject->getClassID()!=EntityPhysics::playermate_id
                 && otherObject->getClassID()!=EntityPhysics::trigger_id
+                && otherObject->getClassID()!=EntityPhysics::triggerSound_id
                 && otherObject->getClassID()!=EntityPhysics::consumable_id );
 }
 

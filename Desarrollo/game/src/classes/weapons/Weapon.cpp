@@ -1,5 +1,6 @@
 #include "Weapon.h"
 #include "Player.h"
+#include "AudioEngine.h"
 
 Weapon::Weapon()
 {
@@ -33,17 +34,18 @@ void Weapon::reload()
 {
     if (m_ammo < m_ammoClip && m_bagAmmo > 0)
     {
-       int reload = m_ammoClip - m_ammo;
-       if(m_bagAmmo>=reload)
-       {
+        AEInstance->Play2D("media/PistolaRecarga.wav");
+        int reload = m_ammoClip - m_ammo;
+        if(m_bagAmmo>=reload)
+        {
             m_ammo += reload;
             m_bagAmmo -= reload;
-       }
-       else
-       {
-           m_ammo += m_bagAmmo;
-           m_bagAmmo = 0;
-       }
+        }
+        else
+        {
+            m_ammo += m_bagAmmo;
+            m_bagAmmo = 0;
+        }
     }
 }
 ////////////

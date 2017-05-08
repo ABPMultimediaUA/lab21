@@ -91,12 +91,12 @@ dwe::vec2f Pathplanning::Movement()
 
 }
 
-/*bool Pathplanning::CheckIfRouteEnd()
+bool Pathplanning::CheckIfRouteEnd()
 {
     if(CheckIfArrived())
         return !route.size();
     return false;
-}*/
+}
 
 bool Pathplanning::CheckIfArrived()
 {

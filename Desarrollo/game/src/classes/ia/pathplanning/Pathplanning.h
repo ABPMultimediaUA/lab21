@@ -17,7 +17,7 @@ class Pathplanning
         void CreatePathToPosition(dwe::vec2f TargetPos);
         dwe::vec2f Movement();
         void CalculateDirection();
-        //bool CheckIfRouteEnd();
+        bool CheckIfRouteEnd();
 
     private:
 

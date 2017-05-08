@@ -13,7 +13,7 @@ Consumable::Consumable() :
 
 Consumable::~Consumable()
 {
-    delete m_trigger;
+
 }
 
 /////////////////

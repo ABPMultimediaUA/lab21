@@ -133,6 +133,40 @@ void EntityPhysics::createBody(b2BodyType type, const dwe::vec3f& pos, float wid
     m_body->CreateFixture(&fixtureDef);
 }
 
+void EntityPhysics::createCircularBody(const dwe::vec3f& pos, float radius)
+{
+    // Define the dynamic body. We set its position and call the body factory.
+    b2BodyDef bodyDef;
+    bodyDef.position.Set(pos.x*_ratio, pos.z*_ratio);
+    bodyDef.type            = b2_staticBody;
+    bodyDef.angle           = 0;  // Lo pasamos a radianes
+    bodyDef.fixedRotation   = m_fixedRotation;
+    bodyDef.bullet          = m_bullet;
+    bodyDef.angularDamping  = m_damping;
+    bodyDef.linearDamping   = m_damping;
+
+    m_body = World->createBody(&bodyDef);
+    m_body->SetUserData(this);  // Sin esta linea no funcionan los callbacks
+
+    // Define a circle shape for our dynamic body.
+    b2CircleShape circle_shape;
+    circle_shape.m_p.Set(0,0);
+    circle_shape.m_radius = radius;
+
+    // Define the dynamic body fixture.
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape    = &circle_shape;
+    fixtureDef.isSensor = m_isSensor;
+    if (bodyDef.type == b2_dynamicBody)
+    {
+        fixtureDef.density  = m_density;
+        fixtureDef.friction = m_friction;
+    }
+
+    // Add the shape to the body.
+    m_body->CreateFixture(&fixtureDef);
+}
+
 ////////////////////
 void EntityPhysics::createDynamicBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees)
 {
