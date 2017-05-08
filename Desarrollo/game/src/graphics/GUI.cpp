@@ -112,7 +112,7 @@ void dwe::Button::unhover()
 
 void dwe::Button::clicked()
 {
-    AEInstance->Play2D("media/AccesoDenegado.wav");
+    AEInstance->Play2D("media/changemenu.wav");
 }
 /***Boton FIN***/
 

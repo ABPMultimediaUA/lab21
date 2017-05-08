@@ -13,7 +13,6 @@ class GSPause : public GState{
 public:
     GSPause();
     ~GSPause();
-    bool buttonCheck(dwe::Button *b);
     void HandleEvents();
     void Update();
     void Render();
