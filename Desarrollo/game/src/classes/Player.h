@@ -82,7 +82,7 @@ class Player : public CharacterController
 
     private:
         static const float _changeOffsetTime = 0.2;
-        static const float _reloadOffsetTime = 1.0;
+        static const float _reloadOffsetTime = 2.0;
         struct TPlayerWeaponKey {
             EKEY_CODE   key;
             FirearmKind weapon;
@@ -107,8 +107,6 @@ class Player : public CharacterController
         int         m_health;
         int         m_maxHealth;
         Grenade     m_grenadeWeapon;
-        TriggerSound* m_triggerSound;
-        int removeTrigger;
 
         void deleteWeapons();
 };

@@ -21,8 +21,7 @@ Door::Door(int f, bool a)
 
 Door::~Door()
 {
-    delete m_trigger;
-    m_trigger = 0;
+
 }
 
 void Door::setActive()  {   active=true;      }

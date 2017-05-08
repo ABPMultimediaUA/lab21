@@ -14,11 +14,13 @@ class TriggerSound : public Trigger
 
         virtual ~TriggerSound();
 
-        void Update(){};
+        void Update();
 
     protected:
 
     private:
+
+        float lastTime;
 };
 
 #endif // TRIGGERSOUND_H

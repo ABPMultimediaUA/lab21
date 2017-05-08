@@ -38,18 +38,12 @@ Player::Player() :
     m_playerWeaponKey[eRifle].key       = KEY_WEAPON_3;
     m_playerWeaponKey[eRifle].weapon    = eRifle;
 
-    m_triggerSound = 0;
-    removeTrigger = 0;
-
-
     // Parámetros de físicas por defecto
 }
 
 Player::~Player()
 {
     deleteWeapons();
-    if(m_triggerSound)
-        delete m_triggerSound;
 }
 
 void Player::deleteWeapons()
@@ -67,16 +61,11 @@ void Player::deleteWeapons()
 /////////////
 void Player::update()
 {
+    readEvents(); // Read keyboard and mouse inputs for de player
+
     // Actualizamos la posición del box2d en el modelo
     Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
-    if(removeTrigger < 3)
-        removeTrigger++;
-    else if(removeTrigger > 2)
-    {
-        delete m_triggerSound;
-        m_triggerSound = 0;
-        removeTrigger = 0;
-    }
+
 }
 
 /////////////
@@ -113,8 +102,8 @@ bool Player::shoot(float timeSinceLastShoot)
 {
     if (timeSinceLastShoot > m_currentWeapon->getCadence() && m_currentWeapon->getAmmo() > 0)
     {
-        m_triggerSound = new TriggerSound(getPosition(), 20);
-        removeTrigger = 1;
+        TriggerSound* triggerSound = new TriggerSound(getPosition(), 20);
+        Scene::Instance()->getTriggerSystem().Add(triggerSound);
         AEInstance->Play2D("media/DisparoEscopeta.wav");
         m_currentWeapon->shoot();
         m_currentWeapon->addAmmo(-1);
@@ -255,7 +244,7 @@ void Player::readEvents()
     }
 
     // recargar armo
-    if(GEInstance->receiver.isKeyDown(KEY_RELOADWEAPON) && (timeElapsed - m_timeReload)> _changeOffsetTime)
+    if(GEInstance->receiver.isKeyDown(KEY_RELOADWEAPON) && (timeElapsed - m_timeReload)> _reloadOffsetTime)
     {
         reloadWeapon();
         m_timeReload = timeElapsed;

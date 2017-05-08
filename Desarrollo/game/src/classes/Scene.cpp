@@ -246,8 +246,6 @@ void Scene::Update()
     updateEnemies();  // Devuelve los parametros para la camara inteligente m_moreEnemiesX , m_moreEnemiesZ
     GEInstance->updateCamera(mainPlayer->getPosition(), m_moreEnemiesX, m_moreEnemiesZ);
 
-    mainPlayer->readEvents(); // Read keyboard and mouse inputs for de player
-
     mainPlayer->update(); //Posición actualizada de Irrlicht Player
 
     // Actualizamos los playermates
@@ -257,7 +255,6 @@ void Scene::Update()
         PlayerMate* p = NetInstance->getPlayerMate(i);
         p->update();
     }
-
 
     updateProjectiles();
     updateProjectilesGrenade();

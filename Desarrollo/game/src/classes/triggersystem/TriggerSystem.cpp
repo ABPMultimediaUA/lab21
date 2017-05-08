@@ -39,5 +39,6 @@ void TriggerSystem::Remove(int i)
     t = m_triggers.back();
     m_triggers.back() = m_triggers[i];
     m_triggers[i] = t;
+    delete m_triggers.back();
     m_triggers.pop_back();
 }
