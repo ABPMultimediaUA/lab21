@@ -10,6 +10,7 @@ dwe::Button::Button(std::string t, int x, int y, bool bg)
     this->x=x;
     this->y=y;
     this->bg=bg;
+    hovered=false;
     font.loadFromFile("media/defused.ttf"); // La fuente se puede modificar en cualquier momento
     text.setFont(font);
     text.setString(t);
@@ -64,6 +65,10 @@ bool dwe::Button::buttonCheck(int mx, int my)
     if(mx>bgx && my>bgy && mx<bgx+sp.getGlobalBounds().width && my<bgy+sp.getGlobalBounds().height)
     {
         hover();
+        if(!hovered){
+            hovered=true;
+            AEInstance->Play2D("media/boop.wav");
+        }
         if(GEInstance->receiver.isLeftButtonPressed())
         {
             clicked();
@@ -71,8 +76,11 @@ bool dwe::Button::buttonCheck(int mx, int my)
         }
 
     }
-    else
+    else{
         unhover();
+        hovered=false;
+    }
+
     return false;
 }
 
