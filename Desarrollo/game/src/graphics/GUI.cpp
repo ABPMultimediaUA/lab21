@@ -65,10 +65,7 @@ bool dwe::Button::buttonCheck(int mx, int my)
     if(mx>bgx && my>bgy && mx<bgx+sp.getGlobalBounds().width && my<bgy+sp.getGlobalBounds().height)
     {
         hover();
-        if(!hovered){
-            hovered=true;
-            AEInstance->Play2D("media/boop.wav");
-        }
+
         if(GEInstance->receiver.isLeftButtonPressed())
         {
             clicked();
@@ -78,7 +75,6 @@ bool dwe::Button::buttonCheck(int mx, int my)
     }
     else{
         unhover();
-        hovered=false;
     }
 
     return false;
@@ -86,33 +82,34 @@ bool dwe::Button::buttonCheck(int mx, int my)
 
 void dwe::Button::hover()
 {
-    if(bg){
-        texture.loadFromFile("media/buttonBackgroundHover.png");
-        sp.setTexture(texture, true);
-        sp.setPosition(bgx, bgy);
-    }else{
-        texture.loadFromFile("media/backButtonBackgroundHover.png");
-        sp.setTexture(texture, true);
-        sp.setPosition(bgx, bgy);
+    if(!hovered){
+        hovered=true;
+        AEInstance->Play2D("media/Sounds/MenuHover.wav");
     }
+    if(bg)
+        texture.loadFromFile("media/buttonBackgroundHover.png");
+    else
+        texture.loadFromFile("media/backButtonBackgroundHover.png");
+
+    sp.setTexture(texture, true);
+    sp.setPosition(bgx, bgy);
     text.setColor(sf::Color(255,255,255, 255));
 }
 
 void dwe::Button::unhover()
 {
-   if(bg){
+    hovered=false;
+    if(bg)
         texture.loadFromFile("media/buttonBackground.png");
-        sp.setTexture(texture, true);
-    }else{
+    else
         texture.loadFromFile("media/backButtonBackground.png");
-        sp.setTexture(texture, true);
-    }
+    sp.setTexture(texture, true);
     text.setColor(sf::Color(255,255,255, 128));
 }
 
 void dwe::Button::clicked()
 {
-    AEInstance->Play2D("media/changemenu.wav");
+    AEInstance->Play2D("media/Sounds/changemenu.wav");
 }
 /***Boton FIN***/
 

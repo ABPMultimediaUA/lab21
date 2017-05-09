@@ -34,7 +34,7 @@ void Weapon::reload()
 {
     if (m_ammo < m_ammoClip && m_bagAmmo > 0)
     {
-        AEInstance->Play2D("media/PistolaRecarga.wav");
+        AEInstance->Play2D("media/Sounds/PistolaRecarga.wav");
         int reload = m_ammoClip - m_ammo;
         if(m_bagAmmo>=reload)
         {
