@@ -3,11 +3,11 @@
 #include "Scene.h"
 #include "NetGame.h"
 #include <unistd.h>
-#include <iostream>
 #include <sstream>
 #include "AudioEngine.h"
-
 #include "GUI.h"
+
+#include <iostream>
 
 using namespace std;
 
@@ -31,8 +31,8 @@ GSMainMenu::GSMainMenu(){
     /**Botones**/
     playAloneButton = new dwe::Button("Play Alone", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35, true);
     playOnlineButton = new dwe::Button("Play Online", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.43, true);
-    achievementsButton = new dwe::Button("Achievements", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.51, true);
-    optionsButton = new dwe::Button("Options", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.59, true);
+    optionsButton = new dwe::Button("Options", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.51, true);
+    creditsButton = new dwe::Button("Credits", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.59, true);
     exitButton = new dwe::Button("Exit", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.67, true);
     backButton = new dwe::Button("Back", GEInstance->get_screenWidth()*0.8, GEInstance->get_screenHeight()*0.8, false);
     serversButtons = new std::vector<dwe::Button>;
@@ -48,7 +48,6 @@ GSMainMenu* GSMainMenu::getInstance()
 
 
 void GSMainMenu::Render(){
-    //GEInstance->clearWindow();
     if(page==0){
         if(!menuInfo){
             cout<<"/**************************************************/"<<endl;
@@ -58,7 +57,7 @@ void GSMainMenu::Render(){
         menuBackground->draw();
         playAloneButton->draw();
         playOnlineButton->draw();
-        achievementsButton->draw();
+        creditsButton->draw();
         optionsButton->draw();
         exitButton->draw();
         mainMenuDecoration->draw();
@@ -92,14 +91,11 @@ void GSMainMenu::Render(){
     }else if(page==2){
         if(!menuInfo){
             cout<<"/**************************************************/"<<endl;
-            cout<<"Logros"<<endl;
-            cout<<"Aqui aparecera una lista de logros conseguidos en el juego"<<endl;
-            cout<<"Podras ver informacion de cada logro"<<endl;
+            cout<<"Creditos"<<endl;
             menuInfo=true;
         }
         menuBackground->draw();
         backButton->draw();
-        //GEInstance->achievementsHandler.draw();
     }else if(page==3){
         if(!menuInfo){
             cout<<"/**************************************************/"<<endl;
@@ -144,7 +140,7 @@ void GSMainMenu::HandleEvents(){
                     menuInfo=false;
                     m_clickPermission=false;
                 }
-                else if(achievementsButton->buttonCheck(mousePosX, mousePosY))
+                else if(creditsButton->buttonCheck(mousePosX, mousePosY))
                 {
                     page=2;
                     menuInfo=false;
@@ -237,8 +233,6 @@ void GSMainMenu::HandleEvents(){
 void GSMainMenu::Update(){
     mousePosX=GEInstance->receiver.getCursorX();
     mousePosY=GEInstance->receiver.getCursorY();
-
-    //GEInstance->achievementsHandler.update();
 
 	/****************************/
     if(enterNet && !NetInstance->getOpened()){
@@ -343,7 +337,7 @@ GSMainMenu::~GSMainMenu(){
     /**Borrar Botones**/
     delete playAloneButton;
     delete playOnlineButton;
-    delete achievementsButton;
+    delete creditsButton;
     delete optionsButton;
     delete exitButton;
     delete backButton;

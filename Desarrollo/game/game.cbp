@@ -313,8 +313,6 @@
 		<Unit filename="src/glsl/Program.h" />
 		<Unit filename="src/glsl/Shader.cpp" />
 		<Unit filename="src/glsl/Shader.h" />
-		<Unit filename="src/graphics/AchievementsHandler.cpp" />
-		<Unit filename="src/graphics/AchievementsHandler.h" />
 		<Unit filename="src/graphics/AnimatedSprite.cpp" />
 		<Unit filename="src/graphics/AnimatedSprite.hpp" />
 		<Unit filename="src/graphics/Animation.cpp" />

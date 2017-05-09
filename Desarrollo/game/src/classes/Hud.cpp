@@ -2,6 +2,7 @@
 #include "WorldInstance.h"
 #include "defines.h"
 #include <sstream>
+#include "GUI.h"
 
 using namespace std;
 

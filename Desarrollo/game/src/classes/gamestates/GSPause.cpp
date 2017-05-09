@@ -4,6 +4,7 @@
 #include "Scene.h"
 #include "LoadMap.h"
 #include "NetGame.h"
+#include "GUI.h"
 
 #include <iostream>
 
@@ -15,6 +16,8 @@ GSPause::GSPause(){
     m_clickPermission=false;
     m_pausePermission=false;
     menuPausaFondo = new dwe::Background("menuBackground");
+    /**Decoracion**/
+    pauseDecoration = new dwe::Sprite("pauseDecoration", GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.25-7);
     resumeGameButton = new dwe::Button("Resume game", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35, true);
     helpOptionsButton = new dwe::Button("Help & options", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.43, true);
     exitToMainMenuButton = new dwe::Button("Exit to main menu", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.51, true);
@@ -40,6 +43,7 @@ void GSPause::Render(){
     resumeGameButton->draw();
     helpOptionsButton->draw();
     exitToMainMenuButton->draw();
+    pauseDecoration->draw();
 }
 
 void GSPause::SetPage(int n){
@@ -77,6 +81,7 @@ void GSPause::Update()
 GSPause::~GSPause()
 {
     delete menuPausaFondo;
+    delete pauseDecoration;
     delete resumeGameButton;
     delete helpOptionsButton;
     delete exitToMainMenuButton;

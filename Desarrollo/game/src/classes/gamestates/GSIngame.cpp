@@ -26,6 +26,7 @@ void GSIngame::Init(){
     page = 0;
     m = false;
     m_pausePermission = false;
+    m_clickPermission = false;
     LoadMap::getInstance()->Init();
     WorldInstance::Instance();
     timeStamp = World->getTimeElapsed();
@@ -63,6 +64,9 @@ void GSIngame::HandleEvents()
 {
     if(!m_pausePermission && GEInstance->receiver.isKeyUp(KEY_PAUSE))
         m_pausePermission = true;
+    if(!m_clickPermission && GEInstance->receiver.isLeftButtonReleased()){
+        m_clickPermission = true;
+    }
     if(m_pausePermission && GEInstance->receiver.isKeyDown(KEY_PAUSE)){
         Game::getInstance()->ChangeState(GSPause::getInstance());
         m = false;

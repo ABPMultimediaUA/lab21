@@ -20,7 +20,6 @@
 #include <Box2D/Common/b2Math.h>
 
 #include "AppReceiver.h"
-#include "AchievementsHandler.h"
 #include "tag/ResourceMesh.h"
 #include "tag/TAGEngine.h"
 #include "tag/GraphicNode.h"
@@ -182,9 +181,8 @@ namespace dwe
         ScenaryElement* createWall(std::string meshName);
 
         //////////////////////////////
-        // Eventos de teclado y ratón y logros
+        // Eventos de teclado y ratón
         AppReceiver receiver;
-        AchievementsHandler achievementsHandler;
 
         void createCamera();
         void updateCamera(const vec3f playerPosition, int moreEnemiesX, int moreEnemiesZ);
