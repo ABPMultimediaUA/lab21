@@ -14,7 +14,7 @@ GSPause::GSPause(){
     m = false;
     m_clickPermission=false;
     m_pausePermission=false;
-    menuPausaFondo = new dwe::Background("menuPausa");
+    menuPausaFondo = new dwe::Background("menuBackground");
     resumeGameButton = new dwe::Button("Resume game", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35, true);
     helpOptionsButton = new dwe::Button("Help & options", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.43, true);
     exitToMainMenuButton = new dwe::Button("Exit to main menu", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.51, true);
@@ -46,17 +46,6 @@ void GSPause::SetPage(int n){
     page = n;
 }
 
-bool GSPause::buttonCheck(dwe::Button *b)
-{
-    if(GEInstance->receiver.isLeftButtonPressed()
-       &&(mousePosX>b->getXOrigin()
-       && mousePosY>b->getYOrigin()
-       && mousePosX<b->getWidth()
-       && mousePosY<b->getHeight())
-    ){return true;}
-    return false;
-}
-
 void GSPause::HandleEvents(){
     //Control cerrado de ventana
     if(GEInstance->getWindowClose())
@@ -71,10 +60,10 @@ void GSPause::HandleEvents(){
     /**/
     if(m_pausePermission && GEInstance->receiver.isKeyDown(KEY_PAUSE)){
         resumeGame();
-    }else if(m_clickPermission && buttonCheck(resumeGameButton)){
+    }else if(m_clickPermission && resumeGameButton->buttonCheck(mousePosX, mousePosY)){
         resumeGame();
     }
-    if(m_clickPermission && buttonCheck(exitToMainMenuButton)){
+    if(m_clickPermission && exitToMainMenuButton->buttonCheck(mousePosX, mousePosY)){
         backToMainMenu();
     }
 }

@@ -65,6 +65,7 @@ bool dwe::Button::buttonCheck(int mx, int my)
     if(mx>bgx && my>bgy && mx<bgx+sp.getGlobalBounds().width && my<bgy+sp.getGlobalBounds().height)
     {
         hover();
+
         if(GEInstance->receiver.isLeftButtonPressed())
         {
             clicked();
@@ -72,16 +73,18 @@ bool dwe::Button::buttonCheck(int mx, int my)
         }
 
     }
-    else
+    else{
         unhover();
+    }
+
     return false;
 }
 
 void dwe::Button::hover()
 {
     if(!hovered){
-        hovered = true;
-        AEInstance->Play2D("media/MenuHover.wav");
+        hovered=true;
+        AEInstance->Play2D("media/Sounds/MenuHover.wav");
     }
     if(bg)
         texture.loadFromFile("media/buttonBackgroundHover.png");
@@ -107,7 +110,7 @@ void dwe::Button::unhover()
 
 void dwe::Button::clicked()
 {
-    AEInstance->Play2D("media/MenuClick.wav");
+    AEInstance->Play2D("media/Sounds/changemenu.wav");
 }
 /***Boton FIN***/
 

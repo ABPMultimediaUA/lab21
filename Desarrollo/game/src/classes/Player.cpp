@@ -104,7 +104,7 @@ bool Player::shoot(float timeSinceLastShoot)
     {
         TriggerSound* triggerSound = new TriggerSound(getPosition(), 20);
         Scene::Instance()->getTriggerSystem().Add(triggerSound);
-        AEInstance->Play2D("media/DisparoEscopeta.wav");
+        AEInstance->Play2D("media/Sounds/DisparoEscopeta.wav");
         m_currentWeapon->shoot();
         m_currentWeapon->addAmmo(-1);
         return true;
