@@ -29,6 +29,7 @@ namespace dwe{
             int x, y;
             int bgx, bgy;
             bool bg;
+            bool hovered;
             sf::Font font;
             sf::Text text;
             sf::Texture texture;
