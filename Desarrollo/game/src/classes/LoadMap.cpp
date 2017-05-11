@@ -49,6 +49,9 @@ TTag2Floor mappingFloor[] = {
 void LoadMap::Init(){
     GEInstance->pop();
 
+    numWalls = 0;
+    numFloors = 0;
+
     const char* json; //Aqui va a ir todo el archivo
     std::string allText = "";
 
@@ -96,9 +99,10 @@ void LoadMap::Init(){
                 TTag2Wall *next = mappingWall;
                 while(next->tag != "0"){
                     if(id==next->tag){
-                        wall = GEInstance->createScenaryElement(next->model, false);
-                        wall->setRotation(dwe::vec3f(rx,ry,rz));
-                        wall->setPosition(dwe::vec3f(tx,ty,tz));
+                        walls[numWalls] = GEInstance->createScenaryElement(next->model, false);
+                        walls[numWalls]->setRotation(dwe::vec3f(rx,ry,rz));
+                        walls[numWalls]->setPosition(dwe::vec3f(tx,ty,tz));
+                        numWalls++;
                        // wall->setLevelId(levelid);
                     };
                     ++next;
@@ -107,9 +111,10 @@ void LoadMap::Init(){
                 TTag2Floor *nextF = mappingFloor;
                 while(nextF->tag != "0"){
                         if(id==nextF->tag){
-                            suelo = GEInstance->createNode(nextF->model, false);
-                            suelo->setRotation(dwe::vec3f(rx,ry,rz));
-                            suelo->setPosition(dwe::vec3f(tx,ty,tz));
+                            floors[numFloors] = GEInstance->createNode(nextF->model, false);
+                            floors[numFloors]->setRotation(dwe::vec3f(rx,ry,rz));
+                            floors[numFloors]->setPosition(dwe::vec3f(tx,ty,tz));
+                            numFloors++;
                         }
                     ++nextF;
                 }
@@ -194,9 +199,15 @@ void LoadMap::Init(){
         envElements[1]->setRotation(dwe::vec3f(0, -30, 0));
         envElements[2] = GEInstance->createScenaryElement("environment_elements/especimen", true);
         envElements[2]->setPosition(dwe::vec3f(345, 0, -365));
-        envElements[2]->setRotation(dwe::vec3f(0, -30, 0));
+        envElements[2]->setRotation(dwe::vec3f(0, -45, 0));
         envElements[3] = GEInstance->createScenaryElement("environment_elements/camilla", true);
         envElements[3]->setPosition(dwe::vec3f(50, 0, 200));
+        envElements[4] = GEInstance->createScenaryElement("environment_elements/camadormir", true);
+        envElements[4]->setPosition(dwe::vec3f(745, 0, 835));
+        //envElements[4]->setRotation(dwe::vec3f(0, -90, 0)); // No se gira la hitbox
+        envElements[5] = GEInstance->createScenaryElement("environment_elements/camadormir", true);
+        envElements[5]->setPosition(dwe::vec3f(1148, 0, 835));
+        //envElements[5]->setRotation(dwe::vec3f(0, -90, 0));
 
         ////////// HACIENDO PRUEBAS CON OTRO TIPO DE BALAS
         //SHOTGUN BULLETS
@@ -230,19 +241,27 @@ void LoadMap::Update(){
 }
 
 void LoadMap::Destroy(){
-     for(int i=0; i<NUM_MAP_ENTITIES2; i++){
+    for(int i=0; i<NUM_WALLS; i++){
+        delete walls[i];
+    }
+    numWalls=0;
+    for(int i=0; i<NUM_FLOORS; i++){
+        delete floors[i];
+    }
+    for(int i=0; i<NUM_MAP_ENTITIES2; i++){
         delete entities[i];
+    }
+    for(int i=0; i<NUM_ENVIRONMENT_ELEMENTS; i++){
+        delete envElements[i];
     }
     for(int i=0; i<3; i++){
         delete generator[i];
     }
-    delete suelo; suelo=0;
-    delete wall;
 }
 
 LoadMap::~LoadMap()
 {
-    if(suelo)
+    if(numWalls)
         Destroy();
 }
 

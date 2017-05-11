@@ -17,10 +17,11 @@
 
 /////
 #include "Entity.h"
-#define NUM_MAP_ENTITIES    100
+#define NUM_WALLS           361
+#define NUM_FLOORS          99
 #define NUM_MAP_ENTITIES2   56
 #define NUM_MAP_DOORROTATE  1
-#define NUM_ENVIRONMENT_ELEMENTS 4
+#define NUM_ENVIRONMENT_ELEMENTS 6
 
 class LoadMap {
     public:
@@ -33,12 +34,14 @@ class LoadMap {
 
     private:
         // Suelo
-        dwe::Node* suelo;
-
-        Entity *wallEntities[NUM_MAP_ENTITIES]; // Array de entidades
+        int numFloors;
+        dwe::Node *floors[NUM_FLOORS];
 
         // Paredes
-        ScenaryElement *wall;
+        int numWalls;
+        ScenaryElement *walls[NUM_WALLS];
+
+        // Elementos de escenario
         ScenaryElement *envElements[NUM_ENVIRONMENT_ELEMENTS];
 
         Entity *entities[NUM_MAP_ENTITIES2]; // Array de entidades

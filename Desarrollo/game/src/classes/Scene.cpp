@@ -141,6 +141,8 @@ void Scene::Destroy(){
 
     delete joint_try;
     delete bjoint;
+
+    m_triggerSystem.Destroy();
 }
 
 ///////////////////////////////
