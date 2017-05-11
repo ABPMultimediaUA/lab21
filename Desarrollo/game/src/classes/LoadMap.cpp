@@ -96,7 +96,7 @@ void LoadMap::Init(){
                 TTag2Wall *next = mappingWall;
                 while(next->tag != "0"){
                     if(id==next->tag){
-                        ScenaryElement* wall = GEInstance->createWall("media/"+next->model);
+                        wall = GEInstance->createScenaryElement(next->model, false);
                         wall->setRotation(dwe::vec3f(rx,ry,rz));
                         wall->setPosition(dwe::vec3f(tx,ty,tz));
                        // wall->setLevelId(levelid);
@@ -107,7 +107,7 @@ void LoadMap::Init(){
                 TTag2Floor *nextF = mappingFloor;
                 while(nextF->tag != "0"){
                         if(id==nextF->tag){
-                            suelo = GEInstance->createNode("media/"+nextF->model);
+                            suelo = GEInstance->createNode(nextF->model, false);
                             suelo->setRotation(dwe::vec3f(rx,ry,rz));
                             suelo->setPosition(dwe::vec3f(tx,ty,tz));
                         }
@@ -145,8 +145,6 @@ void LoadMap::Init(){
                 uint8_t face = ry / 90; // 0->0, 90->1, 180->2, 270->3
                 if(id=="Door"){
                     entities[contDoorIn]=GEInstance->createDoor(face, true, tx, ty, tz);
-                    //entities[contDoorIn]->setLevelId(levelid);
-                    //doorTriggers[contDoorIn]=GEInstance->createTriggerDoor(tx, ty, tz);
                     ++contDoorIn;
                 }else if(id=="DoorRotate"){ // Puerta giratoria
                     entitiesDoorRotate[contDoorRotate]=GEInstance->createDoorRotate(face, true, tx, ty, tz);
@@ -156,17 +154,12 @@ void LoadMap::Init(){
 
 
         }
-
         // DEMO
         // Puertas MADRE
         entities[52]=GEInstance->createDoor(2, false, -50, 0, -100);
-        //doorTriggers[53]=GEInstance->createTriggerDoor(-29, 0, -100);
         entities[53]=GEInstance->createDoor(0, false, 50, 0, -100);
-        //doorTriggers[54]=GEInstance->createTriggerDoor(29, 0, -100);
         entities[54]=GEInstance->createDoor(2, true, -50, 0, -1895);
-        //doorTriggers[55]=GEInstance->createTriggerDoor(-29, 0, -1895);
         entities[55]=GEInstance->createDoor(0, true, 50, 0, -1895);
-        //doorTriggers[56]=GEInstance->createTriggerDoor(29, 0, -1895);
 
         ((Door*)entities[2])->setInactive();
         ((Door*)entities[11])->setInactive();
@@ -176,12 +169,9 @@ void LoadMap::Init(){
 
         // Generadores
         generator[0]=GEInstance->createGenerator(0, false, -350, 24, -300); // 1 Derecha Habitaciones
-        //generatorTriggers[0]=GEInstance->createTriggerGenerator(-360, 0, -300);
         generator[0]->setRotation(dwe::vec3f(0, 180, 0));
         generator[1]=GEInstance->createGenerator(1, false, -745, 24, -300); // 2 Izquierda
-        //generatorTriggers[1]=GEInstance->createTriggerGenerator(-725, 0, -300);
         generator[2]=GEInstance->createGenerator(2, false, -680, 24, -491); // 3 Arriba Mother
-        //generatorTriggers[2]=GEInstance->createTriggerGenerator(-660, 0, -491);
 
         // Asignamos puertas a generadores
         Entity **sector = new Entity*[1];
@@ -195,6 +185,18 @@ void LoadMap::Init(){
         sector[0]=entities[53];
         sector[1]=entities[54];
         generator[2]->setSector(sector, 2);
+
+        // ENVIRONMENT ELEMENTS
+        envElements[0] = GEInstance->createScenaryElement("environment_elements/cama", true);
+        envElements[0]->setPosition(dwe::vec3f(50, 0, 100));
+        envElements[1] = GEInstance->createScenaryElement("environment_elements/especimen", true);
+        envElements[1]->setPosition(dwe::vec3f(345, 0, -445));
+        envElements[1]->setRotation(dwe::vec3f(0, -30, 0));
+        envElements[2] = GEInstance->createScenaryElement("environment_elements/especimen", true);
+        envElements[2]->setPosition(dwe::vec3f(345, 0, -365));
+        envElements[2]->setRotation(dwe::vec3f(0, -30, 0));
+        envElements[3] = GEInstance->createScenaryElement("environment_elements/camilla", true);
+        envElements[3]->setPosition(dwe::vec3f(50, 0, 200));
 
         ////////// HACIENDO PRUEBAS CON OTRO TIPO DE BALAS
         //SHOTGUN BULLETS
@@ -213,13 +215,6 @@ void LoadMap::Init(){
 }
 
 void LoadMap::Update(){
-    /*for(int cont=0; cont<NUM_MAP_ENTITIES2; cont++){
-        entities[cont]->update();
-        doorTriggers[cont]->update(entities[cont]);
-    }
-    for(int cont=0; cont<3; cont++){
-        generatorTriggers[cont]->update(generator[cont]);
-    }*/
     if(GEInstance->receiver.isKeyDown(KEY_KEY_C) && !cheats){
         for(int cont=0; cont<NUM_MAP_ENTITIES2; cont++){
             ((Door*)entities[cont])->setActive();
@@ -237,11 +232,9 @@ void LoadMap::Update(){
 void LoadMap::Destroy(){
      for(int i=0; i<NUM_MAP_ENTITIES2; i++){
         delete entities[i];
-        delete doorTriggers[i];
     }
     for(int i=0; i<3; i++){
         delete generator[i];
-        delete generatorTriggers[i];
     }
     delete suelo; suelo=0;
     delete wall;

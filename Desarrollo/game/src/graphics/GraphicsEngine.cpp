@@ -211,24 +211,26 @@ void dwe::GraphicsEngine::render()
 }
 
 /////////////////////////////////////
-ScenaryElement* dwe::GraphicsEngine::createWall(std::string meshName)
-{
-    tag::GraphicNode* node = m_tagEngine.createMesh(meshName+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/unityPared.bmp");
-
-    ScenaryElement* s = new ScenaryElement();
-    s->setNode(new Node(node));
-    return s;
-}
-
-
-////////////////////////////////
-dwe::Node* dwe::GraphicsEngine::createNode(std::string meshName)
+ScenaryElement* dwe::GraphicsEngine::createScenaryElement(std::string s, bool b)
 {
     tag::GraphicNode* gn;
-    //if (meshName == "media/unitySuelo_Hall")
-        gn = m_tagEngine.createMesh(meshName+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/unitySuelo_Hall.bmp");
-    //else
-      //  gn = m_tagEngine.createMesh(meshName+".obj", vec3f(0,0,0), vec3f(0,0,0));
+    if(b)
+        gn = m_tagEngine.createMesh("media/"+s+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/"+s+".bmp");
+    else
+        gn = m_tagEngine.createMesh("media/"+s+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/unityPared.bmp");
+    ScenaryElement* se = new ScenaryElement();
+    se->setNode(new Node(gn));
+    return se;
+}
+
+////////////////////////////////
+dwe::Node* dwe::GraphicsEngine::createNode(std::string s, bool b)
+{
+    tag::GraphicNode* gn;
+    if(b)
+        gn = m_tagEngine.createMesh("media/"+s+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/"+s+".bmp");
+    else
+        gn = m_tagEngine.createMesh("media/"+s+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/unitySuelo_Hall.bmp");
     Node* node = new Node(gn);
     return node;
 }

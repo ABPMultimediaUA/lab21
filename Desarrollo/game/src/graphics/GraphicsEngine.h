@@ -165,7 +165,7 @@ namespace dwe
         void clearWindow();
         void displayWindow();
         ///
-        Node* createNode(std::string meshName);
+        Node* createNode(std::string s, bool b); // TRUE PARA GENERICO
 
         // Creacion de personajes
         Player*     createMainPlayer();
@@ -178,7 +178,7 @@ namespace dwe
         Mother*     createEnemyMother(int px, int py, int pz);
 
 
-        ScenaryElement* createWall(std::string meshName);
+        ScenaryElement* createScenaryElement(std::string s, bool b); // TRUE PARA GENERICO
 
         //////////////////////////////
         // Eventos de teclado y ratón

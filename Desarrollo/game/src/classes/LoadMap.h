@@ -20,6 +20,7 @@
 #define NUM_MAP_ENTITIES    100
 #define NUM_MAP_ENTITIES2   56
 #define NUM_MAP_DOORROTATE  1
+#define NUM_ENVIRONMENT_ELEMENTS 4
 
 class LoadMap {
     public:
@@ -37,15 +38,14 @@ class LoadMap {
         Entity *wallEntities[NUM_MAP_ENTITIES]; // Array de entidades
 
         // Paredes
-        ScenaryElement* wall;
+        ScenaryElement *wall;
+        ScenaryElement *envElements[NUM_ENVIRONMENT_ELEMENTS];
 
         Entity *entities[NUM_MAP_ENTITIES2]; // Array de entidades
         Generator *generator[3];
         MagnetKey *MKAux;
         std::vector<MagnetKey*> *magnetKeys;
         //Consumable *ammos[2];
-        TriggerDoor *doorTriggers[NUM_MAP_ENTITIES2]; // Triggers
-        TriggerGenerator *generatorTriggers[3];
 
         DoorRotate* entitiesDoorRotate[NUM_MAP_DOORROTATE];
 

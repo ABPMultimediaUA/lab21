@@ -62,6 +62,10 @@ void GSIngame::Update(){
 
 void GSIngame::HandleEvents()
 {
+    /*******/
+    if(GEInstance->receiver.isKeyDown(KEY_KEY_B))
+        World->getMainPlayer()->sayPosition();
+    /******/
     if(!m_pausePermission && GEInstance->receiver.isKeyUp(KEY_PAUSE))
         m_pausePermission = true;
     if(!m_clickPermission && GEInstance->receiver.isLeftButtonReleased()){
@@ -71,11 +75,13 @@ void GSIngame::HandleEvents()
         Game::getInstance()->ChangeState(GSPause::getInstance());
         m = false;
         m_pausePermission = false;
+        m_clickPermission = false;
     }
     else if(GEInstance->receiver.isKeyDown(KEY_DO_DEAD)){
         Game::getInstance()->ChangeState(GSDead::getInstance());
         m = false;
         m_pausePermission = false;
+        m_clickPermission = false;
     }
     else if(GEInstance->receiver.isKeyDown(KEY_EXIT) || GEInstance->getWindowClose()) //Control cerrado de ventana
     {
