@@ -69,6 +69,9 @@ class Scene
 
         Enemy* getClosestEnemy();
 
+        void activeEnemy(uint8_t i);
+        void deactiveEnemy(uint8_t i);
+
     protected:
 
     private:

@@ -161,6 +161,32 @@ int Scene::getNumberEnemies()
     return m_numActiveEnemies;
 }
 
+void Scene::activeEnemy(uint8_t i)
+{
+    if (!m_enemies[i].active)
+    {
+        m_enemies[i].enemy->activeEnemy(m_posMother);
+        m_enemies[i].active = true;
+        m_numActiveEnemies++;
+        m_timeLastEnemyActive = World->getTimeElapsed();
+    }
+}
+
+void Scene::deactiveEnemy(uint8_t i)
+{
+    if (m_enemies[i].active)
+    {
+        m_enemies[i].enemy->deactiveEnemy();
+        m_enemies[i].active = false;
+
+        // Si estaban todos los enemigos activos, reinicio contador
+        if (m_numEnemies == m_numActiveEnemies)
+            m_timeLastEnemyActive = World->getTimeElapsed();
+
+        m_numActiveEnemies--;
+    }
+}
+
 void Scene::updateEnemies()
 {
     m_moreEnemiesX = 0;
@@ -176,17 +202,7 @@ void Scene::updateEnemies()
             if (World->getTimeElapsed() - m_timeLastEnemyActive > m_timeEnemyActive)
             {
                 // Si ha pasado suficiente tiempo, lo activamos
-                dwe::vec3f pos = m_posMother;
-                m_enemies[i].enemy->setPosition(dwe::vec3f(pos.x, m_enemies[i].enemy->getPosition().y, pos.z+150));
-                m_enemies[i].enemy->resetHealth();
-                m_enemies[i].enemy->setPhysicsActive(true);
-                m_enemies[i].active = true;
-                m_numActiveEnemies++;
-                m_timeLastEnemyActive = World->getTimeElapsed();
-
-                // activar animacion parado
-                m_enemies[i].enemy->setAnimation(dwe::eAnimEnemyStand);
-                std::cout << "Activado\n";
+                activeEnemy(i);
             }
         }
         else
@@ -195,18 +211,7 @@ void Scene::updateEnemies()
             // Borrado de enemigos (desactivacion)
             if (m_enemies[i].enemy->getHealth()<=0)
             {
-                m_enemies[i].active = false;
-                m_enemies[i].enemy->setPhysicsActive(false);
-
-                // Si estaban todos los enemigos activos, reinicio contador
-                if (m_numEnemies == m_numActiveEnemies)
-                    m_timeLastEnemyActive = World->getTimeElapsed();
-
-                // activar animacion de morir
-                m_enemies[i].enemy->setAnimation(dwe::eAnimEnemyDeath);
-
-                m_numActiveEnemies--;
-                NetInstance->removeNetEnemy(m_enemies[i].enemy);
+                deactiveEnemy(i);
             }
             else
             {

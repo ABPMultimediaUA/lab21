@@ -38,6 +38,9 @@ class Enemy : public DrawablePhysics
         void resetHealth();
         int getDist2Player();
 
+        void activeEnemy(dwe::vec3f position);
+        void deactiveEnemy();
+
     protected:
         float m_speed;              // Velocidad: hay que actualizarla en el constructor de cada enemigo
         unsigned int m_netID;       // Un ID que debe coincidir con el índice array de entidades que se cree. Se envia junto con cualquier mensaje de red
