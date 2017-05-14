@@ -68,7 +68,7 @@ class Player : public CharacterController
         Weapon* getPlayerShotgun();
         Weapon* getPlayerRifle();
         ///////////
-        void reloadWeapon();
+        bool reloadWeapon();
 
         virtual const char* getNetObjectID() const;
 

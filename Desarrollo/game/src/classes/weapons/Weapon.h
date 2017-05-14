@@ -30,7 +30,7 @@ class Weapon : public Drawable
         int getAmmoBag();
         void setAmmoBag(int ammo);
         void addAmmoBag(int ammo);
-        void reload();
+        bool reload();
 
     protected:
         int m_netID;

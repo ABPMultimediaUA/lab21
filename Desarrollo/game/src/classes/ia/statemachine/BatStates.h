@@ -11,7 +11,7 @@ class BPatrolState : public State<Bat>
 {
     private:
 
-        BPatrolState(){}
+        BPatrolState(){};
 
         //copy ctor and assignment should be private
         BPatrolState(const BPatrolState&);
@@ -37,7 +37,7 @@ class BAlarmState : public State<Bat>
     private:
 
 
-        BAlarmState(){}
+        BAlarmState(){};
 
         //copy ctor and assignment should be private
         BAlarmState(const BAlarmState&);

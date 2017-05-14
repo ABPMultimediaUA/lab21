@@ -134,9 +134,9 @@ Weapon* Player::getPlayerShotgun()  { return m_weapons[eShotgun]; }
 Weapon* Player::getPlayerRifle()    { return m_weapons[eRifle]; }
 
 //////////////////
-void Player::reloadWeapon()
+bool Player::reloadWeapon()
 {
-    m_currentWeapon->reload();
+    return m_currentWeapon->reload();
 }
 
 /////////////
@@ -246,8 +246,8 @@ void Player::readEvents()
     // recargar armo
     if(GEInstance->receiver.isKeyDown(KEY_RELOADWEAPON) && (timeElapsed - m_timeReload)> _reloadOffsetTime)
     {
-        reloadWeapon();
-        m_timeReload = timeElapsed;
+        if(reloadWeapon())
+            m_timeReload = timeElapsed;
     }
 
     PlayerMate* playermate = NetInstance->getPlayerMate(1);

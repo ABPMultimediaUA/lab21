@@ -16,10 +16,6 @@ class Guardian : public Enemy
 
         StateMachine<Guardian>* GetFSM()const;
 
-        int getSteps();
-
-        void setSteps(int s);
-
         virtual void update();
 
         virtual void render();
@@ -27,8 +23,6 @@ class Guardian : public Enemy
     protected:
 
     private:
-
-        int steps;
 
         StateMachine<Guardian>*  g_pStateMachine;
 };
