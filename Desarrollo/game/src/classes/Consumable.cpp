@@ -40,6 +40,7 @@ void Consumable::take()
     {
         this->removeNode();
         m_isTaken = true;
+        m_trigger->SetToBeRemoved();
     }
 }
 

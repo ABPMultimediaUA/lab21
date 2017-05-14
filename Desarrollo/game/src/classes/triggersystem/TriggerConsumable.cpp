@@ -20,7 +20,7 @@ void TriggerConsumable::SetSensor()
 
 void TriggerConsumable::Update()
 {
-    if (m_touchingMainPlayer){
+    if (m_touchingMainPlayer && !ToBeRemoved){
         m_owner->Take();
         ToBeRemoved = true;
     }

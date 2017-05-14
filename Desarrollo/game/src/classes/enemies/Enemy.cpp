@@ -3,6 +3,7 @@
 #include "Pathplanning.h"
 #include "Perception.h"
 #include "dwVectors.h"
+#include "NetGame.h"
 
 #include <limits>
 
@@ -161,4 +162,28 @@ void Enemy::onBeginContact(EntityPhysics* otherObject)
         default: break;
         }
     }
+}
+
+////////////
+void Enemy::activeEnemy(dwe::vec3f position)
+{
+    setPosition(dwe::vec3f(position.x, getPosition().y, position.z+150));
+    resetHealth();
+    setPhysicsActive(true);
+
+    // activar animacion parado
+    setAnimation(dwe::eAnimEnemyStand);
+
+    NetInstance->sendBroadcast(ID_ACTIVE_ENEMY, m_netID);
+}
+
+////////////
+void Enemy::deactiveEnemy()
+{
+    setPhysicsActive(false);
+
+    // activar animacion de morir
+    setAnimation(dwe::eAnimEnemyDeath);
+
+    NetInstance->sendBroadcast(ID_DEACTIVE_ENEMY, m_netID);
 }
