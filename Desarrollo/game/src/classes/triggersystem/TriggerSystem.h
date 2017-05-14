@@ -13,6 +13,8 @@ class TriggerSystem
 
         virtual ~TriggerSystem();
 
+        void Destroy();
+
         void Update();
 
         void Add(Trigger* newTrigger);

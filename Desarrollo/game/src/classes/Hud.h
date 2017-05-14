@@ -5,7 +5,11 @@
 #include <GraphicsEngine.h>
 #include <Player.h>
 
-
+namespace dwe
+{
+    class WeaponBox;
+    class HealthBox;
+}
 
 class Hud : public Drawable
 {

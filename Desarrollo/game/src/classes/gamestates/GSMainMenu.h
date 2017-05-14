@@ -8,7 +8,7 @@ namespace dwe
 {
     class Button;
     class Background;
-    class Achievement;
+    class Sprite;
 }
 
 class GSMainMenu : public GState{
@@ -47,7 +47,7 @@ private:
 
     dwe::Button *playAloneButton;
     dwe::Button *playOnlineButton;
-    dwe::Button *achievementsButton;
+    dwe::Button *creditsButton;
     dwe::Button *optionsButton;
     dwe::Button *exitButton;
     dwe::Button *backButton;

@@ -56,63 +56,6 @@ namespace dwe{
             sf::Sprite sp;
     };
 
-    class AchievementInfo{
-        public:
-            AchievementInfo(std::string n);
-            ~AchievementInfo();
-            void draw();
-            void setPosition();
-        private:
-            sf::Texture texture;
-            sf::Sprite sp;
-    };
-
-    class Condition{
-
-        public:
-
-            virtual bool test() = 0;
-
-        private:
-
-    };
-
-    class ConditionEnemiesKilled : public Condition{
-
-        public:
-
-            ConditionEnemiesKilled(int en);
-
-            bool test();
-
-        private:
-
-            int enemies;
-
-
-
-    };
-
-    class Achievement{
-        public:
-            Achievement(std::string n, int x, int y, Condition* con);
-            ~Achievement();
-            void draw();
-            void drawInfo();
-            void hovered();
-            bool getAchieved();
-            bool testAchieved();
-            void setAchieved();
-        private:
-            sf::Sprite sp;
-            sf::Texture texture;
-            sf::Texture textureAchieved;
-            int x, y;
-            dwe::AchievementInfo achinfo;
-            bool achieved;
-            Condition* condition;
-    };
-
     class HudBox
     {
         public:

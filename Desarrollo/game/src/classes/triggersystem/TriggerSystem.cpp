@@ -8,8 +8,16 @@ TriggerSystem::TriggerSystem()
 
 TriggerSystem::~TriggerSystem()
 {
-    while(m_triggers.size())
+    if(m_triggers.size())
+        Destroy();
+}
+
+void TriggerSystem::Destroy()
+{
+    while(m_triggers.size()){
+        delete m_triggers.back();
         m_triggers.pop_back();
+    }
 }
 
 void TriggerSystem::Update()

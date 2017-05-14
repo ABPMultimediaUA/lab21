@@ -21,6 +21,7 @@ private:
     float deltaTime;
     bool m;
     bool m_pausePermission; // Booleano para controlar el boton pausa
+    bool m_clickPermission;
     Hud* hud;
 };
 

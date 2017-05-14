@@ -149,6 +149,29 @@ namespace dwn
 
             void sendBroadcastMessage(RakNet::BitStream &bsOut);
 
+            typedef void (dwn::NetGame::*FunctionPointer)(RakNet::Packet *packet);
+            struct TNetMessagesFunctions
+            {
+                int id_message;
+                FunctionPointer func;
+            };
+            TNetMessagesFunctions mapMessagesFunctions[NUM_CUSTOM_NET_MESSAGES];
+
+            void createMappingMessageFunctions();
+            bool readMappingMessage(RakNet::Packet *packet);
+            void readConnectionMessage(RakNet::Packet *packet, RakNet::RakString &targetName, RakNet::SystemAddress &facilitatorSystemAddress);
+            void activeEnemy(RakNet::Packet *packet);
+            void deactiveEnemy(RakNet::Packet *packet);
+            void readParticipantOrder(RakNet::Packet *packet);
+            void startGame(RakNet::Packet *packet);
+            void toggleDoor(RakNet::Packet *packet);
+            void activeGenerator(RakNet::Packet *packet);
+            void createProjectile(RakNet::Packet *packet);
+            void createProjectileGrenade(RakNet::Packet *packet);
+            void consumableTaken(RakNet::Packet *packet);
+            void enemyUpdate(RakNet::Packet *packet);
+            void sendMedkit(RakNet::Packet *packet);
+            void sendAmmo(RakNet::Packet *packet);
 
             ///////////////////////////////////////////
 

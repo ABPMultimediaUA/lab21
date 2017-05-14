@@ -24,7 +24,7 @@ using namespace dwn;
 
 dwn::NetGame::NetGame() : m_opened(false)
 {
-
+    createMappingMessageFunctions();
 }
 
 dwn::NetGame* NetGame::Instance()
@@ -122,6 +122,69 @@ void NetGame::close()
 	delete fullyConnectedMesh2;
 }
 
+///////////////////
+void dwn::NetGame::createMappingMessageFunctions()
+{
+    for(uint8_t i=0; i<NUM_CUSTOM_NET_MESSAGES; i++)
+        mapMessagesFunctions[i].id_message = -1;
+
+    mapMessagesFunctions[0].id_message  = ID_ACTIVE_ENEMY;
+    mapMessagesFunctions[0].func        = &dwn::NetGame::activeEnemy;
+
+    mapMessagesFunctions[1].id_message  = ID_DEACTIVE_ENEMY;
+    mapMessagesFunctions[1].func        = &dwn::NetGame::deactiveEnemy;
+
+    mapMessagesFunctions[2].id_message  = ID_GAME_PARTICIPANT_ORDER;
+    mapMessagesFunctions[2].func        = &dwn::NetGame::readParticipantOrder;
+
+    mapMessagesFunctions[3].id_message  = ID_GAME_STARTED;
+    mapMessagesFunctions[3].func        = &dwn::NetGame::startGame;
+
+    mapMessagesFunctions[4].id_message  = ID_DOOR_OPEN;
+    mapMessagesFunctions[4].func        = &dwn::NetGame::toggleDoor;
+
+    mapMessagesFunctions[5].id_message  = ID_DOOR_CLOSE;
+    mapMessagesFunctions[5].func        = &dwn::NetGame::toggleDoor;
+
+    mapMessagesFunctions[6].id_message  = ID_GENERATOR_ACTIVE;
+    mapMessagesFunctions[6].func        = &dwn::NetGame::activeGenerator;
+
+    mapMessagesFunctions[7].id_message  = ID_PROJECTILE_CREATE;
+    mapMessagesFunctions[7].func        = &dwn::NetGame::createProjectile;
+
+    mapMessagesFunctions[8].id_message  = ID_PROJECTILEGRENADE_CREATE;
+    mapMessagesFunctions[8].func        = &dwn::NetGame::createProjectileGrenade;
+
+    mapMessagesFunctions[9].id_message  = ID_CONSUMABLE_TAKEN;
+    mapMessagesFunctions[9].func        = &dwn::NetGame::consumableTaken;
+
+    mapMessagesFunctions[10].id_message = ID_ENEMY_UPDATE;
+    mapMessagesFunctions[10].func       = &dwn::NetGame::enemyUpdate;
+
+    mapMessagesFunctions[11].id_message = ID_SEND_MEDKIT;
+    mapMessagesFunctions[11].func       = &dwn::NetGame::sendMedkit;
+
+    mapMessagesFunctions[12].id_message = ID_SEND_AMMO;
+    mapMessagesFunctions[12].func       = &dwn::NetGame::sendAmmo;
+}
+
+///////////////////
+bool dwn::NetGame::readMappingMessage(RakNet::Packet *packet)
+{
+    bool readed = false;
+    uint8_t i = 0;
+    while(!readed && i<NUM_CUSTOM_NET_MESSAGES && mapMessagesFunctions[i].id_message>0)
+    {
+        if (mapMessagesFunctions[i].id_message==packet->data[0])
+        {
+            (this->*(mapMessagesFunctions[i].func))(packet);
+            readed = true;
+        }
+        i++;
+    }
+
+    return readed;
+}
 
 void PushMessage(RakNet::RakString rs)
 {
@@ -269,323 +332,11 @@ void dwn::NetGame::update()
 		else
 			targetName=packet->systemAddress.ToString(true);
 
-		switch (packet->data[0])
-		{
-		/*case ID_IP_RECENTLY_CONNECTED:
-		case ID_INCOMPATIBLE_PROTOCOL_VERSION:
-            std::cout << "\n------------------- ID_INCOMPATIBLE_PROTOCOL_VERSION ------------------------\n"; std::cin >> quitar;
-            PushMessage(RakNet::RakString("Incompatible protocol version from ") + targetName + RakNet::RakString("."));
-            if (packet->systemAddress==facilitatorSystemAddress)
-                PushMessage("Multiplayer will not work without the NAT punchthrough server!");
-			break;*/
-
-		case ID_DISCONNECTION_NOTIFICATION:
-            std::cout << "\n------------------- ID_DISCONNECTION_NOTIFICATION ------------------------\n"; //getline(cin, quitar);
-			PushMessage(RakNet::RakString("Desconectado de ") + targetName + RakNet::RakString("."));
-			break;
-
-		case ID_CONNECTION_LOST:
-            std::cout << "\n------------------- ID_CONNECTION_LOST ------------------------\n"; //std::cin >> quitar;
-			PushMessage(RakNet::RakString("Se ha perdido la conexion a ") + targetName + RakNet::RakString("."));
-			break;
-
-		case ID_CONNECTION_REQUEST_ACCEPTED:
-            std::cout << "\n------------------- ID_CONNECTION_REQUEST_ACCEPTED ------------------------\n"; //getline(cin, quitar);
-            PushMessage(RakNet::RakString("Conexion a ") + targetName + RakNet::RakString(" aceptada."));
-            if (packet->systemAddress==facilitatorSystemAddress)
-            {
-                // Query cloud for other running game instances
-                RakNet::CloudQuery cloudQuery;
-                cloudQuery.keys.Push(RakNet::CloudKey(NET_CLOUD_KEY,0),_FILE_AND_LINE_);
-                cloudClient->Get(&cloudQuery, packet->guid);
-                std::cout << "\n------------------- cloudClient->Get ------------------------\n"; //getline(cin, quitar);
-            }
-			break;
-
-		case ID_CONNECTION_ATTEMPT_FAILED:
-            std::cout << "\n------------------- ID_CONNECTION_ATTEMPT_FAILED ------------------------\n"; //getline(cin, quitar);
-            PushMessage(RakNet::RakString("La conexion a ") + targetName + RakNet::RakString(" ha fallado."));
-            m_connectionFailed = true;
-			break;
-
-		case ID_NO_FREE_INCOMING_CONNECTIONS:
-            std::cout << "\n------------------- ID_NO_FREE_INCOMING_CONNECTIONS ------------------------\n"; //getline(cin, quitar);
-            PushMessage(RakNet::RakString("La partida en el servidor está completa ") + targetName + RakNet::RakString("."));
-            m_connectionFailed = true;
-			break;
-
-		case ID_NEW_INCOMING_CONNECTION:
-            std::cout << "\n------------------- ID_NEW_INCOMING_CONNECTION ------------------------\n"; //getline(cin, quitar);
-            if (fullyConnectedMesh2->IsHostSystem())
-            {
-                // Cuando es el primer juego que se ha creado y accede un nuevo jugador
-                PushMessage(RakNet::RakString("Enviando la lista de participantes a la nueva conexion"));
-                fullyConnectedMesh2->StartVerifiedJoin(packet->guid);
-            }
-			break;
-
-		case ID_FCM2_VERIFIED_JOIN_START:
-		    {
-            std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_START ------------------------\n"; //getline(cin, quitar);
-                DataStructures::List<RakNet::SystemAddress> addresses;
-                DataStructures::List<RakNet::RakNetGUID> guids;
-                DataStructures::List<RakNet::BitStream*> userData;
-                fullyConnectedMesh2->GetVerifiedJoinRequiredProcessingList(packet->guid, addresses, guids, userData);
-            std::cout << "\n------- enviamos a: ";
-                for (unsigned int i=0; i < guids.Size(); i++)
-                {
-                    natPunchthroughClient->OpenNAT(guids[i], facilitatorSystemAddress);
-                    std::cout << guids[i].ToString();
-                }
-            std::cout << "-----\n";
-            //getline(cin, quitar)
-		    }
-			break;
-
-		case ID_FCM2_VERIFIED_JOIN_FAILED:
-            std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_FAILED ------------------------\n"; //getline(cin, quitar);
-			PushMessage(RakNet::RakString("Failed to join game session"));
-			break;
-
-		case ID_FCM2_VERIFIED_JOIN_CAPABLE:
-		    {
-            std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_CAPABLE ------------------------\n"; //getline(cin, quitar);
-                // Controlamos que la partida no ha empezado y que no está completa
-                bool aceptar = (getNumPlayerMates() < MAX_PLAYERS  && !m_gameStarted);
-                fullyConnectedMesh2->RespondOnVerifiedJoinCapable(packet, aceptar, 0);
-		    }
-			break;
-
-		case ID_FCM2_VERIFIED_JOIN_ACCEPTED:
-		    {
-            std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_ACCEPTED ------------------------\n"; //getline(cin, quitar);
-                DataStructures::List<RakNet::RakNetGUID> systemsAccepted;
-                bool thisSystemAccepted;
-                fullyConnectedMesh2->GetVerifiedJoinAcceptedAdditionalData(packet, &thisSystemAccepted, systemsAccepted, 0);
-                if (thisSystemAccepted){
-                    PushMessage("Peticion de unirse a la partida aceptada.\n");
-                    m_connected = true;
-                }else
-                    PushMessage(RakNet::RakString("%s se ha unido a la partida\n", systemsAccepted[0].ToString()));
-
-                for (unsigned int i=0; i < systemsAccepted.Size(); i++)
-                    replicaManager3->PushConnection(replicaManager3->AllocConnection(rakPeer->GetSystemAddressFromGuid(systemsAccepted[i]), systemsAccepted[i]));
-		    }
-			break;
-
-		case ID_FCM2_VERIFIED_JOIN_REJECTED:
-		    {
-            std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_REJECTED ------------------------\n"; //getline(cin, quitar);
-		        PushMessage(RakNet::RakString("rejected"));
-		        m_connectionRejected = true;
-		        // desconectar y marcar como no conectado
-		    }
-			break;
-
-		case ID_FCM2_NEW_HOST:
-            std::cout << "\n------------------- ID_FCM2_NEW_HOST ------------------------\n"; //getline(cin, quitar);
-		    if (packet->guid==rakPeer->GetMyGUID())
-            {
-                // Original host dropped. I am the new session host. Upload to the cloud so new players join this system.
-                RakNet::CloudKey cloudKey(NET_CLOUD_KEY,0);
-
-                cloudClient->Post(&cloudKey, 0, 0, rakPeer->GetGuidFromSystemAddress(facilitatorSystemAddress));
-            }
-			break;
-
-		case ID_CLOUD_GET_RESPONSE:
-		    {
-            std::cout << "\n------------------- ID_CLOUD_GET_RESPONSE ------------------------\n"; //getline(cin, quitar);
-                RakNet::CloudQueryResult cloudQueryResult;
-                cloudClient->OnGetReponse(&cloudQueryResult, packet);
-
-                // Buscamos partidas en servidor, las guardamos para elegir en menu
-                int maxPartidas=cloudQueryResult.rowsReturned.Size();
-                m_gamesIP.clear();
-                m_gamesGUID.clear();
-                if (maxPartidas>0)
-                {
-                    for(int i=0; i<maxPartidas; i++)
-                    {
-                        m_gamesIP.push_back(cloudQueryResult.rowsReturned[i]->clientSystemAddress.ToString());
-                        m_gamesGUID.push_back(cloudQueryResult.rowsReturned[i]->clientGUID);
-                    }
-                }
-
-                m_cloudServerGUID = packet->guid;
-                m_connected = true;
-
-                cloudClient->DeallocateWithDefaultAllocator(&cloudQueryResult);
-
-                m_gamesSearched = true;
-		    }
-			break;
-
-		case ID_NAT_TARGET_NOT_CONNECTED:
-            std::cout << "\n------------------- ID_NAT_TARGET_NOT_CONNECTED ------------------------\n"; //getline(cin, quitar);
-            targetName=getNATTargetName(packet);
-            PushMessage(RakNet::RakString("NAT target ") + targetName + RakNet::RakString(" not connected."));
-			break;
-
-		case ID_NAT_TARGET_UNRESPONSIVE:
-            std::cout << "\n------------------- ID_NAT_TARGET_UNRESPONSIVE ------------------------\n"; //getline(cin, quitar);
-            targetName=getNATTargetName(packet);
-            PushMessage(RakNet::RakString("NAT target ") + targetName + RakNet::RakString(" unresponsive."));
-			break;
-
-		case ID_NAT_CONNECTION_TO_TARGET_LOST:
-            std::cout << "\n------------------- ID_NAT_CONNECTION_TO_TARGET_LOST ------------------------\n"; //getline(cin, quitar);
-            targetName=getNATTargetName(packet);
-            PushMessage(RakNet::RakString("NAT target ") + targetName + RakNet::RakString(" connection to lost."));
-			break;
-
-		case ID_NAT_ALREADY_IN_PROGRESS:
-            std::cout << "\n------------------- ID_NAT_ALREADY_IN_PROGRESS ------------------------\n"; //getline(cin, quitar);
-            targetName=getNATTargetName(packet);
-            PushMessage(RakNet::RakString("NAT punchthrough to ") + targetName + RakNet::RakString(" in progress (skipping)."));
-			break;
-
-		case ID_NAT_PUNCHTHROUGH_SUCCEEDED:
-            std::cout << "\n------------------- ID_NAT_PUNCHTHROUGH_SUCCEEDED ------------------------\n"; //getline(cin, quitar);
-            if (packet->data[1]==1)  // Si somos los que enviamos el OpenNAT
-            {
-                PushMessage(RakNet::RakString("Connecting to existing game instance"));
-                rakPeer->Connect(packet->systemAddress.ToString(false), packet->systemAddress.GetPort(), 0, 0);
-                std::cout << "\n-------------- " << packet->systemAddress.ToString(false) << ":" << packet->systemAddress.GetPort() <<  "\n"; //getline(cin, quitar);
-            }
-			break;
-
-		case ID_ADVERTISE_SYSTEM:
-            std::cout << "\n------------------- ID_ADVERTISE_SYSTEM ------------------------\n"; //getline(cin, quitar);
-			if (packet->guid!=rakPeer->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS))
-			{
-				char hostIP[32];
-				packet->systemAddress.ToString(false,hostIP);
-				rakPeer->Connect(hostIP,packet->systemAddress.GetPort(),0,0);
-			}
-			break;
-
-        case ID_GAME_PARTICIPANT_ORDER:
-            {
-				RakNet::BitStream bsIn(packet->data,packet->length,false);
-				bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
-
-				bsIn.Read(m_participantOrder);
-                break;
-            }
-        case ID_GAME_STARTED:
-            {
-                PushMessage(RakNet::RakString("Empieza el juego"));
-                m_gameStarted = true;
-                break;
-            }
-        case ID_DOOR_OPEN:
-        case ID_DOOR_CLOSE:
-            {
-				unsigned int entityID = getBitStreamEntityID(packet);
-
-				if (entityID<m_numNetEntities)
-                {
-                    if (packet->data[0] == ID_DOOR_OPEN)
-                        ((Door*)m_netEntities[entityID])->setIsOpening();
-                    else
-                        ((Door*)m_netEntities[entityID])->setIsClosing();
-                }
-                break;
-            }
-        case ID_GENERATOR_ACTIVE:
-            {
-				unsigned int entityID = getBitStreamEntityID(packet);
-				if (entityID<m_numNetEntities)
-                    ((Generator*)m_netEntities[entityID])->activateGenerator();
-                break;
-            }
-        case ID_PROJECTILE_CREATE:
-            {
-                dwe::vec3f position;
-                float angle;
-                RakNet::RakString value;
-                RakNet::BitStream bsIn(packet->data,packet->length,false);
-                bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
-                bsIn.Read(position);
-                bsIn.Read(angle);
-                bsIn.Read(value);
-
-                Scene::Instance()->createProjectile(position, angle, value.C_String());
-
-                break;
-            }
-            case ID_PROJECTILEGRENADE_CREATE:
-            {
-                dwe::vec3f position;
-                float angle;
-                std::string weapon;
-
-                RakNet::BitStream bsIn(packet->data,packet->length,false);
-                bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
-                bsIn.Read(position);
-                bsIn.Read(angle);
-
-                m_scene->createProjectileGrenade(position, angle);
-                break;
-            }
-        case ID_CONSUMABLE_TAKEN:
-            {
-				unsigned int consumableID = getBitStreamEntityID(packet);
-				if (consumableID<m_numNetConsumables)
-                    (m_netConsumables[consumableID])->take();
-                break;
-            }
-        case ID_ENEMY_UPDATE:
-            {
-                unsigned int enemyID;
-                dwe::vec3f position;
-                dwe::vec3f rotation;
-
-                RakNet::BitStream bsIn(packet->data,packet->length,false);
-                bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
-                bsIn.Read(enemyID);
-                bsIn.Read(position);
-                bsIn.Read(rotation);
-
-                if (enemyID<m_numNetEnemies && m_netEnemies[enemyID])
-                {
-                    (m_netEnemies[enemyID])->setPosition(position);
-                    (m_netEnemies[enemyID])->setRotation(rotation);
-                }
-                break;
-            }
-        case ID_SEND_MEDKIT:
-            {
-                RakNet::RakString value;
-                RakNet::BitStream bsIn(packet->data,packet->length,false);
-                bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
-                bsIn.Read(value);
-
-                // Si player coincide con la cadena que manda, añadimos medkit
-                if (value == World->getMainPlayer()->creatingSystemGUID.ToString())
-                    World->getMainPlayer()->addMedkits(1);
-                break;
-            }
-
-        case ID_SEND_AMMO:
-            {
-                RakNet::RakString value;
-                RakNet::BitStream bsIn(packet->data,packet->length,false);
-                bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
-                bsIn.Read(value);
-
-                // Si player coincide con la cadena que manda, añadimos ammo
-                if (value == World->getMainPlayer()->creatingSystemGUID.ToString())
-                    //World->getMainPlayer()->addAmmo(0,10);
-                    World->getMainPlayer()->getPlayerGun()->addAmmo(10);
-
-                break;
-
-            }
-
-		}
-	}
+        if (!readMappingMessage(packet))
+        {
+            readConnectionMessage(packet, targetName, facilitatorSystemAddress);
+        }
+    }//for
 
 
 	RakNet::TimeMS curTime = RakNet::GetTimeMS();
@@ -791,3 +542,349 @@ RakNet::Replica3* dwn::NetGame::Connection_RM3DireW::AllocReplica(RakNet::BitStr
 }
 
 
+///////////////////
+void dwn::NetGame::readConnectionMessage(RakNet::Packet *packet, RakNet::RakString &targetName, RakNet::SystemAddress &facilitatorSystemAddress)
+{
+    switch (packet->data[0])
+    {
+    /*case ID_IP_RECENTLY_CONNECTED:
+    case ID_INCOMPATIBLE_PROTOCOL_VERSION:
+        std::cout << "\n------------------- ID_INCOMPATIBLE_PROTOCOL_VERSION ------------------------\n"; std::cin >> quitar;
+        PushMessage(RakNet::RakString("Incompatible protocol version from ") + targetName + RakNet::RakString("."));
+        if (packet->systemAddress==facilitatorSystemAddress)
+            PushMessage("Multiplayer will not work without the NAT punchthrough server!");
+        break;*/
+
+    case ID_DISCONNECTION_NOTIFICATION:
+        std::cout << "\n------------------- ID_DISCONNECTION_NOTIFICATION ------------------------\n"; //getline(cin, quitar);
+        PushMessage(RakNet::RakString("Desconectado de ") + targetName + RakNet::RakString("."));
+        break;
+
+    case ID_CONNECTION_LOST:
+        std::cout << "\n------------------- ID_CONNECTION_LOST ------------------------\n"; //std::cin >> quitar;
+        PushMessage(RakNet::RakString("Se ha perdido la conexion a ") + targetName + RakNet::RakString("."));
+        break;
+
+    case ID_CONNECTION_REQUEST_ACCEPTED:
+        std::cout << "\n------------------- ID_CONNECTION_REQUEST_ACCEPTED ------------------------\n"; //getline(cin, quitar);
+        PushMessage(RakNet::RakString("Conexion a ") + targetName + RakNet::RakString(" aceptada."));
+        if (packet->systemAddress==facilitatorSystemAddress)
+        {
+            // Query cloud for other running game instances
+            RakNet::CloudQuery cloudQuery;
+            cloudQuery.keys.Push(RakNet::CloudKey(NET_CLOUD_KEY,0),_FILE_AND_LINE_);
+            cloudClient->Get(&cloudQuery, packet->guid);
+            std::cout << "\n------------------- cloudClient->Get ------------------------\n"; //getline(cin, quitar);
+        }
+        break;
+
+    case ID_CONNECTION_ATTEMPT_FAILED:
+        std::cout << "\n------------------- ID_CONNECTION_ATTEMPT_FAILED ------------------------\n"; //getline(cin, quitar);
+        PushMessage(RakNet::RakString("La conexion a ") + targetName + RakNet::RakString(" ha fallado."));
+        m_connectionFailed = true;
+        break;
+
+    case ID_NO_FREE_INCOMING_CONNECTIONS:
+        std::cout << "\n------------------- ID_NO_FREE_INCOMING_CONNECTIONS ------------------------\n"; //getline(cin, quitar);
+        PushMessage(RakNet::RakString("La partida en el servidor está completa ") + targetName + RakNet::RakString("."));
+        m_connectionFailed = true;
+        break;
+
+    case ID_NEW_INCOMING_CONNECTION:
+        std::cout << "\n------------------- ID_NEW_INCOMING_CONNECTION ------------------------\n"; //getline(cin, quitar);
+        if (fullyConnectedMesh2->IsHostSystem())
+        {
+            // Cuando es el primer juego que se ha creado y accede un nuevo jugador
+            PushMessage(RakNet::RakString("Enviando la lista de participantes a la nueva conexion"));
+            fullyConnectedMesh2->StartVerifiedJoin(packet->guid);
+        }
+        break;
+
+    case ID_FCM2_VERIFIED_JOIN_START:
+        {
+        std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_START ------------------------\n"; //getline(cin, quitar);
+            DataStructures::List<RakNet::SystemAddress> addresses;
+            DataStructures::List<RakNet::RakNetGUID> guids;
+            DataStructures::List<RakNet::BitStream*> userData;
+            fullyConnectedMesh2->GetVerifiedJoinRequiredProcessingList(packet->guid, addresses, guids, userData);
+        std::cout << "\n------- enviamos a: ";
+            for (unsigned int i=0; i < guids.Size(); i++)
+            {
+                natPunchthroughClient->OpenNAT(guids[i], facilitatorSystemAddress);
+                std::cout << guids[i].ToString();
+            }
+        std::cout << "-----\n";
+        //getline(cin, quitar)
+        }
+        break;
+
+    case ID_FCM2_VERIFIED_JOIN_FAILED:
+        std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_FAILED ------------------------\n"; //getline(cin, quitar);
+        PushMessage(RakNet::RakString("Failed to join game session"));
+        break;
+
+    case ID_FCM2_VERIFIED_JOIN_CAPABLE:
+        {
+        std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_CAPABLE ------------------------\n"; //getline(cin, quitar);
+            // Controlamos que la partida no ha empezado y que no está completa
+            bool aceptar = (getNumPlayerMates() < MAX_PLAYERS  && !m_gameStarted);
+            fullyConnectedMesh2->RespondOnVerifiedJoinCapable(packet, aceptar, 0);
+        }
+        break;
+
+    case ID_FCM2_VERIFIED_JOIN_ACCEPTED:
+        {
+        std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_ACCEPTED ------------------------\n"; //getline(cin, quitar);
+            DataStructures::List<RakNet::RakNetGUID> systemsAccepted;
+            bool thisSystemAccepted;
+            fullyConnectedMesh2->GetVerifiedJoinAcceptedAdditionalData(packet, &thisSystemAccepted, systemsAccepted, 0);
+            if (thisSystemAccepted){
+                PushMessage("Peticion de unirse a la partida aceptada.\n");
+                m_connected = true;
+            }else
+                PushMessage(RakNet::RakString("%s se ha unido a la partida\n", systemsAccepted[0].ToString()));
+
+            for (unsigned int i=0; i < systemsAccepted.Size(); i++)
+                replicaManager3->PushConnection(replicaManager3->AllocConnection(rakPeer->GetSystemAddressFromGuid(systemsAccepted[i]), systemsAccepted[i]));
+        }
+        break;
+
+    case ID_FCM2_VERIFIED_JOIN_REJECTED:
+        {
+        std::cout << "\n------------------- ID_FCM2_VERIFIED_JOIN_REJECTED ------------------------\n"; //getline(cin, quitar);
+            PushMessage(RakNet::RakString("rejected"));
+            m_connectionRejected = true;
+            // desconectar y marcar como no conectado
+        }
+        break;
+
+    case ID_FCM2_NEW_HOST:
+        std::cout << "\n------------------- ID_FCM2_NEW_HOST ------------------------\n"; //getline(cin, quitar);
+        if (packet->guid==rakPeer->GetMyGUID())
+        {
+            // Original host dropped. I am the new session host. Upload to the cloud so new players join this system.
+            RakNet::CloudKey cloudKey(NET_CLOUD_KEY,0);
+
+            cloudClient->Post(&cloudKey, 0, 0, rakPeer->GetGuidFromSystemAddress(facilitatorSystemAddress));
+        }
+        break;
+
+    case ID_CLOUD_GET_RESPONSE:
+        {
+        std::cout << "\n------------------- ID_CLOUD_GET_RESPONSE ------------------------\n"; //getline(cin, quitar);
+            RakNet::CloudQueryResult cloudQueryResult;
+            cloudClient->OnGetReponse(&cloudQueryResult, packet);
+
+            // Buscamos partidas en servidor, las guardamos para elegir en menu
+            int maxPartidas=cloudQueryResult.rowsReturned.Size();
+            m_gamesIP.clear();
+            m_gamesGUID.clear();
+            if (maxPartidas>0)
+            {
+                for(int i=0; i<maxPartidas; i++)
+                {
+                    m_gamesIP.push_back(cloudQueryResult.rowsReturned[i]->clientSystemAddress.ToString());
+                    m_gamesGUID.push_back(cloudQueryResult.rowsReturned[i]->clientGUID);
+                }
+            }
+
+            m_cloudServerGUID = packet->guid;
+            m_connected = true;
+
+            cloudClient->DeallocateWithDefaultAllocator(&cloudQueryResult);
+
+            m_gamesSearched = true;
+        }
+        break;
+
+    case ID_NAT_TARGET_NOT_CONNECTED:
+        std::cout << "\n------------------- ID_NAT_TARGET_NOT_CONNECTED ------------------------\n"; //getline(cin, quitar);
+        targetName=getNATTargetName(packet);
+        PushMessage(RakNet::RakString("NAT target ") + targetName + RakNet::RakString(" not connected."));
+        break;
+
+    case ID_NAT_TARGET_UNRESPONSIVE:
+        std::cout << "\n------------------- ID_NAT_TARGET_UNRESPONSIVE ------------------------\n"; //getline(cin, quitar);
+        targetName=getNATTargetName(packet);
+        PushMessage(RakNet::RakString("NAT target ") + targetName + RakNet::RakString(" unresponsive."));
+        break;
+
+    case ID_NAT_CONNECTION_TO_TARGET_LOST:
+        std::cout << "\n------------------- ID_NAT_CONNECTION_TO_TARGET_LOST ------------------------\n"; //getline(cin, quitar);
+        targetName=getNATTargetName(packet);
+        PushMessage(RakNet::RakString("NAT target ") + targetName + RakNet::RakString(" connection to lost."));
+        break;
+
+    case ID_NAT_ALREADY_IN_PROGRESS:
+        std::cout << "\n------------------- ID_NAT_ALREADY_IN_PROGRESS ------------------------\n"; //getline(cin, quitar);
+        targetName=getNATTargetName(packet);
+        PushMessage(RakNet::RakString("NAT punchthrough to ") + targetName + RakNet::RakString(" in progress (skipping)."));
+        break;
+
+    case ID_NAT_PUNCHTHROUGH_SUCCEEDED:
+        std::cout << "\n------------------- ID_NAT_PUNCHTHROUGH_SUCCEEDED ------------------------\n"; //getline(cin, quitar);
+        if (packet->data[1]==1)  // Si somos los que enviamos el OpenNAT
+        {
+            PushMessage(RakNet::RakString("Connecting to existing game instance"));
+            rakPeer->Connect(packet->systemAddress.ToString(false), packet->systemAddress.GetPort(), 0, 0);
+            std::cout << "\n-------------- " << packet->systemAddress.ToString(false) << ":" << packet->systemAddress.GetPort() <<  "\n"; //getline(cin, quitar);
+        }
+        break;
+
+    case ID_ADVERTISE_SYSTEM:
+        std::cout << "\n------------------- ID_ADVERTISE_SYSTEM ------------------------\n"; //getline(cin, quitar);
+        if (packet->guid!=rakPeer->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS))
+        {
+            char hostIP[32];
+            packet->systemAddress.ToString(false,hostIP);
+            rakPeer->Connect(hostIP,packet->systemAddress.GetPort(),0,0);
+        }
+        break;
+
+    }//switch
+}
+
+///////////////////
+void dwn::NetGame::activeEnemy(RakNet::Packet *packet)
+{
+    unsigned int enemyID;
+    RakNet::BitStream bsIn(packet->data,packet->length,false);
+    bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+    bsIn.Read(enemyID);
+
+    Scene::Instance()->activeEnemy(enemyID);
+}
+
+///////////////////
+void dwn::NetGame::deactiveEnemy(RakNet::Packet *packet)
+{
+    unsigned int enemyID;
+    RakNet::BitStream bsIn(packet->data,packet->length,false);
+    bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+    bsIn.Read(enemyID);
+
+    Scene::Instance()->deactiveEnemy(enemyID);
+}
+
+///////////////////
+void dwn::NetGame::readParticipantOrder(RakNet::Packet *packet)
+{
+    RakNet::BitStream bsIn(packet->data,packet->length,false);
+    bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+
+    bsIn.Read(m_participantOrder);
+}
+
+///////////////////
+void dwn::NetGame::startGame(RakNet::Packet *packet)
+{
+    PushMessage(RakNet::RakString("Empieza el juego"));
+    m_gameStarted = true;
+}
+
+///////////////////
+void dwn::NetGame::toggleDoor(RakNet::Packet *packet)
+{
+    unsigned int entityID = getBitStreamEntityID(packet);
+
+    if (entityID<m_numNetEntities)
+    {
+        if (packet->data[0] == ID_DOOR_OPEN)
+            ((Door*)m_netEntities[entityID])->setIsOpening();
+        else
+            ((Door*)m_netEntities[entityID])->setIsClosing();
+    }
+}
+
+///////////////////
+void dwn::NetGame::activeGenerator(RakNet::Packet *packet)
+{
+    unsigned int entityID = getBitStreamEntityID(packet);
+    if (entityID<m_numNetEntities)
+        ((Generator*)m_netEntities[entityID])->activateGenerator();
+}
+
+///////////////////
+void dwn::NetGame::createProjectile(RakNet::Packet *packet)
+{
+    dwe::vec3f position;
+    float angle;
+    RakNet::RakString value;
+    RakNet::BitStream bsIn(packet->data,packet->length,false);
+    bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+    bsIn.Read(position);
+    bsIn.Read(angle);
+    bsIn.Read(value);
+
+    Scene::Instance()->createProjectile(position, angle, value.C_String());
+}
+
+///////////////////
+void dwn::NetGame::createProjectileGrenade(RakNet::Packet *packet)
+{
+    dwe::vec3f position;
+    float angle;
+    std::string weapon;
+
+    RakNet::BitStream bsIn(packet->data,packet->length,false);
+    bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+    bsIn.Read(position);
+    bsIn.Read(angle);
+
+    m_scene->createProjectileGrenade(position, angle);
+}
+
+///////////////////
+void dwn::NetGame::consumableTaken(RakNet::Packet *packet)
+{
+    unsigned int consumableID = getBitStreamEntityID(packet);
+    if (consumableID<m_numNetConsumables)
+        (m_netConsumables[consumableID])->take();
+}
+
+///////////////////
+void dwn::NetGame::enemyUpdate(RakNet::Packet *packet)
+{
+    unsigned int enemyID;
+    dwe::vec3f position;
+    dwe::vec3f rotation;
+
+    RakNet::BitStream bsIn(packet->data,packet->length,false);
+    bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+    bsIn.Read(enemyID);
+    bsIn.Read(position);
+    bsIn.Read(rotation);
+
+    if (enemyID<m_numNetEnemies && m_netEnemies[enemyID])
+    {
+        (m_netEnemies[enemyID])->setPosition(position);
+        (m_netEnemies[enemyID])->setRotation(rotation);
+    }
+}
+
+///////////////////
+void dwn::NetGame::sendMedkit(RakNet::Packet *packet)
+{
+    RakNet::RakString value;
+    RakNet::BitStream bsIn(packet->data,packet->length,false);
+    bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+    bsIn.Read(value);
+
+    // Si player coincide con la cadena que manda, añadimos medkit
+    if (value == World->getMainPlayer()->creatingSystemGUID.ToString())
+        World->getMainPlayer()->addMedkits(1);
+}
+
+///////////////////
+void dwn::NetGame::sendAmmo(RakNet::Packet *packet)
+{
+    RakNet::RakString value;
+    RakNet::BitStream bsIn(packet->data,packet->length,false);
+    bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+    bsIn.Read(value);
+
+    // Si player coincide con la cadena que manda, añadimos ammo
+    if (value == World->getMainPlayer()->creatingSystemGUID.ToString())
+        //World->getMainPlayer()->addAmmo(0,10);
+        World->getMainPlayer()->getPlayerGun()->addAmmo(10);
+}

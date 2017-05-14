@@ -7,6 +7,7 @@ namespace dwe
 {
     class Button;
     class Background;
+    class Sprite;
 }
 
 class GSPause : public GState{
@@ -30,6 +31,8 @@ private:
 
     /****/
     dwe::Background *menuPausaFondo;
+
+    dwe::Sprite *pauseDecoration;
 
     dwe::Button *resumeGameButton;
     dwe::Button *helpOptionsButton;

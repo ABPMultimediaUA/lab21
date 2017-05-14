@@ -1,5 +1,4 @@
 #include "GUI.h"
-
 #include "GraphicsEngine.h"
 #include "AudioEngine.h"
 
@@ -146,90 +145,6 @@ void dwe::Background::draw()
     GEInstance->drawRectangleShape(rs);
 }
 /***Fondo FIN***/
-
-/***AchievementInfo INI***/
-dwe::AchievementInfo::AchievementInfo(std::string n)
-{
-    texture.loadFromFile("media/achievement"+n+"info.png");
-    sp.setTexture(texture, true);
-}
-
-dwe::AchievementInfo::~AchievementInfo(){};
-
-void dwe::AchievementInfo::draw()
-{
-    GEInstance->drawSprite(sp);
-}
-
-void dwe::AchievementInfo::setPosition()
-{
-    sp.setPosition(GEInstance->receiver.getCursorX(), GEInstance->receiver.getCursorY());
-}
-/***AchievementInfo FIN***/
-
-/***Achievement INI***/
-dwe::Achievement::Achievement(std::string n, int x, int y, Condition* con) : achinfo(n)
-{
-    this->x=GEInstance->get_screenWidth()*x;
-    this->y=GEInstance->get_screenHeight()*y;
-    achieved=false; //Crear sistema logros para variar sprites
-    texture.loadFromFile("media/achievement"+n+"locked.png");
-    textureAchieved.loadFromFile("media/achievement"+n+"unlocked.png");
-    sp.setTexture(texture, true);
-    sp.setPosition(x, y);
-    condition = con;
-}
-
-dwe::Achievement::~Achievement(){};
-
-void dwe::Achievement::draw()
-{
-    //GEInstance->drawSprite(sp);
-}
-
-void dwe::Achievement::hovered()
-{
-    if(GEInstance->receiver.getCursorX()>x && GEInstance->receiver.getCursorY()>y && GEInstance->receiver.getCursorX()<x+sp.getGlobalBounds().width && GEInstance->receiver.getCursorY()<y+sp.getGlobalBounds().height)
-    {
-        achinfo.setPosition();
-        achinfo.draw();
-    }
-}
-
-void dwe::Achievement::drawInfo()
-{
-    hovered();
-}
-
-bool dwe::Achievement::getAchieved()
-{
-    return achieved;
-}
-
- bool dwe::Achievement::testAchieved()
- {
-    return condition->test();
- }
-
-void dwe::Achievement::setAchieved()
-{
-     achieved=true;
-     sp.setTexture(textureAchieved, true);
-}
-/***Achievement FIN***/
-
-dwe::ConditionEnemiesKilled::ConditionEnemiesKilled(int en)
-{
-    enemies = en;
-}
-
-bool dwe::ConditionEnemiesKilled::test()
-{
-    if(GEInstance->achievementsHandler.getEnemiesKilled()>=enemies)
-        return true;
-    return false;
-}
-
 
 void dwe::HudBox::setComponents(std::string str, sf::Sprite *s, sf::Texture *t, float px, float py)
 {

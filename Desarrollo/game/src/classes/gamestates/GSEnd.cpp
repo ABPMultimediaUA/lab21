@@ -3,6 +3,7 @@
 #include "LoadMap.h"
 #include "WorldInstance.h"
 #include "Game.h"
+#include "GUI.h"
 
 #include <iostream>
 

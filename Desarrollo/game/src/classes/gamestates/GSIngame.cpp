@@ -26,6 +26,7 @@ void GSIngame::Init(){
     page = 0;
     m = false;
     m_pausePermission = false;
+    m_clickPermission = false;
     LoadMap::getInstance()->Init();
     WorldInstance::Instance();
     timeStamp = World->getTimeElapsed();
@@ -61,17 +62,26 @@ void GSIngame::Update(){
 
 void GSIngame::HandleEvents()
 {
+    /*******/
+    if(GEInstance->receiver.isKeyDown(KEY_KEY_B))
+        World->getMainPlayer()->sayPosition();
+    /******/
     if(!m_pausePermission && GEInstance->receiver.isKeyUp(KEY_PAUSE))
         m_pausePermission = true;
+    if(!m_clickPermission && GEInstance->receiver.isLeftButtonReleased()){
+        m_clickPermission = true;
+    }
     if(m_pausePermission && GEInstance->receiver.isKeyDown(KEY_PAUSE)){
         Game::getInstance()->ChangeState(GSPause::getInstance());
         m = false;
         m_pausePermission = false;
+        m_clickPermission = false;
     }
     else if(GEInstance->receiver.isKeyDown(KEY_DO_DEAD)){
         Game::getInstance()->ChangeState(GSDead::getInstance());
         m = false;
         m_pausePermission = false;
+        m_clickPermission = false;
     }
     else if(GEInstance->receiver.isKeyDown(KEY_EXIT) || GEInstance->getWindowClose()) //Control cerrado de ventana
     {
@@ -98,7 +108,7 @@ void GSIngame::Render(){
         GEInstance->draw();
 
 #ifdef LAB21_DEBUG
-        World->drawDebugPhysics(GEInstance->getCameraPosition());
+        //World->drawDebugPhysics(GEInstance->getCameraPosition());
 #endif // LAB21_DEBUG
 
         hud->draw();
