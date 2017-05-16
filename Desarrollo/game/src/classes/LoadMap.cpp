@@ -99,7 +99,7 @@ void LoadMap::Init(){
                 TTag2Wall *next = mappingWall;
                 while(next->tag != "0"){
                     if(id==next->tag){
-                        walls[numWalls] = GEInstance->createScenaryElement(next->model, false);
+                        walls[numWalls] = GEInstance->createScenaryElement(next->model, "unityPared");
                         walls[numWalls]->setRotation(dwe::vec3f(rx,ry,rz));
                         walls[numWalls]->setPosition(dwe::vec3f(tx,ty,tz));
                         numWalls++;
@@ -111,7 +111,7 @@ void LoadMap::Init(){
                 TTag2Floor *nextF = mappingFloor;
                 while(nextF->tag != "0"){
                         if(id==nextF->tag){
-                            floors[numFloors] = GEInstance->createNode(nextF->model, false);
+                            floors[numFloors] = GEInstance->createFloor(nextF->model, "unitySuelo_Hall");
                             floors[numFloors]->setRotation(dwe::vec3f(rx,ry,rz));
                             floors[numFloors]->setPosition(dwe::vec3f(tx,ty,tz));
                             numFloors++;
@@ -192,20 +192,20 @@ void LoadMap::Init(){
         generator[2]->setSector(sector, 2);
 
         // ENVIRONMENT ELEMENTS
-        envElements[0] = GEInstance->createScenaryElement("environment_elements/cama", true);
+        envElements[0] = GEInstance->createScenaryElement("environment_elements/cama", "environment_elements/cama");
         envElements[0]->setPosition(dwe::vec3f(50, 0, 100));
-        envElements[1] = GEInstance->createScenaryElement("environment_elements/especimen", true);
+        envElements[1] = GEInstance->createScenaryElement("environment_elements/especimen", "environment_elements/especimen");
         envElements[1]->setPosition(dwe::vec3f(345, 0, -445));
         envElements[1]->setRotation(dwe::vec3f(0, -30, 0));
-        envElements[2] = GEInstance->createScenaryElement("environment_elements/especimen", true);
+        envElements[2] = GEInstance->createScenaryElement("environment_elements/especimen", "environment_elements/especimen");
         envElements[2]->setPosition(dwe::vec3f(345, 0, -365));
         envElements[2]->setRotation(dwe::vec3f(0, -45, 0));
-        envElements[3] = GEInstance->createScenaryElement("environment_elements/camilla", true);
+        envElements[3] = GEInstance->createScenaryElement("environment_elements/camilla", "environment_elements/camilla");
         envElements[3]->setPosition(dwe::vec3f(50, 0, 200));
-        envElements[4] = GEInstance->createScenaryElement("environment_elements/camadormir", true);
+        envElements[4] = GEInstance->createScenaryElement("environment_elements/camadormir", "environment_elements/camadormir");
         envElements[4]->setPosition(dwe::vec3f(745, 0, 835));
         //envElements[4]->setRotation(dwe::vec3f(0, -90, 0)); // No se gira la hitbox
-        envElements[5] = GEInstance->createScenaryElement("environment_elements/camadormir", true);
+        envElements[5] = GEInstance->createScenaryElement("environment_elements/camadormir", "environment_elements/camadormir");
         envElements[5]->setPosition(dwe::vec3f(1148, 0, 835));
         //envElements[5]->setRotation(dwe::vec3f(0, -90, 0));
 

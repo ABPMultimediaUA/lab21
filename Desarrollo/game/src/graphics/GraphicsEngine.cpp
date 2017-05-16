@@ -24,6 +24,7 @@
 #include "MagnetKey.h"
 #include "SpeedBoost.h"
 #include "Medkit.h"
+#include "Floor.h"
 
 #include "TriggerDoor.h"
 #include "TriggerGenerator.h"
@@ -211,28 +212,21 @@ void dwe::GraphicsEngine::render()
 }
 
 /////////////////////////////////////
-ScenaryElement* dwe::GraphicsEngine::createScenaryElement(std::string s, bool b)
+ScenaryElement* dwe::GraphicsEngine::createScenaryElement(std::string m, std::string t)
 {
-    tag::GraphicNode* gn;
-    if(b)
-        gn = m_tagEngine.createMesh("media/"+s+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/"+s+".bmp");
-    else
-        gn = m_tagEngine.createMesh("media/"+s+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/unityPared.bmp");
-    ScenaryElement* se = new ScenaryElement();
+    tag::GraphicNode* gn = m_tagEngine.createMesh("media/"+m+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/"+t+".bmp");
+    ScenaryElement *se= new ScenaryElement();
     se->setNode(new Node(gn));
     return se;
 }
 
 ////////////////////////////////
-dwe::Node* dwe::GraphicsEngine::createNode(std::string s, bool b)
+Floor* dwe::GraphicsEngine::createFloor(std::string m, std::string t)
 {
-    tag::GraphicNode* gn;
-    if(b)
-        gn = m_tagEngine.createMesh("media/"+s+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/"+s+".bmp");
-    else
-        gn = m_tagEngine.createMesh("media/"+s+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/unitySuelo_Hall.bmp");
-    Node* node = new Node(gn);
-    return node;
+    tag::GraphicNode* gn = m_tagEngine.createMesh("media/"+m+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/"+t+".bmp");
+    Floor *f = new Floor();
+    f->setNode(new Node(gn));
+    return f;
 }
 
 
