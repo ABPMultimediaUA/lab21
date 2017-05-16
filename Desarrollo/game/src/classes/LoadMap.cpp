@@ -209,7 +209,7 @@ void LoadMap::Init(){
         envElements[5]->setPosition(dwe::vec3f(1148, 0, 835));
         //envElements[5]->setRotation(dwe::vec3f(0, -90, 0));
 
-        envElements[6] = GEInstance->createScenaryElement("environment_elements/armario", true);
+        envElements[6] = GEInstance->createScenaryElement("environment_elements/armario", "environment_elements/armario");
         envElements[6]->setPosition(dwe::vec3f(50, 0, 0));
 
         ////////// HACIENDO PRUEBAS CON OTRO TIPO DE BALAS
