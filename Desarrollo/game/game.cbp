@@ -155,6 +155,8 @@
 		<Unit filename="src/classes/EntityPhysics.h" />
 		<Unit filename="src/classes/Flashlight.cpp" />
 		<Unit filename="src/classes/Flashlight.h" />
+		<Unit filename="src/classes/Floor.cpp" />
+		<Unit filename="src/classes/Floor.h" />
 		<Unit filename="src/classes/Game.cpp" />
 		<Unit filename="src/classes/Game.h" />
 		<Unit filename="src/classes/Generator.cpp" />
