@@ -116,7 +116,6 @@ void Scene::createEnemies()
     enemyMother = GEInstance->createEnemyMother(m_posMother.x, m_posMother.y, m_posMother.z);
 
 
-
 }
 
 void Scene::deleteEnemies()
