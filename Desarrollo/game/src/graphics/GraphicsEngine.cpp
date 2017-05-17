@@ -305,7 +305,7 @@ Mother* dwe::GraphicsEngine::createEnemyMother(int px, int py, int pz)
 	p->setPosition(dwe::vec3f(px, py, pz));
 
 	return p;*/
-	tag::EAnimation* anim = m_tagEngine.createNumAnimations(1);
+	tag::EAnimation* anim = m_tagEngine.createNumAnimations(1, "media/Mother/madre.bmp");
     m_tagEngine.createAnimation(anim, "media/Mother/Stand/motherStand", eAnimEnemyStand,   8);
 
     anim->setActiveAnimation(0);
