@@ -205,7 +205,7 @@ void LoadMap::Init(){
         //envElements[5]->setRotation(dwe::vec3f(0, -90, 0));
 
         envElements[6] = GEInstance->createScenaryElement("environment_elements/armario", "environment_elements/armario");
-        envElements[6]->setPosition(dwe::vec3f(-430, 0, 530));
+        envElements[6]->setPosition(dwe::vec3f(50, 0, 300));
 
         ////////// HACIENDO PRUEBAS CON OTRO TIPO DE BALAS
         //SHOTGUN BULLETS

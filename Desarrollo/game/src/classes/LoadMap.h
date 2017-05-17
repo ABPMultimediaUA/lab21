@@ -20,7 +20,7 @@
 #define NUM_FLOORS          53
 #define NUM_DOORS           35 //34
 #define NUM_MAP_DOORROTATE  1
-#define NUM_ENVIRONMENT_ELEMENTS 6
+#define NUM_ENVIRONMENT_ELEMENTS 7
 
 class LoadMap {
     public:
