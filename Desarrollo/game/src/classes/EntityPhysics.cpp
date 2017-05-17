@@ -138,7 +138,7 @@ void EntityPhysics::createCircularBody(const dwe::vec3f& pos, float radius)
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
     bodyDef.position.Set(pos.x*_ratio, pos.z*_ratio);
-    bodyDef.type            = b2_staticBody;
+    bodyDef.type            = b2_kinematicBody;
     bodyDef.angle           = 0;  // Lo pasamos a radianes
     bodyDef.fixedRotation   = m_fixedRotation;
     bodyDef.bullet          = m_bullet;

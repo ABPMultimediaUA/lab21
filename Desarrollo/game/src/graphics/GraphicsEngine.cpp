@@ -57,6 +57,7 @@ dwe::GraphicsEngine* dwe::GraphicsEngine::Instance()
 //////////////////////////
 void dwe::GraphicsEngine::init()
 {
+    std::cout << "He llamado init\n";
     // Importante para que muestre bien el cubo y no haga un mal culling
     sf::ContextSettings contextSettings;
     contextSettings.depthBits = 24;
@@ -143,6 +144,7 @@ bool dwe::GraphicsEngine::getWindowClose()
 //////////////////////////
 void dwe::GraphicsEngine::draw()
 {
+    std::cout << "draw---------------------------\n";
     m_window->popGLStates();   // Antes de este pop hay un push, en init
     m_tagEngine.draw();
 

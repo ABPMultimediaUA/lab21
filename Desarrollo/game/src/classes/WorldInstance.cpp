@@ -31,6 +31,29 @@ void ContactListener::EndContact(b2Contact* contact)
         bodyUserDataB->onEndContact(bodyUserDataA);
 }
 
+RayCastCallback::RayCastCallback()
+{
+    m_hit = false;
+}
+
+float RayCastCallback::ReportFixture(b2Fixture* fixture, const b2Vec2& point,
+                                     const b2Vec2& normal, float32 fraction)
+{
+    EntityPhysics* userData = (EntityPhysics*)fixture->GetBody()->GetUserData();
+    if (userData)
+    {
+        EntityPhysics::EPClassID clase = userData->getClassID();
+        if (clase == EntityPhysics::wall_id)
+        {
+            m_hit = true;
+            m_point = point;
+            m_normal = normal;
+            return 0.0f;
+        }
+    }
+    return -1.0f;
+}
+
 
 WorldInstance* WorldInstance::pinstance = 0;
 
@@ -154,6 +177,18 @@ Player* WorldInstance::getMainPlayer()
     }
     else
         return m_mainPlayer;
+}
+
+bool WorldInstance::CheckWallsRayCast(dwe::vec2f point1, dwe::vec2f point2)
+{
+    RayCastCallback callback;
+    m_world.RayCast(&callback, b2Vec2(point1.x, point1.y), b2Vec2(point2.x, point2.y));
+    if(callback.m_hit)
+    {
+        return true;
+    }
+
+    return false;
 }
 
 ////////////////////

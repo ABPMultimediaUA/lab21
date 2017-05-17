@@ -204,10 +204,10 @@ void LoadMap::Init(){
         envElements[3]->setPosition(dwe::vec3f(50, 0, 200));
         envElements[4] = GEInstance->createScenaryElement("environment_elements/camadormir", true);
         envElements[4]->setPosition(dwe::vec3f(745, 0, 835));
-        //envElements[4]->setRotation(dwe::vec3f(0, -90, 0)); // No se gira la hitbox
+        envElements[4]->setRotation(dwe::vec3f(0, -90, 0)); // No se gira la hitbox
         envElements[5] = GEInstance->createScenaryElement("environment_elements/camadormir", true);
         envElements[5]->setPosition(dwe::vec3f(1148, 0, 835));
-        //envElements[5]->setRotation(dwe::vec3f(0, -90, 0));
+        envElements[5]->setRotation(dwe::vec3f(0, -90, 0));
 
         ////////// HACIENDO PRUEBAS CON OTRO TIPO DE BALAS
         //SHOTGUN BULLETS

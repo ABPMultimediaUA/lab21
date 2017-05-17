@@ -108,7 +108,7 @@ void GSIngame::Render(){
         GEInstance->draw();
 
 #ifdef LAB21_DEBUG
-        //World->drawDebugPhysics(GEInstance->getCameraPosition());
+        World->drawDebugPhysics(GEInstance->getCameraPosition());
 #endif // LAB21_DEBUG
 
         hud->draw();
