@@ -20,7 +20,6 @@ Mother::~Mother()
 
 void Mother::update()
 {
-    std::cout<<"HEALTH"<<m_health<<std::endl;
     //TimeBetweenCreations ++;
     //m_pStateMachine->Update();
 }
