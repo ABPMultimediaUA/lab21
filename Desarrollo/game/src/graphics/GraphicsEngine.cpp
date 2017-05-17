@@ -145,7 +145,6 @@ bool dwe::GraphicsEngine::getWindowClose()
 //////////////////////////
 void dwe::GraphicsEngine::draw()
 {
-    std::cout << "draw---------------------------\n";
     m_window->popGLStates();   // Antes de este pop hay un push, en init
     m_tagEngine.draw();
 

@@ -78,7 +78,8 @@ bool Enemy::IsInAttackRange()
 
 bool Enemy::Attack()
 {
-    Drawable::setPosition(EntityPhysics::getPosEntity());
+    dwe::vec3f pos(EntityPhysics::getPosEntity());
+    Drawable::setPosition(dwe::vec3f(pos.x, 24, pos.z));
     if(!attacking){
         attackTime = World->getTimeElapsed();
         setAnimation(dwe::eAnimEnemyStand);
