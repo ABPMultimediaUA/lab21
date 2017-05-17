@@ -94,7 +94,40 @@ void CharacterController::dash(){
         m_speedZ *= _speedDash;
         m_speedX *= _speedDash;
 
+        // Controlamos la rotación del player
+        if (m_speedX > 0)
+        {
+            if (m_speedZ < 0)
+                setRotation(dwe::vec3f(0,  45, 0));
+            else if (m_speedZ > 0)
+                setRotation(dwe::vec3f(0, -45, 0));
+            else
+                setRotation(dwe::vec3f(0,   0, 0));
+        }
+        else if (m_speedX < 0)
+        {
+            if (m_speedZ < 0)
+                setRotation(dwe::vec3f(0,  135, 0));
+            else if (m_speedZ > 0)
+                setRotation(dwe::vec3f(0, -135, 0));
+            else
+                setRotation(dwe::vec3f(0,  180, 0));
+        }
+        else if (m_speedZ < 0)
+            setRotation(dwe::vec3f(0,  90, 0));
+        else
+            setRotation(dwe::vec3f(0,  270, 0));
+
+        //if (m_speedZ && m_speedX)
+
         m_isEvading = true;
         m_timeEvading = World->getTimeElapsed();
+        setAnimation(dwe::eAnimPlayerDash);
     }
+}
+
+//////////////////////////
+bool CharacterController::getIsEvading()
+{
+    return m_isEvading;
 }

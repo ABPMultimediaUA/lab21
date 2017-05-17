@@ -24,6 +24,8 @@ class CharacterController : public dwn::DrawableReplica
         void setSpeedBoost();
         void dash();
 
+        bool getIsEvading();
+
 
     protected:
 

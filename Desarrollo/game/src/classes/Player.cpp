@@ -181,9 +181,19 @@ void Player::swapCurrentWeapon(FirearmKind weaponKind)
 /////////////
 void Player::readEvents()
 {
-    float timeElapsed = World->getTimeElapsed();
-
     CharacterController::readEvents();
+    setVelocity(dwe::vec2f(getSpeedX(), getSpeedZ()));
+
+    if (getIsEvading())
+        return;
+
+    if (m_localIsEvading)
+    {
+        m_currentWeapon->setDraw();
+        m_localIsEvading = false;
+    }
+
+    float timeElapsed = World->getTimeElapsed();
 
     //Animacion del player
     if(getSpeedX()!=0 || getSpeedZ()!=0)
@@ -197,7 +207,7 @@ void Player::readEvents()
     {
         setAnimation(dwe::eAnimPlayerStand);
     }
-    setVelocity(dwe::vec2f(getSpeedX(), getSpeedZ()));
+
 
 
     //Calcular rotacion player - con MOUSE
@@ -271,8 +281,10 @@ void Player::readEvents()
             swapCurrentWeapon(m_playerWeaponKey[i].weapon);
 
     //HACER DASH
-    if(GEInstance->receiver.isKeyDown(KEY_DASH)){
-        setAnimation(dwe::eAnimPlayerDash);
+    if(GEInstance->receiver.isKeyDown(KEY_DASH))
+    {
+        m_currentWeapon->setPut(); // Guardamos arma
+        m_localIsEvading = true;
         this->dash();//evadimos
     }
 
