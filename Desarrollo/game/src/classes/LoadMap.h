@@ -10,18 +10,17 @@
 #include "DoorRotate.h"
 #include "Generator.h"
 #include "Scene.h"
+#include "Floor.h"
 
 #include <vector>
 
-
-
 /////
 #include "Entity.h"
-#define NUM_WALLS           361
-#define NUM_FLOORS          99
-#define NUM_MAP_ENTITIES2   56
+#define NUM_WALLS           181
+#define NUM_FLOORS          53
+#define NUM_DOORS           35 //34
 #define NUM_MAP_DOORROTATE  1
-#define NUM_ENVIRONMENT_ELEMENTS 6
+#define NUM_ENVIRONMENT_ELEMENTS 7
 
 class LoadMap {
     public:
@@ -35,7 +34,7 @@ class LoadMap {
     private:
         // Suelo
         int numFloors;
-        dwe::Node *floors[NUM_FLOORS];
+        Floor *floors[NUM_FLOORS];
 
         // Paredes
         int numWalls;
@@ -44,7 +43,7 @@ class LoadMap {
         // Elementos de escenario
         ScenaryElement *envElements[NUM_ENVIRONMENT_ELEMENTS];
 
-        Entity *entities[NUM_MAP_ENTITIES2]; // Array de entidades
+        Entity *entities[NUM_DOORS]; // Array de puertas
         Generator *generator[3];
         MagnetKey *MKAux;
         std::vector<MagnetKey*> *magnetKeys;

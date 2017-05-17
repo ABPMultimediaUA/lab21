@@ -6,6 +6,10 @@
 #include <document.h> //ES UN .H de rapidJSON
 using namespace rapidjson;
 
+#include <iostream>
+
+using namespace std;
+
 LoadMap::LoadMap()
 {
 
@@ -99,7 +103,7 @@ void LoadMap::Init(){
                 TTag2Wall *next = mappingWall;
                 while(next->tag != "0"){
                     if(id==next->tag){
-                        walls[numWalls] = GEInstance->createScenaryElement(next->model, false);
+                        walls[numWalls] = GEInstance->createScenaryElement(next->model, "unityPared");
                         walls[numWalls]->setRotation(dwe::vec3f(rx,ry,rz));
                         walls[numWalls]->setPosition(dwe::vec3f(tx,ty,tz));
                         numWalls++;
@@ -111,7 +115,7 @@ void LoadMap::Init(){
                 TTag2Floor *nextF = mappingFloor;
                 while(nextF->tag != "0"){
                         if(id==nextF->tag){
-                            floors[numFloors] = GEInstance->createNode(nextF->model, false);
+                            floors[numFloors] = GEInstance->createFloor(nextF->model, "unitySuelo_Hall");
                             floors[numFloors]->setRotation(dwe::vec3f(rx,ry,rz));
                             floors[numFloors]->setPosition(dwe::vec3f(tx,ty,tz));
                             numFloors++;
@@ -152,31 +156,20 @@ void LoadMap::Init(){
                     entities[contDoorIn]=GEInstance->createDoor(face, true, tx, ty, tz);
                     ++contDoorIn;
                 }else if(id=="DoorRotate"){ // Puerta giratoria
-                    entitiesDoorRotate[contDoorRotate]=GEInstance->createDoorRotate(face, true, tx, ty, tz);
-                    ++contDoorRotate;
+                    /*entitiesDoorRotate[contDoorRotate]=GEInstance->createDoorRotate(face, true, tx, ty, tz);
+                    ++contDoorRotate;*/
+                    entities[contDoorIn]=GEInstance->createDoor(face, true, tx, ty, tz);
+                    ++contDoorIn;
                 }
             }
 
 
         }
-        // DEMO
-        // Puertas MADRE
-        entities[52]=GEInstance->createDoor(2, false, -50, 0, -100);
-        entities[53]=GEInstance->createDoor(0, false, 50, 0, -100);
-        entities[54]=GEInstance->createDoor(2, true, -50, 0, -1895);
-        entities[55]=GEInstance->createDoor(0, true, 50, 0, -1895);
-
-        ((Door*)entities[2])->setInactive();
-        ((Door*)entities[11])->setInactive();
-        ((Door*)entities[12])->setInactive();
-        ((Door*)entities[50])->setInactive();
-        ((Door*)entities[51])->setInactive();
-
         // Generadores
         generator[0]=GEInstance->createGenerator(0, false, -350, 24, -300); // 1 Derecha Habitaciones
         generator[0]->setRotation(dwe::vec3f(0, 180, 0));
-        generator[1]=GEInstance->createGenerator(1, false, -745, 24, -300); // 2 Izquierda
-        generator[2]=GEInstance->createGenerator(2, false, -680, 24, -491); // 3 Arriba Mother
+        generator[1]=GEInstance->createGenerator(1, false, -750, 24, -280); // 2 Izquierda
+        generator[2]=GEInstance->createGenerator(2, false, -690, 24, -470); // 3 Arriba Mother
 
         // Asignamos puertas a generadores
         Entity **sector = new Entity*[1];
@@ -186,28 +179,34 @@ void LoadMap::Init(){
         ((Door*)entities[4])->setInactive();
         sector[0]=entities[4];
         generator[1]->setSector(sector, 1);
-        sector = new Entity*[2];
-        sector[0]=entities[53];
-        sector[1]=entities[54];
+        sector = new Entity*[2];((Door*)entities[4])->setInactive();
+        ((Door*)entities[33])->setInactive();
+        ((Door*)entities[34])->setInactive();
+        sector[0]=entities[33]; //32
+        sector[1]=entities[34]; //33
         generator[2]->setSector(sector, 2);
 
         // ENVIRONMENT ELEMENTS
-        envElements[0] = GEInstance->createScenaryElement("environment_elements/cama", true);
+        /*envElements[0] = GEInstance->createScenaryElement("environment_elements/cama", "environment_elements/cama");
         envElements[0]->setPosition(dwe::vec3f(50, 0, 100));
-        envElements[1] = GEInstance->createScenaryElement("environment_elements/especimen", true);
+        envElements[1] = GEInstance->createScenaryElement("environment_elements/especimen", "environment_elements/especimen");
         envElements[1]->setPosition(dwe::vec3f(345, 0, -445));
         envElements[1]->setRotation(dwe::vec3f(0, -30, 0));
-        envElements[2] = GEInstance->createScenaryElement("environment_elements/especimen", true);
+        envElements[2] = GEInstance->createScenaryElement("environment_elements/especimen", "environment_elements/especimen");
         envElements[2]->setPosition(dwe::vec3f(345, 0, -365));
-        envElements[2]->setRotation(dwe::vec3f(0, -45, 0));
-        envElements[3] = GEInstance->createScenaryElement("environment_elements/camilla", true);
+        envElements[2]->setRotation(dwe::vec3f(0, -45, 0));*/
+        /*envElements[3] = GEInstance->createScenaryElement("environment_elements/camilla", "environment_elements/camilla");
         envElements[3]->setPosition(dwe::vec3f(50, 0, 200));
-        envElements[4] = GEInstance->createScenaryElement("environment_elements/camadormir", true);
+        envElements[4] = GEInstance->createScenaryElement("environment_elements/camadormir", "environment_elements/camadormir");
         envElements[4]->setPosition(dwe::vec3f(745, 0, 835));
         //envElements[4]->setRotation(dwe::vec3f(0, -90, 0)); // No se gira la hitbox
-        envElements[5] = GEInstance->createScenaryElement("environment_elements/camadormir", true);
+        envElements[5] = GEInstance->createScenaryElement("environment_elements/camadormir", "environment_elements/camadormir");
         envElements[5]->setPosition(dwe::vec3f(1148, 0, 835));
         //envElements[5]->setRotation(dwe::vec3f(0, -90, 0));
+
+        envElements[6] = GEInstance->createScenaryElement("environment_elements/armario", "environment_elements/armario");
+        envElements[6]->setPosition(dwe::vec3f(50, 0, 300));*/
+
 
         ////////// HACIENDO PRUEBAS CON OTRO TIPO DE BALAS
         //SHOTGUN BULLETS
@@ -227,17 +226,16 @@ void LoadMap::Init(){
 
 void LoadMap::Update(){
     if(GEInstance->receiver.isKeyDown(KEY_KEY_C) && !cheats){
-        for(int cont=0; cont<NUM_MAP_ENTITIES2; cont++){
+        for(int cont=0; cont<NUM_DOORS; cont++){
             ((Door*)entities[cont])->setActive();
         }
         cout<<"CHEAT PUERTAS ABIERTAS"<<endl;
         cheats=true;
     }
 
-    for(uint8_t i=0; i < NUM_MAP_DOORROTATE; i++)
+    /*for(uint8_t i=0; i < NUM_MAP_DOORROTATE; i++)
         entitiesDoorRotate[i]->update();  // TODOjoint
-
-    //Scene::updateConsumables(mainPlayer);
+    //Scene::updateConsumables(mainPlayer);*/
 }
 
 void LoadMap::Destroy(){
@@ -248,7 +246,7 @@ void LoadMap::Destroy(){
     for(int i=0; i<NUM_FLOORS; i++){
         delete floors[i];
     }
-    for(int i=0; i<NUM_MAP_ENTITIES2; i++){
+    for(int i=0; i<NUM_DOORS; i++){
         delete entities[i];
     }
     for(int i=0; i<NUM_ENVIRONMENT_ELEMENTS; i++){

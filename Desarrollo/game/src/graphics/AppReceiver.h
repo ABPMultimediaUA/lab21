@@ -30,6 +30,7 @@ enum EKEY_CODE
     KEY_GRENADE             = sf::Keyboard::G,
     KEY_PAUSE               = sf::Keyboard::P,
     KEY_WALK                = sf::Keyboard::LShift,
+    KEY_ATTACK              = sf::Keyboard::V,
     KEY_DO_DEAD             = sf::Keyboard::F9,
     KEY_BEGIN_DEBUG_PHYSICS = sf::Keyboard::F11,
     KEY_STOP_DEBUG_PHYSICS  = sf::Keyboard::F12,

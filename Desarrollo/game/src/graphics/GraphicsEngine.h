@@ -59,6 +59,7 @@ class Rifle;
 class AmmoGun;
 class Program;
 class Drawable;
+class Floor;
 
 namespace dwe
 {
@@ -73,6 +74,10 @@ namespace dwe
         eAnimPlayerStand    = 0,
         eAnimPlayerRun      = 1,
         eAnimPlayerStealth  = 2,    // Sigilo
+        eAnimPlayerGrenade  = 3,
+        eAnimPlayerAttack   = 4,
+        eAnimPlayerDash     = 5,
+        eAnimPlayerDeath    = 6,
 
         eAnimEnemyStand     = 0,
         eAnimEnemyDeath     = 1,
@@ -166,7 +171,7 @@ namespace dwe
         void clearWindow();
         void displayWindow();
         ///
-        Node* createNode(std::string s, bool b); // TRUE PARA GENERICO
+        Floor* createFloor(std::string m, std::string t);
 
         // Creacion de personajes
         Player*     createMainPlayer();
@@ -179,7 +184,7 @@ namespace dwe
         Mother*     createEnemyMother(int px, int py, int pz);
 
 
-        ScenaryElement* createScenaryElement(std::string s, bool b); // TRUE PARA GENERICO
+        ScenaryElement* createScenaryElement(std::string m, std::string t);
 
         //////////////////////////////
         // Eventos de teclado y ratón

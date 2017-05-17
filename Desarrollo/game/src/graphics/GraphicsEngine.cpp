@@ -24,6 +24,7 @@
 #include "MagnetKey.h"
 #include "SpeedBoost.h"
 #include "Medkit.h"
+#include "Floor.h"
 
 #include "TriggerDoor.h"
 #include "TriggerGenerator.h"
@@ -211,37 +212,35 @@ void dwe::GraphicsEngine::render()
 }
 
 /////////////////////////////////////
-ScenaryElement* dwe::GraphicsEngine::createScenaryElement(std::string s, bool b)
+ScenaryElement* dwe::GraphicsEngine::createScenaryElement(std::string m, std::string t)
 {
-    tag::GraphicNode* gn;
-    if(b)
-        gn = m_tagEngine.createMesh("media/"+s+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/"+s+".bmp");
-    else
-        gn = m_tagEngine.createMesh("media/"+s+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/unityPared.bmp");
-    ScenaryElement* se = new ScenaryElement();
+    tag::GraphicNode* gn = m_tagEngine.createMesh("media/"+m+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/"+t+".bmp");
+    ScenaryElement *se= new ScenaryElement();
     se->setNode(new Node(gn));
     return se;
 }
 
 ////////////////////////////////
-dwe::Node* dwe::GraphicsEngine::createNode(std::string s, bool b)
+Floor* dwe::GraphicsEngine::createFloor(std::string m, std::string t)
 {
-    tag::GraphicNode* gn;
-    if(b)
-        gn = m_tagEngine.createMesh("media/"+s+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/"+s+".bmp");
-    else
-        gn = m_tagEngine.createMesh("media/"+s+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/unitySuelo_Hall.bmp");
-    Node* node = new Node(gn);
-    return node;
+    tag::GraphicNode* gn = m_tagEngine.createMesh("media/"+m+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/"+t+".bmp");
+    Floor *f = new Floor();
+    f->setNode(new Node(gn));
+    return f;
 }
 
 
 /////////////////////////////
 Player* dwe::GraphicsEngine::createMainPlayer()
 {
-    tag::EAnimation* anim = m_tagEngine.createNumAnimations(2);
-    m_tagEngine.createAnimation(anim, "media/playerStand/playerStand",  eAnimPlayerStand,   1);
-    m_tagEngine.createAnimation(anim, "media/playerRun/playerRun",      eAnimPlayerRun,     8);
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(7, "media/player/player.bmp");
+    m_tagEngine.createAnimation(anim, "media/player/playerStand/playerStand",  eAnimPlayerStand,   1);
+    m_tagEngine.createAnimation(anim, "media/player/playerRun/playerRun",      eAnimPlayerRun,     20);
+    m_tagEngine.createAnimation(anim, "media/player/playerWalk/playerWalk",      eAnimPlayerStealth,     10);
+    m_tagEngine.createAnimation(anim, "media/player/playerGrenade/playerGrenade",      eAnimPlayerGrenade,     19);
+    m_tagEngine.createAnimation(anim, "media/player/playerAttack/playerAttack",      eAnimPlayerAttack,     14);
+    m_tagEngine.createAnimation(anim, "media/player/playerDash/playerDash",      eAnimPlayerDash,     19);
+    m_tagEngine.createAnimation(anim, "media/player/playerDeath/playerDeath",      eAnimPlayerDeath,     14);
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
@@ -257,9 +256,14 @@ Player* dwe::GraphicsEngine::createMainPlayer()
 /////////////////////////////////
 PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 {
-    tag::EAnimation* anim = m_tagEngine.createNumAnimations(2);
-    m_tagEngine.createAnimation(anim, "media/playerStand/playerStand",  eAnimPlayerStand,   1);
-    m_tagEngine.createAnimation(anim, "media/playerRun/playerRun",      eAnimPlayerRun,     8);
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(7);
+    m_tagEngine.createAnimation(anim, "media/player/playerStand/playerStand",  eAnimPlayerStand,   1);
+    m_tagEngine.createAnimation(anim, "media/player/playerRun/playerRun",      eAnimPlayerRun,     20);
+    m_tagEngine.createAnimation(anim, "media/player/playerWalk/playerWalk",      eAnimPlayerStealth,     10);
+    m_tagEngine.createAnimation(anim, "media/player/playerGrenade/playerGrenade",      eAnimPlayerGrenade,     19);
+    m_tagEngine.createAnimation(anim, "media/player/playerAttack/playerAttack",      eAnimPlayerAttack,     14);
+    m_tagEngine.createAnimation(anim, "media/player/playerDash/playerDash",      eAnimPlayerDash,     19);
+    m_tagEngine.createAnimation(anim, "media/player/playerDeath/playerDeath",      eAnimPlayerDeath,     14);
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
@@ -306,7 +310,7 @@ Dog* dwe::GraphicsEngine::createEnemyDog(int px, int py, int pz)
     m_tagEngine.createAnimation(anim, "media/Dog/Death/dogDeath",   eAnimEnemyDeath,   9, false);
     m_tagEngine.createAnimation(anim, "media/Dog/Walk/dogWalk",     eAnimEnemyWalk,   11);
     m_tagEngine.createAnimation(anim, "media/Dog/Attack/dogAttack", eAnimEnemyAttack,  5);
-    m_tagEngine.createAnimation(anim, "media/Dog/Run/dogRun",       eAnimEnemyAttack, 11);
+    m_tagEngine.createAnimation(anim, "media/Dog/Run/dogRun",       eAnimEnemyRun, 11);
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
@@ -459,7 +463,7 @@ SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(float px, float py, float pz)
 
 Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/First_Aid_Med_Kit/FirstAidMedKit.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Medkit/Medkit.obj", vec3f(0,0,0), vec3f(0,0,0));
     Medkit* h = new Medkit();
 	h->setNode(new Node(node));
 	h->setPosition(dwe::vec3f(px, py, pz));
@@ -481,7 +485,7 @@ AmmoGun* dwe::GraphicsEngine::createAmmoGun(float px, float py, float pz)
 
 Gun* dwe::GraphicsEngine::createGun(Player* player)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/Gun.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Gun/Gun.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
     Gun* g = new Gun();
 	g->setNode(new Node(node));
 
@@ -490,7 +494,7 @@ Gun* dwe::GraphicsEngine::createGun(Player* player)
 
 Shotgun* dwe::GraphicsEngine::createShotgun(Player* player)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Shotgun/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
     Shotgun* sg = new Shotgun();
 	sg->setNode(new Node(node));
 
@@ -499,7 +503,7 @@ Shotgun* dwe::GraphicsEngine::createShotgun(Player* player)
 
 Rifle* dwe::GraphicsEngine::createRifle(Player* player)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Rifle/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
     Rifle* r = new Rifle();
 	r->setNode(new Node(node));
 
