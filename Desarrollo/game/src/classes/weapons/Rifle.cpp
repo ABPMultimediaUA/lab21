@@ -6,9 +6,10 @@
 Rifle::Rifle()
 {
     id=eRifle;
-    this->Weapon::setAmmo(30);
-    this->Weapon::setAmmoClip(30);
-    this->Weapon::setAmmoBag(90);
+    m_damage = 1;
+    m_ammo = 30;
+    m_ammoClip = 30;
+    m_bagAmmo = 90;
     m_cadence = 0.08;
 }
 
@@ -20,7 +21,7 @@ Rifle::~Rifle()
 ////////////
 void Rifle::shoot()
 {
-    Scene::Instance()->createProjectile(World->getMainPlayer()->getPosition(), World->getMainPlayer()->getRotation().y, "rifleBullet");
+    Scene::Instance()->createProjectile(World->getMainPlayer()->getPosition(), World->getMainPlayer()->getRotation().y, "rifleBullet", m_damage);
     NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, World->getMainPlayer()->getPosition(),World->getMainPlayer()->getRotation().y, "rifleBullet"); // Enviamos mensaje para crear projectil
 }
 

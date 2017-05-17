@@ -34,7 +34,6 @@ class Weapon : public Drawable
 
     protected:
         int m_netID;
-    private:
         int m_damage;
         bool m_isTaken;
         int m_bagAmmo;      // Munición en tu mochila

@@ -404,10 +404,10 @@ DoorRotate* dwe::GraphicsEngine::createDoorRotate(int f, bool a, float px, float
 	return d;
 }
 
-Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle, std::string weapon)
+Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle, std::string weapon, int damage)
 {
 	tag::GraphicNode* node = m_tagEngine.createMesh("media/" + weapon + ".obj", vec3f(0,0,0), vec3f(0,0,0));
-    Projectile* p = new Projectile(origin, angle);
+    Projectile* p = new Projectile(origin, angle, damage);
 	p->setNode(new Node(node));
 	p->setPosition(origin);
 	return p;

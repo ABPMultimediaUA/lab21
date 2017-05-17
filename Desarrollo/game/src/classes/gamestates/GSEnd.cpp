@@ -12,6 +12,7 @@ using namespace std;
 GSEnd::GSEnd()
 {
     //ctor
+    ended = false;
 }
 
 GSEnd* GSEnd::getInstance()
@@ -24,9 +25,6 @@ GSEnd* GSEnd::getInstance()
 void GSEnd::Init()
 {
     cout<<"FIN"<<endl;
-    NetInstance->close();
-    Scene::Instance()->Destroy();
-    LoadMap::getInstance()->Destroy();
 
     endDemoBackground = new dwe::Background("finDemo");
 }
@@ -45,7 +43,12 @@ void GSEnd::HandleEvents()
 
 void GSEnd::Update()
 {
-
+    if(!ended){
+        ended = true;
+        NetInstance->close();
+        Scene::Instance()->Destroy();
+        LoadMap::getInstance()->Destroy();
+    }
 }
 
 void GSEnd::Render()

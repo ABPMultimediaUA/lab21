@@ -816,7 +816,7 @@ void dwn::NetGame::createProjectile(RakNet::Packet *packet)
     bsIn.Read(angle);
     bsIn.Read(value);
 
-    Scene::Instance()->createProjectile(position, angle, value.C_String());
+    Scene::Instance()->createProjectile(position, angle, value.C_String(), 5); ///TO DO Poner un daño diferente a cada arma
 }
 
 ///////////////////

@@ -35,7 +35,7 @@ void tag::EAnimation::beginDraw()
         if (m_texture)
             m_texture->deactivateTexture();
         temp++;
-        if(temp == 10)
+        if(temp == 5)
         {
             m_frame++;
             temp = 0;

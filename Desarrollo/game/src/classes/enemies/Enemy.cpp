@@ -4,6 +4,7 @@
 #include "Perception.h"
 #include "dwVectors.h"
 #include "NetGame.h"
+#include "Projectile.h"
 
 #include <limits>
 
@@ -152,7 +153,10 @@ void Enemy::onBeginContact(EntityPhysics* otherObject)
         switch (clase)
         {
         case EntityPhysics::projectile_id:
-            m_health-=5;
+            {
+            Projectile* p = static_cast<Projectile*>(otherObject);
+            m_health -= p->getDamage();
+            }
             break;
         case EntityPhysics::grenadeExplosion_id:
             m_health-=10;

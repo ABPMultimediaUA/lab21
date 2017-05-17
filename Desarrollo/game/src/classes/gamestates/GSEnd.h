@@ -23,6 +23,7 @@ class GSEnd: public GState
 
     private:
         dwe::Background *endDemoBackground;
+        bool ended;
 };
 
 #endif // GSEND_H
