@@ -72,7 +72,7 @@ void Scene::Init()
     // LLAVES
     createMagnetKey(0, 105, 0, 1345);
     createMagnetKey(1, 785, 0, 1045);
-    createMagnetKey(2, 2255, 0, 505);
+    createMagnetKey(2, 255, 0, 505);
 
 
     // Creación de jugador
