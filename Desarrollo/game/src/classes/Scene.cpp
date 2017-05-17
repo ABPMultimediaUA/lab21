@@ -112,7 +112,11 @@ void Scene::createEnemies()
     m_enemies[ 9].enemy = GEInstance->createEnemyHumanoid(1860,24,130);
     m_enemies[10].enemy = GEInstance->createEnemyHumanoid(1970,24,230);*/
 
+
     enemyMother = GEInstance->createEnemyMother(m_posMother.x, m_posMother.y, m_posMother.z);
+
+
+
 }
 
 void Scene::deleteEnemies()
