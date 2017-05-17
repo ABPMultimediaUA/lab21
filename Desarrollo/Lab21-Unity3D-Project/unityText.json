@@ -157,7 +157,7 @@
 				"position": { "x":0, "y":0, "z":-200 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
-				"position": { "x":-700, "y":0, "z":-500 },
+				"position": { "x":-701, "y":-1, "z":-500 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_200m",
 				"position": { "x":-250.5, "y":0, "z":-499.8 },
@@ -190,7 +190,7 @@
 				"position": { "x":-810, "y":0, "z":-90 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_50m",
-				"position": { "x":-810, "y":0, "z":-460 },
+				"position": { "x":-811, "y":-1, "z":-460 },
 				"rotation": { "x":0, "y":90, "z":0 }}
 		],
 		"initial-enemies": [
@@ -220,8 +220,8 @@
 				"position": { "x":810, "y":-1, "z":-349.5 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "DoorRotate",
-				"position": { "x":0, "y":-1, "z":-487.6 },
-				"rotation": { "x":0, "y":0, "z":0 }},
+				"position": { "x":-2.5, "y":-1, "z":-488 },
+				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "PlayerStart",
 				"position": { "x":120, "y":10, "z":50.5 },
 				"rotation": { "x":0, "y":18.00001, "z":0 }}
@@ -310,7 +310,7 @@
 				"position": { "x":-1000, "y":0, "z":-500 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
-				"position": { "x":-899.9999, "y":0, "z":-510 },
+				"position": { "x":-899.9999, "y":-1, "z":-510 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":-1100, "y":0, "z":-500 },
