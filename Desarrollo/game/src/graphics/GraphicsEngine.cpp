@@ -277,9 +277,14 @@ PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 ////////////////////////////
 Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 {
-    tag::EAnimation* anim = m_tagEngine.createNumAnimations(2);
-    m_tagEngine.createAnimation(anim, "media/Humanoid/Stand/humanoide",         eAnimEnemyStand,   1);
-    m_tagEngine.createAnimation(anim, "media/Humanoid/Death/humanoideDeath",    eAnimEnemyDeath,   8, false);
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(6);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/Stand/humanoide",                 eAnimEnemyStand,   1);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/Death/humanoideDeath",            eAnimEnemyDeath,   8, false);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/MeleeAttack/humanoidMeleeAttack", eAnimEnemyAttack,   6);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/RangeAttack/humanoidRangeAttack", eAnimEnemyAttack2,   6, false);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/Walk/humanoidWalk",               eAnimEnemyWalk,   10);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/WalkFollow/humanoidWalkFollow",   eAnimEnemyFollow,   10, false);
+
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
@@ -294,11 +299,23 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 ////////////////////////////
 Mother* dwe::GraphicsEngine::createEnemyMother(int px, int py, int pz)
 {
-tag::GraphicNode* node = m_tagEngine.createMesh("media/madre.obj", vec3f(0,0,0), vec3f(0,0,0));
+    /*tag::GraphicNode* node = m_tagEngine.createMesh("media/madre.obj", vec3f(0,0,0), vec3f(0,0,0));
     Mother* p = new Mother();
 	p->setNode(new Node(node));
 	p->setPosition(dwe::vec3f(px, py, pz));
 
+	return p;*/
+	tag::EAnimation* anim = m_tagEngine.createNumAnimations(1);
+    m_tagEngine.createAnimation(anim, "media/Mother/Stand/motherStand", eAnimEnemyStand,   8);
+
+    anim->setActiveAnimation(0);
+
+    tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
+    Mother* p = new Mother();
+	p->setNode(new Node(node));
+	p->setPosition(dwe::vec3f(px, py, pz));
+
+	NetInstance->addNetEnemy(p);
 	return p;
 }
 
