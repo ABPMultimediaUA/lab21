@@ -453,7 +453,7 @@ SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(float px, float py, float pz)
 
 Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/First_Aid_Med_Kit/FirstAidMedKit.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Medkit/Medkit.obj", vec3f(0,0,0), vec3f(0,0,0));
     Medkit* h = new Medkit();
 	h->setNode(new Node(node));
 	h->setPosition(dwe::vec3f(px, py, pz));
