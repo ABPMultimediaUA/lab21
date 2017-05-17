@@ -83,7 +83,9 @@ namespace dwe
         eAnimEnemyDeath     = 1,
         eAnimEnemyWalk      = 2,
         eAnimEnemyAttack    = 3,
-        eAnimEnemyRun       = 4
+        eAnimEnemyRun       = 4,
+        eAnimEnemyFollow    = 5,
+        eAnimEnemyAttack2   = 6
     };
 
 

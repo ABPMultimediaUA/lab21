@@ -277,9 +277,14 @@ PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 ////////////////////////////
 Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 {
-    tag::EAnimation* anim = m_tagEngine.createNumAnimations(2);
-    m_tagEngine.createAnimation(anim, "media/Humanoid/Stand/humanoide",         eAnimEnemyStand,   1);
-    m_tagEngine.createAnimation(anim, "media/Humanoid/Death/humanoideDeath",    eAnimEnemyDeath,   8, false);
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(6);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/Stand/humanoide",                 eAnimEnemyStand,   1);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/Death/humanoideDeath",            eAnimEnemyDeath,   8, false);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/MeleeAttack/humanoidMeleeAttack", eAnimEnemyAttack,   6);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/RangeAttack/humanoidRangeAttack", eAnimEnemyAttack2,   6, false);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/Walk/humanoidWalk",               eAnimEnemyWalk,   10);
+    m_tagEngine.createAnimation(anim, "media/Humanoid/WalkFollow/humanoidWalkFollow",   eAnimEnemyFollow,   10, false);
+
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
@@ -294,11 +299,23 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 ////////////////////////////
 Mother* dwe::GraphicsEngine::createEnemyMother(int px, int py, int pz)
 {
-tag::GraphicNode* node = m_tagEngine.createMesh("media/madre.obj", vec3f(0,0,0), vec3f(0,0,0));
+    /*tag::GraphicNode* node = m_tagEngine.createMesh("media/madre.obj", vec3f(0,0,0), vec3f(0,0,0));
     Mother* p = new Mother();
 	p->setNode(new Node(node));
 	p->setPosition(dwe::vec3f(px, py, pz));
 
+	return p;*/
+	tag::EAnimation* anim = m_tagEngine.createNumAnimations(1);
+    m_tagEngine.createAnimation(anim, "media/Mother/Stand/motherStand", eAnimEnemyStand,   8);
+
+    anim->setActiveAnimation(0);
+
+    tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
+    Mother* p = new Mother();
+	p->setNode(new Node(node));
+	p->setPosition(dwe::vec3f(px, py, pz));
+
+	NetInstance->addNetEnemy(p);
 	return p;
 }
 
@@ -485,7 +502,7 @@ AmmoGun* dwe::GraphicsEngine::createAmmoGun(float px, float py, float pz)
 
 Gun* dwe::GraphicsEngine::createGun(Player* player)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Gun/Gun.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Gun/Gun.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
     Gun* g = new Gun();
 	g->setNode(new Node(node));
 
@@ -494,7 +511,7 @@ Gun* dwe::GraphicsEngine::createGun(Player* player)
 
 Shotgun* dwe::GraphicsEngine::createShotgun(Player* player)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Shotgun/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Shotgun/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
     Shotgun* sg = new Shotgun();
 	sg->setNode(new Node(node));
 
@@ -503,7 +520,7 @@ Shotgun* dwe::GraphicsEngine::createShotgun(Player* player)
 
 Rifle* dwe::GraphicsEngine::createRifle(Player* player)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Rifle/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Rifle/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
     Rifle* r = new Rifle();
 	r->setNode(new Node(node));
 
@@ -512,7 +529,7 @@ Rifle* dwe::GraphicsEngine::createRifle(Player* player)
 
 CShotgun* dwe::GraphicsEngine::createCShotgun(float px, float py, float pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Shotgun/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0));
     CShotgun* sg = new CShotgun();
 	sg->setNode(new Node(node));
 	sg->setPosition(dwe::vec3f(px, py, pz));
@@ -523,7 +540,7 @@ CShotgun* dwe::GraphicsEngine::createCShotgun(float px, float py, float pz)
 
 CRifle* dwe::GraphicsEngine::createCRifle(float px, float py, float pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Rifle/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0));
     CRifle* r = new CRifle();
 	r->setNode(new Node(node));
 	r->setPosition(dwe::vec3f(px, py, pz));

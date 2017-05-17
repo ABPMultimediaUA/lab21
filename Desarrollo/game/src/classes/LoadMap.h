@@ -18,7 +18,7 @@
 #include "Entity.h"
 #define NUM_WALLS           181
 #define NUM_FLOORS          53
-#define NUM_DOORS           35 //34
+#define NUM_DOORS           34 //34
 #define NUM_MAP_DOORROTATE  1
 #define NUM_ENVIRONMENT_ELEMENTS 7
 
