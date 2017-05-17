@@ -237,10 +237,10 @@ Player* dwe::GraphicsEngine::createMainPlayer()
     m_tagEngine.createAnimation(anim, "media/player/playerStand/playerStand",  eAnimPlayerStand,   1);
     m_tagEngine.createAnimation(anim, "media/player/playerRun/playerRun",      eAnimPlayerRun,     20);
     m_tagEngine.createAnimation(anim, "media/player/playerWalk/playerWalk",      eAnimPlayerStealth,     10);
-    m_tagEngine.createAnimation(anim, "media/player/playerGrenade/playerGrenade",      eAnimPlayerGrenade,     19);
-    m_tagEngine.createAnimation(anim, "media/player/playerAttack/playerAttack",      eAnimPlayerAttack,     14);
-    m_tagEngine.createAnimation(anim, "media/player/playerDash/playerDash",      eAnimPlayerDash,     19);
-    m_tagEngine.createAnimation(anim, "media/player/playerDeath/playerDeath",      eAnimPlayerDeath,     14);
+    m_tagEngine.createAnimation(anim, "media/player/playerGrenade/playerGrenade",      eAnimPlayerGrenade,     19, false);
+    m_tagEngine.createAnimation(anim, "media/player/playerAttack/playerAttack",      eAnimPlayerAttack,     14, false);
+    m_tagEngine.createAnimation(anim, "media/player/playerDash/playerDash",      eAnimPlayerDash,     19, false);
+    m_tagEngine.createAnimation(anim, "media/player/playerDeath/playerDeath",      eAnimPlayerDeath,     14, false);
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));

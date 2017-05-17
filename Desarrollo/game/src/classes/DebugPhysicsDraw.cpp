@@ -607,6 +607,7 @@ DebugPhysicsDraw::DebugPhysicsDraw()
 //
 DebugPhysicsDraw::~DebugPhysicsDraw()
 {
+    Destroy();
 	b2Assert(m_points == NULL);
 	b2Assert(m_lines == NULL);
 	b2Assert(m_triangles == NULL);
@@ -628,17 +629,26 @@ void DebugPhysicsDraw::Create()
 //
 void DebugPhysicsDraw::Destroy()
 {
-	m_points->Destroy();
-	delete m_points;
-	m_points = NULL;
+    if (m_points != NULL)
+    {
+        m_points->Destroy();
+        delete m_points;
+        m_points = NULL;
+    }
 
-	m_lines->Destroy();
-	delete m_lines;
-	m_lines = NULL;
+    if (m_lines != NULL)
+    {
+        m_lines->Destroy();
+        delete m_lines;
+        m_lines = NULL;
+    }
 
-	m_triangles->Destroy();
-	delete m_triangles;
-	m_triangles = NULL;
+    if (m_triangles != NULL)
+    {
+        m_triangles->Destroy();
+        delete m_triangles;
+        m_triangles = NULL;
+    }
 
 	m_debuggin = false;
 }

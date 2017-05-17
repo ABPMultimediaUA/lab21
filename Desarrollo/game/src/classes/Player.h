@@ -108,6 +108,8 @@ class Player : public CharacterController
         int         m_maxHealth;
         Grenade     m_grenadeWeapon;
 
+        bool        m_localIsEvading;
+
         void deleteWeapons();
 };
 
