@@ -6,10 +6,6 @@
 #include <document.h> //ES UN .H de rapidJSON
 using namespace rapidjson;
 
-#include <iostream>
-
-using namespace std;
-
 LoadMap::LoadMap()
 {
 
