@@ -184,7 +184,7 @@ void LoadMap::Init(){
         generator[2]->setSector(sector, 2);
 
         // ENVIRONMENT ELEMENTS
-        /*envElements[0] = GEInstance->createScenaryElement("environment_elements/cama", "environment_elements/cama");
+        envElements[0] = GEInstance->createScenaryElement("environment_elements/cama", "environment_elements/cama");
         envElements[0]->setPosition(dwe::vec3f(50, 0, 100));
         envElements[1] = GEInstance->createScenaryElement("environment_elements/especimen", "environment_elements/especimen");
         envElements[1]->setPosition(dwe::vec3f(345, 0, -445));
@@ -202,7 +202,7 @@ void LoadMap::Init(){
         //envElements[5]->setRotation(dwe::vec3f(0, -90, 0));
 
         envElements[6] = GEInstance->createScenaryElement("environment_elements/armario", "environment_elements/armario");
-        envElements[6]->setPosition(dwe::vec3f(50, 0, 300));*/
+        envElements[6]->setPosition(dwe::vec3f(50, 0, 300));
 
         // Armas
         s->createCShotgun(0, 10, -20);
