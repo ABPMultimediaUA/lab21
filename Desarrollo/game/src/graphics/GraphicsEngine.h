@@ -58,6 +58,7 @@ class Shotgun;
 class Rifle;
 class AmmoGun;
 class Program;
+class Drawable;
 
 namespace dwe
 {
@@ -217,6 +218,8 @@ namespace dwe
         /// \brief Devuelve la posición X Y del puntero del ratón
         /// \return vec2f con las coordenadas x y
         vec2f getMousePosition();
+
+        float angleToScreenCoords(Drawable *object);
 
          class GETexture : public sf::Texture { // Para el hud
 

@@ -2,7 +2,7 @@
 #include "NavGraphEdge.h"
 #include "NavGraphNode.h"
 
-NavigationGraph::NavigationGraph(bool di):nextNodeIndex(0), digraph(di), numActiveNodes(0)
+NavigationGraph::NavigationGraph(bool di): digraph(di), nextNodeIndex(0), numActiveNodes(0)
 {
 }
 
