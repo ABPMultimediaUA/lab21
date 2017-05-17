@@ -190,10 +190,10 @@ void Player::readEvents()
     {
         if(GEInstance->receiver.isKeyDown(KEY_WALK))
             setAnimation(dwe::eAnimPlayerStealth);
-        else
+        else if(getAnimation()!=dwe::eAnimPlayerDash)
             setAnimation(dwe::eAnimPlayerRun);
     }
-    else
+    else if(getAnimation()!=dwe::eAnimPlayerGrenade && getAnimation()!=dwe::eAnimPlayerDash && getAnimation()!=dwe::eAnimPlayerAttack)
     {
         setAnimation(dwe::eAnimPlayerStand);
     }
@@ -224,6 +224,12 @@ void Player::readEvents()
         {
             NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, getPosition(), getRotation().y); // Enviamos mensaje para crear projectilgrenade
             m_timeLastGrenade = timeElapsed;
+            setAnimation(dwe::eAnimPlayerGrenade);
+        }
+
+        if(GEInstance->receiver.isKeyDown(KEY_ATTACK))
+        {
+            setAnimation(dwe::eAnimPlayerAttack);
         }
 
 
@@ -265,8 +271,11 @@ void Player::readEvents()
             swapCurrentWeapon(m_playerWeaponKey[i].weapon);
 
     //HACER DASH
-    if(GEInstance->receiver.isKeyDown(KEY_DASH))
+    if(GEInstance->receiver.isKeyDown(KEY_DASH)){
+        setAnimation(dwe::eAnimPlayerDash);
         this->dash();//evadimos
+    }
+
 }
 
 

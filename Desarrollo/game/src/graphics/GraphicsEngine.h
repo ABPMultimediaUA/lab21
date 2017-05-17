@@ -73,6 +73,10 @@ namespace dwe
         eAnimPlayerStand    = 0,
         eAnimPlayerRun      = 1,
         eAnimPlayerStealth  = 2,    // Sigilo
+        eAnimPlayerGrenade  = 3,
+        eAnimPlayerAttack  = 4,
+        eAnimPlayerDash  = 5,
+        eAnimPlayerDeath  = 6,
 
         eAnimEnemyStand     = 0,
         eAnimEnemyDeath     = 1,
