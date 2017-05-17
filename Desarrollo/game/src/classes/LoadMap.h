@@ -10,6 +10,7 @@
 #include "DoorRotate.h"
 #include "Generator.h"
 #include "Scene.h"
+#include "Floor.h"
 
 #include <vector>
 
@@ -35,7 +36,7 @@ class LoadMap {
     private:
         // Suelo
         int numFloors;
-        dwe::Node *floors[NUM_FLOORS];
+        Floor *floors[NUM_FLOORS];
 
         // Paredes
         int numWalls;
