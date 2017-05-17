@@ -58,6 +58,7 @@ class Shotgun;
 class Rifle;
 class AmmoGun;
 class Program;
+class Drawable;
 class Floor;
 
 namespace dwe
@@ -74,15 +75,17 @@ namespace dwe
         eAnimPlayerRun      = 1,
         eAnimPlayerStealth  = 2,    // Sigilo
         eAnimPlayerGrenade  = 3,
-        eAnimPlayerAttack  = 4,
-        eAnimPlayerDash  = 5,
-        eAnimPlayerDeath  = 6,
+        eAnimPlayerAttack   = 4,
+        eAnimPlayerDash     = 5,
+        eAnimPlayerDeath    = 6,
 
         eAnimEnemyStand     = 0,
         eAnimEnemyDeath     = 1,
         eAnimEnemyWalk      = 2,
         eAnimEnemyAttack    = 3,
-        eAnimEnemyRun       = 4
+        eAnimEnemyRun       = 4,
+        eAnimEnemyFollow    = 5,
+        eAnimEnemyAttack2   = 6
     };
 
 
@@ -222,6 +225,8 @@ namespace dwe
         /// \brief Devuelve la posición X Y del puntero del ratón
         /// \return vec2f con las coordenadas x y
         vec2f getMousePosition();
+
+        float angleToScreenCoords(Drawable *object);
 
          class GETexture : public sf::Texture { // Para el hud
 

@@ -257,10 +257,12 @@ void Scene::Update()
         Game::getInstance()->ChangeState(GSDead::getInstance());
     }
 
+    mainPlayer->update(); //Posición actualizada de Irrlicht Player
+
     updateEnemies();  // Devuelve los parametros para la camara inteligente m_moreEnemiesX , m_moreEnemiesZ
+
     GEInstance->updateCamera(mainPlayer->getPosition(), m_moreEnemiesX, m_moreEnemiesZ);
 
-    mainPlayer->update(); //Posición actualizada de Irrlicht Player
 
     // Actualizamos los playermates
     int num = NetInstance->getNumPlayerMates();

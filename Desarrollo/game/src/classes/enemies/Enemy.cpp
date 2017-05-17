@@ -12,10 +12,10 @@ Enemy::Enemy() :
     m_speed(0.0),
     m_maxHealth(10),
     m_health(m_maxHealth),
-    m_perception(0),
-    m_pathplanning(0),
     attacking(false),
-    memory(false)
+    memory(false),
+    m_perception(0),
+    m_pathplanning(0)
 {
     setClassID(EntityPhysics::enemy_id);
     closestPlayer = 0;
