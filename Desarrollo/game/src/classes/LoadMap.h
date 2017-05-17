@@ -22,7 +22,7 @@
 #define NUM_FLOORS          99
 #define NUM_MAP_ENTITIES2   56
 #define NUM_MAP_DOORROTATE  1
-#define NUM_ENVIRONMENT_ELEMENTS 6
+#define NUM_ENVIRONMENT_ELEMENTS 7
 
 class LoadMap {
     public:

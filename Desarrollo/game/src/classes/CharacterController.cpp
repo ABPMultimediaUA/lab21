@@ -30,6 +30,7 @@ void CharacterController::readEvents()
         {
             m_isEvading = false;
             m_speedX = m_speedZ = 0;
+            setAnimation(dwe::eAnimPlayerStand);
         }
     }
     else

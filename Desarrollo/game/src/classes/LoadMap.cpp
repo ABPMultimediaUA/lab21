@@ -192,15 +192,15 @@ void LoadMap::Init(){
         generator[2]->setSector(sector, 2);
 
         // ENVIRONMENT ELEMENTS
-        envElements[0] = GEInstance->createScenaryElement("environment_elements/cama", "environment_elements/cama");
+        /*envElements[0] = GEInstance->createScenaryElement("environment_elements/cama", "environment_elements/cama");
         envElements[0]->setPosition(dwe::vec3f(50, 0, 100));
         envElements[1] = GEInstance->createScenaryElement("environment_elements/especimen", "environment_elements/especimen");
         envElements[1]->setPosition(dwe::vec3f(345, 0, -445));
         envElements[1]->setRotation(dwe::vec3f(0, -30, 0));
         envElements[2] = GEInstance->createScenaryElement("environment_elements/especimen", "environment_elements/especimen");
         envElements[2]->setPosition(dwe::vec3f(345, 0, -365));
-        envElements[2]->setRotation(dwe::vec3f(0, -45, 0));
-        envElements[3] = GEInstance->createScenaryElement("environment_elements/camilla", "environment_elements/camilla");
+        envElements[2]->setRotation(dwe::vec3f(0, -45, 0));*/
+        /*envElements[3] = GEInstance->createScenaryElement("environment_elements/camilla", "environment_elements/camilla");
         envElements[3]->setPosition(dwe::vec3f(50, 0, 200));
         envElements[4] = GEInstance->createScenaryElement("environment_elements/camadormir", "environment_elements/camadormir");
         envElements[4]->setPosition(dwe::vec3f(745, 0, 835));
@@ -210,7 +210,7 @@ void LoadMap::Init(){
         //envElements[5]->setRotation(dwe::vec3f(0, -90, 0));
 
         envElements[6] = GEInstance->createScenaryElement("environment_elements/armario", "environment_elements/armario");
-        envElements[6]->setPosition(dwe::vec3f(-430, 0, 530));
+        envElements[6]->setPosition(dwe::vec3f(-430, 0, 530));*/
 
         ////////// HACIENDO PRUEBAS CON OTRO TIPO DE BALAS
         //SHOTGUN BULLETS

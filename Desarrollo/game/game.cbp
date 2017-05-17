@@ -169,6 +169,8 @@
 		<Unit filename="src/classes/MagnetKey.h" />
 		<Unit filename="src/classes/Medkit.cpp" />
 		<Unit filename="src/classes/Medkit.h" />
+		<Unit filename="src/classes/Message.cpp" />
+		<Unit filename="src/classes/Message.h" />
 		<Unit filename="src/classes/Player.cpp" />
 		<Unit filename="src/classes/Player.h" />
 		<Unit filename="src/classes/PlayerMate.cpp" />
