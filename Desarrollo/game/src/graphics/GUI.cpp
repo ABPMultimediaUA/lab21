@@ -157,9 +157,6 @@ void dwe::HudBox::setComponents(std::string str, sf::Sprite *s, sf::Texture *t, 
 
 dwe::WeaponBox::WeaponBox( float x, float y)
 {
-    int   width   = GEInstance->get_screenWidth();
-    int   height  = GEInstance->get_screenHeight();
-
     t = 4;
 
     /**** Caja base ****/

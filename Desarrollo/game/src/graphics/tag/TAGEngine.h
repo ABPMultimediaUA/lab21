@@ -177,7 +177,7 @@ namespace tag
             void nodeLookAtTarget(GraphicNode* node, const vec3f position, const vec3f target);
 
             // TODO nodeLookAtScreenCoords
-            void nodeLookAtScreenCoords(GraphicNode* node, const vec3f position, const vec3f screenCoords);
+            float angleToScreenCoords(const vec3f position, const vec3f screenCoords);
 
             /// \brief Borra un nodo, y sus nodos padres transformacion.
             /// \details Busca todos los padres que sean transformación, hasta llegar a uno que
@@ -233,6 +233,8 @@ namespace tag
             /// \brief Obtiene la endiad del deep nodo padre del nodo pasado, lanzando excepciones si el árbol está mal
             /// formado o lo que devuelve no es una entidad de transformación
             ETransform* getTransformNode(GraphicNode* node, ENodeTransformOrder deep);
+
+            void calculateShadows();
     };
 }
 

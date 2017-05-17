@@ -72,6 +72,7 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
 
     // Habilita el z_buffer
     glEnable(GL_DEPTH_TEST);
+    //glEnable(GL_TEXTURE_2D);
 
     // Inicialización de GLEW
     if(glewInit() != GLEW_OK)
@@ -124,6 +125,8 @@ void tag::TAGEngine::draw()
 
     if (!m_rootNode.isEmptyNode())
     {
+        calculateShadows();
+
         glUseProgram(m_shaderProgram->ReturnProgramID());
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -149,6 +152,12 @@ void tag::TAGEngine::draw()
 
         glUseProgram(0);
     }
+}
+
+/////////////////////
+void tag::TAGEngine::calculateShadows()
+{
+
 }
 
 /////////////////////
@@ -488,12 +497,32 @@ void tag::TAGEngine::nodeLookAtTarget(GraphicNode* node, const vec3f position, c
 }
 
 /////////////////////
-void tag::TAGEngine::nodeLookAtScreenCoords(GraphicNode* node, const vec3f position, const vec3f screenCoords)
+float tag::TAGEngine::angleToScreenCoords(const vec3f position, const vec3f screenCoords)
 {
-    calculateViewMatrix();
+    //GLfloat zz;
+/*    calculateViewMatrix();
     glm::vec4 viewport = glm::vec4(0.0f, 0.0f, 1024.0f, 768.0f);
-    glm::vec3 unCoords = glm::unProject(glm::vec3(screenCoords.x, screenCoords.y, screenCoords.z), Entity::viewMatrix, Entity::projectionMatrix, viewport);
+    glm::vec3 unCoords = glm::unProject(glm::vec3(screenCoords.x, 1024.0f-screenCoords.y-1, 0.1), Entity::viewMatrix, Entity::projectionMatrix, viewport);
+    //unCoords.z -= 99.929;
+    //std::cout << "cursorX: " << screenCoords.x << "   cursorY: " << screenCoords.y << "   x: " << unCoords.x << "   z: " << unCoords.y;
+    std::cout << "x:" << unCoords.x << " y:" << unCoords.y << " z:" << unCoords.z;
 
+    float x = unCoords.x-position.x;
+    float z = unCoords.z-position.z;
+
+    std::cout << "   position.x: " << position.x << "   position.z:" <<position.z;
+
+
+    float modulo = sqrt(pow(x,2) + pow(z,2));
+    float normX = x/modulo;
+    float angulo = acos(normX) * (180/M_PI);
+
+
+
+    std::cout << "     angulo: " << angulo << "\n";
+
+
+    return angulo;*/
 }
 
 /////////////////////

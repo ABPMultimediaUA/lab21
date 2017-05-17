@@ -6,10 +6,6 @@
 #include <document.h> //ES UN .H de rapidJSON
 using namespace rapidjson;
 
-#include <iostream>
-
-using namespace std;
-
 LoadMap::LoadMap()
 {
 
@@ -55,6 +51,8 @@ void LoadMap::Init(){
 
     numWalls = 0;
     numFloors = 0;
+
+    Scene* s = Scene::Instance();
 
     const char* json; //Aqui va a ir todo el archivo
     std::string allText = "";
@@ -134,7 +132,6 @@ void LoadMap::Init(){
                 std::string id = e["element-id"].GetString();
                 int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = (-1)* e["position"]["z"].GetDouble();
                 if(id=="Bullets"){
-                    Scene* s = Scene::Instance();
                     s->createAmmoGun(tx, ty, tz);
                     ++contAmmoIn;
                 }
@@ -156,10 +153,10 @@ void LoadMap::Init(){
                     entities[contDoorIn]=GEInstance->createDoor(face, true, tx, ty, tz);
                     ++contDoorIn;
                 }else if(id=="DoorRotate"){ // Puerta giratoria
-                    /*entitiesDoorRotate[contDoorRotate]=GEInstance->createDoorRotate(face, true, tx, ty, tz);
-                    ++contDoorRotate;*/
+                    entitiesDoorRotate[contDoorRotate]=GEInstance->createDoorRotate(face, true, tx, ty, tz);
+                    ++contDoorRotate;/*/
                     entities[contDoorIn]=GEInstance->createDoor(face, true, tx, ty, tz);
-                    ++contDoorIn;
+                    ++contDoorIn;*/
                 }
             }
 
@@ -180,22 +177,22 @@ void LoadMap::Init(){
         sector[0]=entities[4];
         generator[1]->setSector(sector, 1);
         sector = new Entity*[2];((Door*)entities[4])->setInactive();
+        ((Door*)entities[32])->setInactive();
         ((Door*)entities[33])->setInactive();
-        ((Door*)entities[34])->setInactive();
-        sector[0]=entities[33]; //32
-        sector[1]=entities[34]; //33
+        sector[0]=entities[32]; //32
+        sector[1]=entities[33]; //33
         generator[2]->setSector(sector, 2);
 
         // ENVIRONMENT ELEMENTS
-        /*envElements[0] = GEInstance->createScenaryElement("environment_elements/cama", "environment_elements/cama");
+        envElements[0] = GEInstance->createScenaryElement("environment_elements/cama", "environment_elements/cama");
         envElements[0]->setPosition(dwe::vec3f(50, 0, 100));
         envElements[1] = GEInstance->createScenaryElement("environment_elements/especimen", "environment_elements/especimen");
         envElements[1]->setPosition(dwe::vec3f(345, 0, -445));
         envElements[1]->setRotation(dwe::vec3f(0, -30, 0));
         envElements[2] = GEInstance->createScenaryElement("environment_elements/especimen", "environment_elements/especimen");
         envElements[2]->setPosition(dwe::vec3f(345, 0, -365));
-        envElements[2]->setRotation(dwe::vec3f(0, -45, 0));*/
-        /*envElements[3] = GEInstance->createScenaryElement("environment_elements/camilla", "environment_elements/camilla");
+        envElements[2]->setRotation(dwe::vec3f(0, -45, 0));
+        envElements[3] = GEInstance->createScenaryElement("environment_elements/camilla", "environment_elements/camilla");
         envElements[3]->setPosition(dwe::vec3f(50, 0, 200));
         envElements[4] = GEInstance->createScenaryElement("environment_elements/camadormir", "environment_elements/camadormir");
         envElements[4]->setPosition(dwe::vec3f(745, 0, 835));
@@ -205,20 +202,12 @@ void LoadMap::Init(){
         //envElements[5]->setRotation(dwe::vec3f(0, -90, 0));
 
         envElements[6] = GEInstance->createScenaryElement("environment_elements/armario", "environment_elements/armario");
-        envElements[6]->setPosition(dwe::vec3f(50, 0, 300));*/
+        envElements[6]->setPosition(dwe::vec3f(50, 0, 300));
 
 
-        ////////// HACIENDO PRUEBAS CON OTRO TIPO DE BALAS
-        //SHOTGUN BULLETS
-        for(int i=0; i<1; i++){
-            Scene* s = Scene::Instance();
-            s->createCShotgun(0, 10, -20*i);
-        }
-        //RIFLE BULLETS
-        for(int i=0; i<1; i++){
-            Scene* s = Scene::Instance();
-            s->createCRifle(20, 10, -20*i);
-        }
+        // Armas
+        s->createCShotgun(0, 10, -20);
+        s->createCRifle(20, 10, -20);
 
     }
     GEInstance->push();
@@ -233,9 +222,9 @@ void LoadMap::Update(){
         cheats=true;
     }
 
-    /*for(uint8_t i=0; i < NUM_MAP_DOORROTATE; i++)
+    for(uint8_t i=0; i < NUM_MAP_DOORROTATE; i++)
         entitiesDoorRotate[i]->update();  // TODOjoint
-    //Scene::updateConsumables(mainPlayer);*/
+    //Scene::updateConsumables(mainPlayer);
 }
 
 void LoadMap::Destroy(){

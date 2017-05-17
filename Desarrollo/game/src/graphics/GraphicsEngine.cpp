@@ -659,3 +659,9 @@ dwe::vec3f dwe::GraphicsEngine::getCameraPosition()
 {
     return m_cameraPosition;
 }
+
+//////////////////////////
+float dwe::GraphicsEngine::angleToScreenCoords(Drawable *object)
+{
+    return m_tagEngine.angleToScreenCoords(object->getPosition(), vec3f(receiver.getCursorX(), receiver.getCursorY(), 0));
+}

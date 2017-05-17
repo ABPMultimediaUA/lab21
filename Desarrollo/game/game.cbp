@@ -133,6 +133,8 @@
 		<Unit filename="include/rapidjson/writer.h" />
 		<Unit filename="shaders/FragmentShader.glsl" />
 		<Unit filename="shaders/VertexShader.glsl" />
+		<Unit filename="shaders/shadowFragmentShader.glsl" />
+		<Unit filename="shaders/shadowVertexShader.glsl" />
 		<Unit filename="src/audio/AudioEngine.cpp" />
 		<Unit filename="src/audio/AudioEngine.h" />
 		<Unit filename="src/classes/CharacterController.cpp" />

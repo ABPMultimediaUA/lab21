@@ -24,15 +24,18 @@ tag::EMesh::~EMesh()
 /////////////////
 void tag::EMesh::beginDraw()
 {
-    if (m_mesh!=0)
+    if (m_mesh)
     {
         if (m_texture)
+        {
             m_texture->activateTexture();
-
-        m_mesh->draw();
-
-        if (m_texture)
+            m_mesh->draw();
             m_texture->deactivateTexture();
+        }
+        else
+        {
+            m_mesh->draw();
+        }
     }
 }
 

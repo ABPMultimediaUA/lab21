@@ -157,7 +157,7 @@ void GSMainMenu::HandleEvents(){
                     Game::getInstance()->setRunning(false);
                 }
                 break;
-        case 1: for(int i=0; i<serversButtons->size(); i++)
+        case 1: for(size_t i=0; i<serversButtons->size(); i++)
                 {
                     if(!serverSelection && serversButtons->at(i).buttonCheck(mousePosX, mousePosY))
                     {
@@ -180,7 +180,7 @@ void GSMainMenu::HandleEvents(){
                     m_clickPermission=false;
                 }
                 break;
-        case 4: for(int i=0; i<lobbysButtons->size(); i++)
+        case 4: for(size_t i=0; i<lobbysButtons->size(); i++)
                 {
                     if(!lobbySelection && lobbysButtons->at(i).buttonCheck(mousePosX, mousePosY))
                     {
@@ -304,7 +304,7 @@ void GSMainMenu::Update(){
 
 void GSMainMenu::UpdateLobbys()
 {
-    for(int i=0; i<gamesIP->size(); i++)
+    for(size_t i=0; i<gamesIP->size(); i++)
     {
         std::stringstream ss;
         std::string s;
