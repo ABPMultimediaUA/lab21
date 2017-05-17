@@ -6,6 +6,10 @@
 #include <document.h> //ES UN .H de rapidJSON
 using namespace rapidjson;
 
+#include <iostream>
+
+using namespace std;
+
 LoadMap::LoadMap()
 {
 
@@ -183,14 +187,14 @@ void LoadMap::Init(){
         generator[2]->setSector(sector, 2);
 
         // ENVIRONMENT ELEMENTS
-        envElements[0] = GEInstance->createScenaryElement("environment_elements/cama", "environment_elements/cama");
+        /*envElements[0] = GEInstance->createScenaryElement("environment_elements/cama", "environment_elements/cama");
         envElements[0]->setPosition(dwe::vec3f(50, 0, 100));
         envElements[1] = GEInstance->createScenaryElement("environment_elements/especimen", "environment_elements/especimen");
         envElements[1]->setPosition(dwe::vec3f(345, 0, -445));
         envElements[1]->setRotation(dwe::vec3f(0, -30, 0));
         envElements[2] = GEInstance->createScenaryElement("environment_elements/especimen", "environment_elements/especimen");
         envElements[2]->setPosition(dwe::vec3f(345, 0, -365));
-        envElements[2]->setRotation(dwe::vec3f(0, -45, 0));
+        envElements[2]->setRotation(dwe::vec3f(0, -45, 0));*/
         /*envElements[3] = GEInstance->createScenaryElement("environment_elements/camilla", "environment_elements/camilla");
         envElements[3]->setPosition(dwe::vec3f(50, 0, 200));
         envElements[4] = GEInstance->createScenaryElement("environment_elements/camadormir", "environment_elements/camadormir");
