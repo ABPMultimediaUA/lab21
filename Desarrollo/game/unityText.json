@@ -742,7 +742,7 @@
 				"position": { "x":500, "y":0, "z":140 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_50m",
-				"position": { "x":610.0001, "y":-1, "z":150 },
+				"position": { "x":611.0001, "y":-1, "z":150 },
 				"rotation": { "x":0, "y":90, "z":0 }}
 		],
 		"initial-enemies": [
