@@ -3,6 +3,7 @@
 Mother::Mother()
 {
 
+    m_health = 200;
     TimeBetweenCreations = 0;
     //set up state machine
     m_pStateMachine = new StateMachine<Mother>(this);
@@ -19,8 +20,8 @@ Mother::~Mother()
 
 void Mother::update()
 {
-    TimeBetweenCreations ++;
-    m_pStateMachine->Update();
+    //TimeBetweenCreations ++;
+    //m_pStateMachine->Update();
 }
 
 StateMachine<Mother>* Mother::GetFSM()const

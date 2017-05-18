@@ -58,6 +58,7 @@ dwe::GraphicsEngine* dwe::GraphicsEngine::Instance()
 //////////////////////////
 void dwe::GraphicsEngine::init()
 {
+    std::cout << "He llamado init\n";
     // Importante para que muestre bien el cubo y no haga un mal culling
     sf::ContextSettings contextSettings;
     contextSettings.depthBits = 24;
@@ -237,10 +238,10 @@ Player* dwe::GraphicsEngine::createMainPlayer()
     m_tagEngine.createAnimation(anim, "media/player/playerStand/playerStand",  eAnimPlayerStand,   1);
     m_tagEngine.createAnimation(anim, "media/player/playerRun/playerRun",      eAnimPlayerRun,     20);
     m_tagEngine.createAnimation(anim, "media/player/playerWalk/playerWalk",      eAnimPlayerStealth,     10);
-    m_tagEngine.createAnimation(anim, "media/player/playerGrenade/playerGrenade",      eAnimPlayerGrenade,     19);
-    m_tagEngine.createAnimation(anim, "media/player/playerAttack/playerAttack",      eAnimPlayerAttack,     14);
-    m_tagEngine.createAnimation(anim, "media/player/playerDash/playerDash",      eAnimPlayerDash,     19);
-    m_tagEngine.createAnimation(anim, "media/player/playerDeath/playerDeath",      eAnimPlayerDeath,     14);
+    m_tagEngine.createAnimation(anim, "media/player/playerGrenade/playerGrenade",      eAnimPlayerGrenade,     19, false);
+    m_tagEngine.createAnimation(anim, "media/player/playerAttack/playerAttack",      eAnimPlayerAttack,     14, false);
+    m_tagEngine.createAnimation(anim, "media/player/playerDash/playerDash",      eAnimPlayerDash,     19, false);
+    m_tagEngine.createAnimation(anim, "media/player/playerDeath/playerDeath",      eAnimPlayerDeath,     14, false);
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
@@ -305,7 +306,7 @@ Mother* dwe::GraphicsEngine::createEnemyMother(int px, int py, int pz)
 	p->setPosition(dwe::vec3f(px, py, pz));
 
 	return p;*/
-	tag::EAnimation* anim = m_tagEngine.createNumAnimations(1);
+	tag::EAnimation* anim = m_tagEngine.createNumAnimations(1, "media/Mother/madre.bmp");
     m_tagEngine.createAnimation(anim, "media/Mother/Stand/motherStand", eAnimEnemyStand,   8);
 
     anim->setActiveAnimation(0);
@@ -420,10 +421,10 @@ DoorRotate* dwe::GraphicsEngine::createDoorRotate(int f, bool a, float px, float
 	return d;
 }
 
-Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle, std::string weapon)
+Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle, std::string weapon, int damage)
 {
 	tag::GraphicNode* node = m_tagEngine.createMesh("media/" + weapon + ".obj", vec3f(0,0,0), vec3f(0,0,0));
-    Projectile* p = new Projectile(origin, angle);
+    Projectile* p = new Projectile(origin, angle, damage);
 	p->setNode(new Node(node));
 	p->setPosition(origin);
 	return p;

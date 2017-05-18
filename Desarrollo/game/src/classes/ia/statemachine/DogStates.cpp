@@ -24,8 +24,7 @@ void DPatrolState::Execute(Dog* pDog)
 
    // cout << "\n" << "Dog" << ": " << "Walking";
 
-    if(pDog->getSteps() == 1300)
-        pDog->GetFSM()->ChangeState(DLookingForPlayerState::Instance());
+    pDog->GetFSM()->ChangeState(DLookingForPlayerState::Instance());
 }
 
 
@@ -53,8 +52,7 @@ void DLookingForPlayerState::Execute(Dog* pDog)
 {
  //   cout << "\n" << "Dog" << ": " << "Trying to locate something strange";
 
-    if(pDog->getSteps() == 1000)
-        pDog->GetFSM()->ChangeState(DKnockDownState::Instance());
+    pDog->GetFSM()->ChangeState(DKnockDownState::Instance());
 }
 
 void DLookingForPlayerState::Exit(Dog* pDog)
@@ -81,14 +79,7 @@ void DAsleepState::Execute(Dog* pDog)
 {
 //    cout << "\n" << "Dog" << ": " << "Dreaming with food";
 
-    if(pDog->getSteps() == 1600)
-        pDog->GetFSM()->ChangeState(DPatrolState::Instance());
-
-    if (pDog->getSteps() == 0)
-    {
-        pDog->setSteps(2000);
-        pDog->GetFSM()->ChangeState(DPatrolState::Instance());
-    }
+    pDog->GetFSM()->ChangeState(DPatrolState::Instance());
 }
 
 void DAsleepState::Exit(Dog* pDog)
@@ -115,7 +106,6 @@ void DKnockDownState::Execute(Dog* pDog)
 {
 //    cout << "\n" << "Dog" << ": " << "Knocked down!";
 
-    if(pDog->getSteps() == 700)
         pDog->GetFSM()->ChangeState(DAttackState::Instance());
 }
 
@@ -143,7 +133,6 @@ void DAttackState::Execute(Dog* pDog)
 {
   //  cout << "\n" << "Dog" << ": " << "Biting";
 
-    if(pDog->getSteps() == 400)
         pDog->GetFSM()->ChangeState(DRunAwayState::Instance());
 }
 
@@ -171,7 +160,6 @@ void DRunAwayState::Execute(Dog* pDog)
 {
   //  cout << "\n" << "Dog" << ": " << "Running away";
 
-    if(pDog->getSteps() == 200)
         pDog->GetFSM()->ChangeState(DAsleepState::Instance());
 }
 

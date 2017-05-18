@@ -6,9 +6,10 @@
 Shotgun::Shotgun()
 {
     id=eShotgun;
-    this->Weapon::setAmmo(7);
-    this->Weapon::setAmmoClip(7);
-    this->Weapon::setAmmoBag(32);
+    m_damage = 5;
+    m_ammo = 7;
+    m_ammoClip = 7;
+    m_bagAmmo = 32;
     m_cadence = 1.0;
 }
 
@@ -20,7 +21,7 @@ Shotgun::~Shotgun()
 //////////////
 void Shotgun::shoot()
 {
-    Scene::Instance()->createProjectile(World->getMainPlayer()->getPosition(), World->getMainPlayer()->getRotation().y, "shotgunBullet");
+    Scene::Instance()->createProjectile(World->getMainPlayer()->getPosition(), World->getMainPlayer()->getRotation().y, "shotgunBullet", m_damage);
     NetInstance->sendBroadcast(ID_PROJECTILE_CREATE,World->getMainPlayer()->getPosition(), World->getMainPlayer()->getRotation().y, "shotgunBullet"); // Enviamos mensaje para crear projectil
 }
 

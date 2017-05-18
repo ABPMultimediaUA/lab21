@@ -4,6 +4,7 @@
 #include "Perception.h"
 #include "dwVectors.h"
 #include "NetGame.h"
+#include "Projectile.h"
 
 #include <limits>
 
@@ -78,7 +79,8 @@ bool Enemy::IsInAttackRange()
 
 bool Enemy::Attack()
 {
-    Drawable::setPosition(EntityPhysics::getPosEntity());
+    dwe::vec3f pos(EntityPhysics::getPosEntity());
+    Drawable::setPosition(dwe::vec3f(pos.x, 24, pos.z));
     if(!attacking){
         attackTime = World->getTimeElapsed();
         setAnimation(dwe::eAnimEnemyStand);
@@ -151,7 +153,10 @@ void Enemy::onBeginContact(EntityPhysics* otherObject)
         switch (clase)
         {
         case EntityPhysics::projectile_id:
-            m_health-=5;
+            {
+            Projectile* p = static_cast<Projectile*>(otherObject);
+            m_health -= p->getDamage();
+            }
             break;
         case EntityPhysics::grenadeExplosion_id:
             m_health-=10;

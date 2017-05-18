@@ -2,33 +2,26 @@
 #define BAT_H
 
 #include <Enemy.h>
-#include <StateMachine.h>
 #include <BatStates.h>
-#include <iostream>
-
+#include "StateMachine.h"
 
 class Bat : public Enemy
 {
     public:
+
         Bat();
 
         ~Bat();
 
         StateMachine<Bat>* GetFSM()const;
 
-        int getSteps();
-
-        void setSteps(int s);
-
         virtual void update();
 
-        virtual void render();
+        virtual void render(){};
 
     protected:
 
     private:
-
-        int steps;
 
         StateMachine<Bat>*  b_pStateMachine;
 };

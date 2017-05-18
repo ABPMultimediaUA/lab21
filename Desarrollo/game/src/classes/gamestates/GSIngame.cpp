@@ -53,10 +53,6 @@ void GSIngame::Update(){
     NetInstance->update();
 
     //Fin del juego
-    if(Scene::Instance()->getNumberEnemies()==0){
-        Game::getInstance()->ChangeState(GSEnd::getInstance());
-        GSEnd::getInstance()->Init();
-    }
     AEInstance->UpdateListenerPosition(World->getMainPlayer()->getPosition());
 }
 
@@ -108,7 +104,7 @@ void GSIngame::Render(){
         GEInstance->draw();
 
 #ifdef LAB21_DEBUG
-        //World->drawDebugPhysics(GEInstance->getCameraPosition());
+        World->drawDebugPhysics(GEInstance->getCameraPosition());
 #endif // LAB21_DEBUG
 
         hud->draw();

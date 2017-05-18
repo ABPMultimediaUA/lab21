@@ -12,7 +12,7 @@ class Projectile: public Entity
 {
     public:
         Projectile();
-        Projectile(dwe::vec3f origin, float angle); // Proyectil creado por player
+        Projectile(dwe::vec3f origin, float angle, int damage); // Proyectil creado por player
         //Projectile(int *origin, int *destiny); // Proyectil creado por enemigos
         virtual ~Projectile();
         bool getCollides();
@@ -25,6 +25,8 @@ class Projectile: public Entity
 
         virtual void setPosition(dwe::vec3f p);
 
+        int getDamage();
+
     protected:
 
     private:
@@ -34,6 +36,7 @@ class Projectile: public Entity
         int speed;
         float angle;
         bool collides;
+        int m_damage;
 
 };
 

@@ -27,6 +27,21 @@ class ContactListener : public b2ContactListener
 };
 
 
+//Raycast
+class RayCastCallback : public b2RayCastCallback
+{
+    public:
+
+        RayCastCallback();
+
+        float ReportFixture(b2Fixture* fixture, const b2Vec2& point,
+                              const b2Vec2& normal, float32 fraction);
+
+        bool m_hit;
+        b2Vec2 m_point;
+        b2Vec2 m_normal;
+};
+
 
 ////////////////////////////////////////////////////////
 // El mundo
@@ -62,6 +77,7 @@ class WorldInstance
         Player* getMainPlayer();
         void setMainPlayer(Player* p);
 
+        bool CheckWallsRayCast(dwe::vec2f point1, dwe::vec2f point2);
 
         dwe::vec3f from2Dto3D(int x2d, int y2d, dwe::vec3f rotation);
 

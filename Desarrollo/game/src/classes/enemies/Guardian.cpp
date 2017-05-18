@@ -4,7 +4,6 @@
 
 Guardian::Guardian()
 {
-    steps = 2000;
     //set up state machine
     g_pStateMachine = new StateMachine<Guardian>(this);
 
@@ -15,19 +14,8 @@ Guardian::Guardian()
 
 }
 
-int Guardian::getSteps ()
-{
-    return steps;
-}
-
-void Guardian::setSteps (int s)
-{
-    steps = s;
-}
-
 void Guardian::update()
 {
-    steps--;
     //g_pStateMachine->Update();
 }
 

@@ -30,7 +30,7 @@ void Weapon::setAmmoBag(int ammo) { m_bagAmmo = ammo; }
 void Weapon::addAmmoBag(int ammo) { m_bagAmmo += ammo; }
 
 ////////////
-void Weapon::reload()
+bool Weapon::reload()
 {
     if (m_ammo < m_ammoClip && m_bagAmmo > 0)
     {
@@ -46,7 +46,9 @@ void Weapon::reload()
             m_ammo += m_bagAmmo;
             m_bagAmmo = 0;
         }
+        return true;
     }
+    return false;
 }
 ////////////
 int Weapon::getDamage() { return m_damage; }

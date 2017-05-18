@@ -2,7 +2,7 @@
 
 ScenaryElement::ScenaryElement()
 {
-    // Parámetros de físicas por defecto
+    setClassID(EntityPhysics::wall_id);
 }
 
 ScenaryElement::~ScenaryElement()
