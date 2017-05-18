@@ -2,6 +2,8 @@ varying vec3 v_Position;            // in: vertices en coordenadas de vista
 varying vec3 v_Normal;              // in: normales en "
 varying vec2 v_TextureCoords;       // in: coordenadas de textura
 
+varying vec4 v_PositionLightSpace;
+
 struct TLight {
     vec4 position;
     vec3 ambient;   // Intensidad
@@ -24,8 +26,22 @@ uniform sampler2D   u_MaterialSpecular;
 uniform float       u_MaterialShininess;
 uniform bool        u_hasNormalTexture;
 uniform sampler2D   u_normalTexture;
+uniform sampler2D   u_shadowTexture;
 
-vec3 phong()
+
+float calculateShadow(vec4 positionLightSpace)
+{
+    vec3 projCoords = positionLightSpace.xyz / positionLightSpace.w;
+    projCoords = projCoords * 0.5 + 0.5;
+    float closestDepth = texture(u_shadowTexture, projCoords.xy).r;
+    float currentDepth = projCoords.z;
+
+    float shadow = currentDepth > closestDepth  ? 1.0 : 0.0;
+
+    return shadow;
+}
+
+vec3 phong(float shadow)
 {
     vec3 normal;
     if (u_hasNormalTexture)
@@ -67,10 +83,12 @@ vec3 phong()
         * texSpec;
 
 
-    return ambient + diffuse + specular;
+    return (ambient + (1.0 - shadow) * (diffuse + specular));
+    //return ambient + diffuse + specular;
 }
 
 void main()
 {
-    gl_FragColor = vec4(phong(), 1.0);
+    float shadow = calculateShadow(v_PositionLightSpace);
+    gl_FragColor = vec4(phong(shadow), 1.0);
 }

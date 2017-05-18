@@ -154,29 +154,43 @@ void tag::ResourceMesh::draw()
     glm::mat4 mvpMatrix;
     glm::mat3 normalMatrix;
 
-    normalMatrix = glm::mat3(glm::transpose(glm::inverse(Entity::modelMatrix)));
+    if (Entity::isPreDraw)
+    {
+        mvpMatrix = Entity::lightSpaceMatrix * Entity::modelMatrix;
+        // Envía matriz MVP al Vertex Shader
+        glUniformMatrix4fv(TAGEngine::_uShadowMVPLocation, 1, GL_FALSE, &mvpMatrix[0][0]);
 
-    modelViewMatrix = Entity::viewMatrix * Entity::modelMatrix;
-    mvpMatrix = Entity::projectionMatrix * modelViewMatrix;
+        // Asociamos los vértices y sus normales
+        glBindBuffer(GL_ARRAY_BUFFER, m_vbVertices);
+        glVertexAttribPointer(TAGEngine::_aShadowVertexPositionLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*3, 0);
+    }
+    else
+    {
+        normalMatrix = glm::mat3(glm::transpose(glm::inverse(Entity::modelMatrix)));
 
-    // Envía nuestra ModelView al Vertex Shader
-    glUniformMatrix4fv(TAGEngine::_uMVMatrixLocation, 1, GL_FALSE, &modelViewMatrix[0][0]);
+        modelViewMatrix = Entity::viewMatrix * Entity::modelMatrix;
+        mvpMatrix = Entity::projectionMatrix * modelViewMatrix;
+//mvpMatrix = Entity::lightSpaceMatrix * Entity::modelMatrix;
 
-    // Envía matriz MVP al Vertex Shader
-    glUniformMatrix4fv(TAGEngine::_uMVPLocation, 1, GL_FALSE, &mvpMatrix[0][0]);
+        // Envía nuestra ModelView al Vertex Shader
+        glUniformMatrix4fv(TAGEngine::_uMVMatrixLocation, 1, GL_FALSE, &modelViewMatrix[0][0]);
 
-    // Envía NormalMatrix Vertex Shader
-    glUniformMatrix3fv(TAGEngine::_uNormalMatrixLocation, 1, GL_FALSE, &normalMatrix[0][0]);
+        // Envía matriz MVP al Vertex Shader
+        glUniformMatrix4fv(TAGEngine::_uMVPLocation, 1, GL_FALSE, &mvpMatrix[0][0]);
 
-    // Asociamos los vértices y sus normales
-    glBindBuffer(GL_ARRAY_BUFFER, m_vbVertices);
-    glVertexAttribPointer(TAGEngine::_aVertexPositionLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*3, 0);
+        // Envía NormalMatrix Vertex Shader
+        glUniformMatrix3fv(TAGEngine::_uNormalMatrixLocation, 1, GL_FALSE, &normalMatrix[0][0]);
 
-    glBindBuffer(GL_ARRAY_BUFFER, m_vbNormals);
-    glVertexAttribPointer(TAGEngine::_aVertexNormalLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*3, 0);
+        // Asociamos los vértices y sus normales
+        glBindBuffer(GL_ARRAY_BUFFER, m_vbVertices);
+        glVertexAttribPointer(TAGEngine::_aVertexPositionLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*3, 0);
 
-    glBindBuffer(GL_ARRAY_BUFFER, m_vbTextUV);
-    glVertexAttribPointer(TAGEngine::_aTextureCoordsLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*3, 0);
+        glBindBuffer(GL_ARRAY_BUFFER, m_vbNormals);
+        glVertexAttribPointer(TAGEngine::_aVertexNormalLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*3, 0);
+
+        glBindBuffer(GL_ARRAY_BUFFER, m_vbTextUV);
+        glVertexAttribPointer(TAGEngine::_aTextureCoordsLocation, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*3, 0);
+    }
 
     // Dibjuamos elementos
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibVertices);

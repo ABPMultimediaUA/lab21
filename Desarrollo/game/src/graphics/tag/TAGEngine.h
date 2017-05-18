@@ -24,6 +24,9 @@
 #define U_HASNORMALTEXTURE      "u_hasNormalTexture"
 #define U_NORMALTEXTURE         "u_normalTexture"
 
+#define U_SHADOWTEXTURE         "u_shadowTexture"
+#define U_LIGHT_SPACE_MATRIX    "u_lightSpaceMatrix"
+
 
 #define GLEW_STATIC
 #include<GL/glew.h>
@@ -137,6 +140,12 @@ namespace tag
             /// \param[in] parent Nodo padre. Si es 0 se le asignará el root.
             GraphicNode* createLight(const vec3f position, const vec3f rotation, const vec3f ambient, const vec3f diffuse, const vec3f specular, GraphicNode* parent=0);
 
+            /// \brief Cambia las intensidades de una luz.
+            /// \param[in] ambient  Intensidad que se asigna en los canales RGB de luz ambiente
+            /// \param[in] diffuse  Intensidad que se asigna en los canales RGB de luz difusa
+            /// \param[in] specular Intensidad que se asigna en los canales RGB de luz especular
+            void changeLightIntensity(uint8_t lightIndex, const vec3f ambient, const vec3f diffuse, const vec3f specular);
+
             /// \brief Activa o desactiva una luz.
             /// \param[in] Posición en el array de luces de la luz a activar o desactivar.
             void setLightOn(const unsigned int light);
@@ -205,18 +214,34 @@ namespace tag
             static int _uHasNormalTextureLocation;
             static int _uNormalTextureLocation;
 
+            static int _uLightSpaceMatrixLocation;
+            static int _uShadowTextureLocation;
+
+            static int _aShadowVertexPositionLocation;
+            static int _uShadowMVPLocation;
+
             static float _screenHeight;
             static float _screenWidth;
+
+            static GLuint _shadowHeight;
+            static GLuint _shadowWidth;
+
+            void prepareShadowView(); //TODOluz quitar de public
 
         private:
             enum ENodeTransformOrder { eNodeRotation=2, eNodeTranslation=1 };
 
             Program*                    m_shaderProgram;
+            Program*                    m_shadowProgram;
 
             GraphicNode                 m_rootNode;
             std::vector<GraphicNode*>   m_lights;
             std::vector<GraphicNode*>   m_cameras;
             unsigned int                m_numActiveCamera;
+
+            GLuint                      m_depthMapFBO;
+            GLuint                      m_depthMap;
+
 
             glm::mat4 m_projectionMatrix; // Almacena la matriz de proyección
 
@@ -234,6 +259,7 @@ namespace tag
             /// formado o lo que devuelve no es una entidad de transformación
             ETransform* getTransformNode(GraphicNode* node, ENodeTransformOrder deep);
 
+            void prepareShadows();
             void calculateShadows();
     };
 }

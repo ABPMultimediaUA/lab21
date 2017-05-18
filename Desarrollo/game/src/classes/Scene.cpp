@@ -256,6 +256,11 @@ void Scene::updateEnemies()
 
 void Scene::Update()
 {
+    if (GEInstance->receiver.isKeyDown(KEY_KEY_4))
+    {
+        GEInstance->getTagEngine()->prepareShadowView();
+    }
+
     if(mainPlayer->getHealth()<=0){
         Game::getInstance()->ChangeState(GSDead::getInstance());
     }

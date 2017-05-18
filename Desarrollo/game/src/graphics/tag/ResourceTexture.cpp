@@ -106,7 +106,7 @@ void tag::ResourceTexture::load(std::string fileName)
 void tag::ResourceTexture::activateTexture() const
 {
     glUniform1i(TAGEngine::_uMaterialHasTextureLocation, true);
-    glUniform1f(TAGEngine::_uMaterialShininessLocation, 32.0);
+    glUniform1f(TAGEngine::_uMaterialShininessLocation, 64.0);
 
     glActiveTexture(GL_TEXTURE0+Entity::_diffuseTextureIndex);
     glBindTexture(GL_TEXTURE_2D, m_diffuseTextureID);
@@ -146,4 +146,5 @@ void tag::ResourceTexture::deactivateTexture() const
     }
 
     glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, 0);
 }
