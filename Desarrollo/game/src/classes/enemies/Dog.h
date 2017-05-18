@@ -16,10 +16,6 @@ class Dog : public Enemy
 
         StateMachine<Dog>* GetFSM()const;
 
-        int getSteps();
-
-        void setSteps(int s);
-
         virtual void update();
 
         virtual void render();
@@ -27,8 +23,6 @@ class Dog : public Enemy
     protected:
 
     private:
-
-        int steps;
 
         StateMachine<Dog>*  d_pStateMachine;
 };

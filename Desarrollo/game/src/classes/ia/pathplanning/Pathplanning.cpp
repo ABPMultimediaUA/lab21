@@ -6,6 +6,8 @@
 
 #include "Scene.h"
 
+#include "WorldInstance.h"
+
 #include "dwVectors.h"
 
 #include <limits>
@@ -44,24 +46,63 @@ int Pathplanning::GetClosestNodeToPosition(dwe::vec2f targetPos)
 
 void Pathplanning::CreatePathToPosition(dwe::vec2f TargetPos)
 {
-    int target(GetClosestNodeToPosition(TargetPos));
-    int source(GetClosestNodeToPosition(dwe::vec2f(m_owner->getPosition().x, m_owner->getPosition().z)));
-
-    if(target < 0 || source < 0)
-        return;
-
-    nextPosition = TargetPos;
-
-    Graph_SearchAStar a(m_NavGraph, source, target);
-    route = a.GetPathToTarget();
-
-    if(route.size()>0){
-        nextPosition = route.front();
-        route.pop_front();
-        route.push_back(TargetPos);
+    dwe::vec2f position((m_owner->getPosEntity().x + 1)*0.035, (m_owner->getPosition().z + 1)*0.035);
+    if(!World->CheckWallsRayCast(position, dwe::vec2f(TargetPos.x*0.035, TargetPos.y*0.035))) //Si puede ir directo no calcula el camino
+    {
+        route.clear();
+        nextPosition = TargetPos;
         finalPosition = TargetPos;
+
     }
+    else    //Si hay obstaculos en medio calcula el camino
+    {
+        int target(GetClosestNodeToPosition(TargetPos));
+        int source(GetClosestNodeToPosition(position));
+
+        if(target < 0 || source < 0)
+            return;
+
+        nextPosition = TargetPos;
+
+        Graph_SearchAStar a(m_NavGraph, source, target);
+        route = a.GetPathToTarget();
+
+        if(route.size()>0){
+            nextPosition = route.front();
+            route.pop_front();
+            route.push_back(TargetPos);
+            finalPosition = TargetPos;
+        }
+    }
+    PathSmooth();
     CalculateDirection();
+}
+
+void Pathplanning::PathSmooth()
+{
+    dwe::vec2f route2[route.size()];
+    int pos = 0;
+    std::list<dwe::vec2f>::const_iterator iterator;
+    for(iterator = route.begin(); iterator != route.end(); ++iterator)
+    {
+        std::cout<<"ITERATOR X "<<(*iterator).x << " ITERATOR Y " << (*iterator).y<<std::endl;
+        route2[pos] = *iterator;
+        ++pos;
+    }
+    std::list<dwe::vec2f> newRoute;
+    dwe::vec2f position(m_owner->getPosition().x, m_owner->getPosition().z);
+    int num = -1;
+    while(num<pos)
+    {
+        for(int i = pos; i > num; i--)
+        {
+            if(!World->CheckWallsRayCast(position, route2[i]))
+                position = route2[i];
+                num = i;
+                newRoute.push_back(position);
+                i=0;
+        }
+    }
 }
 
 void Pathplanning::CalculateDirection()

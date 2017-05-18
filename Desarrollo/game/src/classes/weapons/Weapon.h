@@ -30,11 +30,10 @@ class Weapon : public Drawable
         int getAmmoBag();
         void setAmmoBag(int ammo);
         void addAmmoBag(int ammo);
-        void reload();
+        bool reload();
 
     protected:
         int m_netID;
-    private:
         int m_damage;
         bool m_isTaken;
         int m_bagAmmo;      // Munición en tu mochila

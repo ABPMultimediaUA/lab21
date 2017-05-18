@@ -15,10 +15,10 @@ Projectile::Projectile()
      m_bullet = true;
 }
 
-Projectile::Projectile(dwe::vec3f origin, float a)
+Projectile::Projectile(dwe::vec3f origin, float a, int damage)
 {
     setClassID(EntityPhysics::projectile_id);//rmm
-
+    m_damage = damage;
     position = origin;
     speed = _velocity;
     angle = -a*M_PI/180;
@@ -68,4 +68,7 @@ void Projectile::setPosition(dwe::vec3f p)
     Drawable::setPosition(p);
 }
 
-
+int Projectile::getDamage()
+{
+    return m_damage;
+}

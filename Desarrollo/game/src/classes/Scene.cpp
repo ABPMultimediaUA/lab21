@@ -9,8 +9,16 @@
 #include "CShotgun.h"
 #include "CRifle.h"
 #include "MagnetKey.h"
+#include "Dog.h"
+#include "Humanoid.h"
+#include "Guardian.h"
+#include "Legless.h"
+#include "Bat.h"
+#include "Mother.h"
+#include "Gun.h"
 #include "Game.h"
 #include "GSDead.h"
+#include "GSEnd.h"
 #include "NavGraphNode.h"
 #include "NavGraphEdge.h"
 #include "AudioEngine.h"
@@ -104,7 +112,10 @@ void Scene::createEnemies()
     m_enemies[ 9].enemy = GEInstance->createEnemyHumanoid(1860,24,130);
     m_enemies[10].enemy = GEInstance->createEnemyHumanoid(1970,24,230);*/
 
-    GEInstance->createEnemyMother(m_posMother.x, m_posMother.y, m_posMother.z);
+
+    enemyMother = GEInstance->createEnemyMother(m_posMother.x, m_posMother.y, m_posMother.z);
+
+
 }
 
 void Scene::deleteEnemies()
@@ -113,6 +124,7 @@ void Scene::deleteEnemies()
         delete m_enemies[i].enemy;
     delete[] m_enemies;
     m_enemies = 0;
+    delete enemyMother;
 }
 
 ///////////////////////////////
@@ -138,9 +150,6 @@ void Scene::Destroy(){
     while(m_consumables.size()>0){
         m_consumables.pop_back();
     }
-
-    delete joint_try;
-    delete bjoint;
 
     m_triggerSystem.Destroy();
 }
@@ -191,6 +200,7 @@ void Scene::deactiveEnemy(uint8_t i)
 
 void Scene::updateEnemies()
 {
+    enemyMother->update();
     m_moreEnemiesX = 0;
     m_moreEnemiesZ = 0;
     for(uint8_t i=0; i<m_numEnemies; i++)
@@ -269,6 +279,12 @@ void Scene::Update()
     updateProjectilesGrenade();
     updateConsumables(mainPlayer);
     m_triggerSystem.Update();
+
+    if(enemyMother->getHealth()<=0)
+    {
+        Game::getInstance()->ChangeState(GSEnd::getInstance());
+        GSEnd::getInstance()->Init();
+    }
 }
 
 
@@ -328,9 +344,9 @@ void Scene::deleteProjectileGrenade(unsigned int i)
 }
 
 ////////////
-void Scene::createProjectile(dwe::vec3f origin, float angle, std::string weapon)
+void Scene::createProjectile(dwe::vec3f origin, float angle, std::string weapon, int damage)
 {
-    m_projectiles.push_back(GEInstance->createProjectile(origin, angle, weapon));
+    m_projectiles.push_back(GEInstance->createProjectile(origin, angle, weapon, damage));
 }
 
 ////////////

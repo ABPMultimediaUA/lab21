@@ -4,16 +4,16 @@
 #include <vector>
 #include "GraphicsEngine.h"
 
-#include "Dog.h"
-#include "Humanoid.h"
-#include "Guardian.h"
-#include "Legless.h"
-#include "Bat.h"
-
-#include "Gun.h"
-
 #include "NavigationGraph.h"
 #include "TriggerSystem.h"
+
+class Enemy;
+class Dog;
+class Humanoid;
+class Guardian;
+class Legless;
+class Bat;
+class Gun;
 
 class Projectile;
 class ProjectileGrenade;
@@ -47,7 +47,7 @@ class Scene
 
         int getNumberEnemies(); /** Control fin de juego */
 
-        void createProjectile(dwe::vec3f origin, float angle, std::string weapon);
+        void createProjectile(dwe::vec3f origin, float angle, std::string weapon, int damage);
         void deleteProjectile(unsigned int i);
         void updateProjectiles();
 
@@ -92,6 +92,7 @@ class Scene
         Bat* enemyBat;
         Guardian* enemyGuardian;
         Legless* enemyLegless;
+        Mother* enemyMother;
 
         Firearm* weapon;
 
@@ -109,10 +110,6 @@ class Scene
 
         NavigationGraph navGraph;
         TriggerSystem m_triggerSystem;
-
-        // Random
-        dwe::Node* joint_try;
-        EntityPhysics* bjoint;
 
         void createEnemies();
         void updateEnemies();

@@ -25,6 +25,8 @@ namespace tag
         vec2(T _x, T _y) : x(_x), y(_y) {};
         // Constructor con los valores de otro vec2
         vec2(const vec2<T>& v) : x(v.x), y(v.y) {};
+        // Operador=
+        vec2& operator= (const vec2<T>& v){x = v.x; y = v.y; return *this;};
     };
     typedef vec2<glm::f32> vec2f;
     typedef vec2<int> vec2i;
@@ -51,6 +53,9 @@ namespace tag
         vec3(T _x, T _y, T _z) : x(_x), y(_y), z(_z) {};
         // Constructor con los valores de otro vec3
         vec3(const vec3<T>& v) : x(v.x), y(v.y), z(v.z) {};
+        // Operador =
+        vec3& operator= (const vec3<T>& v){x = v.x; y = v.y; z = v.z; return *this;};
+
     };
     typedef vec3<glm::f32> vec3f;
     typedef vec3<int> vec3i;

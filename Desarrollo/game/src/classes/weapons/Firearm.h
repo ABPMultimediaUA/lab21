@@ -28,11 +28,10 @@ class Firearm : public Weapon
 
     protected:
         float m_cadence;
-
-    private:
         FirearmKind m_kind;
         int m_bulletsPerShot;
         int m_clipSize;
+
 };
 
 #endif // FIREARM_H

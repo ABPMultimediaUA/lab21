@@ -97,11 +97,12 @@ void dwe::Button::hover()
 
 void dwe::Button::unhover()
 {
-    hovered=false;
+    hovered = false;
     if(bg)
         texture.loadFromFile("media/buttonBackground.png");
     else
         texture.loadFromFile("media/backButtonBackground.png");
+
     sp.setTexture(texture, true);
     text.setColor(sf::Color(255,255,255, 128));
 }

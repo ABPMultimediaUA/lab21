@@ -206,7 +206,6 @@ void LoadMap::Init(){
         envElements[6] = GEInstance->createScenaryElement("environment_elements/armario", "environment_elements/armario");
         envElements[6]->setPosition(dwe::vec3f(50, 0, 300));*/
 
-
         // Armas
         s->createCShotgun(0, 10, -20);
         s->createCRifle(20, 10, -20);
