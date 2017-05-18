@@ -184,7 +184,8 @@ void LoadMap::Init(){
         generator[2]->setSector(sector, 2);
 
         // ENVIRONMENT ELEMENTS
-        /*nvElements[0] = GEInstance->createScenaryElement("environment_elements/mesahall", "");
+
+        /*envElements[0] = GEInstance->createScenaryElement("environment_elements/mesahall", "");
         envElements[0]->setPosition(dwe::vec3f(-7, 0, 287));*/
         envElements[0] = GEInstance->createScenaryElement("environment_elements/cama", "environment_elements/cama");
         envElements[0]->setPosition(dwe::vec3f(50, 0, 100));
