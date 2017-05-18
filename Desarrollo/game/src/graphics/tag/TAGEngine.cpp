@@ -108,6 +108,10 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     TAGEngine::_uHasNormalTextureLocation   = m_shaderProgram->uniform(U_HASNORMALTEXTURE);
     TAGEngine::_uNormalTextureLocation      = m_shaderProgram->uniform(U_NORMALTEXTURE);
 
+    glUniform1i(TAGEngine::_uMaterialDiffuseLocation,   Entity::_diffuseTextureIndex);
+    glUniform1i(TAGEngine::_uMaterialSpecularLocation,  Entity::_specularTextureIndex);
+    glUniform1i(TAGEngine::_uNormalTextureLocation,     Entity::_normalTextureIndex);
+
     glUseProgram(0);
 }
 

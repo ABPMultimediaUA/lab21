@@ -5,27 +5,21 @@
 #include "tag/TAGEngine.h"
 #include "tag/TAGError.h"
 
-
-int tag::ResourceTexture::_nextTextureID = 0;
-
 tag::ResourceTexture::ResourceTexture() :
     m_image(0),
     m_diffuseTextureID(0),
     m_specularTextureID(0),
-    m_normalTextureID(0),
-    m_diffuseTextureIndex(-1),
-    m_specularTextureIndex(-1),
-    m_normalTextureIndex(-1)
+    m_normalTextureID(0)
 {
 }
 
 tag::ResourceTexture::~ResourceTexture()
 {
-    if (m_diffuseTextureIndex>=0)
+    if (m_diffuseTextureID)
         glDeleteTextures(1, &m_diffuseTextureID);
-    if (m_specularTextureIndex>=0)
+    if (m_specularTextureID)
         glDeleteTextures(1, &m_specularTextureID);
-    if (m_normalTextureIndex>=0)
+    if (m_normalTextureID)
         glDeleteTextures(1, &m_normalTextureID);
 }
 
@@ -90,7 +84,6 @@ void tag::ResourceTexture::load(std::string fileName)
     if (!image)
         throw std::runtime_error("No se encuentra el fichero de textura " + fileName);
     m_diffuseTextureID = loadTexture(image);
-    m_diffuseTextureIndex = 1; //ResourceTexture::_nextTextureID++;  // Despues de asignar, incrementamos
     delete image;
 
     // Textura especular
@@ -98,7 +91,6 @@ void tag::ResourceTexture::load(std::string fileName)
     if (!image)  // Si no existe textura especular, genero una textura de 1x1 en negro, sin brillos.
         image = createBlackImage();
     m_specularTextureID = loadTexture(image);
-    m_specularTextureIndex = 2;//ResourceTexture::_nextTextureID++;  // Despues de asignar, incrementamos
     delete image;
 
     // Textura de normales
@@ -106,7 +98,6 @@ void tag::ResourceTexture::load(std::string fileName)
     if (image)
     {
         m_normalTextureID = loadTexture(image);
-        m_normalTextureIndex = 3;//ResourceTexture::_nextTextureID++;  // Despues de asignar, incrementamos
         delete image;
     }
 }
@@ -117,20 +108,17 @@ void tag::ResourceTexture::activateTexture() const
     glUniform1i(TAGEngine::_uMaterialHasTextureLocation, true);
     glUniform1f(TAGEngine::_uMaterialShininessLocation, 32.0);
 
-    glActiveTexture(GL_TEXTURE0+m_diffuseTextureIndex);
+    glActiveTexture(GL_TEXTURE0+Entity::_diffuseTextureIndex);
     glBindTexture(GL_TEXTURE_2D, m_diffuseTextureID);
-    glUniform1i(TAGEngine::_uMaterialDiffuseLocation, m_diffuseTextureIndex);
 
-    glActiveTexture(GL_TEXTURE0+m_specularTextureIndex);
+    glActiveTexture(GL_TEXTURE0+Entity::_specularTextureIndex);
     glBindTexture(GL_TEXTURE_2D, m_specularTextureID);
-    glUniform1i(TAGEngine::_uMaterialSpecularLocation, m_specularTextureIndex);
 
-    if (m_normalTextureIndex >= 0)
+    if (m_normalTextureID)
     {
         // Tiene textura de normales
-        glActiveTexture(GL_TEXTURE0+m_normalTextureIndex);
+        glActiveTexture(GL_TEXTURE0+Entity::_normalTextureIndex);
         glBindTexture(GL_TEXTURE_2D, m_normalTextureID);
-        glUniform1i(TAGEngine::_uNormalTextureLocation, m_normalTextureIndex);
         glUniform1i(TAGEngine::_uHasNormalTextureLocation, true);
     }
     else
@@ -144,12 +132,18 @@ void tag::ResourceTexture::deactivateTexture() const
 {
     glUniform1i(TAGEngine::_uMaterialHasTextureLocation, false);
     glUniform1i(TAGEngine::_uHasNormalTextureLocation, false);
+
+    glActiveTexture(GL_TEXTURE0+Entity::_diffuseTextureIndex);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    glActiveTexture(GL_TEXTURE0+Entity::_specularTextureIndex);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    if (m_normalTextureID)
+    {
+        glActiveTexture(GL_TEXTURE0+Entity::_normalTextureIndex);
+        glBindTexture(GL_TEXTURE_2D, 0);
+    }
+
     glActiveTexture(GL_TEXTURE0);
-
-    //glActiveTexture(GL_TEXTURE0+m_diffuseTextureIndex);
-    //glBindTexture(GL_TEXTURE_2D, 0);
-
-    // TODO si desactivo también esta textura, me da un problema con el stack de openGL
-    //glActiveTexture(GL_TEXTURE0+m_specularTextureIndex);
-    //glBindTexture(GL_TEXTURE_2D, 0);
 }
