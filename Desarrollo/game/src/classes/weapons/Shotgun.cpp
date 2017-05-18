@@ -34,11 +34,11 @@ void Shotgun::reload()
 //////////////
 void Shotgun::setPut()
 {
-    this->setActive(false);
+    setActive(false);
 }
 
 //////////////
 void Shotgun::setDraw()
 {
-    this->setActive(true);
+    setActive(true);
 }

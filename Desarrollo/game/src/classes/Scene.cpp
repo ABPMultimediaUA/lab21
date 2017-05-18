@@ -90,6 +90,7 @@ void Scene::Init()
     World->setMainPlayer(mainPlayer);
 
     mainPlayer->addWeapon(eGun);  // Por defecto tiene la pistola
+    mainPlayer->swapCurrentWeapon(eGun);
 
     createEnemies();
 

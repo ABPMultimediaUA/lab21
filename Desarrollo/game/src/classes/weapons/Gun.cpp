@@ -34,11 +34,11 @@ void Gun::reload()
 //////////
 void Gun::setPut()
 {
-    this->setActive(false);
+    setActive(false);
 }
 
 //////////
 void Gun::setDraw()
 {
-    this->setActive(true);
+    setActive(true);
 }

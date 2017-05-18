@@ -151,7 +151,8 @@ void Player::addWeapon(FirearmKind type)
         case eRifle:    m_weapons[eRifle]   = GEInstance->createRifle(this);     break;
         default:  break;
         }
-        swapCurrentWeapon(type);
+        if(type!=eGun)
+            m_weapons[type]->setPut();
     }
 }
 
@@ -283,9 +284,10 @@ void Player::readEvents()
     //HACER DASH
     if(GEInstance->receiver.isKeyDown(KEY_DASH))
     {
-        m_currentWeapon->setPut(); // Guardamos arma
         m_localIsEvading = true;
         this->dash();//evadimos
+        if(getIsEvading())
+            m_currentWeapon->setPut(); // Guardamos arma
     }
 
 }
