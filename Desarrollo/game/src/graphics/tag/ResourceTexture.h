@@ -29,15 +29,10 @@ namespace tag
         protected:
 
         private:
-            static int _nextTextureID;
-
             GLushort*  m_image;
             GLuint     m_diffuseTextureID;
             GLuint     m_specularTextureID;
             GLuint     m_normalTextureID;
-            int        m_diffuseTextureIndex;
-            int        m_specularTextureIndex;
-            int        m_normalTextureIndex;
 
             GLuint loadTexture(Image* image);
             Image* createBlackImage() const;

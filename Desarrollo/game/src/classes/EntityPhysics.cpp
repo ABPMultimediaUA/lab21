@@ -101,7 +101,7 @@ void EntityPhysics::setImpulse(dwe::vec2f impulse)
 }
 
 ////////////////////
-void EntityPhysics::createBody(b2BodyType type, const dwe::vec3f& pos, float width, float height, float32 angleDegrees)
+void EntityPhysics::createBody(b2BodyType type, const dwe::vec3f& pos, float width, float height, float32 angleDegrees, float density)
 {
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
@@ -125,7 +125,7 @@ void EntityPhysics::createBody(b2BodyType type, const dwe::vec3f& pos, float wid
     fixtureDef.isSensor = m_isSensor;
     if (type == b2_dynamicBody)
     {
-        fixtureDef.density  = m_density;
+        fixtureDef.density  = density;
         fixtureDef.friction = m_friction;
     }
 
@@ -167,10 +167,44 @@ void EntityPhysics::createCircularBody(const dwe::vec3f& pos, float radius)
     m_body->CreateFixture(&fixtureDef);
 }
 
-////////////////////
-void EntityPhysics::createDynamicBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees)
+void EntityPhysics::createSemiCircleBody(const dwe::vec3f& pos, float radius, float angle)
 {
-    createBody(b2_dynamicBody, pos, width, height, angleDegrees);
+    b2BodyDef bodyDef;
+    bodyDef.position.Set(pos.x*_ratio, pos.z*_ratio);
+    bodyDef.type            = b2_kinematicBody;
+    bodyDef.angle           = -(angle+45)*M_PI/180;  // Lo pasamos a radianes
+    bodyDef.fixedRotation   = m_fixedRotation;
+    bodyDef.bullet          = m_bullet;
+    bodyDef.angularDamping  = m_damping;
+    bodyDef.linearDamping   = m_damping;
+
+    m_body = World->createBody(&bodyDef);
+    m_body->SetUserData(this);  // Sin esta linea no funcionan los callbacks
+
+    b2Vec2 vertices[8];
+    vertices[0].Set(0,0);
+    for (int i = 0; i < 7; i++) {
+        angle = i / 6.0 * 90 * M_PI/180;
+        vertices[i+1].Set( radius * cosf(angle), radius * sinf(angle) );
+    }
+    m_shape.Set(vertices, 8);
+
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &m_shape;
+    fixtureDef.isSensor = m_isSensor;
+    if (bodyDef.type == b2_dynamicBody)
+    {
+        fixtureDef.density  = m_density;
+        fixtureDef.friction = m_friction;
+    }
+
+    m_body->CreateFixture(&fixtureDef);
+}
+
+////////////////////
+void EntityPhysics::createDynamicBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees, float32 density)
+{
+    createBody(b2_dynamicBody, pos, width, height, angleDegrees, density);
 }
 
 

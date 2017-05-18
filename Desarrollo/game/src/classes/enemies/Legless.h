@@ -3,13 +3,8 @@
 
 #include <Enemy.h>
 #include <StateMachine.h>
-#include <iostream>
 
-class Selector;
-class Sequence;
-class PathplanningTask;
-class PerceptionTask;
-class MoveTask;
+class BTreeHumanoid;
 
 class Legless : public Enemy
 {
@@ -31,13 +26,8 @@ class Legless : public Enemy
 
         StateMachine<Legless>*  l_pStateMachine;
 
-        Selector* selector1;
-        Sequence *sequence1;
+        BTreeHumanoid* m_behaviourTree;
 
-        PathplanningTask* path;
-        PerceptionTask* perc;
-
-        MoveTask* movetask;
 };
 
 #endif // LEGLESS_H

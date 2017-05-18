@@ -58,6 +58,7 @@ class Player : public CharacterController
         void consumeSpeedBoost();
         void giveAmmo(int numWeapon, int ammo, PlayerMate* playermate);
         void receiveAmmo(int numWeapon, int ammo);
+        void takeDamage(int damage);
         bool getHasShotgun();
         bool getHasRifle();
         void swapCurrentWeapon(FirearmKind weaponKind);
@@ -83,6 +84,7 @@ class Player : public CharacterController
     private:
         static const float _changeOffsetTime = 0.2;
         static const float _reloadOffsetTime = 2.0;
+        static const float _takeDamageOffsetTime = 0.5;
         struct TPlayerWeaponKey {
             EKEY_CODE   key;
             FirearmKind weapon;
@@ -95,6 +97,7 @@ class Player : public CharacterController
         bool        m_mKeys[3];
         int         m_medkits;
         int         m_speedBoosts;
+        float       m_lastTimeTakeDamage;
         float       m_timeMedkit;
         float       m_timeToSpeedBoost;
         float       m_timeGivingStuff;

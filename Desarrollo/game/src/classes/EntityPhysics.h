@@ -8,7 +8,7 @@
 class EntityPhysics
 {
     public:
-        enum EPClassID { no_id = 0, player_id, playermate_id, projectile_id, wall_id, enemy_id, consumable_id, trigger_id, triggerSound_id, grenadeExplosion_id };
+        enum EPClassID { no_id = 0, player_id, playermate_id, projectile_id, wall_id, enemy_id, consumable_id, trigger_id, triggerSound_id, grenadeExplosion_id , triggerDamage_id};
 
         EntityPhysics();
         virtual ~EntityPhysics();
@@ -32,6 +32,8 @@ class EntityPhysics
         /// \param[in] impulse impulso en m/s
         void setImpulse(dwe::vec2f impulse);
 
+        void setDensity(float density);
+
         virtual void onBeginContact(EntityPhysics* otherObject);
         virtual void onEndContact(EntityPhysics* otherObject);
 
@@ -49,14 +51,13 @@ class EntityPhysics
         float32     m_friction;
         float32     m_damping;
 
-
         // Se crea el tipo de sólido
         void createCircularBody(const dwe::vec3f& pos, float radius);
-        void createDynamicBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
+        void createSemiCircleBody(const dwe::vec3f& pos, float radius, float angle);
+        void createDynamicBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0, float density = 1.0f);
         void createStaticBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
         void createKinematicBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
         void createJointBody(const dwe::vec3f& pos, float width, float height, float32 angleDegrees = 0.0);
-
 
     private:
         b2PolygonShape  m_shape;
@@ -69,7 +70,7 @@ class EntityPhysics
 
         static const float _ratio = 0.035;
 
-        void createBody(b2BodyType type, const dwe::vec3f& pos, float width, float height, float32 angleDegrees);
+        void createBody(b2BodyType type, const dwe::vec3f& pos, float width, float height, float32 angleDegrees, float density = 1.0f);
 };
 
 #endif // ENTITYPHYSICS_H
