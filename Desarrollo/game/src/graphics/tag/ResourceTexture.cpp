@@ -90,7 +90,7 @@ void tag::ResourceTexture::load(std::string fileName)
     if (!image)
         throw std::runtime_error("No se encuentra el fichero de textura " + fileName);
     m_diffuseTextureID = loadTexture(image);
-    m_diffuseTextureIndex = ResourceTexture::_nextTextureID++;  // Despues de asignar, incrementamos
+    m_diffuseTextureIndex = 1; //ResourceTexture::_nextTextureID++;  // Despues de asignar, incrementamos
     delete image;
 
     // Textura especular
@@ -98,7 +98,7 @@ void tag::ResourceTexture::load(std::string fileName)
     if (!image)  // Si no existe textura especular, genero una textura de 1x1 en negro, sin brillos.
         image = createBlackImage();
     m_specularTextureID = loadTexture(image);
-    m_specularTextureIndex = ResourceTexture::_nextTextureID++;  // Despues de asignar, incrementamos
+    m_specularTextureIndex = 2;//ResourceTexture::_nextTextureID++;  // Despues de asignar, incrementamos
     delete image;
 
     // Textura de normales
@@ -106,7 +106,7 @@ void tag::ResourceTexture::load(std::string fileName)
     if (image)
     {
         m_normalTextureID = loadTexture(image);
-        m_normalTextureIndex = ResourceTexture::_nextTextureID++;  // Despues de asignar, incrementamos
+        m_normalTextureIndex = 3;//ResourceTexture::_nextTextureID++;  // Despues de asignar, incrementamos
         delete image;
     }
 }

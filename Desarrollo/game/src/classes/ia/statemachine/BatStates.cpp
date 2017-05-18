@@ -3,9 +3,6 @@
 
 #include <iostream>
 
-using std::cout;
-
-
 BPatrolState* BPatrolState::Instance()
 {
   static BPatrolState instance;
