@@ -4,8 +4,8 @@
 #include <Enemy.h>
 #include <StateMachine.h>
 #include <DogStates.h>
-#include <iostream>
 
+class BTreeHumanoid;
 
 class Dog : public Enemy
 {
@@ -25,6 +25,8 @@ class Dog : public Enemy
     private:
 
         StateMachine<Dog>*  d_pStateMachine;
+
+        BTreeHumanoid* m_behaviourTree;
 };
 
 #endif // DOG_H

@@ -5,6 +5,8 @@
 #include "dwVectors.h"
 #include "NetGame.h"
 #include "Projectile.h"
+#include "TriggerDamage.h"
+#include "Scene.h"
 
 #include <limits>
 
@@ -12,7 +14,9 @@ Enemy::Enemy() :
     m_speed(0.0),
     m_maxHealth(10),
     m_health(m_maxHealth),
+    m_attackPower(1),
     attacking(false),
+    attackTriggered(false),
     memory(false),
     m_perception(0),
     m_pathplanning(0)
@@ -24,6 +28,13 @@ Enemy::Enemy() :
 
 Enemy::~Enemy()
 {
+}
+
+void Enemy::update()
+{
+    dwe::vec3f pos(EntityPhysics::getPosEntity());
+    pos.y = getPosition().y;
+    Drawable::setPosition(pos);
 }
 
 /////////////
@@ -86,17 +97,21 @@ bool Enemy::Attack()
         setAnimation(dwe::eAnimEnemyStand);
         attacking = true;
         EntityPhysics::setVelocity(dwe::vec2f(0,0));
-
     }
     if(World->getTimeElapsed() - attackTime >= 0.5f){
-        ///Crear trigger de daño
-        std::cout<<"Hago daño"<<std::endl;
+        if(!attackTriggered){
+            attackTriggered = true;
+            std::cout<<"Ataque"<<std::endl;
+            TriggerDamage* triggerDamage = new TriggerDamage(getPosition(), 1, m_attackPower, getRotation().y);
+            Scene::Instance()->getTriggerSystem().Add(triggerDamage);
+        }
     }
 
     if(World->getTimeElapsed() - attackTime >= 1){
         std::cout<<"Fin del ataque"<<std::endl;
         setAnimation(dwe::eAnimEnemyStand);
         attacking = false;
+        attackTriggered = false;
     }
 
     return attacking;
@@ -142,7 +157,7 @@ void Enemy::setNode(dwe::Node* n)
 {
     Drawable::setNode(n);
     dwe::vec3f box = n->getBoundingBox();
-    createDynamicBody(getPosition(), box.x, box.z);
+    createDynamicBody(getPosition(), box.x, box.z, 0.0f, 10000.0f);
 }
 /////////////
 void Enemy::onBeginContact(EntityPhysics* otherObject)
