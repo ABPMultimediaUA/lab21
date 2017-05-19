@@ -46,8 +46,8 @@ int tag::TAGEngine::_uLightSpaceMatrixLocation;
 int tag::TAGEngine::_aShadowVertexPositionLocation;
 int tag::TAGEngine::_uShadowMVPLocation;
 
-GLuint tag::TAGEngine::_shadowHeight = 1024;
-GLuint tag::TAGEngine::_shadowWidth = 1024;
+GLuint tag::TAGEngine::_shadowHeight = 2048;
+GLuint tag::TAGEngine::_shadowWidth = 2048;
 
 float tag::TAGEngine::_screenHeight;
 float tag::TAGEngine::_screenWidth;
@@ -226,15 +226,14 @@ void tag::TAGEngine::prepareShadows()
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, m_depthMap, 0);
     glDrawBuffer(GL_NONE);
     glReadBuffer(GL_NONE);
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-    // Configuramos vista de la luz
     prepareShadowView();
 
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void tag::TAGEngine::prepareShadowView(const vec3f posCamera)
+void tag::TAGEngine::prepareShadowView()
 {
     GLfloat near_plane  = 0.1;
     GLfloat far_plane   = 1000.0;

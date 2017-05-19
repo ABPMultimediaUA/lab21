@@ -261,7 +261,7 @@ namespace tag
             ETransform* getTransformNode(GraphicNode* node, ENodeTransformOrder deep);
 
             void prepareShadows();
-            void prepareShadowView(const vec3f posCamera);
+            void prepareShadowView();
             void calculateShadows();
     };
 }
