@@ -4,6 +4,7 @@
 #include "TriggerSound.h"
 #include "Scene.h"
 #include "AudioEngine.h"
+#include "TriggerDamage.h"
 
 Player::Player() :
     m_currentWeaponType(eNone), m_currentWeapon(0)
@@ -15,6 +16,7 @@ Player::Player() :
     m_medkits = 0;
 
     // En segundos
+    m_lastTimeTakeDamage= 0.5;
     m_timeMedkit        = 2.0;
     m_timeToSpeedBoost  = 2.0;
     m_timeGivingStuff   = 1.0;
@@ -372,10 +374,21 @@ void Player::consumeSpeedBoost()
     }
 }
 
+void Player::takeDamage(int damage)
+{
+    float timeElapsed = World->getTimeElapsed();
+    if(timeElapsed - m_lastTimeTakeDamage > _takeDamageOffsetTime)
+    {
+        m_health -= damage;
+        m_lastTimeTakeDamage = timeElapsed;
+    }
+}
+
 /////////////
 void Player::onBeginContact(EntityPhysics* otherObject)
 {
-    if((otherObject && otherObject->getClassID()==EntityPhysics::enemy_id)){
-        m_health-=5;
+    if((otherObject && otherObject->getClassID()==EntityPhysics::triggerDamage_id)){
+        TriggerDamage* t = static_cast<TriggerDamage*>(otherObject);
+        takeDamage(t->getDamage());
     }
 }

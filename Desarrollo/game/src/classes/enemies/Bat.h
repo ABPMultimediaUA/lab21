@@ -2,8 +2,9 @@
 #define BAT_H
 
 #include <Enemy.h>
-#include <BatStates.h>
 #include "StateMachine.h"
+
+class BTreeHumanoid;
 
 class Bat : public Enemy
 {

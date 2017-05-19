@@ -20,7 +20,10 @@ BTreeHumanoid::BTreeHumanoid(Enemy* owner)
         selAct = new Selector();
             seqAttack = new Sequence();
                 condAttackRange = new AttackRangeCondition(owner);
-                taskAttack = new AttackTask(owner);
+                succAttack = new Succeeder();
+                    seqAttack2 = new Sequence();
+                        condAttackElapsed = new ElapsedTimeCondition(owner, 1.0f);
+                        taskAttack = new AttackTask(owner);
             seqMove = new Sequence();
                 succPlanPath = new Succeeder();
                     seqPlanPath = new Sequence();
@@ -38,7 +41,10 @@ BTreeHumanoid::BTreeHumanoid(Enemy* owner)
     seqRoot->addChild(selAct);
         selAct->addChild(seqAttack);
             seqAttack->addChild(condAttackRange);
-            seqAttack->addChild(taskAttack);
+            seqAttack->addChild(succAttack);
+                succAttack->addChild(seqAttack2);
+                    seqAttack2->addChild(condAttackElapsed);
+                    seqAttack2->addChild(taskAttack);
         selAct->addChild(seqMove);
             seqMove->addChild(succPlanPath);
                 succPlanPath->addChild(seqPlanPath);

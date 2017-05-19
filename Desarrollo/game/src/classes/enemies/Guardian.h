@@ -3,9 +3,10 @@
 
 #include <Enemy.h>
 #include <StateMachine.h>
-#include <GuardianStates.h>
-#include <iostream>
 
+#include "Enemy.h"
+
+class BTreeHumanoid;
 
 class Guardian : public Enemy
 {
@@ -25,6 +26,8 @@ class Guardian : public Enemy
     private:
 
         StateMachine<Guardian>*  g_pStateMachine;
+
+        BTreeHumanoid* m_behaviourTree;
 };
 
 #endif // GUARDIAN_H

@@ -102,11 +102,11 @@ void Scene::createEnemies()
     m_numEnemies = m_numActiveEnemies = 11;
     m_enemies = new TEnemy[m_numEnemies];
     m_enemies[ 0].enemy = GEInstance->createEnemyHumanoid(-200,24,200);
-    /*m_enemies[ 1].enemy = GEInstance->createEnemyDog(530,24,390);
-    m_enemies[ 2].enemy = GEInstance->createEnemyBat(475,24,90);
+    m_enemies[ 1].enemy = GEInstance->createEnemyDog(-250,24,300);
+    m_enemies[ 2].enemy = GEInstance->createEnemyBat(-300,24,250);
     m_enemies[ 3].enemy = GEInstance->createEnemyGuardian(-310,24,100);
-    m_enemies[ 4].enemy = GEInstance->createEnemyLegless(-630,24,410);
-    m_enemies[ 5].enemy = GEInstance->createEnemyHumanoid(300,24,1150);
+    m_enemies[ 4].enemy = GEInstance->createEnemyLegless(-230,24,110);
+    /*m_enemies[ 5].enemy = GEInstance->createEnemyHumanoid(300,24,250);
     m_enemies[ 6].enemy = GEInstance->createEnemyHumanoid(-300,24,570);
     m_enemies[ 7].enemy = GEInstance->createEnemyHumanoid(1470,24,330);
     m_enemies[ 8].enemy = GEInstance->createEnemyHumanoid(1350,24,180);

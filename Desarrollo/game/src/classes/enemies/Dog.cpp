@@ -1,4 +1,7 @@
 #include "Dog.h"
+#include "Pathplanning.h"
+#include "Perception.h"
+#include "BTreeHumanoid.h"
 
 Dog::Dog()
 {
@@ -7,11 +10,23 @@ Dog::Dog()
 
     d_pStateMachine->SetCurrentState(DAsleepState::Instance());
 
+    m_speed = 2.0;   // m/s
+    m_attackPower = 20;
+
+    m_perception = new Perception(this);
+    m_pathplanning = new Pathplanning(this);
+
+    m_behaviourTree = new BTreeHumanoid(this);
+
+    targetPosition = dwe::vec2f(-201,201);
 }
 
 Dog::~Dog()
 {
     delete d_pStateMachine;
+    delete m_perception;
+    delete m_pathplanning;
+    delete m_behaviourTree;
 }
 
 StateMachine<Dog>* Dog::GetFSM()const
@@ -22,6 +37,8 @@ StateMachine<Dog>* Dog::GetFSM()const
 void Dog::update()
 {
     //d_pStateMachine->Update();
+    Enemy::update();
+    m_behaviourTree->Run();
 }
 
 void Dog::render()

@@ -45,9 +45,10 @@ int Pathplanning::GetClosestNodeToPosition(dwe::vec2f targetPos)
 }
 
 void Pathplanning::CreatePathToPosition(dwe::vec2f TargetPos)
-{
-    dwe::vec2f position((m_owner->getPosEntity().x + 1)*0.035, (m_owner->getPosition().z + 1)*0.035);
-    /*if(!World->CheckWallsRayCast(position, dwe::vec2f(TargetPos.x*0.035, TargetPos.y*0.035))) //Si puede ir directo no calcula el camino
+{ 
+    dwe::vec2f position((m_owner->getPosEntity().x)*0.035, (m_owner->getPosition().z)*0.035);
+    dwe::vec2f targetposition(TargetPos.x*0.035, TargetPos.y*0.035);
+    if((position.x != targetposition.x && position.y != targetposition.y) && !World->CheckWallsRayCast(position, targetposition)) //Si puede ir directo no calcula el camino
     {
         route.clear();
         nextPosition = TargetPos;
@@ -55,7 +56,7 @@ void Pathplanning::CreatePathToPosition(dwe::vec2f TargetPos)
 
     }
     else    //Si hay obstaculos en medio calcula el camino
-    {*/
+    {
         int target(GetClosestNodeToPosition(TargetPos));
         int source(GetClosestNodeToPosition(position));
 
@@ -73,8 +74,8 @@ void Pathplanning::CreatePathToPosition(dwe::vec2f TargetPos)
             route.push_back(TargetPos);
             finalPosition = TargetPos;
         }
-    /*}
-    PathSmooth();*/
+    }
+    //PathSmooth();
     CalculateDirection();
 }
 

@@ -12,6 +12,8 @@ class Enemy : public DrawablePhysics
         Enemy();
         virtual ~Enemy();
 
+        virtual void update();
+
         float getSpeed();
 
         void setNetID(unsigned int netID);
@@ -46,10 +48,12 @@ class Enemy : public DrawablePhysics
         unsigned int m_netID;       // Un ID que debe coincidir con el índice array de entidades que se cree. Se envia junto con cualquier mensaje de red
         int m_maxHealth;
         int m_health;
+        int m_attackPower;
 
         bool attackRange;
         bool attacking;
         float attackTime;
+        bool attackTriggered;
         bool memory;
         dwe::vec2f memoryPosition;
         dwe::vec2f targetPosition;  //Siguiente lugar al que va a dirigirse. Se usa para darle una posición al pathplanning. Cambiará en función de a quién perseguir o a dónde ir

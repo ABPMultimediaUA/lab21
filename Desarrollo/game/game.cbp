@@ -274,6 +274,8 @@
 		<Unit filename="src/classes/triggersystem/Trigger.h" />
 		<Unit filename="src/classes/triggersystem/TriggerConsumable.cpp" />
 		<Unit filename="src/classes/triggersystem/TriggerConsumable.h" />
+		<Unit filename="src/classes/triggersystem/TriggerDamage.cpp" />
+		<Unit filename="src/classes/triggersystem/TriggerDamage.h" />
 		<Unit filename="src/classes/triggersystem/TriggerDoor.cpp" />
 		<Unit filename="src/classes/triggersystem/TriggerDoor.h" />
 		<Unit filename="src/classes/triggersystem/TriggerGenerator.cpp" />

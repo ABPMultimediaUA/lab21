@@ -6,17 +6,19 @@
 Humanoid::Humanoid()
 {
     m_speed = 2.0;   // m/s
+    m_attackPower = 20;
 
     m_perception = new Perception(this);
     m_pathplanning = new Pathplanning(this);
 
     m_behaviourTree = new BTreeHumanoid(this);
 
-    targetPosition = dwe::vec2f(-200,200);
+    targetPosition = dwe::vec2f(-201,201);
 }
 
 void Humanoid::update()
 {
+    Enemy::update();
     m_behaviourTree->Run();
 }
 

@@ -36,7 +36,10 @@ class BTreeHumanoid : public BehaviourTree
             Selector* selAct;
                 Sequence* seqAttack;
                     AttackRangeCondition* condAttackRange;
-                    AttackTask* taskAttack;
+                    Succeeder* succAttack;
+                        Sequence* seqAttack2;
+                            ElapsedTimeCondition* condAttackElapsed;
+                            AttackTask* taskAttack;
                 Sequence* seqMove;
                     Succeeder* succPlanPath;
                         Sequence* seqPlanPath;
