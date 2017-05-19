@@ -120,7 +120,9 @@ void LoadMap::Init(){
                         }
                     ++nextF;
                 }
-
+                if(id=="Generator"){
+                    generator[4]=GEInstance->createGenerator(3, false, tx, ty, tz);
+                }
             }
 
 

@@ -32,6 +32,7 @@ TagManager:
   - Floor_250x300
   - Floor_400x350
   - DoorRotate
+  - Generator
   layers:
   - Default
   - TransparentFX

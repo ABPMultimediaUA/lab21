@@ -191,7 +191,10 @@
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_50m",
 				"position": { "x":-811, "y":-1, "z":-460 },
-				"rotation": { "x":0, "y":90, "z":0 }}
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Generator",
+				"position": { "x":-750, "y":-890.4714, "z":898 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-enemies": [
 			{ "element-id": "EmenySpam",

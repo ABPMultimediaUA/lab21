@@ -44,7 +44,7 @@ class LoadMap {
         ScenaryElement *envElements[NUM_ENVIRONMENT_ELEMENTS];
 
         Entity *entities[NUM_DOORS]; // Array de puertas
-        Generator *generator[3];
+        Generator *generator[4];
         MagnetKey *MKAux;
         std::vector<MagnetKey*> *magnetKeys;
         //Consumable *ammos[2];
