@@ -38,6 +38,7 @@ int tag::TAGEngine::_uMaterialSpecularLocation;
 int tag::TAGEngine::_uMaterialShininessLocation;
 int tag::TAGEngine::_uHasNormalTextureLocation;
 int tag::TAGEngine::_uNormalTextureLocation;
+int tag::TAGEngine::_uModelMatrixLocation;
 
 int tag::TAGEngine::_uShadowTextureLocation;
 int tag::TAGEngine::_uLightSpaceMatrixLocation;
@@ -50,7 +51,6 @@ GLuint tag::TAGEngine::_shadowWidth = 1024;
 
 float tag::TAGEngine::_screenHeight;
 float tag::TAGEngine::_screenWidth;
-
 
 tag::TAGEngine::TAGEngine() :
     m_shaderProgram(0),
@@ -88,7 +88,7 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
 
     // Habilita el z_buffer
     glEnable(GL_DEPTH_TEST);
-    //glEnable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D);
 
     // Inicialización de GLEW
     if(glewInit() != GLEW_OK)
@@ -124,11 +124,13 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     TAGEngine::_uMaterialShininessLocation  = m_shaderProgram->uniform(U_MATERIAL_SHININESS);
     TAGEngine::_uHasNormalTextureLocation   = m_shaderProgram->uniform(U_HASNORMALTEXTURE);
     TAGEngine::_uNormalTextureLocation      = m_shaderProgram->uniform(U_NORMALTEXTURE);
-
+    TAGEngine::_uModelMatrixLocation        = m_shaderProgram->uniform(U_MODELMATRIX);
     TAGEngine::_uShadowTextureLocation      = m_shaderProgram->uniform(U_SHADOWTEXTURE);
     TAGEngine::_uLightSpaceMatrixLocation   = m_shaderProgram->uniform(U_LIGHT_SPACE_MATRIX);
 
-
+    glUniform1i(TAGEngine::_uMaterialDiffuseLocation,   Entity::_diffuseTextureIndex);
+    glUniform1i(TAGEngine::_uMaterialSpecularLocation,  Entity::_specularTextureIndex);
+    glUniform1i(TAGEngine::_uNormalTextureLocation,     Entity::_normalTextureIndex);
 
 
     // Shaders para shadows
@@ -144,10 +146,7 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     TAGEngine::_uShadowMVPLocation              = m_shadowProgram->uniform(U_MVP);
 
 
-    //prepareShadows();
-    glUniform1i(TAGEngine::_uMaterialDiffuseLocation,   Entity::_diffuseTextureIndex);
-    glUniform1i(TAGEngine::_uMaterialSpecularLocation,  Entity::_specularTextureIndex);
-    glUniform1i(TAGEngine::_uNormalTextureLocation,     Entity::_normalTextureIndex);
+    prepareShadows();
 
     glUseProgram(0);
 }
@@ -169,7 +168,7 @@ void tag::TAGEngine::draw()
         // Cálculo de la vista (cámara)
         calculateViewMatrix();
 
-        //calculateShadows();
+        calculateShadows();
 
         glUseProgram(m_shaderProgram->ReturnProgramID());
         glViewport(0, 0, TAGEngine::_screenWidth, TAGEngine::_screenHeight);
@@ -192,9 +191,12 @@ void tag::TAGEngine::draw()
         Entity::isPreDraw = false;
         renderElements();
 
+        // Desactivamos textura de shadows
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, 0);
+
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-        glBindTexture(GL_TEXTURE_2D, 0);
 
         glDisableVertexAttribArray(TAGEngine::_aVertexPositionLocation);
         glDisableVertexAttribArray(TAGEngine::_aVertexNormalLocation);
@@ -203,7 +205,6 @@ void tag::TAGEngine::draw()
         glUseProgram(0);
     }
 }
-
 
 /////////////////////
 void tag::TAGEngine::prepareShadows()
@@ -215,8 +216,10 @@ void tag::TAGEngine::prepareShadows()
     glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, TAGEngine::_shadowWidth, TAGEngine::_shadowHeight, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+    GLfloat borderColor[] = { 1.0, 1.0, 1.0, 1.0 };
+    glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
 
     glGenFramebuffers(1, &m_depthMapFBO);
     glBindFramebuffer(GL_FRAMEBUFFER, m_depthMapFBO);
@@ -225,20 +228,18 @@ void tag::TAGEngine::prepareShadows()
     glReadBuffer(GL_NONE);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
- //   glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-
     // Configuramos vista de la luz
     prepareShadowView();
 
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void tag::TAGEngine::prepareShadowView()
+void tag::TAGEngine::prepareShadowView(const vec3f posCamera)
 {
-    GLfloat near_plane  = -750.0;
-    GLfloat far_plane   = 750.0;
-    float   ortho       = 1000.0;
-    glm::vec3 position(-2.0, 8.0, 2.0);
+    GLfloat near_plane  = 0.1;
+    GLfloat far_plane   = 1000.0;
+    float   ortho       = 1900.0;
+    glm::vec3 position(170.0, 800.0, 80.0);
     glm::vec3 lookAt(0.0);
     glm::vec3 normal(0.0, 1.0, 0.0);
 
@@ -267,65 +268,30 @@ void tag::TAGEngine::prepareShadowView()
 void tag::TAGEngine::calculateShadows()
 {
     glUseProgram(m_shadowProgram->ReturnProgramID());
+
     // Habilitamos el paso de attributes
     glEnableVertexAttribArray(TAGEngine::_aShadowVertexPositionLocation);
 
     glBindTexture(GL_TEXTURE_2D, m_depthMap);
 
-    glViewport(0, 0, TAGEngine::_shadowWidth, TAGEngine::_shadowHeight);
     glBindFramebuffer(GL_FRAMEBUFFER, m_depthMapFBO);
+    glViewport(0, 0, TAGEngine::_shadowWidth, TAGEngine::_shadowHeight);
 
     glClear(GL_DEPTH_BUFFER_BIT);
 
     // Dibujar
     Entity::isPreDraw = true;
+    glCullFace(GL_FRONT);
     m_rootNode.draw();
+    glCullFace(GL_BACK);
 
-
-
-    ///////////////////////////////
-    ///////////////////////////////
-    ///////////////////////////////
-    int x = TAGEngine::_shadowWidth;
-    int y = TAGEngine::_shadowHeight;
-    long imageSize = x * y * 3;
-    unsigned char *data = new unsigned char[imageSize];
-    glReadPixels(0,0,x,y, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, data);// split x and y sizes into bytes
-    int xa= x % 256;
-    int xb= (x-xa)/256;int ya= y % 256;
-    int yb= (y-ya)/256;//assemble the header
-    unsigned char header[18]={0,0,2,0,0,0,0,0,0,0,0,0,(char)xa,(char)xb,(char)ya,(char)yb,24,0};
-
-    // write header and data to file
-    fstream File("test.tga", ios::out | ios::binary);
-    File.write (reinterpret_cast<char *>(header), sizeof (char)*18);
-    File.write (reinterpret_cast<char *>(data), sizeof (char)*imageSize);
-    File.close();
-    delete[] data;
-    data=NULL;
-
-
-
-
-
-
+    // Limpiar estados opengl
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
     glDisableVertexAttribArray(TAGEngine::_aShadowVertexPositionLocation);
     glBindTexture(GL_TEXTURE_2D, 0);
     glUseProgram(0);
-
-
-    // Dibujamos para shadows
-  /*  glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
-    glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
-    glClear(GL_DEPTH_BUFFER_BIT);
-    ConfigureShaderAndMatrices();
-    RenderScene();
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);*/
 }
 
 /////////////////////

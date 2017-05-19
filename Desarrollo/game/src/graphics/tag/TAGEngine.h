@@ -24,6 +24,8 @@
 #define U_HASNORMALTEXTURE      "u_hasNormalTexture"
 #define U_NORMALTEXTURE         "u_normalTexture"
 
+
+#define U_MODELMATRIX           "u_modelMatrix"
 #define U_SHADOWTEXTURE         "u_shadowTexture"
 #define U_LIGHT_SPACE_MATRIX    "u_lightSpaceMatrix"
 
@@ -195,7 +197,7 @@ namespace tag
             /// Realiza los deletes pertinentes.
             void deleteNode(GraphicNode* node);
 
-            // Handles de los attributes y uniforms
+            // shader de dibujado: Handles de los attributes y uniforms
             static int _aVertexPositionLocation;
             static int _aVertexNormalLocation;
             static int _aTextureCoordsLocation;
@@ -213,10 +215,11 @@ namespace tag
             static int _uMaterialShininessLocation;
             static int _uHasNormalTextureLocation;
             static int _uNormalTextureLocation;
-
+            static int _uModelMatrixLocation;
             static int _uLightSpaceMatrixLocation;
             static int _uShadowTextureLocation;
 
+            // shader de sombras: Handles de los attributes y uniforms
             static int _aShadowVertexPositionLocation;
             static int _uShadowMVPLocation;
 
@@ -225,8 +228,6 @@ namespace tag
 
             static GLuint _shadowHeight;
             static GLuint _shadowWidth;
-
-            void prepareShadowView(); //TODOluz quitar de public
 
         private:
             enum ENodeTransformOrder { eNodeRotation=2, eNodeTranslation=1 };
@@ -260,6 +261,7 @@ namespace tag
             ETransform* getTransformNode(GraphicNode* node, ENodeTransformOrder deep);
 
             void prepareShadows();
+            void prepareShadowView(const vec3f posCamera);
             void calculateShadows();
     };
 }

@@ -157,6 +157,7 @@ void tag::ResourceMesh::draw()
     if (Entity::isPreDraw)
     {
         mvpMatrix = Entity::lightSpaceMatrix * Entity::modelMatrix;
+
         // Envía matriz MVP al Vertex Shader
         glUniformMatrix4fv(TAGEngine::_uShadowMVPLocation, 1, GL_FALSE, &mvpMatrix[0][0]);
 
@@ -170,7 +171,8 @@ void tag::ResourceMesh::draw()
 
         modelViewMatrix = Entity::viewMatrix * Entity::modelMatrix;
         mvpMatrix = Entity::projectionMatrix * modelViewMatrix;
-//mvpMatrix = Entity::lightSpaceMatrix * Entity::modelMatrix;
+
+        glUniformMatrix4fv(TAGEngine::_uModelMatrixLocation, 1, GL_FALSE, &Entity::modelMatrix[0][0]);
 
         // Envía nuestra ModelView al Vertex Shader
         glUniformMatrix4fv(TAGEngine::_uMVMatrixLocation, 1, GL_FALSE, &modelViewMatrix[0][0]);

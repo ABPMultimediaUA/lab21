@@ -29,19 +29,35 @@ uniform sampler2D   u_normalTexture;
 uniform sampler2D   u_shadowTexture;
 
 
-float calculateShadow(vec4 positionLightSpace)
+float calculateShadow(vec4 positionLightSpace, vec3 normal, vec3 lightDir)
 {
     vec3 projCoords = positionLightSpace.xyz / positionLightSpace.w;
     projCoords = projCoords * 0.5 + 0.5;
     float closestDepth = texture(u_shadowTexture, projCoords.xy).r;
     float currentDepth = projCoords.z;
-
     float shadow = currentDepth > closestDepth  ? 1.0 : 0.0;
+
+    /*float bias = max(0.05 * (1.0 - dot(normal, lightDir)), 0.005);
+    float shadow = 0.0;
+    vec2 texelSize = 1.0 / textureSize(u_shadowTexture, 0);
+    for(int x = -1; x <= 1; ++x)
+    {
+        for(int y = -1; y <= 1; ++y)
+        {
+            float pcfDepth = texture(u_shadowTexture, projCoords.xy + vec2(x, y) * texelSize).r;
+            shadow += currentDepth - bias > pcfDepth  ? 1.0 : 0.0;
+        }
+    }
+    shadow /= 9.0;
+
+
+    if(projCoords.z > 1.0)
+        shadow = 0.0;*/
 
     return shadow;
 }
 
-vec3 phong(float shadow)
+vec3 phong()
 {
     vec3 normal;
     if (u_hasNormalTexture)
@@ -82,13 +98,12 @@ vec3 phong(float shadow)
         * pow(max(dot(r, viewDir), 0.0), u_MaterialShininess)
         * texSpec;
 
-
+    float shadow = calculateShadow(v_PositionLightSpace, normal, lightDir);
     return (ambient + (1.0 - shadow) * (diffuse + specular));
     //return ambient + diffuse + specular;
 }
 
 void main()
 {
-    float shadow = calculateShadow(v_PositionLightSpace);
-    gl_FragColor = vec4(phong(shadow), 1.0);
+    gl_FragColor = vec4(phong(), 1.0);
 }

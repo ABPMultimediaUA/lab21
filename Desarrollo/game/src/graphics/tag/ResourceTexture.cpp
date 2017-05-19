@@ -144,7 +144,4 @@ void tag::ResourceTexture::deactivateTexture() const
         glActiveTexture(GL_TEXTURE0+Entity::_normalTextureIndex);
         glBindTexture(GL_TEXTURE_2D, 0);
     }
-
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, 0);
 }
