@@ -2,7 +2,9 @@
 
 Ammo::Ammo()
 {
-    //ctor
+    m_gunAmmo = 12;
+    m_rifleAmmo = 30;
+    m_shotgunAmmo = 8;
 }
 
 Ammo::~Ammo()
@@ -10,6 +12,11 @@ Ammo::~Ammo()
     //dtor
 }
 
-//////////
-int Ammo::getAmmount() { return m_ammount; }
-void Ammo::setAmmount(int a) { m_ammount = a; }
+void Ammo::onTake(Player* mainplayer)
+{
+    mainplayer->getPlayerGun()->addAmmoBag(m_gunAmmo);
+    if(mainplayer->getPlayerRifle())
+        mainplayer->getPlayerRifle()->addAmmoBag(m_rifleAmmo);
+    if(mainplayer->getPlayerShotgun())
+        mainplayer->getPlayerShotgun()->addAmmoBag(m_shotgunAmmo);
+}

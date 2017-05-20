@@ -5,7 +5,7 @@
 #include "SpeedBoost.h"
 #include "Medkit.h"
 #include "Consumable.h"
-#include "AmmoGun.h"
+#include "Ammo.h"
 #include "CShotgun.h"
 #include "CRifle.h"
 #include "MagnetKey.h"
@@ -69,19 +69,6 @@ void Scene::Init()
     /////////////// Waypoints ///////////////////////
     NavGraphNode node0(0, dwe::vec2f(-200, 200));
     navGraph.addNode(node0);
-
-
-    // MEDKITS
-    //createMedkit(-300, 10, 200);
-
-    // SPEEDBOOST
-    createSpeedBoost(-300, 10, 200);
-
-    // LLAVES
-    createMagnetKey(0, 105, 0, 1345);
-    createMagnetKey(1, 785, 0, 1045);
-    createMagnetKey(2, 255, 0, 505);
-
 
     // Creación de jugador
     mainPlayer = GEInstance->createMainPlayer();
@@ -380,5 +367,5 @@ void Scene::createSpeedBoost(float px, float py, float pz)          { m_consumab
 void Scene::createMedkit(float px, float py, float pz)              { m_consumables.push_back(GEInstance->createMedkit(px, py, pz));        }
 void Scene::createCShotgun(float px, float py, float pz)            { m_consumables.push_back(GEInstance->createCShotgun(px, py, pz));      }
 void Scene::createCRifle(float px, float py, float pz)              { m_consumables.push_back(GEInstance->createCRifle(px, py, pz));        }
-void Scene::createAmmoGun(float px, float py, float pz)             { m_consumables.push_back(GEInstance->createAmmoGun(px, py, pz));       }
+void Scene::createAmmo(float px, float py, float pz)                { m_consumables.push_back(GEInstance->createAmmo(px, py, pz));          }
 void Scene::createMagnetKey(int id, float px, float py, float pz)   { m_consumables.push_back(GEInstance->createMagnetKey(id, px, py, pz)); }

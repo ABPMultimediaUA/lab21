@@ -60,9 +60,9 @@ bool Weapon::getIsTaken() { return m_isTaken; }
 /////////////////
 void Weapon::take()
 {
-    if (this->hasNode())
+    if (hasNode())
     {
-        this->removeNode();
+        removeNode();
         m_isTaken = true;
     }
 }

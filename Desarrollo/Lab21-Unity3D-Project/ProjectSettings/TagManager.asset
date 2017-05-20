@@ -9,7 +9,6 @@ TagManager:
   - Door
   - Floor
   - EmenySpam
-  - Bullets
   - Health
   - PlayerStart
   - Wall_01
@@ -33,6 +32,19 @@ TagManager:
   - Floor_400x350
   - DoorRotate
   - Generator
+  - Cama
+  - Especimen
+  - Camilla
+  - Lavabo
+  - WC
+  - CamaDormir
+  - Barril
+  - Ammo
+  - Medkit
+  - MagnetKey
+  - Caja
+  - Mesa
+  - Adrenalina
   layers:
   - Default
   - TransparentFX

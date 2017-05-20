@@ -56,7 +56,7 @@ class CRifle;
 class Gun;
 class Shotgun;
 class Rifle;
-class AmmoGun;
+class Ammo;
 class Program;
 class Drawable;
 class Floor;
@@ -201,11 +201,11 @@ namespace dwe
         Projectile*         createProjectile(vec3f origin, float angle, std::string weapon, int damage);
         ProjectileGrenade*  createProjectileGrenade(vec3f origin, float angle);
         GrenadeExplosion*   createGrenadeExplosion(vec3f origin);
-        Generator*          createGenerator(int i, bool b, float px, float py, float pz);
+        Generator*          createGenerator(int i, bool b);
         MagnetKey*          createMagnetKey(int i, float px, float py, float pz);
         SpeedBoost*         createSpeedBoost(float px, float py, float pz);
         Medkit*             createMedkit(float px, float py, float pz);
-        AmmoGun*            createAmmoGun(float px, float py, float pz);
+        Ammo*               createAmmo(float px, float py, float pz);
         CShotgun*           createCShotgun(float px, float py, float pz);
         CRifle*             createCRifle(float px, float py, float pz);
 

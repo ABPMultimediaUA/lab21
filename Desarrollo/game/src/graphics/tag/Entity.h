@@ -27,9 +27,9 @@ namespace tag
             static std::stack<glm::mat4> TStack;
             static ResourceManager resourceManager;
 
-            static const uint8_t _diffuseTextureIndex   = 1;
-            static const uint8_t _specularTextureIndex  = 2;
-            static const uint8_t _normalTextureIndex    = 3;
+            static const int _diffuseTextureIndex   = 1;
+            static const int _specularTextureIndex  = 2;
+            static const int _normalTextureIndex    = 3;
 
         private:
     };

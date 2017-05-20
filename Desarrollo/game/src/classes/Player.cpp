@@ -13,7 +13,9 @@ Player::Player() :
     m_mKeys[0]=false;
     m_mKeys[1]=false;
     m_mKeys[2]=false;
+    m_mKeys[3]=false;
     m_medkits = 0;
+    m_speedBoosts = 0;
 
     // En segundos
     m_lastTimeTakeDamage= 0.5;
@@ -249,7 +251,7 @@ void Player::readEvents()
      // consumir botiquin
     if(GEInstance->receiver.isKeyDown(KEY_CONSUME_MEDKIT) && (timeElapsed - m_timeMedkit)> _changeOffsetTime)
     {
-        this->consumeMedkit();
+        consumeMedkit();
 
         m_timeMedkit = timeElapsed;
     }
@@ -257,7 +259,7 @@ void Player::readEvents()
      // consumir adrenalina
     if(GEInstance->receiver.isKeyDown(KEY_CONSUME_SPEED) && (timeElapsed - m_timeToSpeedBoost)> _changeOffsetTime)
     {
-        this->consumeSpeedBoost();
+        consumeSpeedBoost();
 
         m_timeToSpeedBoost = timeElapsed;
     }
@@ -272,8 +274,7 @@ void Player::readEvents()
     PlayerMate* playermate = NetInstance->getPlayerMate(1);
     if (GEInstance->receiver.isKeyDown(KEY_GIVE_AMMO)&& (timeElapsed - m_timeGivingStuff) > _changeOffsetTime)
     {
-         //this->giveMedkits(1,playermate);
-         this->giveAmmo(0,1, playermate);
+         giveAmmo(0,1, playermate);
          m_timeGivingStuff = timeElapsed;
     }
 
@@ -287,7 +288,7 @@ void Player::readEvents()
     if(GEInstance->receiver.isKeyDown(KEY_DASH))
     {
         m_localIsEvading = true;
-        this->dash();//evadimos
+        dash();//evadimos
         if(getIsEvading())
             m_currentWeapon->setPut(); // Guardamos arma
     }
@@ -334,35 +335,29 @@ int Player::getNumMedkits()
 void Player::setNumMedkits(int ammount)
 {
     m_medkits = ammount;
-
 }
 
 /////////////
 void Player::addMedkits(int ammount){
     m_medkits += ammount;
-    cout << "\nPlayer.cpp------------Obtengo " << ammount << " medkits---------\n";
 }
 
 /////////////
 void Player::giveMedkits(int ammount, PlayerMate* playermate){
     NetInstance->sendBroadcast(ID_SEND_MEDKIT, playermate->creatingSystemGUID.ToString());
     m_medkits -= ammount;
-    cout << "\nPlayer.cpp------------le doy al otro jugador "<< ammount << " botiquines--------------\n";
 }
 
 /////////////
-void Player::receiveMedkits(int ammount)    {   this->addMedkits(ammount);  }
+void Player::receiveMedkits(int ammount)    {   m_medkits+=ammount;  }
 
 /////////////
 void Player::consumeMedkit()
 {
-    if (this->getNumMedkits() > 0){
+    if (m_health<100 && m_medkits>0){
         m_medkits -= 1;
-        this->setHealth(100);
-        cout << "Vida recuperada: " << this->getHealth() << endl;
+        m_health=100;
     }
-
-    cout << m_medkits << endl;
 }
 
 /////////////

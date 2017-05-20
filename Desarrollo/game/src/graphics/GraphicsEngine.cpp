@@ -39,7 +39,7 @@
 #include "Gun.h"
 #include "Shotgun.h"
 #include "Rifle.h"
-#include "AmmoGun.h"
+#include "Ammo.h"
 #include "GrenadeExplosion.h"
 #include "tag/EAnimation.h"
 
@@ -448,20 +448,18 @@ GrenadeExplosion* dwe::GraphicsEngine::createGrenadeExplosion(vec3f origin)
 	return g;
 }
 
-Generator* dwe::GraphicsEngine::createGenerator(int i, bool b, float px, float py, float pz)
+Generator* dwe::GraphicsEngine::createGenerator(int i, bool b)
 {
 	tag::GraphicNode* node = m_tagEngine.createMesh("media/generador.obj", vec3f(0,0,0), vec3f(0,0,0), "media/generador.bmp");
     Generator* g = new Generator(i, b);
 	g->setNode(new Node(node));
-	g->setPosition(dwe::vec3f(px, py, pz));
-	g->SetSensor();
     NetInstance->addNetEntity(g);
 	return g;
 }
 
 MagnetKey* dwe::GraphicsEngine::createMagnetKey(int i, float px, float py, float pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/llave.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Consumables/magnetKey.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Consumables/magnetKey.bmp");
     MagnetKey* m = new  MagnetKey(i);
 	m->setNode(new Node(node));
 	m->setPosition(dwe::vec3f(px, py, pz));
@@ -470,7 +468,7 @@ MagnetKey* dwe::GraphicsEngine::createMagnetKey(int i, float px, float py, float
 
 SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(float px, float py, float pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/speed/speed.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Consumables/jeringuilla.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Consumables/jeringuilla.bmp");
     SpeedBoost* s = new SpeedBoost();
 	s->setNode(new Node(node));
 	s->setPosition(dwe::vec3f(px, py, pz));
@@ -481,7 +479,7 @@ SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(float px, float py, float pz)
 
 Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Medkit/Medkit.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Consumables/Medkit.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Consumables/Medkit.bmp");
     Medkit* h = new Medkit();
 	h->setNode(new Node(node));
 	h->setPosition(dwe::vec3f(px, py, pz));
@@ -490,10 +488,10 @@ Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
 	return h;
 }
 
-AmmoGun* dwe::GraphicsEngine::createAmmoGun(float px, float py, float pz)
+Ammo* dwe::GraphicsEngine::createAmmo(float px, float py, float pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/ammm/AmmoGun.obj", vec3f(0,0,0), vec3f(0,0,0));
-    AmmoGun* a = new AmmoGun();
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Consumables/ammo.obj", vec3f(0,0,0), vec3f(0,0,0), "media/consumables/ammo.bmp");
+    Ammo* a = new Ammo();
 	a->setNode(new Node(node));
 	a->setPosition(dwe::vec3f(px, py, pz));
 

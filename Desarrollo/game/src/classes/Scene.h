@@ -62,7 +62,7 @@ class Scene
         void createCShotgun(float px, float py, float pz);
         void createCRifle(float px, float py, float pz);
         void createMagnetKey(int id, float px, float py, float pz);
-        void createAmmoGun(float px, float py, float pz);
+        void createAmmo(float px, float py, float pz);
         void updateConsumables(Player* mainPlayer);
         NavigationGraph& getNavGraph();
         TriggerSystem& getTriggerSystem();

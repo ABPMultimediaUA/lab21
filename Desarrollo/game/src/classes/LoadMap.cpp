@@ -51,6 +51,13 @@ void LoadMap::Init(){
 
     numWalls = 0;
     numFloors = 0;
+    numDoors = 0;
+    numDoorsRotate = 0;
+    numGenerators = 0;
+    generatorID = 0;
+    numEnvElements = 0;
+    magnetKeyCount = 0;
+    magnetKeyID = 0;
 
     Scene* s = Scene::Instance();
 
@@ -73,29 +80,18 @@ void LoadMap::Init(){
     //RAPIDJSON
     Document document; //Creacion de documento para rapidJSON
 
-    int contDoorIn = 0; //Se necesita para que el array no se sobreescriba
-    int contAmmoIn = 0; //Se necesita para que el array no se sobreescriba
-    uint8_t contDoorRotate = 0;
-
     //RECORRIDO
     if (document.Parse(json).HasParseError() == false) //coger el json y ver si es correcto
     {
         const Value& levels = document["levels"]; //Referencia a todos los "levels"
-        //cout << "TAMAÑO DE LEVELS = " << levels.Size() << endl;
         for(size_t i=0; i < levels.Size(); i++){
-
-            //const int levelid =  levels[i]["level-id"].GetInt();
-            //cout << "LEVEL-ID = " << levelid << endl;
             const Value& se = levels[i]["static-elements"]; //Referencia a todos los "static-elements";
-            //cout << "TAMAÑO DE SE = " << se.Size() << endl;
             for(size_t j=0; j < se.Size(); j++){
 
                 const Value& e = se[j]; //Recorrer cada "element"
                 std::string id = e["element-id"].GetString();
                 int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = (-1)* e["position"]["z"].GetDouble();
                 int rx = e["rotation"]["x"].GetDouble();    int ry = e["rotation"]["y"].GetDouble();    int rz = e["rotation"]["z"].GetDouble();
-                //cout << e["element-id"].GetString() << endl;
-                //cout << "pos(" << tx << "," << ty << "," << tz << ") ; rot(" <<  rx << ":" <<  ry << ":" <<  rz << ")"<< endl;
 
                 //WALLS
                 TTag2Wall *next = mappingWall;
@@ -109,6 +105,7 @@ void LoadMap::Init(){
                     };
                     ++next;
                 }
+
                 //FLOORS
                 TTag2Floor *nextF = mappingFloor;
                 while(nextF->tag != "0"){
@@ -120,11 +117,79 @@ void LoadMap::Init(){
                         }
                     ++nextF;
                 }
+                // GENERATORS
                 if(id=="Generator"){
-                    generator[4]=GEInstance->createGenerator(3, false, tx, ty, tz);
+                    if(numGenerators==0)
+                        generatorID=2;
+                    else if(numGenerators==1)
+                        generatorID=0;
+                    else if(numGenerators==2)
+                        generatorID=3;
+                    else if(numGenerators==3)
+                        generatorID=1;
+                    generator[numGenerators]=GEInstance->createGenerator(generatorID, false);
+                    generator[numGenerators]->setRotation(dwe::vec3f(rx,ry,rz));
+                    generator[numGenerators]->setPosition(dwe::vec3f(tx,ty,tz));
+                    generator[numGenerators]->SetSensor();
+                    numGenerators++;
+                }
+
+                // ELEMENTOS DEL ENTORNO
+                if(id=="Cama"){
+                    envElements[numEnvElements]=GEInstance->createScenaryElement("environment_elements/cama", "environment_elements/cama");
+                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
+                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                    numEnvElements++;
+                }
+
+                if(id=="Especimen"){
+                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/especimen", "environment_elements/especimen");
+                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
+                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                }
+
+                if(id=="Camilla"){
+                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/camilla", "environment_elements/camilla");
+                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
+                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                }
+
+                if(id=="Lavabo"){
+                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/lavabo", "environment_elements/lavabo");
+                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
+                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                }
+
+                if(id=="WC"){
+                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/banyos", "environment_elements/banyos");
+                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
+                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                }
+
+                if(id=="CamaDormir"){
+                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/camadormir", "environment_elements/camadormir");
+                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
+                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                }
+
+                if(id=="Barril"){
+                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/barril", "environment_elements/barril");
+                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
+                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                }
+
+                if(id=="Caja"){
+                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/box", "environment_elements/box");
+                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
+                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                }
+
+                if(id=="Mesa"){
+                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/mesa", "environment_elements/mesa");
+                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
+                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
                 }
             }
-
 
             //CONSUMABLES
             const Value& ce = levels[i]["initial-consumable"]; //Referencia a todos los "static-elements";
@@ -133,13 +198,26 @@ void LoadMap::Init(){
                 const Value& e = ce[j]; //Recorrer cada "element"
                 std::string id = e["element-id"].GetString();
                 int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = (-1)* e["position"]["z"].GetDouble();
-                if(id=="Bullets"){
-                    s->createAmmoGun(tx, ty, tz);
-                    ++contAmmoIn;
+                if(id=="Ammo"){
+                    s->createAmmo(tx, ty, tz);
+                }
+                if(id=="Medkit"){
+                    s->createMedkit(tx, ty, tz);
+                }
+                if(id=="Adrenalina"){
+                    s->createSpeedBoost(tx, ty, tz);
+                }
+                if(id=="MagnetKey"){
+                    if(magnetKeyCount==1)
+                        magnetKeyID=3;
+                    else if(magnetKeyCount==2)
+                        magnetKeyID=2;
+                    else if(magnetKeyCount==3)
+                        magnetKeyID=1;
+                    s->createMagnetKey(magnetKeyID, tx, ty, tz);
+                    magnetKeyCount++;
                 }
             }
-
-
 
             //DOORS
             const Value& de = levels[i]["initial-entity"]; //Referencia a todos los "static-elements";
@@ -152,62 +230,36 @@ void LoadMap::Init(){
                 int ry = e["rotation"]["y"].GetDouble();
                 uint8_t face = ry / 90; // 0->0, 90->1, 180->2, 270->3
                 if(id=="Door"){
-                    entities[contDoorIn]=GEInstance->createDoor(face, true, tx, ty, tz);
-                    ++contDoorIn;
+                    entities[numDoors]=GEInstance->createDoor(face, true, tx, ty, tz);
+                    ++numDoors;
                 }else if(id=="DoorRotate"){ // Puerta giratoria
-                    entitiesDoorRotate[contDoorRotate]=GEInstance->createDoorRotate(face, true, tx, ty, tz);
-                    ++contDoorRotate;/*/
-                    entities[contDoorIn]=GEInstance->createDoor(face, true, tx, ty, tz);
-                    ++contDoorIn;*/
+                    entitiesDoorRotate[numDoorsRotate]=GEInstance->createDoorRotate(face, true, tx, ty, tz);
+                    ++numDoorsRotate;
                 }
             }
-
-
         }
-        // Generadores
-        generator[0]=GEInstance->createGenerator(0, false, -350, 24, -300); // 1 Derecha Habitaciones
-        generator[0]->setRotation(dwe::vec3f(0, 180, 0));
-        generator[1]=GEInstance->createGenerator(1, false, -750, 24, -280); // 2 Izquierda
-        generator[2]=GEInstance->createGenerator(2, false, -690, 24, -470); // 3 Arriba Mother
 
         // Asignamos puertas a generadores
         Entity **sector = new Entity*[1];
-        ((Door*)entities[5])->setInactive();
-        sector[0]=entities[5];
-        generator[0]->setSector(sector, 1);
         ((Door*)entities[4])->setInactive();
         sector[0]=entities[4];
+        generator[0]->setSector(sector, 1);
+        ((Door*)entities[5])->setInactive();
+        sector[0]=entities[5];
         generator[1]->setSector(sector, 1);
+        ((Door*)entities[2])->setInactive();
+        sector[0]=entities[2];
+        generator[3]->setSector(sector, 1);
         sector = new Entity*[2];((Door*)entities[4])->setInactive();
         ((Door*)entities[32])->setInactive();
         ((Door*)entities[33])->setInactive();
-        sector[0]=entities[32]; //32
-        sector[1]=entities[33]; //33
+        sector[0]=entities[32];
+        sector[1]=entities[33];
         generator[2]->setSector(sector, 2);
 
         // ENVIRONMENT ELEMENTS
-
         /*envElements[0] = GEInstance->createScenaryElement("environment_elements/mesahall", "");
         envElements[0]->setPosition(dwe::vec3f(-7, 0, 287));*/
-        envElements[0] = GEInstance->createScenaryElement("environment_elements/cama", "environment_elements/cama");
-        envElements[0]->setPosition(dwe::vec3f(50, 0, 100));
-        envElements[1] = GEInstance->createScenaryElement("environment_elements/especimen", "environment_elements/especimen");
-        envElements[1]->setPosition(dwe::vec3f(345, 0, -445));
-        envElements[1]->setRotation(dwe::vec3f(0, -30, 0));
-        envElements[2] = GEInstance->createScenaryElement("environment_elements/especimen", "environment_elements/especimen");
-        envElements[2]->setPosition(dwe::vec3f(345, 0, -365));
-        envElements[2]->setRotation(dwe::vec3f(0, -45, 0));
-        envElements[3] = GEInstance->createScenaryElement("environment_elements/camilla", "environment_elements/camilla");
-        envElements[3]->setPosition(dwe::vec3f(50, 0, 200));
-        envElements[4] = GEInstance->createScenaryElement("environment_elements/camadormir", "environment_elements/camadormir");
-        envElements[4]->setPosition(dwe::vec3f(745, 0, 835));
-        //envElements[4]->setRotation(dwe::vec3f(0, -90, 0)); // No se gira la hitbox
-        envElements[5] = GEInstance->createScenaryElement("environment_elements/camadormir", "environment_elements/camadormir");
-        envElements[5]->setPosition(dwe::vec3f(1148, 0, 835));
-        //envElements[5]->setRotation(dwe::vec3f(0, -90, 0));
-
-        envElements[6] = GEInstance->createScenaryElement("environment_elements/armario", "environment_elements/armario");
-        envElements[6]->setPosition(dwe::vec3f(50, 0, 300));
 
         // Armas
         s->createCShotgun(0, 10, -20);

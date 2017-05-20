@@ -36,9 +36,9 @@ void Consumable::Take()
 /////////////////
 void Consumable::take()
 {
-    if (this->hasNode())
+    if (hasNode())
     {
-        this->removeNode();
+        removeNode();
         m_isTaken = true;
         m_trigger->SetToBeRemoved();
     }

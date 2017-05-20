@@ -18,9 +18,10 @@
 #include "Entity.h"
 #define NUM_WALLS           181
 #define NUM_FLOORS          53
-#define NUM_DOORS           34 //34
+#define NUM_DOORS           34
+#define NUM_GENERATORS      4
 #define NUM_MAP_DOORROTATE  1
-#define NUM_ENVIRONMENT_ELEMENTS 7
+#define NUM_ENVIRONMENT_ELEMENTS 41
 
 class LoadMap {
     public:
@@ -41,15 +42,21 @@ class LoadMap {
         ScenaryElement *walls[NUM_WALLS];
 
         // Elementos de escenario
+        int numEnvElements;
         ScenaryElement *envElements[NUM_ENVIRONMENT_ELEMENTS];
 
+        int numDoors;
         Entity *entities[NUM_DOORS]; // Array de puertas
-        Generator *generator[4];
-        MagnetKey *MKAux;
-        std::vector<MagnetKey*> *magnetKeys;
-        //Consumable *ammos[2];
 
+        int numGenerators;
+        int generatorID;
+        Generator *generator[NUM_GENERATORS];
+
+        int numDoorsRotate;
         DoorRotate* entitiesDoorRotate[NUM_MAP_DOORROTATE];
+
+        int magnetKeyCount;
+        int magnetKeyID;
 
         bool cheats;
 };

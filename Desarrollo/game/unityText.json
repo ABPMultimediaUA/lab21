@@ -56,6 +56,9 @@
 		"initial-enemies": [
 		],
 		"initial-consumable": [
+			{ "element-id": "Medkit",
+				"position": { "x":-1181.5, "y":0, "z":-932.6 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 			{ "element-id": "Door",
@@ -120,6 +123,15 @@
 		"initial-enemies": [
 		],
 		"initial-consumable": [
+			{ "element-id": "Medkit",
+				"position": { "x":184, "y":0, "z":-1231 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "MagnetKey",
+				"position": { "x":-0.9, "y":0, "z":-1304.9 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Ammo",
+				"position": { "x":-185.8, "y":0, "z":-1372.4 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 			{ "element-id": "Door",
@@ -191,22 +203,55 @@
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_50m",
 				"position": { "x":-811, "y":-1, "z":-460 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Generator",
-				"position": { "x":-750, "y":-890.4714, "z":898 },
-				"rotation": { "x":0, "y":0, "z":0 }}
+				"rotation": { "x":0, "y":90, "z":0 }}
 		],
 		"initial-enemies": [
-			{ "element-id": "EmenySpam",
-				"position": { "x":0, "y":0, "z":80 },
-				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
-			{ "element-id": "Bullets",
-				"position": { "x":123.5, "y":10, "z":-80 },
+			{ "element-id": "Ammo",
+				"position": { "x":-188, "y":0, "z":-137 },
 				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Bullets",
-				"position": { "x":-112.5, "y":10, "z":33.8 },
+			{ "element-id": "Ammo",
+				"position": { "x":-50, "y":0, "z":-137 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Ammo",
+				"position": { "x":140, "y":0, "z":-137 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Ammo",
+				"position": { "x":318, "y":0, "z":-137 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Ammo",
+				"position": { "x":-294, "y":0, "z":-137 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Medkit",
+				"position": { "x":-299, "y":0, "z":-47.4 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Medkit",
+				"position": { "x":-195, "y":0, "z":-47.4 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Medkit",
+				"position": { "x":-56, "y":0, "z":-47.4 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Medkit",
+				"position": { "x":147, "y":0, "z":-47.4 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Medkit",
+				"position": { "x":323, "y":0, "z":-47.4 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Adrenalina",
+				"position": { "x":-284.3, "y":0, "z":-182.3 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Adrenalina",
+				"position": { "x":-196.4, "y":0, "z":-182.3 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Adrenalina",
+				"position": { "x":-54.4, "y":0, "z":-182.3 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Adrenalina",
+				"position": { "x":150.4, "y":0, "z":-182.3 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Adrenalina",
+				"position": { "x":321.5, "y":0, "z":-182.3 },
 				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
@@ -224,10 +269,7 @@
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "DoorRotate",
 				"position": { "x":-2.5, "y":-1, "z":-488 },
-				"rotation": { "x":0, "y":180, "z":0 }},
-			{ "element-id": "PlayerStart",
-				"position": { "x":120, "y":10, "z":50.5 },
-				"rotation": { "x":0, "y":18.00001, "z":0 }}
+				"rotation": { "x":0, "y":180, "z":0 }}
 		]
 	},
 	{
@@ -245,11 +287,23 @@
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":-240, "y":0, "z":-610 },
-				"rotation": { "x":0, "y":270, "z":0 }}
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Lavabo",
+				"position": { "x":-640, "y":0, "z":-595 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "WC",
+				"position": { "x":-338.4, "y":0, "z":-659 },
+				"rotation": { "x":0, "y":180, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
+			{ "element-id": "Medkit",
+				"position": { "x":-270, "y":0, "z":-525 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Adrenalina",
+				"position": { "x":-547, "y":0, "z":-639.4 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 		]
@@ -270,11 +324,23 @@
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":670, "y":0, "z":-610 },
-				"rotation": { "x":0, "y":270, "z":0 }}
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Lavabo",
+				"position": { "x":270, "y":0, "z":-595 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "WC",
+				"position": { "x":570.9, "y":0, "z":-659 },
+				"rotation": { "x":0, "y":180, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
+			{ "element-id": "Ammo",
+				"position": { "x":640, "y":0, "z":-525 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Adrenalina",
+				"position": { "x":321, "y":0, "z":-589 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 		]
@@ -320,11 +386,47 @@
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":-1010, "y":-1, "z":-600.0001 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Barril",
+				"position": { "x":-929, "y":0, "z":-437 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Barril",
+				"position": { "x":-955, "y":0, "z":-437 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Barril",
+				"position": { "x":-939, "y":0, "z":-460 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Barril",
+				"position": { "x":-929, "y":0, "z":-483 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Caja",
+				"position": { "x":-1070, "y":0, "z":-572.6 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Caja",
+				"position": { "x":-1059, "y":0, "z":-545 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Caja",
+				"position": { "x":-1010.2, "y":0, "z":-572.6 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Caja",
+				"position": { "x":-1040.6, "y":0, "z":-577.4 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Caja",
+				"position": { "x":-1075.1, "y":22.6, "z":-556.8 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Caja",
+				"position": { "x":-1024.3, "y":0, "z":-543.2 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Caja",
+				"position": { "x":-1072.3, "y":0, "z":-516.7 },
 				"rotation": { "x":0, "y":180, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
+			{ "element-id": "Ammo",
+				"position": { "x":-930.2, "y":0, "z":-508.9 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 			{ "element-id": "Door",
@@ -346,8 +448,11 @@
 				"position": { "x":-1200, "y":-1, "z":-209 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_200m",
-				"position": { "x":-1300, "y":-1, "z":-299 },
-				"rotation": { "x":0, "y":270, "z":0 }}
+				"position": { "x":-1300, "y":-1, "z":-290 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Barril",
+				"position": { "x":-1220, "y":0, "z":-293.1 },
+				"rotation": { "x":0, "y":90, "z":0 }}
 		],
 		"initial-enemies": [
 		],
@@ -406,7 +511,7 @@
 				"position": { "x":-1200, "y":0, "z":-600 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1400, "y":0, "z":-490 },
+				"position": { "x":-1391, "y":0, "z":-489 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":-1600, "y":0, "z":-600 },
@@ -463,6 +568,12 @@
 		"level-id":15,
 		"level-name":"LAB_L_01 (2)",
 		"static-elements": [
+			{ "element-id": "Cama",
+				"position": { "x":-1140, "y":0, "z":240 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Cama",
+				"position": { "x":-1060, "y":0, "z":-40.00002 },
+				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Floor_200x100",
 				"position": { "x":-1110, "y":0, "z":100 },
 				"rotation": { "x":0, "y":90, "z":0 }},
@@ -485,6 +596,9 @@
 		"initial-enemies": [
 		],
 		"initial-consumable": [
+			{ "element-id": "Medkit",
+				"position": { "x":-1033.1, "y":0, "z":274.7 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 			{ "element-id": "Door",
@@ -513,11 +627,20 @@
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":-1300, "y":0, "z":190.0001 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Cama",
+				"position": { "x":-1440, "y":0, "z":-40.00009 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Cama",
+				"position": { "x":-1360, "y":0, "z":240.0001 },
 				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
+			{ "element-id": "Ammo",
+				"position": { "x":-1476.6, "y":0, "z":277.4001 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 			{ "element-id": "Door",
@@ -543,11 +666,23 @@
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_200m",
 				"position": { "x":-1000, "y":0, "z":590 },
-				"rotation": { "x":0, "y":90, "z":0 }}
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Mesa",
+				"position": { "x":-1134.6, "y":0, "z":769.3 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Mesa",
+				"position": { "x":-1028, "y":0, "z":659 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Mesa",
+				"position": { "x":-1028, "y":0, "z":498 },
+				"rotation": { "x":0, "y":180, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
+			{ "element-id": "Ammo",
+				"position": { "x":-1032.4, "y":0, "z":771.3 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 			{ "element-id": "Door",
@@ -573,7 +708,16 @@
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_200m",
 				"position": { "x":-1390, "y":0, "z":911 },
-				"rotation": { "x":0, "y":0, "z":0 }}
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Camilla",
+				"position": { "x":-1550, "y":0, "z":850 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Camilla",
+				"position": { "x":-1425, "y":0, "z":850 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Camilla",
+				"position": { "x":-1300, "y":0, "z":850 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-enemies": [
 		],
@@ -609,11 +753,29 @@
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_50m",
 				"position": { "x":-1840, "y":0, "z":711 },
-				"rotation": { "x":0, "y":180, "z":0 }}
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Especimen",
+				"position": { "x":-1840, "y":0, "z":675 },
+				"rotation": { "x":0, "y":69.00002, "z":0 }},
+			{ "element-id": "Especimen",
+				"position": { "x":-1835, "y":0, "z":535 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Especimen",
+				"position": { "x":-1745, "y":0, "z":535 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Especimen",
+				"position": { "x":-1765, "y":0, "z":675 },
+				"rotation": { "x":0, "y":69.00002, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
+			{ "element-id": "Ammo",
+				"position": { "x":-1788.6, "y":0, "z":530.5 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "MagnetKey",
+				"position": { "x":-1855.7, "y":0, "z":600 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 		]
@@ -672,7 +834,10 @@
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":-810.0001, "y":0, "z":290 },
-				"rotation": { "x":0, "y":270, "z":0 }}
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Generator",
+				"position": { "x":-764.0001, "y":0, "z":279 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-enemies": [
 		],
@@ -697,7 +862,10 @@
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":-289.9999, "y":0, "z":290 },
-				"rotation": { "x":0, "y":90, "z":0 }}
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Generator",
+				"position": { "x":-335, "y":0, "z":300 },
+				"rotation": { "x":0, "y":180, "z":0 }}
 		],
 		"initial-enemies": [
 		],
@@ -722,11 +890,23 @@
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_200m",
 				"position": { "x":-550, "y":-1, "z":580 },
-				"rotation": { "x":0, "y":0, "z":0 }}
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Generator",
+				"position": { "x":-705, "y":0, "z":466 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Generator",
+				"position": { "x":-396, "y":0, "z":487 },
+				"rotation": { "x":0, "y":180, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
+			{ "element-id": "Medkit",
+				"position": { "x":-560, "y":0, "z":555 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Ammo",
+				"position": { "x":-515, "y":0, "z":555 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 			{ "element-id": "Door",
@@ -859,6 +1039,9 @@
 		"initial-enemies": [
 		],
 		"initial-consumable": [
+			{ "element-id": "MagnetKey",
+				"position": { "x":800, "y":0, "z":510 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 			{ "element-id": "Door",
@@ -881,6 +1064,9 @@
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_200m",
 				"position": { "x":690, "y":-1, "z":910.0001 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Barril",
+				"position": { "x":855.4001, "y":0, "z":885.8 },
 				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-enemies": [
@@ -906,11 +1092,20 @@
 				"rotation": { "x":0, "y":5.122641E-05, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":299.2, "y":-1, "z":400.0001 },
-				"rotation": { "x":0, "y":270.0001, "z":0 }}
+				"rotation": { "x":0, "y":270.0001, "z":0 }},
+			{ "element-id": "Especimen",
+				"position": { "x":340.2, "y":0, "z":425 },
+				"rotation": { "x":0, "y":11.98005, "z":0 }},
+			{ "element-id": "Especimen",
+				"position": { "x":340.2, "y":0, "z":350 },
+				"rotation": { "x":0, "y":37.46005, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
+			{ "element-id": "Ammo",
+				"position": { "x":325.4001, "y":0, "z":469.2 },
+				"rotation": { "x":0, "y":5.122641E-05, "z":0 }}
 		],
 		"initial-entity": [
 			{ "element-id": "Door",
@@ -926,7 +1121,7 @@
 				"position": { "x":1000, "y":0, "z":-350 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_50m",
-				"position": { "x":849.9999, "y":0, "z":-400 },
+				"position": { "x":850.9999, "y":0, "z":-400 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":1100, "y":0, "z":-400 },
@@ -1027,7 +1222,10 @@
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":780, "y":0, "z":-750 },
-				"rotation": { "x":0, "y":0, "z":0 }}
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "CamaDormir",
+				"position": { "x":722, "y":0, "z":-802 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-enemies": [
 		],
@@ -1054,7 +1252,10 @@
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":780, "y":-1, "z":-1150 },
-				"rotation": { "x":0, "y":0, "z":0 }}
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "CamaDormir",
+				"position": { "x":723.9999, "y":0, "z":-1102 },
+				"rotation": { "x":0, "y":90, "z":0 }}
 		],
 		"initial-enemies": [
 		],
@@ -1081,7 +1282,10 @@
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":1120, "y":-1, "z":-1150 },
-				"rotation": { "x":0, "y":180, "z":0 }}
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "CamaDormir",
+				"position": { "x":1178, "y":0, "z":-1002 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-enemies": [
 		],
@@ -1105,11 +1309,17 @@
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":1210, "y":0, "z":-860 },
-				"rotation": { "x":0, "y":90, "z":0 }}
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "CamaDormir",
+				"position": { "x":1178, "y":0, "z":-802 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
+			{ "element-id": "Adrenalina",
+				"position": { "x":1125.8, "y":42, "z":-821.3 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 			{ "element-id": "Door",
@@ -1226,7 +1436,10 @@
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":1840, "y":0, "z":-379.9999 },
-				"rotation": { "x":0, "y":0, "z":0 }}
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "CamaDormir",
+				"position": { "x":1917, "y":0, "z":-434 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-enemies": [
 		],
@@ -1250,11 +1463,17 @@
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":1840, "y":0, "z":-900.0001 },
-				"rotation": { "x":0, "y":180, "z":0 }}
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "CamaDormir",
+				"position": { "x":1916, "y":0, "z":-851 },
+				"rotation": { "x":0, "y":90, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
+			{ "element-id": "Adrenalina",
+				"position": { "x":1789.5, "y":0, "z":-761.8 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 			{ "element-id": "Door",
@@ -1277,11 +1496,17 @@
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":2150, "y":0, "z":-470 },
-				"rotation": { "x":0, "y":90, "z":0 }}
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "CamaDormir",
+				"position": { "x":1983, "y":0, "z":-434 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-enemies": [
 		],
 		"initial-consumable": [
+			{ "element-id": "MagnetKey",
+				"position": { "x":2124.9, "y":0, "z":-405.4999 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 			{ "element-id": "Door",
@@ -1304,7 +1529,10 @@
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":2150, "y":0, "z":-810 },
-				"rotation": { "x":0, "y":270, "z":0 }}
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "CamaDormir",
+				"position": { "x":2120, "y":0, "z":-851.5 },
+				"rotation": { "x":0, "y":90, "z":0 }}
 		],
 		"initial-enemies": [
 		],
@@ -1352,7 +1580,7 @@
 		"initial-entity": [
 			{ "element-id": "Door",
 				"position": { "x":1190, "y":-1, "z":-350 },
-				"rotation": { "x":0, "y":90, "z":0 }},
+				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Door",
 				"position": { "x":1250, "y":-1, "z":-580 },
 				"rotation": { "x":0, "y":0, "z":0 }},
@@ -1483,6 +1711,21 @@
 		"initial-enemies": [
 		],
 		"initial-consumable": [
+			{ "element-id": "Ammo",
+				"position": { "x":-25.00004, "y":0, "z":295.9999 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Ammo",
+				"position": { "x":70.00005, "y":0, "z":158.6997 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Ammo",
+				"position": { "x":-81.8001, "y":0, "z":226.2998 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Medkit",
+				"position": { "x":1.199971, "y":0, "z":204.5998 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Medkit",
+				"position": { "x":66.00005, "y":0, "z":258.9998 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 			{ "element-id": "Door",

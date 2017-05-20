@@ -94,7 +94,7 @@ class Player : public CharacterController
         Firearm*    m_weapons[eNumWeapons];
         int         m_grenades;
         int         m_life;
-        bool        m_mKeys[3];
+        bool        m_mKeys[4];
         int         m_medkits;
         int         m_speedBoosts;
         float       m_lastTimeTakeDamage;

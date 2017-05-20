@@ -2,6 +2,7 @@
 #define AMMO_H
 
 #include <Consumable.h>
+#include "Player.h"
 
 
 class Ammo : public Consumable
@@ -10,17 +11,17 @@ class Ammo : public Consumable
         Ammo();
         virtual ~Ammo();
 
-        // Getters & Setters
-        int getAmmount();
-        void setAmmount(int a);
+        void update(){};
+        void render(){};
 
-        virtual void render() {};
-        virtual void update() {};
+        void onTake(Player* mainplayer);
 
     protected:
 
     private:
-        int m_ammount;
+        int m_gunAmmo;
+        int m_rifleAmmo;
+        int m_shotgunAmmo;
 };
 
 #endif // AMMO_H

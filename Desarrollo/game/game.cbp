@@ -286,14 +286,6 @@
 		<Unit filename="src/classes/triggersystem/TriggerSystem.h" />
 		<Unit filename="src/classes/weapons/Ammo.cpp" />
 		<Unit filename="src/classes/weapons/Ammo.h" />
-		<Unit filename="src/classes/weapons/AmmoGrenade.cpp" />
-		<Unit filename="src/classes/weapons/AmmoGrenade.h" />
-		<Unit filename="src/classes/weapons/AmmoGun.cpp" />
-		<Unit filename="src/classes/weapons/AmmoGun.h" />
-		<Unit filename="src/classes/weapons/AmmoRifle.cpp" />
-		<Unit filename="src/classes/weapons/AmmoRifle.h" />
-		<Unit filename="src/classes/weapons/AmmoShotgun.cpp" />
-		<Unit filename="src/classes/weapons/AmmoShotgun.h" />
 		<Unit filename="src/classes/weapons/CRifle.cpp" />
 		<Unit filename="src/classes/weapons/CRifle.h" />
 		<Unit filename="src/classes/weapons/CShotgun.cpp" />
