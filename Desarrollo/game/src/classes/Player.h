@@ -49,6 +49,7 @@ class Player : public CharacterController
         void setMKeys(int id);
         bool getMKey(int n);
         void addSpeedBoost();
+        int getSpeedBoosts();
         int getNumMedkits();
         void setNumMedkits(int ammount);
         void addMedkits(int ammount);

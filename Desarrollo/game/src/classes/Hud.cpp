@@ -32,10 +32,10 @@ void Hud::draw()
     int ammo            = mainPlayer->getCurrentWeapon()->getAmmo();
     int ammoBag         = mainPlayer->getCurrentWeapon()->getAmmoBag();
     int grenades        = mainPlayer->getGrenades();
-
+    int speedBoosts     = mainPlayer->getSpeedBoosts();
 
     WeaponBox->draw(weapon, ammo, ammoBag, grenades);
 
-    HealthBox->draw(medkits, health, maxHealth);
+    HealthBox->draw(medkits, health, maxHealth, speedBoosts);
 }
 

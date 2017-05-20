@@ -81,7 +81,7 @@ void dwe::GraphicsEngine::init()
         m_messageLine[i].setFont(m_font);
         m_messageLine[i].setCharacterSize(14);
         m_messageLine[i].setFillColor(sf::Color(255, 255, 255, 255));
-        m_messageLine[i].setPosition(10.f, GraphicsEngine::_screenHeight - (i+1)*16.f);
+        m_messageLine[i].setPosition(250.f, GraphicsEngine::_screenHeight - (i+1)*16.f);
         m_messageLine[i].setString("");
 	}
 
@@ -257,7 +257,7 @@ Player* dwe::GraphicsEngine::createMainPlayer()
 /////////////////////////////////
 PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 {
-    tag::EAnimation* anim = m_tagEngine.createNumAnimations(7);
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(7, "media/player/playerMate.bmp");
     m_tagEngine.createAnimation(anim, "media/player/playerStand/playerStand",  eAnimPlayerStand,   1);
     m_tagEngine.createAnimation(anim, "media/player/playerRun/playerRun",      eAnimPlayerRun,     20);
     m_tagEngine.createAnimation(anim, "media/player/playerWalk/playerWalk",      eAnimPlayerStealth,     10);

@@ -51,8 +51,7 @@ GSMainMenu* GSMainMenu::getInstance()
 void GSMainMenu::Render(){
     if(page==0){
         if(!menuInfo){
-            cout<<"/**************************************************/"<<endl;
-            cout<<"Menu Principal"<<endl;
+            // Menu Principal
             menuInfo=true;
         }
         menuBackground->draw();
@@ -64,10 +63,7 @@ void GSMainMenu::Render(){
         mainMenuDecoration->draw();
     }else if(page==1){
         if(!menuInfo){
-            cout<<"/**************************************************/"<<endl;
-            cout<<"Menu Jugar Online"<<endl;
-            cout<<"Aqui aparecera una lista de servidores a los que unirte"<<endl; // Array de servers
-            cout<<"Podras crear tu propia sala"<<endl; // Crear Lobby
+            // Menu Jugar Online: aparecera lista de servidores. Crear lobby
             menuInfo=true;
         }
         menuBackground->draw();
@@ -77,10 +73,7 @@ void GSMainMenu::Render(){
         backButton->draw();
     }else if(page==4){
         if(!menuInfo){
-            cout<<"/**************************************************/"<<endl;
-            cout<<"Menu Seleccionar Lobby"<<endl;
-            cout<<"Aqui aparecera una lista de lobbys a las que unirte"<<endl; // Array de lobbys?
-            cout<<"Podras crear tu propia sala"<<endl; // Crear Lobby
+            // Seleccionar Lobby"<<endl;
             menuInfo=true;
         }
         menuBackground->draw();

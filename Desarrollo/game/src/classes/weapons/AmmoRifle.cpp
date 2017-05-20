@@ -13,7 +13,6 @@ AmmoRifle::~AmmoRifle()
 //////////////////
 void AmmoRifle::onTake(Player* mainplayer)
 {
-    // TODO
     mainplayer->getPlayerRifle()->addAmmoBag(30);
 }
 

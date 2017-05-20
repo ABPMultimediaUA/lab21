@@ -44,29 +44,6 @@ void Scene::Init()
     m_timeEnemyActive       = 5.0;  // En segundos
     m_posMother             = dwe::vec3f(0,62.0,-1617.0);
 
-
-    ///////////////////////////////////
-    if (NetInstance->isMultiplayer())
-    {
-        if (NetInstance->isServer()){
-            GEInstance->addMessageLine("Pulsa Intro cuando esten todos los jugadores");
-            cout<<"Pulsa Intro cuando esten todos los jugadores"<<endl;
-        }else{
-            GEInstance->addMessageLine("Esperando a que el servidor de la partida inicie el juego");
-        }
-        // En startGame solo se inicia si es el servidor
-        while (!NetInstance->getGameStarted() && GEInstance->isRunning())
-        {
-
-            //GEInstance->draw(); // Si se dibuja la escena peta
-
-            NetInstance->update();
-            if (GEInstance->receiver.isKeyDown(KEY_INIT_GAME))
-                NetInstance->startGame();
-        }
-    }
-    GEInstance->addMessageLine("Partida iniciada");
-
     /////////////// Waypoints ///////////////////////
     NavGraphNode node0(0, dwe::vec2f(-200, 200));
     navGraph.addNode(node0);
@@ -90,7 +67,8 @@ void Scene::Init()
     GEInstance->push();
     LoadingScreen::getInstance()->LoadingDraw("LoadingScreen/Barra3");
     //TODO he puesto posicion para pruebas mainPlayer->setPosition(dwe::vec3f(-1205-((NetInstance->getParticipantOrder()-1)*30),24,1150));
-                mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,80));
+
+    mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),21,60));
     World->setMainPlayer(mainPlayer);
 
     mainPlayer->addWeapon(eGun);  // Por defecto tiene la pistola
@@ -102,13 +80,14 @@ void Scene::Init()
     GEInstance->pop();
     GEInstance->createCamera();
     GEInstance->push();
+    GEInstance->updateCamera(mainPlayer->getPosition(), 0, 0);
 }
 
 void Scene::createEnemies()
 {
     m_numEnemies = m_numActiveEnemies = 11;
     m_enemies = new TEnemy[m_numEnemies];
-    m_enemies[ 0].enemy = GEInstance->createEnemyHumanoid(-200,24,200);
+    m_enemies[ 0].enemy = GEInstance->createEnemyHumanoid(-200,23,200);
     m_enemies[ 1].enemy = GEInstance->createEnemyDog(-250,24,300);
     m_enemies[ 2].enemy = GEInstance->createEnemyBat(-300,24,250);
     m_enemies[ 3].enemy = GEInstance->createEnemyGuardian(-310,24,100);

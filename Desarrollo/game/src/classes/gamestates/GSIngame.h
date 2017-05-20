@@ -11,6 +11,7 @@ class GSIngame : public GState{
         ~GSIngame();
         void Init();
 
+
         void HandleEvents();
         void Update();
         void Render();
@@ -22,7 +23,13 @@ class GSIngame : public GState{
         bool m;
         bool m_pausePermission; // Booleano para controlar el boton pausa
         bool m_clickPermission;
+
+        bool m_gameStarted;
+
         Hud* hud;
+
+        void checkForNetGameStarted();
+
 };
 
 #endif // GSINGAME_H

@@ -59,7 +59,9 @@ void Projectile::onBeginContact(EntityPhysics* otherObject)
     collides = (otherObject
                 && otherObject->getClassID()!=EntityPhysics::trigger_id
                 && otherObject->getClassID()!=EntityPhysics::triggerSound_id
-                && otherObject->getClassID()!=EntityPhysics::consumable_id );
+                && otherObject->getClassID()!=EntityPhysics::consumable_id
+                && otherObject->getClassID()!=EntityPhysics::triggerDamage_id
+                && otherObject->getClassID()!=EntityPhysics::triggerVision_id );
 }
 
 /////////////////

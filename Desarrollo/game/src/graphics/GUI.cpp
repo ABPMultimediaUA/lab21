@@ -405,6 +405,9 @@ dwe::HealthBox::HealthBox(float x, float y)
     /**** Botiquines ****/
     setComponents("media/HUDHeal.png", &s_heal, &t_heal, s_box.getPosition().x + 65, s_box.getPosition().y + 5);
 
+    /**** Adrenalina ****/
+    setComponents("media/HUDBoost.png", &s_speedBoost, &t_speedBoost, s_box.getPosition().x + 120, s_box.getPosition().y + 5);
+
     /**** Texto de Vida actual / Vida total ****/
     font.loadFromFile("media/exoregular.otf");
     text_health.setFont(font);
@@ -418,11 +421,17 @@ dwe::HealthBox::HealthBox(float x, float y)
     text_heal.setColor(sf::Color::White);
     text_heal.setPosition(s_box.getPosition().x + 90, s_box.getPosition().y + 10);
 
+     /**** Texto de Adrenalina ****/
+    text_sb.setFont(font);
+    text_sb.setCharacterSize(12);
+    text_sb.setColor(sf::Color::White);
+    text_sb.setPosition(s_box.getPosition().x + 160, s_box.getPosition().y + 10);
+
 }
 
 dwe::HealthBox::~HealthBox() {}
 
-void dwe::HealthBox::draw(int medkits, int health, int maxHealth)
+void dwe::HealthBox::draw(int medkits, int health, int maxHealth, int speedBoosts)
 {
 
 
@@ -439,6 +448,10 @@ void dwe::HealthBox::draw(int medkits, int health, int maxHealth)
     GEInstance->drawSprite(s_heal);
 
     drawNumberOfMedkits(medkits);
+
+    GEInstance->drawSprite(s_speedBoost);
+
+    drawNumberOfSpeedBoosts(speedBoosts);
 }
 
 
@@ -472,4 +485,13 @@ void dwe::HealthBox::drawNumberOfMedkits(int medkits)
     text_heal.setString(sh.str());
 
     GEInstance->drawText(text_heal);
+}
+
+void dwe::HealthBox::drawNumberOfSpeedBoosts(int speedBoosts)
+{
+    std::stringstream sh;
+    sh << "x" << speedBoosts;
+    text_sb.setString(sh.str());
+
+    GEInstance->drawText(text_sb);
 }
