@@ -6,6 +6,7 @@
 #include <sstream>
 #include "AudioEngine.h"
 #include "GUI.h"
+#include "LoadingScreen.h"
 
 #include <iostream>
 
@@ -130,6 +131,7 @@ void GSMainMenu::HandleEvents(){
                     menuInfo=false;
                     m_clickPermission=false;
                     Game::getInstance()->ChangeState(GSIngame::getInstance());
+                    LoadingScreen::getInstance()->Init();
                     GSIngame::getInstance()->Init();
                 }
                 else if(playOnlineButton->buttonCheck(mousePosX, mousePosY) || GEInstance->receiver.isKeyDown(KEY_KEY_2))
@@ -289,6 +291,7 @@ void GSMainMenu::Update(){
     if(enterNet && serverSelection && serverInfo && lobbySelection)
     {
         Game::getInstance()->ChangeState(GSIngame::getInstance());
+        LoadingScreen::getInstance()->Init();
         GSIngame::getInstance()->Init();
         menuInfo=false;
         enterNet=false;

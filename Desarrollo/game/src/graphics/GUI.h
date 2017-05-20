@@ -51,6 +51,7 @@ namespace dwe{
             Sprite(std::string s, int x, int y);
             ~Sprite();
             void draw();
+            void SetTexture(std::string s);
         private:
             sf::Texture texture;
             sf::Sprite sp;

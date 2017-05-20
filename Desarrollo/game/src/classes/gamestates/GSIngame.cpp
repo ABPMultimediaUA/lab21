@@ -6,6 +6,7 @@
 #include "NetGame.h"
 #include "GSEnd.h"
 #include "AudioEngine.h"
+#include "LoadingScreen.h"
 
 #include <iostream>
 using namespace std;
@@ -23,14 +24,17 @@ GSIngame* GSIngame::getInstance()
 }
 
 void GSIngame::Init(){
+    LoadingScreen::getInstance()->LoadingDraw("LoadingScreen/Barra1");
     page = 0;
     m = false;
     m_pausePermission = false;
     m_clickPermission = false;
     LoadMap::getInstance()->Init();
+    LoadingScreen::getInstance()->LoadingDraw("LoadingScreen/Barra2");
     WorldInstance::Instance();
     timeStamp = World->getTimeElapsed();
     Scene::Instance()->Init();
+    LoadingScreen::getInstance()->LoadingDraw("LoadingScreen/Barra5");
     hud = new Hud();
 
 #ifdef LAB21_DEBUG
@@ -110,8 +114,8 @@ void GSIngame::Render(){
         hud->draw();
     }
 }
-GSIngame::~GSIngame(){
-
+GSIngame::~GSIngame()
+{
     cout<<"He borrado el mapa"<<endl;
 
 }

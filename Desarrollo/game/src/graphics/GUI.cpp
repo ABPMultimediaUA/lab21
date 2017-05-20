@@ -116,8 +116,7 @@ void dwe::Button::clicked()
 /*** SPRITE INI***/
 dwe::Sprite::Sprite(std::string s, int x, int y)
 {
-    texture.loadFromFile("media/"+s+".png");
-    sp.setTexture(texture, true);
+    SetTexture(s);
     sp.setPosition(x, y);
 }
 
@@ -126,6 +125,12 @@ dwe::Sprite::~Sprite(){};
 void dwe::Sprite::draw()
 {
     GEInstance->drawSprite(sp);
+}
+
+void dwe::Sprite::SetTexture(std::string s)
+{
+    texture.loadFromFile("media/"+s+".png");
+    sp.setTexture(texture, true);
 }
 
 /*** SPRITE FIN***/

@@ -6,23 +6,23 @@
 #include "Hud.h"
 
 class GSIngame : public GState{
-public:
-    GSIngame();
-    ~GSIngame();
-    void Init();
+    public:
+        GSIngame();
+        ~GSIngame();
+        void Init();
 
-    void HandleEvents();
-    void Update();
-    void Render();
-    static GSIngame* getInstance();
-private:
-    int page;
-    float timeStamp;
-    float deltaTime;
-    bool m;
-    bool m_pausePermission; // Booleano para controlar el boton pausa
-    bool m_clickPermission;
-    Hud* hud;
+        void HandleEvents();
+        void Update();
+        void Render();
+        static GSIngame* getInstance();
+    private:
+        int page;
+        float timeStamp;
+        float deltaTime;
+        bool m;
+        bool m_pausePermission; // Booleano para controlar el boton pausa
+        bool m_clickPermission;
+        Hud* hud;
 };
 
 #endif // GSINGAME_H

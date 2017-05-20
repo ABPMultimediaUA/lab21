@@ -6,7 +6,7 @@
 Rifle::Rifle()
 {
     id=eRifle;
-    m_damage = 1;
+    m_damage = 2;
     m_ammo = 30;
     m_ammoClip = 30;
     m_bagAmmo = 90;

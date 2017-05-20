@@ -6,6 +6,7 @@
 #include "NetGame.h"
 #include "Projectile.h"
 #include "TriggerDamage.h"
+#include "TriggerVision.h"
 #include "Scene.h"
 
 #include <limits>
@@ -24,6 +25,12 @@ Enemy::Enemy() :
     setClassID(EntityPhysics::enemy_id);
     closestPlayer = 0;
     // Parámetros de físicas por defecto
+}
+
+void Enemy::SetVision()
+{
+    m_triggerVision = new TriggerVision(this);
+    Scene::Instance()->getTriggerSystem().Add(m_triggerVision);
 }
 
 Enemy::~Enemy()
@@ -71,6 +78,11 @@ bool Enemy::Sense()
 void Enemy::Hear(dwe::vec3f pos)
 {
     m_perception->Hear(pos);
+}
+
+void Enemy::SeePlayer(dwe::vec3f pos)
+{
+    m_perception->See(pos);
 }
 
 void Enemy::SetClosestPlayer(Drawable* closest)
@@ -190,6 +202,7 @@ void Enemy::activeEnemy(dwe::vec3f position)
     setPosition(dwe::vec3f(position.x, getPosition().y, position.z+150));
     resetHealth();
     setPhysicsActive(true);
+    m_triggerVision->setPhysicsActive(true);
 
     // activar animacion parado
     setAnimation(dwe::eAnimEnemyStand);
@@ -201,6 +214,7 @@ void Enemy::activeEnemy(dwe::vec3f position)
 void Enemy::deactiveEnemy()
 {
     setPhysicsActive(false);
+    m_triggerVision->setPhysicsActive(false);
 
     // activar animacion de morir
     setAnimation(dwe::eAnimEnemyDeath);

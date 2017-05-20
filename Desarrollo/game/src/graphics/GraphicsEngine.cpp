@@ -292,6 +292,7 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
     Humanoid* p = new Humanoid();
 	p->setNode(new Node(node));
 	p->setPosition(dwe::vec3f(px, py, pz));
+	p->SetVision();
 
 	NetInstance->addNetEnemy(p);
 	return p;
@@ -315,6 +316,7 @@ Mother* dwe::GraphicsEngine::createEnemyMother(int px, int py, int pz)
     Mother* p = new Mother();
 	p->setNode(new Node(node));
 	p->setPosition(dwe::vec3f(px, py, pz));
+	p->SetVision();
 
 	NetInstance->addNetEnemy(p);
 	return p;
@@ -336,6 +338,8 @@ Dog* dwe::GraphicsEngine::createEnemyDog(int px, int py, int pz)
     Dog* p = new Dog();
 	p->setNode(new Node(node));
     p->setPosition(dwe::vec3f(px, py, pz));
+    p->SetVision();
+
 	NetInstance->addNetEnemy(p);
 	return p;
 }
@@ -350,6 +354,7 @@ Bat* dwe::GraphicsEngine::createEnemyBat(int px, int py, int pz)
     Bat* b = new Bat();
     b->setNode(new Node(node));
     b->setPosition(dwe::vec3f(px, py, pz));
+    b->SetVision();
 
     NetInstance->addNetEnemy(b);
     return b;
@@ -369,6 +374,7 @@ Guardian* dwe::GraphicsEngine::createEnemyGuardian(int px, int py, int pz)
     Guardian* g = new Guardian();
 	g->setNode(new Node(node));
     g->setPosition(dwe::vec3f(px, py, pz));
+    g->SetVision();
 
 	NetInstance->addNetEnemy(g);
 	return g;
@@ -387,6 +393,7 @@ Legless* dwe::GraphicsEngine::createEnemyLegless(int px, int py, int pz)
     Legless* l = new Legless();
     l->setNode(new Node(node));
     l->setPosition(dwe::vec3f(px, py, pz));
+    l->SetVision();
 
     NetInstance->addNetEnemy(l);
     return l;

@@ -167,6 +167,8 @@
 		<Unit filename="src/classes/Hud.h" />
 		<Unit filename="src/classes/LoadMap.cpp" />
 		<Unit filename="src/classes/LoadMap.h" />
+		<Unit filename="src/classes/LoadingScreen.cpp" />
+		<Unit filename="src/classes/LoadingScreen.h" />
 		<Unit filename="src/classes/MagnetKey.cpp" />
 		<Unit filename="src/classes/MagnetKey.h" />
 		<Unit filename="src/classes/Medkit.cpp" />
@@ -284,6 +286,8 @@
 		<Unit filename="src/classes/triggersystem/TriggerSound.h" />
 		<Unit filename="src/classes/triggersystem/TriggerSystem.cpp" />
 		<Unit filename="src/classes/triggersystem/TriggerSystem.h" />
+		<Unit filename="src/classes/triggersystem/TriggerVision.cpp" />
+		<Unit filename="src/classes/triggersystem/TriggerVision.h" />
 		<Unit filename="src/classes/weapons/Ammo.cpp" />
 		<Unit filename="src/classes/weapons/Ammo.h" />
 		<Unit filename="src/classes/weapons/AmmoGrenade.cpp" />
