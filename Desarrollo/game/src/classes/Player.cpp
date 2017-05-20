@@ -97,7 +97,6 @@ const char* Player::getNetObjectID() const
 /////////////
 void Player::render()
 {
-    // TODO
 }
 
 /////////////

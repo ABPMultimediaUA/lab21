@@ -34,7 +34,6 @@ void Hud::draw()
     int grenades        = mainPlayer->getGrenades();
     int speedBoosts     = mainPlayer->getSpeedBoosts();
 
-std::cout << speedBoosts << std::endl;
     WeaponBox->draw(weapon, ammo, ammoBag, grenades);
 
     HealthBox->draw(medkits, health, maxHealth, speedBoosts);

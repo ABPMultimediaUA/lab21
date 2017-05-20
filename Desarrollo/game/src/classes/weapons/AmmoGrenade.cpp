@@ -13,5 +13,4 @@ AmmoGrenade::~AmmoGrenade()
 //////////////////
 void AmmoGrenade::onTake()
 {
-    // TODO
 }

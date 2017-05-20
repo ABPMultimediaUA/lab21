@@ -257,7 +257,7 @@ Player* dwe::GraphicsEngine::createMainPlayer()
 /////////////////////////////////
 PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 {
-    tag::EAnimation* anim = m_tagEngine.createNumAnimations(7);
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(7, "media/player/playerMate.bmp");
     m_tagEngine.createAnimation(anim, "media/player/playerStand/playerStand",  eAnimPlayerStand,   1);
     m_tagEngine.createAnimation(anim, "media/player/playerRun/playerRun",      eAnimPlayerRun,     20);
     m_tagEngine.createAnimation(anim, "media/player/playerWalk/playerWalk",      eAnimPlayerStealth,     10);

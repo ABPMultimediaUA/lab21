@@ -13,7 +13,6 @@ AmmoShotgun::~AmmoShotgun()
 //////////////////
 void AmmoShotgun::onTake(Player* mainplayer)
 {
-    // TODO
     mainplayer->getPlayerShotgun()->addAmmoBag(8);
 }
 
