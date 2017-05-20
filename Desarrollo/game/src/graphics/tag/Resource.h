@@ -15,7 +15,7 @@ namespace tag
             /// \details Debe estar implementada en las clases heredadas.
             virtual void load(std::string fileName) = 0;
 
-            std::string getName();
+            std::string getName() const;
             void setName(std::string name);
 
         private:

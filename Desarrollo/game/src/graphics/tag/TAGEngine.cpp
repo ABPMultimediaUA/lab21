@@ -7,6 +7,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include <cmath>
+#include <sstream>
 
 #include "Shader.h"
 #include "tag/Entity.h"
@@ -37,14 +38,23 @@ int tag::TAGEngine::_uMaterialSpecularLocation;
 int tag::TAGEngine::_uMaterialShininessLocation;
 int tag::TAGEngine::_uHasNormalTextureLocation;
 int tag::TAGEngine::_uNormalTextureLocation;
+int tag::TAGEngine::_uModelMatrixLocation;
 
+int tag::TAGEngine::_uShadowTextureLocation;
+int tag::TAGEngine::_uLightSpaceMatrixLocation;
+
+int tag::TAGEngine::_aShadowVertexPositionLocation;
+int tag::TAGEngine::_uShadowMVPLocation;
+
+GLuint tag::TAGEngine::_shadowHeight = 2048;
+GLuint tag::TAGEngine::_shadowWidth = 2048;
 
 float tag::TAGEngine::_screenHeight;
 float tag::TAGEngine::_screenWidth;
 
-
 tag::TAGEngine::TAGEngine() :
     m_shaderProgram(0),
+    m_shadowProgram(0),
     m_rootNode(),
     m_lights(),
     m_cameras(),
@@ -59,6 +69,12 @@ tag::TAGEngine::~TAGEngine()
         delete m_shaderProgram;
         m_shaderProgram = 0;
     }
+
+    if (m_shadowProgram)
+    {
+        delete m_shadowProgram;
+        m_shadowProgram = 0;
+    }
 }
 
 /////////////////////
@@ -72,7 +88,7 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
 
     // Habilita el z_buffer
     glEnable(GL_DEPTH_TEST);
-    //glEnable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D);
 
     // Inicialización de GLEW
     if(glewInit() != GLEW_OK)
@@ -86,6 +102,7 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
 
     if (!m_shaderProgram)
         m_shaderProgram = new Program(shaders);
+
     glUseProgram(m_shaderProgram->ReturnProgramID());
 
     // Attributes
@@ -107,10 +124,29 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     TAGEngine::_uMaterialShininessLocation  = m_shaderProgram->uniform(U_MATERIAL_SHININESS);
     TAGEngine::_uHasNormalTextureLocation   = m_shaderProgram->uniform(U_HASNORMALTEXTURE);
     TAGEngine::_uNormalTextureLocation      = m_shaderProgram->uniform(U_NORMALTEXTURE);
+    TAGEngine::_uModelMatrixLocation        = m_shaderProgram->uniform(U_MODELMATRIX);
+    TAGEngine::_uShadowTextureLocation      = m_shaderProgram->uniform(U_SHADOWTEXTURE);
+    TAGEngine::_uLightSpaceMatrixLocation   = m_shaderProgram->uniform(U_LIGHT_SPACE_MATRIX);
 
     glUniform1i(TAGEngine::_uMaterialDiffuseLocation,   Entity::_diffuseTextureIndex);
     glUniform1i(TAGEngine::_uMaterialSpecularLocation,  Entity::_specularTextureIndex);
     glUniform1i(TAGEngine::_uNormalTextureLocation,     Entity::_normalTextureIndex);
+
+
+    // Shaders para shadows
+    shaders.clear();
+    shaders.push_back(shader.LoadShader("shaders/shadowVertexShader.glsl", GL_VERTEX_SHADER));
+    shaders.push_back(shader.LoadShader("shaders/shadowFragmentShader.glsl", GL_FRAGMENT_SHADER));
+
+    if (!m_shadowProgram)
+        m_shadowProgram = new Program(shaders);
+
+    glUseProgram(m_shadowProgram->ReturnProgramID());
+    TAGEngine::_aShadowVertexPositionLocation   = m_shadowProgram->attrib(A_VERTEXPOSITION);
+    TAGEngine::_uShadowMVPLocation              = m_shadowProgram->uniform(U_MVP);
+
+
+    prepareShadows();
 
     glUseProgram(0);
 }
@@ -129,9 +165,13 @@ void tag::TAGEngine::draw()
 
     if (!m_rootNode.isEmptyNode())
     {
+        // Cálculo de la vista (cámara)
+        calculateViewMatrix();
+
         calculateShadows();
 
         glUseProgram(m_shaderProgram->ReturnProgramID());
+        glViewport(0, 0, TAGEngine::_screenWidth, TAGEngine::_screenHeight);
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -140,15 +180,23 @@ void tag::TAGEngine::draw()
         glEnableVertexAttribArray(TAGEngine::_aVertexNormalLocation);
         glEnableVertexAttribArray(TAGEngine::_aTextureCoordsLocation);
 
-        // Cálculo de la vista (cámara)
-        calculateViewMatrix();
+        glUniformMatrix4fv(TAGEngine::_uLightSpaceMatrixLocation, 1, GL_FALSE, glm::value_ptr(Entity::lightSpaceMatrix));
+
+        // Textura de shadows
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, m_depthMap);
+        glUniform1i(TAGEngine::_uShadowTextureLocation, 0);
 
         // Dibujar
+        Entity::isPreDraw = false;
         renderElements();
+
+        // Desactivamos textura de shadows
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, 0);
 
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-        glBindTexture(GL_TEXTURE_2D, 0);
 
         glDisableVertexAttribArray(TAGEngine::_aVertexPositionLocation);
         glDisableVertexAttribArray(TAGEngine::_aVertexNormalLocation);
@@ -159,9 +207,90 @@ void tag::TAGEngine::draw()
 }
 
 /////////////////////
+void tag::TAGEngine::prepareShadows()
+{
+    glViewport(0, 0, TAGEngine::_shadowWidth, TAGEngine::_shadowHeight);
+
+    glGenTextures(1, &m_depthMap);
+    glBindTexture(GL_TEXTURE_2D, m_depthMap);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, TAGEngine::_shadowWidth, TAGEngine::_shadowHeight, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+    GLfloat borderColor[] = { 1.0, 1.0, 1.0, 1.0 };
+    glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
+
+    glGenFramebuffers(1, &m_depthMapFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, m_depthMapFBO);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, m_depthMap, 0);
+    glDrawBuffer(GL_NONE);
+    glReadBuffer(GL_NONE);
+
+    prepareShadowView();
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void tag::TAGEngine::prepareShadowView()
+{
+    GLfloat near_plane  = 0.1;
+    GLfloat far_plane   = 1000.0;
+    float   ortho       = 1900.0;
+    glm::vec3 position(170.0, 800.0, 80.0);
+    glm::vec3 lookAt(0.0);
+    glm::vec3 normal(0.0, 1.0, 0.0);
+
+    /*std::string input;
+
+    std::cout << "Near plane("<< near_plane <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> near_plane; }
+    std::cout << "Far plane("<< far_plane <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> far_plane; }
+    std::cout << "ortho("<< ortho <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> ortho; }
+    std::cout << "position.x("<< position.x <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> position.x; }
+    std::cout << "position.y("<< position.y <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> position.y; }
+    std::cout << "position.z("<< position.z <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> position.z; }
+    std::cout << "lookAt.x("<< lookAt.x <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> lookAt.x; }
+    std::cout << "lookAt.y("<< lookAt.y <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> lookAt.y; }
+    std::cout << "lookAt.z("<< lookAt.z <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> lookAt.z; }
+    std::cout << "Normal.x("<< normal.x <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> normal.x; }
+    std::cout << "Normal.y("<< normal.y <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> normal.y; }
+    std::cout << "normal.z("<< normal.z <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> normal.z; }
+*/
+
+    glm::mat4 lightProjection = glm::ortho(-ortho, ortho, -ortho, ortho, near_plane, far_plane);
+    glm::mat4 lightView = glm::lookAt(position, lookAt, normal);
+    Entity::lightSpaceMatrix = lightProjection * lightView;
+}
+
+/////////////////////
 void tag::TAGEngine::calculateShadows()
 {
+    glUseProgram(m_shadowProgram->ReturnProgramID());
 
+    // Habilitamos el paso de attributes
+    glEnableVertexAttribArray(TAGEngine::_aShadowVertexPositionLocation);
+
+    glBindTexture(GL_TEXTURE_2D, m_depthMap);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, m_depthMapFBO);
+    glViewport(0, 0, TAGEngine::_shadowWidth, TAGEngine::_shadowHeight);
+
+    glClear(GL_DEPTH_BUFFER_BIT);
+
+    // Dibujar
+    Entity::isPreDraw = true;
+    glCullFace(GL_FRONT);
+    m_rootNode.draw();
+    glCullFace(GL_BACK);
+
+    // Limpiar estados opengl
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    glDisableVertexAttribArray(TAGEngine::_aShadowVertexPositionLocation);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(0);
 }
 
 /////////////////////
@@ -527,6 +656,7 @@ float tag::TAGEngine::angleToScreenCoords(const vec3f position, const vec3f scre
 
 
     return angulo;*/
+    return 0;
 }
 
 /////////////////////
@@ -546,4 +676,26 @@ void tag::TAGEngine::deleteNode(GraphicNode* node)
     delete nodeTransform;   // el delete se encarga de borrar los hijos
 }
 
+/////////////////////
+void tag::TAGEngine::changeLightIntensity(uint8_t lightIndex, const vec3f ambient, const vec3f diffuse, const vec3f specular)
+{
+    if (lightIndex<=m_lights.size())
+    {
+        ELight* luz = static_cast<ELight*>(m_lights.at(lightIndex-1)->getEntity());
 
+        luz->setAmbientIntensity(ambient);
+        luz->setDiffuseIntensity(diffuse);
+        luz->setSpecularIntensity(specular);
+
+        glUseProgram(m_shaderProgram->ReturnProgramID());
+
+        vec3f intensity = luz->getAmbientIntensity();
+        glUniform3f(TAGEngine::_uLightAmbientLocation, intensity.x, intensity.y, intensity.z);
+
+        intensity = luz->getDiffuseIntensity();
+        glUniform3f(TAGEngine::_uLightDiffuseLocation, intensity.x, intensity.y, intensity.z);
+
+        intensity = luz->getSpecularIntensity();
+        glUniform3f(TAGEngine::_uLightSpecularLocation, intensity.x, intensity.y, intensity.z);
+    }
+}

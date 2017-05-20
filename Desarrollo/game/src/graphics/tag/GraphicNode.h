@@ -38,6 +38,8 @@ namespace tag
             std::vector<GraphicNode*>   m_childs;
             GraphicNode*                m_parent;
             bool                        m_active;
+
+            void drawChilds();
     };
 }
 

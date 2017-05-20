@@ -31,6 +31,9 @@ namespace tag
             static const uint8_t _specularTextureIndex  = 2;
             static const uint8_t _normalTextureIndex    = 3;
 
+            static glm::mat4 lightSpaceMatrix;
+            static bool isPreDraw;
+
         private:
     };
 }

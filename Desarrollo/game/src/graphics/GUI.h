@@ -115,7 +115,8 @@ namespace dwe{
 
             void drawCurrentHealth(int health, int maxHealth);
             void drawNumberOfMedkits(int medkits);
-            void draw(int medkits, int health, int maxHealth);
+            void draw(int medkits, int health, int maxHealth, int speedBoosts);
+            void drawNumberOfSpeedBoosts(int speedBoosts);
 
 
         private:
@@ -142,12 +143,11 @@ namespace dwe{
             sf::Texture t_heal;
             sf::Text text_heal;
 
+            // Adrenalina
+            sf::Sprite s_speedBoost;
+            sf::Texture t_speedBoost;
+            sf::Text text_sb;
 
-            // Variables para probar el HUD al no tenerlo junto al Game
-            //int heals;      // Para los botiquines
-
-            //float health;     // Para la vida actual
-            //float max_health; // Para la vida máxima
 
     };
 

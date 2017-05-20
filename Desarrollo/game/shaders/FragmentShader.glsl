@@ -2,6 +2,8 @@ varying vec3 v_Position;            // in: vertices en coordenadas de vista
 varying vec3 v_Normal;              // in: normales en "
 varying vec2 v_TextureCoords;       // in: coordenadas de textura
 
+varying vec4 v_PositionLightSpace;
+
 struct TLight {
     vec4 position;
     vec3 ambient;   // Intensidad
@@ -24,6 +26,35 @@ uniform sampler2D   u_MaterialSpecular;
 uniform float       u_MaterialShininess;
 uniform bool        u_hasNormalTexture;
 uniform sampler2D   u_normalTexture;
+uniform sampler2D   u_shadowTexture;
+
+
+float calculateShadow(vec4 positionLightSpace, vec3 normal, vec3 lightDir)
+{
+    vec3 projCoords = positionLightSpace.xyz / positionLightSpace.w;
+    projCoords = projCoords * 0.5 + 0.5;
+    float closestDepth = texture(u_shadowTexture, projCoords.xy).r;
+    float currentDepth = projCoords.z;
+
+    float bias = max(0.05 * (1.0 - dot(normal, lightDir)), 0.005);
+    float shadow = 0.0;
+    vec2 texelSize = 1.0 / textureSize(u_shadowTexture, 0);
+    for(int x = -1; x <= 1; ++x)
+    {
+        for(int y = -1; y <= 1; ++y)
+        {
+            float pcfDepth = texture(u_shadowTexture, projCoords.xy + vec2(x, y) * texelSize).r;
+            shadow += currentDepth - bias > pcfDepth  ? 1.0 : 0.0;
+        }
+    }
+    shadow /= 9.0;
+
+
+    if(projCoords.z > 1.0)
+        shadow = 0.0;
+
+    return shadow;
+}
 
 vec3 phong()
 {
@@ -66,8 +97,9 @@ vec3 phong()
         * pow(max(dot(r, viewDir), 0.0), u_MaterialShininess)
         * texSpec;
 
-
-    return ambient + diffuse + specular;
+    float shadow = calculateShadow(v_PositionLightSpace, normal, lightDir);
+    return (ambient + (1.0 - shadow) * (diffuse + specular));
+    //return ambient + diffuse + specular;
 }
 
 void main()
