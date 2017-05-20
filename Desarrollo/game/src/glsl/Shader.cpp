@@ -11,7 +11,7 @@ GLuint Shader::LoadShader(const char *shaderFile, GLenum type)
     std::string line="";
     while(std::getline(in,line))
         src += line + "\n";
-    std::cout << src;
+    //std::cout << src;
     //GLint compiled;
     shaderID = glCreateShader(type);
 

@@ -51,25 +51,32 @@ unsigned int tag::GraphicNode::removeChild(const tag::GraphicNode* n)
 }
 
 ///////////////////////
+void tag::GraphicNode::drawChilds()
+{
+    for(std::vector<GraphicNode*>::iterator it = m_childs.begin(); it != m_childs.end(); it++)
+        (*it)->draw();
+}
+
+///////////////////////
 void tag::GraphicNode::draw()
 {
     if (m_active)
     {
-        if (m_entity != 0)
+        if (m_entity)
+        {
             m_entity->beginDraw();
-
-        for(std::vector<GraphicNode*>::iterator it = m_childs.begin(); it != m_childs.end(); it++)
-            (*it)->draw();
-
-        if (m_entity != 0)
+            drawChilds();
             m_entity->endDraw();
+        }
+        else
+            drawChilds();
     }
 }
 
 ///////////////////////
 bool tag::GraphicNode::isEmptyNode() const
 {
-    return (m_entity==0 && m_childs.size()==0);
+    return (!m_entity && !m_childs.size());
 }
 
 /////////////////////////////

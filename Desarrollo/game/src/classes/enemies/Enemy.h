@@ -3,6 +3,7 @@
 
 #include "DrawablePhysics.h"
 
+class TriggerVision;
 class Perception;
 class Pathplanning;
 
@@ -10,6 +11,9 @@ class Enemy : public DrawablePhysics
 {
     public:
         Enemy();
+
+        void SetVision();
+
         virtual ~Enemy();
 
         virtual void update();
@@ -21,6 +25,7 @@ class Enemy : public DrawablePhysics
         void move();
         bool Sense();
         void Hear(dwe::vec3f pos);
+        void SeePlayer(dwe::vec3f pos);
         void SetClosestPlayer(Drawable* closest);
         void SetInAttackRange(bool b);
         bool IsInAttackRange();
@@ -58,6 +63,7 @@ class Enemy : public DrawablePhysics
         dwe::vec2f memoryPosition;
         dwe::vec2f targetPosition;  //Siguiente lugar al que va a dirigirse. Se usa para darle una posición al pathplanning. Cambiará en función de a quién perseguir o a dónde ir
         Drawable* closestPlayer;
+        TriggerVision* m_triggerVision;
 
         Perception* m_perception;
         Pathplanning* m_pathplanning;

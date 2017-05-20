@@ -6,13 +6,14 @@
 #include "NetGame.h"
 #include "GSEnd.h"
 #include "AudioEngine.h"
+#include "LoadingScreen.h"
 
 #include <iostream>
 using namespace std;
 
-GSIngame::GSIngame(){
-
-
+GSIngame::GSIngame() :
+    m_gameStarted(false)
+{
 }
 
 GSIngame* GSIngame::getInstance()
@@ -23,37 +24,57 @@ GSIngame* GSIngame::getInstance()
 }
 
 void GSIngame::Init(){
+    LoadingScreen::getInstance()->LoadingDraw("LoadingScreen/Barra1");
     page = 0;
     m = false;
     m_pausePermission = false;
     m_clickPermission = false;
     LoadMap::getInstance()->Init();
+    LoadingScreen::getInstance()->LoadingDraw("LoadingScreen/Barra2");
     WorldInstance::Instance();
     timeStamp = World->getTimeElapsed();
     Scene::Instance()->Init();
+    LoadingScreen::getInstance()->LoadingDraw("LoadingScreen/Barra5");
     hud = new Hud();
 
 #ifdef LAB21_DEBUG
     World->startDebugPhysics();
 #endif // LAB21_DEBUG
 
+    if (NetInstance->isMultiplayer())
+    {
+        if (NetInstance->isServer()){
+            GEInstance->addMessageLine("Pulsa Intro cuando esten todos los jugadores");
+        }else{
+            GEInstance->addMessageLine("Esperando a que el servidor de la partida inicie el juego");
+        }
+    }
+    else
+        m_gameStarted = true;
+
     cout<<"Ingame cargado"<<endl;
 
 }
 
 void GSIngame::Update(){
-    // Esperamos conexion de los demas jugadores
-    Scene::Instance()->Update();
 
-    LoadMap::getInstance()->Update();
+    if (m_gameStarted)
+    {
+        // Esperamos conexion de los demas jugadores
+        Scene::Instance()->Update();
 
-    // Actualizamos físicas box2d
-    World->step();
-    World->clearForces();
-    NetInstance->update();
+        LoadMap::getInstance()->Update();
 
-    //Fin del juego
-    AEInstance->UpdateListenerPosition(World->getMainPlayer()->getPosition());
+        // Actualizamos físicas box2d
+        World->step();
+        World->clearForces();
+        NetInstance->update();
+
+        //Fin del juego
+        AEInstance->UpdateListenerPosition(World->getMainPlayer()->getPosition());
+    }
+    else
+        checkForNetGameStarted();
 }
 
 void GSIngame::HandleEvents()
@@ -110,8 +131,28 @@ void GSIngame::Render(){
         hud->draw();
     }
 }
-GSIngame::~GSIngame(){
-
+GSIngame::~GSIngame()
+{
     cout<<"He borrado el mapa"<<endl;
 
+}
+
+void GSIngame::checkForNetGameStarted()
+{
+    // Esperamos a que se inicie partida en red
+    // En startGame solo se inicia si es el servidor
+    NetInstance->update();
+    if (NetInstance->isServer())
+    {
+        if (GEInstance->receiver.isKeyDown(KEY_INIT_GAME))
+        {
+            m_gameStarted = true;
+            NetInstance->startGame();
+            GEInstance->addMessageLine("Partida iniciada");
+        }
+    }
+    else
+    {
+        m_gameStarted = NetInstance->getGameStarted();
+    }
 }

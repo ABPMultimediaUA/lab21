@@ -17,5 +17,5 @@ TriggerSound::~TriggerSound()
 void TriggerSound::Update()
 {
     if(World->getTimeElapsed() - lastTime >= 1.0f/60.0f)
-        SetToBeRemoved();
+        ToBeRemoved = true;
 }

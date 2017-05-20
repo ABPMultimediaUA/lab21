@@ -1,6 +1,8 @@
 #include "Humanoid.h"
 #include "Pathplanning.h"
 #include "Perception.h"
+#include "TriggerVision.h"
+#include "Scene.h"
 #include "BTreeHumanoid.h"
 
 Humanoid::Humanoid()
@@ -12,6 +14,8 @@ Humanoid::Humanoid()
     m_pathplanning = new Pathplanning(this);
 
     m_behaviourTree = new BTreeHumanoid(this);
+
+
 
     targetPosition = dwe::vec2f(-201,201);
 }

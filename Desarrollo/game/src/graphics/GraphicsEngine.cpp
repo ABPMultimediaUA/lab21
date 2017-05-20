@@ -81,7 +81,7 @@ void dwe::GraphicsEngine::init()
         m_messageLine[i].setFont(m_font);
         m_messageLine[i].setCharacterSize(14);
         m_messageLine[i].setFillColor(sf::Color(255, 255, 255, 255));
-        m_messageLine[i].setPosition(10.f, GraphicsEngine::_screenHeight - (i+1)*16.f);
+        m_messageLine[i].setPosition(250.f, GraphicsEngine::_screenHeight - (i+1)*16.f);
         m_messageLine[i].setString("");
 	}
 
@@ -257,7 +257,7 @@ Player* dwe::GraphicsEngine::createMainPlayer()
 /////////////////////////////////
 PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 {
-    tag::EAnimation* anim = m_tagEngine.createNumAnimations(7);
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(7, "media/player/playerMate.bmp");
     m_tagEngine.createAnimation(anim, "media/player/playerStand/playerStand",  eAnimPlayerStand,   1);
     m_tagEngine.createAnimation(anim, "media/player/playerRun/playerRun",      eAnimPlayerRun,     20);
     m_tagEngine.createAnimation(anim, "media/player/playerWalk/playerWalk",      eAnimPlayerStealth,     10);
@@ -292,6 +292,7 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
     Humanoid* p = new Humanoid();
 	p->setNode(new Node(node));
 	p->setPosition(dwe::vec3f(px, py, pz));
+	p->SetVision();
 
 	NetInstance->addNetEnemy(p);
 	return p;
@@ -315,6 +316,7 @@ Mother* dwe::GraphicsEngine::createEnemyMother(int px, int py, int pz)
     Mother* p = new Mother();
 	p->setNode(new Node(node));
 	p->setPosition(dwe::vec3f(px, py, pz));
+	p->SetVision();
 
 	NetInstance->addNetEnemy(p);
 	return p;
@@ -336,6 +338,8 @@ Dog* dwe::GraphicsEngine::createEnemyDog(int px, int py, int pz)
     Dog* p = new Dog();
 	p->setNode(new Node(node));
     p->setPosition(dwe::vec3f(px, py, pz));
+    p->SetVision();
+
 	NetInstance->addNetEnemy(p);
 	return p;
 }
@@ -350,6 +354,7 @@ Bat* dwe::GraphicsEngine::createEnemyBat(int px, int py, int pz)
     Bat* b = new Bat();
     b->setNode(new Node(node));
     b->setPosition(dwe::vec3f(px, py, pz));
+    b->SetVision();
 
     NetInstance->addNetEnemy(b);
     return b;
@@ -369,6 +374,7 @@ Guardian* dwe::GraphicsEngine::createEnemyGuardian(int px, int py, int pz)
     Guardian* g = new Guardian();
 	g->setNode(new Node(node));
     g->setPosition(dwe::vec3f(px, py, pz));
+    g->SetVision();
 
 	NetInstance->addNetEnemy(g);
 	return g;
@@ -387,6 +393,7 @@ Legless* dwe::GraphicsEngine::createEnemyLegless(int px, int py, int pz)
     Legless* l = new Legless();
     l->setNode(new Node(node));
     l->setPosition(dwe::vec3f(px, py, pz));
+    l->SetVision();
 
     NetInstance->addNetEnemy(l);
     return l;
@@ -559,12 +566,15 @@ void dwe::GraphicsEngine::createCamera()
 {
     if (!m_camera)
     {
-        m_cameraPosition = vec3f(-150,120,-190);
+        m_cameraPosition = vec3f(-150.0,120.0,-190.0);
         m_camera = m_tagEngine.createPerspectiveCamera(m_cameraPosition, vec3f(0,0,0), 45.0f, get_screenWidth() / get_screenHeight(), 0.1f, 1000.0f);
         m_tagEngine.nodeLookAtTarget(m_camera, m_cameraPosition, vec3f(0,0,0));
 
-        float n = 0.6;
-        m_tagEngine.createLight(dwe::vec3f(140,24,80), vec3f(0,0,0), vec3f(n,n,n), vec3f(n,n,n), vec3f(n+0.4,n+0.4,n+0.4));
+        float ambiente = 0.5;
+        float difusa   = 0.8;
+        float specular = 1.0;
+
+        m_tagEngine.createLight(dwe::vec3f(170.0,120.0,80.0), vec3f(0), vec3f(ambiente), vec3f(difusa), vec3f(specular));
     }
 }
 

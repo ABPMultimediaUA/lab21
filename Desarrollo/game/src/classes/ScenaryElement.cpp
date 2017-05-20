@@ -28,5 +28,4 @@ void ScenaryElement::update()
 /////////////////////
 void ScenaryElement::render()
 {
-    // TODO
 }

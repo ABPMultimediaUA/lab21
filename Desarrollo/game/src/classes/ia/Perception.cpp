@@ -23,6 +23,12 @@ void Perception::Hear(dwe::vec3f pos)
     m_soundPosition = dwe::vec2f(pos.x, pos.z);
 }
 
+void Perception::See(dwe::vec3f pos)
+{
+    m_seeing = true;
+    m_visionPosition = dwe::vec2f(pos.x, pos.z);
+}
+
 bool Perception::Sense()
 {
     Drawable* player = World->getMainPlayer();
@@ -42,31 +48,13 @@ bool Perception::Sense()
     else{
         m_owner->SetInAttackRange(false);}
 
-    if(player->getAnimation() == dwe::eAnimPlayerRun)//en caso de estar en velocidad normal, la percepcion del npc sera mayor
+    if(m_seeing)
     {
-        if(distance<=81633){ //10 metros
-            m_owner->SetMemory(true);
-            m_owner->SetMemoryPosition(dwe::vec2f(player->getPosition().x, player->getPosition().z));
-            return true;
-        }
+        m_owner->SetMemoryPosition(m_visionPosition);
+        m_owner->SetMemory(true);
+        m_seeing = false;
+        return true;
     }
-    else if(player->getAnimation() == dwe::eAnimPlayerStealth)//si estamos en sigilo, el radio sera menor
-    {
-        if(distance<=40000){ //7 metros
-            m_owner->SetMemory(true);
-            m_owner->SetMemoryPosition(dwe::vec2f(player->getPosition().x, player->getPosition().z));
-            return true;
-        }
-    }
-    else if(player->getAnimation() == dwe::eAnimPlayerStand)
-    {
-        if(distance<=7347){ //3 metros
-            m_owner->SetMemory(true);
-            m_owner->SetMemoryPosition(dwe::vec2f(player->getPosition().x, player->getPosition().z));
-            return true;
-        }
-    }
-
     return false;
 }
 

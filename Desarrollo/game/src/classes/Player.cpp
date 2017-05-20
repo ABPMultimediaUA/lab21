@@ -98,7 +98,6 @@ const char* Player::getNetObjectID() const
 /////////////
 void Player::render()
 {
-    // TODO
 }
 
 /////////////
@@ -319,6 +318,7 @@ bool Player::getMKey(int n){ return m_mKeys[n]; }
 
 ////////////
 void Player::addSpeedBoost() { m_speedBoosts += 1;}
+int Player::getSpeedBoosts() { return m_speedBoosts; }
 
 ////////////
 int Player::getHealth() { return m_health; }

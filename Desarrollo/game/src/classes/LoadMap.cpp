@@ -279,7 +279,7 @@ void LoadMap::Update(){
     }
 
     for(uint8_t i=0; i < NUM_MAP_DOORROTATE; i++)
-        entitiesDoorRotate[i]->update();  // TODOjoint
+        entitiesDoorRotate[i]->update();
     //Scene::updateConsumables(mainPlayer);
 }
 

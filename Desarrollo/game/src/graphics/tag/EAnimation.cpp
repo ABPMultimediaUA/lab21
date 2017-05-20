@@ -25,29 +25,39 @@ tag::EAnimation::~EAnimation()
 /////////////////
 void tag::EAnimation::beginDraw()
 {
-    if (m_animations!=0)
-        if (m_texture)
-            m_texture->activateTexture();
-
-        //aqui hariamos el bucle empezando por el frame 0
-        m_animations[m_activeAnimation].frames[m_frame]->draw();
-
-        if (m_texture)
-            m_texture->deactivateTexture();
-        temp++;
-        if(temp == 5)
+    if (m_animations)
+    {
+        if (Entity::isPreDraw)
         {
-            m_frame++;
-            temp = 0;
+            m_animations[m_activeAnimation].frames[m_frame]->draw();
+        }
+        else
+        {
+            if (m_texture)
+                m_texture->activateTexture();
 
-            if(m_frame >= m_animations[m_activeAnimation].numFrames)
+            //aqui hariamos el bucle empezando por el frame 0
+            m_animations[m_activeAnimation].frames[m_frame]->draw();
+
+            if (m_texture)
+                m_texture->deactivateTexture();
+
+            temp++;
+            if(temp == 5)
             {
-                if (m_animations[m_activeAnimation].loop)
-                    m_frame=0;
-                else
-                    m_frame=m_animations[m_activeAnimation].numFrames-1;
+                m_frame++;
+                temp = 0;
+
+                if(m_frame >= m_animations[m_activeAnimation].numFrames)
+                {
+                    if (m_animations[m_activeAnimation].loop)
+                        m_frame=0;
+                    else
+                        m_frame=m_animations[m_activeAnimation].numFrames-1;
+                }
             }
         }
+    }
 }
 
 ////////////////////////

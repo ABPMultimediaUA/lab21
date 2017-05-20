@@ -167,12 +167,13 @@ void EntityPhysics::createCircularBody(const dwe::vec3f& pos, float radius)
     m_body->CreateFixture(&fixtureDef);
 }
 
-void EntityPhysics::createSemiCircleBody(const dwe::vec3f& pos, float radius, float angle)
+void EntityPhysics::createSemiCircleBody(const dwe::vec3f& pos, float radius, float angle, int arc)
 {
+    m_arc = arc;
     b2BodyDef bodyDef;
     bodyDef.position.Set(pos.x*_ratio, pos.z*_ratio);
     bodyDef.type            = b2_kinematicBody;
-    bodyDef.angle           = -(angle+45)*M_PI/180;  // Lo pasamos a radianes
+    bodyDef.angle           = -(angle+m_arc/2)*M_PI/180;  // Lo pasamos a radianes
     bodyDef.fixedRotation   = m_fixedRotation;
     bodyDef.bullet          = m_bullet;
     bodyDef.angularDamping  = m_damping;
@@ -184,7 +185,7 @@ void EntityPhysics::createSemiCircleBody(const dwe::vec3f& pos, float radius, fl
     b2Vec2 vertices[8];
     vertices[0].Set(0,0);
     for (int i = 0; i < 7; i++) {
-        angle = i / 6.0 * 90 * M_PI/180;
+        angle = i / 6.0 * m_arc * M_PI/180;
         vertices[i+1].Set( radius * cosf(angle), radius * sinf(angle) );
     }
     m_shape.Set(vertices, 8);

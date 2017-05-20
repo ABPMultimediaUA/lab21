@@ -26,7 +26,7 @@ void tag::EMesh::beginDraw()
 {
     if (m_mesh)
     {
-        if (m_texture)
+        if (m_texture && !Entity::isPreDraw)
         {
             m_texture->activateTexture();
             m_mesh->draw();
