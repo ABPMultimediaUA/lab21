@@ -10,9 +10,9 @@
 #include <iostream>
 using namespace std;
 
-GSIngame::GSIngame(){
-
-
+GSIngame::GSIngame() :
+    m_gameStarted(false)
+{
 }
 
 GSIngame* GSIngame::getInstance()
@@ -37,23 +37,40 @@ void GSIngame::Init(){
     World->startDebugPhysics();
 #endif // LAB21_DEBUG
 
+    if (NetInstance->isMultiplayer())
+    {
+        if (NetInstance->isServer()){
+            GEInstance->addMessageLine("Pulsa Intro cuando esten todos los jugadores");
+        }else{
+            GEInstance->addMessageLine("Esperando a que el servidor de la partida inicie el juego");
+        }
+    }
+    else
+        m_gameStarted = true;
+
     cout<<"Ingame cargado"<<endl;
 
 }
 
 void GSIngame::Update(){
-    // Esperamos conexion de los demas jugadores
-    Scene::Instance()->Update();
 
-    LoadMap::getInstance()->Update();
+    if (m_gameStarted)
+    {
+        // Esperamos conexion de los demas jugadores
+        Scene::Instance()->Update();
 
-    // Actualizamos físicas box2d
-    World->step();
-    World->clearForces();
-    NetInstance->update();
+        LoadMap::getInstance()->Update();
 
-    //Fin del juego
-    AEInstance->UpdateListenerPosition(World->getMainPlayer()->getPosition());
+        // Actualizamos físicas box2d
+        World->step();
+        World->clearForces();
+        NetInstance->update();
+
+        //Fin del juego
+        AEInstance->UpdateListenerPosition(World->getMainPlayer()->getPosition());
+    }
+    else
+        checkForNetGameStarted();
 }
 
 void GSIngame::HandleEvents()
@@ -114,4 +131,24 @@ GSIngame::~GSIngame(){
 
     cout<<"He borrado el mapa"<<endl;
 
+}
+
+void GSIngame::checkForNetGameStarted()
+{
+    // Esperamos a que se inicie partida en red
+    // En startGame solo se inicia si es el servidor
+    NetInstance->update();
+    if (NetInstance->isServer())
+    {
+        if (GEInstance->receiver.isKeyDown(KEY_INIT_GAME))
+        {
+            m_gameStarted = true;
+            NetInstance->startGame();
+            GEInstance->addMessageLine("Partida iniciada");
+        }
+    }
+    else
+    {
+        m_gameStarted = NetInstance->getGameStarted();
+    }
 }

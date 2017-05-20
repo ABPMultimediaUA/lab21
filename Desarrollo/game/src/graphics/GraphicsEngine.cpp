@@ -81,7 +81,7 @@ void dwe::GraphicsEngine::init()
         m_messageLine[i].setFont(m_font);
         m_messageLine[i].setCharacterSize(14);
         m_messageLine[i].setFillColor(sf::Color(255, 255, 255, 255));
-        m_messageLine[i].setPosition(10.f, GraphicsEngine::_screenHeight - (i+1)*16.f);
+        m_messageLine[i].setPosition(250.f, GraphicsEngine::_screenHeight - (i+1)*16.f);
         m_messageLine[i].setString("");
 	}
 

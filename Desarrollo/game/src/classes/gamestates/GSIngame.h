@@ -22,7 +22,12 @@ private:
     bool m;
     bool m_pausePermission; // Booleano para controlar el boton pausa
     bool m_clickPermission;
+
+    bool m_gameStarted;
+
     Hud* hud;
+
+    void checkForNetGameStarted();
 };
 
 #endif // GSINGAME_H

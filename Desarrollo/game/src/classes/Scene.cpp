@@ -43,29 +43,6 @@ void Scene::Init()
     m_timeEnemyActive       = 5.0;  // En segundos
     m_posMother             = dwe::vec3f(0,62.0,-1617.0);
 
-
-    ///////////////////////////////////
-    if (NetInstance->isMultiplayer())
-    {
-        if (NetInstance->isServer()){
-            GEInstance->addMessageLine("Pulsa Intro cuando esten todos los jugadores");
-            cout<<"Pulsa Intro cuando esten todos los jugadores"<<endl;
-        }else{
-            GEInstance->addMessageLine("Esperando a que el servidor de la partida inicie el juego");
-        }
-        // En startGame solo se inicia si es el servidor
-        while (!NetInstance->getGameStarted() && GEInstance->isRunning())
-        {
-
-            //GEInstance->draw(); // Si se dibuja la escena peta
-
-            NetInstance->update();
-            if (GEInstance->receiver.isKeyDown(KEY_INIT_GAME))
-                NetInstance->startGame();
-        }
-    }
-    GEInstance->addMessageLine("Partida iniciada");
-
     /////////////// Waypoints ///////////////////////
     NavGraphNode node0(0, dwe::vec2f(-200, 200));
     navGraph.addNode(node0);
@@ -86,7 +63,7 @@ void Scene::Init()
     // Creación de jugador
     mainPlayer = GEInstance->createMainPlayer();
     //TODO he puesto posicion para pruebas mainPlayer->setPosition(dwe::vec3f(-1205-((NetInstance->getParticipantOrder()-1)*30),24,1150));
-                mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),24,80));
+                mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),21,60));
     World->setMainPlayer(mainPlayer);
 
     mainPlayer->addWeapon(eGun);  // Por defecto tiene la pistola
@@ -94,6 +71,7 @@ void Scene::Init()
     createEnemies();
 
     GEInstance->createCamera();
+    GEInstance->updateCamera(mainPlayer->getPosition(), 0, 0);
 }
 
 void Scene::createEnemies()
