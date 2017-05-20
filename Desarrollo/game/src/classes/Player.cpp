@@ -14,6 +14,7 @@ Player::Player() :
     m_mKeys[1]=false;
     m_mKeys[2]=false;
     m_medkits = 0;
+    m_speedBoosts = 0;
 
     // En segundos
     m_lastTimeTakeDamage= 0.5;
@@ -316,6 +317,7 @@ bool Player::getMKey(int n){ return m_mKeys[n]; }
 
 ////////////
 void Player::addSpeedBoost() { m_speedBoosts += 1;}
+int Player::getSpeedBoosts() { return m_speedBoosts; }
 
 ////////////
 int Player::getHealth() { return m_health; }
