@@ -52,6 +52,7 @@ namespace dwe{
             ~Sprite();
             void draw();
             void SetTexture(std::string s);
+            void SetScale(float factorX, float factorY);
         private:
             sf::Texture texture;
             sf::Sprite sp;

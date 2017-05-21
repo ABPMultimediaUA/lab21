@@ -49,10 +49,7 @@ void Scene::Init()
     navGraph.addNode(node0);
 
     // Creación de jugador
-    GEInstance->pop();
     mainPlayer = GEInstance->createMainPlayer();
-    GEInstance->push();
-    LoadingScreen::getInstance()->LoadingDraw("LoadingScreen/Barra3");
     //TODO he puesto posicion para pruebas mainPlayer->setPosition(dwe::vec3f(-1205-((NetInstance->getParticipantOrder()-1)*30),24,1150));
 
     mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),21,60));
@@ -61,13 +58,8 @@ void Scene::Init()
     mainPlayer->addWeapon(eGun);  // Por defecto tiene la pistola
     mainPlayer->swapCurrentWeapon(eGun);
 
-    GEInstance->pop();
     createEnemies();
-    GEInstance->push();
-    LoadingScreen::getInstance()->LoadingDraw("LoadingScreen/Barra4");
-    GEInstance->pop();
     GEInstance->createCamera();
-    GEInstance->push();
     GEInstance->updateCamera(mainPlayer->getPosition(), 0, 0);
 }
 
@@ -76,10 +68,15 @@ void Scene::createEnemies()
     m_numEnemies = m_numActiveEnemies = 11;
     m_enemies = new TEnemy[m_numEnemies];
     m_enemies[ 0].enemy = GEInstance->createEnemyHumanoid(-200,23,200);
+    LoadingScreen::getInstance()->AddProgress();
     m_enemies[ 1].enemy = GEInstance->createEnemyDog(-250,24,300);
+    LoadingScreen::getInstance()->AddProgress();
     m_enemies[ 2].enemy = GEInstance->createEnemyBat(-300,24,250);
+    LoadingScreen::getInstance()->AddProgress();
     m_enemies[ 3].enemy = GEInstance->createEnemyGuardian(-310,24,100);
+    LoadingScreen::getInstance()->AddProgress();
     m_enemies[ 4].enemy = GEInstance->createEnemyLegless(-230,24,110);
+    LoadingScreen::getInstance()->AddProgress();
     /*m_enemies[ 5].enemy = GEInstance->createEnemyHumanoid(300,24,250);
     m_enemies[ 6].enemy = GEInstance->createEnemyHumanoid(-300,24,570);
     m_enemies[ 7].enemy = GEInstance->createEnemyHumanoid(1470,24,330);

@@ -133,6 +133,11 @@ void dwe::Sprite::SetTexture(std::string s)
     sp.setTexture(texture, true);
 }
 
+void dwe::Sprite::SetScale(float factorX, float factorY)
+{
+    sp.setScale(factorX, factorY);
+}
+
 /*** SPRITE FIN***/
 
 /**Fondo INI***/

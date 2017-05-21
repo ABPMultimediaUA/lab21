@@ -124,7 +124,7 @@ void GSMainMenu::HandleEvents(){
                     menuInfo=false;
                     m_clickPermission=false;
                     Game::getInstance()->ChangeState(GSIngame::getInstance());
-                    LoadingScreen::getInstance()->Init();
+                    LoadingScreen::getInstance()->Init(14);
                     GSIngame::getInstance()->Init();
                 }
                 else if(playOnlineButton->buttonCheck(mousePosX, mousePosY) || GEInstance->receiver.isKeyDown(KEY_KEY_2))
@@ -284,7 +284,7 @@ void GSMainMenu::Update(){
     if(enterNet && serverSelection && serverInfo && lobbySelection)
     {
         Game::getInstance()->ChangeState(GSIngame::getInstance());
-        LoadingScreen::getInstance()->Init();
+        LoadingScreen::getInstance()->Init(14);
         GSIngame::getInstance()->Init();
         menuInfo=false;
         enterNet=false;

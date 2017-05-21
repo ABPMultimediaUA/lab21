@@ -1,6 +1,7 @@
 #include "LoadMap.h"
 #include "GraphicsEngine.h"
 #include "ScenaryElement.h"
+#include "LoadingScreen.h"
 
 #include <fstream> //Lectura de ficheros
 #include <document.h> //ES UN .H de rapidJSON
@@ -264,7 +265,6 @@ void LoadMap::Init(){
         // Armas
         s->createCShotgun(0, 10, -20);
         s->createCRifle(20, 10, -20);
-
     }
     GEInstance->push();
 }

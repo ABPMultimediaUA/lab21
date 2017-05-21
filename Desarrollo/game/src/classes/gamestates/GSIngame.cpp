@@ -24,17 +24,17 @@ GSIngame* GSIngame::getInstance()
 }
 
 void GSIngame::Init(){
-    LoadingScreen::getInstance()->LoadingDraw("LoadingScreen/Barra1");
+    LoadingScreen::getInstance()->AddProgress();
     page = 0;
     m = false;
     m_pausePermission = false;
     m_clickPermission = false;
-    LoadMap::getInstance()->Init();
-    LoadingScreen::getInstance()->LoadingDraw("LoadingScreen/Barra2");
+    LoadMap::getInstance()->Init();  // Llamo dentro a AddProgress también
+    LoadingScreen::getInstance()->AddProgress();
     WorldInstance::Instance();
     timeStamp = World->getTimeElapsed();
     Scene::Instance()->Init();
-    LoadingScreen::getInstance()->LoadingDraw("LoadingScreen/Barra5");
+    LoadingScreen::getInstance()->AddProgress();
     hud = new Hud();
 
 #ifdef LAB21_DEBUG
@@ -52,8 +52,7 @@ void GSIngame::Init(){
     else
         m_gameStarted = true;
 
-    cout<<"Ingame cargado"<<endl;
-
+    LoadingScreen::getInstance()->Destroy();
 }
 
 void GSIngame::Update(){

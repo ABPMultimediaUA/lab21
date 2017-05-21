@@ -14,21 +14,26 @@ class LoadingScreen
     public:
 
         LoadingScreen();
+        ~LoadingScreen(); // No virtual, no debe tener clases heredadas
 
-        void LoadingDraw(std::string s);
+        void AddProgress();
 
         static LoadingScreen* getInstance();
 
-        void Init();
-
-        virtual ~LoadingScreen();
+        void Init(int numSteps);
+        void Destroy();
 
     protected:
 
     private:
+        bool                m_initialized;
+        float               m_progressScale;
+        float               m_progressIncrement;
+        dwe::Background*    m_background;
+        dwe::Sprite*        m_loadingSprite;
+        dwe::Sprite*        m_progress;
 
-        dwe::Background* m_background;
-        dwe::Sprite* m_loadingSprite;
+        void Draw();
 };
 
 #endif // LOADINGSCREEN_H
