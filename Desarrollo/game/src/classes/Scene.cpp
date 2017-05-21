@@ -67,15 +67,15 @@ void Scene::createEnemies()
 {
     m_numEnemies = m_numActiveEnemies = 11;
     m_enemies = new TEnemy[m_numEnemies];
-    m_enemies[ 0].enemy = GEInstance->createEnemyHumanoid(-200,23,200);
+    //m_enemies[ 0].enemy = GEInstance->createEnemyHumanoid(-200,23,200);
     LoadingScreen::getInstance()->AddProgress();
-    m_enemies[ 1].enemy = GEInstance->createEnemyDog(-250,24,300);
+    m_enemies[ 1].enemy = GEInstance->createEnemyDog(-250,15,300);
     LoadingScreen::getInstance()->AddProgress();
     m_enemies[ 2].enemy = GEInstance->createEnemyBat(-300,24,250);
     LoadingScreen::getInstance()->AddProgress();
-    m_enemies[ 3].enemy = GEInstance->createEnemyGuardian(-310,24,100);
+    m_enemies[ 3].enemy = GEInstance->createEnemyGuardian(-310,0,100);
     LoadingScreen::getInstance()->AddProgress();
-    m_enemies[ 4].enemy = GEInstance->createEnemyLegless(-230,24,110);
+    m_enemies[ 4].enemy = GEInstance->createEnemyLegless(-230,0,110);
     LoadingScreen::getInstance()->AddProgress();
     /*m_enemies[ 5].enemy = GEInstance->createEnemyHumanoid(300,24,250);
     m_enemies[ 6].enemy = GEInstance->createEnemyHumanoid(-300,24,570);
@@ -183,6 +183,8 @@ void Scene::updateEnemies()
         if (!m_enemies[i].active)
         {
             //Enemigo inactivo
+            dwe::vec3f pos = m_enemies[i].enemy->getPosition();
+            m_enemies[i].enemy->setPosition(dwe::vec3f(pos.x, pos.y-0.07, pos.z));
             if (World->getTimeElapsed() - m_timeLastEnemyActive > m_timeEnemyActive)
             {
                 // Si ha pasado suficiente tiempo, lo activamos

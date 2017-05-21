@@ -103,7 +103,7 @@ bool Enemy::IsInAttackRange()
 bool Enemy::Attack()
 {
     dwe::vec3f pos(EntityPhysics::getPosEntity());
-    Drawable::setPosition(dwe::vec3f(pos.x, 24, pos.z));
+    Drawable::setPosition(dwe::vec3f(pos.x, getPosition().y, pos.z));
     if(!attacking){
         attackTime = World->getTimeElapsed();
         setAnimation(dwe::eAnimEnemyStand);
@@ -199,7 +199,7 @@ void Enemy::onBeginContact(EntityPhysics* otherObject)
 ////////////
 void Enemy::activeEnemy(dwe::vec3f position)
 {
-    setPosition(dwe::vec3f(position.x, getPosition().y, position.z+150));
+    setPosition(dwe::vec3f(position.x, 0, position.z+150));
     resetHealth();
     setPhysicsActive(true);
     m_triggerVision->setPhysicsActive(true);
