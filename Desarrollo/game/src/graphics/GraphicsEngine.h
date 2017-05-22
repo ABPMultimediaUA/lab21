@@ -240,10 +240,16 @@ namespace dwe
         void push();
         void pop();
 
+        /// \brief Establece si usamos cursor propio o no
+        void setOwnCursor(bool ownCursor);
+
     private:
         sf::RenderWindow*   m_window;
         sf::Font            m_font;
         sf::Text            m_messageLine[MAX_MESSAGE_LINES];
+        bool                m_ownCursor;
+        sf::Sprite          m_cursorSprite;
+        sf::Texture         m_cursorTexture;
 
 
         sf::Clock           m_clock;
@@ -258,6 +264,7 @@ namespace dwe
         tag::TAGEngine      m_tagEngine;
         tag::GraphicNode*   m_camera;
         vec3f               m_cameraPosition;
+
 
 #ifndef LAB21_DEBUG
         static const int _screenWidth   = 1024;
