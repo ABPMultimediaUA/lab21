@@ -156,6 +156,39 @@ void dwe::Background::draw()
 }
 /***Fondo FIN***/
 
+/***Rectangle INI***/
+dwe::RectangleShape::RectangleShape(std::string s, int x, int y, float xsize, float ysize)
+{
+    initialX = xsize;
+    initialY = ysize;
+    rs.setSize(sf::Vector2f(xsize, ysize));
+    rs.setPosition(x, y);
+    SetTexture(s);
+}
+
+dwe::RectangleShape::~RectangleShape(){};
+
+void dwe::RectangleShape::draw()
+{
+    GEInstance->drawRectangleShape(rs);
+}
+
+void dwe::RectangleShape::SetTexture(std::string s)
+{
+    texture.loadFromFile("media/"+s+".png");
+    rs.setTexture(&texture, true);
+}
+
+void dwe::RectangleShape::SetScale(float factorX, float factorY)
+{
+    rs.setSize(sf::Vector2f(initialX*factorX, initialY));
+    sf::IntRect rect = rs.getTextureRect();
+    rect.width = initialX*factorX;
+    std::cout<<rect.width<<std::endl;
+    rs.setTextureRect(rect);
+}
+
+/***Rectangle FIN***/
 void dwe::HudBox::setComponents(std::string str, sf::Sprite *s, sf::Texture *t, float px, float py)
 {
     t->loadFromFile(str);

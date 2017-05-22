@@ -16,7 +16,7 @@ Bat::Bat()
     m_perception = new Perception(this);
     m_pathplanning = new Pathplanning(this);
 
-    targetPosition = dwe::vec2f(-201,201);
+    targetPosition = dwe::vec2f(-300,250);
 
 }
 

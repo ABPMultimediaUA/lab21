@@ -19,7 +19,7 @@ Legless::Legless()
 
     m_behaviourTree = new BTreeHumanoid(this);
 
-    targetPosition = dwe::vec2f(-201,201);
+    targetPosition = dwe::vec2f(-230,110);
 
 }
 

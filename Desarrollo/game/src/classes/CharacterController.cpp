@@ -43,7 +43,7 @@ void CharacterController::readEvents()
 
         //SPEEDBOOST
         if (m_hasSpeedBoost){
-            speed = speed*3.f;
+            speed = speed*1.5f;
             //Cuenta atrás
             if (World->getTimeElapsed() - m_timeSpeedBoost > _maxSpeedBoostTime)
                 m_hasSpeedBoost = false;
