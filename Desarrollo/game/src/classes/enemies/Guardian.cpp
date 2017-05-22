@@ -19,7 +19,7 @@ Guardian::Guardian()
 
     m_behaviourTree = new BTreeHumanoid(this);
 
-    targetPosition = dwe::vec2f(-201,201);
+    targetPosition = dwe::vec2f(-310,100);
 
 }
 

@@ -60,6 +60,7 @@ void LoadingScreen::Destroy()
 
 void LoadingScreen::AddProgress()
 {
+    GEInstance->isRunning();
     if (m_initialized)
     {
         m_progress->SetScale(m_progressScale,1);
