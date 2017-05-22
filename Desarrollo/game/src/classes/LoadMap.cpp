@@ -190,6 +190,12 @@ void LoadMap::Init(){
                     envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
                     envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
                 }
+
+                if(id=="MesaHall"){
+                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/mesahall", "environment_elements/mesa");
+                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
+                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                }
             }
 
             //CONSUMABLES

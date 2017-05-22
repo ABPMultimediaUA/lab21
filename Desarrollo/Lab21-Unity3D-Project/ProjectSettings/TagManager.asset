@@ -45,6 +45,7 @@ TagManager:
   - Caja
   - Mesa
   - Adrenalina
+  - MesaHall
   layers:
   - Default
   - TransparentFX
