@@ -124,6 +124,7 @@ void GSMainMenu::HandleEvents(){
                     menuInfo=false;
                     m_clickPermission=false;
                     Game::getInstance()->ChangeState(GSIngame::getInstance());
+                    GEInstance->setOwnCursor(true);
                     LoadingScreen::getInstance()->Init(14);
                     GSIngame::getInstance()->Init();
                 }
@@ -284,6 +285,7 @@ void GSMainMenu::Update(){
     if(enterNet && serverSelection && serverInfo && lobbySelection)
     {
         Game::getInstance()->ChangeState(GSIngame::getInstance());
+        GEInstance->setOwnCursor(true);
         LoadingScreen::getInstance()->Init(14);
         GSIngame::getInstance()->Init();
         menuInfo=false;

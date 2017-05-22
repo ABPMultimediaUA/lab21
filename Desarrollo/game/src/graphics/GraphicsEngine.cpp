@@ -85,6 +85,11 @@ void dwe::GraphicsEngine::init()
         m_messageLine[i].setString("");
 	}
 
+	// Cargamos sprite del cursor
+	m_cursorTexture.loadFromFile("media/cursor.png");
+	m_cursorSprite.setTexture(m_cursorTexture);
+	m_cursorSprite.setOrigin(m_cursorTexture.getSize().x/2.0, m_cursorTexture.getSize().y/2.0);
+
     m_tagEngine.init(GraphicsEngine::_screenHeight, GraphicsEngine::_screenWidth);
 
     m_secondsLastDraw = 0;
@@ -147,8 +152,14 @@ void dwe::GraphicsEngine::draw()
 {
     m_window->popGLStates();   // Antes de este pop hay un push, en init
     m_tagEngine.draw();
-
     m_window->pushGLStates();
+
+    // Dibujamos cursor
+    if (m_ownCursor)
+    {
+        m_cursorSprite.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(*m_window)));
+        m_window->draw(m_cursorSprite);
+    }
 
     // Lineas de mensaje del jugador
     for(unsigned int i=0; i<MAX_MESSAGE_LINES; i++)
@@ -307,12 +318,6 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 ////////////////////////////
 Mother* dwe::GraphicsEngine::createEnemyMother(int px, int py, int pz)
 {
-    /*tag::GraphicNode* node = m_tagEngine.createMesh("media/madre.obj", vec3f(0,0,0), vec3f(0,0,0));
-    Mother* p = new Mother();
-	p->setNode(new Node(node));
-	p->setPosition(dwe::vec3f(px, py, pz));
-
-	return p;*/
 	tag::EAnimation* anim = m_tagEngine.createNumAnimations(1, "media/Mother/madre.bmp");
     m_tagEngine.createAnimation(anim, "media/Mother/Stand/motherStand", eAnimEnemyStand,   8);
 
@@ -680,3 +685,11 @@ float dwe::GraphicsEngine::angleToScreenCoords(Drawable *object)
 {
     return m_tagEngine.angleToScreenCoords(object->getPosition(), vec3f(receiver.getCursorX(), receiver.getCursorY(), 0));
 }
+
+//////////////////////////
+void dwe::GraphicsEngine::setOwnCursor(bool ownCursor)
+{
+    m_ownCursor = ownCursor;
+    m_window->setMouseCursorVisible(!ownCursor);
+}
+
