@@ -2,6 +2,8 @@
 #include "GraphicsEngine.h"
 #include "ScenaryElement.h"
 #include "LoadingScreen.h"
+#include "NavGraphNode.h"
+#include "NavGraphEdge.h"
 
 #include <fstream> //Lectura de ficheros
 #include <document.h> //ES UN .H de rapidJSON
@@ -85,7 +87,7 @@ void LoadMap::Init(){
     if (document.Parse(json).HasParseError() == false) //coger el json y ver si es correcto
     {
         const Value& levels = document["levels"]; //Referencia a todos los "levels"
-        for(size_t i=0; i < levels.Size(); i++){
+        for(size_t i=0; i < levels.Size()-1; i++){
             const Value& se = levels[i]["static-elements"]; //Referencia a todos los "static-elements";
             for(size_t j=0; j < se.Size(); j++){
 
@@ -192,7 +194,13 @@ void LoadMap::Init(){
                 }
 
                 if(id=="MesaHall"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/mesahall", "environment_elements/mesa");
+                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/mesahall", "environment_elements/mesahall");
+                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
+                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                }
+
+                if(id=="MesaHallObjetos"){
+                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/mesahallobjetos", "environment_elements/mesa");
                     envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
                     envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
                 }
@@ -244,6 +252,16 @@ void LoadMap::Init(){
                     ++numDoorsRotate;
                 }
             }
+            // WAYPOINTS
+
+            const Value& wa = levels[53]["Waypoints"];
+            for(size_t j=0; j < wa.Size(); j++){
+                const Value& e = wa[j]; //Recorrer cada "element"
+                std::string id = e["element-id"].GetString();
+                int tx = e["position"]["x"].GetDouble();  int tz = (-1)* e["position"]["z"].GetDouble();
+                NavGraphNode node(j, dwe::vec2f(tx, tz));
+                s->getNavGraph().addNode(node);
+            }
         }
 
         // Asignamos puertas a generadores
@@ -263,10 +281,6 @@ void LoadMap::Init(){
         sector[0]=entities[32];
         sector[1]=entities[33];
         generator[2]->setSector(sector, 2);
-
-        // ENVIRONMENT ELEMENTS
-        /*envElements[0] = GEInstance->createScenaryElement("environment_elements/mesahall", "");
-        envElements[0]->setPosition(dwe::vec3f(-7, 0, 287));*/
 
         // Armas
         s->createCShotgun(0, 10, -20);

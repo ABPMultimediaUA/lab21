@@ -46,6 +46,8 @@ TagManager:
   - Mesa
   - Adrenalina
   - MesaHall
+  - MesaHallObjetos
+  - Waypoint
   layers:
   - Default
   - TransparentFX
