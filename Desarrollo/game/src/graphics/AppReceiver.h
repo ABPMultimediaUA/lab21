@@ -79,11 +79,7 @@ private:
 public:
     AppReceiver()
     {
-        for(int i=0; i<sf::Keyboard::KeyCount; i++)
-        {
-            KeyDown[i] = false;
-        }
-        leftButton = false;
+        clearEvents();
     }
 
     virtual bool OnEvent(const sf::Event &event)
@@ -119,6 +115,12 @@ public:
     }
     virtual bool isKeyUp(EKEY_CODE keyCode) const {
         return !KeyDown[keyCode];
+    }
+
+    virtual void clearEvents() {
+        for(int i=0; i<sf::Keyboard::KeyCount; i++)
+            KeyDown[i] = false;
+        leftButton = false;
     }
 
     virtual float getCursorX(){return(cursorX);}

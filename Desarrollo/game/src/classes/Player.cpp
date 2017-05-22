@@ -217,11 +217,11 @@ void Player::readEvents()
     //Calcular rotacion player - con MOUSE
     if(GEInstance->receiver.getCursorX()>=0 && GEInstance->receiver.getCursorY()>=0)
     {
-        //GEInstance->rotateNodeToCursor(getNode());
-        setRotation(
-            World->from2Dto3D(GEInstance->receiver.getCursorX(),
-                              GEInstance->receiver.getCursorY(),
-                              getRotation()));
+        setRotation(dwe::vec3f(0,
+                               GEInstance->getTagEngine()->angleToScreenCoords(
+                                            getPosition(),
+                                            dwe::vec3f(GEInstance->receiver.getCursorX(), GEInstance->receiver.getCursorY(), 0))
+                               , 0));
     }
 
     // comprobamos si dispara

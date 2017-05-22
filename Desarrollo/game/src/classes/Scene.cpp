@@ -257,6 +257,7 @@ void Scene::Update()
     if(enemyMother->getHealth()<=0)
     {
         Game::getInstance()->ChangeState(GSEnd::getInstance());
+        GEInstance->setOwnCursor(false);
         GSEnd::getInstance()->Init();
     }
 }

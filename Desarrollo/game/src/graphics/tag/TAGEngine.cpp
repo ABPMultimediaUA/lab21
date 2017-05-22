@@ -632,31 +632,29 @@ void tag::TAGEngine::nodeLookAtTarget(GraphicNode* node, const vec3f position, c
 /////////////////////
 float tag::TAGEngine::angleToScreenCoords(const vec3f position, const vec3f screenCoords)
 {
-    //GLfloat zz;
-/*    calculateViewMatrix();
-    glm::vec4 viewport = glm::vec4(0.0f, 0.0f, 1024.0f, 768.0f);
-    glm::vec3 unCoords = glm::unProject(glm::vec3(screenCoords.x, 1024.0f-screenCoords.y-1, 0.1), Entity::viewMatrix, Entity::projectionMatrix, viewport);
-    //unCoords.z -= 99.929;
-    //std::cout << "cursorX: " << screenCoords.x << "   cursorY: " << screenCoords.y << "   x: " << unCoords.x << "   z: " << unCoords.y;
-    std::cout << "x:" << unCoords.x << " y:" << unCoords.y << " z:" << unCoords.z;
+    calculateViewMatrix();
+    glm::vec4 viewport = glm::vec4(0.0f, 0.0f, TAGEngine::_screenWidth, TAGEngine::_screenHeight);
+
+    GLfloat depthZ;
+    glReadPixels(screenCoords.x, screenCoords.y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &depthZ);
+
+    glm::vec3 unCoords = glm::unProject(
+            glm::vec3(screenCoords.x, TAGEngine::_screenHeight-screenCoords.y-1.0, 0.9998),
+            Entity::viewMatrix,
+            Entity::projectionMatrix,
+            viewport);
 
     float x = unCoords.x-position.x;
     float z = unCoords.z-position.z;
-
-    std::cout << "   position.x: " << position.x << "   position.z:" <<position.z;
-
 
     float modulo = sqrt(pow(x,2) + pow(z,2));
     float normX = x/modulo;
     float angulo = acos(normX) * (180/M_PI);
 
+    if (unCoords.z > position.z)
+        angulo = -angulo;
 
-
-    std::cout << "     angulo: " << angulo << "\n";
-
-
-    return angulo;*/
-    return 0;
+    return angulo;
 }
 
 /////////////////////

@@ -52,6 +52,8 @@ void GSIngame::Init(){
     else
         m_gameStarted = true;
 
+    GEInstance->receiver.clearEvents();
+
     LoadingScreen::getInstance()->Destroy();
 }
 
@@ -89,12 +91,14 @@ void GSIngame::HandleEvents()
     }
     if(m_pausePermission && GEInstance->receiver.isKeyDown(KEY_PAUSE)){
         Game::getInstance()->ChangeState(GSPause::getInstance());
+        GEInstance->setOwnCursor(false);
         m = false;
         m_pausePermission = false;
         m_clickPermission = false;
     }
     else if(GEInstance->receiver.isKeyDown(KEY_DO_DEAD)){
         Game::getInstance()->ChangeState(GSDead::getInstance());
+        GEInstance->setOwnCursor(false);
         m = false;
         m_pausePermission = false;
         m_clickPermission = false;
@@ -133,7 +137,6 @@ void GSIngame::Render(){
 GSIngame::~GSIngame()
 {
     cout<<"He borrado el mapa"<<endl;
-
 }
 
 void GSIngame::checkForNetGameStarted()
