@@ -48,6 +48,7 @@ TagManager:
   - MesaHall
   - MesaHallObjetos
   - Waypoint
+  - Maceta
   layers:
   - Default
   - TransparentFX

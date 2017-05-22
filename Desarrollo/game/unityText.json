@@ -49,6 +49,9 @@
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_200m",
 				"position": { "x":-1000, "y":0, "z":-900 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Maceta",
+				"position": { "x":-816.1, "y":0, "z":-932 },
 				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
@@ -199,6 +202,18 @@
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "MesaHallObjetos",
 				"position": { "x":0, "y":1.1, "z":-228 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Maceta",
+				"position": { "x":782, "y":0, "z":71 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Maceta",
+				"position": { "x":-776, "y":0, "z":72 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Maceta",
+				"position": { "x":65.6, "y":0, "z":-472 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Maceta",
+				"position": { "x":-69, "y":0, "z":-472 },
 				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
@@ -1178,7 +1193,10 @@
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "CamaDormir",
 				"position": { "x":723.9999, "y":0, "z":-1102 },
-				"rotation": { "x":0, "y":90, "z":0 }}
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Maceta",
+				"position": { "x":725.7999, "y":0, "z":-981.3 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-consumable": [
 		],
@@ -1231,11 +1249,14 @@
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "CamaDormir",
 				"position": { "x":1178, "y":0, "z":-802 },
-				"rotation": { "x":0, "y":270, "z":0 }}
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Maceta",
+				"position": { "x":1044.3, "y":0, "z":-776.9 },
+				"rotation": { "x":0, "y":90, "z":0 }}
 		],
 		"initial-consumable": [
 			{ "element-id": "Adrenalina",
-				"position": { "x":1125.8, "y":42, "z":-821.3 },
+				"position": { "x":1125.8, "y":0, "z":-821.3 },
 				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
@@ -1435,7 +1456,10 @@
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "CamaDormir",
 				"position": { "x":2120, "y":0, "z":-851.5 },
-				"rotation": { "x":0, "y":90, "z":0 }}
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Maceta",
+				"position": { "x":1975, "y":0, "z":-730 },
+				"rotation": { "x":0, "y":180, "z":0 }}
 		],
 		"initial-consumable": [
 		],
@@ -1563,7 +1587,13 @@
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_50m",
 				"position": { "x":1550, "y":0, "z":400.0001 },
-				"rotation": { "x":0, "y":0, "z":0 }}
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Maceta",
+				"position": { "x":1527, "y":0, "z":372.9001 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Maceta",
+				"position": { "x":1762.2, "y":0, "z":372.9001 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-consumable": [
 		],

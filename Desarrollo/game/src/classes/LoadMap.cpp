@@ -149,60 +149,77 @@ void LoadMap::Init(){
                     envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/especimen", "environment_elements/especimen");
                     envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
                     envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                    numEnvElements++;
                 }
 
                 if(id=="Camilla"){
                     envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/camilla", "environment_elements/camilla");
                     envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
                     envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                    numEnvElements++;
                 }
 
                 if(id=="Lavabo"){
                     envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/lavabo", "environment_elements/lavabo");
                     envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
                     envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                    numEnvElements++;
                 }
 
                 if(id=="WC"){
                     envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/banyos", "environment_elements/banyos");
                     envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
                     envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                    numEnvElements++;
                 }
 
                 if(id=="CamaDormir"){
                     envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/camadormir", "environment_elements/camadormir");
                     envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
                     envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                    numEnvElements++;
                 }
 
                 if(id=="Barril"){
                     envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/barril", "environment_elements/barril");
                     envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
                     envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                    numEnvElements++;
                 }
 
                 if(id=="Caja"){
                     envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/box", "environment_elements/box");
                     envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
                     envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                    numEnvElements++;
                 }
 
                 if(id=="Mesa"){
                     envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/mesa", "environment_elements/mesa");
                     envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
                     envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                    numEnvElements++;
                 }
 
                 if(id=="MesaHall"){
                     envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/mesahall", "environment_elements/mesahall");
                     envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
                     envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                    numEnvElements++;
                 }
 
                 if(id=="MesaHallObjetos"){
                     envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/mesahallobjetos", "environment_elements/mesa");
                     envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
                     envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                    numEnvElements++;
+                }
+
+                if(id=="Maceta"){
+                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/maceta", "environment_elements/maceta");
+                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
+                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
+                    numEnvElements++;
                 }
             }
 
