@@ -33,6 +33,7 @@ void GSDead::Update(){
     cout<<"MUERTO"<<endl;
     NetInstance->close();
     Game::getInstance()->ChangeState(GSMainMenu::getInstance());
+    GEInstance->setOwnCursor(false);
     Scene::Instance()->Destroy();
     LoadMap::getInstance()->Destroy();
 }

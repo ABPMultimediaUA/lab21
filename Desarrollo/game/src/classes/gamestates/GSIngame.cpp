@@ -52,6 +52,8 @@ void GSIngame::Init(){
     else
         m_gameStarted = true;
 
+    GEInstance->receiver.clearEvents();
+
     LoadingScreen::getInstance()->Destroy();
 }
 
