@@ -295,7 +295,7 @@ PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 ////////////////////////////
 Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 {
-    tag::EAnimation* anim = m_tagEngine.createNumAnimations(6);
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(6, "media/Humanoid/humanoide.bmp");
     m_tagEngine.createAnimation(anim, "media/Humanoid/Stand/humanoide",                 eAnimEnemyStand,   1);
     m_tagEngine.createAnimation(anim, "media/Humanoid/Death/humanoideDeath",            eAnimEnemyDeath,   8, false);
     m_tagEngine.createAnimation(anim, "media/Humanoid/MeleeAttack/humanoidMeleeAttack", eAnimEnemyAttack,   6);
@@ -357,7 +357,7 @@ Dog* dwe::GraphicsEngine::createEnemyDog(int px, int py, int pz)
 
 Bat* dwe::GraphicsEngine::createEnemyBat(int px, int py, int pz)
 {
-    tag::EAnimation* anim = m_tagEngine.createNumAnimations(1);
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(1, "media/Bat/bat.bmp");
     m_tagEngine.createAnimation(anim, "media/Bat/BatRun/murcielago", eAnimEnemyStand, 16);//posicion 0 sera estar parado
     anim->setActiveAnimation(0);
 
