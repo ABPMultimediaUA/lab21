@@ -46,6 +46,19 @@ namespace dwe{
             sf::RectangleShape rs;
     };
 
+    class RectangleShape{
+        public:
+            RectangleShape(std::string s, int x, int y, float xsize, float ysize);
+            ~RectangleShape();
+            void draw();
+            void SetTexture(std::string s);
+            void SetScale(float factorX, float factorY);
+        private:
+            sf::Texture texture;
+            sf::RectangleShape rs;
+            float initialX, initialY;
+    };
+
     class Sprite{
         public:
             Sprite(std::string s, int x, int y);

@@ -7,6 +7,7 @@ namespace dwe
 {
     class Background;
     class Sprite;
+    class RectangleShape;
 }
 
 class LoadingScreen
@@ -26,12 +27,12 @@ class LoadingScreen
     protected:
 
     private:
-        bool                m_initialized;
-        float               m_progressScale;
-        float               m_progressIncrement;
-        dwe::Background*    m_background;
-        dwe::Sprite*        m_loadingSprite;
-        dwe::Sprite*        m_progress;
+        bool                 m_initialized;
+        float                m_progressScale;
+        float                m_progressIncrement;
+        dwe::Background*     m_background;
+        dwe::Sprite*         m_loadingSprite;
+        dwe::RectangleShape* m_progress;
 
         void Draw();
 };
