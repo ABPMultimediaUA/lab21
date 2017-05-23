@@ -107,7 +107,7 @@ bool Player::shoot(float timeSinceLastShoot)
 {
     if (timeSinceLastShoot > m_currentWeapon->getCadence() && m_currentWeapon->getAmmo() > 0)
     {
-        TriggerSound* triggerSound = new TriggerSound(getPosition(), 571);
+        TriggerSound* triggerSound = new TriggerSound(getPosition(), 10/0.035);
         Scene::Instance()->getTriggerSystem().Add(triggerSound);
         AEInstance->Play2D("media/Sounds/DisparoEscopeta.wav");
         m_currentWeapon->shoot();

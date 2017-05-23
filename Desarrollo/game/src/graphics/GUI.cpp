@@ -184,7 +184,6 @@ void dwe::RectangleShape::SetScale(float factorX, float factorY)
     rs.setSize(sf::Vector2f(initialX*factorX, initialY));
     sf::IntRect rect = rs.getTextureRect();
     rect.width = initialX*factorX;
-    std::cout<<rect.width<<std::endl;
     rs.setTextureRect(rect);
 }
 

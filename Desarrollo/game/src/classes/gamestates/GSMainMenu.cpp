@@ -119,6 +119,7 @@ void GSMainMenu::HandleEvents(){
         switch(page){
         case 0: if(playAloneButton->buttonCheck(mousePosX, mousePosY) || GEInstance->receiver.isKeyDown(KEY_KEY_1))
                 {
+                    AEInstance->StopAllSounds();
                     //AEInstance->Play2D("media/Sounds/gamestarts.wav");
                     NetInstance->open(false);  // Inicializar motor de red
                     menuInfo=false;

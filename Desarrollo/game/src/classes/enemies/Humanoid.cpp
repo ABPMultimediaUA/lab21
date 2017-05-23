@@ -17,7 +17,7 @@ Humanoid::Humanoid()
 
 
 
-    targetPosition = dwe::vec2f(-201,201);
+    targetPosition = dwe::vec2f(470,370);
 }
 
 void Humanoid::update()
