@@ -64,6 +64,7 @@ void dwe::GraphicsEngine::init()
     contextSettings.depthBits = 24;
     contextSettings.sRgbCapable = false;
 
+
     sf::Uint32 style;
     if (_fullScreen)
         style = sf::Style::Fullscreen;
@@ -71,7 +72,7 @@ void dwe::GraphicsEngine::init()
         style = sf::Style::Default;
     //style = sf::Style::Default; // TODO
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", style, contextSettings);
-
+    //m_window->setVerticalSyncEnabled(true);
     // Creamos los mensajes de texto, por ahora vacios
     if (!m_font.loadFromFile("media/ExoRegular.otf"))
         throw std::runtime_error("No se ha podido cargar la fuente de texto");
@@ -283,6 +284,7 @@ PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 	p->setNode(new Node(node));
 
 	NetInstance->addNetObject(p);
+
 	return p;
 }
 
@@ -453,7 +455,11 @@ ProjectileGrenade* dwe::GraphicsEngine::createProjectileGrenade(vec3f origin, fl
 
 GrenadeExplosion* dwe::GraphicsEngine::createGrenadeExplosion(vec3f origin)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/explosion.obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(1, "media/explosionAnimation/explosion.bmp");
+    m_tagEngine.createAnimation(anim, "media/explosionAnimation/explosion",   eAnimGrenade,  11);
+    anim->setActiveAnimation(0);
+
+    tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
     GrenadeExplosion* g = new GrenadeExplosion();
 	g->setNode(new Node(node));
 	g->setPosition(vec3f(origin.x, 0, origin.z));
@@ -511,7 +517,7 @@ Ammo* dwe::GraphicsEngine::createAmmo(float px, float py, float pz)
 	return a;
 }
 
-Gun* dwe::GraphicsEngine::createGun(Player* player)
+Gun* dwe::GraphicsEngine::createGun(Drawable* player)
 {
 	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Gun/Gun.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Gun/gun.bmp", player->getNode()->getNode());
     Gun* g = new Gun();
@@ -520,7 +526,7 @@ Gun* dwe::GraphicsEngine::createGun(Player* player)
 	return g;
 }
 
-Shotgun* dwe::GraphicsEngine::createShotgun(Player* player)
+Shotgun* dwe::GraphicsEngine::createShotgun(Drawable* player)
 {
 	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Shotgun/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Shotgun/shotgun.bmp", player->getNode()->getNode());
     Shotgun* sg = new Shotgun();
@@ -529,7 +535,7 @@ Shotgun* dwe::GraphicsEngine::createShotgun(Player* player)
 	return sg;
 }
 
-Rifle* dwe::GraphicsEngine::createRifle(Player* player)
+Rifle* dwe::GraphicsEngine::createRifle(Drawable* player)
 {
 	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Rifle/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Rifle/rifle.bmp", player->getNode()->getNode());
     Rifle* r = new Rifle();

@@ -182,6 +182,8 @@ void Player::swapCurrentWeapon(FirearmKind weaponKind)
 
         m_currentWeaponType = weaponKind;
         m_timeWeaponSwap    = World->getTimeElapsed();
+
+        NetInstance->sendBroadcast(ID_SWAP_WEAPON, NetInstance->getParticipantOrder(), m_currentWeaponType);
     }
 }
 

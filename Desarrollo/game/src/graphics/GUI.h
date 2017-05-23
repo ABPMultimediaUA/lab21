@@ -16,10 +16,6 @@ namespace dwe{
             Button(std::string t, int x, int y, bool bg);
             ~Button();
             void draw();
-            int getXOrigin();
-            int getYOrigin();
-            int getWidth();
-            int getHeight();
             bool buttonCheck(int mx, int my);
             void hover();
             void unhover();
@@ -69,6 +65,25 @@ namespace dwe{
         private:
             sf::Texture texture;
             sf::Sprite sp;
+    };
+
+    class Slider{
+        public:
+            Slider(int x, int y);
+            ~Slider();
+            void draw();
+            void sliderCheck(int mx, int my);
+            void hover();
+            void unhover();
+            void move(int mx);
+            float getPercentage();
+        private:
+            float x, y, center, minX, maxX;
+            bool clicked;
+            sf::Texture texture;
+            sf::Texture texture2;
+            sf::Sprite sp;
+            sf::Sprite lane;
     };
 
     class HudBox
