@@ -17,6 +17,7 @@
 #include "Scene.h"
 #include "Consumable.h"
 #include "Enemy.h"
+#include "LoadMap.h"
 
 
 using namespace dwn;
@@ -39,7 +40,7 @@ dwn::NetGame::~NetGame()
 }
 
 //////////////
-void dwn::NetGame::open(Scene *scene, bool multiplayer)
+void dwn::NetGame::open(bool multiplayer)
 {
     m_opened = true;
     m_connected = false;
@@ -52,7 +53,6 @@ void dwn::NetGame::open(Scene *scene, bool multiplayer)
     m_numNetConsumables = 0;
     m_numNetEnemies = 0;
     m_netEnemyIndex = 0;
-    //m_scene = scene;
     m_multiplayer = multiplayer;
     m_gamesSearched = false;
 
@@ -166,6 +166,9 @@ void dwn::NetGame::createMappingMessageFunctions()
 
     mapMessagesFunctions[12].id_message = ID_SEND_AMMO;
     mapMessagesFunctions[12].func       = &dwn::NetGame::sendAmmo;
+
+    mapMessagesFunctions[13].id_message = ID_CHEAT_DOOR_OPEN;
+    mapMessagesFunctions[13].func       = &dwn::NetGame::cheatDoorOpen;
 }
 
 ///////////////////
@@ -831,7 +834,7 @@ void dwn::NetGame::createProjectileGrenade(RakNet::Packet *packet)
     bsIn.Read(position);
     bsIn.Read(angle);
 
-    m_scene->createProjectileGrenade(position, angle);
+    Scene::Instance()->createProjectileGrenade(position, angle);
 }
 
 ///////////////////
@@ -887,4 +890,10 @@ void dwn::NetGame::sendAmmo(RakNet::Packet *packet)
     if (value == World->getMainPlayer()->creatingSystemGUID.ToString())
         //World->getMainPlayer()->addAmmo(0,10);
         World->getMainPlayer()->getPlayerGun()->addAmmo(10);
+}
+
+///////////////////
+void dwn::NetGame::cheatDoorOpen(RakNet::Packet *packet)
+{
+    LoadMap::getInstance()->cheatDoorOpen();
 }

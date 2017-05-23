@@ -29,6 +29,7 @@ void GSIngame::Init(){
     m = false;
     m_pausePermission = false;
     m_clickPermission = false;
+    Scene::Instance();
     LoadMap::getInstance()->Init();  // Llamo dentro a AddProgress también
     LoadingScreen::getInstance()->AddProgress();
     WorldInstance::Instance();

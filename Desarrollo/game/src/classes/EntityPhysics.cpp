@@ -151,7 +151,7 @@ void EntityPhysics::createCircularBody(const dwe::vec3f& pos, float radius)
     // Define a circle shape for our dynamic body.
     b2CircleShape circle_shape;
     circle_shape.m_p.Set(0,0);
-    circle_shape.m_radius = radius;
+    circle_shape.m_radius = radius * EntityPhysics::_ratio;
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;

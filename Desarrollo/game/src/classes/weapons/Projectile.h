@@ -30,7 +30,7 @@ class Projectile: public Entity
     protected:
 
     private:
-        static const float _velocity = 10.f;  // m/s
+        static const float _velocity = 20.f;  // m/s
 
         dwe::vec3f position;
         int speed;

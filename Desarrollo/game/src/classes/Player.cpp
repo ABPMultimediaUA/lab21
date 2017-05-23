@@ -25,6 +25,8 @@ Player::Player() :
     m_timeWeaponSwap    = 1.0;
     m_timeReload        = 1.0;
     m_timeLastGrenade   = 0;
+    m_timeInitGrenade   = 0;
+    m_isThrowingGrenade = false;
     m_timeLastProjectil = 0;
 
     m_weapons[eGun]     = 0;
@@ -105,7 +107,7 @@ bool Player::shoot(float timeSinceLastShoot)
 {
     if (timeSinceLastShoot > m_currentWeapon->getCadence() && m_currentWeapon->getAmmo() > 0)
     {
-        TriggerSound* triggerSound = new TriggerSound(getPosition(), 20);
+        TriggerSound* triggerSound = new TriggerSound(getPosition(), 571);
         Scene::Instance()->getTriggerSystem().Add(triggerSound);
         AEInstance->Play2D("media/Sounds/DisparoEscopeta.wav");
         m_currentWeapon->shoot();
@@ -116,15 +118,16 @@ bool Player::shoot(float timeSinceLastShoot)
 }
 
 /////////////
-bool Player::throwGrenade(float timeSinceLastGrenade)
+void Player::throwGrenade()
 {
-    if (timeSinceLastGrenade > m_grenadeWeapon.getCadence() && m_grenades > 0)
-    {
-        m_grenadeWeapon.shoot();
-        m_grenades--;
-        return true;
-    }
-    return false;
+    m_grenadeWeapon.shoot();
+    m_grenades--;
+}
+
+/////////////
+bool Player::canThrowGrenade(float timeSinceLastGrenade)
+{
+    return (timeSinceLastGrenade > m_grenadeWeapon.getCadence() && m_grenades > 0);
 }
 
 /////////////
@@ -199,6 +202,20 @@ void Player::readEvents()
 
     float timeElapsed = World->getTimeElapsed();
 
+    if (m_isThrowingGrenade)
+    {
+        if (timeElapsed - m_timeInitGrenade > Player::_throwGrenadeOffsetTime)
+        {
+            throwGrenade();
+            NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, getPosition(), getRotation().y); // Enviamos mensaje para crear projectilgrenade
+            m_timeLastGrenade = timeElapsed;
+            m_isThrowingGrenade = false;
+        }
+        else
+            return;
+    }
+
+
     //Animacion del player
     if(getSpeedX()!=0 || getSpeedZ()!=0)
     {
@@ -233,18 +250,19 @@ void Player::readEvents()
     }
     else
         // comprobamos si dispara granadas
-        if(GEInstance->receiver.isKeyDown(KEY_GRENADE)
-           && throwGrenade(timeElapsed - m_timeLastGrenade) )
+        if(GEInstance->receiver.isKeyDown(KEY_GRENADE) && canThrowGrenade(timeElapsed - m_timeLastGrenade))
         {
-            NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, getPosition(), getRotation().y); // Enviamos mensaje para crear projectilgrenade
-            m_timeLastGrenade = timeElapsed;
+            m_isThrowingGrenade = true;
+            m_timeInitGrenade = timeElapsed;
             setAnimation(dwe::eAnimPlayerGrenade);
+            return;
         }
 
-        if(GEInstance->receiver.isKeyDown(KEY_ATTACK))
-        {
-            setAnimation(dwe::eAnimPlayerAttack);
-        }
+
+    if(GEInstance->receiver.isKeyDown(KEY_ATTACK))
+    {
+        setAnimation(dwe::eAnimPlayerAttack);
+    }
 
 
      // consumir botiquin

@@ -120,7 +120,7 @@ void GSMainMenu::HandleEvents(){
         case 0: if(playAloneButton->buttonCheck(mousePosX, mousePosY) || GEInstance->receiver.isKeyDown(KEY_KEY_1))
                 {
                     //AEInstance->Play2D("media/Sounds/gamestarts.wav");
-                    NetInstance->open(Scene::Instance(), false);  // Inicializar motor de red
+                    NetInstance->open(false);  // Inicializar motor de red
                     menuInfo=false;
                     m_clickPermission=false;
                     Game::getInstance()->ChangeState(GSIngame::getInstance());
@@ -232,7 +232,7 @@ void GSMainMenu::Update(){
 
 	/****************************/
     if(enterNet && !NetInstance->getOpened()){
-        NetInstance->open(Scene::Instance(), (type=="2"));  // Inicializar motor de red
+        NetInstance->open((type=="2"));  // Inicializar motor de red
         cout << "//\n// Buscando servidores ";
         if(NetInstance->searchForServers())
         {
