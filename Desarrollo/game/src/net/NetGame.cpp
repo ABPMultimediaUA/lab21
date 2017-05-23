@@ -169,6 +169,9 @@ void dwn::NetGame::createMappingMessageFunctions()
 
     mapMessagesFunctions[13].id_message = ID_CHEAT_DOOR_OPEN;
     mapMessagesFunctions[13].func       = &dwn::NetGame::cheatDoorOpen;
+
+    mapMessagesFunctions[14].id_message = ID_SWAP_WEAPON;
+    mapMessagesFunctions[14].func       = &dwn::NetGame::swapWeapon;
 }
 
 ///////////////////
@@ -486,6 +489,15 @@ void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int value)
     sendBroadcastMessage(bsOut);
 }
 ///////////////////
+void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned short playerId, FirearmKind firearmKind)
+{
+    RakNet::BitStream bsOut;
+    bsOut.Write((RakNet::MessageID)messageID);
+    bsOut.Write(playerId);
+    bsOut.Write(firearmKind);
+    sendBroadcastMessage(bsOut);
+}
+///////////////////
 void dwn::NetGame::sendBroadcast(unsigned int messageID, RakNet::RakString  value)
 {
     RakNet::BitStream bsOut;
@@ -538,6 +550,16 @@ RakNet::Replica3* dwn::NetGame::Connection_RM3DireW::AllocReplica(RakNet::BitStr
 	if (typeName == "Player")
     {
         PlayerMate* obj = GEInstance->createPlayerMate();
+        obj->setWeapon(eGun, GEInstance->createGun(obj));
+
+        Firearm* firearm = GEInstance->createShotgun(obj);
+        firearm->setPut();
+        obj->setWeapon(eShotgun, firearm);
+
+        firearm = GEInstance->createRifle(obj);
+        firearm->setPut();
+        obj->setWeapon(eRifle, firearm);
+
         return obj;
     }
     else
@@ -896,4 +918,16 @@ void dwn::NetGame::sendAmmo(RakNet::Packet *packet)
 void dwn::NetGame::cheatDoorOpen(RakNet::Packet *packet)
 {
     LoadMap::getInstance()->cheatDoorOpen();
+}
+
+///////////////////
+void dwn::NetGame::swapWeapon(RakNet::Packet *packet)
+{
+    unsigned short playerId;
+    FirearmKind firearmKind;
+    RakNet::BitStream bsIn(packet->data,packet->length,false);
+    bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+    bsIn.Read(playerId);
+    bsIn.Read(firearmKind);
+    getPlayerMate(playerId)->swapCurrentWeapon((FirearmKind)firearmKind);
 }

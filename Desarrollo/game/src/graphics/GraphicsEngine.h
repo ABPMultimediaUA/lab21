@@ -210,9 +210,9 @@ namespace dwe
         CRifle*             createCRifle(float px, float py, float pz);
 
         // weapons
-        Gun*                createGun(Player* player);
-        Shotgun*            createShotgun(Player* player);
-        Rifle*              createRifle(Player* player);
+        Gun*                createGun(Drawable* player);
+        Shotgun*            createShotgun(Drawable* player);
+        Rifle*              createRifle(Drawable* player);
 
 
         /// \brief Muestra un mensaje en la zona de mensajes

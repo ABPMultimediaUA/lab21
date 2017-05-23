@@ -20,6 +20,7 @@
 
 #include "DrawableReplica.h"
 #include "NetCommon.h"
+#include "defines.h"
 
 
 
@@ -102,6 +103,7 @@ namespace dwn
             /// \param[in] messageID El id de mensaje que se envian, definidos en NetCommon.h
             /// \param[in] ... resto de parametros son los datos que se envian junto con el mensaje.
             void sendBroadcast(unsigned int messageID, unsigned int value);
+            void sendBroadcast(unsigned int messageID, unsigned short playerId, FirearmKind firearmKind);
             void sendBroadcast(unsigned int messageID, RakNet::RakString value);
             void sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle);
             void sendBroadcast(unsigned int messageID, unsigned int objectID, dwe::vec3f position, dwe::vec3f rotation);
@@ -172,6 +174,7 @@ namespace dwn
             void sendMedkit(RakNet::Packet *packet);
             void sendAmmo(RakNet::Packet *packet);
             void cheatDoorOpen(RakNet::Packet *packet);
+            void swapWeapon(RakNet::Packet *packet);
 
             ///////////////////////////////////////////
 
