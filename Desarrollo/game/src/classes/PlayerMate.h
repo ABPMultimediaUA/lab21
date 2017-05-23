@@ -4,6 +4,7 @@
 #include "DrawableReplica.h"
 #include "GraphicsEngine.h"
 #include "Player.h"
+#include "Firearm.h"
 
 
 class PlayerMate : public dwn::DrawableReplica
@@ -21,10 +22,6 @@ class PlayerMate : public dwn::DrawableReplica
         virtual void setShift(dwe::vec3f s);
         virtual unsigned short int getHealth();
         virtual void setHealth(unsigned short int h);
-        virtual bool getHasRifle();
-        virtual void setHasRifle(unsigned short int h);
-        virtual bool getHasShotgun();
-        virtual void setHasShotgun(unsigned short int h);
         virtual unsigned short int getNumGrenades();
         virtual void setNumGrenades(unsigned short int n);
         virtual unsigned short int getNumMedkits();
@@ -33,18 +30,20 @@ class PlayerMate : public dwn::DrawableReplica
         virtual void giveMedkits(int ammount);
         virtual void giveAmmo(int numWeapon, int ammount);
 
+        void setWeapon(uint8_t index, Firearm* firearm);
+        void swapCurrentWeapon(FirearmKind firearmKind);
+
 
     protected:
 
     private:
+        static const uint8_t _maxWeapons = 3;
         dwe::vec3f          m_shift; // Desplazamiento respecto del movimiento anterior
         unsigned short int  m_health;
-        bool                m_hasRifle;
-        bool                m_hasShotgun;
         unsigned short int  m_numGrenades;
         unsigned short int  m_numMedkits;
-
-
+        FirearmKind         m_currentWeaponKind;
+        Firearm*            m_weapons[_maxWeapons];
 };
 
 #endif // PLAYERMATE_H

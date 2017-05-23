@@ -96,14 +96,16 @@ void LoadMap::Init(){
                 std::string id = e["element-id"].GetString();
                 int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = (-1)* e["position"]["z"].GetDouble();
                 int rx = e["rotation"]["x"].GetDouble();    int ry = e["rotation"]["y"].GetDouble();    int rz = e["rotation"]["z"].GetDouble();
+                dwe::vec3f pos(tx, ty, tz);
+                dwe::vec3f rot(rx, ry, rz);
 
                 //WALLS
                 TTag2Wall *next = mappingWall;
                 while(next->tag != "0"){
                     if(id==next->tag){
                         walls[numWalls] = GEInstance->createScenaryElement(next->model, "unityPared");
-                        walls[numWalls]->setRotation(dwe::vec3f(rx,ry,rz));
-                        walls[numWalls]->setPosition(dwe::vec3f(tx,ty,tz));
+                        walls[numWalls]->setRotation(rot);
+                        walls[numWalls]->setPosition(pos);
                         numWalls++;
                        // wall->setLevelId(levelid);
                     };
@@ -115,8 +117,8 @@ void LoadMap::Init(){
                 while(nextF->tag != "0"){
                         if(id==nextF->tag){
                             floors[numFloors] = GEInstance->createFloor(nextF->model, "unitySuelo_Hall");
-                            floors[numFloors]->setRotation(dwe::vec3f(rx,ry,rz));
-                            floors[numFloors]->setPosition(dwe::vec3f(tx,ty,tz));
+                            floors[numFloors]->setRotation(rot);
+                            floors[numFloors]->setPosition(pos);
                             numFloors++;
                         }
                     ++nextF;
@@ -132,95 +134,17 @@ void LoadMap::Init(){
                     else if(numGenerators==3)
                         generatorID=1;
                     generator[numGenerators]=GEInstance->createGenerator(generatorID, false);
-                    generator[numGenerators]->setRotation(dwe::vec3f(rx,ry,rz));
-                    generator[numGenerators]->setPosition(dwe::vec3f(tx,ty,tz));
+                    generator[numGenerators]->setRotation(rot);
+                    generator[numGenerators]->setPosition(pos);
                     generator[numGenerators]->SetSensor();
                     numGenerators++;
                 }
 
+                static const std::string lugar[15] = {"Cama", "Especimen", "Camilla", "Lavabo", "WC", "CamaDormir", "Barril", "Caja", "Mesa", "MesaHall", "MesaHallObjetos", "Maceta", "Ingeniero"};
+                static const std::string cosa[15] = {"cama", "especimen", "camilla", "lavabo", "banyos", "camadormir", "barril", "box", "mesa", "mesahall", "mesahallobjetos", "maceta", "ingeniero"};
                 // ELEMENTOS DEL ENTORNO
-                if(id=="Cama"){
-                    envElements[numEnvElements]=GEInstance->createScenaryElement("environment_elements/cama", "environment_elements/cama");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="Especimen"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/especimen", "environment_elements/especimen");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="Camilla"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/camilla", "environment_elements/camilla");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="Lavabo"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/lavabo", "environment_elements/lavabo");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="WC"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/banyos", "environment_elements/banyos");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="CamaDormir"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/camadormir", "environment_elements/camadormir");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="Barril"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/barril", "environment_elements/barril");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="Caja"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/box", "environment_elements/box");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="Mesa"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/mesa", "environment_elements/mesa");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="MesaHall"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/mesahall", "environment_elements/mesahall");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="MesaHallObjetos"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/mesahallobjetos", "environment_elements/mesa");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="Maceta"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/maceta", "environment_elements/maceta");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
+                for(unsigned char i=0; i<15; i++){
+                    if(id==lugar[i]) createScenaryElement(cosa[i].c_str(), pos, rot);
                 }
             }
 
@@ -357,4 +281,12 @@ void LoadMap::cheatDoorOpen()
     }
     cout<<"CHEAT PUERTAS ABIERTAS"<<endl;
     cheats=true;
+}
+
+void LoadMap::createScenaryElement(const char* s, const dwe::vec3f &pos, const dwe::vec3f &rot)
+{
+    envElements[numEnvElements]=GEInstance->createScenaryElement("environment_elements/"+std::string(s), "environment_elements/"+std::string(s));
+    envElements[numEnvElements]->setRotation(rot);
+    envElements[numEnvElements]->setPosition(pos);
+    numEnvElements++;
 }

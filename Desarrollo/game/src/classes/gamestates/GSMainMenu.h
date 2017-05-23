@@ -9,6 +9,7 @@ namespace dwe
     class Button;
     class Background;
     class Sprite;
+    class Slider;
 }
 
 class GSMainMenu : public GState{
@@ -44,6 +45,8 @@ private:
     dwe::Background *menuBackground;
 
     dwe::Sprite *mainMenuDecoration;
+
+    dwe::Slider *volumeSlider;
 
     dwe::Button *playAloneButton;
     dwe::Button *playOnlineButton;

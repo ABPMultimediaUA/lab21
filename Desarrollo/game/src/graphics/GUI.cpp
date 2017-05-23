@@ -39,26 +39,6 @@ void dwe::Button::draw()
     GEInstance->drawText(text);
 }
 
-int dwe::Button::getXOrigin()
-{
-    return x;
-}
-
-int dwe::Button::getYOrigin()
-{
-    return y;
-}
-
-int dwe::Button::getWidth()
-{
-    return x+text.getGlobalBounds().width;
-}
-
-int dwe::Button::getHeight()
-{
-    return y+text.getGlobalBounds().height;
-}
-
 bool dwe::Button::buttonCheck(int mx, int my)
 {
     if(mx>bgx && my>bgy && mx<bgx+sp.getGlobalBounds().width && my<bgy+sp.getGlobalBounds().height)
@@ -137,10 +117,85 @@ void dwe::Sprite::SetScale(float factorX, float factorY)
 {
     sp.setScale(factorX, factorY);
 }
+/*** SPRITE FIN ***/
 
-/*** SPRITE FIN***/
+/*** Slider INI ***/
+dwe::Slider::Slider(int x, int y)
+{
+    texture.loadFromFile("media/slider.png");
+    sp.setTexture(texture, true);
+    texture2.loadFromFile("media/sliderLane.png");
+    lane.setTexture(texture2, true);
+    sp.setPosition(x, y);
+    lane.setPosition(x-10, y+18);
+    minX=x-10;
+    maxX=minX+lane.getGlobalBounds().width-11;
+    this->x=x;
+    this->y=y;
+    center=sp.getGlobalBounds().width/2;
+}
 
-/**Fondo INI***/
+dwe::Slider::~Slider(){};
+
+void dwe::Slider::draw()
+{
+    GEInstance->drawSprite(lane);
+    GEInstance->drawSprite(sp);
+}
+
+void dwe::Slider::sliderCheck(int mx, int my)
+{
+    if(mx>x && my>y && mx<x+sp.getGlobalBounds().width && my<y+sp.getGlobalBounds().height)
+    {
+        hover();
+        if(GEInstance->receiver.isLeftButtonPressed())
+        {
+            clicked=true;
+        }
+
+    }
+    else{
+        unhover();
+    }
+    if(GEInstance->receiver.isLeftButtonReleased())
+        clicked=false;
+    if(clicked){
+        hover();
+        center=sp.getGlobalBounds().width/2;
+        move(mx);
+    }
+}
+
+void dwe::Slider::hover()
+{
+    texture.loadFromFile("media/sliderHover.png");
+    sp.setTexture(texture, true);
+}
+
+void dwe::Slider::unhover()
+{
+    texture.loadFromFile("media/slider.png");
+    sp.setTexture(texture, true);
+}
+
+void dwe::Slider::move(int mx)
+{
+    if(mx-center<minX)
+        x=minX;
+    else if(mx-center>maxX)
+        x=maxX;
+    else
+        x=mx-center;
+    sp.setPosition(x, y);
+}
+
+float  dwe::Slider::getPercentage()
+{
+    return (x-minX)/(maxX-minX);
+}
+/*** Slider FIN ***/
+
+/***Fondo INI***/
 dwe::Background::Background(std::string s)
 {
     rs.setSize(sf::Vector2f(GEInstance->get_screenWidth(), GEInstance->get_screenHeight()));
@@ -186,8 +241,8 @@ void dwe::RectangleShape::SetScale(float factorX, float factorY)
     rect.width = initialX*factorX;
     rs.setTextureRect(rect);
 }
-
 /***Rectangle FIN***/
+
 void dwe::HudBox::setComponents(std::string str, sf::Sprite *s, sf::Texture *t, float px, float py)
 {
     t->loadFromFile(str);
