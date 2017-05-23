@@ -18,7 +18,7 @@
 #define NUM_DOORS           34
 #define NUM_GENERATORS      4
 #define NUM_MAP_DOORROTATE  1
-#define NUM_ENVIRONMENT_ELEMENTS 72 // 72 - Ultima adicion: GYM
+#define NUM_ENVIRONMENT_ELEMENTS 76 // 76 - Ultima adicion: Cocina
 
 class LoadMap {
     public:

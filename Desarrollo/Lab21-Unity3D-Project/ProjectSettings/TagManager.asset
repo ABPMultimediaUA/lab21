@@ -53,6 +53,9 @@ TagManager:
   - BicicletaEstatica
   - MaquinaCorrer
   - MaquinaPesas
+  - MesaCocina1
+  - MesaCocina2
+  - MesaCocina3
   layers:
   - Default
   - TransparentFX
