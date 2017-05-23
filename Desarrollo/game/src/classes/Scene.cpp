@@ -44,10 +44,6 @@ void Scene::Init()
     m_timeEnemyActive       = 5.0;  // En segundos
     m_posMother             = dwe::vec3f(0,62.0,-1617.0);
 
-    /////////////// Waypoints ///////////////////////
-    NavGraphNode node0(0, dwe::vec2f(-200, 200));
-    navGraph.addNode(node0);
-
     // Creación de jugador
     mainPlayer = GEInstance->createMainPlayer();
     //TODO he puesto posicion para pruebas mainPlayer->setPosition(dwe::vec3f(-1205-((NetInstance->getParticipantOrder()-1)*30),24,1150));

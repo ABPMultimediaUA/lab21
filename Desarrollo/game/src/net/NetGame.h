@@ -44,7 +44,7 @@ namespace dwn
             static NetGame* Instance();
             virtual ~NetGame();
 
-            void open(Scene *scene, bool multiplayer);
+            void open(bool multiplayer);
             void close();
             void update();
 
@@ -126,7 +126,6 @@ namespace dwn
             bool m_gameStarted;
             unsigned short m_participantOrder;
             std::string m_serverIP;
-            Scene* m_scene;
             RakNetGUID m_cloudServerGUID;
 
 
@@ -172,6 +171,7 @@ namespace dwn
             void enemyUpdate(RakNet::Packet *packet);
             void sendMedkit(RakNet::Packet *packet);
             void sendAmmo(RakNet::Packet *packet);
+            void cheatDoorOpen(RakNet::Packet *packet);
 
             ///////////////////////////////////////////
 

@@ -3,9 +3,6 @@
 
 #include "GraphicsEngine.h"
 #include "Entity.h"
-#include "TriggerDoor.h"
-#include "TriggerGenerator.h"
-#include "MagnetKey.h"
 #include "Door.h"
 #include "DoorRotate.h"
 #include "Generator.h"
@@ -21,7 +18,7 @@
 #define NUM_DOORS           34
 #define NUM_GENERATORS      4
 #define NUM_MAP_DOORROTATE  1
-#define NUM_ENVIRONMENT_ELEMENTS 41
+#define NUM_ENVIRONMENT_ELEMENTS 53 // 53 - Ultima adicion: Macetas
 
 class LoadMap {
     public:
@@ -31,6 +28,7 @@ class LoadMap {
         void Init();
         void Update();
         void Destroy();
+        void cheatDoorOpen();
 
     private:
         // Suelo

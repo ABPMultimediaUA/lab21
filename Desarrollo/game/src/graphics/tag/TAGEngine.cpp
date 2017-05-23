@@ -238,7 +238,7 @@ void tag::TAGEngine::prepareShadowView()
     GLfloat near_plane  = 0.1;
     GLfloat far_plane   = 1000.0;
     float   ortho       = 1900.0;
-    glm::vec3 position(170.0, 800.0, 80.0);
+    glm::vec3 position(170.0, 800.0, 280.0);
     glm::vec3 lookAt(0.0);
     glm::vec3 normal(0.0, 1.0, 0.0);
 

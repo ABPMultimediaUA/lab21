@@ -45,6 +45,10 @@ TagManager:
   - Caja
   - Mesa
   - Adrenalina
+  - MesaHall
+  - MesaHallObjetos
+  - Waypoint
+  - Maceta
   layers:
   - Default
   - TransparentFX
