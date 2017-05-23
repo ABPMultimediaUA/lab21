@@ -140,10 +140,10 @@ void LoadMap::Init(){
                     numGenerators++;
                 }
 
-                static const std::string lugar[15] = {"Cama", "Especimen", "Camilla", "Lavabo", "WC", "CamaDormir", "Barril", "Caja", "Mesa", "MesaHall", "MesaHallObjetos", "Maceta", "Ingeniero"};
-                static const std::string cosa[15] = {"cama", "especimen", "camilla", "lavabo", "banyos", "camadormir", "barril", "box", "mesa", "mesahall", "mesahallobjetos", "maceta", "ingeniero"};
+                static const std::string lugar[18] = {"Cama", "Especimen", "Camilla", "Lavabo", "WC", "CamaDormir", "Barril", "Caja", "Mesa", "MesaHall", "MesaHallObjetos", "Maceta", "Ingeniero", "BicicletaEstatica", "MaquinaCorrer", "MaquinaPesas"};
+                static const std::string cosa[18] = {"cama", "especimen", "camilla", "lavabo", "banyos", "camadormir", "barril", "box", "mesa", "mesahall", "mesahallobjetos", "maceta", "ingeniero", "bicicletaestatica", "maquinacorrer", "maquinapesas"};
                 // ELEMENTOS DEL ENTORNO
-                for(unsigned char i=0; i<15; i++){
+                for(unsigned char i=0; i<18; i++){
                     if(id==lugar[i]) createScenaryElement(cosa[i].c_str(), pos, rot);
                 }
             }

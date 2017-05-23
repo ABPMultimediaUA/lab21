@@ -50,6 +50,9 @@ TagManager:
   - Waypoint
   - Maceta
   - Ingeniero
+  - BicicletaEstatica
+  - MaquinaCorrer
+  - MaquinaPesas
   layers:
   - Default
   - TransparentFX
