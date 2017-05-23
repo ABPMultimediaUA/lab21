@@ -546,7 +546,7 @@ Rifle* dwe::GraphicsEngine::createRifle(Drawable* player)
 
 CShotgun* dwe::GraphicsEngine::createCShotgun(float px, float py, float pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Shotgun/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Shotgun/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Shotgun/shotgun.bmp");
     CShotgun* sg = new CShotgun();
 	sg->setNode(new Node(node));
 	sg->setPosition(dwe::vec3f(px, py, pz));
@@ -557,7 +557,7 @@ CShotgun* dwe::GraphicsEngine::createCShotgun(float px, float py, float pz)
 
 CRifle* dwe::GraphicsEngine::createCRifle(float px, float py, float pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Rifle/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Rifle/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Rifle/rifle.bmp");
     CRifle* r = new CRifle();
 	r->setNode(new Node(node));
 	r->setPosition(dwe::vec3f(px, py, pz));
