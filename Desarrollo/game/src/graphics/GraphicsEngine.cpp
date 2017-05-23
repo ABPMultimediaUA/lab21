@@ -64,6 +64,7 @@ void dwe::GraphicsEngine::init()
     contextSettings.depthBits = 24;
     contextSettings.sRgbCapable = false;
 
+
     sf::Uint32 style;
     if (_fullScreen)
         style = sf::Style::Fullscreen;
@@ -71,7 +72,7 @@ void dwe::GraphicsEngine::init()
         style = sf::Style::Default;
     //style = sf::Style::Default; // TODO
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", style, contextSettings);
-
+    //m_window->setVerticalSyncEnabled(true);
     // Creamos los mensajes de texto, por ahora vacios
     if (!m_font.loadFromFile("media/ExoRegular.otf"))
         throw std::runtime_error("No se ha podido cargar la fuente de texto");
@@ -519,7 +520,7 @@ Ammo* dwe::GraphicsEngine::createAmmo(float px, float py, float pz)
 
 Gun* dwe::GraphicsEngine::createGun(Player* player)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Gun/Gun.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Gun/Gun.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Gun/Gun.bmp", player->getNode()->getNode());
     Gun* g = new Gun();
 	g->setNode(new Node(node));
 
@@ -528,7 +529,7 @@ Gun* dwe::GraphicsEngine::createGun(Player* player)
 
 Shotgun* dwe::GraphicsEngine::createShotgun(Player* player)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Shotgun/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Shotgun/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Shotgun/Shotgun.bmp", player->getNode()->getNode());
     Shotgun* sg = new Shotgun();
 	sg->setNode(new Node(node));
 
@@ -537,7 +538,7 @@ Shotgun* dwe::GraphicsEngine::createShotgun(Player* player)
 
 Rifle* dwe::GraphicsEngine::createRifle(Player* player)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Rifle/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Rifle/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Rifle/Rifle.bmp", player->getNode()->getNode());
     Rifle* r = new Rifle();
 	r->setNode(new Node(node));
 
