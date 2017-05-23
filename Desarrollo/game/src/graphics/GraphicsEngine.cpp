@@ -513,7 +513,7 @@ Ammo* dwe::GraphicsEngine::createAmmo(float px, float py, float pz)
 
 Gun* dwe::GraphicsEngine::createGun(Player* player)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Gun/Gun.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Gun/Gun.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Gun/gun.bmp", player->getNode()->getNode());
     Gun* g = new Gun();
 	g->setNode(new Node(node));
 
@@ -522,7 +522,7 @@ Gun* dwe::GraphicsEngine::createGun(Player* player)
 
 Shotgun* dwe::GraphicsEngine::createShotgun(Player* player)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Shotgun/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Shotgun/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Shotgun/shotgun.bmp", player->getNode()->getNode());
     Shotgun* sg = new Shotgun();
 	sg->setNode(new Node(node));
 
@@ -531,7 +531,7 @@ Shotgun* dwe::GraphicsEngine::createShotgun(Player* player)
 
 Rifle* dwe::GraphicsEngine::createRifle(Player* player)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Rifle/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0), "", player->getNode()->getNode());
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Rifle/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Rifle/rifle.bmp", player->getNode()->getNode());
     Rifle* r = new Rifle();
 	r->setNode(new Node(node));
 
