@@ -93,8 +93,8 @@
 			{ "element-id": "Wall_01_50m",
 				"position": { "x":101, "y":0, "z":-1100 },
 				"rotation": { "x":0, "y":180, "z":0 }},
-			{ "element-id": "Ingeniero",
-				"position": { "x":-361.3, "y":0, "z":-1122.5 },
+			{ "element-id": "Untagged",
+				"position": { "x":-366, "y":0, "z":-1123 },
 				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
@@ -709,8 +709,8 @@
 			{ "element-id": "Camilla",
 				"position": { "x":-1300, "y":0, "z":850 },
 				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Ingeniero",
-				"position": { "x":-1236.3, "y":0, "z":885 },
+			{ "element-id": "Untagged",
+				"position": { "x":-1236, "y":0, "z":879 },
 				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
@@ -879,13 +879,13 @@
 			{ "element-id": "Generator",
 				"position": { "x":-396, "y":0, "z":487 },
 				"rotation": { "x":0, "y":180, "z":0 }},
-			{ "element-id": "Ingeniero",
+			{ "element-id": "Untagged",
 				"position": { "x":-550, "y":0, "z":555 },
 				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
 			{ "element-id": "Medkit",
-				"position": { "x":-587, "y":0, "z":555 },
+				"position": { "x":-584, "y":0, "z":555 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Ammo",
 				"position": { "x":-515, "y":0, "z":555 },
@@ -1447,8 +1447,8 @@
 			{ "element-id": "CamaDormir",
 				"position": { "x":1983, "y":0, "z":-434 },
 				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Ingeniero",
-				"position": { "x":2093.6, "y":0, "z":-405.4999 },
+			{ "element-id": "Untagged",
+				"position": { "x":2084, "y":0, "z":-404.9999 },
 				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
