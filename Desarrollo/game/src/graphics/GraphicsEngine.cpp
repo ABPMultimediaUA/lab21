@@ -291,13 +291,11 @@ PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 ////////////////////////////
 Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 {
-    tag::EAnimation* anim = m_tagEngine.createNumAnimations(6, "media/Humanoid/humanoide.bmp");
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(5, "media/Humanoid/humanoide.bmp");
     m_tagEngine.createAnimation(anim, "media/Humanoid/Stand/humanoide",                 eAnimEnemyStand,   1);
     m_tagEngine.createAnimation(anim, "media/Humanoid/Death/humanoideDeath",            eAnimEnemyDeath,   8, false);
     m_tagEngine.createAnimation(anim, "media/Humanoid/MeleeAttack/humanoidMeleeAttack", eAnimEnemyAttack,   6);
-    m_tagEngine.createAnimation(anim, "media/Humanoid/RangeAttack/humanoidRangeAttack", eAnimEnemyAttack2,   6, false);
     m_tagEngine.createAnimation(anim, "media/Humanoid/Walk/humanoidWalk",               eAnimEnemyWalk,   10);
-    m_tagEngine.createAnimation(anim, "media/Humanoid/WalkFollow/humanoidWalkFollow",   eAnimEnemyFollow,   10, false);
 
     anim->setActiveAnimation(0);
 
@@ -332,12 +330,12 @@ Mother* dwe::GraphicsEngine::createEnemyMother(int px, int py, int pz)
 ////////////////////////////
 Dog* dwe::GraphicsEngine::createEnemyDog(int px, int py, int pz)
 {
-    tag::EAnimation* anim = m_tagEngine.createNumAnimations(5, "media/Dog/dog.bmp");
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(4, "media/Dog/dog.bmp");
     m_tagEngine.createAnimation(anim, "media/Dog/Stand/dogStand",   eAnimEnemyStand,   1);
     m_tagEngine.createAnimation(anim, "media/Dog/Death/dogDeath",   eAnimEnemyDeath,   9, false);
     m_tagEngine.createAnimation(anim, "media/Dog/Walk/dogWalk",     eAnimEnemyWalk,   11);
     m_tagEngine.createAnimation(anim, "media/Dog/Attack/dogAttack", eAnimEnemyAttack,  5);
-    m_tagEngine.createAnimation(anim, "media/Dog/Run/dogRun",       eAnimEnemyRun, 11);
+    //m_tagEngine.createAnimation(anim, "media/Dog/Run/dogRun",       eAnimEnemyRun, 11);
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
