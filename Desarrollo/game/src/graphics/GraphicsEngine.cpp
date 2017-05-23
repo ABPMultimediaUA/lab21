@@ -454,7 +454,11 @@ ProjectileGrenade* dwe::GraphicsEngine::createProjectileGrenade(vec3f origin, fl
 
 GrenadeExplosion* dwe::GraphicsEngine::createGrenadeExplosion(vec3f origin)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/explosion.obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(1, "media/explosionAnimation/explosion.bmp");
+    m_tagEngine.createAnimation(anim, "media/explosionAnimation/explosion",   eAnimGrenade,  11);
+    anim->setActiveAnimation(0);
+
+    tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
     GrenadeExplosion* g = new GrenadeExplosion();
 	g->setNode(new Node(node));
 	g->setPosition(vec3f(origin.x, 0, origin.z));

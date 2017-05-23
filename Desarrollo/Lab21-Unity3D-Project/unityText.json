@@ -92,7 +92,10 @@
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_50m",
 				"position": { "x":101, "y":0, "z":-1100 },
-				"rotation": { "x":0, "y":180, "z":0 }}
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Ingeniero",
+				"position": { "x":-361.3, "y":0, "z":-1122.5 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
 		],
@@ -214,6 +217,18 @@
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Maceta",
 				"position": { "x":-69, "y":0, "z":-472 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "MesaHall",
+				"position": { "x":-525, "y":0, "z":-228 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "MesaHallObjetos",
+				"position": { "x":-525, "y":1.1, "z":-228 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "MesaHall",
+				"position": { "x":525, "y":0, "z":-228 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "MesaHallObjetos",
+				"position": { "x":525, "y":1.1, "z":-228 },
 				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
@@ -693,7 +708,10 @@
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Camilla",
 				"position": { "x":-1300, "y":0, "z":850 },
-				"rotation": { "x":0, "y":270, "z":0 }}
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Ingeniero",
+				"position": { "x":-1236.3, "y":0, "z":885 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
 		],
@@ -860,11 +878,14 @@
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Generator",
 				"position": { "x":-396, "y":0, "z":487 },
-				"rotation": { "x":0, "y":180, "z":0 }}
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Ingeniero",
+				"position": { "x":-550, "y":0, "z":555 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
 			{ "element-id": "Medkit",
-				"position": { "x":-560, "y":0, "z":555 },
+				"position": { "x":-587, "y":0, "z":555 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Ammo",
 				"position": { "x":-515, "y":0, "z":555 },
@@ -1189,7 +1210,7 @@
 				"position": { "x":689.9999, "y":0, "z":-1060 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_100m",
-				"position": { "x":780, "y":-1, "z":-1150 },
+				"position": { "x":781, "y":-1, "z":-1149 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "CamaDormir",
 				"position": { "x":723.9999, "y":0, "z":-1102 },
@@ -1425,7 +1446,10 @@
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "CamaDormir",
 				"position": { "x":1983, "y":0, "z":-434 },
-				"rotation": { "x":0, "y":270, "z":0 }}
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Ingeniero",
+				"position": { "x":2093.6, "y":0, "z":-405.4999 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
 			{ "element-id": "MagnetKey",

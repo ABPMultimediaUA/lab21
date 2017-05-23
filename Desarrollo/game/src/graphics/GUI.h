@@ -76,8 +76,9 @@ namespace dwe{
             void hover();
             void unhover();
             void move(int mx);
+            float getPercentage();
         private:
-            int x, y, center;
+            float x, y, center, minX, maxX;
             bool clicked;
             sf::Texture texture;
             sf::Texture texture2;

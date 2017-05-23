@@ -128,6 +128,8 @@ dwe::Slider::Slider(int x, int y)
     lane.setTexture(texture2, true);
     sp.setPosition(x, y);
     lane.setPosition(x-10, y+18);
+    minX=x-10;
+    maxX=minX+lane.getGlobalBounds().width-11;
     this->x=x;
     this->y=y;
     center=sp.getGlobalBounds().width/2;
@@ -178,8 +180,18 @@ void dwe::Slider::unhover()
 
 void dwe::Slider::move(int mx)
 {
-    sp.setPosition(mx-center, y);
-    x=mx-center;
+    if(mx-center<minX)
+        x=minX;
+    else if(mx-center>maxX)
+        x=maxX;
+    else
+        x=mx-center;
+    sp.setPosition(x, y);
+}
+
+float  dwe::Slider::getPercentage()
+{
+    return (x-minX)/(maxX-minX);
 }
 /*** Slider FIN ***/
 

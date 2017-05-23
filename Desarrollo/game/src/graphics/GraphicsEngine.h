@@ -79,6 +79,8 @@ namespace dwe
         eAnimPlayerDash     = 5,
         eAnimPlayerDeath    = 6,
 
+        eAnimGrenade        = 0,
+
         eAnimEnemyStand     = 0,
         eAnimEnemyDeath     = 1,
         eAnimEnemyWalk      = 2,

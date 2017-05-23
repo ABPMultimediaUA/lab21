@@ -29,7 +29,7 @@ GSMainMenu::GSMainMenu(){
     /**Decoracion**/
     mainMenuDecoration = new dwe::Sprite("mainMenuDecoration", GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.25-7);
 
-    volumeSlider = new dwe::Slider(GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.25-7);
+    volumeSlider = new dwe::Slider(GEInstance->get_screenWidth()*0.3, GEInstance->get_screenHeight()*0.3);
 
     /**Botones**/
     playAloneButton = new dwe::Button("Play Alone", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35, true);
