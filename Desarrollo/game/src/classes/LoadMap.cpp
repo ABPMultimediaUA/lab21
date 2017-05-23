@@ -4,6 +4,7 @@
 #include "LoadingScreen.h"
 #include "NavGraphNode.h"
 #include "NavGraphEdge.h"
+#include "NetGame.h"
 
 #include <fstream> //Lectura de ficheros
 #include <document.h> //ES UN .H de rapidJSON
@@ -307,12 +308,10 @@ void LoadMap::Init(){
 }
 
 void LoadMap::Update(){
-    if(GEInstance->receiver.isKeyDown(KEY_KEY_C) && !cheats){
-        for(int cont=0; cont<NUM_DOORS; cont++){
-            ((Door*)entities[cont])->setActive();
-        }
-        cout<<"CHEAT PUERTAS ABIERTAS"<<endl;
-        cheats=true;
+    if(GEInstance->receiver.isKeyDown(KEY_KEY_C) && !cheats)
+    {
+        NetInstance->sendBroadcast(ID_CHEAT_DOOR_OPEN, 0);
+        cheatDoorOpen();
     }
 
     for(uint8_t i=0; i < NUM_MAP_DOORROTATE; i++)
@@ -351,3 +350,11 @@ LoadMap* LoadMap::getInstance()
   return &instance;
 }
 
+void LoadMap::cheatDoorOpen()
+{
+    for(int cont=0; cont<NUM_DOORS; cont++){
+        ((Door*)entities[cont])->setActive();
+    }
+    cout<<"CHEAT PUERTAS ABIERTAS"<<endl;
+    cheats=true;
+}

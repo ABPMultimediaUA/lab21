@@ -26,7 +26,8 @@ void GrenadeExplosion::setNode(dwe::Node* n)
     Drawable::setNode(n);
 
     dwe::vec3f box = n->getBoundingBox();
-    createKinematicBody(getPosition(), box.x, box.z, getRotation().y);
+    //createKinematicBody(getPosition(), box.x, box.z, getRotation().y);
+    createCircularBody(getPosition(), box.x/2.0);
 }
 
 void GrenadeExplosion::onBeginContact(EntityPhysics* otherObject)
