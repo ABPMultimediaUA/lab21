@@ -11,7 +11,7 @@ using namespace std;
 enum EKEY_CODE
 {
     // Teclas asignadas a acciones
-    KEY_EXIT                = sf::Keyboard::Escape,
+    KEY_EXIT                = sf::Keyboard::P,
     KEY_INIT_GAME           = sf::Keyboard::Return,
     KEY_DASH                = sf::Keyboard::Space,
     KEY_OPEN_DOOR           = sf::Keyboard::E,
@@ -28,7 +28,7 @@ enum EKEY_CODE
     KEY_CONSUME_SPEED       = sf::Keyboard::F,
     KEY_RELOADWEAPON        = sf::Keyboard::R,
     KEY_GRENADE             = sf::Keyboard::G,
-    KEY_PAUSE               = sf::Keyboard::P,
+    KEY_PAUSE               = sf::Keyboard::Escape,
     KEY_WALK                = sf::Keyboard::LShift,
     KEY_ATTACK              = sf::Keyboard::V,
     KEY_DO_DEAD             = sf::Keyboard::F9,

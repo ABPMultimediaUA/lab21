@@ -18,7 +18,7 @@ Dog::Dog()
 
     m_behaviourTree = new BTreeHumanoid(this);
 
-    targetPosition = dwe::vec2f(-250,300);
+    targetPosition = dwe::vec2f(700,30);
 }
 
 Dog::~Dog()
