@@ -46,6 +46,11 @@ void dwe::AudioEngine::Play3D(const char* fileName, dwe::vec3f pos, float volume
     sound->drop();
 }
 
+void dwe::AudioEngine::StopAllSounds()
+{
+    engine->stopAllSounds();
+}
+
 /*** GETTERS ***/
 
 float dwe::AudioEngine::GetMasterVolume()
