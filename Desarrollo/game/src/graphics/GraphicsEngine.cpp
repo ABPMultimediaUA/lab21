@@ -81,7 +81,7 @@ void dwe::GraphicsEngine::init()
 	{
         m_messageLine[i].setFont(m_font);
         m_messageLine[i].setCharacterSize(14);
-        m_messageLine[i].setFillColor(sf::Color(255, 255, 255, 255));
+        m_messageLine[i].setFillColor(sf::Color(25, 227, 223, 255));
         m_messageLine[i].setPosition(250.f, GraphicsEngine::_screenHeight - (i+1)*16.f);
         m_messageLine[i].setString("");
 	}
@@ -247,19 +247,13 @@ Floor* dwe::GraphicsEngine::createFloor(std::string m, std::string t)
 Player* dwe::GraphicsEngine::createMainPlayer()
 {
     tag::EAnimation* anim = m_tagEngine.createNumAnimations(7, "media/player/player.bmp");
-    m_tagEngine.createAnimation(anim, "media/player/playerStand/playerStand",  eAnimPlayerStand,   1);
-    m_tagEngine.createAnimation(anim, "media/player/playerRun/playerRun",      eAnimPlayerRun,     20);
-    LoadingScreen::getInstance()->AddProgress();
-    m_tagEngine.createAnimation(anim, "media/player/playerWalk/playerWalk",      eAnimPlayerStealth,     10);
-    LoadingScreen::getInstance()->AddProgress();
-    m_tagEngine.createAnimation(anim, "media/player/playerGrenade/playerGrenade",      eAnimPlayerGrenade,     19, false);
-    LoadingScreen::getInstance()->AddProgress();
-    m_tagEngine.createAnimation(anim, "media/player/playerAttack/playerAttack",      eAnimPlayerAttack,     14, false);
-    LoadingScreen::getInstance()->AddProgress();
-    m_tagEngine.createAnimation(anim, "media/player/playerDash/playerDash",      eAnimPlayerDash,     19, false);
-    LoadingScreen::getInstance()->AddProgress();
-    m_tagEngine.createAnimation(anim, "media/player/playerDeath/playerDeath",      eAnimPlayerDeath,     14, false);
-    LoadingScreen::getInstance()->AddProgress();
+    m_tagEngine.createAnimation(anim, "media/player/playerStand/playerStand",       eAnimPlayerStand,   1);
+    m_tagEngine.createAnimation(anim, "media/player/playerRun/playerRun",           eAnimPlayerRun,     20); LoadingScreen::getInstance()->AddProgress();
+    m_tagEngine.createAnimation(anim, "media/player/playerWalk/playerWalk",         eAnimPlayerStealth, 10); LoadingScreen::getInstance()->AddProgress();
+    m_tagEngine.createAnimation(anim, "media/player/playerGrenade/playerGrenade",   eAnimPlayerGrenade, 19, false); LoadingScreen::getInstance()->AddProgress();
+    m_tagEngine.createAnimation(anim, "media/player/playerAttack/playerAttack",     eAnimPlayerAttack,  14, false); LoadingScreen::getInstance()->AddProgress();
+    m_tagEngine.createAnimation(anim, "media/player/playerDash/playerDash",         eAnimPlayerDash,    19, false); LoadingScreen::getInstance()->AddProgress();
+    m_tagEngine.createAnimation(anim, "media/player/playerDeath/playerDeath",       eAnimPlayerDeath,   14, false); LoadingScreen::getInstance()->AddProgress();
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
@@ -276,13 +270,13 @@ Player* dwe::GraphicsEngine::createMainPlayer()
 PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 {
     tag::EAnimation* anim = m_tagEngine.createNumAnimations(7, "media/player/playerMate.bmp");
-    m_tagEngine.createAnimation(anim, "media/player/playerStand/playerStand",  eAnimPlayerStand,   1);
-    m_tagEngine.createAnimation(anim, "media/player/playerRun/playerRun",      eAnimPlayerRun,     20);
-    m_tagEngine.createAnimation(anim, "media/player/playerWalk/playerWalk",      eAnimPlayerStealth,     10);
-    m_tagEngine.createAnimation(anim, "media/player/playerGrenade/playerGrenade",      eAnimPlayerGrenade,     19);
-    m_tagEngine.createAnimation(anim, "media/player/playerAttack/playerAttack",      eAnimPlayerAttack,     14);
-    m_tagEngine.createAnimation(anim, "media/player/playerDash/playerDash",      eAnimPlayerDash,     19);
-    m_tagEngine.createAnimation(anim, "media/player/playerDeath/playerDeath",      eAnimPlayerDeath,     14);
+    m_tagEngine.createAnimation(anim, "media/player/playerStand/playerStand",       eAnimPlayerStand,   1);
+    m_tagEngine.createAnimation(anim, "media/player/playerRun/playerRun",           eAnimPlayerRun,     20);
+    m_tagEngine.createAnimation(anim, "media/player/playerWalk/playerWalk",         eAnimPlayerStealth, 10);
+    m_tagEngine.createAnimation(anim, "media/player/playerGrenade/playerGrenade",   eAnimPlayerGrenade, 19, false);
+    m_tagEngine.createAnimation(anim, "media/player/playerAttack/playerAttack",     eAnimPlayerAttack,  14, false);
+    m_tagEngine.createAnimation(anim, "media/player/playerDash/playerDash",         eAnimPlayerDash,    19, false);
+    m_tagEngine.createAnimation(anim, "media/player/playerDeath/playerDeath",       eAnimPlayerDeath,   14, false);
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));

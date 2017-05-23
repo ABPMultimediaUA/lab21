@@ -28,6 +28,7 @@ class LoadMap {
         void Init();
         void Update();
         void Destroy();
+        void cheatDoorOpen();
 
     private:
         // Suelo

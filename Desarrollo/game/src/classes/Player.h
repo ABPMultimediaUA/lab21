@@ -29,11 +29,14 @@ class Player : public CharacterController
         /// \return Devuelve si ha podido disparar o no
         bool shoot(float timeSinceLastShoot);
 
-        /// \brief Lanza una granaad
+        /// \brief Lanza una granada
+        void throwGrenade();
+
+        /// \brief Pregunta si puede lanzar una granada
         /// \details Tiene en cuenta si el tiempo que ha pasado es el correcto segun la
-        /// cadencia de la granada.
-        /// \return Devuelve si ha podido disparar o no
-        bool throwGrenade(float timeSinceLastGrenade);
+        /// cadencia de la granada y si tenemos granadas.
+        /// \return Devuelve si puede disparar o no
+        bool canThrowGrenade(float timeSinceLastGrenade);
 
         virtual void readEvents();
 
@@ -83,9 +86,10 @@ class Player : public CharacterController
     protected:
 
     private:
-        static const float _changeOffsetTime = 0.2;
-        static const float _reloadOffsetTime = 2.0;
-        static const float _takeDamageOffsetTime = 0.5;
+        static const float _changeOffsetTime        = 0.2;
+        static const float _reloadOffsetTime        = 2.0;
+        static const float _takeDamageOffsetTime    = 0.5;
+        static const float _throwGrenadeOffsetTime  = 0.5;
         struct TPlayerWeaponKey {
             EKEY_CODE   key;
             FirearmKind weapon;
@@ -105,7 +109,9 @@ class Player : public CharacterController
         float       m_timeWeaponSwap;
         float       m_timeReload;
         float       m_timeLastProjectil;
-        float       m_timeLastGrenade;
+        float       m_timeLastGrenade;      // Cuando ha terminado de lanzar granada
+        float       m_timeInitGrenade;      // Cuando ha empezado a lanzar granada
+        bool        m_isThrowingGrenade;    // Esta lanzando granada
         FirearmKind m_currentWeaponType;
         Firearm*    m_currentWeapon;
         int         m_health;
