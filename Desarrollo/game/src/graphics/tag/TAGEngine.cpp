@@ -242,22 +242,6 @@ void tag::TAGEngine::prepareShadowView()
     glm::vec3 lookAt(0.0);
     glm::vec3 normal(0.0, 1.0, 0.0);
 
-    /*std::string input;
-
-    std::cout << "Near plane("<< near_plane <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> near_plane; }
-    std::cout << "Far plane("<< far_plane <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> far_plane; }
-    std::cout << "ortho("<< ortho <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> ortho; }
-    std::cout << "position.x("<< position.x <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> position.x; }
-    std::cout << "position.y("<< position.y <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> position.y; }
-    std::cout << "position.z("<< position.z <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> position.z; }
-    std::cout << "lookAt.x("<< lookAt.x <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> lookAt.x; }
-    std::cout << "lookAt.y("<< lookAt.y <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> lookAt.y; }
-    std::cout << "lookAt.z("<< lookAt.z <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> lookAt.z; }
-    std::cout << "Normal.x("<< normal.x <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> normal.x; }
-    std::cout << "Normal.y("<< normal.y <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> normal.y; }
-    std::cout << "normal.z("<< normal.z <<"): "; std::getline( std::cin, input ); if ( !input.empty() ) { std::istringstream stream(input); stream >> normal.z; }
-*/
-
     glm::mat4 lightProjection = glm::ortho(-ortho, ortho, -ortho, ortho, near_plane, far_plane);
     glm::mat4 lightView = glm::lookAt(position, lookAt, normal);
     Entity::lightSpaceMatrix = lightProjection * lightView;
@@ -701,7 +685,12 @@ void tag::TAGEngine::changeLightIntensity(uint8_t lightIndex, const vec3f ambien
 //////////////////////////////////
 tag::GraphicNode* tag::TAGEngine::createEmptyNode(GraphicNode* parent)
 {
-    GraphicNode* nodo = createNodePR(vec3f(0), vec3f(0), parent);
+    // Si no especificamos padre, usamos el root. 0 es el valor por defecto
+    if (parent==0)
+        parent = &m_rootNode;
+
+    GraphicNode* nodo = new GraphicNode();
+    parent->addChild(nodo);
 
     return nodo;
 }

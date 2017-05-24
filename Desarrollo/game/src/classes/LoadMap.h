@@ -29,7 +29,7 @@ class LoadMap {
         void Update();
         void Destroy();
         void cheatDoorOpen();
-        void createScenaryElement(const char* s, const dwe::vec3f &pos, const dwe::vec3f &rot);
+        void createScenaryElement(const char* s, const dwe::vec3f &pos, const dwe::vec3f &rot, Drawable* parent);
 
     private:
         // Suelo
