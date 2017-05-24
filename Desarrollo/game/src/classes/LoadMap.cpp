@@ -14,6 +14,8 @@
 #include <document.h> //ES UN .H de rapidJSON
 using namespace rapidjson;
 
+static const bool _clippingActive = true;
+
 LoadMap::LoadMap()
 {
 
@@ -112,9 +114,12 @@ void LoadMap::Init(){
                     if(id==nextF->tag)
                     {
                         // Se crea un elemento de clipping por cada suelo, para dividir por salas
-                        clippingObjects[numFloors] = GEInstance->createClippingObject();
-                        clippingObjects[numFloors]->setPosClipping(dwe::vec3f(tx,ty,tz));
-                        parentNode = clippingObjects[numFloors];
+                        if (_clippingActive)
+                        {
+                            clippingObjects[numFloors] = GEInstance->createClippingObject();
+                            clippingObjects[numFloors]->setPosClipping(dwe::vec3f(tx,ty,tz));
+                            parentNode = clippingObjects[numFloors];
+                        }
 
                         floors[numFloors] = GEInstance->createFloor(nextF->model, "unitySuelo_Hall", parentNode);
                         floors[numFloors]->setRotation(dwe::vec3f(rot));
@@ -258,7 +263,8 @@ void LoadMap::Update(){
     for(uint8_t i=0; i < NUM_MAP_DOORROTATE; i++)
         entitiesDoorRotate[i]->update();
 
-    calculateClipping();
+    if (_clippingActive)
+        calculateClipping();
 
 
     //Scene::updateConsumables(mainPlayer);
