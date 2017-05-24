@@ -18,11 +18,15 @@ Pathplanning::Pathplanning(Enemy *owner):m_NavGraph(Scene::Instance()->getNavGra
 
     direction = dwe::vec2f(0,0);
     finalPosition = dwe::vec2f(0,0);
-    nextPosition = dwe::vec2f(470,370);
 }
 
 Pathplanning::~Pathplanning()
 {
+}
+
+void Pathplanning::SetNext(dwe::vec2f next)
+{
+    nextPosition = next;
 }
 
 int Pathplanning::GetClosestNodeToPosition(dwe::vec2f targetPos)
@@ -149,10 +153,19 @@ dwe::vec2f Pathplanning::Movement()
         else{
             direction.x = direction.y = 0;
         }
-    }
+    }else if(route.size())
+        CalculateDirection();
 
     return direction;
 
+}
+
+void Pathplanning::Clear()
+{
+    route.clear();
+    dwe::vec3f position = m_owner->getPosition();
+    nextPosition.x = position.x;
+    nextPosition.y = position.z;
 }
 
 bool Pathplanning::CheckIfRouteEnd()

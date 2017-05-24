@@ -32,10 +32,13 @@ class Enemy : public DrawablePhysics
         bool Attack();  //Devuelve true mientras esta a mitad del ataque, y false cuando termina
         void PlanPath();
         bool RouteEnd();
+        void ClearRoute();
         void SetMemory(bool b);
         bool HasMemory();
         void SetMemoryPosition(dwe::vec2f memory);
         dwe::vec2f GetMemoryPosition();
+        void ChangePatrolPosition();
+        dwe::vec2f GetPatrolPosition();
         void SetTargetPosition(dwe::vec2f target);
         void SetPatrolPoints(dwe::vec2f p1, dwe::vec2f p2);
 

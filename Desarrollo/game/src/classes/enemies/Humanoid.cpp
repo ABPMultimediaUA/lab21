@@ -7,7 +7,7 @@
 
 Humanoid::Humanoid()
 {
-    m_speed = 6.0;   // m/s
+    m_speed = 4.0;   // m/s
     m_attackPower = 20;
 
     m_perception = new Perception(this);
@@ -18,6 +18,8 @@ Humanoid::Humanoid()
 
 
     targetPosition = dwe::vec2f(470,370);
+    m_pathplanning->SetNext(targetPosition);
+    SetPatrolPoints(dwe::vec2f(380,640), dwe::vec2f(-720,0));
 }
 
 void Humanoid::update()

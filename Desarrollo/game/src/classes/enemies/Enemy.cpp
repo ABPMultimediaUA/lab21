@@ -41,6 +41,7 @@ void Enemy::SetPatrolPoints(dwe::vec2f p1, dwe::vec2f p2)
 {
     patrol1 = p1;
     patrol2 = p2;
+    currentPatrol = p1;
 }
 
 void Enemy::update()
@@ -150,6 +151,11 @@ bool Enemy::RouteEnd()
     return m_pathplanning->CheckIfRouteEnd();
 }
 
+void Enemy::ClearRoute()
+{
+    m_pathplanning->Clear();
+}
+
 void Enemy::SetMemory(bool b)
 {
     memory = b;
@@ -168,6 +174,19 @@ void Enemy::SetMemoryPosition(dwe::vec2f target)
 dwe::vec2f Enemy::GetMemoryPosition()
 {
     return memoryPosition;
+}
+
+void Enemy::ChangePatrolPosition()
+{
+    if(currentPatrol.x == patrol1.x && currentPatrol.y == patrol1.y)
+        currentPatrol = patrol2;
+    else
+        currentPatrol = patrol1;
+}
+
+dwe::vec2f Enemy::GetPatrolPosition()
+{
+    return currentPatrol;
 }
 
 void Enemy::SetTargetPosition(dwe::vec2f target)

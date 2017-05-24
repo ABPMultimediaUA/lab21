@@ -35,6 +35,7 @@ bool Perception::Sense()
     Drawable* player = World->getMainPlayer();
 
     if(m_hearing){
+        m_owner->ClearRoute();
         m_owner->SetMemoryPosition(m_soundPosition);
         m_owner->SetMemory(true);
         m_hearing = false;
