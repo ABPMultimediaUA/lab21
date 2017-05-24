@@ -57,12 +57,12 @@ class Scene
 
         void createEnemyHumanoid(dwe::vec3f origin, float angle);
 
-        void createSpeedBoost(float px, float py, float pz);
-        void createMedkit(float px, float py, float pz);
-        void createCShotgun(float px, float py, float pz);
-        void createCRifle(float px, float py, float pz);
-        void createMagnetKey(int id, float px, float py, float pz);
-        void createAmmo(float px, float py, float pz);
+        void createSpeedBoost(float px, float py, float pz, Drawable* parent = 0);
+        void createMedkit(float px, float py, float pz, Drawable* parent = 0);
+        void createCShotgun(float px, float py, float pz, Drawable* parent = 0);
+        void createCRifle(float px, float py, float pz, Drawable* parent = 0);
+        void createMagnetKey(int id, float px, float py, float pz, Drawable* parent = 0);
+        void createAmmo(float px, float py, float pz, Drawable* parent = 0);
         void updateConsumables(Player* mainPlayer);
         NavigationGraph& getNavGraph();
         TriggerSystem& getTriggerSystem();

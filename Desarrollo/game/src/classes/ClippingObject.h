@@ -15,9 +15,16 @@ class ClippingObject : public Drawable
 
         void setPosClipping(dwe::vec3f p);
         dwe::vec3f getPosClipping();
+
     protected:
 
     private:
+        dwe::vec3f getPosition() { return dwe::vec3f(0); };
+        void setPosition(dwe::vec3f p) {};
+
+        void setAnimation(dwe::AnimationType a);
+        dwe::AnimationType getAnimation();
+
         dwe::vec3f m_posClipping;
 };
 

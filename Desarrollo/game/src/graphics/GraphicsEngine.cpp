@@ -239,11 +239,7 @@ ClippingObject* dwe::GraphicsEngine::createClippingObject(ClippingObject* parent
 /////////////////////////////////////
 ScenaryElement* dwe::GraphicsEngine::createScenaryElement(std::string m, std::string t, Drawable* parent)
 {
-    tag::GraphicNode* p;
-    if (parent)
-        p = parent->getNode()->getNode();
-    else
-        p = 0;
+    tag::GraphicNode* p = parent ? parent->getNode()->getNode() : 0;
     tag::GraphicNode* gn = m_tagEngine.createMesh("media/"+m+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/"+t+".bmp", p);
     ScenaryElement *se= new ScenaryElement();
     se->setNode(new Node(gn));
@@ -257,9 +253,10 @@ ScenaryElement* dwe::GraphicsEngine::createScenaryElement(std::string m, std::st
 }
 
 ////////////////////////////////
-Floor* dwe::GraphicsEngine::createFloor(std::string m, std::string t)
+Floor* dwe::GraphicsEngine::createFloor(std::string m, std::string t, Drawable* parent)
 {
-    tag::GraphicNode* gn = m_tagEngine.createMesh("media/"+m+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/"+t+".bmp");
+    tag::GraphicNode* p = parent ? parent->getNode()->getNode() : 0;
+    tag::GraphicNode* gn = m_tagEngine.createMesh("media/"+m+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/"+t+".bmp", p);
     Floor *f = new Floor();
     f->setNode(new Node(gn));
     return f;
@@ -427,9 +424,10 @@ Legless* dwe::GraphicsEngine::createEnemyLegless(int px, int py, int pz)
     return l;
 }
 
-Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float pz)
+Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float pz, Drawable* parent)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/unityPuerta_50m.obj", vec3f(0,0,0), vec3f(0,0,0), "media/unityPuerta_50m.bmp");
+    tag::GraphicNode* p = parent ? parent->getNode()->getNode() : 0;
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/unityPuerta_50m.obj", vec3f(0,0,0), vec3f(0,0,0), "media/unityPuerta_50m.bmp", p);
     Door* d = new Door(f, a);
 	d->setNode(new Node(node));
 
@@ -444,9 +442,10 @@ Door* dwe::GraphicsEngine::createDoor(int f, bool a, float px, float py, float p
 	return d;
 }
 
-DoorRotate* dwe::GraphicsEngine::createDoorRotate(int f, bool a, float px, float py, float pz)
+DoorRotate* dwe::GraphicsEngine::createDoorRotate(int f, bool a, float px, float py, float pz, Drawable* parent)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/unityPuerta_50m.obj", vec3f(0,0,0), vec3f(0,0,0), "media/unityPuerta_50m.bmp");
+    tag::GraphicNode* p = parent ? parent->getNode()->getNode() : 0;
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/unityPuerta_50m.obj", vec3f(0,0,0), vec3f(0,0,0), "media/unityPuerta_50m.bmp", p);
     DoorRotate* d = new DoorRotate(f, a);
 	d->setNode(new Node(node));
     d->setPosition(dwe::vec3f(px, py, pz));
@@ -487,27 +486,30 @@ GrenadeExplosion* dwe::GraphicsEngine::createGrenadeExplosion(vec3f origin)
 	return g;
 }
 
-Generator* dwe::GraphicsEngine::createGenerator(int i, bool b)
+Generator* dwe::GraphicsEngine::createGenerator(int i, bool b, Drawable* parent)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/generador.obj", vec3f(0,0,0), vec3f(0,0,0), "media/generador.bmp");
+    tag::GraphicNode* p = parent ? parent->getNode()->getNode() : 0;
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/generador.obj", vec3f(0,0,0), vec3f(0,0,0), "media/generador.bmp", p);
     Generator* g = new Generator(i, b);
 	g->setNode(new Node(node));
     NetInstance->addNetEntity(g);
 	return g;
 }
 
-MagnetKey* dwe::GraphicsEngine::createMagnetKey(int i, float px, float py, float pz)
+MagnetKey* dwe::GraphicsEngine::createMagnetKey(int i, float px, float py, float pz, Drawable* parent)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Consumables/magnetKey.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Consumables/magnetKey.bmp");
+    tag::GraphicNode* p = parent ? parent->getNode()->getNode() : 0;
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Consumables/magnetKey.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Consumables/magnetKey.bmp", p);
     MagnetKey* m = new  MagnetKey(i);
 	m->setNode(new Node(node));
 	m->setPosition(dwe::vec3f(px, py, pz));
 	return m;
 }
 
-SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(float px, float py, float pz)
+SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(float px, float py, float pz, Drawable* parent)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Consumables/jeringuilla.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Consumables/jeringuilla.bmp");
+    tag::GraphicNode* p = parent ? parent->getNode()->getNode() : 0;
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Consumables/jeringuilla.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Consumables/jeringuilla.bmp", p);
     SpeedBoost* s = new SpeedBoost();
 	s->setNode(new Node(node));
 	s->setPosition(dwe::vec3f(px, py, pz));
@@ -516,9 +518,10 @@ SpeedBoost* dwe::GraphicsEngine::createSpeedBoost(float px, float py, float pz)
 	return s;
 }
 
-Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
+Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz, Drawable* parent)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Consumables/Medkit.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Consumables/Medkit.bmp");
+    tag::GraphicNode* p = parent ? parent->getNode()->getNode() : 0;
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Consumables/Medkit.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Consumables/Medkit.bmp", p);
     Medkit* h = new Medkit();
 	h->setNode(new Node(node));
 	h->setPosition(dwe::vec3f(px, py, pz));
@@ -527,9 +530,10 @@ Medkit* dwe::GraphicsEngine::createMedkit(float px, float py, float pz)
 	return h;
 }
 
-Ammo* dwe::GraphicsEngine::createAmmo(float px, float py, float pz)
+Ammo* dwe::GraphicsEngine::createAmmo(float px, float py, float pz, Drawable* parent)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Consumables/ammo.obj", vec3f(0,0,0), vec3f(0,0,0), "media/consumables/ammo.bmp");
+    tag::GraphicNode* p = parent ? parent->getNode()->getNode() : 0;
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Consumables/ammo.obj", vec3f(0,0,0), vec3f(0,0,0), "media/consumables/ammo.bmp", p);
     Ammo* a = new Ammo();
 	a->setNode(new Node(node));
 	a->setPosition(dwe::vec3f(px, py, pz));
@@ -565,9 +569,10 @@ Rifle* dwe::GraphicsEngine::createRifle(Drawable* player)
 	return r;
 }
 
-CShotgun* dwe::GraphicsEngine::createCShotgun(float px, float py, float pz)
+CShotgun* dwe::GraphicsEngine::createCShotgun(float px, float py, float pz, Drawable* parent)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Shotgun/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Shotgun/shotgun.bmp");
+    tag::GraphicNode* p = parent ? parent->getNode()->getNode() : 0;
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Shotgun/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Shotgun/shotgun.bmp", p);
     CShotgun* sg = new CShotgun();
 	sg->setNode(new Node(node));
 	sg->setPosition(dwe::vec3f(px, py, pz));
@@ -576,9 +581,10 @@ CShotgun* dwe::GraphicsEngine::createCShotgun(float px, float py, float pz)
 	return sg;
 }
 
-CRifle* dwe::GraphicsEngine::createCRifle(float px, float py, float pz)
+CRifle* dwe::GraphicsEngine::createCRifle(float px, float py, float pz, Drawable* parent)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Rifle/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Rifle/rifle.bmp");
+    tag::GraphicNode* p = parent ? parent->getNode()->getNode() : 0;
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Rifle/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Rifle/rifle.bmp", p);
     CRifle* r = new CRifle();
 	r->setNode(new Node(node));
 	r->setPosition(dwe::vec3f(px, py, pz));
