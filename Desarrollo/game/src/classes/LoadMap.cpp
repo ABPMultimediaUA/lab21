@@ -5,6 +5,7 @@
 #include "NavGraphNode.h"
 #include "NavGraphEdge.h"
 #include "NetGame.h"
+#include "ClippingObject.h"
 
 #include <fstream> //Lectura de ficheros
 #include <document.h> //ES UN .H de rapidJSON
@@ -18,14 +19,27 @@ LoadMap::LoadMap()
 struct TTag2Wall {
     std::string tag;
     std::string model;
+    std::string texture;
 };
 
 TTag2Wall mappingWall[] = {
-        {"Wall_01_50m"    ,   "unityPared01_50m"  }
-    ,   {"Wall_01_100m"   ,   "unityPared01_100m" }
-    ,   {"Wall_01_200m"   ,   "unityPared01_200m" }
-    ,   {"Wall_01_300m"   ,   "unityPared01_300m" }
-    ,   {       "0"       ,             "0"       }
+        {"Wall_01_50m"      ,   "unityPared01_50m"  , "unityPared"}
+    ,   {"Wall_01_100m"     ,   "unityPared01_100m" , "unityPared"}
+    ,   {"Wall_01_200m"     ,   "unityPared01_200m" , "unityPared"}
+    ,   {"Wall_01_300m"     ,   "unityPared01_300m" , "unityPared"}
+    ,   {"Cama"             ,   "environment_elements/cama"             , "environment_elements/cama"}
+    ,   {"Especimen"        ,   "environment_elements/especimen"        , "environment_elements/especimen"}
+    ,   {"Camilla"          ,   "environment_elements/camilla"          , "environment_elements/camilla"}
+    ,   {"Lavabo"           ,   "environment_elements/lavabo"           , "environment_elements/lavabo"}
+    ,   {"WC"               ,   "environment_elements/banyos"           , "environment_elements/banyos"}
+    ,   {"CamaDormir"       ,   "environment_elements/camadormir"       , "environment_elements/camadormir"}
+    ,   {"Barril"           ,   "environment_elements/barril"           , "environment_elements/barril"}
+    ,   {"Caja"             ,   "environment_elements/box"              , "environment_elements/box"}
+    ,   {"Mesa"             ,   "environment_elements/mesa"             , "environment_elements/mesa"}
+    ,   {"MesaHall"         ,   "environment_elements/mesahall"         , "environment_elements/mesahall"}
+    ,   {"MesaHallObjetos"  ,   "environment_elements/mesahallobjetos"  , "environment_elements/mesa"}
+    ,   {"Maceta"           ,   "environment_elements/maceta"           , "environment_elements/maceta"}
+    ,   {       "0"         ,             "0"                           ,       "0"}
 };
 
 struct TTag2Floor {
@@ -90,18 +104,37 @@ void LoadMap::Init(){
         const Value& levels = document["levels"]; //Referencia a todos los "levels"
         for(size_t i=0; i < levels.Size()-1; i++){
             const Value& se = levels[i]["static-elements"]; //Referencia a todos los "static-elements";
+            Drawable* parentNode = 0;
             for(size_t j=0; j < se.Size(); j++){
-
                 const Value& e = se[j]; //Recorrer cada "element"
                 std::string id = e["element-id"].GetString();
-                int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = (-1)* e["position"]["z"].GetDouble();
-                int rx = e["rotation"]["x"].GetDouble();    int ry = e["rotation"]["y"].GetDouble();    int rz = e["rotation"]["z"].GetDouble();
+                float tx = e["position"]["x"].GetDouble();    float ty = e["position"]["y"].GetDouble();    float tz = (-1)* e["position"]["z"].GetDouble();
+                float rx = e["rotation"]["x"].GetDouble();    float ry = e["rotation"]["y"].GetDouble();    float rz = e["rotation"]["z"].GetDouble();
 
-                //WALLS
+                //FLOORS
+                // En el json, el primer objeto es el suelo y solo hay 1 por sala
+                TTag2Floor *nextF = mappingFloor;
+                while(nextF->tag != "0"){
+                        if(id==nextF->tag){
+                            floors[numFloors] = GEInstance->createFloor(nextF->model, "unitySuelo_Hall");
+                            floors[numFloors]->setRotation(dwe::vec3f(rx,ry,rz));
+                            floors[numFloors]->setPosition(dwe::vec3f(tx,ty,tz));
+
+                            // Se crea un elemento de clipping por cada suelo, para dividir por salas
+                            clippingObjects[numFloors] = GEInstance->createClippingObject();
+                            clippingObjects[numFloors]->setPosClipping(dwe::vec3f(tx,ty,tz));
+                            parentNode = clippingObjects[numFloors];
+
+                            numFloors++;
+                        }
+                    ++nextF;
+                }
+
+                //WALLS y elementos del entorno
                 TTag2Wall *next = mappingWall;
                 while(next->tag != "0"){
                     if(id==next->tag){
-                        walls[numWalls] = GEInstance->createScenaryElement(next->model, "unityPared");
+                        walls[numWalls] = GEInstance->createScenaryElement(next->model, next->texture, parentNode);
                         walls[numWalls]->setRotation(dwe::vec3f(rx,ry,rz));
                         walls[numWalls]->setPosition(dwe::vec3f(tx,ty,tz));
                         numWalls++;
@@ -110,17 +143,6 @@ void LoadMap::Init(){
                     ++next;
                 }
 
-                //FLOORS
-                TTag2Floor *nextF = mappingFloor;
-                while(nextF->tag != "0"){
-                        if(id==nextF->tag){
-                            floors[numFloors] = GEInstance->createFloor(nextF->model, "unitySuelo_Hall");
-                            floors[numFloors]->setRotation(dwe::vec3f(rx,ry,rz));
-                            floors[numFloors]->setPosition(dwe::vec3f(tx,ty,tz));
-                            numFloors++;
-                        }
-                    ++nextF;
-                }
                 // GENERATORS
                 if(id=="Generator"){
                     if(numGenerators==0)
@@ -138,90 +160,6 @@ void LoadMap::Init(){
                     numGenerators++;
                 }
 
-                // ELEMENTOS DEL ENTORNO
-                if(id=="Cama"){
-                    envElements[numEnvElements]=GEInstance->createScenaryElement("environment_elements/cama", "environment_elements/cama");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="Especimen"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/especimen", "environment_elements/especimen");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="Camilla"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/camilla", "environment_elements/camilla");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="Lavabo"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/lavabo", "environment_elements/lavabo");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="WC"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/banyos", "environment_elements/banyos");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="CamaDormir"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/camadormir", "environment_elements/camadormir");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="Barril"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/barril", "environment_elements/barril");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="Caja"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/box", "environment_elements/box");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="Mesa"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/mesa", "environment_elements/mesa");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="MesaHall"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/mesahall", "environment_elements/mesahall");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="MesaHallObjetos"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/mesahallobjetos", "environment_elements/mesa");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
-
-                if(id=="Maceta"){
-                    envElements[numEnvElements] = GEInstance->createScenaryElement("environment_elements/maceta", "environment_elements/maceta");
-                    envElements[numEnvElements]->setRotation(dwe::vec3f(rx,ry,rz));
-                    envElements[numEnvElements]->setPosition(dwe::vec3f(tx,ty,tz));
-                    numEnvElements++;
-                }
             }
 
             //CONSUMABLES
@@ -233,20 +171,12 @@ void LoadMap::Init(){
                 int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = (-1)* e["position"]["z"].GetDouble();
                 if(id=="Ammo"){
                     s->createAmmo(tx, ty, tz);
-                }
-                if(id=="Medkit"){
+                } else if(id=="Medkit"){
                     s->createMedkit(tx, ty, tz);
-                }
-                if(id=="Adrenalina"){
+                } else if(id=="Adrenalina"){
                     s->createSpeedBoost(tx, ty, tz);
-                }
-                if(id=="MagnetKey"){
-                    if(magnetKeyCount==1)
-                        magnetKeyID=3;
-                    else if(magnetKeyCount==2)
-                        magnetKeyID=2;
-                    else if(magnetKeyCount==3)
-                        magnetKeyID=1;
+                } else if(id=="MagnetKey"){
+                    magnetKeyID=4-magnetKeyCount;
                     s->createMagnetKey(magnetKeyID, tx, ty, tz);
                     magnetKeyCount++;
                 }
@@ -316,6 +246,10 @@ void LoadMap::Update(){
 
     for(uint8_t i=0; i < NUM_MAP_DOORROTATE; i++)
         entitiesDoorRotate[i]->update();
+
+    calculateClipping();
+
+
     //Scene::updateConsumables(mainPlayer);
 }
 
@@ -335,6 +269,12 @@ void LoadMap::Destroy(){
     }
     for(int i=0; i<3; i++){
         delete generator[i];
+    }
+
+    for(uint8_t i=0; i<NUM_FLOORS; i++)
+    {
+        delete clippingObjects[i];
+        clippingObjects[i] = 0;
     }
 }
 
@@ -357,4 +297,9 @@ void LoadMap::cheatDoorOpen()
     }
     cout<<"CHEAT PUERTAS ABIERTAS"<<endl;
     cheats=true;
+}
+
+void LoadMap::calculateClipping()
+{
+
 }

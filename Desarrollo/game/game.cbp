@@ -139,6 +139,8 @@
 		<Unit filename="src/audio/AudioEngine.h" />
 		<Unit filename="src/classes/CharacterController.cpp" />
 		<Unit filename="src/classes/CharacterController.h" />
+		<Unit filename="src/classes/ClippingObject.cpp" />
+		<Unit filename="src/classes/ClippingObject.h" />
 		<Unit filename="src/classes/Consumable.cpp" />
 		<Unit filename="src/classes/Consumable.h" />
 		<Unit filename="src/classes/DebugPhysicsDraw.cpp" />

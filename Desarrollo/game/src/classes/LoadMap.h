@@ -35,6 +35,9 @@ class LoadMap {
         int numFloors;
         Floor *floors[NUM_FLOORS];
 
+        // Elementos de clipping
+        ClippingObject* clippingObjects[NUM_FLOORS];
+
         // Paredes
         int numWalls;
         ScenaryElement *walls[NUM_WALLS];
@@ -57,6 +60,9 @@ class LoadMap {
         int magnetKeyID;
 
         bool cheats;
+
+
+        void calculateClipping();
 };
 
 #endif // LOADMAP_H

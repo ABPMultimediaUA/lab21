@@ -43,6 +43,7 @@
 #include "GrenadeExplosion.h"
 #include "tag/EAnimation.h"
 #include "LoadingScreen.h"
+#include "ClippingObject.h"
 
 using namespace std;
 
@@ -224,9 +225,25 @@ void dwe::GraphicsEngine::render()
 }
 
 /////////////////////////////////////
-ScenaryElement* dwe::GraphicsEngine::createScenaryElement(std::string m, std::string t)
+ClippingObject* dwe::GraphicsEngine::createClippingObject(ClippingObject* parent)
 {
-    tag::GraphicNode* gn = m_tagEngine.createMesh("media/"+m+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/"+t+".bmp");
+    tag::GraphicNode* p = parent ? parent->getNode()->getNode() : 0;
+    tag::GraphicNode* gn = m_tagEngine.createEmptyNode(p);
+    ClippingObject *co= new ClippingObject();
+    co->setNode(new Node(gn));
+    return co;
+}
+
+
+/////////////////////////////////////
+ScenaryElement* dwe::GraphicsEngine::createScenaryElement(std::string m, std::string t, Drawable* parent)
+{
+    tag::GraphicNode* p;
+    if (parent)
+        p = parent->getNode()->getNode();
+    else
+        p = 0;
+    tag::GraphicNode* gn = m_tagEngine.createMesh("media/"+m+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/"+t+".bmp", p);
     ScenaryElement *se= new ScenaryElement();
     se->setNode(new Node(gn));
     return se;
