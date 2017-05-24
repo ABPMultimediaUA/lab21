@@ -313,7 +313,7 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 Mother* dwe::GraphicsEngine::createEnemyMother(int px, int py, int pz)
 {
 	tag::EAnimation* anim = m_tagEngine.createNumAnimations(1, "media/Mother/madre.bmp");
-    m_tagEngine.createAnimation(anim, "media/Mother/Stand/motherStand", eAnimEnemyStand,   8);
+    m_tagEngine.createAnimation(anim, "media/Mother/Stand/motherStand", eAnimEnemyStand,   15);
 
     anim->setActiveAnimation(0);
 
