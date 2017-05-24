@@ -7,7 +7,7 @@
 
 Humanoid::Humanoid()
 {
-    m_speed = 2.0;   // m/s
+    m_speed = 6.0;   // m/s
     m_attackPower = 20;
 
     m_perception = new Perception(this);

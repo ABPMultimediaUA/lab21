@@ -18,7 +18,7 @@ Pathplanning::Pathplanning(Enemy *owner):m_NavGraph(Scene::Instance()->getNavGra
 
     direction = dwe::vec2f(0,0);
     finalPosition = dwe::vec2f(0,0);
-    nextPosition = dwe::vec2f(0,0);
+    nextPosition = dwe::vec2f(470,370);
 }
 
 Pathplanning::~Pathplanning()
@@ -86,10 +86,7 @@ void Pathplanning::CreatePathToPosition(dwe::vec2f TargetPos)
 
 void Pathplanning::PathSmooth()
 {
-    std::cout<<"PATHSMOOTH"<<std::endl;
-    std::cout<<"ROUTE SIZE1"<<route.size()<<std::endl;
     dwe::vec2f route2[route.size()];
-    std::cout<<"PETO1?"<<route.size()<<std::endl;
     int pos = 0;
     std::list<dwe::vec2f>::const_iterator iterator;
     for(iterator = route.begin(); iterator != route.end(); ++iterator)
@@ -102,13 +99,10 @@ void Pathplanning::PathSmooth()
     dwe::vec2f position(m_owner->getPosition().x, m_owner->getPosition().z);
     int num = -1;
     bool entro = false;
-    std::cout<<"ROUTE SIZE2"<<route.size()<<std::endl;
     while(num<pos)
     {
-        std::cout<<"*************************************"<<std::endl;
         for(int i = pos; i > num; i--)
         {
-            std::cout<<"--------------------------------------------------------"<<std::endl;
             dwe::vec2f positionb(position.x*0.035, position.y*0.035);
             dwe::vec2f positionb2(route2[i].x*0.035, route2[i].y*0.035);
             if(!(positionb.x == positionb2.x && positionb.y == positionb2.y) && !World->CheckWallsRayCast(position, positionb2))
@@ -128,16 +122,14 @@ void Pathplanning::PathSmooth()
         }
         entro = false;
     }
-    std::cout<<"ROUTE SIZE3"<<route.size()<<std::endl;
+
+    std::cout<<"--NEW ROUTE SIZE--"<<route.size()<<std::endl;
     if(route.size())
         route = newRoute;
-        std::cout<<"PETO2?"<<std::endl;
     for(iterator = route.begin(); iterator != route.end(); ++iterator)
         std::cout<<"NEWROUTE X "<<(*iterator).x << " NEWROUTE Y " << (*iterator).y<<std::endl;
     nextPosition = route.front();
-    std::cout<<"PETO3?"<<std::endl;
     route.pop_front();
-    std::cout<<"PETO4?"<<std::endl;
 }
 
 void Pathplanning::CalculateDirection()
@@ -177,5 +169,9 @@ bool Pathplanning::CheckIfRouteEnd()
 bool Pathplanning::CheckIfArrived()
 {
     dwe::vec3f position = m_owner->getPosition();
+    std::cout<<"position.x"<<position.x<<std::endl;
+    std::cout<<"position.x"<<position.z<<std::endl;
+    std::cout<<"nextPosition.x"<<nextPosition.x<<std::endl;
+    std::cout<<"nextPosition.x"<<nextPosition.y<<std::endl;
     return ( abs(position.x - nextPosition.x) < m_owner->getSpeed() && abs(position.z - nextPosition.y) < m_owner->getSpeed() );
 }
