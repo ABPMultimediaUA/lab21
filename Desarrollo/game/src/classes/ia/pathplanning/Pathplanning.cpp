@@ -59,9 +59,7 @@ void Pathplanning::CreatePathToPosition(dwe::vec2f TargetPos)
     {
         dwe::vec2f position((m_owner->getPosEntity().x), (m_owner->getPosition().z));
         int target(GetClosestNodeToPosition(TargetPos));
-        cout<<"target: "<<target<<endl;
         int source(GetClosestNodeToPosition(position));
-        cout<<"source: "<<source<<endl;
 
         if(target < 0 || source < 0)
             return;
@@ -78,7 +76,6 @@ void Pathplanning::CreatePathToPosition(dwe::vec2f TargetPos)
             finalPosition = TargetPos;
         }
     }
-    std::cout<<"--ROUTE SIZE--"<<route.size()<<std::endl;
     //if(route.size())
         //PathSmooth();
     CalculateDirection();
@@ -123,7 +120,6 @@ void Pathplanning::PathSmooth()
         entro = false;
     }
 
-    std::cout<<"--NEW ROUTE SIZE--"<<route.size()<<std::endl;
     if(route.size())
         route = newRoute;
     for(iterator = route.begin(); iterator != route.end(); ++iterator)
@@ -169,9 +165,5 @@ bool Pathplanning::CheckIfRouteEnd()
 bool Pathplanning::CheckIfArrived()
 {
     dwe::vec3f position = m_owner->getPosition();
-    std::cout<<"position.x"<<position.x<<std::endl;
-    std::cout<<"position.x"<<position.z<<std::endl;
-    std::cout<<"nextPosition.x"<<nextPosition.x<<std::endl;
-    std::cout<<"nextPosition.x"<<nextPosition.y<<std::endl;
     return ( abs(position.x - nextPosition.x) < m_owner->getSpeed() && abs(position.z - nextPosition.y) < m_owner->getSpeed() );
 }
