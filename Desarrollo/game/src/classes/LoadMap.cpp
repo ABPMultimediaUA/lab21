@@ -114,6 +114,27 @@ void LoadMap::Init(){
                 dwe::vec3f pos(tx, ty, tz);
                 dwe::vec3f rot(rx, ry, rz);
 
+                //FLOORS
+                // En el json, el primer objeto es el suelo y solo hay 1 por sala
+                TTag2Floor *nextF = mappingFloor;
+                while (nextF->tag != "0")
+                {
+                    if(id==nextF->tag)
+                    {
+                        floors[numFloors] = GEInstance->createFloor(nextF->model, "unitySuelo_Hall");
+                        floors[numFloors]->setRotation(dwe::vec3f(rx,ry,rz));
+                        floors[numFloors]->setPosition(dwe::vec3f(tx,ty,tz));
+
+                        // Se crea un elemento de clipping por cada suelo, para dividir por salas
+                        clippingObjects[numFloors] = GEInstance->createClippingObject();
+                        clippingObjects[numFloors]->setPosClipping(dwe::vec3f(tx,ty,tz));
+                        parentNode = clippingObjects[numFloors];
+
+                        numFloors++;
+                    }
+                    ++nextF;
+                 }
+
                 //WALLS y elementos del entorno
                 TTag2Wall *next = mappingWall;
                 while(next->tag != "0"){

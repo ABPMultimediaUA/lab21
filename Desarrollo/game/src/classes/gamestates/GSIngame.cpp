@@ -57,7 +57,7 @@ void GSIngame::Init(){
 
     LoadingScreen::getInstance()->Destroy();
 
-    AEInstance->Play2D("media/Sounds/ambientealien.flac", 1.0, true);
+    //AEInstance->Play2D("media/Sounds/ambientealien.flac", 1.0, true);
 }
 
 void GSIngame::Update(){
