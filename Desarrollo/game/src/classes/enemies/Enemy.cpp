@@ -37,6 +37,12 @@ Enemy::~Enemy()
 {
 }
 
+void Enemy::SetPatrolPoints(dwe::vec2f p1, dwe::vec2f p2)
+{
+    patrol1 = p1;
+    patrol2 = p2;
+}
+
 void Enemy::update()
 {
     dwe::vec3f pos(EntityPhysics::getPosEntity());

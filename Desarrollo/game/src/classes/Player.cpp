@@ -35,7 +35,7 @@ Player::Player() :
 
     m_health    = 100;
     m_maxHealth = 100;
-    m_grenades  = 6;
+    m_grenades  = 60;
 
     m_playerWeaponKey[eGun].key         = KEY_WEAPON_1;
     m_playerWeaponKey[eGun].weapon      = eGun;
@@ -206,6 +206,7 @@ void Player::readEvents()
 
     if (m_isThrowingGrenade)
     {
+        m_currentWeapon->setPut();
         if (timeElapsed - m_timeInitGrenade > Player::_throwGrenadeOffsetTime)
         {
             throwGrenade();

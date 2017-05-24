@@ -37,6 +37,7 @@ class Enemy : public DrawablePhysics
         void SetMemoryPosition(dwe::vec2f memory);
         dwe::vec2f GetMemoryPosition();
         void SetTargetPosition(dwe::vec2f target);
+        void SetPatrolPoints(dwe::vec2f p1, dwe::vec2f p2);
 
         virtual void setNode(dwe::Node* n);   // Necesario para EntityPhysics
         virtual void onBeginContact(EntityPhysics* otherObject);
@@ -62,6 +63,8 @@ class Enemy : public DrawablePhysics
         bool memory;
         dwe::vec2f memoryPosition;
         dwe::vec2f targetPosition;  //Siguiente lugar al que va a dirigirse. Se usa para darle una posición al pathplanning. Cambiará en función de a quién perseguir o a dónde ir
+        dwe::vec2f patrol1;
+        dwe::vec2f patrol2;
         Drawable* closestPlayer;
         TriggerVision* m_triggerVision;
 
