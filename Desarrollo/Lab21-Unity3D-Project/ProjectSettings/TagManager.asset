@@ -56,6 +56,8 @@ TagManager:
   - MesaCocina1
   - MesaCocina2
   - MesaCocina3
+  - MesaComedor
+  - SillasComedor
   layers:
   - Default
   - TransparentFX
