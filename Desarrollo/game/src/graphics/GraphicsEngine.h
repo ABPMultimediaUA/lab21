@@ -60,6 +60,7 @@ class Ammo;
 class Program;
 class Drawable;
 class Floor;
+class ClippingObject;
 
 namespace dwe
 {
@@ -186,7 +187,9 @@ namespace dwe
         Mother*     createEnemyMother(int px, int py, int pz);
 
 
-        ScenaryElement* createScenaryElement(std::string m, std::string t);
+        ScenaryElement* createScenaryElement(std::string m, std::string t, Drawable* parent = 0);
+
+        ClippingObject* createClippingObject(ClippingObject* parent = 0);
 
         //////////////////////////////
         // Eventos de teclado y ratón

@@ -5,6 +5,7 @@
 #include "NavGraphNode.h"
 #include "NavGraphEdge.h"
 #include "NetGame.h"
+#include "ClippingObject.h"
 #include "dwVectors.h"
 
 #include <fstream> //Lectura de ficheros
@@ -19,14 +20,27 @@ LoadMap::LoadMap()
 struct TTag2Wall {
     std::string tag;
     std::string model;
+    std::string texture;
 };
 
 TTag2Wall mappingWall[] = {
-        {"Wall_01_50m"    ,   "unityPared01_50m"  }
-    ,   {"Wall_01_100m"   ,   "unityPared01_100m" }
-    ,   {"Wall_01_200m"   ,   "unityPared01_200m" }
-    ,   {"Wall_01_300m"   ,   "unityPared01_300m" }
-    ,   {       "0"       ,             "0"       }
+        {"Wall_01_50m"      ,   "unityPared01_50m"  , "unityPared"}
+    ,   {"Wall_01_100m"     ,   "unityPared01_100m" , "unityPared"}
+    ,   {"Wall_01_200m"     ,   "unityPared01_200m" , "unityPared"}
+    ,   {"Wall_01_300m"     ,   "unityPared01_300m" , "unityPared"}
+    ,   {"Cama"             ,   "environment_elements/cama"             , "environment_elements/cama"}
+    ,   {"Especimen"        ,   "environment_elements/especimen"        , "environment_elements/especimen"}
+    ,   {"Camilla"          ,   "environment_elements/camilla"          , "environment_elements/camilla"}
+    ,   {"Lavabo"           ,   "environment_elements/lavabo"           , "environment_elements/lavabo"}
+    ,   {"WC"               ,   "environment_elements/banyos"           , "environment_elements/banyos"}
+    ,   {"CamaDormir"       ,   "environment_elements/camadormir"       , "environment_elements/camadormir"}
+    ,   {"Barril"           ,   "environment_elements/barril"           , "environment_elements/barril"}
+    ,   {"Caja"             ,   "environment_elements/box"              , "environment_elements/box"}
+    ,   {"Mesa"             ,   "environment_elements/mesa"             , "environment_elements/mesa"}
+    ,   {"MesaHall"         ,   "environment_elements/mesahall"         , "environment_elements/mesahall"}
+    ,   {"MesaHallObjetos"  ,   "environment_elements/mesahallobjetos"  , "environment_elements/mesa"}
+    ,   {"Maceta"           ,   "environment_elements/maceta"           , "environment_elements/maceta"}
+    ,   {       "0"         ,             "0"                           ,       "0"}
 };
 
 struct TTag2Floor {
@@ -91,6 +105,7 @@ void LoadMap::Init(){
         const Value& levels = document["levels"]; //Referencia a todos los "levels"
         for(size_t i=0; i < levels.Size()-1; i++){
             const Value& se = levels[i]["static-elements"]; //Referencia a todos los "static-elements";
+            Drawable* parentNode = 0;
             for(size_t j=0; j < se.Size(); j++){
 
                 const Value& e = se[j]; //Recorrer cada "element"
@@ -100,11 +115,32 @@ void LoadMap::Init(){
                 dwe::vec3f pos(tx, ty, tz);
                 dwe::vec3f rot(rx, ry, rz);
 
-                //WALLS
+                //FLOORS
+                // En el json, el primer objeto es el suelo y solo hay 1 por sala
+                TTag2Floor *nextF = mappingFloor;
+                while (nextF->tag != "0")
+                {
+                    if(id==nextF->tag)
+                    {
+                        floors[numFloors] = GEInstance->createFloor(nextF->model, "unitySuelo_Hall");
+                        floors[numFloors]->setRotation(dwe::vec3f(rot));
+                        floors[numFloors]->setPosition(dwe::vec3f(pos));
+
+                        // Se crea un elemento de clipping por cada suelo, para dividir por salas
+                        clippingObjects[numFloors] = GEInstance->createClippingObject();
+                        clippingObjects[numFloors]->setPosClipping(dwe::vec3f(tx,ty,tz));
+                        parentNode = clippingObjects[numFloors];
+
+                        numFloors++;
+                    }
+                    ++nextF;
+                 }
+
+                //WALLS y elementos del entorno
                 TTag2Wall *next = mappingWall;
                 while(next->tag != "0"){
                     if(id==next->tag){
-                        walls[numWalls] = GEInstance->createScenaryElement(next->model, "unityPared");
+                        walls[numWalls] = GEInstance->createScenaryElement(next->model, next->texture, parentNode);
                         walls[numWalls]->setRotation(rot);
                         walls[numWalls]->setPosition(pos);
                         numWalls++;
@@ -113,17 +149,6 @@ void LoadMap::Init(){
                     ++next;
                 }
 
-                //FLOORS
-                TTag2Floor *nextF = mappingFloor;
-                while(nextF->tag != "0"){
-                        if(id==nextF->tag){
-                            floors[numFloors] = GEInstance->createFloor(nextF->model, "unitySuelo_Hall");
-                            floors[numFloors]->setRotation(rot);
-                            floors[numFloors]->setPosition(pos);
-                            numFloors++;
-                        }
-                    ++nextF;
-                }
                 // GENERATORS
                 if(id=="Generator"){
                     if(numGenerators==0)
@@ -141,12 +166,6 @@ void LoadMap::Init(){
                     numGenerators++;
                 }
 
-                static const std::string lugar[23] = {"Cama", "Especimen", "Camilla", "Lavabo", "WC", "CamaDormir", "Barril", "Caja", "Mesa", "MesaHall", "MesaHallObjetos", "Maceta", "Ingeniero", "BicicletaEstatica", "MaquinaCorrer", "MaquinaPesas", "MesaCocina1", "MesaCocina2", "MesaCocina3", "MesaComedor", "SillasComedor"};
-                static const std::string cosa[23] = {"cama", "especimen", "camilla", "lavabo", "banyos", "camadormir", "barril", "box", "mesa", "mesahall", "mesahallobjetos", "maceta", "ingeniero", "bicicletaestatica", "maquinacorrer", "maquinapesas", "mesacocina1", "mesacocina2", "mesacocina3", "mesacomedor", "sillacomedor"};
-                // ELEMENTOS DEL ENTORNO
-                for(unsigned char i=0; i<23; i++){
-                    if(id==lugar[i]) createScenaryElement(cosa[i].c_str(), pos, rot);
-                }
             }
 
             //CONSUMABLES
@@ -158,20 +177,12 @@ void LoadMap::Init(){
                 int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = (-1)* e["position"]["z"].GetDouble();
                 if(id=="Ammo"){
                     s->createAmmo(tx, ty, tz);
-                }
-                if(id=="Medkit"){
+                } else if(id=="Medkit"){
                     s->createMedkit(tx, ty, tz);
-                }
-                if(id=="Adrenalina"){
+                } else if(id=="Adrenalina"){
                     s->createSpeedBoost(tx, ty, tz);
-                }
-                if(id=="MagnetKey"){
-                    if(magnetKeyCount==1)
-                        magnetKeyID=3;
-                    else if(magnetKeyCount==2)
-                        magnetKeyID=2;
-                    else if(magnetKeyCount==3)
-                        magnetKeyID=1;
+                } else if(id=="MagnetKey"){
+                    magnetKeyID=4-magnetKeyCount;
                     s->createMagnetKey(magnetKeyID, tx, ty, tz);
                     magnetKeyCount++;
                 }
@@ -251,6 +262,10 @@ void LoadMap::Update(){
 
     for(uint8_t i=0; i < NUM_MAP_DOORROTATE; i++)
         entitiesDoorRotate[i]->update();
+
+    calculateClipping();
+
+
     //Scene::updateConsumables(mainPlayer);
 }
 
@@ -270,6 +285,12 @@ void LoadMap::Destroy(){
     }
     for(int i=0; i<3; i++){
         delete generator[i];
+    }
+
+    for(uint8_t i=0; i<NUM_FLOORS; i++)
+    {
+        delete clippingObjects[i];
+        clippingObjects[i] = 0;
     }
 }
 
@@ -294,10 +315,7 @@ void LoadMap::cheatDoorOpen()
     cheats=true;
 }
 
-void LoadMap::createScenaryElement(const char* s, const dwe::vec3f &pos, const dwe::vec3f &rot)
+void LoadMap::calculateClipping()
 {
-    envElements[numEnvElements]=GEInstance->createScenaryElement("environment_elements/"+std::string(s), "environment_elements/"+std::string(s));
-    envElements[numEnvElements]->setRotation(rot);
-    envElements[numEnvElements]->setPosition(pos);
-    numEnvElements++;
+
 }

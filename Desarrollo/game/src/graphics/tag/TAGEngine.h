@@ -197,6 +197,8 @@ namespace tag
             /// Realiza los deletes pertinentes.
             void deleteNode(GraphicNode* node);
 
+            GraphicNode* createEmptyNode(GraphicNode* parent=0);
+
             // shader de dibujado: Handles de los attributes y uniforms
             static int _aVertexPositionLocation;
             static int _aVertexNormalLocation;

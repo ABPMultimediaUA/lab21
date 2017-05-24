@@ -697,3 +697,12 @@ void tag::TAGEngine::changeLightIntensity(uint8_t lightIndex, const vec3f ambien
         glUniform3f(TAGEngine::_uLightSpecularLocation, intensity.x, intensity.y, intensity.z);
     }
 }
+
+//////////////////////////////////
+tag::GraphicNode* tag::TAGEngine::createEmptyNode(GraphicNode* parent)
+{
+    GraphicNode* nodo = createNodePR(vec3f(0), vec3f(0), parent);
+
+    return nodo;
+}
+
