@@ -262,6 +262,11 @@ void EntityPhysics::createJointBody(const dwe::vec3f& pos, float width, float he
     m_revoluteJoint = (b2RevoluteJoint*)World->createJoint(&jointDef);
 }
 
+void EntityPhysics::destroyBody()
+{
+    World->destroyBody(m_body);
+}
+
 ////////////////////
 void EntityPhysics::onBeginContact(EntityPhysics* otherObject)
 {

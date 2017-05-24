@@ -10,6 +10,7 @@ Perception::Perception(Enemy *owner)
 {
     m_owner = owner;
     m_hearing = false;
+    m_seeing = false;
 }
 
 Perception::~Perception()

@@ -29,3 +29,8 @@ void ScenaryElement::update()
 void ScenaryElement::render()
 {
 }
+
+void ScenaryElement::SetCircle()
+{
+    createCircularBody(getPosition(), 125);
+}

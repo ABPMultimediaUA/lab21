@@ -63,15 +63,15 @@ void Scene::createEnemies()
 {
     m_numEnemies = m_numActiveEnemies = 11;
     m_enemies = new TEnemy[m_numEnemies];
-    m_enemies[ 0].enemy = GEInstance->createEnemyHumanoid(470,0,370);
+    m_enemies[0].enemy = GEInstance->createEnemyHumanoid(470,0,370);
     LoadingScreen::getInstance()->AddProgress();
-    m_enemies[ 1].enemy = GEInstance->createEnemyDog(700,0,30);
+    //m_enemies[1].enemy = GEInstance->createEnemyDog(700,0,30);
     LoadingScreen::getInstance()->AddProgress();
-    m_enemies[ 2].enemy = GEInstance->createEnemyBat(-330,0,420);
+    //m_enemies[2].enemy = GEInstance->createEnemyBat(-330,0,420);
     LoadingScreen::getInstance()->AddProgress();
-    m_enemies[ 3].enemy = GEInstance->createEnemyGuardian(-690,0,80);
+    //m_enemies[3].enemy = GEInstance->createEnemyGuardian(-690,0,80);
     LoadingScreen::getInstance()->AddProgress();
-    m_enemies[ 4].enemy = GEInstance->createEnemyLegless(-550,0,-340);
+    //m_enemies[4].enemy = GEInstance->createEnemyLegless(-550,0,-340);
     LoadingScreen::getInstance()->AddProgress();
     /*m_enemies[ 5].enemy = GEInstance->createEnemyHumanoid(300,24,250);
     m_enemies[ 6].enemy = GEInstance->createEnemyHumanoid(-300,24,570);
