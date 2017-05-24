@@ -68,6 +68,11 @@ void Enemy::move()
 
     EntityPhysics::setVelocity(direction);
     Drawable::setPosition(pos);
+
+    if(direction.x != 0 || direction.y != 0)
+        setAnimation(dwe::eAnimEnemyWalk);
+    else
+        setAnimation(dwe::eAnimEnemyStand);
 }
 
 bool Enemy::Sense()
@@ -106,7 +111,7 @@ bool Enemy::Attack()
     Drawable::setPosition(dwe::vec3f(pos.x, getPosition().y, pos.z));
     if(!attacking){
         attackTime = World->getTimeElapsed();
-        setAnimation(dwe::eAnimEnemyStand);
+        setAnimation(dwe::eAnimEnemyAttack);
         attacking = true;
         EntityPhysics::setVelocity(dwe::vec2f(0,0));
     }

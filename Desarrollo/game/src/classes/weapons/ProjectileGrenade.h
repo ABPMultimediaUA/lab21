@@ -33,7 +33,7 @@ class ProjectileGrenade: public Entity
 
     private:
         static const float _impulse = 0.3;
-        static const float _timeExplosion = 2.0;
+        static const float _timeExplosion = 1.0;
 
         bool m_exploding;   // En explosion
         bool m_exploded;    // Explotada

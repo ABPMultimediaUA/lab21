@@ -65,6 +65,7 @@ void dwe::GraphicsEngine::init()
     contextSettings.depthBits = 24;
     contextSettings.sRgbCapable = false;
 
+
     sf::Uint32 style;
     if (_fullScreen)
         style = sf::Style::Fullscreen;
@@ -72,7 +73,7 @@ void dwe::GraphicsEngine::init()
         style = sf::Style::Default;
     //style = sf::Style::Default; // TODO
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", style, contextSettings);
-
+    //m_window->setVerticalSyncEnabled(true);
     // Creamos los mensajes de texto, por ahora vacios
     if (!m_font.loadFromFile("media/ExoRegular.otf"))
         throw std::runtime_error("No se ha podido cargar la fuente de texto");
@@ -307,13 +308,11 @@ PlayerMate* dwe::GraphicsEngine::createPlayerMate()
 ////////////////////////////
 Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 {
-    tag::EAnimation* anim = m_tagEngine.createNumAnimations(6, "media/Humanoid/humanoide.bmp");
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(5, "media/Humanoid/humanoide.bmp");
     m_tagEngine.createAnimation(anim, "media/Humanoid/Stand/humanoide",                 eAnimEnemyStand,   1);
     m_tagEngine.createAnimation(anim, "media/Humanoid/Death/humanoideDeath",            eAnimEnemyDeath,   8, false);
     m_tagEngine.createAnimation(anim, "media/Humanoid/MeleeAttack/humanoidMeleeAttack", eAnimEnemyAttack,   6);
-    m_tagEngine.createAnimation(anim, "media/Humanoid/RangeAttack/humanoidRangeAttack", eAnimEnemyAttack2,   6, false);
     m_tagEngine.createAnimation(anim, "media/Humanoid/Walk/humanoidWalk",               eAnimEnemyWalk,   10);
-    m_tagEngine.createAnimation(anim, "media/Humanoid/WalkFollow/humanoidWalkFollow",   eAnimEnemyFollow,   10, false);
 
     anim->setActiveAnimation(0);
 
@@ -348,12 +347,12 @@ Mother* dwe::GraphicsEngine::createEnemyMother(int px, int py, int pz)
 ////////////////////////////
 Dog* dwe::GraphicsEngine::createEnemyDog(int px, int py, int pz)
 {
-    tag::EAnimation* anim = m_tagEngine.createNumAnimations(5, "media/Dog/dog.bmp");
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(4, "media/Dog/dog.bmp");
     m_tagEngine.createAnimation(anim, "media/Dog/Stand/dogStand",   eAnimEnemyStand,   1);
     m_tagEngine.createAnimation(anim, "media/Dog/Death/dogDeath",   eAnimEnemyDeath,   9, false);
     m_tagEngine.createAnimation(anim, "media/Dog/Walk/dogWalk",     eAnimEnemyWalk,   11);
     m_tagEngine.createAnimation(anim, "media/Dog/Attack/dogAttack", eAnimEnemyAttack,  5);
-    m_tagEngine.createAnimation(anim, "media/Dog/Run/dogRun",       eAnimEnemyRun, 11);
+    //m_tagEngine.createAnimation(anim, "media/Dog/Run/dogRun",       eAnimEnemyRun, 11);
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
@@ -453,7 +452,7 @@ DoorRotate* dwe::GraphicsEngine::createDoorRotate(int f, bool a, float px, float
 
 Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle, std::string weapon, int damage)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/" + weapon + ".obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/" + weapon + ".obj", vec3f(0,0,0), vec3f(0,0,0), "media/bullet.bmp");
     Projectile* p = new Projectile(origin, angle, damage);
 	p->setNode(new Node(node));
 	p->setPosition(origin);
@@ -462,7 +461,7 @@ Projectile* dwe::GraphicsEngine::createProjectile(vec3f origin, float angle, std
 
 ProjectileGrenade* dwe::GraphicsEngine::createProjectileGrenade(vec3f origin, float angle)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/grenade.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Grenade/grenade.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Grenade/grenade.bmp");
     ProjectileGrenade* p = new ProjectileGrenade(vec3f(origin.x, 0, origin.z), angle);
 	p->setNode(new Node(node));
 	p->setPosition(vec3f(origin.x, 0, origin.z));
@@ -471,7 +470,11 @@ ProjectileGrenade* dwe::GraphicsEngine::createProjectileGrenade(vec3f origin, fl
 
 GrenadeExplosion* dwe::GraphicsEngine::createGrenadeExplosion(vec3f origin)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/explosion.obj", vec3f(0,0,0), vec3f(0,0,0));
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(1, "media/explosionAnimation/explosion.bmp");
+    m_tagEngine.createAnimation(anim, "media/explosionAnimation/explosion",   eAnimGrenade,  11);
+    anim->setActiveAnimation(0);
+
+    tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
     GrenadeExplosion* g = new GrenadeExplosion();
 	g->setNode(new Node(node));
 	g->setPosition(vec3f(origin.x, 0, origin.z));
@@ -558,7 +561,7 @@ Rifle* dwe::GraphicsEngine::createRifle(Drawable* player)
 
 CShotgun* dwe::GraphicsEngine::createCShotgun(float px, float py, float pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Shotgun/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Shotgun/Shotgun.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Shotgun/shotgun.bmp");
     CShotgun* sg = new CShotgun();
 	sg->setNode(new Node(node));
 	sg->setPosition(dwe::vec3f(px, py, pz));
@@ -569,7 +572,7 @@ CShotgun* dwe::GraphicsEngine::createCShotgun(float px, float py, float pz)
 
 CRifle* dwe::GraphicsEngine::createCRifle(float px, float py, float pz)
 {
-	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Rifle/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0));
+	tag::GraphicNode* node = m_tagEngine.createMesh("media/Weapons/Rifle/Rifle.obj", vec3f(0,0,0), vec3f(0,0,0), "media/Weapons/Rifle/rifle.bmp");
     CRifle* r = new CRifle();
 	r->setNode(new Node(node));
 	r->setPosition(dwe::vec3f(px, py, pz));

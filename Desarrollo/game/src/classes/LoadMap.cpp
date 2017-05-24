@@ -106,37 +106,21 @@ void LoadMap::Init(){
             const Value& se = levels[i]["static-elements"]; //Referencia a todos los "static-elements";
             Drawable* parentNode = 0;
             for(size_t j=0; j < se.Size(); j++){
+
                 const Value& e = se[j]; //Recorrer cada "element"
                 std::string id = e["element-id"].GetString();
-                float tx = e["position"]["x"].GetDouble();    float ty = e["position"]["y"].GetDouble();    float tz = (-1)* e["position"]["z"].GetDouble();
-                float rx = e["rotation"]["x"].GetDouble();    float ry = e["rotation"]["y"].GetDouble();    float rz = e["rotation"]["z"].GetDouble();
-
-                //FLOORS
-                // En el json, el primer objeto es el suelo y solo hay 1 por sala
-                TTag2Floor *nextF = mappingFloor;
-                while(nextF->tag != "0"){
-                        if(id==nextF->tag){
-                            floors[numFloors] = GEInstance->createFloor(nextF->model, "unitySuelo_Hall");
-                            floors[numFloors]->setRotation(dwe::vec3f(rx,ry,rz));
-                            floors[numFloors]->setPosition(dwe::vec3f(tx,ty,tz));
-
-                            // Se crea un elemento de clipping por cada suelo, para dividir por salas
-                            clippingObjects[numFloors] = GEInstance->createClippingObject();
-                            clippingObjects[numFloors]->setPosClipping(dwe::vec3f(tx,ty,tz));
-                            parentNode = clippingObjects[numFloors];
-
-                            numFloors++;
-                        }
-                    ++nextF;
-                }
+                int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = (-1)* e["position"]["z"].GetDouble();
+                int rx = e["rotation"]["x"].GetDouble();    int ry = e["rotation"]["y"].GetDouble();    int rz = e["rotation"]["z"].GetDouble();
+                dwe::vec3f pos(tx, ty, tz);
+                dwe::vec3f rot(rx, ry, rz);
 
                 //WALLS y elementos del entorno
                 TTag2Wall *next = mappingWall;
                 while(next->tag != "0"){
                     if(id==next->tag){
                         walls[numWalls] = GEInstance->createScenaryElement(next->model, next->texture, parentNode);
-                        walls[numWalls]->setRotation(dwe::vec3f(rx,ry,rz));
-                        walls[numWalls]->setPosition(dwe::vec3f(tx,ty,tz));
+                        walls[numWalls]->setRotation(rot);
+                        walls[numWalls]->setPosition(pos);
                         numWalls++;
                        // wall->setLevelId(levelid);
                     };
@@ -154,8 +138,8 @@ void LoadMap::Init(){
                     else if(numGenerators==3)
                         generatorID=1;
                     generator[numGenerators]=GEInstance->createGenerator(generatorID, false);
-                    generator[numGenerators]->setRotation(dwe::vec3f(rx,ry,rz));
-                    generator[numGenerators]->setPosition(dwe::vec3f(tx,ty,tz));
+                    generator[numGenerators]->setRotation(rot);
+                    generator[numGenerators]->setPosition(pos);
                     generator[numGenerators]->SetSensor();
                     numGenerators++;
                 }

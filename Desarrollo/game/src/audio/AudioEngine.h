@@ -22,6 +22,8 @@ namespace dwe
             void Play2D(const char* fileName, float volume = 1.0, bool loop = false);
             void Play3D(const char* fileName, dwe::vec3f pos, float volume = 1.0, bool loop = false);
 
+            void StopAllSounds();
+
             float GetMasterVolume();
 
         private:

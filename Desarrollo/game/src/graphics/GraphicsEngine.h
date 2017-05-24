@@ -80,13 +80,13 @@ namespace dwe
         eAnimPlayerDash     = 5,
         eAnimPlayerDeath    = 6,
 
+        eAnimGrenade        = 0,
+
         eAnimEnemyStand     = 0,
         eAnimEnemyDeath     = 1,
         eAnimEnemyWalk      = 2,
         eAnimEnemyAttack    = 3,
-        eAnimEnemyRun       = 4,
-        eAnimEnemyFollow    = 5,
-        eAnimEnemyAttack2   = 6
+        eAnimEnemyRun       = 4
     };
 
 

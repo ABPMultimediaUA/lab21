@@ -18,7 +18,7 @@
 #define NUM_DOORS           34
 #define NUM_GENERATORS      4
 #define NUM_MAP_DOORROTATE  1
-#define NUM_ENVIRONMENT_ELEMENTS 53 // 53 - Ultima adicion: Macetas
+#define NUM_ENVIRONMENT_ELEMENTS 107 // 85 - Ultima adicion: Cosas random por mapa
 
 class LoadMap {
     public:
@@ -29,6 +29,7 @@ class LoadMap {
         void Update();
         void Destroy();
         void cheatDoorOpen();
+        void createScenaryElement(const char* s, const dwe::vec3f &pos, const dwe::vec3f &rot);
 
     private:
         // Suelo

@@ -1,6 +1,7 @@
 #include "LoadingScreen.h"
 #include "GraphicsEngine.h"
 #include "GUI.h"
+#include "AudioEngine.h"
 
 LoadingScreen::LoadingScreen() :
     m_initialized(false),
@@ -8,7 +9,7 @@ LoadingScreen::LoadingScreen() :
     m_loadingSprite(0),
     m_progress(0)
 {
-    //ctor
+    AEInstance->Play2D("media/Sounds/gamestarts.wav");
 }
 
 LoadingScreen::~LoadingScreen()
