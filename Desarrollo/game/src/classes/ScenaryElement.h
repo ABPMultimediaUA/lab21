@@ -14,6 +14,8 @@ class ScenaryElement : public DrawablePhysics
 
         virtual void setNode(dwe::Node* n);
 
+        void SetCircle();
+
     protected:
 
     private:

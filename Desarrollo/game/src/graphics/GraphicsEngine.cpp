@@ -73,7 +73,7 @@ void dwe::GraphicsEngine::init()
         style = sf::Style::Default;
     //style = sf::Style::Default; // TODO
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", style, contextSettings);
-    //m_window->setVerticalSyncEnabled(true);
+    m_window->setVerticalSyncEnabled(true);
     // Creamos los mensajes de texto, por ahora vacios
     if (!m_font.loadFromFile("media/ExoRegular.otf"))
         throw std::runtime_error("No se ha podido cargar la fuente de texto");
@@ -247,6 +247,12 @@ ScenaryElement* dwe::GraphicsEngine::createScenaryElement(std::string m, std::st
     tag::GraphicNode* gn = m_tagEngine.createMesh("media/"+m+".obj", vec3f(0,0,0), vec3f(0,0,0), "media/"+t+".bmp", p);
     ScenaryElement *se= new ScenaryElement();
     se->setNode(new Node(gn));
+    if(m=="environment_elements/mesahall" || m=="environment_elements/mesahallobjetos")
+    {
+        se->destroyBody();
+        se->SetCircle();
+    }
+
     return se;
 }
 

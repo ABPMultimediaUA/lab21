@@ -270,8 +270,12 @@ namespace dwe
 
 
 #ifndef LAB21_DEBUG
-        static const int _screenWidth   = 1024;
+        /*static const int _screenWidth   = 1024;
+        static const int _screenHeight  = 768;*/
+        static const int _screenWidth   = 1366;
         static const int _screenHeight  = 768;
+        /*static const int _screenWidth   = 1920;
+        static const int _screenHeight  = 1080;*/
         static const bool _fullScreen   = true;
 #else
         static const int _screenWidth   = 1024;
