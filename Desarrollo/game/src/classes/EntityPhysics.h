@@ -42,6 +42,8 @@ class EntityPhysics
 
         void setPhysicsActive(bool active);
 
+        void destroyBody();
+
     protected:
         // Variables para configurar en el constructor sobre el tipo de sólido
         bool        m_fixedRotation;

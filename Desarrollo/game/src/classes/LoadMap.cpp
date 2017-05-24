@@ -5,6 +5,7 @@
 #include "NavGraphNode.h"
 #include "NavGraphEdge.h"
 #include "NetGame.h"
+#include "dwVectors.h"
 
 #include <fstream> //Lectura de ficheros
 #include <document.h> //ES UN .H de rapidJSON
@@ -194,16 +195,24 @@ void LoadMap::Init(){
                     ++numDoorsRotate;
                 }
             }
-            // WAYPOINTS
+        }
+        // WAYPOINTS
+        const Value& wa = levels[53]["Waypoints"];
+        for(size_t j=0; j < wa.Size(); j++){
+            const Value& e = wa[j]; //Recorrer cada "element"
+            std::string id = e["element-id"].GetString();
+            int tx = e["position"]["x"].GetDouble();  int tz = (-1)* e["position"]["z"].GetDouble();
+            NavGraphNode node(j, dwe::vec2f(tx, tz));
+            s->getNavGraph().addNode(node);
+        }
+        // ARISTAS
+        ifstream edges("edges.txt");
 
-            const Value& wa = levels[53]["Waypoints"];
-            for(size_t j=0; j < wa.Size(); j++){
-                const Value& e = wa[j]; //Recorrer cada "element"
-                std::string id = e["element-id"].GetString();
-                int tx = e["position"]["x"].GetDouble();  int tz = (-1)* e["position"]["z"].GetDouble();
-                NavGraphNode node(j, dwe::vec2f(tx, tz));
-                s->getNavGraph().addNode(node);
-            }
+        int a, b;
+        while (edges >> a >> b)
+        {
+            NavGraphEdge edge(a,b, dwu::calculateDistance(s->getNavGraph().getNode(a).getPosition(), s->getNavGraph().getNode(b).getPosition()));
+            s->getNavGraph().addEdge(edge);
         }
 
         // Asignamos puertas a generadores
@@ -223,6 +232,8 @@ void LoadMap::Init(){
         sector[0]=entities[32];
         sector[1]=entities[33];
         generator[2]->setSector(sector, 2);
+
+        ((Door*)entities[32])->setInactive();
 
         // Armas
         s->createCShotgun(0, 10, -20);
