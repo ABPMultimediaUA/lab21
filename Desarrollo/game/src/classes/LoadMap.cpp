@@ -7,6 +7,7 @@
 #include "NetGame.h"
 #include "ClippingObject.h"
 #include "dwVectors.h"
+#include "WorldInstance.h"
 
 #include <fstream> //Lectura de ficheros
 #include <document.h> //ES UN .H de rapidJSON
@@ -24,22 +25,31 @@ struct TTag2Wall {
 };
 
 TTag2Wall mappingWall[] = {
-        {"Wall_01_50m"      ,   "unityPared01_50m"  , "unityPared"}
-    ,   {"Wall_01_100m"     ,   "unityPared01_100m" , "unityPared"}
-    ,   {"Wall_01_200m"     ,   "unityPared01_200m" , "unityPared"}
-    ,   {"Wall_01_300m"     ,   "unityPared01_300m" , "unityPared"}
-    ,   {"Cama"             ,   "environment_elements/cama"             , "environment_elements/cama"}
-    ,   {"Especimen"        ,   "environment_elements/especimen"        , "environment_elements/especimen"}
-    ,   {"Camilla"          ,   "environment_elements/camilla"          , "environment_elements/camilla"}
-    ,   {"Lavabo"           ,   "environment_elements/lavabo"           , "environment_elements/lavabo"}
-    ,   {"WC"               ,   "environment_elements/banyos"           , "environment_elements/banyos"}
-    ,   {"CamaDormir"       ,   "environment_elements/camadormir"       , "environment_elements/camadormir"}
-    ,   {"Barril"           ,   "environment_elements/barril"           , "environment_elements/barril"}
-    ,   {"Caja"             ,   "environment_elements/box"              , "environment_elements/box"}
-    ,   {"Mesa"             ,   "environment_elements/mesa"             , "environment_elements/mesa"}
-    ,   {"MesaHall"         ,   "environment_elements/mesahall"         , "environment_elements/mesahall"}
-    ,   {"MesaHallObjetos"  ,   "environment_elements/mesahallobjetos"  , "environment_elements/mesa"}
-    ,   {"Maceta"           ,   "environment_elements/maceta"           , "environment_elements/maceta"}
+        {"Wall_01_50m"          ,   "unityPared01_50m"                          , "unityPared"}
+    ,   {"Wall_01_100m"         ,   "unityPared01_100m"                         , "unityPared"}
+    ,   {"Wall_01_200m"         ,   "unityPared01_200m"                         , "unityPared"}
+    ,   {"Wall_01_300m"         ,   "unityPared01_300m"                         , "unityPared"}
+    ,   {"Cama"                 ,   "environment_elements/cama"                 , "environment_elements/cama"}
+    ,   {"Especimen"            ,   "environment_elements/especimen"            , "environment_elements/especimen"}
+    ,   {"Camilla"              ,   "environment_elements/camilla"              , "environment_elements/camilla"}
+    ,   {"Lavabo"               ,   "environment_elements/lavabo"               , "environment_elements/lavabo"}
+    ,   {"WC"                   ,   "environment_elements/banyos"               , "environment_elements/banyos"}
+    ,   {"CamaDormir"           ,   "environment_elements/camadormir"           , "environment_elements/camadormir"}
+    ,   {"Barril"               ,   "environment_elements/barril"               , "environment_elements/barril"}
+    ,   {"Caja"                 ,   "environment_elements/box"                  , "environment_elements/box"}
+    ,   {"Mesa"                 ,   "environment_elements/mesa"                 , "environment_elements/mesa"}
+    ,   {"MesaHall"             ,   "environment_elements/mesahall"             , "environment_elements/mesahall"}
+    ,   {"MesaHallObjetos"      ,   "environment_elements/mesahallobjetos"      , "environment_elements/mesa"}
+    ,   {"Maceta"               ,   "environment_elements/maceta"               , "environment_elements/maceta"}
+    ,   {"Ingeniero"            ,   "environment_elements/ingeniero"            , "environment_elements/ingeniero"}
+    ,   {"BicicletaEstatica"    ,   "environment_elements/bicicletaestatica"    , "environment_elements/bicicletaestatica"}
+    ,   {"MaquinaCorrer"        ,   "environment_elements/maquinacorrer"        , "environment_elements/maquinacorrer"}
+    ,   {"MaquinaPesas"         ,   "environment_elements/maquinapesas"         , "environment_elements/maquinapesas"}
+    ,   {"MesaCocina1"          ,   "environment_elements/mesacocina1"          , "environment_elements/mesacocina1"}
+    ,   {"MesaCocina2"          ,   "environment_elements/mesacocina2"          , "environment_elements/mesacocina2"}
+    ,   {"MesaCocina3"          ,   "environment_elements/mesacocina3"          , "environment_elements/mesacocina3"}
+    ,   {"MesaComedor"          ,   "environment_elements/mesacomedor"          , "environment_elements/mesacomedor"}
+    ,   {"SillasComedor"        ,   "environment_elements/sillacomedor"         , "environment_elements/sillacomedor"}
     ,   {       "0"         ,             "0"                           ,       "0"}
 };
 
@@ -317,5 +327,11 @@ void LoadMap::cheatDoorOpen()
 
 void LoadMap::calculateClipping()
 {
-
+   /* dwe::vec3f posPlayer = World->getMainPlayer()->getPosition();
+    for (uint16_t i=0; i<NUM_FLOORS; i++)
+    {
+        dwe::vec3f posClip = clippingObjects[i]->getPosClipping();
+        bool activo = (posClip.x - posPlayer.x < 1610 || posClip.y - posPlayer.y < 1610);
+        clippingObjects[i]->setActive(activo);
+    }*/
 }
