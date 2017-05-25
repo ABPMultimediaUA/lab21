@@ -51,7 +51,7 @@ class Enemy : public DrawablePhysics
         void SetPatrolPosition(dwe::vec2f patrol);
         dwe::vec2f GetPatrolPosition();
         void SetTargetPosition(dwe::vec2f target);
-        dwe::vec2f GetTargetPosition():
+        dwe::vec2f GetTargetPosition();
         void SetPatrolPoints(dwe::vec2f p1, dwe::vec2f p2);
 
         virtual void setNode(dwe::Node* n);   // Necesario para EntityPhysics
