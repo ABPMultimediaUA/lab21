@@ -462,6 +462,7 @@ int dwn::NetGame::getNumPlayerMates() { return replicaManager3->GetReplicaCount(
 ///////////////////
 void dwn::NetGame::startGame()
 {
+std::cout << "ANTES DE IF Enviamos startgame-----------------------------------------------\n";
     if (fullyConnectedMesh2->IsHostSystem())
     {
         RakNet::SystemAddress serverAddress(m_serverIP.c_str(), DEFAULT_PT);
@@ -469,7 +470,7 @@ void dwn::NetGame::startGame()
         RakNet::BitStream bsOut;
         bsOut.Write((RakNet::MessageID)ID_GAME_STARTED);
         rakPeer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, serverAddress, true);
-
+std::cout << "Enviamos startgame-----------------------------------------------\n";
         m_gameStarted = true;
     }
 }

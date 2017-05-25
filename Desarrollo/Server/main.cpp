@@ -21,12 +21,14 @@
 #include "CloudClient.h"
 #include "RakNetStatistics.h"
 #include "RelayPlugin.h"
+#include "GetTime.h"
 
 #include "NetCommon.h"
 
 #define MAX_CONNECTIONS 32
 
 //#define VERBOSE_LOGGING
+
 
 using namespace RakNet;
 using namespace std;
@@ -36,6 +38,85 @@ static int DEFAULT_RAKPEER_PORT=61111;
 ///////////////////////////
 ///////////////////////////
 ///////////////////////////
+class Lab21NatPunchthroughServer : public RakNet::NatPunchthroughServer
+{
+public:
+
+    virtual void Update(void)
+    {
+        ConnectionAttempt *connectionAttempt;
+        User *user, *recipient;
+        unsigned int i,j;
+        RakNet::Time time = RakNet::GetTime();
+        if (time > lastUpdate+250)
+        {
+            lastUpdate=time;
+
+            for (i=0; i < users.Size(); i++)
+            {
+                user=users[i];
+                for (j=0; j < user->connectionAttempts.Size(); j++)
+                {
+                    connectionAttempt=user->connectionAttempts[j];
+                    if (connectionAttempt->sender==user)
+                    {
+                        if (connectionAttempt->attemptPhase!=ConnectionAttempt::NAT_ATTEMPT_PHASE_NOT_STARTED &&
+                            time > connectionAttempt->startTime &&
+                            time > 120000 + connectionAttempt->startTime ) // Formerly 5000, but sometimes false positives
+                        {
+                            RakNet::BitStream outgoingBs;
+
+                            // that other system might not be running the plugin
+                            outgoingBs.Write((MessageID)ID_NAT_TARGET_UNRESPONSIVE);
+                            outgoingBs.Write(connectionAttempt->recipient->guid);
+                            outgoingBs.Write(connectionAttempt->sessionId);
+                            rakPeerInterface->Send(&outgoingBs,HIGH_PRIORITY,RELIABLE_ORDERED,0,connectionAttempt->sender->systemAddress,false);
+
+                            // 05/28/09 Previously only told sender about ID_NAT_CONNECTION_TO_TARGET_LOST
+                            // However, recipient may be expecting it due to external code
+                            // In that case, recipient would never get any response if the sender dropped
+                            outgoingBs.Reset();
+                            outgoingBs.Write((MessageID)ID_NAT_TARGET_UNRESPONSIVE);
+                            outgoingBs.Write(connectionAttempt->sender->guid);
+                            outgoingBs.Write(connectionAttempt->sessionId);
+                            rakPeerInterface->Send(&outgoingBs,HIGH_PRIORITY,RELIABLE_ORDERED,0,connectionAttempt->recipient->systemAddress,false);
+
+                            connectionAttempt->sender->isReady=true;
+                            connectionAttempt->recipient->isReady=true;
+                            recipient=connectionAttempt->recipient;
+
+
+                            if (natPunchthroughServerDebugInterface)
+                            {
+                                char str[1024];
+                                char addr1[128], addr2[128];
+                                // 8/01/09 Fixed bug where this was after DeleteConnectionAttempt()
+                                connectionAttempt->sender->systemAddress.ToString(true,addr1);
+                                connectionAttempt->recipient->systemAddress.ToString(true,addr2);
+                                sprintf(str, "Sending ID_NAT_TARGET_UNRESPONSIVE to sender %s and recipient %s.", addr1, addr2);
+                                natPunchthroughServerDebugInterface->OnServerMessage(str);
+                                RakNet::RakString log;
+                                connectionAttempt->sender->LogConnectionAttempts(log);
+                                connectionAttempt->recipient->LogConnectionAttempts(log);
+                            }
+
+
+                            connectionAttempt->sender->DerefConnectionAttempt(connectionAttempt);
+                            connectionAttempt->recipient->DeleteConnectionAttempt(connectionAttempt);
+
+                            StartPunchthroughForUser(user);
+                            StartPunchthroughForUser(recipient);
+
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+};
+
 int main(int argc, char **argv)
 {
 	printf("Servidor Lab21 v0.2\n");
@@ -73,8 +154,8 @@ int main(int argc, char **argv)
 
 
     // NatPunchthroughServer /////////////////////////////
-    NatPunchthroughServer* natPunchthroughServer;
-    natPunchthroughServer = new NatPunchthroughServer;
+    Lab21NatPunchthroughServer* natPunchthroughServer;
+    natPunchthroughServer = new Lab21NatPunchthroughServer;
     rakPeer->AttachPlugin(natPunchthroughServer);
 
 
