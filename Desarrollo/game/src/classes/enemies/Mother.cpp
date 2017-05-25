@@ -3,7 +3,7 @@
 Mother::Mother()
 {
 
-    m_health = 200;
+    m_health = 500;
     TimeBetweenCreations = 0;
     //set up state machine
     m_pStateMachine = new StateMachine<Mother>(this);

@@ -50,11 +50,6 @@ Player::Player() :
 Player::~Player()
 {
     deleteWeapons();
-    if(m_soundTrigger)
-    {
-        delete m_soundTrigger;
-        m_soundTrigger = 0;
-    }
 }
 
 void Player::deleteWeapons()

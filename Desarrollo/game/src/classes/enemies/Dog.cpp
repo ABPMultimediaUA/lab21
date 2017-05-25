@@ -10,7 +10,7 @@ Dog::Dog()
 
     d_pStateMachine->SetCurrentState(DAsleepState::Instance());
 
-    m_speed = 4.0;   // m/s
+    m_speed = 5.0;   // m/s
     m_attackPower = 20;
     m_maxHealth = 15;
     m_health = m_maxHealth;
