@@ -14,6 +14,7 @@ PathplanningTask::~PathplanningTask()
 
 States PathplanningTask::run()
 {
-    m_owner->PlanPath();
+    if(m_owner->RouteEnd())
+        m_owner->PlanPath();
     return success;
 }

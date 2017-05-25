@@ -13,12 +13,12 @@
 
 /////
 #include "Entity.h"
-#define NUM_WALLS           181
-#define NUM_FLOORS          53
-#define NUM_DOORS           34
+#define NUM_WALLS           167
+#define NUM_FLOORS          48
+#define NUM_DOORS           29
 #define NUM_GENERATORS      4
 #define NUM_MAP_DOORROTATE  1
-#define NUM_ENVIRONMENT_ELEMENTS 106 // 85 - Ultima adicion: Cosas random por mapa
+#define NUM_ENVIRONMENT_ELEMENTS 102 // 85 - Ultima adicion: Cosas random por mapa
 
 class LoadMap {
     public:

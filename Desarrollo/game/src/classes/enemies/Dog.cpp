@@ -10,7 +10,7 @@ Dog::Dog()
 
     d_pStateMachine->SetCurrentState(DAsleepState::Instance());
 
-    m_speed = 2.0;   // m/s
+    m_speed = 4.0;   // m/s
     m_attackPower = 20;
 
     m_perception = new Perception(this);
@@ -19,6 +19,8 @@ Dog::Dog()
     m_behaviourTree = new BTreeHumanoid(this);
 
     targetPosition = dwe::vec2f(700,30);
+    m_pathplanning->SetNext(targetPosition);
+    SetPatrolPoints(dwe::vec2f(640,0), dwe::vec2f(-460,590));
 }
 
 Dog::~Dog()
