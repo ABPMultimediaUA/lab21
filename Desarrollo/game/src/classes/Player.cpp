@@ -217,7 +217,6 @@ void Player::readEvents()
 
     if (m_isThrowingGrenade)
     {
-        m_currentWeapon->setPut();
         if (timeElapsed - m_timeInitGrenade > Player::_throwGrenadeOffsetTime)
         {
             throwGrenade();
@@ -225,8 +224,13 @@ void Player::readEvents()
             m_timeLastGrenade = timeElapsed;
             m_isThrowingGrenade = false;
         }
-        else
+        else{
             return;
+        }
+    }
+
+    else{
+        m_currentWeapon->setDraw();
     }
 
 
@@ -269,6 +273,7 @@ void Player::readEvents()
             m_isThrowingGrenade = true;
             m_timeInitGrenade = timeElapsed;
             setAnimation(dwe::eAnimPlayerGrenade);
+            m_currentWeapon->setPut();
             return;
         }
 
@@ -323,6 +328,8 @@ void Player::readEvents()
         if(getIsEvading())
             m_currentWeapon->setPut(); // Guardamos arma
     }
+
+
 
 }
 
