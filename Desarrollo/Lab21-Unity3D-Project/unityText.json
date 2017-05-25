@@ -26,6 +26,9 @@
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
 				"position": { "x":-751, "y":0, "z":-1100 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-1000, "y":-1, "z":-1099 },
 				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
@@ -36,37 +39,6 @@
 	},
 	{
 		"level-id":1,
-		"level-name":"Sala_Seguridad",
-		"static-elements": [
-			{ "element-id": "Floor_200x100",
-				"position": { "x":-1000, "y":0, "z":-1000 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1210, "y":0, "z":-990 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-790, "y":0, "z":-990 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01_200m",
-				"position": { "x":-1000, "y":0, "z":-900 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Maceta",
-				"position": { "x":-816.1, "y":0, "z":-932 },
-				"rotation": { "x":0, "y":0, "z":0 }}
-		],
-		"initial-consumable": [
-			{ "element-id": "Medkit",
-				"position": { "x":-1181.5, "y":0, "z":-932.6 },
-				"rotation": { "x":0, "y":0, "z":0 }}
-		],
-		"initial-entity": [
-			{ "element-id": "Door",
-				"position": { "x":-1000, "y":-1, "z":-1100 },
-				"rotation": { "x":0, "y":0, "z":0 }}
-		]
-	},
-	{
-		"level-id":2,
 		"level-name":"Pasillo_Inicial_02",
 		"static-elements": [
 			{ "element-id": "Floor_500x50",
@@ -92,10 +64,7 @@
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_50m",
 				"position": { "x":101, "y":0, "z":-1100 },
-				"rotation": { "x":0, "y":180, "z":0 }},
-			{ "element-id": "Ingeniero",
-				"position": { "x":-366, "y":0, "z":-1123 },
-				"rotation": { "x":0, "y":0, "z":0 }}
+				"rotation": { "x":0, "y":180, "z":0 }}
 		],
 		"initial-consumable": [
 		],
@@ -104,7 +73,7 @@
 
 	},
 	{
-		"level-id":3,
+		"level-id":2,
 		"level-name":"Sala_Seguridad (1)",
 		"static-elements": [
 			{ "element-id": "Floor_200x100",
@@ -118,14 +87,20 @@
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_200m",
 				"position": { "x":0, "y":0, "z":-1400 },
-				"rotation": { "x":0, "y":180, "z":0 }}
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Maceta",
+				"position": { "x":-190, "y":0, "z":-1225 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Ingeniero",
+				"position": { "x":139, "y":0, "z":-1229 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
 			{ "element-id": "Medkit",
 				"position": { "x":184, "y":0, "z":-1231 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "MagnetKey",
-				"position": { "x":-0.9, "y":0, "z":-1304.9 },
+				"position": { "x":107, "y":0, "z":-1229 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Ammo",
 				"position": { "x":-185.8, "y":0, "z":-1372.4 },
@@ -138,7 +113,7 @@
 		]
 	},
 	{
-		"level-id":4,
+		"level-id":3,
 		"level-name":"Pasillo_Inicial_03",
 		"static-elements": [
 			{ "element-id": "Floor_300x50",
@@ -158,7 +133,7 @@
 
 	},
 	{
-		"level-id":5,
+		"level-id":4,
 		"level-name":"HALL_PRINCIPAL",
 		"static-elements": [
 			{ "element-id": "Floor_Hall",
@@ -225,49 +200,13 @@
 				"position": { "x":525, "y":1.1, "z":-228 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Maceta",
-				"position": { "x":-186, "y":0, "z":-474 },
+				"position": { "x":-784, "y":0, "z":-474 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Maceta",
-				"position": { "x":201, "y":0, "z":-474 },
+				"position": { "x":782, "y":0, "z":-474 },
 				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
-			{ "element-id": "Ammo",
-				"position": { "x":-188, "y":0, "z":-137 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Ammo",
-				"position": { "x":194, "y":0, "z":-137 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Ammo",
-				"position": { "x":318, "y":0, "z":-137 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Ammo",
-				"position": { "x":-294, "y":0, "z":-137 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Medkit",
-				"position": { "x":-299, "y":0, "z":-47.4 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Medkit",
-				"position": { "x":185, "y":0, "z":-47.4 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Medkit",
-				"position": { "x":-195, "y":0, "z":-47.4 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Medkit",
-				"position": { "x":323, "y":0, "z":-47.4 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Adrenalina",
-				"position": { "x":-284.3, "y":0, "z":-182.3 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Adrenalina",
-				"position": { "x":-196.4, "y":0, "z":-182.3 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Adrenalina",
-				"position": { "x":189.6, "y":0, "z":-182.3 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Adrenalina",
-				"position": { "x":321.5, "y":0, "z":-182.3 },
-				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 			{ "element-id": "Door",
@@ -288,7 +227,7 @@
 		]
 	},
 	{
-		"level-id":6,
+		"level-id":5,
 		"level-name":"Baño_IZQ",
 		"static-elements": [
 			{ "element-id": "Floor_200x100",
@@ -323,7 +262,7 @@
 
 	},
 	{
-		"level-id":7,
+		"level-id":6,
 		"level-name":"Baño_DER",
 		"static-elements": [
 			{ "element-id": "Floor_200x100",
@@ -358,7 +297,7 @@
 
 	},
 	{
-		"level-id":8,
+		"level-id":7,
 		"level-name":"Pasillo_Corto_Labs_",
 		"static-elements": [
 			{ "element-id": "Floor_200x50",
@@ -381,7 +320,7 @@
 
 	},
 	{
-		"level-id":9,
+		"level-id":8,
 		"level-name":"Sala_Destrozada",
 		"static-elements": [
 			{ "element-id": "Floor_100x100",
@@ -408,6 +347,9 @@
 			{ "element-id": "Barril",
 				"position": { "x":-929, "y":0, "z":-483 },
 				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Barril",
+				"position": { "x":-921.9999, "y":-1, "z":-570.1 },
+				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Caja",
 				"position": { "x":-1070, "y":0, "z":-572.6 },
 				"rotation": { "x":0, "y":180, "z":0 }},
@@ -442,24 +384,38 @@
 		]
 	},
 	{
-		"level-id":10,
+		"level-id":9,
 		"level-name":"Pasillo_Corto_Labs",
 		"static-elements": [
 			{ "element-id": "Floor_200x50",
-				"position": { "x":-1250, "y":0, "z":-300 },
+				"position": { "x":-1249.5, "y":-1, "z":-210 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_50m",
-				"position": { "x":-1200, "y":0, "z":-450 },
+				"position": { "x":-1189, "y":-2, "z":-259 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1200, "y":-1, "z":-209 },
+				"position": { "x":-1190, "y":-1, "z":-120 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_200m",
-				"position": { "x":-1300, "y":-1, "z":-290 },
+				"position": { "x":-1290, "y":-2, "z":-200 },
 				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Barril",
-				"position": { "x":-1148, "y":0, "z":-318 },
-				"rotation": { "x":0, "y":90, "z":0 }}
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-1250, "y":-1, "z":-410 },
+				"rotation": { "x":0, "y":0, "z":0 }}
+		],
+		"initial-consumable": [
+		],
+		"initial-entity": [
+		]
+
+	},
+	{
+		"level-id":10,
+		"level-name":"Pasillo_Corto_Labs (2)",
+		"static-elements": [
+			{ "element-id": "Floor_200x50",
+				"position": { "x":-1240, "y":-1, "z":190 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-consumable": [
 		],
@@ -469,10 +425,16 @@
 	},
 	{
 		"level-id":11,
-		"level-name":"Pasillo_Corto_Labs (2)",
+		"level-name":"Pasillo_Corto_Labs (1)",
 		"static-elements": [
 			{ "element-id": "Floor_200x50",
-				"position": { "x":-1250, "y":0, "z":100 },
+				"position": { "x":-1240, "y":-1, "z":590 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-1190, "y":-1, "z":429.9999 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":-1290, "y":-1, "z":580 },
 				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-consumable": [
@@ -483,291 +445,211 @@
 	},
 	{
 		"level-id":12,
-		"level-name":"Pasillo_Corto_Labs (1)",
+		"level-name":"LAB_L_01 (2)",
 		"static-elements": [
-			{ "element-id": "Floor_200x50",
-				"position": { "x":-1250, "y":0, "z":500 },
+			{ "element-id": "Floor_200x100",
+				"position": { "x":-1100, "y":-1, "z":190 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Cama",
+				"position": { "x":-1150, "y":-1, "z":330 },
 				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Wall_01_50m",
-				"position": { "x":-1200, "y":0, "z":339.9999 },
-				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Cama",
+				"position": { "x":-1030, "y":-1, "z":49.99997 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1080, "y":-1, "z":390 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1100, "y":-1, "z":-10.00003 },
+				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_200m",
-				"position": { "x":-1300, "y":0, "z":490 },
-				"rotation": { "x":0, "y":270, "z":0 }}
+				"position": { "x":-990, "y":-1, "z":180 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-1190, "y":-1, "z":50 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1190, "y":-1, "z":280 },
+				"rotation": { "x":0, "y":90, "z":0 }}
 		],
 		"initial-consumable": [
+			{ "element-id": "Medkit",
+				"position": { "x":-1023.1, "y":-1, "z":364.7 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":-1190, "y":-2, "z":140 },
+				"rotation": { "x":0, "y":90, "z":0 }}
 		]
-
 	},
 	{
 		"level-id":13,
-		"level-name":"LAB_L_01",
+		"level-name":"LAB_L_01 (3)",
 		"static-elements": [
 			{ "element-id": "Floor_200x100",
-				"position": { "x":-1400, "y":0, "z":-600 },
-				"rotation": { "x":0, "y":180, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1200, "y":0, "z":-600 },
+				"position": { "x":-1390, "y":-1, "z":190 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1391, "y":0, "z":-489 },
-				"rotation": { "x":0, "y":180, "z":0 }},
+				"position": { "x":-1381, "y":-1, "z":-10.00012 },
+				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1600, "y":0, "z":-600 },
-				"rotation": { "x":0, "y":270, "z":0 }},
+				"position": { "x":-1400, "y":-1, "z":390.0001 },
+				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Wall_01_200m",
-				"position": { "x":-1400, "y":-1, "z":-691 },
-				"rotation": { "x":0, "y":180, "z":0 }}
+				"position": { "x":-1490, "y":-1, "z":180 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":-1290, "y":-1, "z":49.99994 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1290, "y":-1, "z":280.0001 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Cama",
+				"position": { "x":-1450, "y":-1, "z":49.99991 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Cama",
+				"position": { "x":-1330, "y":-1, "z":330.0001 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-consumable": [
+			{ "element-id": "Ammo",
+				"position": { "x":-1466.6, "y":-1, "z":367.4001 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 			{ "element-id": "Door",
-				"position": { "x":-1550, "y":-1, "z":-501.8 },
-				"rotation": { "x":0, "y":180, "z":0 }},
-			{ "element-id": "Door",
-				"position": { "x":-1260, "y":-1, "z":-490 },
-				"rotation": { "x":0, "y":180, "z":0 }}
+				"position": { "x":-1290, "y":-2, "z":140 },
+				"rotation": { "x":0, "y":270, "z":0 }}
 		]
 	},
 	{
 		"level-id":14,
-		"level-name":"LAB_L_01 (1)",
+		"level-name":"LAB_L_01 (4)",
 		"static-elements": [
 			{ "element-id": "Floor_200x100",
-				"position": { "x":-1700, "y":0, "z":-400 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1900, "y":0, "z":-400 },
+				"position": { "x":-1090, "y":-1, "z":690 },
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1710, "y":0, "z":-510 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1500, "y":-1, "z":-399 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01_200m",
-				"position": { "x":-1709, "y":-1, "z":-310 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_50m",
-				"position": { "x":-1860, "y":0, "z":-510 },
-				"rotation": { "x":0, "y":0, "z":0 }}
-		],
-		"initial-consumable": [
-		],
-		"initial-entity": [
-		]
-
-	},
-	{
-		"level-id":15,
-		"level-name":"LAB_L_01 (2)",
-		"static-elements": [
-			{ "element-id": "Floor_200x100",
-				"position": { "x":-1110, "y":0, "z":100 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Cama",
-				"position": { "x":-1160, "y":0, "z":240 },
-				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Cama",
-				"position": { "x":-1040, "y":0, "z":-40.00003 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1090, "y":0, "z":300 },
+				"position": { "x":-1080, "y":-1, "z":890 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1110, "y":0, "z":-100 },
+				"position": { "x":-1190, "y":-1, "z":691 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1100, "y":-1, "z":490 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_200m",
-				"position": { "x":-1000, "y":0, "z":89.99998 },
+				"position": { "x":-990, "y":-1, "z":680 },
 				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01_50m",
-				"position": { "x":-1200, "y":0, "z":-40 },
+			{ "element-id": "Mesa",
+				"position": { "x":-1124.6, "y":-1, "z":859.3 },
 				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1200, "y":0, "z":190 },
-				"rotation": { "x":0, "y":90, "z":0 }}
+			{ "element-id": "Mesa",
+				"position": { "x":-1018, "y":-1, "z":749 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Mesa",
+				"position": { "x":-1018, "y":-1, "z":588 },
+				"rotation": { "x":0, "y":180, "z":0 }}
 		],
 		"initial-consumable": [
-			{ "element-id": "Medkit",
-				"position": { "x":-1033.1, "y":0, "z":274.7 },
+			{ "element-id": "Ammo",
+				"position": { "x":-1022.4, "y":-1, "z":861.3 },
 				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 			{ "element-id": "Door",
-				"position": { "x":-1200, "y":-1, "z":50.00002 },
+				"position": { "x":-1190, "y":-2, "z":545 },
 				"rotation": { "x":0, "y":90, "z":0 }}
+		]
+	},
+	{
+		"level-id":15,
+		"level-name":"LAB_L_01 (5)",
+		"static-elements": [
+			{ "element-id": "Floor_200x100",
+				"position": { "x":-1390, "y":-1, "z":890 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1590, "y":-1, "z":911 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1380, "y":-1, "z":790 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Wall_01_100m",
+				"position": { "x":-1190, "y":-1, "z":891 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_200m",
+				"position": { "x":-1380, "y":-1, "z":1001 },
+				"rotation": { "x":0, "y":0, "z":0 }},
+			{ "element-id": "Camilla",
+				"position": { "x":-1540, "y":-1, "z":940 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Camilla",
+				"position": { "x":-1415, "y":-1, "z":940 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Camilla",
+				"position": { "x":-1290, "y":-1, "z":940 },
+				"rotation": { "x":0, "y":270, "z":0 }},
+			{ "element-id": "Ingeniero",
+				"position": { "x":-1226, "y":-1, "z":969 },
+				"rotation": { "x":0, "y":0, "z":0 }}
+		],
+		"initial-consumable": [
+			{ "element-id": "Medkit",
+				"position": { "x":-1223.3, "y":-1, "z":930 },
+				"rotation": { "x":0, "y":0, "z":0 }}
+		],
+		"initial-entity": [
+			{ "element-id": "Door",
+				"position": { "x":-1240, "y":-2, "z":790 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Door",
+				"position": { "x":-1540, "y":-2, "z":790 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		]
 	},
 	{
 		"level-id":16,
-		"level-name":"LAB_L_01 (3)",
-		"static-elements": [
-			{ "element-id": "Floor_200x100",
-				"position": { "x":-1400, "y":0, "z":100 },
-				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1391, "y":0, "z":-100.0001 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1410, "y":0, "z":300.0001 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_200m",
-				"position": { "x":-1500, "y":0, "z":89.99998 },
-				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Wall_01_50m",
-				"position": { "x":-1300, "y":0, "z":-40.00006 },
-				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1300, "y":0, "z":190.0001 },
-				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Cama",
-				"position": { "x":-1460, "y":0, "z":-40.00009 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Cama",
-				"position": { "x":-1340, "y":0, "z":240.0001 },
-				"rotation": { "x":0, "y":270, "z":0 }}
-		],
-		"initial-consumable": [
-			{ "element-id": "Ammo",
-				"position": { "x":-1476.6, "y":0, "z":277.4001 },
-				"rotation": { "x":0, "y":0, "z":0 }}
-		],
-		"initial-entity": [
-			{ "element-id": "Door",
-				"position": { "x":-1300, "y":-1, "z":49.99998 },
-				"rotation": { "x":0, "y":270, "z":0 }}
-		]
-	},
-	{
-		"level-id":17,
-		"level-name":"LAB_L_01 (4)",
-		"static-elements": [
-			{ "element-id": "Floor_200x100",
-				"position": { "x":-1100, "y":0, "z":600 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1090, "y":0, "z":800 },
-				"rotation": { "x":0, "y":180, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1200, "y":0, "z":601 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1110, "y":0, "z":400 },
-				"rotation": { "x":0, "y":180, "z":0 }},
-			{ "element-id": "Wall_01_200m",
-				"position": { "x":-1000, "y":0, "z":590 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Mesa",
-				"position": { "x":-1134.6, "y":0, "z":769.3 },
-				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Mesa",
-				"position": { "x":-1028, "y":0, "z":659 },
-				"rotation": { "x":0, "y":180, "z":0 }},
-			{ "element-id": "Mesa",
-				"position": { "x":-1028, "y":0, "z":498 },
-				"rotation": { "x":0, "y":180, "z":0 }}
-		],
-		"initial-consumable": [
-			{ "element-id": "Ammo",
-				"position": { "x":-1032.4, "y":0, "z":771.3 },
-				"rotation": { "x":0, "y":0, "z":0 }}
-		],
-		"initial-entity": [
-			{ "element-id": "Door",
-				"position": { "x":-1200, "y":-1, "z":455 },
-				"rotation": { "x":0, "y":90, "z":0 }}
-		]
-	},
-	{
-		"level-id":18,
-		"level-name":"LAB_L_01 (5)",
-		"static-elements": [
-			{ "element-id": "Floor_200x100",
-				"position": { "x":-1400, "y":0, "z":800 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1600, "y":0, "z":821 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1390, "y":0, "z":700 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1200, "y":0, "z":801 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01_200m",
-				"position": { "x":-1390, "y":0, "z":911 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Camilla",
-				"position": { "x":-1550, "y":0, "z":850 },
-				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Camilla",
-				"position": { "x":-1425, "y":0, "z":850 },
-				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Camilla",
-				"position": { "x":-1300, "y":0, "z":850 },
-				"rotation": { "x":0, "y":270, "z":0 }},
-			{ "element-id": "Ingeniero",
-				"position": { "x":-1236, "y":0, "z":879 },
-				"rotation": { "x":0, "y":0, "z":0 }}
-		],
-		"initial-consumable": [
-			{ "element-id": "Medkit",
-				"position": { "x":-1233.3, "y":0, "z":840 },
-				"rotation": { "x":0, "y":0, "z":0 }}
-		],
-		"initial-entity": [
-			{ "element-id": "Door",
-				"position": { "x":-1250, "y":-1, "z":700 },
-				"rotation": { "x":0, "y":180, "z":0 }},
-			{ "element-id": "Door",
-				"position": { "x":-1550, "y":-1, "z":700 },
-				"rotation": { "x":0, "y":0, "z":0 }}
-		]
-	},
-	{
-		"level-id":19,
 		"level-name":"LAB_L_01 (6)",
 		"static-elements": [
 			{ "element-id": "Floor_200x100",
-				"position": { "x":-1690, "y":0, "z":600 },
+				"position": { "x":-1680, "y":-1, "z":690 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1500, "y":0, "z":610 },
+				"position": { "x":-1490, "y":-1, "z":700 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1690, "y":0, "z":711 },
+				"position": { "x":-1680, "y":-1, "z":801 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_100m",
-				"position": { "x":-1880, "y":-1, "z":601 },
+				"position": { "x":-1870, "y":-2, "z":691 },
 				"rotation": { "x":0, "y":270, "z":0 }},
 			{ "element-id": "Wall_01_200m",
-				"position": { "x":-1690, "y":0, "z":500 },
+				"position": { "x":-1680, "y":-1, "z":590 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Wall_01_50m",
-				"position": { "x":-1840, "y":0, "z":711 },
+				"position": { "x":-1830, "y":-1, "z":801 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Especimen",
-				"position": { "x":-1840, "y":0, "z":675 },
+				"position": { "x":-1830, "y":-1, "z":765 },
 				"rotation": { "x":0, "y":69.00002, "z":0 }},
 			{ "element-id": "Especimen",
-				"position": { "x":-1835, "y":0, "z":535 },
+				"position": { "x":-1825, "y":-1, "z":625 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Especimen",
-				"position": { "x":-1780, "y":0, "z":535 },
+				"position": { "x":-1770, "y":-1, "z":625 },
 				"rotation": { "x":0, "y":180, "z":0 }},
 			{ "element-id": "Especimen",
-				"position": { "x":-1780, "y":0, "z":675 },
+				"position": { "x":-1770, "y":-1, "z":765 },
 				"rotation": { "x":0, "y":180, "z":0 }}
 		],
 		"initial-consumable": [
 			{ "element-id": "Ammo",
-				"position": { "x":-1854, "y":0, "z":627 },
+				"position": { "x":-1844, "y":-1, "z":717 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "MagnetKey",
-				"position": { "x":-1855.7, "y":0, "z":600 },
+				"position": { "x":-1845.7, "y":-1, "z":690 },
 				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
@@ -775,7 +657,7 @@
 
 	},
 	{
-		"level-id":20,
+		"level-id":17,
 		"level-name":"Pasillo_MUYMUYcorto_01",
 		"static-elements": [
 			{ "element-id": "Floor_50x50",
@@ -795,7 +677,7 @@
 
 	},
 	{
-		"level-id":21,
+		"level-id":18,
 		"level-name":"Pasillo_MUYcorto_01 (3)",
 		"static-elements": [
 			{ "element-id": "Floor_100x50",
@@ -809,7 +691,7 @@
 
 	},
 	{
-		"level-id":22,
+		"level-id":19,
 		"level-name":"Habitación_pequeña_01 (7)",
 		"static-elements": [
 			{ "element-id": "Floor_100x100",
@@ -835,7 +717,7 @@
 
 	},
 	{
-		"level-id":23,
+		"level-id":20,
 		"level-name":"Habitación_pequeña_01 (6)",
 		"static-elements": [
 			{ "element-id": "Floor_100x100",
@@ -861,7 +743,7 @@
 
 	},
 	{
-		"level-id":24,
+		"level-id":21,
 		"level-name":"Sala_Seguridad (2)",
 		"static-elements": [
 			{ "element-id": "Floor_200x100",
@@ -901,7 +783,7 @@
 		]
 	},
 	{
-		"level-id":25,
+		"level-id":22,
 		"level-name":"Pasillo_MUYMUYcorto_01 (1)",
 		"static-elements": [
 			{ "element-id": "Floor_50x50",
@@ -921,7 +803,7 @@
 
 	},
 	{
-		"level-id":26,
+		"level-id":23,
 		"level-name":"Pasillo_Corto_Labs (5)",
 		"static-elements": [
 			{ "element-id": "Floor_200x50",
@@ -944,7 +826,7 @@
 
 	},
 	{
-		"level-id":27,
+		"level-id":24,
 		"level-name":"Esquina_Labs (5)",
 		"static-elements": [
 			{ "element-id": "Floor_50x50",
@@ -955,6 +837,9 @@
 				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_50m",
 				"position": { "x":540, "y":0, "z":710 },
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":640, "y":-1, "z":711 },
 				"rotation": { "x":0, "y":180, "z":0 }}
 		],
 		"initial-consumable": [
@@ -964,7 +849,7 @@
 
 	},
 	{
-		"level-id":28,
+		"level-id":25,
 		"level-name":"Pasillo_Corto_Labs (6)",
 		"static-elements": [
 			{ "element-id": "Floor_200x50",
@@ -989,13 +874,11 @@
 		"initial-consumable": [
 		],
 		"initial-entity": [
-			{ "element-id": "Door",
-				"position": { "x":636.3998, "y":-1, "z":708.2001 },
-				"rotation": { "x":0, "y":0, "z":0 }}
 		]
+
 	},
 	{
-		"level-id":29,
+		"level-id":26,
 		"level-name":"Sala_Destrozada (2)",
 		"static-elements": [
 			{ "element-id": "Floor_100x100",
@@ -1062,33 +945,7 @@
 		]
 	},
 	{
-		"level-id":30,
-		"level-name":"LAB_L_01 (7)",
-		"static-elements": [
-			{ "element-id": "Floor_200x100",
-				"position": { "x":690, "y":0, "z":800 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":499.9999, "y":0, "z":820 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":880.0001, "y":0, "z":820 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01_200m",
-				"position": { "x":690, "y":-1, "z":910.0001 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Barril",
-				"position": { "x":855.4001, "y":0, "z":885.8 },
-				"rotation": { "x":0, "y":0, "z":0 }}
-		],
-		"initial-consumable": [
-		],
-		"initial-entity": [
-		]
-
-	},
-	{
-		"level-id":31,
+		"level-id":27,
 		"level-name":"Sala_Destrozada (1)",
 		"static-elements": [
 			{ "element-id": "Floor_100x100",
@@ -1122,7 +979,7 @@
 		]
 	},
 	{
-		"level-id":32,
+		"level-id":28,
 		"level-name":"Pasillo_Corto_Habitaciones",
 		"static-elements": [
 			{ "element-id": "Floor_200x50",
@@ -1145,7 +1002,7 @@
 
 	},
 	{
-		"level-id":33,
+		"level-id":29,
 		"level-name":"Pasillo_Corto_Habitaciones (1)",
 		"static-elements": [
 			{ "element-id": "Floor_200x50",
@@ -1171,7 +1028,7 @@
 
 	},
 	{
-		"level-id":34,
+		"level-id":30,
 		"level-name":"Pasillo_MUYcorto_01",
 		"static-elements": [
 			{ "element-id": "Floor_100x50",
@@ -1191,7 +1048,7 @@
 
 	},
 	{
-		"level-id":35,
+		"level-id":31,
 		"level-name":"Pasillo_MUYcorto_01 (1)",
 		"static-elements": [
 			{ "element-id": "Floor_100x50",
@@ -1214,7 +1071,7 @@
 
 	},
 	{
-		"level-id":36,
+		"level-id":32,
 		"level-name":"Habitación_pequeña_01",
 		"static-elements": [
 			{ "element-id": "Floor_100x100",
@@ -1231,6 +1088,9 @@
 				"rotation": { "x":0, "y":270, "z":0 }}
 		],
 		"initial-consumable": [
+			{ "element-id": "Medkit",
+				"position": { "x":869.3, "y":0, "z":-768.4 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-entity": [
 			{ "element-id": "Door",
@@ -1239,7 +1099,7 @@
 		]
 	},
 	{
-		"level-id":37,
+		"level-id":33,
 		"level-name":"Habitación_pequeña_01 (1)",
 		"static-elements": [
 			{ "element-id": "Floor_100x100",
@@ -1270,7 +1130,7 @@
 		]
 	},
 	{
-		"level-id":38,
+		"level-id":34,
 		"level-name":"Habitación_pequeña_01 (4)",
 		"static-elements": [
 			{ "element-id": "Floor_100x100",
@@ -1298,7 +1158,7 @@
 		]
 	},
 	{
-		"level-id":39,
+		"level-id":35,
 		"level-name":"Habitación_pequeña_01 (5)",
 		"static-elements": [
 			{ "element-id": "Floor_100x100",
@@ -1329,7 +1189,7 @@
 		]
 	},
 	{
-		"level-id":40,
+		"level-id":36,
 		"level-name":"Pasillo_Corto_Habitaciones (4)",
 		"static-elements": [
 			{ "element-id": "Floor_200x50",
@@ -1352,7 +1212,7 @@
 
 	},
 	{
-		"level-id":41,
+		"level-id":37,
 		"level-name":"Pasillo_Corto_Habitaciones (3)",
 		"static-elements": [
 			{ "element-id": "Floor_200x50",
@@ -1378,7 +1238,7 @@
 
 	},
 	{
-		"level-id":42,
+		"level-id":38,
 		"level-name":"Pasillo_MUYcorto_01 (6)",
 		"static-elements": [
 			{ "element-id": "Floor_100x50",
@@ -1398,7 +1258,7 @@
 
 	},
 	{
-		"level-id":43,
+		"level-id":39,
 		"level-name":"Pasillo_MUYcorto_01 (4)",
 		"static-elements": [
 			{ "element-id": "Floor_100x50",
@@ -1421,7 +1281,7 @@
 
 	},
 	{
-		"level-id":44,
+		"level-id":40,
 		"level-name":"Habitación_pequeña_01 (8)",
 		"static-elements": [
 			{ "element-id": "Floor_100x100",
@@ -1446,7 +1306,7 @@
 		]
 	},
 	{
-		"level-id":45,
+		"level-id":41,
 		"level-name":"Habitación_pequeña_01 (9)",
 		"static-elements": [
 			{ "element-id": "Floor_100x100",
@@ -1474,7 +1334,7 @@
 		]
 	},
 	{
-		"level-id":46,
+		"level-id":42,
 		"level-name":"Habitación_pequeña_01 (10)",
 		"static-elements": [
 			{ "element-id": "Floor_100x100",
@@ -1508,7 +1368,7 @@
 		]
 	},
 	{
-		"level-id":47,
+		"level-id":43,
 		"level-name":"Habitación_pequeña_01 (11)",
 		"static-elements": [
 			{ "element-id": "Floor_100x100",
@@ -1539,7 +1399,7 @@
 		]
 	},
 	{
-		"level-id":48,
+		"level-id":44,
 		"level-name":"Comedor_SalaDeEstar",
 		"static-elements": [
 			{ "element-id": "Floor_250x300",
@@ -1592,7 +1452,13 @@
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "SillasComedor",
 				"position": { "x":1426, "y":0, "z":-520 },
-				"rotation": { "x":0, "y":180, "z":0 }}
+				"rotation": { "x":0, "y":180, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":1691, "y":-1, "z":-140 },
+				"rotation": { "x":0, "y":90, "z":0 }},
+			{ "element-id": "Wall_01_50m",
+				"position": { "x":1751, "y":-1, "z":10 },
+				"rotation": { "x":0, "y":0, "z":0 }}
 		],
 		"initial-consumable": [
 		],
@@ -1615,44 +1481,7 @@
 		]
 	},
 	{
-		"level-id":49,
-		"level-name":"Cocina",
-		"static-elements": [
-			{ "element-id": "Floor_200x150",
-				"position": { "x":1900, "y":0, "z":-150 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_200m",
-				"position": { "x":1900, "y":-1, "z":10 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_200m",
-				"position": { "x":1900, "y":0, "z":-300 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "Wall_01_100m",
-				"position": { "x":2090, "y":-1, "z":-200 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01_50m",
-				"position": { "x":2090, "y":0, "z":-50 },
-				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "MesaCocina1",
-				"position": { "x":1891, "y":0, "z":-14 },
-				"rotation": { "x":0, "y":0, "z":0 }},
-			{ "element-id": "MesaCocina1",
-				"position": { "x":1891, "y":0, "z":-277.6 },
-				"rotation": { "x":0, "y":180, "z":0 }},
-			{ "element-id": "MesaCocina3",
-				"position": { "x":1878, "y":0, "z":-150 },
-				"rotation": { "x":0, "y":0, "z":0 }}
-		],
-		"initial-consumable": [
-		],
-		"initial-entity": [
-			{ "element-id": "Door",
-				"position": { "x":1690, "y":-1, "z":-144.5 },
-				"rotation": { "x":0, "y":90, "z":0 }}
-		]
-	},
-	{
-		"level-id":50,
+		"level-id":45,
 		"level-name":"Gym",
 		"static-elements": [
 			{ "element-id": "Floor_200x150",
@@ -1711,7 +1540,7 @@
 
 	},
 	{
-		"level-id":51,
+		"level-id":46,
 		"level-name":"SalaRelax",
 		"static-elements": [
 			{ "element-id": "Floor_200x150",
@@ -1770,7 +1599,7 @@
 
 	},
 	{
-		"level-id":52,
+		"level-id":47,
 		"level-name":"Pasillo_FINAL",
 		"static-elements": [
 			{ "element-id": "Floor_900x100",
@@ -1825,14 +1654,14 @@
 		]
 	},
 	{
-		"level-id":53,
+		"level-id":48,
 		"level-name":"Waypoints",
 		"Waypoints": [
 			{ "element-id": "Waypoint",
 				"position": { "x":-1005.9, "y":0, "z":-1065 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Waypoint",
-				"position": { "x":-1005.9, "y":0, "z":-1135 },
+				"position": { "x":-1005.9, "y":0, "z":-1159 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Waypoint",
 				"position": { "x":0, "y":0, "z":-1165 },
@@ -1877,31 +1706,31 @@
 				"position": { "x":-1550, "y":0, "z":-467 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Waypoint",
-				"position": { "x":-1249, "y":0, "z":52 },
+				"position": { "x":-1239, "y":0, "z":144 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Waypoint",
-				"position": { "x":-1160, "y":0, "z":52 },
+				"position": { "x":-1150, "y":0, "z":144 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Waypoint",
-				"position": { "x":-1334, "y":0, "z":52 },
+				"position": { "x":-1324, "y":0, "z":144 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Waypoint",
-				"position": { "x":-1245, "y":0, "z":455.8 },
+				"position": { "x":-1235, "y":0, "z":548 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Waypoint",
-				"position": { "x":-1159, "y":0, "z":455.8 },
+				"position": { "x":-1149, "y":0, "z":548 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Waypoint",
-				"position": { "x":-1245, "y":0, "z":669 },
+				"position": { "x":-1235, "y":0, "z":761 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Waypoint",
-				"position": { "x":-1245, "y":0, "z":731 },
+				"position": { "x":-1235, "y":0, "z":823 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Waypoint",
-				"position": { "x":-1550.9, "y":0, "z":731 },
+				"position": { "x":-1541, "y":0, "z":823 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Waypoint",
-				"position": { "x":-1550.9, "y":0, "z":669 },
+				"position": { "x":-1541, "y":0, "z":761 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Waypoint",
 				"position": { "x":-552.3, "y":0, "z":62 },
@@ -2036,7 +1865,7 @@
 				"position": { "x":278, "y":0, "z":-239 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Waypoint",
-				"position": { "x":-1248, "y":0, "z":-360 },
+				"position": { "x":-1248, "y":0, "z":-356 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Waypoint",
 				"position": { "x":-549.7, "y":0, "z":231 },
@@ -2045,7 +1874,7 @@
 				"position": { "x":555, "y":0, "z":658.6 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Waypoint",
-				"position": { "x":942, "y":0, "z":-641 },
+				"position": { "x":926, "y":0, "z":-641 },
 				"rotation": { "x":0, "y":0, "z":0 }},
 			{ "element-id": "Waypoint",
 				"position": { "x":1643.2, "y":0, "z":-396 },
