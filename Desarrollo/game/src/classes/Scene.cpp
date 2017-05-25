@@ -67,7 +67,7 @@ void Scene::createEnemies()
     LoadingScreen::getInstance()->AddProgress();
     m_enemies[1].enemy = GEInstance->createEnemyDog(700,0,30);
     LoadingScreen::getInstance()->AddProgress();
-    //m_enemies[2].enemy = GEInstance->createEnemyBat(-330,0,420);
+    m_enemies[2].enemy = GEInstance->createEnemyBat(-330,0,420);
     LoadingScreen::getInstance()->AddProgress();
     //m_enemies[3].enemy = GEInstance->createEnemyGuardian(-690,0,80);
     LoadingScreen::getInstance()->AddProgress();
