@@ -129,7 +129,7 @@ dwe::Slider::Slider(int x, int y)
     sp.setPosition(x+312/2, y);
     lane.setPosition(x, y+18);
     minX=x;
-    maxX=minX+lane.getGlobalBounds().width;
+    maxX=minX+lane.getGlobalBounds().width-11;
     this->x=x+312/2;
     this->y=y;
     center=sp.getGlobalBounds().width/2;
@@ -163,6 +163,8 @@ void dwe::Slider::sliderCheck(int mx, int my)
         hover();
         center=sp.getGlobalBounds().width/2;
         move(mx);
+        AEInstance->SetMasterVolume(getPercentage());
+        cout<<getPercentage()<<endl;
     }
 }
 

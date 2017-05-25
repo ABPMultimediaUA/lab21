@@ -28,8 +28,9 @@ GSMainMenu::GSMainMenu(){
 
     /**Decoracion**/
     mainMenuDecoration = new dwe::Sprite("mainMenuDecoration", GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.25-7);
+    optionsDecoration = new dwe::Sprite("optionsDecoration", GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.25-7);
 
-    volumeSlider = new dwe::Slider(GEInstance->get_screenWidth()*0.4, GEInstance->get_screenHeight()*0.6);
+    volumeSlider = new dwe::Slider(GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.40);
 
     /**Botones**/
     playAloneButton = new dwe::Button("Play Alone", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35, true);
@@ -100,6 +101,7 @@ void GSMainMenu::Render(){
             menuInfo=true;
         }
         menuBackground->draw();
+        optionsDecoration->draw();
         volumeSlider->draw();
         backButton->draw();
     }
@@ -337,7 +339,7 @@ GSMainMenu::~GSMainMenu(){
     delete menuBackground;
     /**Borrar Decoraciones**/
     delete mainMenuDecoration;
-
+    delete optionsDecoration;
     delete volumeSlider;
     /**Borrar Botones**/
     delete playAloneButton;
