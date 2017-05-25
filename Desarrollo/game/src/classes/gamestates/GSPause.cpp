@@ -104,6 +104,7 @@ void GSPause::backToMainMenu()
     Game::getInstance()->ChangeState(GSMainMenu::getInstance());
     Scene::Instance()->Destroy();
     LoadMap::getInstance()->Destroy();
+    GSIngame::getInstance()->Destroy();
     m = false;
     m_pausePermission = false;
     m_clickPermission = false;

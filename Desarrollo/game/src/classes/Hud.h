@@ -1,7 +1,6 @@
 #ifndef HUD_H
 #define HUD_H
 
-#include <Drawable.h>
 #include <GraphicsEngine.h>
 #include <Player.h>
 
@@ -11,15 +10,13 @@ namespace dwe
     class HealthBox;
 }
 
-class Hud : public Drawable
+class Hud
 {
     public:
 
         Hud();
         virtual ~Hud();
 
-        virtual void update(){};
-        virtual void render(){};
         virtual void draw();
 
 

@@ -11,6 +11,7 @@ class GSIngame : public GState{
         ~GSIngame();
         void Init();
 
+        void Destroy();
 
         void HandleEvents();
         void Update();

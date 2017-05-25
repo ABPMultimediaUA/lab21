@@ -183,7 +183,12 @@ void LoadMap::Init(){
                 } else if(id=="Adrenalina"){
                     s->createSpeedBoost(tx, ty, tz, parentNode);
                 } else if(id=="MagnetKey"){
-                    magnetKeyID=4-magnetKeyCount;
+                    if(magnetKeyCount==1)
+                        magnetKeyID=3;
+                    else if(magnetKeyCount==2)
+                        magnetKeyID=2;
+                    else if(magnetKeyCount==3)
+                        magnetKeyID=1;
                     s->createMagnetKey(magnetKeyID, tx, ty, tz, parentNode);
                     magnetKeyCount++;
                 }
@@ -264,8 +269,6 @@ void LoadMap::Update(){
 
     if (_clippingActive)
         calculateClipping();
-
-
     //Scene::updateConsumables(mainPlayer);
 }
 
