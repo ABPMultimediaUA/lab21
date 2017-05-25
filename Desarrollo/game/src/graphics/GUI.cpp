@@ -126,11 +126,11 @@ dwe::Slider::Slider(int x, int y)
     sp.setTexture(texture, true);
     texture2.loadFromFile("media/sliderLane.png");
     lane.setTexture(texture2, true);
-    sp.setPosition(x, y);
-    lane.setPosition(x-10, y+18);
-    minX=x-10;
-    maxX=minX+lane.getGlobalBounds().width-11;
-    this->x=x;
+    sp.setPosition(x+312/2, y);
+    lane.setPosition(x, y+18);
+    minX=x;
+    maxX=minX+lane.getGlobalBounds().width;
+    this->x=x+312/2;
     this->y=y;
     center=sp.getGlobalBounds().width/2;
 }

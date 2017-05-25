@@ -284,11 +284,13 @@ void LoadMap::Destroy(){
     for(int i=0; i<3; i++){
         delete generator[i];
     }
-
+uint8_t j=0;
     for(uint8_t i=0; i<NUM_FLOORS; i++)
     {
         delete clippingObjects[i];
         clippingObjects[i] = 0;
+        j++;
+        std::cout << j << "---------------------------\n";
     }
 }
 
