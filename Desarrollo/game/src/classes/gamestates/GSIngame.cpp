@@ -51,7 +51,10 @@ void GSIngame::Init(){
         }
     }
     else
+    {
         m_gameStarted = true;
+        LoadMap::getInstance()->createConsumableWeapons();
+    }
 
     GEInstance->receiver.clearEvents();
 
@@ -160,4 +163,7 @@ void GSIngame::checkForNetGameStarted()
     {
         m_gameStarted = NetInstance->getGameStarted();
     }
+
+    if (m_gameStarted)
+        LoadMap::getInstance()->createConsumableWeapons();
 }

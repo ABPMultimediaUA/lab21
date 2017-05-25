@@ -11,6 +11,12 @@ CShotgun::~CShotgun()
 }
 
 ///////////////
+bool CShotgun::couldTake(Player* mainplayer)
+{
+    return (!mainplayer->getPlayerShotgun());
+}
+
+///////////////
 void CShotgun::onTake(Player* mainplayer)
 {
     mainplayer->addWeapon(eShotgun);

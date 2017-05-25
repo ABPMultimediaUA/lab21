@@ -8,7 +8,7 @@
 class EntityPhysics
 {
     public:
-        enum EPClassID { no_id = 0, player_id, playermate_id, projectile_id, wall_id, enemy_id, consumable_id, trigger_id, triggerSound_id, grenadeExplosion_id , triggerDamage_id, triggerVision_id};
+        enum EPClassID { no_id = 0, player_id, playermate_id, projectile_id, wall_id, enemy_id, consumable_id, trigger_id, triggerSound_id, grenadeExplosion_id , triggerDamage_id, triggerVision_id, firearm_id};
 
         EntityPhysics();
         virtual ~EntityPhysics();

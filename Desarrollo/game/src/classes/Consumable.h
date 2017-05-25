@@ -15,6 +15,7 @@ class Consumable : public Drawable
         virtual ~Consumable();
 
         virtual void onTake(Player* mainPlayer) = 0;
+        virtual bool couldTake(Player* mainPlayer);
 
         bool getIsTaken();
         virtual void Take();

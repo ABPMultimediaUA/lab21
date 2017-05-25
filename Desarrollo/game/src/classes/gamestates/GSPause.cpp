@@ -90,6 +90,7 @@ GSPause::~GSPause()
 void GSPause::resumeGame()
 {
     Game::getInstance()->ChangeState(GSIngame::getInstance());
+    GEInstance->receiver.clearEvents();
     GEInstance->setOwnCursor(true);
     m = false;
     m_clickPermission = false;

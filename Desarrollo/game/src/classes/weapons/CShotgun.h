@@ -13,6 +13,7 @@ class CShotgun : public Consumable
         virtual ~CShotgun();
 
         virtual void onTake(Player* mainPlayer);
+        virtual bool couldTake(Player* mainplayer);
 
         // Getters & Setters
         FirearmKind getKind();

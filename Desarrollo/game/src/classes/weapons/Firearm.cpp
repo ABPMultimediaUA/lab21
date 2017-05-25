@@ -3,7 +3,6 @@
 
 Firearm::Firearm()
 {
-    //ctor
 }
 
 Firearm::~Firearm()
