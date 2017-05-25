@@ -26,6 +26,20 @@ enum GameMessages
     MAX_ID_CUSTOM_NET_MESSAGES,
 };
 
+struct TMsgEnemy
+{
+    dwe::vec3f  position;
+    dwe::vec3f  rotation;
+    bool        memory;
+    bool        hearing;
+    bool        seeing;
+    dwe::vec2f  memoryPos;
+    dwe::vec2f  soundPos;
+    dwe::vec2f  visionPos;
+    dwe::vec2f  patrolPos;
+    dwe::vec2f  targetPos;
+};
+
 const int NUM_CUSTOM_NET_MESSAGES = MAX_ID_CUSTOM_NET_MESSAGES - ID_USER_PACKET_ENUM;
 
 #endif // NETCOMMON_H

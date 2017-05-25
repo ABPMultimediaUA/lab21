@@ -356,26 +356,20 @@ void dwn::NetGame::update()
     if (fullyConnectedMesh2->IsHostSystem() && m_numNetEntities>0 && m_netEnemies[m_netEnemyIndex])
     {
         Enemy* enemy = (Enemy*)(m_netEnemies[m_netEnemyIndex]);
-    dwe::vec3f position = enemy->getPosition();
-    std::cout << "position\n";
-    bool memory  = enemy->HasMemory();
-    std::cout << "memory\n";
-    bool hearing = enemy->GetHearing();
-    std::cout << "hearing\n";
-    bool seeing  =  enemy->GetSeeing();
-    std::cout << "seeing\n";
-    dwe::vec2f memoryPos = enemy->GetMemoryPosition();
-    std::cout << "memoryPos\n";
-    dwe::vec2f soundPos  = enemy->GetSoundPosition();
-    std::cout << "soundPos\n";
-    dwe::vec2f visionPos = enemy->GetVisionPosition();
-    std::cout << "visionPos\n";
-    dwe::vec2f patrolPos = enemy->GetPatrolPosition();
-    std::cout << "patrolPos\n";
-    dwe::vec2f targetPos = enemy->GetTargetPosition();
-    std::cout << "targetPos\n";
-        sendBroadcast(ID_ENEMY_UPDATE, m_netEnemyIndex, position,
-                      memory, hearing, seeing, memoryPos, soundPos, visionPos, patrolPos, targetPos);
+        TMsgEnemy datosEnemy;
+
+        datosEnemy.position  = enemy->getPosition();
+        datosEnemy.rotation  = enemy->getRotation();
+        datosEnemy.memory    = enemy->HasMemory();
+        datosEnemy.hearing   = enemy->GetHearing();
+        datosEnemy.seeing    = enemy->GetSeeing();
+        datosEnemy.memoryPos = enemy->GetMemoryPosition();
+        datosEnemy.soundPos  = enemy->GetSoundPosition();
+        datosEnemy.visionPos = enemy->GetVisionPosition();
+        datosEnemy.patrolPos = enemy->GetPatrolPosition();
+        datosEnemy.targetPos = enemy->GetTargetPosition();
+
+        sendBroadcast(ID_ENEMY_UPDATE, m_netEnemyIndex, datosEnemy);
         m_netEnemyIndex = (m_netEnemyIndex < m_numNetEnemies-1)? m_netEnemyIndex+1 : 0;
     }
 }
@@ -480,7 +474,6 @@ int dwn::NetGame::getNumPlayerMates() { return replicaManager3->GetReplicaCount(
 ///////////////////
 void dwn::NetGame::startGame()
 {
-std::cout << "ANTES DE IF Enviamos startgame-----------------------------------------------\n";
     if (fullyConnectedMesh2->IsHostSystem())
     {
         RakNet::SystemAddress serverAddress(m_serverIP.c_str(), DEFAULT_PT);
@@ -488,7 +481,6 @@ std::cout << "ANTES DE IF Enviamos startgame------------------------------------
         RakNet::BitStream bsOut;
         bsOut.Write((RakNet::MessageID)ID_GAME_STARTED);
         rakPeer->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, serverAddress, true);
-std::cout << "Enviamos startgame-----------------------------------------------\n";
         m_gameStarted = true;
     }
 }
@@ -545,23 +537,15 @@ void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int objectID, 
     sendBroadcastMessage(bsOut);
 }
 ///////////////////
-void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int objectID, dwe::vec3f position,
+void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int objectID, TMsgEnemy datosEnemy)/*dwe::vec3f position,
                                bool memory, bool hearing, bool seeing,
                                dwe::vec2f memoryPos, dwe::vec2f soundPos, dwe::vec2f visionPos,
-                               dwe::vec2f patrolPos, dwe::vec2f targetPos)
+                               dwe::vec2f patrolPos, dwe::vec2f targetPos)*/
 {
     RakNet::BitStream bsOut;
     bsOut.Write((RakNet::MessageID)messageID);
     bsOut.Write(objectID);
-    bsOut.Write(position);
-    bsOut.Write(memory);
-    bsOut.Write(hearing);
-    bsOut.Write(seeing);
-    bsOut.Write(memoryPos);
-    bsOut.Write(soundPos);
-    bsOut.Write(visionPos);
-    bsOut.Write(patrolPos);
-    bsOut.Write(targetPos);
+    bsOut.Write(datosEnemy);
     sendBroadcastMessage(bsOut);
 }
 ///////////////////
@@ -911,41 +895,28 @@ void dwn::NetGame::consumableTaken(RakNet::Packet *packet)
 void dwn::NetGame::enemyUpdate(RakNet::Packet *packet)
 {
     unsigned int enemyID;
-    dwe::vec3f position;
-    bool memory;
-    bool hearing;
-    bool seeing;
-    dwe::vec2f memoryPos;
-    dwe::vec2f soundPos;
-    dwe::vec2f visionPos;
-    dwe::vec2f patrolPos;
-    dwe::vec2f targetPos;
 
-std::cout << "-------------------------------\n";
+    TMsgEnemy datosEnemy;
+
     RakNet::BitStream bsIn(packet->data,packet->length,false);
     bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
     bsIn.Read(enemyID);
-    bsIn.Read(position);
-    bsIn.Read(memory);
-    bsIn.Read(hearing);
-    bsIn.Read(seeing);
-    bsIn.Read(memoryPos);
-    bsIn.Read(soundPos);
-    bsIn.Read(visionPos);
-    bsIn.Read(patrolPos);
-    bsIn.Read(targetPos);
 
     if (enemyID<m_numNetEnemies && m_netEnemies[enemyID])
     {
-        (m_netEnemies[enemyID])->setPosition(position);
-        (m_netEnemies[enemyID])->SetMemory(memory);
-        (m_netEnemies[enemyID])->SetHearing(hearing);
-        (m_netEnemies[enemyID])->SetSeeing(seeing);
-        (m_netEnemies[enemyID])->SetMemoryPosition(memoryPos);
-        (m_netEnemies[enemyID])->SetSoundPosition(soundPos);
-        (m_netEnemies[enemyID])->SetVisionPosition(visionPos);
-        (m_netEnemies[enemyID])->SetPatrolPosition(patrolPos);
-        (m_netEnemies[enemyID])->SetTargetPosition(targetPos);
+        bsIn.Read(datosEnemy);
+
+        (m_netEnemies[enemyID])->setPosition(datosEnemy.position);
+        (m_netEnemies[enemyID])->SetMemory(datosEnemy.memory);
+        (m_netEnemies[enemyID])->SetHearing(datosEnemy.hearing);
+        (m_netEnemies[enemyID])->SetSeeing(datosEnemy.seeing);
+        (m_netEnemies[enemyID])->SetMemoryPosition(datosEnemy.memoryPos);
+        (m_netEnemies[enemyID])->SetSoundPosition(datosEnemy.soundPos);
+        (m_netEnemies[enemyID])->SetVisionPosition(datosEnemy.visionPos);
+        (m_netEnemies[enemyID])->SetPatrolPosition(datosEnemy.patrolPos);
+        (m_netEnemies[enemyID])->SetTargetPosition(datosEnemy.targetPos);
+
+        (m_netEnemies[enemyID])->PlanPath();
     }
 }
 

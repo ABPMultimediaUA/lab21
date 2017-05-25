@@ -92,7 +92,10 @@ void Enemy::move()
 
 bool Enemy::Sense()
 {
-    return m_perception->Sense();
+    if (m_perception)
+        return m_perception->Sense();
+    else
+        return false;
 }
 
 void Enemy::Hear(dwe::vec3f pos)
@@ -153,17 +156,22 @@ bool Enemy::Attack()
 
 void Enemy::PlanPath()
 {
-    m_pathplanning->CreatePathToPosition(targetPosition);
+    if (m_pathplanning)
+        m_pathplanning->CreatePathToPosition(targetPosition);
 }
 
 bool Enemy::RouteEnd()
 {
-    return m_pathplanning->CheckIfRouteEnd();
+    if (m_pathplanning)
+        return m_pathplanning->CheckIfRouteEnd();
+    else
+        return false;
 }
 
 void Enemy::ClearRoute()
 {
-    m_pathplanning->Clear();
+    if (m_pathplanning)
+        m_pathplanning->Clear();
 }
 
 void Enemy::SetMemory(bool b)
@@ -188,42 +196,58 @@ dwe::vec2f Enemy::GetMemoryPosition()
 
 void Enemy::SetHearing(bool b)
 {
-    m_perception->SetHearing(b);
+    if (m_perception)
+        m_perception->SetHearing(b);
 }
 
 void Enemy::SetSeeing(bool b)
 {
-    m_perception->SetSeeing(b);
+    if (m_perception)
+        m_perception->SetSeeing(b);
 }
 
 void Enemy::SetSoundPosition(dwe::vec2f sound)
 {
-    m_perception->SetSoundPosition(sound);
+    if (m_perception)
+        m_perception->SetSoundPosition(sound);
 }
 
 void Enemy::SetVisionPosition(dwe::vec2f vision)
 {
-    m_perception->SetVisionPosition(vision);
+    if (m_perception)
+        m_perception->SetVisionPosition(vision);
 }
 
 bool Enemy::GetHearing()
 {
-    m_perception->GetHearing();
+    if (m_perception)
+        return m_perception->GetHearing();
+    else
+        return false;
 }
 
 bool Enemy::GetSeeing()
 {
-    m_perception->GetSeeing();
+    if (m_perception)
+        return m_perception->GetSeeing();
+    else
+        return false;
 }
 
 dwe::vec2f Enemy::GetSoundPosition()
 {
-    m_perception->GetSoundPosition();
+    if (m_perception)
+        return m_perception->GetSoundPosition();
+    else
+        return dwe::vec2f(0);
 }
 
 dwe::vec2f Enemy::GetVisionPosition()
 {
-    m_perception->GetVisionPosition();
+    if (m_perception)
+        return m_perception->GetVisionPosition();
+    else
+        return dwe::vec2f(0);
 }
 
 void Enemy::ChangePatrol()
@@ -304,7 +328,9 @@ void Enemy::activeEnemy(dwe::vec3f position)
 void Enemy::deactiveEnemy()
 {
     setPhysicsActive(false);
-    m_triggerVision->setPhysicsActive(false);
+
+    if (m_triggerVision)
+        m_triggerVision->setPhysicsActive(false);
 
     // activar animacion de morir
     setAnimation(dwe::eAnimEnemyDeath);
