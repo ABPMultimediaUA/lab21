@@ -37,9 +37,21 @@ class Enemy : public DrawablePhysics
         bool HasMemory();
         void SetMemoryPosition(dwe::vec2f memory);
         dwe::vec2f GetMemoryPosition();
-        void ChangePatrolPosition();
+
+        void SetHearing(bool b);
+        void SetSeeing(bool b);
+        void SetSoundPosition(dwe::vec2f sound);
+        void SetVisionPosition(dwe::vec2f vision);
+        bool GetHearing();
+        bool GetSeeing();
+        dwe::vec2f GetSoundPosition();
+        dwe::vec2f GetVisionPosition();
+
+        void ChangePatrol();
+        void SetPatrolPosition(dwe::vec2f patrol);
         dwe::vec2f GetPatrolPosition();
         void SetTargetPosition(dwe::vec2f target);
+        dwe::vec2f GetTargetPosition():
         void SetPatrolPoints(dwe::vec2f p1, dwe::vec2f p2);
 
         virtual void setNode(dwe::Node* n);   // Necesario para EntityPhysics
