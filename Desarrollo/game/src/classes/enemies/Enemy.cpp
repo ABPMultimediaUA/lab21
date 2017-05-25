@@ -97,12 +97,14 @@ bool Enemy::Sense()
 
 void Enemy::Hear(dwe::vec3f pos)
 {
-    m_perception->Hear(pos);
+    if(m_perception)
+        m_perception->Hear(pos);
 }
 
 void Enemy::SeePlayer(dwe::vec3f pos)
 {
-    m_perception->See(pos);
+    if(m_perception)
+        m_perception->See(pos);
 }
 
 void Enemy::SetClosestPlayer(Drawable* closest)
