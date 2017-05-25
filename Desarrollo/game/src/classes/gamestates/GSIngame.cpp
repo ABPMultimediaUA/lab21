@@ -142,7 +142,14 @@ void GSIngame::Render(){
 }
 GSIngame::~GSIngame()
 {
-    cout<<"He borrado el mapa"<<endl;
+    if(hud)
+        Destroy();
+}
+
+void GSIngame::Destroy()
+{
+    delete hud;
+    hud = 0;
 }
 
 void GSIngame::checkForNetGameStarted()

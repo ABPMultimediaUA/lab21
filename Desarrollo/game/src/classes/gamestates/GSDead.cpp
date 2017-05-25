@@ -4,6 +4,7 @@
 #include "Scene.h"
 #include "LoadMap.h"
 #include "WorldInstance.h"
+#include "GSIngame.h"
 
 #include <iostream>
 
@@ -36,6 +37,7 @@ void GSDead::Update(){
     GEInstance->setOwnCursor(false);
     Scene::Instance()->Destroy();
     LoadMap::getInstance()->Destroy();
+    GSIngame::getInstance()->Destroy();
 }
 
 GSDead::~GSDead(){}

@@ -20,7 +20,8 @@ Hud::Hud()
 
 Hud::~Hud()
 {
-    //dtor
+    delete WeaponBox;
+    delete HealthBox;
 }
 
 void Hud::draw()
