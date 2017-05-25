@@ -28,7 +28,7 @@ class Consumable : public Drawable
 
     protected:
 
-        int m_netID;
+        unsigned int m_netID;
 
     private:
 

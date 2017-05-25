@@ -493,6 +493,13 @@ void dwn::NetGame::sendBroadcastMessage(RakNet::BitStream &bsOut)
 }
 
 ///////////////////
+void dwn::NetGame::sendBroadcast(unsigned int messageID)
+{
+    RakNet::BitStream bsOut;
+    bsOut.Write((RakNet::MessageID)messageID);
+    sendBroadcastMessage(bsOut);
+}
+///////////////////
 void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int value)
 {
     RakNet::BitStream bsOut;
@@ -873,7 +880,6 @@ void dwn::NetGame::createProjectileGrenade(RakNet::Packet *packet)
 {
     dwe::vec3f position;
     float angle;
-    std::string weapon;
 
     RakNet::BitStream bsIn(packet->data,packet->length,false);
     bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
@@ -962,5 +968,5 @@ void dwn::NetGame::swapWeapon(RakNet::Packet *packet)
     bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
     bsIn.Read(playerId);
     bsIn.Read(firearmKind);
-    getPlayerMate(playerId)->swapCurrentWeapon((FirearmKind)firearmKind);
+    getPlayerMate(playerId)->swapCurrentWeapon(firearmKind);
 }

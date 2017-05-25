@@ -260,7 +260,7 @@ void LoadMap::Init(){
 void LoadMap::Update(){
     if(GEInstance->receiver.isKeyDown(KEY_KEY_C) && !cheats)
     {
-        NetInstance->sendBroadcast(ID_CHEAT_DOOR_OPEN, 0);
+        NetInstance->sendBroadcast(ID_CHEAT_DOOR_OPEN);
         cheatDoorOpen();
     }
 

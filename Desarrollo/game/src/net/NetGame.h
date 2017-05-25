@@ -102,15 +102,13 @@ namespace dwn
             /// los demás ordenadores.
             /// \param[in] messageID El id de mensaje que se envian, definidos en NetCommon.h
             /// \param[in] ... resto de parametros son los datos que se envian junto con el mensaje.
+            void sendBroadcast(unsigned int messageID);
             void sendBroadcast(unsigned int messageID, unsigned int value);
             void sendBroadcast(unsigned int messageID, unsigned short playerId, FirearmKind firearmKind);
             void sendBroadcast(unsigned int messageID, RakNet::RakString value);
             void sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle);
             void sendBroadcast(unsigned int messageID, unsigned int objectID, dwe::vec3f position, dwe::vec3f rotation);
-            void sendBroadcast(unsigned int messageID, unsigned int objectID, TMsgEnemy datosEnemy);/*dwe::vec3f position,
-                               bool memory, bool hearing, bool seeing,
-                               dwe::vec2f memoryPos, dwe::vec2f soundPos, dwe::vec2f visionPos,
-                               dwe::vec2f patrolPos, dwe::vec2f targetPos);*/
+            void sendBroadcast(unsigned int messageID, unsigned int objectID, TMsgEnemy datosEnemy);
             void sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle, RakNet::RakString value);
 
         protected:
