@@ -37,6 +37,14 @@ Enemy::~Enemy()
 {
 }
 
+void Enemy::InitPoints(dwe::vec2f p1, dwe::vec2f p2)
+{
+    dwe::vec3f pos(getPosition());
+    targetPosition = dwe::vec2f(p1);
+    m_pathplanning->SetNext(targetPosition);
+    SetPatrolPoints(dwe::vec2f(p1), dwe::vec2f(p2));
+}
+
 void Enemy::SetPatrolPoints(dwe::vec2f p1, dwe::vec2f p2)
 {
     patrol1 = p1;

@@ -16,6 +16,8 @@ class Enemy : public DrawablePhysics
 
         virtual ~Enemy();
 
+        void InitPoints(dwe::vec2f p1, dwe::vec2f p2);
+
         virtual void update();
 
         float getSpeed();

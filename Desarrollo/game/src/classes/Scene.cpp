@@ -63,26 +63,47 @@ void Scene::createEnemies()
 {
     m_numEnemies = m_numActiveEnemies = 11;
     m_enemies = new TEnemy[m_numEnemies];
-    m_enemies[0].enemy = GEInstance->createEnemyHumanoid(470,0,370);
+
+    m_enemies[0].enemy = GEInstance->createEnemyHumanoid(-720,0,0);
+        m_enemies[0].enemy->InitPoints(dwe::vec2f(-720,0), dwe::vec2f(380,640));
     LoadingScreen::getInstance()->AddProgress();
-    m_enemies[1].enemy = GEInstance->createEnemyDog(700,0,30);
+
+    m_enemies[1].enemy = GEInstance->createEnemyDog(640,0,0);
+        m_enemies[1].enemy->InitPoints(dwe::vec2f(640,0), dwe::vec2f(-460,590));
     LoadingScreen::getInstance()->AddProgress();
-    m_enemies[2].enemy = GEInstance->createEnemyBat(-330,0,420);
+
+    m_enemies[2].enemy = GEInstance->createEnemyBat(550,0,-210);
+        m_enemies[2].enemy->InitPoints(dwe::vec2f(550,-210), dwe::vec2f(930,-655));
     LoadingScreen::getInstance()->AddProgress();
-    //m_enemies[3].enemy = GEInstance->createEnemyGuardian(-690,0,80);
+
+    m_enemies[3].enemy = GEInstance->createEnemyGuardian(1260,0,515);
+        m_enemies[3].enemy->InitPoints(dwe::vec2f(1260, 515), dwe::vec2f(1260, 55));
     LoadingScreen::getInstance()->AddProgress();
-    //m_enemies[4].enemy = GEInstance->createEnemyLegless(-550,0,-340);
+
+    m_enemies[4].enemy = GEInstance->createEnemyLegless(1620,0,70);
+        m_enemies[4].enemy->InitPoints(dwe::vec2f(1620,70), dwe::vec2f(1620,520));
     LoadingScreen::getInstance()->AddProgress();
-    /*m_enemies[ 5].enemy = GEInstance->createEnemyHumanoid(300,24,250);
-    m_enemies[ 6].enemy = GEInstance->createEnemyHumanoid(-300,24,570);
-    m_enemies[ 7].enemy = GEInstance->createEnemyHumanoid(1470,24,330);
-    m_enemies[ 8].enemy = GEInstance->createEnemyHumanoid(1350,24,180);
-    m_enemies[ 9].enemy = GEInstance->createEnemyHumanoid(1860,24,130);
-    m_enemies[10].enemy = GEInstance->createEnemyHumanoid(1970,24,230);*/
+
+    m_enemies[ 5].enemy = GEInstance->createEnemyHumanoid(2130,0,640);
+        m_enemies[5].enemy->InitPoints(dwe::vec2f(2130,640), dwe::vec2f(975,640));
+
+    m_enemies[ 6].enemy = GEInstance->createEnemyDog(925,0,415);
+        m_enemies[6].enemy->InitPoints(dwe::vec2f(925,415), dwe::vec2f(925,1130));
+
+    m_enemies[ 7].enemy = GEInstance->createEnemyBat(1240,0,-70);
+        m_enemies[7].enemy->InitPoints(dwe::vec2f(1240,-70), dwe::vec2f(1415,-305));
+
+    m_enemies[ 8].enemy = GEInstance->createEnemyGuardian(-910,0,345);
+        m_enemies[8].enemy->InitPoints(dwe::vec2f(-910,345), dwe::vec2f(-1225,345));
+
+    m_enemies[ 9].enemy = GEInstance->createEnemyLegless(-1255,0,345);
+        m_enemies[9].enemy->InitPoints(dwe::vec2f(-1255,345), dwe::vec2f(-1255,-745));
+
+    m_enemies[10].enemy = GEInstance->createEnemyHumanoid(300,0,1150);
+        m_enemies[10].enemy->InitPoints(dwe::vec2f(300,1150), dwe::vec2f(-60,1145));
 
 
     enemyMother = GEInstance->createEnemyMother(m_posMother.x, m_posMother.y, m_posMother.z);
-
 
 }
 

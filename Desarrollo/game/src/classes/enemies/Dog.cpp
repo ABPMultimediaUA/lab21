@@ -12,15 +12,14 @@ Dog::Dog()
 
     m_speed = 4.0;   // m/s
     m_attackPower = 20;
+    m_maxHealth = 15;
+    m_health = m_maxHealth;
 
     m_perception = new Perception(this);
     m_pathplanning = new Pathplanning(this);
 
     m_behaviourTree = new BTreeHumanoid(this);
 
-    targetPosition = dwe::vec2f(700,30);
-    m_pathplanning->SetNext(targetPosition);
-    SetPatrolPoints(dwe::vec2f(640,0), dwe::vec2f(-460,590));
 }
 
 Dog::~Dog()
