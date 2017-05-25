@@ -13,13 +13,13 @@ Legless::Legless()
 
     m_speed = 2.0;   // m/s
     m_attackPower = 20;
+    m_maxHealth = 20;
+    m_health = m_maxHealth;
 
     m_perception = new Perception(this);
     m_pathplanning = new Pathplanning(this);
 
     m_behaviourTree = new BTreeHumanoid(this);
-
-    targetPosition = dwe::vec2f(-550,-340);
 
 }
 

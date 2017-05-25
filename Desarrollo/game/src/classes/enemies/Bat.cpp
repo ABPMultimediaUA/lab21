@@ -2,6 +2,7 @@
 #include <BatStates.h>
 #include "Pathplanning.h"
 #include "Perception.h"
+#include "BTreeHumanoid.h"
 
 Bat::Bat()
 {
@@ -10,13 +11,15 @@ Bat::Bat()
 
     b_pStateMachine->SetCurrentState(BPatrolState::Instance());
 
-    m_speed = 2.0;   // m/s
-    m_attackPower = 20;
+    m_speed = 3.0;   // m/s
+    m_attackPower = 10;
+    m_maxHealth = 10;
+    m_health = m_maxHealth;
 
     m_perception = new Perception(this);
     m_pathplanning = new Pathplanning(this);
 
-    targetPosition = dwe::vec2f(-330,420);
+    m_behaviourTree = new BTreeHumanoid(this);
 
 }
 
@@ -28,7 +31,7 @@ StateMachine<Bat>* Bat::GetFSM()const
 void Bat::update()
 {
     Enemy::update();
-    b_pStateMachine->Update();
+    m_behaviourTree->Run();
 }
 
 Bat::~Bat()
@@ -36,4 +39,5 @@ Bat::~Bat()
     delete m_perception;
     delete m_pathplanning;
     delete b_pStateMachine;
+    delete m_behaviourTree;
 }

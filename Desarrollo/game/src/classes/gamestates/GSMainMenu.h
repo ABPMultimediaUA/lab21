@@ -45,6 +45,7 @@ private:
     dwe::Background *menuBackground;
 
     dwe::Sprite *mainMenuDecoration;
+    dwe::Sprite *optionsDecoration;
 
     dwe::Slider *volumeSlider;
 

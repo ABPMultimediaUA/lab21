@@ -69,6 +69,8 @@ void LoadMap::Init(){
     magnetKeyCount = 0;
     magnetKeyID = 0;
 
+    cheats = false;
+
     Scene* s = Scene::Instance();
 
     const char* json; //Aqui va a ir todo el archivo
@@ -284,7 +286,6 @@ void LoadMap::Destroy(){
     for(int i=0; i<3; i++){
         delete generator[i];
     }
-
     for(uint8_t i=0; i<NUM_FLOORS; i++)
     {
         delete clippingObjects[i];

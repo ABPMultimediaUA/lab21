@@ -645,8 +645,8 @@ float tag::TAGEngine::angleToScreenCoords(const vec3f position, const vec3f scre
 void tag::TAGEngine::deleteNode(GraphicNode* node)
 {
     // Buscamos el nodo con transformación más lejano hacia arriba
-    GraphicNode* nodeTransform;
     GraphicNode* parent = node->getParent();
+    GraphicNode* nodeTransform = node;  // Para los que no tienen nodo transform
     while (dynamic_cast<ETransform*>(parent->getEntity()))   // mientras el parent tenga de entidad un ETransform
     {
         nodeTransform = parent;

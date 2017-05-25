@@ -25,6 +25,8 @@ class Bat : public Enemy
     private:
 
         StateMachine<Bat>*  b_pStateMachine;
+
+        BTreeHumanoid* m_behaviourTree;
 };
 
 #endif // BAT_H

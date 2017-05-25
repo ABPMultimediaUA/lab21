@@ -50,11 +50,6 @@ Player::Player() :
 Player::~Player()
 {
     deleteWeapons();
-    if(m_soundTrigger)
-    {
-        delete m_soundTrigger;
-        m_soundTrigger = 0;
-    }
 }
 
 void Player::deleteWeapons()
@@ -118,7 +113,7 @@ bool Player::shoot(float timeSinceLastShoot)
 {
     if (timeSinceLastShoot > m_currentWeapon->getCadence() && m_currentWeapon->getAmmo() > 0)
     {
-        TriggerSound* triggerSound = new TriggerSound(getPosition(), 20/0.035, false);
+        TriggerSound* triggerSound = new TriggerSound(getPosition(), 15/0.035, false);
         Scene::Instance()->getTriggerSystem().Add(triggerSound);
         AEInstance->Play2D("media/Sounds/DisparoEscopeta.wav");
         m_currentWeapon->shoot();
@@ -217,7 +212,6 @@ void Player::readEvents()
 
     if (m_isThrowingGrenade)
     {
-        m_currentWeapon->setPut();
         if (timeElapsed - m_timeInitGrenade > Player::_throwGrenadeOffsetTime)
         {
             throwGrenade();
@@ -225,8 +219,13 @@ void Player::readEvents()
             m_timeLastGrenade = timeElapsed;
             m_isThrowingGrenade = false;
         }
-        else
+        else{
             return;
+        }
+    }
+
+    else{
+        m_currentWeapon->setDraw();
     }
 
 
@@ -269,6 +268,7 @@ void Player::readEvents()
             m_isThrowingGrenade = true;
             m_timeInitGrenade = timeElapsed;
             setAnimation(dwe::eAnimPlayerGrenade);
+            m_currentWeapon->setPut();
             return;
         }
 
@@ -323,6 +323,8 @@ void Player::readEvents()
         if(getIsEvading())
             m_currentWeapon->setPut(); // Guardamos arma
     }
+
+
 
 }
 

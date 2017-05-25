@@ -37,6 +37,14 @@ Enemy::~Enemy()
 {
 }
 
+void Enemy::InitPoints(dwe::vec2f p1, dwe::vec2f p2)
+{
+    dwe::vec3f pos(getPosition());
+    targetPosition = dwe::vec2f(p1);
+    m_pathplanning->SetNext(targetPosition);
+    SetPatrolPoints(dwe::vec2f(p1), dwe::vec2f(p2));
+}
+
 void Enemy::SetPatrolPoints(dwe::vec2f p1, dwe::vec2f p2)
 {
     patrol1 = p1;
@@ -89,12 +97,14 @@ bool Enemy::Sense()
 
 void Enemy::Hear(dwe::vec3f pos)
 {
-    m_perception->Hear(pos);
+    if(m_perception)
+        m_perception->Hear(pos);
 }
 
 void Enemy::SeePlayer(dwe::vec3f pos)
 {
-    m_perception->See(pos);
+    if(m_perception)
+        m_perception->See(pos);
 }
 
 void Enemy::SetClosestPlayer(Drawable* closest)
