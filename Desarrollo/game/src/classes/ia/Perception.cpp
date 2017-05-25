@@ -45,7 +45,7 @@ bool Perception::Sense()
 
     //m_owner->SetClosestPlayer(player);
 
-    if(distance<=1837){
+    if(distance<=2000){
         m_owner->SetInAttackRange(true);}
     else{
         m_owner->SetInAttackRange(false);}

@@ -10,7 +10,7 @@ class TriggerSound : public Trigger
 {
     public:
 
-        TriggerSound(dwe::vec3f pos, float radius);
+        TriggerSound(dwe::vec3f pos, float radius, bool perma);
 
         virtual ~TriggerSound();
 
@@ -21,6 +21,7 @@ class TriggerSound : public Trigger
     private:
 
         float lastTime;
+        bool permanent;
 };
 
 #endif // TRIGGERSOUND_H

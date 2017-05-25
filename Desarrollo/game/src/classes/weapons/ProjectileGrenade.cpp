@@ -81,7 +81,8 @@ void ProjectileGrenade::setNode(dwe::Node* n)
 
 void ProjectileGrenade::onBeginContact(EntityPhysics* otherObject)
 {
-    m_collides = (otherObject && otherObject->getClassID()!=EntityPhysics::player_id);
+    m_collides = (otherObject && otherObject->getClassID()!=EntityPhysics::player_id
+                              && otherObject->getClassID()!=EntityPhysics::triggerSound_id);
 }
 
 

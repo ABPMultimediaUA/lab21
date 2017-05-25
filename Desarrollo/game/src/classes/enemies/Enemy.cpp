@@ -126,7 +126,7 @@ bool Enemy::Attack()
         if(!attackTriggered){
             attackTriggered = true;
             std::cout<<"Ataque"<<std::endl;
-            TriggerDamage* triggerDamage = new TriggerDamage(getPosition(), 1, m_attackPower, getRotation().y);
+            TriggerDamage* triggerDamage = new TriggerDamage(getPosition(), 1.3, m_attackPower, getRotation().y);
             Scene::Instance()->getTriggerSystem().Add(triggerDamage);
         }
     }

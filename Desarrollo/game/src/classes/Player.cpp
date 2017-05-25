@@ -50,6 +50,11 @@ Player::Player() :
 Player::~Player()
 {
     deleteWeapons();
+    if(m_soundTrigger)
+    {
+        delete m_soundTrigger;
+        m_soundTrigger = 0;
+    }
 }
 
 void Player::deleteWeapons()
@@ -71,6 +76,7 @@ void Player::update()
 
     // Actualizamos la posición del box2d en el modelo
     Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
+    m_soundTrigger->setPosEntity(getPosEntity(), 0.0);
 
 }
 
@@ -83,6 +89,11 @@ void Player::setNode(dwe::Node* n)
     createDynamicBody(getPosition(), box.x, box.z);
 }
 
+void Player::setSoundTrigger()
+{
+    m_soundTrigger = new TriggerSound(dwe::vec3f(170,0,60), 2/0.035, true);
+    Scene::Instance()->getTriggerSystem().Add(m_soundTrigger);
+}
 
 /***/
 void Player::sayPosition()
@@ -107,7 +118,7 @@ bool Player::shoot(float timeSinceLastShoot)
 {
     if (timeSinceLastShoot > m_currentWeapon->getCadence() && m_currentWeapon->getAmmo() > 0)
     {
-        TriggerSound* triggerSound = new TriggerSound(getPosition(), 20/0.035);
+        TriggerSound* triggerSound = new TriggerSound(getPosition(), 20/0.035, false);
         Scene::Instance()->getTriggerSystem().Add(triggerSound);
         AEInstance->Play2D("media/Sounds/DisparoEscopeta.wav");
         m_currentWeapon->shoot();
