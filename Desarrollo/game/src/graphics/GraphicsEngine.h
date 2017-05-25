@@ -60,6 +60,7 @@ class Ammo;
 class Program;
 class Drawable;
 class Floor;
+class ClippingObject;
 
 namespace dwe
 {
@@ -173,7 +174,7 @@ namespace dwe
         void clearWindow();
         void displayWindow();
         ///
-        Floor* createFloor(std::string m, std::string t);
+        Floor* createFloor(std::string m, std::string t, Drawable* parent = 0);
 
         // Creacion de personajes
         Player*     createMainPlayer();
@@ -186,7 +187,9 @@ namespace dwe
         Mother*     createEnemyMother(int px, int py, int pz);
 
 
-        ScenaryElement* createScenaryElement(std::string m, std::string t);
+        ScenaryElement* createScenaryElement(std::string m, std::string t, Drawable* parent = 0);
+
+        ClippingObject* createClippingObject(ClippingObject* parent = 0);
 
         //////////////////////////////
         // Eventos de teclado y ratón
@@ -196,18 +199,18 @@ namespace dwe
         void updateCamera(const vec3f playerPosition, int moreEnemiesX, int moreEnemiesZ);
         vec3f getCameraPosition();
 
-        Door*               createDoor(int f, bool a, float px, float py, float pz);
-        DoorRotate*         createDoorRotate(int f, bool a, float px, float py, float pz);
+        Door*               createDoor(int f, bool a, float px, float py, float pz, Drawable* parent = 0);
+        DoorRotate*         createDoorRotate(int f, bool a, float px, float py, float pz, Drawable* parent = 0);
         Projectile*         createProjectile(vec3f origin, float angle, std::string weapon, int damage);
         ProjectileGrenade*  createProjectileGrenade(vec3f origin, float angle);
         GrenadeExplosion*   createGrenadeExplosion(vec3f origin);
-        Generator*          createGenerator(int i, bool b);
-        MagnetKey*          createMagnetKey(int i, float px, float py, float pz);
-        SpeedBoost*         createSpeedBoost(float px, float py, float pz);
-        Medkit*             createMedkit(float px, float py, float pz);
-        Ammo*               createAmmo(float px, float py, float pz);
-        CShotgun*           createCShotgun(float px, float py, float pz);
-        CRifle*             createCRifle(float px, float py, float pz);
+        Generator*          createGenerator(int i, bool b, Drawable* parent = 0);
+        MagnetKey*          createMagnetKey(int i, float px, float py, float pz, Drawable* parent = 0);
+        SpeedBoost*         createSpeedBoost(float px, float py, float pz, Drawable* parent = 0);
+        Medkit*             createMedkit(float px, float py, float pz, Drawable* parent = 0);
+        Ammo*               createAmmo(float px, float py, float pz, Drawable* parent = 0);
+        CShotgun*           createCShotgun(float px, float py, float pz, Drawable* parent = 0);
+        CRifle*             createCRifle(float px, float py, float pz, Drawable* parent = 0);
 
         // weapons
         Gun*                createGun(Drawable* player);

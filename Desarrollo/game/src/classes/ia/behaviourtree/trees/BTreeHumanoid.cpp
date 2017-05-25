@@ -31,7 +31,7 @@ BTreeHumanoid::BTreeHumanoid(Enemy* owner)
                             selMemory = new Selector();
                                 condMemory = new MemoryCondition(owner);
                                 condPatrol = new PatrolCondition(owner);
-                        condElapsedTime = new ElapsedTimeCondition(owner, 1.0f);
+                        //condElapsedTime = new ElapsedTimeCondition(owner, 1.0f);
                         taskPathplanning = new PathplanningTask(owner);
                 taskMove = new MoveTask(owner);
 
@@ -52,7 +52,7 @@ BTreeHumanoid::BTreeHumanoid(Enemy* owner)
                         succMemory->addChild(selMemory);
                             selMemory->addChild(condMemory);
                             selMemory->addChild(condPatrol);
-                    seqPlanPath->addChild(condElapsedTime);
+                    //seqPlanPath->addChild(condElapsedTime);
                     seqPlanPath->addChild(taskPathplanning);
             seqMove->addChild(taskMove);
 
@@ -73,7 +73,7 @@ BTreeHumanoid::~BTreeHumanoid()
     delete selMemory;
     delete condMemory;
     delete condPatrol;
-    delete condElapsedTime;
+    //delete condElapsedTime;
     delete taskPathplanning;
     delete taskMove;
 }

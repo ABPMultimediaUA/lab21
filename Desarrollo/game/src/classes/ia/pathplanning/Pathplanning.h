@@ -14,10 +14,12 @@ class Pathplanning
 
         virtual ~Pathplanning();
 
+        void SetNext(dwe::vec2f next);
         void CreatePathToPosition(dwe::vec2f TargetPos);
         dwe::vec2f Movement();
         void PathSmooth();
         void CalculateDirection();
+        void Clear();
         bool CheckIfRouteEnd();
 
     private:

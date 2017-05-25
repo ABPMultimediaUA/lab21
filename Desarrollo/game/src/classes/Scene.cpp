@@ -65,9 +65,9 @@ void Scene::createEnemies()
     m_enemies = new TEnemy[m_numEnemies];
     m_enemies[0].enemy = GEInstance->createEnemyHumanoid(470,0,370);
     LoadingScreen::getInstance()->AddProgress();
-    //m_enemies[1].enemy = GEInstance->createEnemyDog(700,0,30);
+    m_enemies[1].enemy = GEInstance->createEnemyDog(700,0,30);
     LoadingScreen::getInstance()->AddProgress();
-    //m_enemies[2].enemy = GEInstance->createEnemyBat(-330,0,420);
+    m_enemies[2].enemy = GEInstance->createEnemyBat(-330,0,420);
     LoadingScreen::getInstance()->AddProgress();
     //m_enemies[3].enemy = GEInstance->createEnemyGuardian(-690,0,80);
     LoadingScreen::getInstance()->AddProgress();
@@ -346,9 +346,9 @@ void Scene::updateConsumables(Player* mainPlayer)
 ////////////////////////////
 
 //CREATE CONSUMABLES
-void Scene::createSpeedBoost(float px, float py, float pz)          { m_consumables.push_back(GEInstance->createSpeedBoost(px, py, pz));    }
-void Scene::createMedkit(float px, float py, float pz)              { m_consumables.push_back(GEInstance->createMedkit(px, py, pz));        }
-void Scene::createCShotgun(float px, float py, float pz)            { m_consumables.push_back(GEInstance->createCShotgun(px, py, pz));      }
-void Scene::createCRifle(float px, float py, float pz)              { m_consumables.push_back(GEInstance->createCRifle(px, py, pz));        }
-void Scene::createAmmo(float px, float py, float pz)                { m_consumables.push_back(GEInstance->createAmmo(px, py, pz));          }
-void Scene::createMagnetKey(int id, float px, float py, float pz)   { m_consumables.push_back(GEInstance->createMagnetKey(id, px, py, pz)); }
+void Scene::createSpeedBoost(float px, float py, float pz, Drawable* parent)          { m_consumables.push_back(GEInstance->createSpeedBoost(px, py, pz, parent));    }
+void Scene::createMedkit(float px, float py, float pz, Drawable* parent)              { m_consumables.push_back(GEInstance->createMedkit(px, py, pz, parent));        }
+void Scene::createCShotgun(float px, float py, float pz, Drawable* parent)            { m_consumables.push_back(GEInstance->createCShotgun(px, py, pz, parent));      }
+void Scene::createCRifle(float px, float py, float pz, Drawable* parent)              { m_consumables.push_back(GEInstance->createCRifle(px, py, pz, parent));        }
+void Scene::createAmmo(float px, float py, float pz, Drawable* parent)                { m_consumables.push_back(GEInstance->createAmmo(px, py, pz, parent));          }
+void Scene::createMagnetKey(int id, float px, float py, float pz, Drawable* parent)   { m_consumables.push_back(GEInstance->createMagnetKey(id, px, py, pz, parent)); }

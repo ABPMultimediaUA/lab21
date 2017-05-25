@@ -5,11 +5,16 @@
 #include "NavGraphNode.h"
 #include "NavGraphEdge.h"
 #include "NetGame.h"
+#include "ClippingObject.h"
 #include "dwVectors.h"
+#include "WorldInstance.h"
+#include "Player.h"
 
 #include <fstream> //Lectura de ficheros
 #include <document.h> //ES UN .H de rapidJSON
 using namespace rapidjson;
+
+static const bool _clippingActive = true;
 
 LoadMap::LoadMap()
 {
@@ -91,6 +96,7 @@ void LoadMap::Init(){
         const Value& levels = document["levels"]; //Referencia a todos los "levels"
         for(size_t i=0; i < levels.Size()-1; i++){
             const Value& se = levels[i]["static-elements"]; //Referencia a todos los "static-elements";
+            Drawable* parentNode = 0;
             for(size_t j=0; j < se.Size(); j++){
 
                 const Value& e = se[j]; //Recorrer cada "element"
@@ -100,29 +106,41 @@ void LoadMap::Init(){
                 dwe::vec3f pos(tx, ty, tz);
                 dwe::vec3f rot(rx, ry, rz);
 
+                //FLOORS
+                // En el json, el primer objeto es el suelo y solo hay 1 por sala
+                TTag2Floor *nextF = mappingFloor;
+                while (nextF->tag != "0")
+                {
+                    if(id==nextF->tag)
+                    {
+                        // Se crea un elemento de clipping por cada suelo, para dividir por salas
+                        if (_clippingActive)
+                        {
+                            clippingObjects[numFloors] = GEInstance->createClippingObject();
+                            clippingObjects[numFloors]->setPosClipping(dwe::vec3f(tx,ty,tz));
+                            parentNode = clippingObjects[numFloors];
+                        }
+
+                        floors[numFloors] = GEInstance->createFloor(nextF->model, "unitySuelo_Hall", parentNode);
+                        floors[numFloors]->setRotation(dwe::vec3f(rot));
+                        floors[numFloors]->setPosition(dwe::vec3f(pos));
+
+                        numFloors++;
+                    }
+                    ++nextF;
+                 }
+
                 //WALLS
                 TTag2Wall *next = mappingWall;
                 while(next->tag != "0"){
                     if(id==next->tag){
-                        walls[numWalls] = GEInstance->createScenaryElement(next->model, "unityPared");
+                        walls[numWalls] = GEInstance->createScenaryElement(next->model, "unityPared", parentNode);
                         walls[numWalls]->setRotation(rot);
                         walls[numWalls]->setPosition(pos);
                         numWalls++;
                        // wall->setLevelId(levelid);
                     };
                     ++next;
-                }
-
-                //FLOORS
-                TTag2Floor *nextF = mappingFloor;
-                while(nextF->tag != "0"){
-                        if(id==nextF->tag){
-                            floors[numFloors] = GEInstance->createFloor(nextF->model, "unitySuelo_Hall");
-                            floors[numFloors]->setRotation(rot);
-                            floors[numFloors]->setPosition(pos);
-                            numFloors++;
-                        }
-                    ++nextF;
                 }
                 // GENERATORS
                 if(id=="Generator"){
@@ -134,7 +152,7 @@ void LoadMap::Init(){
                         generatorID=3;
                     else if(numGenerators==3)
                         generatorID=1;
-                    generator[numGenerators]=GEInstance->createGenerator(generatorID, false);
+                    generator[numGenerators]=GEInstance->createGenerator(generatorID, false, parentNode);
                     generator[numGenerators]->setRotation(rot);
                     generator[numGenerators]->setPosition(pos);
                     generator[numGenerators]->SetSensor();
@@ -145,8 +163,9 @@ void LoadMap::Init(){
                 static const std::string cosa[23] = {"cama", "especimen", "camilla", "lavabo", "banyos", "camadormir", "barril", "box", "mesa", "mesahall", "mesahallobjetos", "maceta", "ingeniero", "bicicletaestatica", "maquinacorrer", "maquinapesas", "mesacocina1", "mesacocina2", "mesacocina3", "mesacomedor", "sillacomedor"};
                 // ELEMENTOS DEL ENTORNO
                 for(unsigned char i=0; i<23; i++){
-                    if(id==lugar[i]) createScenaryElement(cosa[i].c_str(), pos, rot);
+                    if(id==lugar[i]) createScenaryElement(cosa[i].c_str(), pos, rot, parentNode);
                 }
+
             }
 
             //CONSUMABLES
@@ -157,22 +176,14 @@ void LoadMap::Init(){
                 std::string id = e["element-id"].GetString();
                 int tx = e["position"]["x"].GetDouble();    int ty = e["position"]["y"].GetDouble();    int tz = (-1)* e["position"]["z"].GetDouble();
                 if(id=="Ammo"){
-                    s->createAmmo(tx, ty, tz);
-                }
-                if(id=="Medkit"){
-                    s->createMedkit(tx, ty, tz);
-                }
-                if(id=="Adrenalina"){
-                    s->createSpeedBoost(tx, ty, tz);
-                }
-                if(id=="MagnetKey"){
-                    if(magnetKeyCount==1)
-                        magnetKeyID=3;
-                    else if(magnetKeyCount==2)
-                        magnetKeyID=2;
-                    else if(magnetKeyCount==3)
-                        magnetKeyID=1;
-                    s->createMagnetKey(magnetKeyID, tx, ty, tz);
+                    s->createAmmo(tx, ty, tz, parentNode);
+                } else if(id=="Medkit"){
+                    s->createMedkit(tx, ty, tz, parentNode);
+                } else if(id=="Adrenalina"){
+                    s->createSpeedBoost(tx, ty, tz, parentNode);
+                } else if(id=="MagnetKey"){
+                    magnetKeyID=4-magnetKeyCount;
+                    s->createMagnetKey(magnetKeyID, tx, ty, tz, parentNode);
                     magnetKeyCount++;
                 }
             }
@@ -188,10 +199,10 @@ void LoadMap::Init(){
                 int ry = e["rotation"]["y"].GetDouble();
                 uint8_t face = ry / 90; // 0->0, 90->1, 180->2, 270->3
                 if(id=="Door"){
-                    entities[numDoors]=GEInstance->createDoor(face, true, tx, ty, tz);
+                    entities[numDoors]=GEInstance->createDoor(face, true, tx, ty, tz, parentNode);
                     ++numDoors;
                 }else if(id=="DoorRotate"){ // Puerta giratoria
-                    entitiesDoorRotate[numDoorsRotate]=GEInstance->createDoorRotate(face, true, tx, ty, tz);
+                    entitiesDoorRotate[numDoorsRotate]=GEInstance->createDoorRotate(face, true, tx, ty, tz, parentNode);
                     ++numDoorsRotate;
                 }
             }
@@ -251,6 +262,11 @@ void LoadMap::Update(){
 
     for(uint8_t i=0; i < NUM_MAP_DOORROTATE; i++)
         entitiesDoorRotate[i]->update();
+
+    if (_clippingActive)
+        calculateClipping();
+
+
     //Scene::updateConsumables(mainPlayer);
 }
 
@@ -270,6 +286,12 @@ void LoadMap::Destroy(){
     }
     for(int i=0; i<3; i++){
         delete generator[i];
+    }
+
+    for(uint8_t i=0; i<NUM_FLOORS; i++)
+    {
+        delete clippingObjects[i];
+        clippingObjects[i] = 0;
     }
 }
 
@@ -294,9 +316,22 @@ void LoadMap::cheatDoorOpen()
     cheats=true;
 }
 
-void LoadMap::createScenaryElement(const char* s, const dwe::vec3f &pos, const dwe::vec3f &rot)
+void LoadMap::calculateClipping()
 {
-    envElements[numEnvElements]=GEInstance->createScenaryElement("environment_elements/"+std::string(s), "environment_elements/"+std::string(s));
+    static const uint16_t _offsetClippingX = 400;
+    static const uint16_t _offsetClippingZ = 400;
+    dwe::vec3f posPlayer = World->getMainPlayer()->getPosition();
+    for (uint16_t i=0; i<NUM_FLOORS; i++)
+    {
+        dwe::vec3f posClip = clippingObjects[i]->getPosClipping();
+        bool activo = ((abs(posClip.x - posPlayer.x) < _offsetClippingX) || (abs(posClip.z - posPlayer.z) < _offsetClippingZ));
+        clippingObjects[i]->setActive(activo);
+    }
+}
+
+void LoadMap::createScenaryElement(const char* s, const dwe::vec3f &pos, const dwe::vec3f &rot, Drawable* parent)
+{
+    envElements[numEnvElements]=GEInstance->createScenaryElement("environment_elements/"+std::string(s), "environment_elements/"+std::string(s), parent);
     envElements[numEnvElements]->setRotation(rot);
     envElements[numEnvElements]->setPosition(pos);
     numEnvElements++;

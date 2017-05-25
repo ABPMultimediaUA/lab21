@@ -29,12 +29,15 @@ class LoadMap {
         void Update();
         void Destroy();
         void cheatDoorOpen();
-        void createScenaryElement(const char* s, const dwe::vec3f &pos, const dwe::vec3f &rot);
+        void createScenaryElement(const char* s, const dwe::vec3f &pos, const dwe::vec3f &rot, Drawable* parent);
 
     private:
         // Suelo
         int numFloors;
         Floor *floors[NUM_FLOORS];
+
+        // Elementos de clipping
+        ClippingObject* clippingObjects[NUM_FLOORS];
 
         // Paredes
         int numWalls;
@@ -58,6 +61,9 @@ class LoadMap {
         int magnetKeyID;
 
         bool cheats;
+
+
+        void calculateClipping();
 };
 
 #endif // LOADMAP_H
