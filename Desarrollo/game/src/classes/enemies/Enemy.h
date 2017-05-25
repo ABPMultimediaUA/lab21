@@ -32,11 +32,27 @@ class Enemy : public DrawablePhysics
         bool Attack();  //Devuelve true mientras esta a mitad del ataque, y false cuando termina
         void PlanPath();
         bool RouteEnd();
+        void ClearRoute();
         void SetMemory(bool b);
         bool HasMemory();
         void SetMemoryPosition(dwe::vec2f memory);
         dwe::vec2f GetMemoryPosition();
+
+        void SetHearing(bool b);
+        void SetSeeing(bool b);
+        void SetSoundPosition(dwe::vec2f sound);
+        void SetVisionPosition(dwe::vec2f vision);
+        bool GetHearing();
+        bool GetSeeing();
+        dwe::vec2f GetSoundPosition();
+        dwe::vec2f GetVisionPosition();
+
+        void ChangePatrol();
+        void SetPatrolPosition(dwe::vec2f patrol);
+        dwe::vec2f GetPatrolPosition();
         void SetTargetPosition(dwe::vec2f target);
+        dwe::vec2f GetTargetPosition();
+        void SetPatrolPoints(dwe::vec2f p1, dwe::vec2f p2);
 
         virtual void setNode(dwe::Node* n);   // Necesario para EntityPhysics
         virtual void onBeginContact(EntityPhysics* otherObject);
@@ -62,6 +78,9 @@ class Enemy : public DrawablePhysics
         bool memory;
         dwe::vec2f memoryPosition;
         dwe::vec2f targetPosition;  //Siguiente lugar al que va a dirigirse. Se usa para darle una posición al pathplanning. Cambiará en función de a quién perseguir o a dónde ir
+        dwe::vec2f patrol1;
+        dwe::vec2f patrol2;
+        dwe::vec2f currentPatrol;
         Drawable* closestPlayer;
         TriggerVision* m_triggerVision;
 

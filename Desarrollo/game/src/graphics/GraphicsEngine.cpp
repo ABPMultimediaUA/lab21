@@ -333,7 +333,7 @@ Humanoid* dwe::GraphicsEngine::createEnemyHumanoid(int px, int py, int pz)
 Mother* dwe::GraphicsEngine::createEnemyMother(int px, int py, int pz)
 {
 	tag::EAnimation* anim = m_tagEngine.createNumAnimations(1, "media/Mother/madre.bmp");
-    m_tagEngine.createAnimation(anim, "media/Mother/Stand/motherStand", eAnimEnemyStand,   8);
+    m_tagEngine.createAnimation(anim, "media/Mother/Stand/motherStand", eAnimEnemyStand,   15);
 
     anim->setActiveAnimation(0);
 
@@ -371,8 +371,9 @@ Dog* dwe::GraphicsEngine::createEnemyDog(int px, int py, int pz)
 
 Bat* dwe::GraphicsEngine::createEnemyBat(int px, int py, int pz)
 {
-    tag::EAnimation* anim = m_tagEngine.createNumAnimations(1, "media/Bat/bat.bmp");
+    tag::EAnimation* anim = m_tagEngine.createNumAnimations(2, "media/Bat/bat.bmp");
     m_tagEngine.createAnimation(anim, "media/Bat/BatRun/murcielago", eAnimEnemyStand, 16);//posicion 0 sera estar parado
+    m_tagEngine.createAnimation(anim, "media/Bat/BatDeath/batDeath", eAnimEnemyDeath, 5, false);
     anim->setActiveAnimation(0);
 
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));

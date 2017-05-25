@@ -37,6 +37,13 @@ Enemy::~Enemy()
 {
 }
 
+void Enemy::SetPatrolPoints(dwe::vec2f p1, dwe::vec2f p2)
+{
+    patrol1 = p1;
+    patrol2 = p2;
+    currentPatrol = p1;
+}
+
 void Enemy::update()
 {
     dwe::vec3f pos(EntityPhysics::getPosEntity());
@@ -144,6 +151,11 @@ bool Enemy::RouteEnd()
     return m_pathplanning->CheckIfRouteEnd();
 }
 
+void Enemy::ClearRoute()
+{
+    m_pathplanning->Clear();
+}
+
 void Enemy::SetMemory(bool b)
 {
     memory = b;
@@ -164,9 +176,72 @@ dwe::vec2f Enemy::GetMemoryPosition()
     return memoryPosition;
 }
 
+void Enemy::SetHearing(bool b)
+{
+    m_perception->SetHearing(b);
+}
+
+void Enemy::SetSeeing(bool b)
+{
+    m_perception->SetSeeing(b);
+}
+
+void Enemy::SetSoundPosition(dwe::vec2f sound)
+{
+    m_perception->SetSoundPosition(sound);
+}
+
+void Enemy::SetVisionPosition(dwe::vec2f vision)
+{
+    m_perception->SetVisionPosition(vision);
+}
+
+bool Enemy::GetHearing()
+{
+    m_perception->GetHearing();
+}
+
+bool Enemy::GetSeeing()
+{
+    m_perception->GetSeeing();
+}
+
+dwe::vec2f Enemy::GetSoundPosition()
+{
+    m_perception->GetSoundPosition();
+}
+
+dwe::vec2f Enemy::GetVisionPosition()
+{
+    m_perception->GetVisionPosition();
+}
+
+void Enemy::ChangePatrol()
+{
+    if(currentPatrol.x == patrol1.x && currentPatrol.y == patrol1.y)
+        currentPatrol = patrol2;
+    else
+        currentPatrol = patrol1;
+}
+
+void Enemy::SetPatrolPosition(dwe::vec2f patrol)
+{
+    currentPatrol = patrol;
+}
+
+dwe::vec2f Enemy::GetPatrolPosition()
+{
+    return currentPatrol;
+}
+
 void Enemy::SetTargetPosition(dwe::vec2f target)
 {
     targetPosition = target;
+}
+
+dwe::vec2f Enemy::GetTargetPosition()
+{
+    return targetPosition;
 }
 
 /////////////

@@ -35,6 +35,7 @@ bool Perception::Sense()
     Drawable* player = World->getMainPlayer();
 
     if(m_hearing){
+        m_owner->ClearRoute();
         m_owner->SetMemoryPosition(m_soundPosition);
         m_owner->SetMemory(true);
         m_hearing = false;
@@ -81,4 +82,44 @@ float Perception::GetDistanceClosestPlayer(Drawable*& pl)
         }
     }
     return distance;
+}
+
+void Perception::SetHearing(bool b)
+{
+    m_hearing = b;
+}
+
+void Perception::SetSeeing(bool b)
+{
+    m_seeing = b;
+}
+
+void Perception::SetSoundPosition(dwe::vec2f sound)
+{
+    m_soundPosition = sound;
+}
+
+void Perception::SetVisionPosition(dwe::vec2f vision)
+{
+    m_visionPosition = vision;
+}
+
+bool Perception::GetHearing()
+{
+    return m_hearing;
+}
+
+bool Perception::GetSeeing()
+{
+    return m_seeing;
+}
+
+dwe::vec2f Perception::GetSoundPosition()
+{
+    return m_soundPosition;
+}
+
+dwe::vec2f Perception::GetVisionPosition()
+{
+    return m_visionPosition;
 }
