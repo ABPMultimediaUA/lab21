@@ -73,7 +73,7 @@ void dwe::GraphicsEngine::init()
         style = sf::Style::Default;
     //style = sf::Style::Default; // TODO
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", style, contextSettings);
-    m_window->setVerticalSyncEnabled(true);
+    m_window->setVerticalSyncEnabled(false);
     // Creamos los mensajes de texto, por ahora vacios
     if (!m_font.loadFromFile("media/ExoRegular.otf"))
         throw std::runtime_error("No se ha podido cargar la fuente de texto");
@@ -503,6 +503,8 @@ MagnetKey* dwe::GraphicsEngine::createMagnetKey(int i, float px, float py, float
     MagnetKey* m = new  MagnetKey(i);
 	m->setNode(new Node(node));
 	m->setPosition(dwe::vec3f(px, py, pz));
+
+    NetInstance->addNetConsumable(m);
 	return m;
 }
 

@@ -356,7 +356,8 @@ void dwn::NetGame::update()
     // no sobrecargar. Solo si somos el host enviamos la info.
     if (fullyConnectedMesh2->IsHostSystem() && m_numNetEntities>0 && m_netEnemies[m_netEnemyIndex])
     {
-        sendBroadcast(ID_ENEMY_UPDATE, m_netEnemyIndex, ((Enemy*)(m_netEnemies[m_netEnemyIndex]))->getPosition(), ((Enemy*)(m_netEnemies[m_netEnemyIndex]))->getRotation());
+        Enemy* enemy = (Enemy*)(m_netEnemies[m_netEnemyIndex]);
+        sendBroadcast(ID_ENEMY_UPDATE, m_netEnemyIndex, enemy->getPosition(), enemy->getRotation());
         m_netEnemyIndex = (m_netEnemyIndex < m_numNetEnemies-1)? m_netEnemyIndex+1 : 0;
     }
 }

@@ -11,6 +11,12 @@ CRifle::~CRifle()
 }
 
 ///////////////
+bool CRifle::couldTake(Player* mainplayer)
+{
+    return (!mainplayer->getPlayerRifle());
+}
+
+///////////////
 void CRifle::onTake(Player* mainplayer)
 {
     mainplayer->addWeapon(eRifle);

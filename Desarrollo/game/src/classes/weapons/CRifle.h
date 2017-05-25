@@ -12,7 +12,8 @@ class CRifle : public Consumable
         CRifle();
         virtual ~CRifle();
 
-        void onTake(Player* mainplayer);
+        virtual void onTake(Player* mainplayer);
+        virtual bool couldTake(Player* mainplayer);
 
         // Getters & Setters
         FirearmKind getKind();

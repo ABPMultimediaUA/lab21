@@ -63,8 +63,6 @@ class Player : public CharacterController
         void giveAmmo(int numWeapon, int ammo, PlayerMate* playermate);
         void receiveAmmo(int numWeapon, int ammo);
         void takeDamage(int damage);
-        bool getHasShotgun();
-        bool getHasRifle();
         void swapCurrentWeapon(FirearmKind weaponKind);
         FirearmKind getCurrentWeaponType();
         Firearm* getCurrentWeapon();

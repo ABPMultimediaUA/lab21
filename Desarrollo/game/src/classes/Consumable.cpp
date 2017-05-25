@@ -19,23 +19,33 @@ Consumable::~Consumable()
 /////////////////
 bool Consumable::getIsTaken() { return m_isTaken; }
 
+bool Consumable::couldTake(Player* mainPlayer)
+{
+    // Si no se implementa en hijos, siempre verdadero
+    return true;
+}
+
 /////////////////
 void Consumable::Take()
 {
     if (hasNode())
     {
-        NetInstance->sendBroadcast(ID_CONSUMABLE_TAKEN, m_netID);  // enviamos a los demas que lo hemos cogido
-        removeNode();
+        Player* player = World->getMainPlayer();
+        if (couldTake(player))
+        {
+            NetInstance->sendBroadcast(ID_CONSUMABLE_TAKEN, m_netID);  // enviamos a los demas que lo hemos cogido
+            removeNode();
 
-        m_isTaken = true;
+            m_isTaken = true;
 
-        onTake(World->getMainPlayer());
+            onTake(World->getMainPlayer());
+        }
     }
 }
 
 /////////////////
 void Consumable::take()
-{
+{std::cout << "take\n";
     if (hasNode())
     {
         removeNode();

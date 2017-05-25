@@ -29,8 +29,10 @@ void LoadingScreen::Init(int numSteps)
     // Calculo incremento
     m_progressIncrement = 1.0/(numSteps-1);
 
-    m_loadingSprite = new dwe::Sprite("LoadingScreen/Barra", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.8);
-    m_progress = new dwe::RectangleShape("LoadingScreen/progreso", GEInstance->get_screenWidth()*0.1+190, GEInstance->get_screenHeight()*0.8+4, 600.0, 45.0);
+    uint16_t anchoBarra = 795;
+
+    m_loadingSprite = new dwe::Sprite("LoadingScreen/Barra", GEInstance->get_screenWidth()/2 - anchoBarra/2, GEInstance->get_screenHeight()*0.8);
+    m_progress = new dwe::RectangleShape("LoadingScreen/progreso", GEInstance->get_screenWidth()/2 - anchoBarra/2 +190, GEInstance->get_screenHeight()*0.8+4, 600.0, 45.0);
     m_progressScale = 0.0;
     m_progress->SetScale(m_progressScale,1);
     m_background = new dwe::Background("LoadingScreen/Loading");

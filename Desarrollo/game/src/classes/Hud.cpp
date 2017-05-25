@@ -12,8 +12,8 @@ Hud::Hud()
     int   width   = GEInstance->get_screenWidth();
     int   height  = GEInstance->get_screenHeight();
 
-    WeaponBox     = new dwe::WeaponBox(width/30, height*6/8);
-    HealthBox     = new dwe::HealthBox (width - width/4, height*6.7/8);
+    WeaponBox     = new dwe::WeaponBox(25, height*6/8);
+    HealthBox     = new dwe::HealthBox (width - 200 - 25, height*6.7/8);
 
     mainPlayer    = World->getMainPlayer();
 }

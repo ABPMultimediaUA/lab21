@@ -246,9 +246,8 @@ void LoadMap::Init(){
 
         ((Door*)entities[32])->setInactive();
 
-        // Armas
-        s->createCShotgun(0, 10, -20);
-        s->createCRifle(20, 10, -20);
+        // Las armas se crean al iniciar partida en ingame
+
     }
     GEInstance->push();
 }
@@ -319,7 +318,7 @@ void LoadMap::cheatDoorOpen()
 void LoadMap::calculateClipping()
 {
     static const uint16_t _offsetClippingX = 400;
-    static const uint16_t _offsetClippingZ = 400;
+    static const uint16_t _offsetClippingZ = 500;
     dwe::vec3f posPlayer = World->getMainPlayer()->getPosition();
     for (uint16_t i=0; i<NUM_FLOORS; i++)
     {
@@ -335,4 +334,24 @@ void LoadMap::createScenaryElement(const char* s, const dwe::vec3f &pos, const d
     envElements[numEnvElements]->setRotation(rot);
     envElements[numEnvElements]->setPosition(pos);
     numEnvElements++;
+}
+
+
+void LoadMap::createConsumableWeapons()
+{
+    // Si utilizo dwe::vec3f me da un warning de necesitar c++11
+    struct T3d {
+        float x;
+        float y;
+        float z;
+    };
+    static const T3d posRifles[]  = { {30, 10, -20}, {30, 10, 20}, {30, 10, 40}, {30, 10, 60} };
+    static const T3d posShotgun[] = { { 0, 10, -20}, { 0, 10, 20}, { 0, 10, 40}, { 0, 10, 60} };
+
+    uint8_t num = NetInstance->getNumPlayerMates();
+    for(uint8_t i=0; i<num; i++)
+    {
+        Scene::Instance()->createCShotgun(posShotgun[i].x, posShotgun[i].y, posShotgun[i].z);
+        Scene::Instance()->createCRifle  (posRifles[i].x, posRifles[i].y, posRifles[i].z);
+    }
 }
