@@ -128,7 +128,7 @@ void LoadMap::Init(){
                         numFloors++;
                     }
                     ++nextF;
-                 }
+                }
 
                 //WALLS
                 TTag2Wall *next = mappingWall;
@@ -138,8 +138,7 @@ void LoadMap::Init(){
                         walls[numWalls]->setRotation(rot);
                         walls[numWalls]->setPosition(pos);
                         numWalls++;
-                       // wall->setLevelId(levelid);
-                    };
+                    }
                     ++next;
                 }
                 // GENERATORS
@@ -163,7 +162,7 @@ void LoadMap::Init(){
                 static const std::string cosa[23] = {"cama", "especimen", "camilla", "lavabo", "banyos", "camadormir", "barril", "box", "mesa", "mesahall", "mesahallobjetos", "maceta", "ingeniero", "bicicletaestatica", "maquinacorrer", "maquinapesas", "mesacocina1", "mesacocina2", "mesacocina3", "mesacomedor", "sillacomedor"};
                 // ELEMENTOS DEL ENTORNO
                 for(unsigned char i=0; i<23; i++){
-                    if(id==lugar[i]) createScenaryElement(cosa[i].c_str(), pos, rot, parentNode);
+                    if(id==lugar[i])  createScenaryElement(cosa[i].c_str(), pos, rot, parentNode);
                 }
 
             }
@@ -208,7 +207,7 @@ void LoadMap::Init(){
             }
         }
         // WAYPOINTS
-        const Value& wa = levels[53]["Waypoints"];
+        const Value& wa = levels[48]["Waypoints"];
         for(size_t j=0; j < wa.Size(); j++){
             const Value& e = wa[j]; //Recorrer cada "element"
             std::string id = e["element-id"].GetString();
@@ -228,23 +227,21 @@ void LoadMap::Init(){
 
         // Asignamos puertas a generadores
         Entity **sector = new Entity*[1];
+        ((Door*)entities[3])->setInactive();
+        sector[0]=entities[3];
+        generator[0]->setSector(sector, 1);
         ((Door*)entities[4])->setInactive();
         sector[0]=entities[4];
-        generator[0]->setSector(sector, 1);
-        ((Door*)entities[5])->setInactive();
-        sector[0]=entities[5];
         generator[1]->setSector(sector, 1);
-        ((Door*)entities[2])->setInactive();
-        sector[0]=entities[2];
+        ((Door*)entities[1])->setInactive();
+        sector[0]=entities[1];
         generator[3]->setSector(sector, 1);
         sector = new Entity*[2];((Door*)entities[4])->setInactive();
-        ((Door*)entities[32])->setInactive();
-        ((Door*)entities[33])->setInactive();
-        sector[0]=entities[32];
-        sector[1]=entities[33];
+        ((Door*)entities[27])->setInactive();
+        ((Door*)entities[28])->setInactive();
+        sector[0]=entities[27];
+        sector[1]=entities[28];
         generator[2]->setSector(sector, 2);
-
-        ((Door*)entities[32])->setInactive();
 
         // Armas
         s->createCShotgun(0, 10, -20);
