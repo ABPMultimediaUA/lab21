@@ -279,7 +279,6 @@ Player* dwe::GraphicsEngine::createMainPlayer()
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
 	Player* p = new Player();
 	p->setNode(new Node(node));
-	p->setSoundTrigger();
 
 	NetInstance->addNetObject(p);
 	return p;
