@@ -574,12 +574,13 @@ void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int objectID, 
     sendBroadcastMessage(bsOut);
 }
 ///////////////////
-void dwn::NetGame::sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle, RakNet::RakString value)
+void dwn::NetGame::sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle, int damage, RakNet::RakString value)
 {
     RakNet::BitStream bsOut;
     bsOut.Write((RakNet::MessageID)messageID);
     bsOut.Write(position);
     bsOut.Write(angle);
+    bsOut.Write(damage);
     bsOut.Write(value);
     sendBroadcastMessage(bsOut);
 }
@@ -884,15 +885,19 @@ void dwn::NetGame::activeGenerator(RakNet::Packet *packet)
 void dwn::NetGame::createProjectile(RakNet::Packet *packet)
 {
     dwe::vec3f position;
+    int damage;
     float angle;
     RakNet::RakString value;
+
     RakNet::BitStream bsIn(packet->data,packet->length,false);
     bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+
     bsIn.Read(position);
     bsIn.Read(angle);
+    bsIn.Read(damage);
     bsIn.Read(value);
 
-    Scene::Instance()->createProjectile(position, angle, value.C_String(), 5); ///TO DO Poner un daño diferente a cada arma
+    Scene::Instance()->createProjectile(position, angle, value.C_String(), damage);
 }
 
 ///////////////////

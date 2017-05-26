@@ -111,7 +111,7 @@ namespace dwn
             void sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle);
             void sendBroadcast(unsigned int messageID, unsigned int objectID, dwe::vec3f position, dwe::vec3f rotation);
             void sendBroadcast(unsigned int messageID, unsigned int objectID, TMsgEnemy datosEnemy);
-            void sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle, RakNet::RakString value);
+            void sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle, int damage, RakNet::RakString value);
 
         protected:
 
