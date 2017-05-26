@@ -799,6 +799,8 @@ void dwn::NetGame::readConnectionMessage(RakNet::Packet *packet, RakNet::RakStri
         std::cout << "\n------------------- ID_NAT_PUNCHTHROUGH_SUCCEEDED ------------------------\n"; //getline(cin, quitar);
         if (packet->data[1]==1)  // Si somos los que enviamos el OpenNAT
         {
+            PushMessage(RakNet::RakString("Recalculating host"));
+            fullyConnectedMesh2->ResetHostCalculation(); // Si el cliente carga más rápido que el server, recalcula para que el cliente no sea host
             PushMessage(RakNet::RakString("Connecting to existing game instance"));
             rakPeer->Connect(packet->systemAddress.ToString(false), packet->systemAddress.GetPort(), 0, 0);
             std::cout << "\n-------------- " << packet->systemAddress.ToString(false) << ":" << packet->systemAddress.GetPort() <<  "\n"; //getline(cin, quitar);

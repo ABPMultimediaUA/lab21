@@ -86,10 +86,11 @@ void GSIngame::Update(){
 
 void GSIngame::HandleEvents()
 {
-    /*******/
+#ifdef LAB21_DEBUG
     if(GEInstance->receiver.isKeyDown(KEY_KEY_B))
         World->getMainPlayer()->sayPosition();
-    /******/
+#endif // LAB21_DEBUG
+
     if(!m_pausePermission && GEInstance->receiver.isKeyUp(KEY_PAUSE))
         m_pausePermission = true;
     if(!m_clickPermission && GEInstance->receiver.isLeftButtonReleased()){
