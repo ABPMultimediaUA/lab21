@@ -65,7 +65,6 @@ void Projectile::onBeginContact(EntityPhysics* otherObject)
                 && otherObject->getClassID()!=EntityPhysics::consumable_id
                 && otherObject->getClassID()!=EntityPhysics::triggerDamage_id
                 && otherObject->getClassID()!=EntityPhysics::triggerVision_id );
-std::cout << "Collides: "   << otherObject->getClassID() << "\n";
 }
 
 /////////////////
