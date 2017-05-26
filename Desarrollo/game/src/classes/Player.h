@@ -110,6 +110,7 @@ class Player : public CharacterController
         float       m_timeLastGrenade;      // Cuando ha terminado de lanzar granada
         float       m_timeInitGrenade;      // Cuando ha empezado a lanzar granada
         bool        m_isThrowingGrenade;    // Esta lanzando granada
+        bool        m_grenadeSound;
         FirearmKind m_currentWeaponType;
         Firearm*    m_currentWeapon;
         int         m_health;

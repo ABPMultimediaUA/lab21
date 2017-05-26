@@ -310,7 +310,7 @@ void Enemy::onBeginContact(EntityPhysics* otherObject)
             }
             break;
         case EntityPhysics::grenadeExplosion_id:
-            m_health-=10;
+            m_health-=20;
             break;
         case EntityPhysics::triggerSound_id:
             Hear(otherObject->getPosEntity());
