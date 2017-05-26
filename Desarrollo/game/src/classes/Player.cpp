@@ -44,6 +44,8 @@ Player::Player() :
     m_playerWeaponKey[eRifle].key       = KEY_WEAPON_3;
     m_playerWeaponKey[eRifle].weapon    = eRifle;
 
+    setSoundTrigger();
+
     // Parámetros de físicas por defecto
 }
 
@@ -72,7 +74,6 @@ void Player::update()
     // Actualizamos la posición del box2d en el modelo
     Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
     m_soundTrigger->setPosEntity(getPosEntity(), 0.0);
-
 }
 
 /////////////

@@ -43,7 +43,6 @@ class Player : public CharacterController
 
         // Getters & Setters
         virtual void setNode(dwe::Node* n);   // Necesario para EntityPhysics
-        void setSoundTrigger();
         void addAmmo(int numWeapon, int ammount);
         int getGrenades();
         void setGrenades(int n);
@@ -121,6 +120,7 @@ class Player : public CharacterController
         bool        m_localIsEvading;
 
         void deleteWeapons();
+        void setSoundTrigger();
 };
 
 #endif // PLAYER_H

@@ -1,4 +1,6 @@
 #include "PlayerMate.h"
+#include "TriggerSound.h"
+#include "Scene.h"
 
 PlayerMate::PlayerMate()
 {
@@ -8,6 +10,9 @@ PlayerMate::PlayerMate()
     m_weapons[0] = 0;
     m_weapons[1] = 0;
     m_weapons[2] = 0;
+
+    setSoundTrigger();
+
     // Parametros de físicas por defecto
 }
 
@@ -20,6 +25,7 @@ PlayerMate::~PlayerMate()
 void PlayerMate::update()
 {
     Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
+    m_soundTrigger->setPosEntity(getPosEntity(), 0.0);
 }
 
 void PlayerMate::render()
@@ -79,4 +85,11 @@ void PlayerMate::swapCurrentWeapon(FirearmKind firearmKind)
         m_weapons[firearmKind]->setDraw();
         m_currentWeaponKind = firearmKind;
     }
+}
+
+/////////////////
+void PlayerMate::setSoundTrigger()
+{
+    m_soundTrigger = new TriggerSound(dwe::vec3f(170,0,60), 2/0.035, true);
+    Scene::Instance()->getTriggerSystem().Add(m_soundTrigger);
 }
