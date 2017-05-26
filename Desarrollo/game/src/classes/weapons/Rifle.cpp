@@ -22,13 +22,13 @@ Rifle::~Rifle()
 void Rifle::shoot()
 {
     Scene::Instance()->createProjectile(World->getMainPlayer()->getPosition(), World->getMainPlayer()->getRotation().y, "rifleBullet", m_damage);
-    NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, World->getMainPlayer()->getPosition(),World->getMainPlayer()->getRotation().y, RakNet::RakString("rifleBullet")); // Enviamos mensaje para crear projectil
+    NetInstance->sendBroadcast(ID_PROJECTILE_CREATE, World->getMainPlayer()->getPosition(),World->getMainPlayer()->getRotation().y, m_damage, RakNet::RakString("rifleBullet")); // Enviamos mensaje para crear projectil
 }
 
 ////////////
 void Rifle::reload()
 {
-    // TODO
+
 }
 
 ////////////

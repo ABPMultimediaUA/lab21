@@ -47,7 +47,6 @@ void Scene::Init()
 
     // Creación de jugador
     mainPlayer = GEInstance->createMainPlayer();
-    //TODO he puesto posicion para pruebas mainPlayer->setPosition(dwe::vec3f(-1205-((NetInstance->getParticipantOrder()-1)*30),24,1150));
 
     mainPlayer->setPosition(dwe::vec3f(140-((NetInstance->getParticipantOrder()-1)*30),21,60));
     World->setMainPlayer(mainPlayer);

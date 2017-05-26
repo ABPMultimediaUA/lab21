@@ -187,7 +187,8 @@ namespace tag
             /// \param[in] target to calculate the rotation from position
             void nodeLookAtTarget(GraphicNode* node, const vec3f position, const vec3f target);
 
-            // TODO nodeLookAtScreenCoords
+            /// \brief Devuelve el angulo desde la posicion 3D en openGL a la posición 2D de las corrdenadas
+            /// de pantalla.
             float angleToScreenCoords(const vec3f position, const vec3f screenCoords);
 
             /// \brief Borra un nodo, y sus nodos padres transformacion.
