@@ -71,7 +71,7 @@ void dwe::GraphicsEngine::init()
         style = sf::Style::Fullscreen;
     else
         style = sf::Style::Default;
-    //style = sf::Style::Default; // TODO
+    //style = sf::Style::Default; // TODO hay que comentarlo
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", style, contextSettings);
     m_window->setVerticalSyncEnabled(false);
     // Creamos los mensajes de texto, por ahora vacios
