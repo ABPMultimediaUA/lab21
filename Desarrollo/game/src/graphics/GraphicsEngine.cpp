@@ -769,7 +769,7 @@ void dwe::GraphicsEngine::leerFicheroOpciones()
         int value;
         while (fich >> name >> value)
         {
-            uint8_t i;
+            uint8_t i=0;
             while (options[i].name!=name && options[i].name!="0")
                 i++;
 
