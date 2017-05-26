@@ -32,8 +32,6 @@ void Perception::See(dwe::vec3f pos)
 
 bool Perception::Sense()
 {
-    Drawable* player = World->getMainPlayer();
-
     if(m_hearing){
         m_owner->ClearRoute();
         m_owner->SetMemoryPosition(m_soundPosition);
@@ -41,7 +39,7 @@ bool Perception::Sense()
         m_hearing = false;
     }
 
-    float distance = GetDistanceClosestPlayer(player);
+    float distance = GetDistanceClosestPlayer();
 
     //m_owner->SetClosestPlayer(player);
 
@@ -60,8 +58,18 @@ bool Perception::Sense()
     return false;
 }
 
-float Perception::GetDistanceClosestPlayer(Drawable*& pl)
+float Perception::GetDistanceClosestPlayer()
 {
+    dwe::vec3f playerPos(GetPositionClosestPlayer());               dwe::vec2f pPos(playerPos.x, playerPos.z);
+    dwe::vec3f enemyPos(m_owner->getPosition());                    dwe::vec2f ePos(enemyPos.x, enemyPos.z);
+
+    return dwu::calculateSquaredDistance(ePos, pPos);
+}
+
+dwe::vec3f Perception::GetPositionClosestPlayer()
+{
+    Drawable* pl = World->getMainPlayer();
+
     dwe::vec3f enemyPos(m_owner->getPosition());                    dwe::vec2f ePos(enemyPos.x, enemyPos.z);
     dwe::vec3f playerPos(World->getMainPlayer()->getPosition());    dwe::vec2f pPos(playerPos.x, playerPos.z);
 
@@ -81,7 +89,7 @@ float Perception::GetDistanceClosestPlayer(Drawable*& pl)
             }
         }
     }
-    return distance;
+    return pl->getPosition();
 }
 
 void Perception::SetHearing(bool b)

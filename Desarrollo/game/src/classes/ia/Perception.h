@@ -30,6 +30,8 @@ class Perception
         dwe::vec2f GetSoundPosition();
         dwe::vec2f GetVisionPosition();
 
+        dwe::vec3f GetPositionClosestPlayer();
+
     protected:
 
     private:
@@ -39,7 +41,7 @@ class Perception
         dwe::vec2f m_soundPosition;
         bool m_seeing;
         dwe::vec2f m_visionPosition;
-        float GetDistanceClosestPlayer(Drawable*& pl);
+        float GetDistanceClosestPlayer();
 
 };
 
