@@ -189,7 +189,7 @@ void Player::swapCurrentWeapon(FirearmKind weaponKind)
         m_currentWeaponType = weaponKind;
         m_timeWeaponSwap    = World->getTimeElapsed();
 
-        NetInstance->sendBroadcast(ID_SWAP_WEAPON, NetInstance->getParticipantOrder(), m_currentWeaponType);
+        NetInstance->sendBroadcast(ID_SWAP_WEAPON, NetInstance->getGUID(), m_currentWeaponType);
     }
 }
 
@@ -302,9 +302,9 @@ void Player::readEvents()
             m_timeReload = timeElapsed;
     }
 
-    PlayerMate* playermate = NetInstance->getPlayerMate(1);
     if (GEInstance->receiver.isKeyDown(KEY_GIVE_AMMO)&& (timeElapsed - m_timeGivingStuff) > _changeOffsetTime)
     {
+        PlayerMate* playermate = NetInstance->getPlayerMate(1);
          giveAmmo(0,1, playermate);
          m_timeGivingStuff = timeElapsed;
     }

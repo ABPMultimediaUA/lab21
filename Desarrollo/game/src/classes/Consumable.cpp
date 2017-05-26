@@ -45,7 +45,7 @@ void Consumable::Take()
 
 /////////////////
 void Consumable::take()
-{std::cout << "take\n";
+{
     if (hasNode())
     {
         removeNode();

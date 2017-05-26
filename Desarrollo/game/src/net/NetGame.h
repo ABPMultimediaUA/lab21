@@ -56,6 +56,7 @@ namespace dwn
             void removeNetEnemy(Enemy* enemy);
 
             bool isLocalObject(RakNet::RakNetGUID id);
+            RakNet::RakString getGUID();
 
             bool isMultiplayer();
             bool isServer();
@@ -68,6 +69,7 @@ namespace dwn
             unsigned short getParticipantOrder();
 
             PlayerMate* getPlayerMate(unsigned int i);
+            PlayerMate* getPlayerMateByGUID(RakNet::RakString guid);
             int getNumPlayerMates();
 
             void startGame();   // Enviamos a los demas que empezamos
@@ -104,7 +106,7 @@ namespace dwn
             /// \param[in] ... resto de parametros son los datos que se envian junto con el mensaje.
             void sendBroadcast(unsigned int messageID);
             void sendBroadcast(unsigned int messageID, unsigned int value);
-            void sendBroadcast(unsigned int messageID, unsigned short playerId, FirearmKind firearmKind);
+            void sendBroadcast(unsigned int messageID, RakNet::RakString playerGUID, FirearmKind firearmKind);
             void sendBroadcast(unsigned int messageID, RakNet::RakString value);
             void sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle);
             void sendBroadcast(unsigned int messageID, unsigned int objectID, dwe::vec3f position, dwe::vec3f rotation);

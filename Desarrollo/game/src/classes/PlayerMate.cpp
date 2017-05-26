@@ -4,8 +4,10 @@ PlayerMate::PlayerMate()
 {
     setClassID(EntityPhysics::playermate_id);
 
-    m_currentWeaponKind = eGun;
-
+    m_currentWeaponKind = (FirearmKind)0;
+    m_weapons[0] = 0;
+    m_weapons[1] = 0;
+    m_weapons[2] = 0;
     // Parametros de físicas por defecto
 }
 

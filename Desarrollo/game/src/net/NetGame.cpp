@@ -465,7 +465,28 @@ PlayerMate* dwn::NetGame::getPlayerMate(unsigned int i)
     if (i<replicaManager3->GetReplicaCount())
         return (PlayerMate*)(replicaManager3->GetReplicaAtIndex(i));
     else
+    {
+        std::cerr << "Error en getPlayerMate, no existe playermate " << i << "\n";
         return NULL;
+    }
+}
+
+//////////////////////////
+PlayerMate* dwn::NetGame::getPlayerMateByGUID(RakNet::RakString guid)
+{
+    RakNet::RakNetGUID raknetGUID;
+    raknetGUID.FromString(guid);
+    DataStructures::List<Replica3*>replicaListOut;
+
+
+    replicaManager3->GetReplicasCreatedByGuid(raknetGUID, replicaListOut);
+    if (replicaListOut.Size()>0)
+        return (PlayerMate*)(replicaListOut[0]);
+    else
+    {
+        std::cerr << "Error en getPlayerMate, no existe playermate con GUID " << guid << "\n";
+        return 0;
+    }
 }
 
 //////////////////
@@ -508,11 +529,11 @@ void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int value)
     sendBroadcastMessage(bsOut);
 }
 ///////////////////
-void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned short playerId, FirearmKind firearmKind)
+void dwn::NetGame::sendBroadcast(unsigned int messageID, RakNet::RakString playerGUID, FirearmKind firearmKind)
 {
     RakNet::BitStream bsOut;
     bsOut.Write((RakNet::MessageID)messageID);
-    bsOut.Write(playerId);
+    bsOut.Write(playerGUID);
     bsOut.Write(firearmKind);
     sendBroadcastMessage(bsOut);
 }
@@ -544,10 +565,7 @@ void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int objectID, 
     sendBroadcastMessage(bsOut);
 }
 ///////////////////
-void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int objectID, TMsgEnemy datosEnemy)/*dwe::vec3f position,
-                               bool memory, bool hearing, bool seeing,
-                               dwe::vec2f memoryPos, dwe::vec2f soundPos, dwe::vec2f visionPos,
-                               dwe::vec2f patrolPos, dwe::vec2f targetPos)*/
+void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int objectID, TMsgEnemy datosEnemy)
 {
     RakNet::BitStream bsOut;
     bsOut.Write((RakNet::MessageID)messageID);
@@ -962,11 +980,17 @@ void dwn::NetGame::cheatDoorOpen(RakNet::Packet *packet)
 ///////////////////
 void dwn::NetGame::swapWeapon(RakNet::Packet *packet)
 {
-    unsigned short playerId;
+    RakNet::RakString playerGUID;
     FirearmKind firearmKind;
     RakNet::BitStream bsIn(packet->data,packet->length,false);
     bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
-    bsIn.Read(playerId);
+    bsIn.Read(playerGUID);
     bsIn.Read(firearmKind);
-    getPlayerMate(playerId)->swapCurrentWeapon(firearmKind);
+    getPlayerMateByGUID(playerGUID)->swapCurrentWeapon(firearmKind);
+}
+
+/////////////////////////////////
+RakNet::RakString dwn::NetGame::getGUID()
+{
+    return rakPeer->GetMyGUID().ToString();
 }
