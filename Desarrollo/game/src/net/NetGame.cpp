@@ -920,27 +920,29 @@ void dwn::NetGame::enemyUpdate(RakNet::Packet *packet)
 {
     unsigned int enemyID;
 
-    TMsgEnemy datosEnemy;
-
     RakNet::BitStream bsIn(packet->data,packet->length,false);
     bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
     bsIn.Read(enemyID);
 
     if (enemyID<m_numNetEnemies && m_netEnemies[enemyID])
     {
+        Enemy* enemy = m_netEnemies[enemyID];
+        TMsgEnemy datosEnemy;
+
         bsIn.Read(datosEnemy);
 
-        (m_netEnemies[enemyID])->setPosition(datosEnemy.position);
-        (m_netEnemies[enemyID])->SetMemory(datosEnemy.memory);
-        (m_netEnemies[enemyID])->SetHearing(datosEnemy.hearing);
-        (m_netEnemies[enemyID])->SetSeeing(datosEnemy.seeing);
-        (m_netEnemies[enemyID])->SetMemoryPosition(datosEnemy.memoryPos);
-        (m_netEnemies[enemyID])->SetSoundPosition(datosEnemy.soundPos);
-        (m_netEnemies[enemyID])->SetVisionPosition(datosEnemy.visionPos);
-        (m_netEnemies[enemyID])->SetPatrolPosition(datosEnemy.patrolPos);
-        (m_netEnemies[enemyID])->SetTargetPosition(datosEnemy.targetPos);
+        enemy->setPosition(datosEnemy.position);
+        enemy->setRotation(datosEnemy.rotation);
+        enemy->SetMemory(datosEnemy.memory);
+        enemy->SetHearing(datosEnemy.hearing);
+        enemy->SetSeeing(datosEnemy.seeing);
+        enemy->SetMemoryPosition(datosEnemy.memoryPos);
+        enemy->SetSoundPosition(datosEnemy.soundPos);
+        enemy->SetVisionPosition(datosEnemy.visionPos);
+        enemy->SetPatrolPosition(datosEnemy.patrolPos);
+        enemy->SetTargetPosition(datosEnemy.targetPos);
 
-        (m_netEnemies[enemyID])->PlanPath();
+        enemy->PlanPath();
     }
 }
 
