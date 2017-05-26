@@ -247,6 +247,14 @@ namespace dwe
         void setOwnCursor(bool ownCursor);
 
     private:
+        static int  _screenWidth;
+        static int  _screenHeight;
+        static bool _fullScreen;
+        static bool _shadows;
+        static bool _vsync;
+
+
+
         sf::RenderWindow*   m_window;
         sf::Font            m_font;
         sf::Text            m_messageLine[MAX_MESSAGE_LINES];
@@ -269,19 +277,6 @@ namespace dwe
         vec3f               m_cameraPosition;
 
 
-#ifndef LAB21_DEBUG
-        /*static const int _screenWidth   = 1024;
-        static const int _screenHeight  = 768;*/
-        static const int _screenWidth   = 1366;
-        static const int _screenHeight  = 768;
-        /*static const int _screenWidth   = 1920;
-        static const int _screenHeight  = 1080;*/
-        static const bool _fullScreen   = true;
-#else
-        static const int _screenWidth   = 1024;
-        static const int _screenHeight  = 768;
-        static const bool _fullScreen   = false;
-#endif
         // Camara
         float tarUD;
         float tarLR;
@@ -296,6 +291,7 @@ namespace dwe
         GraphicsEngine() {};
 
         void render();
+        void leerFicheroOpciones();
     };
 }
 

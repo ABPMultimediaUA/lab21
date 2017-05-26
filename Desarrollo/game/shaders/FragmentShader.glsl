@@ -11,7 +11,7 @@ struct TLight {
     vec3 specular;  // "
 };
 
-/*struct TMaterial {
+/*struct TMaterial { // Algunas tarjetas no soportan struct para texturas
     bool        hasTexture;
     sampler2D   diffuse;
     sampler2D   specular;
@@ -27,6 +27,7 @@ uniform float       u_MaterialShininess;
 uniform bool        u_hasNormalTexture;
 uniform sampler2D   u_normalTexture;
 uniform sampler2D   u_shadowTexture;
+uniform bool        u_hasShadows;          // in: si calculamos sombras
 
 
 float calculateShadow(vec4 positionLightSpace, vec3 normal, vec3 lightDir)
@@ -97,9 +98,10 @@ vec3 phong()
         * pow(max(dot(r, viewDir), 0.0), u_MaterialShininess)
         * texSpec;
 
-    float shadow = calculateShadow(v_PositionLightSpace, normal, lightDir);
+    float shadow = 0;
+    if (u_hasShadows)
+        shadow = calculateShadow(v_PositionLightSpace, normal, lightDir);
     return (ambient + (1.0 - shadow) * (diffuse + specular));
-    //return ambient + diffuse + specular;
 }
 
 void main()

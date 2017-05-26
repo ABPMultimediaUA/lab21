@@ -45,6 +45,7 @@ int tag::TAGEngine::_uLightSpaceMatrixLocation;
 
 int tag::TAGEngine::_aShadowVertexPositionLocation;
 int tag::TAGEngine::_uShadowMVPLocation;
+int tag::TAGEngine::_uHasShadowsLocation;
 
 GLuint tag::TAGEngine::_shadowHeight = 2048;
 GLuint tag::TAGEngine::_shadowWidth = 2048;
@@ -78,10 +79,11 @@ tag::TAGEngine::~TAGEngine()
 }
 
 /////////////////////
-void tag::TAGEngine::init(float screenHeight, float screenWidth)
+void tag::TAGEngine::init(float screenHeight, float screenWidth, bool renderShadows)
 {
-    TAGEngine::_screenHeight = screenHeight;
-    TAGEngine::_screenWidth = screenWidth;
+    TAGEngine::_screenHeight    = screenHeight;
+    TAGEngine::_screenWidth     = screenWidth;
+    m_renderShadows             = renderShadows;
 
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glClearDepth(100.0);
@@ -127,26 +129,31 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth)
     TAGEngine::_uModelMatrixLocation        = m_shaderProgram->uniform(U_MODELMATRIX);
     TAGEngine::_uShadowTextureLocation      = m_shaderProgram->uniform(U_SHADOWTEXTURE);
     TAGEngine::_uLightSpaceMatrixLocation   = m_shaderProgram->uniform(U_LIGHT_SPACE_MATRIX);
+    TAGEngine::_uHasShadowsLocation         = m_shaderProgram->uniform(U_HASSHADOWS);
 
     glUniform1i(TAGEngine::_uMaterialDiffuseLocation,   Entity::_diffuseTextureIndex);
     glUniform1i(TAGEngine::_uMaterialSpecularLocation,  Entity::_specularTextureIndex);
     glUniform1i(TAGEngine::_uNormalTextureLocation,     Entity::_normalTextureIndex);
 
+    glUniform1i(TAGEngine::_uHasShadowsLocation, m_renderShadows);
 
-    // Shaders para shadows
-    shaders.clear();
-    shaders.push_back(shader.LoadShader("shaders/shadowVertexShader.glsl", GL_VERTEX_SHADER));
-    shaders.push_back(shader.LoadShader("shaders/shadowFragmentShader.glsl", GL_FRAGMENT_SHADER));
+    if (m_renderShadows)
+    {
+        // Shaders para shadows
+        shaders.clear();
+        shaders.push_back(shader.LoadShader("shaders/shadowVertexShader.glsl", GL_VERTEX_SHADER));
+        shaders.push_back(shader.LoadShader("shaders/shadowFragmentShader.glsl", GL_FRAGMENT_SHADER));
 
-    if (!m_shadowProgram)
-        m_shadowProgram = new Program(shaders);
+        if (!m_shadowProgram)
+            m_shadowProgram = new Program(shaders);
 
-    glUseProgram(m_shadowProgram->ReturnProgramID());
-    TAGEngine::_aShadowVertexPositionLocation   = m_shadowProgram->attrib(A_VERTEXPOSITION);
-    TAGEngine::_uShadowMVPLocation              = m_shadowProgram->uniform(U_MVP);
+        glUseProgram(m_shadowProgram->ReturnProgramID());
+        TAGEngine::_aShadowVertexPositionLocation   = m_shadowProgram->attrib(A_VERTEXPOSITION);
+        TAGEngine::_uShadowMVPLocation              = m_shadowProgram->uniform(U_MVP);
 
 
-    prepareShadows();
+        prepareShadows();
+    }
 
     glUseProgram(0);
 }
@@ -168,7 +175,8 @@ void tag::TAGEngine::draw()
         // Cálculo de la vista (cámara)
         calculateViewMatrix();
 
-        calculateShadows();
+        if (m_renderShadows)
+            calculateShadows();
 
         glUseProgram(m_shaderProgram->ReturnProgramID());
         glViewport(0, 0, TAGEngine::_screenWidth, TAGEngine::_screenHeight);
@@ -183,15 +191,18 @@ void tag::TAGEngine::draw()
         glUniformMatrix4fv(TAGEngine::_uLightSpaceMatrixLocation, 1, GL_FALSE, glm::value_ptr(Entity::lightSpaceMatrix));
 
         // Textura de shadows
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, m_depthMap);
-        glUniform1i(TAGEngine::_uShadowTextureLocation, 0);
+        if (m_renderShadows)
+        {
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, m_depthMap);
+            glUniform1i(TAGEngine::_uShadowTextureLocation, 0);
+        }
 
         // Dibujar
         Entity::isPreDraw = false;
         renderElements();
 
-        // Desactivamos textura de shadows
+        // Desactivamos textura de shadows, aún no teniendo
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, 0);
 

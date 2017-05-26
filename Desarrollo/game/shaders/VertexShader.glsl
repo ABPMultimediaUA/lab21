@@ -12,6 +12,7 @@ uniform mat4 u_modelMatrix;
 uniform mat4 u_MVMatrix;	        // in: Matriz ModelView
 uniform mat3 u_NormalMatrix;        // in: Matriz de normales transformadas
 uniform mat4 u_MVP;                 // in: model*view*proyection
+uniform bool u_hasShadows;          // in: si calculamos sombras
 
 uniform mat4 u_lightSpaceMatrix;
 
@@ -23,7 +24,8 @@ void main()
 	v_TextureCoords = a_TextureCoords;
 
 	//v_PositionLightSpace = u_lightSpaceMatrix * vec4(v_Position, 1.0);
-	v_PositionLightSpace = u_lightSpaceMatrix * u_modelMatrix * a_VertexPosition;
+	if (u_hasShadows)
+        v_PositionLightSpace = u_lightSpaceMatrix * u_modelMatrix * a_VertexPosition;
 
 	// posición final del vértice
 	gl_Position = u_MVP * a_VertexPosition;

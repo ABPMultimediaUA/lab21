@@ -23,6 +23,7 @@
 #define U_MATERIAL_SHININESS    "u_MaterialShininess"
 #define U_HASNORMALTEXTURE      "u_hasNormalTexture"
 #define U_NORMALTEXTURE         "u_normalTexture"
+#define U_HASSHADOWS            "u_hasShadows"
 
 
 #define U_MODELMATRIX           "u_modelMatrix"
@@ -57,8 +58,9 @@ namespace tag
             ~TAGEngine();
 
             /// \brief Inicia el motor.
+            /// \param[in] renderShadows Si renderiza sombras o no
             /// \details Debe ser llamado antes de cualquier otra función del motor.
-            void init(float screenHeight, float screenWidth);
+            void init(float screenHeight, float screenWidth, bool renderShadows);
 
             /// \brief Comprueba que la ventana esté abierta y obtiene los mensajes de la misma.
             /// \details Debe ser llamado antes de dibujar, en cada iteración del bucle.
@@ -221,6 +223,7 @@ namespace tag
             static int _uModelMatrixLocation;
             static int _uLightSpaceMatrixLocation;
             static int _uShadowTextureLocation;
+            static int _uHasShadowsLocation;
 
             // shader de sombras: Handles de los attributes y uniforms
             static int _aShadowVertexPositionLocation;
@@ -245,6 +248,8 @@ namespace tag
 
             GLuint                      m_depthMapFBO;
             GLuint                      m_depthMap;
+
+            bool                        m_renderShadows;
 
 
             glm::mat4 m_projectionMatrix; // Almacena la matriz de proyección
