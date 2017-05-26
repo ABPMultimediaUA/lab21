@@ -25,7 +25,8 @@ void TriggerVision::Update()
 
 void TriggerVision::onBeginContact(EntityPhysics* otherObject)
 {
-    if (otherObject && otherObject->getClassID() == EntityPhysics::player_id)
+    if (otherObject && otherObject->getClassID() == EntityPhysics::player_id
+                    && otherObject->getClassID() == EntityPhysics::playermate_id)
     {
         m_touchingMainPlayer = true;
         m_playerEntity = otherObject;
@@ -34,7 +35,8 @@ void TriggerVision::onBeginContact(EntityPhysics* otherObject)
 
 void TriggerVision::onEndContact(EntityPhysics* otherObject)
 {
-    if (otherObject && otherObject->getClassID() == EntityPhysics::player_id)
+    if (otherObject && otherObject->getClassID() == EntityPhysics::player_id
+                    && otherObject->getClassID() == EntityPhysics::playermate_id)
     {
         m_touchingMainPlayer = false;
     }
