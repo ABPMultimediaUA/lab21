@@ -153,8 +153,8 @@ dwe::vec2f Pathplanning::Movement()
         else{
             direction.x = direction.y = 0;
         }
-    }else if(route.size())
-        CalculateDirection();
+    }
+    CalculateDirection();
 
     return direction;
 
