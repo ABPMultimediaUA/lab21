@@ -27,6 +27,7 @@ Player::Player() :
     m_timeLastGrenade   = 0;
     m_timeInitGrenade   = 0;
     m_isThrowingGrenade = false;
+    m_grenadeSound      = false;
     m_timeLastProjectil = 0;
 
     m_weapons[eGun]     = 0;
@@ -35,7 +36,7 @@ Player::Player() :
 
     m_health    = 100;
     m_maxHealth = 100;
-    m_grenades  = 60;
+    m_grenades  = 1;
 
     m_playerWeaponKey[eGun].key         = KEY_WEAPON_1;
     m_playerWeaponKey[eGun].weapon      = eGun;
@@ -210,12 +211,18 @@ void Player::readEvents()
 
     if (m_isThrowingGrenade)
     {
+        if(!m_grenadeSound){
+            AEInstance->Play2D("media/Sounds/AnillaGranada.wav");
+            m_grenadeSound = true;
+        }
+
         if (timeElapsed - m_timeInitGrenade > Player::_throwGrenadeOffsetTime)
         {
             throwGrenade();
             NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, getPosition(), getRotation().y); // Enviamos mensaje para crear projectilgrenade
             m_timeLastGrenade = timeElapsed;
             m_isThrowingGrenade = false;
+            m_grenadeSound = false;
         }
         else{
             return;
