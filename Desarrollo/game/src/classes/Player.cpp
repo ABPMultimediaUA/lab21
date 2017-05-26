@@ -307,13 +307,13 @@ void Player::readEvents()
             m_timeReload = timeElapsed;
     }
 
-    if (GEInstance->receiver.isKeyDown(KEY_GIVE_AMMO)&& (timeElapsed - m_timeGivingStuff) > _changeOffsetTime)
+   /* if (GEInstance->receiver.isKeyDown(KEY_GIVE_AMMO)&& (timeElapsed - m_timeGivingStuff) > _changeOffsetTime)
     {
         PlayerMate* playermate = NetInstance->getPlayerMate(1);
          giveAmmo(0,1, playermate);
          m_timeGivingStuff = timeElapsed;
     }
-
+*/
 
     //CAMBIAR ARMA
     for(uint8_t i=0; i<eNumWeapons; i++)
