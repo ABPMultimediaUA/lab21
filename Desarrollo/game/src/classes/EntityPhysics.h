@@ -8,6 +8,8 @@
 class EntityPhysics
 {
     public:
+        static const float _ratio = 0.035;
+
         enum EPClassID
         {
             no_id = 0,
@@ -85,8 +87,6 @@ class EntityPhysics
         EPClassID       m_classID;
 
         b2RevoluteJoint*    m_revoluteJoint;
-
-        static const float _ratio = 0.035;
 
         void createBody(b2BodyType type, const dwe::vec3f& pos, float width, float height, float32 angleDegrees, float density = 1.0f);
 };
