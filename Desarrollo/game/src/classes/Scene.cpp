@@ -42,7 +42,7 @@ Scene::Scene() : navGraph(false)
 void Scene::Init()
 {
     m_timeLastEnemyActive   = 0;
-    m_timeEnemyActive       = 5.0;  // En segundos
+    m_timeEnemyActive       = 2.0;  // En segundos
     m_posMother             = dwe::vec3f(0,62.0,-1617.0);
 
     // Creación de jugador
