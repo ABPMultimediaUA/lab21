@@ -24,6 +24,7 @@
 #include "AudioEngine.h"
 #include "TriggerSound.h"
 #include "LoadingScreen.h"
+#include "TriggerSound.h"
 
 ///////////////////////////////
 Scene* Scene::Instance()
@@ -338,6 +339,10 @@ void Scene::deleteProjectileGrenade(unsigned int i)
 ////////////
 void Scene::createProjectile(dwe::vec3f origin, float angle, std::string weapon, int damage)
 {
+    TriggerSound* triggerSound = new TriggerSound(origin, 15/EntityPhysics::_ratio, false);
+    Scene::Instance()->getTriggerSystem().Add(triggerSound);
+    AEInstance->Play2D("media/Sounds/DisparoEscopeta.wav");
+
     m_projectiles.push_back(GEInstance->createProjectile(origin, angle, weapon, damage));
 }
 
