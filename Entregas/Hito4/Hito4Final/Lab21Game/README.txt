@@ -14,6 +14,8 @@ Teclas del juego:
 -Usar adrenalina: 	F
 -Cambiar armas:     1,2,3
 
+-Cheat puertas:     C
+
 Opciones: Modificar el fichero options.ini para cambiar ancho, alto, si se quiere pantalla completa, activar vsync y sombras, por ejemplo:
 
 width 1366
