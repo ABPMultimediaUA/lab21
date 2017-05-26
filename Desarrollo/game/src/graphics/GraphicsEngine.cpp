@@ -748,7 +748,7 @@ void dwe::GraphicsEngine::setOwnCursor(bool ownCursor)
 
 void dwe::GraphicsEngine::leerFicheroOpciones()
 {
-    struct TOptionsFile
+    /*struct TOptionsFile
     {
         std::string name;
         void*       value;
@@ -760,7 +760,7 @@ void dwe::GraphicsEngine::leerFicheroOpciones()
         {"vsync",       &dwe::GraphicsEngine::_vsync},
         {"shadows",     &dwe::GraphicsEngine::_shadows},
         {"0", 0}  // Marca de fin
-    };
+    };*/
 
     ifstream fich("options.ini");
     if (fich.is_open())
@@ -769,12 +769,23 @@ void dwe::GraphicsEngine::leerFicheroOpciones()
         int value;
         while (fich >> name >> value)
         {
-            uint8_t i=0;
+            /*uint8_t i=0;
             while (options[i].name!=name && options[i].name!="0")
                 i++;
 
             if (options[i].name!="0")  // Encontrado
-                *(int*)(options[i].value) = value;
+                *(int*)(options[i].value) = value;*/
+
+            if (name=="width")
+                dwe::GraphicsEngine::_screenWidth = value;
+            else if (name=="height")
+                dwe::GraphicsEngine::_screenHeight = value;
+            else if (name=="fullscreen")
+                dwe::GraphicsEngine::_fullScreen = value;
+            else if (name=="vsync")
+                dwe::GraphicsEngine::_vsync = value;
+            else if (name=="shadows")
+                dwe::GraphicsEngine::_shadows = value;
         }
     }
 }
