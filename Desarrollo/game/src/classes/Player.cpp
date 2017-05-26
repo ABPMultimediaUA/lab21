@@ -27,6 +27,7 @@ Player::Player() :
     m_timeLastGrenade   = 0;
     m_timeInitGrenade   = 0;
     m_isThrowingGrenade = false;
+    m_grenadeSound      = false;
     m_timeLastProjectil = 0;
 
     m_weapons[eGun]     = 0;
@@ -35,7 +36,7 @@ Player::Player() :
 
     m_health    = 100;
     m_maxHealth = 100;
-    m_grenades  = 60;
+    m_grenades  = 1;
 
     m_playerWeaponKey[eGun].key         = KEY_WEAPON_1;
     m_playerWeaponKey[eGun].weapon      = eGun;
@@ -43,6 +44,8 @@ Player::Player() :
     m_playerWeaponKey[eShotgun].weapon  = eShotgun;
     m_playerWeaponKey[eRifle].key       = KEY_WEAPON_3;
     m_playerWeaponKey[eRifle].weapon    = eRifle;
+
+    setSoundTrigger();
 
     // Parámetros de físicas por defecto
 }
@@ -72,7 +75,6 @@ void Player::update()
     // Actualizamos la posición del box2d en el modelo
     Drawable::setPosition(dwe::vec3f(getPosEntity().x, getPosition().y, getPosEntity().z));
     m_soundTrigger->setPosEntity(getPosEntity(), 0.0);
-
 }
 
 /////////////
@@ -113,9 +115,6 @@ bool Player::shoot(float timeSinceLastShoot)
 {
     if (timeSinceLastShoot > m_currentWeapon->getCadence() && m_currentWeapon->getAmmo() > 0)
     {
-        TriggerSound* triggerSound = new TriggerSound(getPosition(), 15/0.035, false);
-        Scene::Instance()->getTriggerSystem().Add(triggerSound);
-        AEInstance->Play2D("media/Sounds/DisparoEscopeta.wav");
         m_currentWeapon->shoot();
         m_currentWeapon->addAmmo(-1);
         return true;
@@ -212,12 +211,18 @@ void Player::readEvents()
 
     if (m_isThrowingGrenade)
     {
+        if(!m_grenadeSound){
+            AEInstance->Play2D("media/Sounds/AnillaGranada.wav");
+            m_grenadeSound = true;
+        }
+
         if (timeElapsed - m_timeInitGrenade > Player::_throwGrenadeOffsetTime)
         {
             throwGrenade();
             NetInstance->sendBroadcast(ID_PROJECTILEGRENADE_CREATE, getPosition(), getRotation().y); // Enviamos mensaje para crear projectilgrenade
             m_timeLastGrenade = timeElapsed;
             m_isThrowingGrenade = false;
+            m_grenadeSound = false;
         }
         else{
             return;

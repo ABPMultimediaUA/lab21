@@ -13,5 +13,5 @@ Flashlight::~Flashlight()
 /////////////////
 void Flashlight::onTake()
 {
-    // TODO
+
 }

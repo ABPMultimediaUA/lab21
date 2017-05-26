@@ -6,6 +6,8 @@
 #include "Player.h"
 #include "Firearm.h"
 
+class TriggerSound;
+
 
 class PlayerMate : public dwn::DrawableReplica
 {
@@ -33,17 +35,23 @@ class PlayerMate : public dwn::DrawableReplica
         void setWeapon(uint8_t index, Firearm* firearm);
         void swapCurrentWeapon(FirearmKind firearmKind);
 
+        void setAnimation(dwe::AnimationType a);
+
 
     protected:
 
     private:
         static const uint8_t _maxWeapons = 3;
+
         dwe::vec3f          m_shift; // Desplazamiento respecto del movimiento anterior
         unsigned short int  m_health;
         unsigned short int  m_numGrenades;
         unsigned short int  m_numMedkits;
         FirearmKind         m_currentWeaponKind;
         Firearm*            m_weapons[_maxWeapons];
+        TriggerSound*       m_soundTrigger;
+
+        void setSoundTrigger();
 };
 
 #endif // PLAYERMATE_H

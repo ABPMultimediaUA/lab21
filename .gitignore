@@ -29,6 +29,7 @@ Desarrollo/motor/obj/
 Desarrollo/motor/obj/**/*
 **/*.depend
 Desarrollo/motor/lib/**/*
+Desarrollo/game/options.ini
 
 # Unity
 Desarrollo/Lab21-Unity3D-Project/.vs/

@@ -9,6 +9,8 @@
 #include "TriggerVision.h"
 #include "Scene.h"
 
+#include "dwVectors.h"
+
 #include <limits>
 
 Enemy::Enemy() :
@@ -134,6 +136,11 @@ bool Enemy::Attack()
         setAnimation(dwe::eAnimEnemyAttack);
         attacking = true;
         EntityPhysics::setVelocity(dwe::vec2f(0,0));
+
+        dwe::vec3f plPos(m_perception->GetPositionClosestPlayer());
+        dwe::vec2f dir(plPos.x - getPosition().x, plPos.z - getPosition().z);
+        dwe::vec2f direction = dwu::normalizeVector(dir);
+        setRotation(dwe::vec3f(0, dwu::calculateAngleYAxis(direction), 0));
     }
     if(World->getTimeElapsed() - attackTime >= 0.5f){
         if(!attackTriggered){
@@ -149,6 +156,9 @@ bool Enemy::Attack()
         setAnimation(dwe::eAnimEnemyStand);
         attacking = false;
         attackTriggered = false;
+
+        dwe::vec3f plPos(m_perception->GetPositionClosestPlayer());
+        SeePlayer(plPos);
     }
 
     return attacking;
@@ -300,7 +310,7 @@ void Enemy::onBeginContact(EntityPhysics* otherObject)
             }
             break;
         case EntityPhysics::grenadeExplosion_id:
-            m_health-=10;
+            m_health-=20;
             break;
         case EntityPhysics::triggerSound_id:
             Hear(otherObject->getPosEntity());

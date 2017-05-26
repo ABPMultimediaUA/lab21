@@ -22,6 +22,7 @@ class Ammo : public Consumable
         int m_gunAmmo;
         int m_rifleAmmo;
         int m_shotgunAmmo;
+        int m_grenade;
 };
 
 #endif // AMMO_H

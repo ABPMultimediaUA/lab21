@@ -574,12 +574,13 @@ void dwn::NetGame::sendBroadcast(unsigned int messageID, unsigned int objectID, 
     sendBroadcastMessage(bsOut);
 }
 ///////////////////
-void dwn::NetGame::sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle, RakNet::RakString value)
+void dwn::NetGame::sendBroadcast(unsigned int messageID, dwe::vec3f position, float angle, int damage, RakNet::RakString value)
 {
     RakNet::BitStream bsOut;
     bsOut.Write((RakNet::MessageID)messageID);
     bsOut.Write(position);
     bsOut.Write(angle);
+    bsOut.Write(damage);
     bsOut.Write(value);
     sendBroadcastMessage(bsOut);
 }
@@ -799,6 +800,8 @@ void dwn::NetGame::readConnectionMessage(RakNet::Packet *packet, RakNet::RakStri
         std::cout << "\n------------------- ID_NAT_PUNCHTHROUGH_SUCCEEDED ------------------------\n"; //getline(cin, quitar);
         if (packet->data[1]==1)  // Si somos los que enviamos el OpenNAT
         {
+            PushMessage(RakNet::RakString("Recalculating host"));
+            fullyConnectedMesh2->ResetHostCalculation(); // Si el cliente carga más rápido que el server, recalcula para que el cliente no sea host
             PushMessage(RakNet::RakString("Connecting to existing game instance"));
             rakPeer->Connect(packet->systemAddress.ToString(false), packet->systemAddress.GetPort(), 0, 0);
             std::cout << "\n-------------- " << packet->systemAddress.ToString(false) << ":" << packet->systemAddress.GetPort() <<  "\n"; //getline(cin, quitar);
@@ -882,15 +885,19 @@ void dwn::NetGame::activeGenerator(RakNet::Packet *packet)
 void dwn::NetGame::createProjectile(RakNet::Packet *packet)
 {
     dwe::vec3f position;
+    int damage;
     float angle;
     RakNet::RakString value;
+
     RakNet::BitStream bsIn(packet->data,packet->length,false);
     bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+
     bsIn.Read(position);
     bsIn.Read(angle);
+    bsIn.Read(damage);
     bsIn.Read(value);
 
-    Scene::Instance()->createProjectile(position, angle, value.C_String(), 5); ///TO DO Poner un daño diferente a cada arma
+    Scene::Instance()->createProjectile(position, angle, value.C_String(), damage);
 }
 
 ///////////////////
@@ -920,27 +927,29 @@ void dwn::NetGame::enemyUpdate(RakNet::Packet *packet)
 {
     unsigned int enemyID;
 
-    TMsgEnemy datosEnemy;
-
     RakNet::BitStream bsIn(packet->data,packet->length,false);
     bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
     bsIn.Read(enemyID);
 
     if (enemyID<m_numNetEnemies && m_netEnemies[enemyID])
     {
+        Enemy* enemy = m_netEnemies[enemyID];
+        TMsgEnemy datosEnemy;
+
         bsIn.Read(datosEnemy);
 
-        (m_netEnemies[enemyID])->setPosition(datosEnemy.position);
-        (m_netEnemies[enemyID])->SetMemory(datosEnemy.memory);
-        (m_netEnemies[enemyID])->SetHearing(datosEnemy.hearing);
-        (m_netEnemies[enemyID])->SetSeeing(datosEnemy.seeing);
-        (m_netEnemies[enemyID])->SetMemoryPosition(datosEnemy.memoryPos);
-        (m_netEnemies[enemyID])->SetSoundPosition(datosEnemy.soundPos);
-        (m_netEnemies[enemyID])->SetVisionPosition(datosEnemy.visionPos);
-        (m_netEnemies[enemyID])->SetPatrolPosition(datosEnemy.patrolPos);
-        (m_netEnemies[enemyID])->SetTargetPosition(datosEnemy.targetPos);
+        enemy->setPosition(datosEnemy.position);
+        enemy->setRotation(datosEnemy.rotation);
+        enemy->SetMemory(datosEnemy.memory);
+        enemy->SetHearing(datosEnemy.hearing);
+        enemy->SetSeeing(datosEnemy.seeing);
+        enemy->SetMemoryPosition(datosEnemy.memoryPos);
+        enemy->SetSoundPosition(datosEnemy.soundPos);
+        enemy->SetVisionPosition(datosEnemy.visionPos);
+        enemy->SetPatrolPosition(datosEnemy.patrolPos);
+        enemy->SetTargetPosition(datosEnemy.targetPos);
 
-        (m_netEnemies[enemyID])->PlanPath();
+        enemy->PlanPath();
     }
 }
 

@@ -31,6 +31,7 @@
 
 #include "ScenaryElement.h"
 
+#include <fstream> //Lectura de ficheros
 #include <iostream>
 #include <cmath>
 
@@ -44,6 +45,25 @@
 #include "tag/EAnimation.h"
 #include "LoadingScreen.h"
 #include "ClippingObject.h"
+
+// OJO estas opciones se reescriben en leerFicheroOpciones() si existe
+// Estan para valores por defecto
+// Si en fullscreen no se ve bien maximizado es que la pantalla
+// no soporta esa resolución. Configurar en fich de opciones
+#ifndef LAB21_DEBUG
+int  dwe::GraphicsEngine::_screenWidth  = 1366;
+int  dwe::GraphicsEngine::_screenHeight = 768;
+bool dwe::GraphicsEngine::_fullScreen   = true;
+bool dwe::GraphicsEngine::_shadows      = true;
+bool dwe::GraphicsEngine::_vsync        = true;
+#else
+int  dwe::GraphicsEngine::_screenWidth  = 1024;
+int  dwe::GraphicsEngine::_screenHeight = 768;
+bool dwe::GraphicsEngine::_fullScreen   = false;
+bool dwe::GraphicsEngine::_shadows      = true;
+bool dwe::GraphicsEngine::_vsync        = false;
+#endif
+
 
 using namespace std;
 
@@ -65,15 +85,18 @@ void dwe::GraphicsEngine::init()
     contextSettings.depthBits = 24;
     contextSettings.sRgbCapable = false;
 
+    leerFicheroOpciones();
+
 
     sf::Uint32 style;
-    if (_fullScreen)
+    if (GraphicsEngine::_fullScreen)
         style = sf::Style::Fullscreen;
     else
         style = sf::Style::Default;
-    //style = sf::Style::Default; // TODO
+
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", style, contextSettings);
-    m_window->setVerticalSyncEnabled(false);
+    m_window->setVerticalSyncEnabled(GraphicsEngine::_vsync);
+
     // Creamos los mensajes de texto, por ahora vacios
     if (!m_font.loadFromFile("media/ExoRegular.otf"))
         throw std::runtime_error("No se ha podido cargar la fuente de texto");
@@ -92,7 +115,7 @@ void dwe::GraphicsEngine::init()
 	m_cursorSprite.setTexture(m_cursorTexture);
 	m_cursorSprite.setOrigin(m_cursorTexture.getSize().x/2.0, m_cursorTexture.getSize().y/2.0);
 
-    m_tagEngine.init(GraphicsEngine::_screenHeight, GraphicsEngine::_screenWidth);
+    m_tagEngine.init(GraphicsEngine::_screenHeight, GraphicsEngine::_screenWidth, GraphicsEngine::_shadows);
 
     m_secondsLastDraw = 0;
     m_drawsCount = 0;
@@ -270,7 +293,7 @@ Player* dwe::GraphicsEngine::createMainPlayer()
     m_tagEngine.createAnimation(anim, "media/player/playerStand/playerStand",       eAnimPlayerStand,   1);
     m_tagEngine.createAnimation(anim, "media/player/playerRun/playerRun",           eAnimPlayerRun,     20); LoadingScreen::getInstance()->AddProgress();
     m_tagEngine.createAnimation(anim, "media/player/playerWalk/playerWalk",         eAnimPlayerStealth, 10); LoadingScreen::getInstance()->AddProgress();
-    m_tagEngine.createAnimation(anim, "media/player/playerGrenade/playerGrenade",   eAnimPlayerGrenade, 19, false); LoadingScreen::getInstance()->AddProgress();
+    m_tagEngine.createAnimation(anim, "media/player/playerGrenade/playerGrenade",   eAnimPlayerGrenade, 20, false); LoadingScreen::getInstance()->AddProgress();
     m_tagEngine.createAnimation(anim, "media/player/playerAttack/playerAttack",     eAnimPlayerAttack,  14, false); LoadingScreen::getInstance()->AddProgress();
     m_tagEngine.createAnimation(anim, "media/player/playerDash/playerDash",         eAnimPlayerDash,    19, false); LoadingScreen::getInstance()->AddProgress();
     m_tagEngine.createAnimation(anim, "media/player/playerDeath/playerDeath",       eAnimPlayerDeath,   14, false); LoadingScreen::getInstance()->AddProgress();
@@ -279,7 +302,6 @@ Player* dwe::GraphicsEngine::createMainPlayer()
     tag::GraphicNode* node = m_tagEngine.createNodeAnimations(anim, vec3f(0,0,0), vec3f(0,0,0));
 	Player* p = new Player();
 	p->setNode(new Node(node));
-	p->setSoundTrigger();
 
 	NetInstance->addNetObject(p);
 	return p;
@@ -723,4 +745,53 @@ void dwe::GraphicsEngine::setOwnCursor(bool ownCursor)
     m_ownCursor = ownCursor;
     m_window->setMouseCursorVisible(!ownCursor);
 }
+
+void dwe::GraphicsEngine::leerFicheroOpciones()
+{
+    /*struct TOptionsFile
+    {
+        std::string name;
+        void*       value;
+    };
+    static TOptionsFile options[] = {
+        {"width",       &dwe::GraphicsEngine::_screenWidth},
+        {"height",      &dwe::GraphicsEngine::_screenHeight},
+        {"fullscreen",  &dwe::GraphicsEngine::_fullScreen},
+        {"vsync",       &dwe::GraphicsEngine::_vsync},
+        {"shadows",     &dwe::GraphicsEngine::_shadows},
+        {"0", 0}  // Marca de fin
+    };*/
+
+    ifstream fich("options.ini");
+    if (fich.is_open())
+    {
+        std::string name;
+        int value;
+        while (fich >> name >> value)
+        {
+            /*uint8_t i=0;
+            while (options[i].name!=name && options[i].name!="0")
+                i++;
+
+            if (options[i].name!="0")  // Encontrado
+                *(int*)(options[i].value) = value;*/
+
+            if (name=="width")
+                dwe::GraphicsEngine::_screenWidth = value;
+            else if (name=="height")
+                dwe::GraphicsEngine::_screenHeight = value;
+            else if (name=="fullscreen")
+                dwe::GraphicsEngine::_fullScreen = value;
+            else if (name=="vsync")
+                dwe::GraphicsEngine::_vsync = value;
+            else if (name=="shadows")
+                dwe::GraphicsEngine::_shadows = value;
+        }
+    }
+}
+
+
+
+
+
 
