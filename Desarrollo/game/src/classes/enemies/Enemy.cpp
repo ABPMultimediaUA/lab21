@@ -9,6 +9,8 @@
 #include "TriggerVision.h"
 #include "Scene.h"
 
+#include "dwVectors.h"
+
 #include <limits>
 
 Enemy::Enemy() :
@@ -149,6 +151,12 @@ bool Enemy::Attack()
         setAnimation(dwe::eAnimEnemyStand);
         attacking = false;
         attackTriggered = false;
+
+        dwe::vec3f plPos(m_perception->GetPositionClosestPlayer());
+        dwe::vec2f dir(plPos.x - getPosition().x, plPos.y - getPosition().z);
+        dwe::vec2f direction = dwu::normalizeVector(dir);
+        setRotation(dwe::vec3f(0, dwu::calculateAngleYAxis(direction), 0));
+        SeePlayer(plPos);
     }
 
     return attacking;
