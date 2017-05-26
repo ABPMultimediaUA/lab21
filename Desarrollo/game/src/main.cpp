@@ -3,7 +3,8 @@
 
 int main()
 {
-    Game::getInstance()->ChangeState(GSMainMenu::getInstance());
-    Game::getInstance()->Run();
+    Game* game = Game::getInstance();  // Necesario asi pq game en el constructor llama a GraphicsEngine init
+    game->ChangeState(GSMainMenu::getInstance());
+    game->Run();
 	return 0;
 }
