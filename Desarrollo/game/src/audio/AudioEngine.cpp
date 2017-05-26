@@ -10,7 +10,7 @@ void dwe::AudioEngine::Create()
 {
     engine = irrklang::createIrrKlangDevice();
     m_numSounds = 0;
-    SetMasterVolume(1.0);
+    SetMasterVolume(0.5);
 }
 
 void dwe::AudioEngine::Drop()

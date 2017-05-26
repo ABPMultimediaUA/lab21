@@ -129,7 +129,7 @@ void GSIngame::Render(){
         if(!m){
             cout<<"Ingame"<<endl;
             cout<<"Pulsa F9 para morir"<<endl;
-            cout<<"Pulsa P para pausar el juego"<<endl;
+            cout<<"Pulsa Esc para pausar el juego"<<endl;
             m=true;
         }
         GEInstance->draw();

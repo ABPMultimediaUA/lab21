@@ -9,7 +9,7 @@ LoadingScreen::LoadingScreen() :
     m_loadingSprite(0),
     m_progress(0)
 {
-    AEInstance->Play2D("media/Sounds/gamestarts.wav");
+    AEInstance->Play2D("media/Sounds/gamestarts.wav", 0.3);
 }
 
 LoadingScreen::~LoadingScreen()

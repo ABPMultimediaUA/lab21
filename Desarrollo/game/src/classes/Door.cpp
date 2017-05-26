@@ -3,6 +3,7 @@
 #include "TriggerDoor.h"
 #include "TriggerSystem.h"
 #include "Scene.h"
+#include "AudioEngine.h"
 
 Door::Door(int f, bool a)
 {
@@ -133,10 +134,13 @@ void Door::closeDoor()
 
 void Door::setIsOpening()
 {
-    if(active && !isOpened)
+    if(!active)
+        AEInstance->Play2D("media/Sounds/AccesoDenegado.wav");
+    if(active && !isOpened && !isOpening)
     {
         isOpening = true;
         NetInstance->sendBroadcast(ID_DOOR_OPEN, m_netID);
+        AEInstance->Play2D("media/Sounds/PuertaAbierta.wav");
     }
 }
 
@@ -147,10 +151,11 @@ bool Door::getIsOpening()
 
 void Door::setIsClosing()
 {
-    if(active && isOpened)
+    if(active && isOpened && !isClosing)
     {
         isClosing = true;
         NetInstance->sendBroadcast(ID_DOOR_CLOSE, m_netID);
+        AEInstance->Play2D("media/Sounds/PuertaAbierta.wav");
     }
 }
 
