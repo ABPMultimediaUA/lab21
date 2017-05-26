@@ -35,6 +35,8 @@ class PlayerMate : public dwn::DrawableReplica
         void setWeapon(uint8_t index, Firearm* firearm);
         void swapCurrentWeapon(FirearmKind firearmKind);
 
+        void setAnimation(dwe::AnimationType a);
+
 
     protected:
 
