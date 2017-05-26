@@ -319,8 +319,8 @@ void LoadMap::cheatDoorOpen()
 
 void LoadMap::calculateClipping()
 {
-    static const uint16_t _offsetClippingX = 400;
-    static const uint16_t _offsetClippingZ = 400;
+    static const uint16_t _offsetClippingX = 480;
+    static const uint16_t _offsetClippingZ = 480;
     dwe::vec3f posPlayer = World->getMainPlayer()->getPosition();
     for (uint16_t i=0; i<NUM_FLOORS; i++)
     {
