@@ -71,7 +71,7 @@ namespace tag
             /// \brief Realiza el dibujado de los nodos.
             /// \details Limpia la ventana openGL, prepara los parámetros de los shaders, las matrices
             /// dibuja los nodos y muestra los fps.
-            void draw();
+            void draw(float x, float z);
 
             /// \brief Crea una malla en el arbol.
             /// \details Crea los nodos de transformacion, uno de posicion y otro de rotación. Crea
@@ -202,6 +202,8 @@ namespace tag
 
             GraphicNode* createEmptyNode(GraphicNode* parent=0);
 
+            void configureShadowLight(const vec3f position);
+
             // shader de dibujado: Handles de los attributes y uniforms
             static int _aVertexPositionLocation;
             static int _aVertexNormalLocation;
@@ -250,7 +252,8 @@ namespace tag
             GLuint                      m_depthMap;
 
             bool                        m_renderShadows;
-
+            glm::mat4                   m_lightProjection;
+            vec3f                       m_lightPosition;
 
             glm::mat4 m_projectionMatrix; // Almacena la matriz de proyección
 
@@ -269,8 +272,7 @@ namespace tag
             ETransform* getTransformNode(GraphicNode* node, ENodeTransformOrder deep);
 
             void prepareShadows();
-            void prepareShadowView();
-            void calculateShadows();
+            void calculateShadows(float x, float z);
     };
 }
 

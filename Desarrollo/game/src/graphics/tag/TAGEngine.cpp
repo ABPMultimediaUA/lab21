@@ -47,8 +47,8 @@ int tag::TAGEngine::_aShadowVertexPositionLocation;
 int tag::TAGEngine::_uShadowMVPLocation;
 int tag::TAGEngine::_uHasShadowsLocation;
 
-GLuint tag::TAGEngine::_shadowHeight = 2048;
-GLuint tag::TAGEngine::_shadowWidth = 2048;
+GLuint tag::TAGEngine::_shadowHeight = 512;
+GLuint tag::TAGEngine::_shadowWidth = 512;
 
 float tag::TAGEngine::_screenHeight;
 float tag::TAGEngine::_screenWidth;
@@ -86,7 +86,7 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth, bool renderShad
     m_renderShadows             = renderShadows;
 
     glClearColor(0.0, 0.0, 0.0, 0.0);
-    glClearDepth(100.0);
+    glClearDepth(1.0);
 
     // Habilita el z_buffer
     glEnable(GL_DEPTH_TEST);
@@ -165,7 +165,7 @@ bool tag::TAGEngine::isRunning()
 }
 
 /////////////////////
-void tag::TAGEngine::draw()
+void tag::TAGEngine::draw(float x, float z)
 {
     glm::mat4 rotateMatrix;
     glm::vec3 positionMatrix;
@@ -176,7 +176,7 @@ void tag::TAGEngine::draw()
         calculateViewMatrix();
 
         if (m_renderShadows)
-            calculateShadows();
+            calculateShadows(x, z);
 
         glUseProgram(m_shaderProgram->ReturnProgramID());
         glViewport(0, 0, TAGEngine::_screenWidth, TAGEngine::_screenHeight);
@@ -238,30 +238,28 @@ void tag::TAGEngine::prepareShadows()
     glDrawBuffer(GL_NONE);
     glReadBuffer(GL_NONE);
 
-    prepareShadowView();
-
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void tag::TAGEngine::prepareShadowView()
+void tag::TAGEngine::configureShadowLight(const vec3f position)
 {
     GLfloat near_plane  = 0.1;
-    GLfloat far_plane   = 1400.0;
-    float   ortho       = 1900.0;
-    glm::vec3 position(60.0, 300.0, 60.0);
-    glm::vec3 lookAt(0.0);
-    glm::vec3 normal(0.0, 1.0, 0.0);
+    GLfloat far_plane   = 400.0;
+    float   ortho       = 400.0;
 
-    glm::mat4 lightProjection = glm::ortho(-ortho, ortho, -ortho, ortho, near_plane, far_plane);
-    glm::mat4 lightView = glm::lookAt(position, lookAt, normal);
-    Entity::lightSpaceMatrix = lightProjection * lightView;
+    m_lightPosition   = position;
+    m_lightProjection = glm::ortho(-ortho, ortho, -ortho, ortho, near_plane, far_plane);
 }
 
 /////////////////////
-void tag::TAGEngine::calculateShadows()
+void tag::TAGEngine::calculateShadows(float x, float z)
 {
     glUseProgram(m_shadowProgram->ReturnProgramID());
+
+    glm::mat4 lightView;
+    lightView = glm::lookAt(glm::vec3(x+m_lightPosition.x, m_lightPosition.y, z+m_lightPosition.z), glm::vec3(x, 0, z), glm::vec3(0, 1, 0));
+    Entity::lightSpaceMatrix = m_lightProjection * lightView;
 
     // Habilitamos el paso de attributes
     glEnableVertexAttribArray(TAGEngine::_aShadowVertexPositionLocation);

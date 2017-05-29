@@ -87,7 +87,6 @@ void dwe::GraphicsEngine::init()
 
     leerFicheroOpciones();
 
-
     sf::Uint32 style;
     if (GraphicsEngine::_fullScreen)
         style = sf::Style::Fullscreen;
@@ -116,7 +115,7 @@ void dwe::GraphicsEngine::init()
 	m_cursorSprite.setOrigin(m_cursorTexture.getSize().x/2.0, m_cursorTexture.getSize().y/2.0);
 
     m_tagEngine.init(GraphicsEngine::_screenHeight, GraphicsEngine::_screenWidth, GraphicsEngine::_shadows);
-
+    m_tagEngine.configureShadowLight(tag::vec3f(60,200,60));
     m_secondsLastDraw = 0;
     m_drawsCount = 0;
     m_timeIniDraw = 0;
@@ -176,7 +175,8 @@ bool dwe::GraphicsEngine::getWindowClose()
 void dwe::GraphicsEngine::draw()
 {
     m_window->popGLStates();   // Antes de este pop hay un push, en init
-    m_tagEngine.draw();
+    vec3f pos = World->getMainPlayer()->getPosition();
+    m_tagEngine.draw(pos.x, pos.z);
     m_window->pushGLStates();
 
     // Dibujamos cursor
