@@ -98,7 +98,7 @@ void GSIngame::HandleEvents()
     if(!m_clickPermission && GEInstance->receiver.isLeftButtonReleased()){
         m_clickPermission = true;
     }
-    if(m_pausePermission && GEInstance->receiver.isKeyDown(KEY_PAUSE)){
+    if(m_pausePermission && GEInstance->receiver.isKeyDown(KEY_PAUSE) && (!NetInstance->isMultiplayer())){
         Game::getInstance()->ChangeState(GSPause::getInstance());
         GEInstance->setOwnCursor(false);
         m = false;

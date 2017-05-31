@@ -129,14 +129,18 @@ void Scene::Destroy(){
 
     delete enemyLegless;
 
-    while(m_projectiles.size()>0){
+    while(m_projectiles.size()>0)
+    {
+        delete m_projectiles.back();
         m_projectiles.pop_back();
     }
     while(m_projectilesGrenades.size()>0){
+        delete m_projectilesGrenades.back();
         m_projectilesGrenades.pop_back();
     }
 
     while(m_consumables.size()>0){
+        delete m_consumables.back();
         m_consumables.pop_back();
     }
 
