@@ -18,8 +18,8 @@ GSPause::GSPause(){
     m_pausePermission=false;
     menuPausaFondo = new dwe::Background("menuBackground");
     /**Decoracion**/
-    pauseDecoration = new dwe::Sprite("pauseDecoration", GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.25-7);
-    optionsDecoration = new dwe::Sprite("optionsDecoration", GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.25-7);
+    pauseDecoration = new dwe::Sprite("pauseDecoration", GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.25-15);
+    optionsDecoration = new dwe::Sprite("optionsDecoration", GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.25-15);
 
     volumeSlider = new dwe::Slider(GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.40);
 
@@ -140,6 +140,7 @@ void GSPause::resumeGame()
 void GSPause::backToMainMenu()
 {
     AEInstance->StopAllSounds();
+    GEInstance->initMenu();
     Game::getInstance()->ChangeState(GSMainMenu::getInstance());
     NetInstance->close();
     Game::getInstance()->ChangeState(GSMainMenu::getInstance());

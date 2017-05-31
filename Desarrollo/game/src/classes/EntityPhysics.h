@@ -8,7 +8,7 @@
 class EntityPhysics
 {
     public:
-        static const float _ratio = 0.035;
+        static constexpr float _ratio = 0.035;
 
         enum EPClassID
         {

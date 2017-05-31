@@ -36,7 +36,6 @@ void GSIngame::Init(){
     timeStamp = World->getTimeElapsed();
     Scene::Instance()->Init();
     LoadingScreen::getInstance()->AddProgress();
-    hud = new Hud();
 
 #ifdef LAB21_DEBUG
     World->startDebugPhysics();
@@ -59,6 +58,9 @@ void GSIngame::Init(){
     GEInstance->receiver.clearEvents();
 
     LoadingScreen::getInstance()->Destroy();
+
+    GEInstance->initGame();
+    hud = new Hud();
 
     AEInstance->Play2D("media/Sounds/ambientealien.flac", 1.0, true);
 }
@@ -143,14 +145,16 @@ void GSIngame::Render(){
 }
 GSIngame::~GSIngame()
 {
-    if(hud)
-        Destroy();
+    Destroy();
 }
 
 void GSIngame::Destroy()
 {
-    delete hud;
-    hud = 0;
+    if(hud)
+    {
+        delete hud;
+        hud = 0;
+    }
 }
 
 void GSIngame::checkForNetGameStarted()

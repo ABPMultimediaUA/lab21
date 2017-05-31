@@ -9,6 +9,7 @@
 #include "LoadingScreen.h"
 
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -27,21 +28,77 @@ GSMainMenu::GSMainMenu(){
     menuBackground = new dwe::Background("menuBackground");
 
     /**Decoracion**/
-    mainMenuDecoration = new dwe::Sprite("mainMenuDecoration", GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.25-7);
-    optionsDecoration = new dwe::Sprite("optionsDecoration", GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.25-7);
-
-    volumeSlider = new dwe::Slider(GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.40);
+    menuMain = new dwe::Sprite("menutop", _margin, _marginTop);
+    menuBottom = new dwe::Sprite("menubottom", 0, 0);  // La posición se pone al dibujar
 
     /**Botones**/
-    playAloneButton = new dwe::Button("Play Alone", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35, true);
-    playOnlineButton = new dwe::Button("Play Online", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.43, true);
-    optionsButton = new dwe::Button("Options", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.51, true);
-    creditsButton = new dwe::Button("Credits", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.59, true);
-    exitButton = new dwe::Button("Exit", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.67, true);
-    backButton = new dwe::Button("Back", GEInstance->get_screenWidth()*0.8, GEInstance->get_screenHeight()*0.8, false);
+    playAloneButton = new dwe::Button("Play Alone", _margin+66, _marginTop+80, true);
+    playOnlineButton = new dwe::Button("Play Online", _margin+66, _marginTop+130, true);
+    optionsButton = new dwe::Button("Options", _margin+66, _marginTop+180, true);
+    creditsButton = new dwe::Button("Credits", _margin+66, _marginTop+230, true);
+    exitButton = new dwe::Button("Exit", _margin+66, _marginTop+280, true);
+    backButton = new dwe::Button("Back", 600, 500, false);
     serversButtons = new std::vector<dwe::Button>;
     lobbysButtons = new std::vector<dwe::Button>;
-    createLobbyButton = new dwe::Button("Create lobby", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.8, false);
+    createLobbyButton = new dwe::Button("Create lobby", _margin+66, _marginTop+280, false);
+
+    // Leo fichero de opciones
+    std::string shadows;
+    std::string resolution;
+    std::string fullscreen;
+    std::string vsync;
+    ifstream fich("options.ini");
+    if (fich.is_open())
+    {
+        std::string name;
+        std::string value;
+        while (fich >> name >> value)
+        {
+            if (name=="res")
+                resolution = value;
+            else if (name=="fullscreen")
+                fullscreen = value;
+            else if (name=="vsync")
+                vsync = value;
+            else if (name=="shadows")
+                shadows = value;
+        }
+    }
+
+
+
+    tgui::Theme::Ptr theme = tgui::Theme::create("media/gui/Black.txt");
+
+    cbShadows = theme->load("ComboBox");
+    cbShadows->addItem("Sin sombras",   "0");
+    cbShadows->addItem("Calidad baja",  "1");
+    cbShadows->addItem("Calidad media", "2");
+    cbShadows->addItem("Calidad alta",  "3");
+    cbShadows->setSelectedItemById(shadows);
+    cbShadows->setPosition(tgui::Layout2d(40, 80));
+    GEInstance->addGUI(cbShadows, "Shadows");
+
+    cbxFullscreen = theme->load("CheckBox");
+    cbxFullscreen->setText("Pantalla completa");
+    if (fullscreen == "1")
+        cbxFullscreen->check();
+    cbxFullscreen->setPosition(tgui::Layout2d(40, 135));
+    GEInstance->addGUI(cbxFullscreen, "Fullscreen");
+
+    cbxVSync = theme->load("CheckBox");
+    cbxVSync->setText("Activar VSync");
+    if (vsync == "1")
+        cbxVSync->check();
+    cbxVSync->setPosition(tgui::Layout2d(40, 175));
+    GEInstance->addGUI(cbxVSync, "VSync");
+
+    cbResolution = theme->load("ComboBox");
+    cbResolution->addItem("1024x576",  "0");
+    cbResolution->addItem("1366x768",  "1");
+    cbResolution->addItem("1920x1080", "2");
+    cbResolution->setSelectedItemById(resolution);
+    cbResolution->setPosition(tgui::Layout2d(40, 210));
+    GEInstance->addGUI(cbResolution, "Resolution");
 }
 
 GSMainMenu* GSMainMenu::getInstance()
@@ -63,7 +120,9 @@ void GSMainMenu::Render(){
         creditsButton->draw();
         optionsButton->draw();
         exitButton->draw();
-        mainMenuDecoration->draw();
+        menuMain->draw();
+        menuBottom->SetPosition(_margin,_marginTop+310);
+        menuBottom->draw();
     }else if(page==1){
         if(!menuInfo){
             // Menu Jugar Online: aparecera lista de servidores. Crear lobby
@@ -101,9 +160,9 @@ void GSMainMenu::Render(){
             menuInfo=true;
         }
         menuBackground->draw();
-        optionsDecoration->draw();
-        volumeSlider->draw();
         backButton->draw();
+
+        GEInstance->drawGUI();
     }
 }
 
@@ -128,6 +187,7 @@ void GSMainMenu::HandleEvents(){
                     NetInstance->open(false);  // Inicializar motor de red
                     menuInfo=false;
                     m_clickPermission=false;
+                    grabarFicheroOpciones();
                     Game::getInstance()->ChangeState(GSIngame::getInstance());
                     GEInstance->setOwnCursor(true);
                     LoadingScreen::getInstance()->Init(14);
@@ -220,8 +280,7 @@ void GSMainMenu::HandleEvents(){
                     m_clickPermission=false;
                 }
                 break;
-        case 3: volumeSlider->sliderCheck(mousePosX, mousePosY);
-                if(backButton->buttonCheck(mousePosX, mousePosY))
+        case 3: if(backButton->buttonCheck(mousePosX, mousePosY))
                 {
                     page=0;
                     menuInfo=false;
@@ -290,6 +349,7 @@ void GSMainMenu::Update(){
 
     if(enterNet && serverSelection && serverInfo && lobbySelection)
     {
+        grabarFicheroOpciones();
         Game::getInstance()->ChangeState(GSIngame::getInstance());
         GEInstance->setOwnCursor(true);
         LoadingScreen::getInstance()->Init(14);
@@ -333,13 +393,36 @@ void GSMainMenu::UpdateServers()
     }
 }
 
+void GSMainMenu::grabarFicheroOpciones()
+{
+    ofstream fich("options.ini");
+    if (fich.is_open())
+    {
+        std::string str = cbResolution->getSelectedItemId();
+        fich << "res "      << str << "\n";
+
+        str = cbShadows->getSelectedItemId();
+        fich << "shadows "  << str << "\n";
+
+        if (cbxFullscreen->isChecked())
+            fich << "fullscreen 1\n";
+        else
+            fich << "fullscreen 0\n";
+
+        if (cbxVSync->isChecked())
+            fich << "vsync 1";
+        else
+            fich << "vsync 0";
+    }
+    fich.close();
+}
+
 GSMainMenu::~GSMainMenu(){
     /**Borrar Fondos**/
     delete menuBackground;
     /**Borrar Decoraciones**/
-    delete mainMenuDecoration;
-    delete optionsDecoration;
-    delete volumeSlider;
+    delete menuMain;
+    delete menuBottom;
     /**Borrar Botones**/
     delete playAloneButton;
     delete playOnlineButton;

@@ -6,6 +6,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
+#include <TGUI/TGUI.hpp>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -147,9 +148,6 @@ namespace dwe
     };
 
 
-
-
-
     ///////////////////////////////////////////////
     // GraphicsEngine
     // ==============
@@ -160,11 +158,17 @@ namespace dwe
         static GraphicsEngine* Instance();
 
         void init();
+        void initGame();
+        void initMenu();
         void release();
         void close();
         bool isRunning();
         bool getWindowClose();
         void draw();
+        void drawGUI();
+        void addGUI(const tgui::Widget::Ptr &widgetPtr, const sf::String &widgetName="");
+        void removeGUI(const tgui::Widget::Ptr &widgetPtr);
+        void clearGUI();
         ///
         void drawRectangleShape(sf::RectangleShape rs);
         void drawText(sf::Text t);
@@ -173,6 +177,7 @@ namespace dwe
 
         void clearWindow();
         void displayWindow();
+
         ///
         Floor* createFloor(std::string m, std::string t, Drawable* parent = 0);
 
@@ -247,14 +252,13 @@ namespace dwe
         void setOwnCursor(bool ownCursor);
 
     private:
-        static int  _screenWidth;
-        static int  _screenHeight;
-        static bool _fullScreen;
-        static bool _shadows;
-        static bool _vsync;
+        static int              _screenWidth;
+        static int              _screenHeight;
+        static bool             _fullScreen;
+        static int              _shadowSize;
+        static bool             _vsync;
 
-
-
+        tgui::Gui           m_gui;
         sf::RenderWindow*   m_window;
         sf::Font            m_font;
         sf::Text            m_messageLine[MAX_MESSAGE_LINES];

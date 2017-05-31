@@ -4,6 +4,8 @@
 
 #include "GState.h"
 
+#include <TGUI/TGUI.hpp>
+
 namespace dwe
 {
     class Button;
@@ -25,6 +27,9 @@ public:
     static GSMainMenu* getInstance();
 
 private:
+    static const int _margin    = 40;
+    static const int _marginTop = 80;
+
     int page;
     int mousePosX, mousePosY;
     bool menuInfo; // Mostrar info de los menus
@@ -44,10 +49,8 @@ private:
     /**/
     dwe::Background *menuBackground;
 
-    dwe::Sprite *mainMenuDecoration;
-    dwe::Sprite *optionsDecoration;
-
-    dwe::Slider *volumeSlider;
+    dwe::Sprite *menuMain;
+    dwe::Sprite *menuBottom;
 
     dwe::Button *playAloneButton;
     dwe::Button *playOnlineButton;
@@ -57,11 +60,19 @@ private:
     dwe::Button *backButton;
     dwe::Button *createLobbyButton;
 
+    tgui::ComboBox::Ptr cbShadows;
+    tgui::CheckBox::Ptr cbxFullscreen;
+    tgui::CheckBox::Ptr cbxVSync;
+    tgui::ComboBox::Ptr cbResolution;
+
     dwe::Button *auxButton; // No hacer delete, se borra al borrar los vectores de abajo
 
     std::vector<dwe::Button>* serversButtons; // Falta delete
     std::vector<dwe::Button>* lobbysButtons; // Falta delete
     /**/
+
+    void grabarFicheroOpciones();
+
 };
 
 #endif // GSMAINMENU_H

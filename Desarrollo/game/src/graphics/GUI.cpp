@@ -117,6 +117,11 @@ void dwe::Sprite::SetScale(float factorX, float factorY)
 {
     sp.setScale(factorX, factorY);
 }
+
+void dwe::Sprite::SetPosition(float x, float y)
+{
+    sp.setPosition(x, y);
+}
 /*** SPRITE FIN ***/
 
 /*** Slider INI ***/

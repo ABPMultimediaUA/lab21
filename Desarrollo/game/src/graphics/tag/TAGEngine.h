@@ -58,9 +58,12 @@ namespace tag
             ~TAGEngine();
 
             /// \brief Inicia el motor.
-            /// \param[in] renderShadows Si renderiza sombras o no
+            /// \param[in] shadowSize Tamaño de la textura de sombras, 0 sin sombras
             /// \details Debe ser llamado antes de cualquier otra función del motor.
-            void init(float screenHeight, float screenWidth, bool renderShadows);
+            void init(float screenHeight, float screenWidth, uint16_t shadowSize);
+
+            /// \brief Configuraciones. Debe ser llamado si se cambia alguna de estas opciones
+            void configure(float screenHeight, float screenWidth, uint16_t shadowSize);
 
             /// \brief Comprueba que la ventana esté abierta y obtiene los mensajes de la misma.
             /// \details Debe ser llamado antes de dibujar, en cada iteración del bucle.

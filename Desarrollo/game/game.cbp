@@ -25,6 +25,7 @@
 					<Add directory="src/classes/ia/behaviourtree/tasks" />
 				</Compiler>
 				<Linker>
+					<Add library="tgui-s-d" />
 					<Add library="sfml-graphics-s-d" />
 					<Add library="sfml-window-s-d" />
 					<Add library="sfml-system-s-d" />
@@ -48,6 +49,7 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add library="tgui-s" />
 					<Add library="sfml-graphics-s" />
 					<Add library="sfml-window-s" />
 					<Add library="sfml-system-s" />
@@ -56,7 +58,9 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-std=c++11" />
 			<Add option="-fexceptions" />
+			<Add option="-fpermissive" />
 			<Add option="-DSFML_STATIC" />
 			<Add directory="include" />
 			<Add directory="src/classes" />

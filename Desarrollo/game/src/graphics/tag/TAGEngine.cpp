@@ -6,7 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <cmath>
+#include <math.h>
 #include <sstream>
 
 #include "Shader.h"
@@ -20,6 +20,7 @@
 #include "tag/TAGError.h"
 
 #include "dwVectors.h"
+#define M_PI		3.14159265358979323846
 
 int tag::TAGEngine::_aVertexPositionLocation;
 int tag::TAGEngine::_aVertexNormalLocation;
@@ -59,7 +60,8 @@ tag::TAGEngine::TAGEngine() :
     m_rootNode(),
     m_lights(),
     m_cameras(),
-    m_numActiveCamera(0)
+    m_numActiveCamera(0),
+    m_depthMap(0)
 {
 }
 
@@ -79,22 +81,9 @@ tag::TAGEngine::~TAGEngine()
 }
 
 /////////////////////
-void tag::TAGEngine::init(float screenHeight, float screenWidth, bool renderShadows)
+void tag::TAGEngine::init(float screenHeight, float screenWidth, uint16_t shadowSize)
 {
-    TAGEngine::_screenHeight    = screenHeight;
-    TAGEngine::_screenWidth     = screenWidth;
-    m_renderShadows             = renderShadows;
-
-    glClearColor(0.0, 0.0, 0.0, 0.0);
-    glClearDepth(1.0);
-
-    // Habilita el z_buffer
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_TEXTURE_2D);
-
-    // Inicialización de GLEW
-    if(glewInit() != GLEW_OK)
-        throw std::runtime_error("glewInit failed");
+    configure(screenHeight, screenWidth, shadowSize);
 
     // Carga de los Shaders
     Shader shader;
@@ -156,6 +145,36 @@ void tag::TAGEngine::init(float screenHeight, float screenWidth, bool renderShad
     }
 
     glUseProgram(0);
+}
+
+/////////////////////
+void tag::TAGEngine::configure(float screenHeight, float screenWidth, uint16_t shadowSize)
+{
+    TAGEngine::_screenHeight    = screenHeight;
+    TAGEngine::_screenWidth     = screenWidth;
+    TAGEngine::_shadowHeight    = shadowSize;
+    TAGEngine::_shadowWidth     = shadowSize;
+    m_renderShadows             = !(shadowSize == 0);
+
+    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClearDepth(1.0);
+
+    // Habilita el z_buffer
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_TEXTURE_2D);
+
+    // Inicialización de GLEW
+    if(glewInit() != GLEW_OK)
+        throw std::runtime_error("glewInit failed");
+
+    if (m_shaderProgram)
+    {   // Si ya se ha inicializado previamente
+        glUseProgram(m_shaderProgram->ReturnProgramID());
+        glUniform1i(TAGEngine::_uHasShadowsLocation, m_renderShadows);
+        glUseProgram(0);
+        if (m_renderShadows)
+            prepareShadows();
+    }
 }
 
 /////////////////////
@@ -221,6 +240,13 @@ void tag::TAGEngine::draw(float x, float z)
 void tag::TAGEngine::prepareShadows()
 {
     glViewport(0, 0, TAGEngine::_shadowWidth, TAGEngine::_shadowHeight);
+
+    // Si están creados los borro
+    if (m_depthMap)
+    {
+        glDeleteTextures(1, &m_depthMap);
+        glDeleteFramebuffers(1, &m_depthMapFBO);
+    }
 
     glGenTextures(1, &m_depthMap);
     glBindTexture(GL_TEXTURE_2D, m_depthMap);

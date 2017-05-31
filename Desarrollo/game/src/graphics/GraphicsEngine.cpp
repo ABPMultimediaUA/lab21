@@ -50,19 +50,12 @@
 // Estan para valores por defecto
 // Si en fullscreen no se ve bien maximizado es que la pantalla
 // no soporta esa resolución. Configurar en fich de opciones
-#ifndef LAB21_DEBUG
-int  dwe::GraphicsEngine::_screenWidth  = 1366;
-int  dwe::GraphicsEngine::_screenHeight = 768;
-bool dwe::GraphicsEngine::_fullScreen   = true;
-bool dwe::GraphicsEngine::_shadows      = true;
-bool dwe::GraphicsEngine::_vsync        = true;
-#else
-int  dwe::GraphicsEngine::_screenWidth  = 1024;
-int  dwe::GraphicsEngine::_screenHeight = 768;
-bool dwe::GraphicsEngine::_fullScreen   = false;
-bool dwe::GraphicsEngine::_shadows      = true;
-bool dwe::GraphicsEngine::_vsync        = false;
-#endif
+int  dwe::GraphicsEngine::_screenWidth          = 800;
+int  dwe::GraphicsEngine::_screenHeight         = 600;
+bool dwe::GraphicsEngine::_fullScreen           = false;
+int  dwe::GraphicsEngine::_shadowSize           = 1024;
+bool dwe::GraphicsEngine::_vsync                = false;
+
 
 
 using namespace std;
@@ -85,8 +78,6 @@ void dwe::GraphicsEngine::init()
     contextSettings.depthBits = 24;
     contextSettings.sRgbCapable = false;
 
-    leerFicheroOpciones();
-
     sf::Uint32 style;
     if (GraphicsEngine::_fullScreen)
         style = sf::Style::Fullscreen;
@@ -95,6 +86,8 @@ void dwe::GraphicsEngine::init()
 
     m_window = new sf::RenderWindow(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", style, contextSettings);
     m_window->setVerticalSyncEnabled(GraphicsEngine::_vsync);
+
+    m_gui.setWindow(*m_window);
 
     // Creamos los mensajes de texto, por ahora vacios
     if (!m_font.loadFromFile("media/ExoRegular.otf"))
@@ -114,7 +107,8 @@ void dwe::GraphicsEngine::init()
 	m_cursorSprite.setTexture(m_cursorTexture);
 	m_cursorSprite.setOrigin(m_cursorTexture.getSize().x/2.0, m_cursorTexture.getSize().y/2.0);
 
-    m_tagEngine.init(GraphicsEngine::_screenHeight, GraphicsEngine::_screenWidth, GraphicsEngine::_shadows);
+
+    m_tagEngine.init(GraphicsEngine::_screenHeight, GraphicsEngine::_screenWidth, GraphicsEngine::_shadowSize);
     m_tagEngine.configureShadowLight(tag::vec3f(60,200,60));
     m_secondsLastDraw = 0;
     m_drawsCount = 0;
@@ -127,6 +121,63 @@ void dwe::GraphicsEngine::init()
 
     m_window->pushGLStates();
 }
+
+
+//////////////////////////
+void dwe::GraphicsEngine::initGame()
+{
+    m_window->popGLStates();
+
+    int height              = GraphicsEngine::_screenHeight;
+    int width               = GraphicsEngine::_screenWidth;
+    bool fullscreen         = GraphicsEngine::_fullScreen;
+    bool vsync              = GraphicsEngine::_vsync;
+    int shadowSize          = GraphicsEngine::_shadowSize;
+
+    leerFicheroOpciones();
+
+    if (height!=GraphicsEngine::_screenHeight || width!=GraphicsEngine::_screenWidth || fullscreen!=GraphicsEngine::_fullScreen)
+    {
+        sf::ContextSettings contextSettings;
+        contextSettings.depthBits = 24;
+        contextSettings.sRgbCapable = false;
+
+        sf::Uint32 style;
+        if (GraphicsEngine::_fullScreen)
+            style = sf::Style::Fullscreen;
+        else
+            style = sf::Style::Default;
+
+        m_window->create(sf::VideoMode(GraphicsEngine::_screenWidth, GraphicsEngine::_screenHeight), "Lab21", style, contextSettings);
+    }
+    m_window->setVerticalSyncEnabled(GraphicsEngine::_vsync);
+    m_tagEngine.configure(GraphicsEngine::_screenHeight, GraphicsEngine::_screenWidth, GraphicsEngine::_shadowSize);
+
+    m_window->setMouseCursorVisible(!m_ownCursor);
+
+    m_window->pushGLStates();
+}
+
+//////////////////////////
+void dwe::GraphicsEngine::initMenu()
+{
+    m_window->popGLStates();
+
+    sf::ContextSettings contextSettings;
+    contextSettings.depthBits = 24;
+    contextSettings.sRgbCapable = false;
+
+    sf::Uint32 style = sf::Style::Default;
+    GraphicsEngine::_screenWidth  = 800;
+    GraphicsEngine::_screenHeight = 600;
+    m_window->create(sf::VideoMode(800, 600), "Lab21", style, contextSettings);
+    m_window->setVerticalSyncEnabled(false);
+
+    m_window->setMouseCursorVisible(true);
+
+    m_window->pushGLStates();
+}
+
 //////////////////////////
 void dwe::GraphicsEngine::push()
 {
@@ -161,6 +212,8 @@ bool dwe::GraphicsEngine::isRunning()
         }
         else
             receiver.OnEvent(event);
+
+        m_gui.handleEvent(event);
     }
 
     return m_window->isOpen() && m_tagEngine.isRunning();
@@ -189,6 +242,12 @@ void dwe::GraphicsEngine::draw()
     // Lineas de mensaje del jugador
     for(unsigned int i=0; i<MAX_MESSAGE_LINES; i++)
         m_window->draw(m_messageLine[i]);
+}
+
+//////////////////////////
+void dwe::GraphicsEngine::drawGUI()
+{
+    m_gui.draw();
 }
 
 void dwe::GraphicsEngine::drawRectangleShape(sf::RectangleShape rs)
@@ -748,19 +807,9 @@ void dwe::GraphicsEngine::setOwnCursor(bool ownCursor)
 
 void dwe::GraphicsEngine::leerFicheroOpciones()
 {
-    /*struct TOptionsFile
-    {
-        std::string name;
-        void*       value;
-    };
-    static TOptionsFile options[] = {
-        {"width",       &dwe::GraphicsEngine::_screenWidth},
-        {"height",      &dwe::GraphicsEngine::_screenHeight},
-        {"fullscreen",  &dwe::GraphicsEngine::_fullScreen},
-        {"vsync",       &dwe::GraphicsEngine::_vsync},
-        {"shadows",     &dwe::GraphicsEngine::_shadows},
-        {"0", 0}  // Marca de fin
-    };*/
+    static uint16_t shadowSizes[] = { 0, 512, 1024, 2048 };
+    static uint16_t widthSizes[]  = { 1024, 1366, 1920 };
+    static uint16_t heightSizes[] = {  576,  768, 1080 };
 
     ifstream fich("options.ini");
     if (fich.is_open())
@@ -769,29 +818,37 @@ void dwe::GraphicsEngine::leerFicheroOpciones()
         int value;
         while (fich >> name >> value)
         {
-            /*uint8_t i=0;
-            while (options[i].name!=name && options[i].name!="0")
-                i++;
-
-            if (options[i].name!="0")  // Encontrado
-                *(int*)(options[i].value) = value;*/
-
-            if (name=="width")
-                dwe::GraphicsEngine::_screenWidth = value;
-            else if (name=="height")
-                dwe::GraphicsEngine::_screenHeight = value;
+            if (name=="res" && value>=0 && value<3)
+            {
+                dwe::GraphicsEngine::_screenWidth  = widthSizes[value];
+                dwe::GraphicsEngine::_screenHeight = heightSizes[value];
+            }
             else if (name=="fullscreen")
                 dwe::GraphicsEngine::_fullScreen = value;
             else if (name=="vsync")
                 dwe::GraphicsEngine::_vsync = value;
-            else if (name=="shadows")
-                dwe::GraphicsEngine::_shadows = value;
+            else if (name=="shadows" && value>=0 && value<4)
+                dwe::GraphicsEngine::_shadowSize = shadowSizes[value];
         }
     }
 }
 
+//////////////////////////
+void dwe::GraphicsEngine::addGUI(const tgui::Widget::Ptr &widgetPtr, const sf::String &widgetName)
+{
+    m_gui.add(widgetPtr, widgetName);
+}
+
+//////////////////////////
+void dwe::GraphicsEngine::removeGUI(const tgui::Widget::Ptr &widgetPtr)
+{
+    m_gui.remove(widgetPtr);
+}
 
 
-
-
+//////////////////////////
+void dwe::GraphicsEngine::clearGUI()
+{
+    m_gui.removeAllWidgets();
+}
 
