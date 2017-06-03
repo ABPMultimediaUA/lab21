@@ -1617,14 +1617,11 @@
 			{ "element-id": "Wall_01_300m",
 				"position": { "x":100.0002, "y":0, "z":1010.001 },
 				"rotation": { "x":0, "y":90, "z":0 }},
-			{ "element-id": "Wall_01_300m",
-				"position": { "x":100.0002, "y":0, "z":1610.001 },
-				"rotation": { "x":0, "y":90, "z":0 }},
 			{ "element-id": "Wall_01_100m",
-				"position": { "x":-3.799317, "y":-1, "z":1900.001 },
+				"position": { "x":0.0001220703, "y":0, "z":1320.001 },
 				"rotation": { "x":0, "y":5.122641E-05, "z":0 }},
-			{ "element-id": "Wall_01_300m",
-				"position": { "x":-110, "y":0, "z":1610.001 },
+			{ "element-id": "Especimen",
+				"position": { "x":63.80013, "y":0, "z":1107.001 },
 				"rotation": { "x":0, "y":90, "z":0 }}
 		],
 		"initial-consumable": [

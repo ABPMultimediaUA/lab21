@@ -43,7 +43,7 @@ void Scene::Init()
 {
     m_timeLastEnemyActive   = 0;
     m_timeEnemyActive       = 2.0;  // En segundos
-    m_posMother             = dwe::vec3f(0,62.0,-1617.0);
+    m_posMother             = dwe::vec3f(-10.0,62.0,-1245.0);//-1617.0);
 
     // Creación de jugador
     mainPlayer = GEInstance->createMainPlayer();

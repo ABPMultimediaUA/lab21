@@ -18,7 +18,7 @@
 #define NUM_DOORS           29
 #define NUM_GENERATORS      4
 #define NUM_MAP_DOORROTATE  1
-#define NUM_ENVIRONMENT_ELEMENTS 102 // 85 - Ultima adicion: Cosas random por mapa
+#define NUM_ENVIRONMENT_ELEMENTS 104 // 85 - Ultima adicion: Cosas random por mapa
 
 class LoadMap {
     public:
