@@ -368,29 +368,19 @@ void GSMainMenu::grabarFicheroOpciones()
     {
         std::string str = cbResolution->getSelectedItemId();
         fich << "res "      << str << "\n";
-        std::cout << "grabo en res: " << str << "\n";
 
         str = cbShadows->getSelectedItemId();
         fich << "shadows "  << str << "\n";
-        std::cout << "grabo en shadows: " << str << "\n";
 
         if (cbxFullscreen->isChecked())
             fich << "fullscreen 1\n";
         else
             fich << "fullscreen 0\n";
-        if (cbxFullscreen->isChecked())
-            std::cout << "grabo en cbxFullscreen: 1\n";
-        else
-            std::cout << "grabo en cbxFullscreen: 0\n";
 
         if (cbxVSync->isChecked())
             fich << "vsync 1";
         else
             fich << "vsync 0";
-        if (cbxVSync->isChecked())
-            std::cout << "grabo en vsync: 1\n";
-        else
-            std::cout << "grabo en vsync: 0\n";
         fich.close();
     }
 }
@@ -417,15 +407,6 @@ void GSMainMenu::Init()
                 vsync = value;
             else if (name=="shadows")
                 shadows = value;
-
-            if (name=="res")
-                std::cout << "res: " << value << "\n";
-            else if (name=="fullscreen")
-                std::cout << "fullscreen: " << value << "\n";
-            else if (name=="vsync")
-                std::cout << "vsync: " << value << "\n";
-            else if (name=="shadows")
-                std::cout << "shadows: " << value << "\n";
         }
         fich.close();
     }

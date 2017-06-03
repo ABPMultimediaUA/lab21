@@ -798,15 +798,6 @@ void dwe::GraphicsEngine::leerFicheroOpciones()
                 dwe::GraphicsEngine::_vsync = value;
             else if (name=="shadows" && value>=0 && value<4)
                 dwe::GraphicsEngine::_shadowSize = shadowSizes[value];
-
-            if (name=="res")
-                std::cout << "leerficheroopciones() res: " << value << "\n";
-            else if (name=="fullscreen")
-                std::cout << "leerficheroopciones() fullscreen: " << value << "\n";
-            else if (name=="vsync")
-                std::cout << "leerficheroopciones() vsync: " << value << "\n";
-            else if (name=="shadows")
-                std::cout << "leerficheroopciones() shadows: " << value << "\n";
         }
         fich.close();
     }

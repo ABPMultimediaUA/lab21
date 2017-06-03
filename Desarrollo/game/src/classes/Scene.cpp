@@ -256,9 +256,7 @@ void Scene::Update()
 
     if(enemyMother->getHealth()<=0)
     {
-        Game::getInstance()->ChangeState(GSEnd::getInstance());
-        GEInstance->setOwnCursor(false);
-        GSEnd::getInstance()->Init();
+        Game::getInstance()->ChangeState(GSEnd::getInstance(), true);
     }
 }
 
@@ -323,7 +321,6 @@ void Scene::createProjectile(dwe::vec3f origin, float angle, std::string weapon,
 {
     TriggerSound* triggerSound = new TriggerSound(origin, 15/EntityPhysics::_ratio, false);
     Scene::Instance()->getTriggerSystem().Add(triggerSound);
-//    AEInstance->Play2D("media/Sounds/DisparoEscopeta.wav");
     AEInstance->Play2D(dwe::AudioEngine::_soundEscopeta);
 
     m_projectiles.push_back(GEInstance->createProjectile(origin, angle, weapon, damage));

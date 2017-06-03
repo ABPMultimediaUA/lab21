@@ -4,7 +4,6 @@
 #include "GSPause.h"
 #include "GSDead.h"
 #include "NetGame.h"
-#include "GSEnd.h"
 #include "AudioEngine.h"
 #include "LoadingScreen.h"
 

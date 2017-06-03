@@ -45,5 +45,5 @@ void Mother::setNode(dwe::Node* n)
 {
     Drawable::setNode(n);
     dwe::vec3f box = n->getBoundingBox();
-    createStaticBody(getPosition(), box.x, box.z);
+    createStaticBody(getPosition(), box.x, box.z-60);
 }

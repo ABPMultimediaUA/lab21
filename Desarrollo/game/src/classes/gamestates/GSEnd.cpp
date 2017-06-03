@@ -4,6 +4,9 @@
 #include "WorldInstance.h"
 #include "Game.h"
 #include "GUI.h"
+#include "AudioEngine.h"
+#include "GSMainMenu.h"
+#include "GSIngame.h"
 
 #include <iostream>
 
@@ -24,9 +27,8 @@ GSEnd* GSEnd::getInstance()
 
 void GSEnd::Init()
 {
-    cout<<"FIN"<<endl;
-
     endDemoBackground = new dwe::Background("finDemo");
+    GEInstance->setOwnCursor(false);
 }
 
 void GSEnd::HandleEvents()
@@ -39,16 +41,20 @@ void GSEnd::HandleEvents()
     {
         Game::getInstance()->setRunning(false);
     }
+    if(GEInstance->receiver.isKeyDown(KEY_PAUSE))
+    {
+        AEInstance->StopAllSounds();
+        GEInstance->initMenu();
+        NetInstance->close();
+        Scene::Instance()->Destroy();
+        LoadMap::getInstance()->Destroy();
+        GSIngame::getInstance()->Destroy();
+        Game::getInstance()->ChangeState(GSMainMenu::getInstance());
+    }
 }
 
 void GSEnd::Update()
 {
-    if(!ended){
-        ended = true;
-        NetInstance->close();
-        Scene::Instance()->Destroy();
-        LoadMap::getInstance()->Destroy();
-    }
 }
 
 void GSEnd::Render()
