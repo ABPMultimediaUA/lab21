@@ -11,6 +11,9 @@
 
 using namespace std;
 
+const int GSPause::_margin    = 40;
+const int GSPause::_marginTop = 80;
+
 GSPause::GSPause(){
     page = 0;
     m = false;
@@ -18,15 +21,15 @@ GSPause::GSPause(){
     m_pausePermission=false;
     menuPausaFondo = new dwe::Background("menuBackground");
     /**Decoracion**/
-    pauseDecoration = new dwe::Sprite("pauseDecoration", GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.25-15);
-    optionsDecoration = new dwe::Sprite("optionsDecoration", GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.25-15);
+    pauseDecoration = new dwe::Sprite("pauseDecoration",_margin, _marginTop);
+    optionsDecoration = new dwe::Sprite("optionsDecoration", _margin, _marginTop);
 
-    volumeSlider = new dwe::Slider(GEInstance->get_screenWidth()*0.1-67, GEInstance->get_screenHeight()*0.40);
+    volumeSlider = new dwe::Slider(_margin, _marginTop+130);
 
-    resumeGameButton = new dwe::Button("Resume game", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.35, true);
-    helpOptionsButton = new dwe::Button("Help & options", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.43, true);
-    exitToMainMenuButton = new dwe::Button("Exit to main menu", GEInstance->get_screenWidth()*0.1, GEInstance->get_screenHeight()*0.51, true);
-    backButton = new dwe::Button("Back", GEInstance->get_screenWidth()*0.8, GEInstance->get_screenHeight()*0.8, false);
+    resumeGameButton = new dwe::Button("Resume game", _margin+66, _marginTop+80, true);
+    helpOptionsButton = new dwe::Button("Help & options",  _margin+66, _marginTop+130, true);
+    exitToMainMenuButton = new dwe::Button("Exit to main menu",  _margin+66, _marginTop+180, true);
+    backButton = new dwe::Button("Back", GEInstance->get_screenWidth()-200, GEInstance->get_screenHeight()-100, false);
 
 }
 
@@ -129,7 +132,7 @@ GSPause::~GSPause()
 
 void GSPause::resumeGame()
 {
-    Game::getInstance()->ChangeState(GSIngame::getInstance());
+    Game::getInstance()->ChangeState(GSIngame::getInstance(), false);
     GEInstance->receiver.clearEvents();
     GEInstance->setOwnCursor(true);
     m = false;

@@ -13,6 +13,9 @@
 
 using namespace std;
 
+const int GSMainMenu::_margin    = 40;
+const int GSMainMenu::_marginTop = 80;
+
 GSMainMenu::GSMainMenu(){
     page = 0;
     lobby = -1;
@@ -42,31 +45,6 @@ GSMainMenu::GSMainMenu(){
     lobbysButtons = new std::vector<dwe::Button>;
     createLobbyButton = new dwe::Button("Create lobby", _margin+66, _marginTop+280, false);
 
-    // Leo fichero de opciones
-    std::string shadows;
-    std::string resolution;
-    std::string fullscreen;
-    std::string vsync;
-    ifstream fich("options.ini");
-    if (fich.is_open())
-    {
-        std::string name;
-        std::string value;
-        while (fich >> name >> value)
-        {
-            if (name=="res")
-                resolution = value;
-            else if (name=="fullscreen")
-                fullscreen = value;
-            else if (name=="vsync")
-                vsync = value;
-            else if (name=="shadows")
-                shadows = value;
-        }
-    }
-
-
-
     tgui::Theme::Ptr theme = tgui::Theme::create("media/gui/Black.txt");
 
     cbShadows = theme->load("ComboBox");
@@ -74,21 +52,16 @@ GSMainMenu::GSMainMenu(){
     cbShadows->addItem("Calidad baja",  "1");
     cbShadows->addItem("Calidad media", "2");
     cbShadows->addItem("Calidad alta",  "3");
-    cbShadows->setSelectedItemById(shadows);
     cbShadows->setPosition(tgui::Layout2d(40, 80));
     GEInstance->addGUI(cbShadows, "Shadows");
 
     cbxFullscreen = theme->load("CheckBox");
     cbxFullscreen->setText("Pantalla completa");
-    if (fullscreen == "1")
-        cbxFullscreen->check();
     cbxFullscreen->setPosition(tgui::Layout2d(40, 135));
     GEInstance->addGUI(cbxFullscreen, "Fullscreen");
 
     cbxVSync = theme->load("CheckBox");
     cbxVSync->setText("Activar VSync");
-    if (vsync == "1")
-        cbxVSync->check();
     cbxVSync->setPosition(tgui::Layout2d(40, 175));
     GEInstance->addGUI(cbxVSync, "VSync");
 
@@ -96,9 +69,10 @@ GSMainMenu::GSMainMenu(){
     cbResolution->addItem("1024x576",  "0");
     cbResolution->addItem("1366x768",  "1");
     cbResolution->addItem("1920x1080", "2");
-    cbResolution->setSelectedItemById(resolution);
     cbResolution->setPosition(tgui::Layout2d(40, 210));
     GEInstance->addGUI(cbResolution, "Resolution");
+
+    Init();
 }
 
 GSMainMenu* GSMainMenu::getInstance()
@@ -189,9 +163,6 @@ void GSMainMenu::HandleEvents(){
                     m_clickPermission=false;
                     grabarFicheroOpciones();
                     Game::getInstance()->ChangeState(GSIngame::getInstance());
-                    GEInstance->setOwnCursor(true);
-                    LoadingScreen::getInstance()->Init(14);
-                    GSIngame::getInstance()->Init();
                 }
                 else if(playOnlineButton->buttonCheck(mousePosX, mousePosY) || GEInstance->receiver.isKeyDown(KEY_KEY_2))
                 {
@@ -350,10 +321,6 @@ void GSMainMenu::Update(){
     if(enterNet && serverSelection && serverInfo && lobbySelection)
     {
         grabarFicheroOpciones();
-        Game::getInstance()->ChangeState(GSIngame::getInstance());
-        GEInstance->setOwnCursor(true);
-        LoadingScreen::getInstance()->Init(14);
-        GSIngame::getInstance()->Init();
         menuInfo=false;
         enterNet=false;
         serverSelection=false;
@@ -361,6 +328,7 @@ void GSMainMenu::Update(){
         lobbySelection=false;
         updatedLobbys=false;
         page=0;
+        Game::getInstance()->ChangeState(GSIngame::getInstance());
     }
     if(enterNet && serverSelection && !updatedLobbys)
         UpdateLobbys();
@@ -400,21 +368,81 @@ void GSMainMenu::grabarFicheroOpciones()
     {
         std::string str = cbResolution->getSelectedItemId();
         fich << "res "      << str << "\n";
+        std::cout << "grabo en res: " << str << "\n";
 
         str = cbShadows->getSelectedItemId();
         fich << "shadows "  << str << "\n";
+        std::cout << "grabo en shadows: " << str << "\n";
 
         if (cbxFullscreen->isChecked())
             fich << "fullscreen 1\n";
         else
             fich << "fullscreen 0\n";
+        if (cbxFullscreen->isChecked())
+            std::cout << "grabo en cbxFullscreen: 1\n";
+        else
+            std::cout << "grabo en cbxFullscreen: 0\n";
 
         if (cbxVSync->isChecked())
             fich << "vsync 1";
         else
             fich << "vsync 0";
+        if (cbxVSync->isChecked())
+            std::cout << "grabo en vsync: 1\n";
+        else
+            std::cout << "grabo en vsync: 0\n";
+        fich.close();
     }
-    fich.close();
+}
+
+void GSMainMenu::Init()
+{
+    // Leo fichero de opciones
+    std::string shadows;
+    std::string resolution;
+    std::string fullscreen;
+    std::string vsync;
+    ifstream fich("options.ini");
+    if (fich.is_open())
+    {
+        std::string name;
+        std::string value;
+        while (fich >> name >> value)
+        {
+            if (name=="res")
+                resolution = value;
+            else if (name=="fullscreen")
+                fullscreen = value;
+            else if (name=="vsync")
+                vsync = value;
+            else if (name=="shadows")
+                shadows = value;
+
+            if (name=="res")
+                std::cout << "res: " << value << "\n";
+            else if (name=="fullscreen")
+                std::cout << "fullscreen: " << value << "\n";
+            else if (name=="vsync")
+                std::cout << "vsync: " << value << "\n";
+            else if (name=="shadows")
+                std::cout << "shadows: " << value << "\n";
+        }
+        fich.close();
+    }
+
+
+    if (fullscreen == "1")
+        cbxFullscreen->check();
+    else
+        cbxFullscreen->uncheck();
+
+    if (vsync == "1")
+        cbxVSync->check();
+    else
+        cbxVSync->uncheck();
+
+    cbResolution->setSelectedItemById(resolution);
+    cbShadows->setSelectedItemById(shadows);
 }
 
 GSMainMenu::~GSMainMenu(){

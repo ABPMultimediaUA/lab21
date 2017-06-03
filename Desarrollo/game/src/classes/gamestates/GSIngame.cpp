@@ -24,6 +24,8 @@ GSIngame* GSIngame::getInstance()
 }
 
 void GSIngame::Init(){
+    GEInstance->setOwnCursor(true);
+    LoadingScreen::getInstance()->Init(14);
     LoadingScreen::getInstance()->AddProgress();
     page = 0;
     m = false;

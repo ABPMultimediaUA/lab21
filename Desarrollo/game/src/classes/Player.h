@@ -84,10 +84,10 @@ class Player : public CharacterController
     protected:
 
     private:
-        static const float _changeOffsetTime        = 0.2;
-        static const float _reloadOffsetTime        = 2.0;
-        static const float _takeDamageOffsetTime    = 0.5;
-        static const float _throwGrenadeOffsetTime  = 0.5;
+        static constexpr float _changeOffsetTime        = 0.2;
+        static constexpr float _reloadOffsetTime        = 2.0;
+        static constexpr float _takeDamageOffsetTime    = 0.5;
+        static constexpr float _throwGrenadeOffsetTime  = 0.5;
         struct TPlayerWeaponKey {
             EKEY_CODE   key;
             FirearmKind weapon;

@@ -42,8 +42,10 @@ void Game::Run()
    Quit();
 }
 
-void Game::ChangeState(GState *newState){
+void Game::ChangeState(GState *newState, bool initialize){
     CurrentState = newState;
+    if (initialize)
+        newState->Init();
 }
 
 void Game::setRunning(bool mRunning){

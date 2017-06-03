@@ -56,7 +56,7 @@ void Scene::Init()
 
     createEnemies();
     GEInstance->createCamera();
-    GEInstance->updateCamera(mainPlayer->getPosition(), 0, 0);
+    GEInstance->updateCamera(mainPlayer->getPosition());
 }
 
 void Scene::createEnemies()
@@ -194,8 +194,6 @@ void Scene::deactiveEnemy(uint8_t i)
 void Scene::updateEnemies()
 {
     enemyMother->update();
-    m_moreEnemiesX = 0;
-    m_moreEnemiesZ = 0;
     for(uint8_t i=0; i<m_numEnemies; i++)
     {
         if (!m_enemies[i].enemy)
@@ -224,25 +222,6 @@ void Scene::updateEnemies()
             {
                 // Actualización de enemigos
                 m_enemies[i].enemy->update();
-
-                // Parametros para la camara inteligente
-                int playerX = mainPlayer->getPosition().x;
-                int playerZ = mainPlayer->getPosition().z;
-                int enemyX  = m_enemies[i].enemy->getPosition().x;
-                int enemyZ  = m_enemies[i].enemy->getPosition().z;
-                int d2pX    = abs(playerX - enemyX);  //distance to player
-                int d2pZ    = abs(playerZ - enemyZ);  //distance to player
-
-                //CERCAR --- SOLO CALCULAR LOS ENEMIGOS CERCANOS (pero no demasiado cerca)
-                //VER EN QUE CUADRANTE ESTA EL ENEMIGO CON RESPECTO AL JUGADOR
-                if(d2pX>50 && d2pX<300){
-                    if(enemyX<playerX)       m_moreEnemiesX--; //IZQ
-                    else                     m_moreEnemiesX++; //DER
-                }
-                if(d2pZ>50 && d2pZ<300){
-                    if(enemyZ<playerZ)       m_moreEnemiesZ++; //DOWN
-                    else                     m_moreEnemiesZ--; //UP
-                }
             }
 
         }
@@ -257,9 +236,9 @@ void Scene::Update()
 
     mainPlayer->update(); //Posición actualizada de Irrlicht Player
 
-    updateEnemies();  // Devuelve los parametros para la camara inteligente m_moreEnemiesX , m_moreEnemiesZ
+    updateEnemies();
 
-    GEInstance->updateCamera(mainPlayer->getPosition(), m_moreEnemiesX, m_moreEnemiesZ);
+    GEInstance->updateCamera(mainPlayer->getPosition());
 
 
     // Actualizamos los playermates
@@ -344,7 +323,8 @@ void Scene::createProjectile(dwe::vec3f origin, float angle, std::string weapon,
 {
     TriggerSound* triggerSound = new TriggerSound(origin, 15/EntityPhysics::_ratio, false);
     Scene::Instance()->getTriggerSystem().Add(triggerSound);
-    AEInstance->Play2D("media/Sounds/DisparoEscopeta.wav");
+//    AEInstance->Play2D("media/Sounds/DisparoEscopeta.wav");
+    AEInstance->Play2D(dwe::AudioEngine::_soundEscopeta);
 
     m_projectiles.push_back(GEInstance->createProjectile(origin, angle, weapon, damage));
 }

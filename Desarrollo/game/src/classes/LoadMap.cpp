@@ -16,6 +16,10 @@ using namespace rapidjson;
 
 static const bool _clippingActive = true;
 
+uint16_t LoadMap::_offsetClippingX = 300;
+uint16_t LoadMap::_offsetClippingZ = 338;
+
+
 LoadMap::LoadMap()
 {
 
@@ -119,13 +123,21 @@ void LoadMap::Init(){
                         if (_clippingActive)
                         {
                             clippingObjects[numFloors] = GEInstance->createClippingObject();
-                            clippingObjects[numFloors]->setPosClipping(dwe::vec3f(tx,ty,tz));
                             parentNode = clippingObjects[numFloors];
                         }
 
                         floors[numFloors] = GEInstance->createFloor(nextF->model, "unitySuelo_Hall", parentNode);
                         floors[numFloors]->setRotation(dwe::vec3f(rot));
                         floors[numFloors]->setPosition(dwe::vec3f(pos));
+
+                        if (_clippingActive)
+                        {
+                            dwe::vec3f bounding = floors[numFloors]->getBoundingBox();
+                            if (rot.y == 90 || rot.y == 270)
+                                clippingObjects[numFloors]->setParamsClipping(ClippingVec4f(tx,tz, bounding.z/2, bounding.x/2));  // Si esta rotado cambiamos z por x
+                            else
+                                clippingObjects[numFloors]->setParamsClipping(ClippingVec4f(tx,tz, bounding.x/2, bounding.z/2));
+                        }
 
                         numFloors++;
                     }
@@ -319,13 +331,12 @@ void LoadMap::cheatDoorOpen()
 
 void LoadMap::calculateClipping()
 {
-    static const uint16_t _offsetClippingX = 480;
-    static const uint16_t _offsetClippingZ = 480;
     dwe::vec3f posPlayer = World->getMainPlayer()->getPosition();
     for (uint16_t i=0; i<NUM_FLOORS; i++)
     {
-        dwe::vec3f posClip = clippingObjects[i]->getPosClipping();
-        bool activo = ((abs(posClip.x - posPlayer.x) < _offsetClippingX) || (abs(posClip.z - posPlayer.z) < _offsetClippingZ));
+        ClippingVec4f paramsClip = clippingObjects[i]->getParamsClipping();
+        bool activo = (   (abs(paramsClip.x - posPlayer.x) - paramsClip.sizeX < _offsetClippingX)
+                       && (abs(paramsClip.y - posPlayer.z) - paramsClip.sizeY < _offsetClippingZ) );
         clippingObjects[i]->setActive(activo);
     }
 }

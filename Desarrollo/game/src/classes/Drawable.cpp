@@ -57,3 +57,14 @@ void Drawable::setActive(bool active)
     if (m_node)
         m_node->setActive(active);
 }
+
+dwe::vec3f Drawable::getBoundingBox()
+{
+    if (m_node)
+        return m_node->getBoundingBox();
+    else
+    {
+        std::cerr << "Drawable getBoundingBox sin m_node\n";
+        return dwe::vec3f(0,0,0);
+    }
+}

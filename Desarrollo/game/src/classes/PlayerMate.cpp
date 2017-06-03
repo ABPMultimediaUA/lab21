@@ -98,6 +98,6 @@ void PlayerMate::setSoundTrigger()
 void PlayerMate::setAnimation(dwe::AnimationType a)
 {
     if (a == dwe::eAnimPlayerGrenade)
-        AEInstance->Play2D("media/Sounds/AnillaGranada.wav");
+        AEInstance->Play2D(dwe::AudioEngine::_soundAnillaGranada);
     Drawable::setAnimation(a);
 }

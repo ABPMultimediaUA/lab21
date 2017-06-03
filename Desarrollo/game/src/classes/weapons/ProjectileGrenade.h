@@ -32,8 +32,8 @@ class ProjectileGrenade: public Entity
     protected:
 
     private:
-        static const float _impulse = 0.3;
-        static const float _timeExplosion = 1.0;
+        static constexpr float _impulse = 0.3;
+        static constexpr float _timeExplosion = 1.0;
 
         bool m_exploding;   // En explosion
         bool m_exploded;    // Explotada

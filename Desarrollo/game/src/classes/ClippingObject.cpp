@@ -11,13 +11,13 @@ ClippingObject::~ClippingObject()
 }
 
 /////////////////////
-void ClippingObject::setPosClipping(dwe::vec3f p)
+void ClippingObject::setParamsClipping(ClippingVec4f p)
 {
-    m_posClipping = p;
+    m_paramsClipping = p;
 }
 
-///////////////////////////
-dwe::vec3f ClippingObject::getPosClipping()
+//////////////////////////////
+ClippingVec4f ClippingObject::getParamsClipping()
 {
-    return m_posClipping;
+    return m_paramsClipping;
 }

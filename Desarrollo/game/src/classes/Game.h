@@ -8,7 +8,7 @@ public:
     Game();
     ~Game();
     void Run();
-    void ChangeState(GState *newState);
+    void ChangeState(GState *newState, bool initialize = true);
     static Game* getInstance();
     const bool isRunning(){ return running; };
     void setRunning(bool mRunning);

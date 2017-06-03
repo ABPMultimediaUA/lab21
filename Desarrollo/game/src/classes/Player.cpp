@@ -212,7 +212,7 @@ void Player::readEvents()
     if (m_isThrowingGrenade)
     {
         if(!m_grenadeSound){
-            AEInstance->Play2D("media/Sounds/AnillaGranada.wav");
+            AEInstance->Play2D(dwe::AudioEngine::_soundAnillaGranada);
             m_grenadeSound = true;
         }
 

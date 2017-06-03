@@ -22,6 +22,9 @@
 
 class LoadMap {
     public:
+        static uint16_t _offsetClippingX;
+        static uint16_t _offsetClippingZ;
+
         static LoadMap* getInstance();
         LoadMap();
         ~LoadMap();
@@ -31,8 +34,8 @@ class LoadMap {
         void cheatDoorOpen();
 
         void createConsumableWeapons();
-
     private:
+
         // Suelo
         int numFloors;
         Floor *floors[NUM_FLOORS];

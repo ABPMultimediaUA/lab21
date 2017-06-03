@@ -80,8 +80,6 @@ class Scene
         uint8_t m_numActiveEnemies;
         float   m_timeLastEnemyActive;   // Tiempo de la última activación de un enemigo
         float   m_timeEnemyActive;       // Tiempo que pasa entre activaciones de enemigos
-        uint8_t m_moreEnemiesX;
-        uint8_t m_moreEnemiesZ;
 
         dwe::vec3f m_posMother;
 

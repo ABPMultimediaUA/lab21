@@ -201,7 +201,7 @@ namespace dwe
         AppReceiver receiver;
 
         void createCamera();
-        void updateCamera(const vec3f playerPosition, int moreEnemiesX, int moreEnemiesZ);
+        void updateCamera(const vec3f playerPosition);
         vec3f getCameraPosition();
 
         Door*               createDoor(int f, bool a, float px, float py, float pz, Drawable* parent = 0);

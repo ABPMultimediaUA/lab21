@@ -28,6 +28,8 @@ class Drawable
 
         void setActive(bool active);
 
+        dwe::vec3f getBoundingBox();
+
     protected:
 
     private:

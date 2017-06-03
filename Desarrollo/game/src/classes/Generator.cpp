@@ -37,7 +37,7 @@ void Generator::activateGenerator()
     Door *d;
     if(!active)
     {
-        AEInstance->Play2D("media/Sounds/Boop.wav");
+        AEInstance->Play2D(dwe::AudioEngine::_soundGenerador);
         NetInstance->sendBroadcast(ID_GENERATOR_ACTIVE, m_netID);
 
         active=true;

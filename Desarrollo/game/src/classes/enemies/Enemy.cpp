@@ -137,7 +137,7 @@ bool Enemy::Attack()
         setAnimation(dwe::eAnimEnemyAttack);
         attacking = true;
         EntityPhysics::setVelocity(dwe::vec2f(0,0));
-        AEInstance->Play2D("media/Sounds/Grunyido.wav");
+        AEInstance->Play2D(dwe::AudioEngine::_soundGrunyido);
         dwe::vec3f plPos(m_perception->GetPositionClosestPlayer());
         dwe::vec2f dir(plPos.x - getPosition().x, plPos.z - getPosition().z);
         dwe::vec2f direction = dwu::normalizeVector(dir);
@@ -345,7 +345,7 @@ void Enemy::deactiveEnemy()
 
     // activar animacion de morir
     setAnimation(dwe::eAnimEnemyDeath);
-    AEInstance->Play2D("media/Sounds/EnemigoMuere.wav");
+    AEInstance->Play2D(dwe::AudioEngine::_soundEnemigoMuere);
 
     NetInstance->sendBroadcast(ID_DEACTIVE_ENEMY, m_netID);
 }

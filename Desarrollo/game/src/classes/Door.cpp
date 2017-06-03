@@ -135,12 +135,12 @@ void Door::closeDoor()
 void Door::setIsOpening()
 {
     if(!active)
-        AEInstance->Play2D("media/Sounds/AccesoDenegado.wav");
+        AEInstance->Play2D(dwe::AudioEngine::_soundAccesoDenegado);
     if(active && !isOpened && !isOpening)
     {
         isOpening = true;
         NetInstance->sendBroadcast(ID_DOOR_OPEN, m_netID);
-        AEInstance->Play2D("media/Sounds/PuertaAbierta.wav");
+        AEInstance->Play2D(dwe::AudioEngine::_soundPuertaAbierta);
     }
 }
 
@@ -155,7 +155,7 @@ void Door::setIsClosing()
     {
         isClosing = true;
         NetInstance->sendBroadcast(ID_DOOR_CLOSE, m_netID);
-        AEInstance->Play2D("media/Sounds/PuertaAbierta.wav");
+        AEInstance->Play2D(dwe::AudioEngine::_soundPuertaAbierta);
     }
 }
 

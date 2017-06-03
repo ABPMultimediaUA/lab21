@@ -8,6 +8,7 @@ public:
     virtual void HandleEvents() { };
     virtual void Update() { };
     virtual void Render() { };
+    virtual void Init() {};
     virtual	~GState(){};
 
 };

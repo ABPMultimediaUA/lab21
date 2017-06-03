@@ -92,9 +92,9 @@ class WorldInstance
     private:
         static WorldInstance* pinstance;
 
-        static const float   _timeStep              = 1.0/60.0;
-        static const uint8_t _velocityIterations    = 8;
-        static const uint8_t _positionIterations    = 3;
+        static constexpr float   _timeStep              = 1.0/60.0;
+        static constexpr uint8_t _velocityIterations    = 8;
+        static constexpr uint8_t _positionIterations    = 3;
 
         static b2Vec2           m_gravity;
         static b2World          m_world;

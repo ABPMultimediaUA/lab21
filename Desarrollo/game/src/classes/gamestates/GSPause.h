@@ -24,6 +24,9 @@ public:
     void backToMainMenu();
 
 private:
+    static const int _margin;
+    static const int _marginTop;
+
     int page;
     int mousePosX, mousePosY;
     bool m;

@@ -45,6 +45,7 @@
 #include "tag/EAnimation.h"
 #include "LoadingScreen.h"
 #include "ClippingObject.h"
+#include "LoadMap.h"
 
 // OJO estas opciones se reescriben en leerFicheroOpciones() si existe
 // Estan para valores por defecto
@@ -131,10 +132,9 @@ void dwe::GraphicsEngine::initGame()
     int height              = GraphicsEngine::_screenHeight;
     int width               = GraphicsEngine::_screenWidth;
     bool fullscreen         = GraphicsEngine::_fullScreen;
-    bool vsync              = GraphicsEngine::_vsync;
-    int shadowSize          = GraphicsEngine::_shadowSize;
 
     leerFicheroOpciones();
+
 
     if (height!=GraphicsEngine::_screenHeight || width!=GraphicsEngine::_screenWidth || fullscreen!=GraphicsEngine::_fullScreen)
     {
@@ -702,7 +702,7 @@ void dwe::GraphicsEngine::createCamera()
 }
 
 //////////////////////////
-void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition, int moreEnemiesX, int moreEnemiesZ)
+void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition)
 {
     float cursorX = GEInstance->receiver.getCursorX();
     float cursorY = GEInstance->receiver.getCursorY();
@@ -742,40 +742,9 @@ void dwe::GraphicsEngine::updateCamera(const dwe::vec3f playerPosition, int more
             tarUD = 0;
     }
 
-
-    int des  = _camera_desviation/2;
-    float prog = 0.25f;
-    //DEPENDE DE LOS ENEMIGOS
-    if(moreEnemiesX!=0 && (moreEnemiesX>2 || moreEnemiesX<-2) ){
-        if(moreEnemiesX>0)
-            if(zoomX < des)      zoomX += prog;
-        if(moreEnemiesX<0)
-            if(zoomX > -des)     zoomX -= prog;
-    }else{
-        if(zoomX!=0)
-            if(zoomX<0)          zoomX += prog;
-            else                 zoomX -= prog;
-        else
-            zoomX = 0;
-    }
-
-    //DEPENDE DE LOS ENEMIGOS
-    if(moreEnemiesZ!=0 && (moreEnemiesZ>2 || moreEnemiesZ<-2) ){
-        if(moreEnemiesZ>0)
-            if(zoomZ < des)      zoomZ += prog;
-        if(moreEnemiesZ<0)
-            if(zoomZ > -des)     zoomZ -= prog;
-    }else{
-        if(zoomZ!=0)
-            if(zoomZ<0)          zoomZ += prog;
-            else                 zoomZ -= prog;
-        else
-            zoomZ = 0;
-    }
-
-    m_cameraPosition = vec3f(playerPosition.x+tarLR + zoomX, _camera_y + abs(zoomX) + abs(zoomZ), (playerPosition.z + _camera_z_offset + tarUD));
+    m_cameraPosition = vec3f(playerPosition.x + tarLR, _camera_y, (playerPosition.z + _camera_z_offset + tarUD));
     m_tagEngine.nodeLookAtTarget(m_camera, m_cameraPosition,
-            vec3f(playerPosition.x+ tarLR + zoomX, playerPosition.y, (playerPosition.z+tarUD + zoomZ)));  // target position
+            vec3f(playerPosition.x+ tarLR, playerPosition.y, (playerPosition.z+tarUD)));  // target position
 }
 
 //////////////////////////
@@ -829,7 +798,17 @@ void dwe::GraphicsEngine::leerFicheroOpciones()
                 dwe::GraphicsEngine::_vsync = value;
             else if (name=="shadows" && value>=0 && value<4)
                 dwe::GraphicsEngine::_shadowSize = shadowSizes[value];
+
+            if (name=="res")
+                std::cout << "leerficheroopciones() res: " << value << "\n";
+            else if (name=="fullscreen")
+                std::cout << "leerficheroopciones() fullscreen: " << value << "\n";
+            else if (name=="vsync")
+                std::cout << "leerficheroopciones() vsync: " << value << "\n";
+            else if (name=="shadows")
+                std::cout << "leerficheroopciones() shadows: " << value << "\n";
         }
+        fich.close();
     }
 }
 

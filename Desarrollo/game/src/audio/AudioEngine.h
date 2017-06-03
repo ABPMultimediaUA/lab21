@@ -13,12 +13,23 @@ namespace dwe
 
             static AudioEngine* Instance();
 
+            static irrklang::ISoundSource* _soundEscopeta;
+            static irrklang::ISoundSource* _soundGrenadeExplosion;
+            static irrklang::ISoundSource* _soundAccesoDenegado;
+            static irrklang::ISoundSource* _soundPuertaAbierta;
+            static irrklang::ISoundSource* _soundGrunyido;
+            static irrklang::ISoundSource* _soundEnemigoMuere;
+            static irrklang::ISoundSource* _soundGenerador;
+            static irrklang::ISoundSource* _soundAnillaGranada;
+            static irrklang::ISoundSource* _soundPistolaRecarga;
+
             void Create();
             void Drop();
 
             void SetMasterVolume(float volume);
             void UpdateListenerPosition(dwe::vec3f pos);
 
+            void Play2D(irrklang::ISoundSource* soundSource, float volume = 1.0, bool loop = false);
             void Play2D(const char* fileName, float volume = 1.0, bool loop = false);
             void Play3D(const char* fileName, dwe::vec3f pos, float volume = 1.0, bool loop = false);
 
@@ -37,7 +48,7 @@ namespace dwe
             irrklang::ISoundEngine* engine;
             float m_volume;
 
-            static const float _ratio = 0.035;
+            static constexpr float _ratio = 0.035;
     };
 }
 

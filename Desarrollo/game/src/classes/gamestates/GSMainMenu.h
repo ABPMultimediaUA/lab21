@@ -21,14 +21,15 @@ public:
     void HandleEvents();
     void Update();
     void Render();
+    virtual void Init();
     void SetPage(int n);
     void UpdateLobbys();
     void UpdateServers();
     static GSMainMenu* getInstance();
 
 private:
-    static const int _margin    = 40;
-    static const int _marginTop = 80;
+    static const int _margin;
+    static const int _marginTop;
 
     int page;
     int mousePosX, mousePosY;
